@@ -14,13 +14,13 @@
 <body>
 1${mem}11
 <h1><a href="<%=contextPath %>">ITJobs</a></h1>
-<%	if(mem!=null){ %>
+<%	if(mem==null){ %>
 <a href="<%=contextPath %>/views/login/join_law.jsp">회원가입</a>
 <a href="<%=contextPath %>/views/login/login.jsp">로그인</a>
 <%	}else{ %>
-<a href="<%=contextPath %>">로그아웃</a><br>
+<a href="<%=contextPath %>/logout.me">로그아웃</a><br>
 <%	} %>
-<a href="<%=contextPath %>/views/board/free/list.jsp">게시판</a>
+<a href="<%=contextPath %>/views/board/list.jsp?head=free">게시판</a>
 <hr>
 </body>
 </html>

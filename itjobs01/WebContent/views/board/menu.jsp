@@ -11,6 +11,7 @@
 <a href="<%=contextPath%>/views/board/list.jsp?head=study">스터디</a>
 <a href="<%=contextPath%>/views/board/list.jsp?head=project">프로젝트</a>
 <a href="<%=contextPath%>/views/board/list.jsp?head=qna">문의</a>
+<a href="<%=contextPath%>/views/board/list.jsp?head=form">서식</a>
 <hr>
 </body>
 </html>

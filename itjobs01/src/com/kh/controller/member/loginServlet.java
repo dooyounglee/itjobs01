@@ -31,8 +31,19 @@ public class loginServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		request.setCharacterEncoding("utf-8");
+		
+		String email=request.getParameter("email");
+		String pw=request.getParameter("pw");
+		String type=request.getParameter("type");
+		
+		System.out.println(email);
+		System.out.println(pw);
+		System.out.println(type);
+		
 		HttpSession session = request.getSession();
 		session.setAttribute("mem", "mem");
+		session.setAttribute("type", type);
 		
 		request.getRequestDispatcher("/views/mypage/myinfo.jsp").forward(request, response);
 	}

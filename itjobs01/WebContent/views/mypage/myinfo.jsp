@@ -9,9 +9,10 @@
 <body>
 <%@ include file="/views/include/header.jsp" %>
 <%@ include file="/views/mypage/menu.jsp" %>
+<%if(type.equals("일반")){ %>
 비번수정:<input><br>
 닉네임수정:<input><br>
-<hr>
+<%}else{ %>
 업종:<input><br>
 대표자명:<input><br>
 사업내용:<input><br>
@@ -22,6 +23,7 @@
 위치:<input><br>
 연혁:<input><br>
 복지:<input><br>
+<%} %>
 <button>입력완료</button>
 <%@ include file="/views/include/footer.jsp" %>
 </body>

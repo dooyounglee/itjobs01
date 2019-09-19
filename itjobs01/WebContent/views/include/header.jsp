@@ -3,6 +3,8 @@
 <%
 	String contextPath=request.getContextPath();
 	String mem=(String)session.getAttribute("mem");
+	
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -12,7 +14,6 @@
 <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
 </head>
 <body>
-1${mem}11
 <h1><a href="<%=contextPath %>">ITJobs</a></h1>
 <%	if(mem==null){ %>
 <a href="<%=contextPath %>/views/login/join_law.jsp">회원가입</a>

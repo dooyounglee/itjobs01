@@ -8,7 +8,7 @@
 </head>
 <body>
 <%@ include file="/views/include/header.jsp" %>
-<%@ include file="/views/board/menu.jsp" %>
+<%@ include file="/views/mypage/menu.jsp" %>
 <h1>공고 관리</h1>
 <button onclick="location.href='write.jsp'">공고 만들기</button>
 <select>
@@ -34,8 +34,8 @@
 		<td>등록일1</td>
 		<td>수정일1</td>
 		<td>상태</td>
-		<td><button>수정</button></td>
-		<td><button>지원자 확인</button></td>
+		<td><button onclick="location.href='edit.jsp'">수정</button></td>
+		<td><button onclick="location.href='applierList.jsp'">지원자 확인</button></td>
 	</tr>
 </table>
 <%@ include file="/views/include/footer.jsp" %>

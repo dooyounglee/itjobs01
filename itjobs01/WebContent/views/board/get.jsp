@@ -9,11 +9,16 @@
 <body>
 <%@ include file="/views/include/header.jsp" %>
 <%@ include file="/views/board/menu.jsp" %>
+<%
+	head=(String)session.getAttribute("head");
+%>
 <h1>글보기</h1>
-머리말:<%=session.getAttribute("head") %><br>
+(머리말:<%=head %>)안보여줘도 될꺼 같은데<br>
 제목:제목1<br>
 내용:내용1<br>
+<%if(head.equals("project") || head.equals("study")){ %>
 모집기간:언제~언제<br>
+<%} %>
 첨부된파일: abc.txt<button>x</button><br>
 <button onclick="location.href='edit.jsp?bno=1'">수정</button>
 <button>삭제</button>

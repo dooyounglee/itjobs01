@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	String head=request.getParameter("head");
-	session.setAttribute("head", head);
+	
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -33,10 +33,20 @@
 		<th>모집날짜</th>
 		<%} %>
 		<th>조회수</th>
+		<%if(head.equals("form")){ %>
+		<th>다운수</th>
+		<th>다운</th>
+		<%} %>
 	</tr>
 	<tr>
 		<td><input type=checkbox></td>
-		<td><a href="get.jsp?bno=1">제목1[3]</a></td>
+		<td>
+			<%if(!head.equals("form")){ %>
+			<a href="get.jsp?bno=1">제목1[3]</a>
+			<%}else{ %>
+			제목1[3]
+			<%} %>
+		</td>
 		<td>작성자1</td>
 		<td>등록일1</td>
 		<td>수정일1</td>
@@ -44,6 +54,10 @@
 		<td>날짜1~날짜2</td>
 		<%} %>
 		<td>조회수1</td>
+		<%if(head.equals("form")){ %>
+		<td>다운수1</td>
+		<td><a href="#">다운</a></td>
+		<%} %>
 	</tr>
 </table>
 <%@ include file="/views/include/footer.jsp" %>

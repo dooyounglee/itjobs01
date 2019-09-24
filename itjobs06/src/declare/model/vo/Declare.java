@@ -1,39 +1,55 @@
 package declare.model.vo;
 
-public class Noti_Declare {
+public class Declare {
 
-	private int n_d_no;
+	private int de_no;
 	private int noti_no;
+	private int b_no;
+	private int re_no;
 	private int m_no;
 	private String contents;
 	private String enroll_date;
 	private String comp_date;
 	private String status;
-	public Noti_Declare() {
+	public Declare() {
 		super();
 	}
-	public Noti_Declare(int n_d_no, int noti_no, int m_no, String contents, String enroll_date, String comp_date,
-			String status) {
+	public Declare(int de_no, int noti_no, int b_no, int re_no, int m_no, String contents, String enroll_date,
+			String comp_date, String status) {
 		super();
-		this.n_d_no = n_d_no;
+		this.de_no = de_no;
 		this.noti_no = noti_no;
+		this.b_no = b_no;
+		this.re_no = re_no;
 		this.m_no = m_no;
 		this.contents = contents;
 		this.enroll_date = enroll_date;
 		this.comp_date = comp_date;
 		this.status = status;
 	}
-	public int getN_d_no() {
-		return n_d_no;
+	public int getDe_no() {
+		return de_no;
 	}
-	public void setN_d_no(int n_d_no) {
-		this.n_d_no = n_d_no;
+	public void setDe_no(int de_no) {
+		this.de_no = de_no;
 	}
 	public int getNoti_no() {
 		return noti_no;
 	}
 	public void setNoti_no(int noti_no) {
 		this.noti_no = noti_no;
+	}
+	public int getB_no() {
+		return b_no;
+	}
+	public void setB_no(int b_no) {
+		this.b_no = b_no;
+	}
+	public int getRe_no() {
+		return re_no;
+	}
+	public void setRe_no(int re_no) {
+		this.re_no = re_no;
 	}
 	public int getM_no() {
 		return m_no;
@@ -67,8 +83,9 @@ public class Noti_Declare {
 	}
 	@Override
 	public String toString() {
-		return "Noti_Declare [n_d_no=" + n_d_no + ", noti_no=" + noti_no + ", m_no=" + m_no + ", contents=" + contents
-				+ ", enroll_date=" + enroll_date + ", comp_date=" + comp_date + ", status=" + status + "]";
+		return "Like [de_no=" + de_no + ", noti_no=" + noti_no + ", b_no=" + b_no + ", re_no=" + re_no + ", m_no="
+				+ m_no + ", contents=" + contents + ", enroll_date=" + enroll_date + ", comp_date=" + comp_date
+				+ ", status=" + status + "]";
 	}
 	
 }

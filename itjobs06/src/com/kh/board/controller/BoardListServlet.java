@@ -15,7 +15,7 @@ import com.kh.board.model.vo.Board;
 /**
  * Servlet implementation class BoardListServlet
  */
-@WebServlet("/BoardListServlet")
+@WebServlet("/list.bo")
 public class BoardListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

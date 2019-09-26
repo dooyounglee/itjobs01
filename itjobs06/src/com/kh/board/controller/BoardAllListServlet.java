@@ -1,29 +1,28 @@
-package com.kh.question.controller;
+package com.kh.board.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import com.kh.question.model.service.QuestionService;
-import com.kh.member.model.vo.Member;
-import com.kh.question.model.vo.Question;
+import com.kh.board.model.service.BoardService;
+import com.kh.board.model.vo.Board;
 
 /**
- * Servlet implementation class QuestionInsertServlet
+ * Servlet implementation class BoardAllListServlet
  */
-@WebServlet("/insert.qu")
-public class InsertServlet extends HttpServlet {
+@WebServlet("/boardList.ad")
+public class BoardAllListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public InsertServlet() {
+    public BoardAllListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,18 +35,10 @@ public class InsertServlet extends HttpServlet {
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		request.setCharacterEncoding("utf-8");
 		
-		HttpSession session = request.getSession();
-		Member m=(Member)session.getAttribute("mem");
-		int m_no=m.getM_no();
-		String contents=request.getParameter("contents");
-		Question q=new Question();
-		q.setM_no(m_no);
-		q.setContents(contents);
-		System.out.println(q);
+		ArrayList<Board> list=new BoardService().getAllList();
 		
-		int result=new QuestionService().insertQuestion(q);
-		response.sendRedirect(request.getContextPath()+"/list.qu");
-		
+		request.setAttribute("list", list);
+		request.getRequestDispatcher("views/admin/board.jsp").forward(request, response);
 	}
 
 	/**

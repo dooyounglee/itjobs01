@@ -50,4 +50,10 @@ public class BoardService {
 		return result;
 	}
 
+	public ArrayList<Board> getAllList() {
+		Connection conn=getConnection();
+		ArrayList<Board> list=new BoardDao().getAllList(conn);
+		return list;
+	}
+
 }

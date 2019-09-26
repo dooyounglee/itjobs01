@@ -17,7 +17,7 @@ public class QuestionDao {
 	
 	public QuestionDao() {
 		
-		String fileName = QuestionDao.class.getResource("/sql/question-query.properties").getPath();
+		String fileName = QuestionDao.class.getResource("/com/kh/sql/question-query.properties").getPath();
 		fileName=fileName.replace("WEB-INF/classes/", "");
 		try {
 			prop.load(new FileReader(fileName));

@@ -1,29 +1,30 @@
-package com.kh.question.controller;
+package com.kh.notification.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import com.kh.question.model.service.QuestionService;
+import com.kh.member.model.service.MemberService;
 import com.kh.member.model.vo.Member;
-import com.kh.question.model.vo.Question;
+import com.kh.notification.model.service.NotificationService;
+import com.kh.notification.model.vo.Notification;
 
 /**
- * Servlet implementation class QuestionInsertServlet
+ * Servlet implementation class AdminNotificationListServlet
  */
-@WebServlet("/insert.qu")
-public class InsertServlet extends HttpServlet {
+@WebServlet("/noticeList.ad")
+public class AdminNotificationListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public InsertServlet() {
+    public AdminNotificationListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,20 +35,9 @@ public class InsertServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		request.setCharacterEncoding("utf-8");
-		
-		HttpSession session = request.getSession();
-		Member m=(Member)session.getAttribute("mem");
-		int m_no=m.getM_no();
-		String contents=request.getParameter("contents");
-		Question q=new Question();
-		q.setM_no(m_no);
-		q.setContents(contents);
-		System.out.println(q);
-		
-		int result=new QuestionService().insertQuestion(q);
-		response.sendRedirect(request.getContextPath()+"/list.qu");
-		
+		ArrayList<Notification> list=new NotificationService().getAllNotificationList();
+		request.setAttribute("list", list);
+		request.getRequestDispatcher("views/admin/notification.jsp").forward(request, response);
 	}
 
 	/**

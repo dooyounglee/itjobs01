@@ -17,7 +17,7 @@ public class BoardDao {
 	
 	public BoardDao() {
 		
-		String fileName = BoardDao.class.getResource("/sql/board-query.properties").getPath();
+		String fileName = BoardDao.class.getResource("/com/kh/sql/board-query.properties").getPath();
 		fileName=fileName.replace("WEB-INF/classes/", "");
 		try {
 			prop.load(new FileReader(fileName));
@@ -46,10 +46,10 @@ public class BoardDao {
 						rs.getDate(6)+" "+rs.getTime(6),
 						rs.getDate(7)+" "+rs.getTime(7),
 						rs.getString(8),
-						rs.getInt(9),
-						rs.getString(10),
-						rs.getInt(11),
-						rs.getString(12),
+						rs.getString(9),
+						rs.getInt(10),
+						rs.getString(11),
+						rs.getInt(12),
 						rs.getString(13),
 						rs.getString(14)));
 			}
@@ -114,10 +114,10 @@ public class BoardDao {
 						rs.getDate(6)+" "+rs.getTime(6),
 						rs.getDate(7)+" "+rs.getTime(7),
 						rs.getString(8),
-						rs.getInt(9),
-						rs.getString(10),
-						rs.getInt(11),
-						rs.getString(12),
+						rs.getString(9),
+						rs.getInt(10),
+						rs.getString(11),
+						rs.getInt(12),
 						rs.getString(13),
 						rs.getString(14));
 			}
@@ -158,6 +158,37 @@ public class BoardDao {
 			e.printStackTrace();
 		}
 		return result;
+	}
+	public ArrayList<Board> getAllList(Connection conn) {
+		ArrayList<Board> list=new ArrayList<>();
+		PreparedStatement ps=null;
+		ResultSet rs=null;
+		
+		String sql=prop.getProperty("getAllList");
+		try {
+			ps=conn.prepareStatement(sql);
+			rs=ps.executeQuery();
+			while(rs.next()) {
+				list.add(new Board(
+						rs.getInt(1),
+						rs.getInt(2),
+						rs.getString(3),
+						rs.getString(4),
+						rs.getString(5),
+						rs.getDate(6)+" "+rs.getTime(6),
+						rs.getDate(7)+" "+rs.getTime(7),
+						rs.getString(8),
+						rs.getString(9),
+						rs.getInt(10),
+						rs.getString(11),
+						rs.getInt(12),
+						rs.getString(13),
+						rs.getString(14)));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
 	}
 
 }

@@ -53,6 +53,7 @@ public class MemberService {
 	public ArrayList<Member> getAllMemberList() {
 		Connection conn=getConnection();
 		ArrayList<Member> list=new MemberDao().getAllMemberList(conn);
+		close(conn);
 		return list;
 	}
 	

@@ -39,7 +39,11 @@ public class DeclareListServlet extends HttpServlet {
 		ArrayList<Declare> rlist=new DeclareService().getReplyList();
 		ArrayList<Declare> nlist=new DeclareService().getNotificationList();
 		
-		request.setAttribute(arg0, arg1);
+		request.setAttribute("blist", blist);
+		request.setAttribute("rlist", rlist);
+		request.setAttribute("nlist", nlist);
+		
+		request.getRequestDispatcher("views/admin/declare.jsp").forward(request, response);
 	}
 
 	/**

@@ -124,4 +124,100 @@ public class MainDao {
 		}
 		return list;
 	}
+
+	public ArrayList<Board> select5Study(Connection conn) {
+		ArrayList<Board> list=new ArrayList<>();
+		PreparedStatement ps=null;
+		ResultSet rs=null;
+		
+		String sql=prop.getProperty("select5Study");
+		try {
+			ps=conn.prepareStatement(sql);
+			rs=ps.executeQuery();
+			while(rs.next()) {
+				list.add(new Board(
+						rs.getInt(1),
+						rs.getInt(2),
+						rs.getString(3),
+						rs.getString(4),
+						rs.getString(5),
+						rs.getDate(6)+" "+rs.getTime(6),
+						rs.getDate(7)+" "+rs.getTime(7),
+						rs.getString(8),
+						rs.getString(9),
+						rs.getInt(10),
+						rs.getString(11),
+						rs.getInt(12),
+						rs.getString(13),
+						rs.getString(14)));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	public ArrayList<Board> select5Notice(Connection conn) {
+		ArrayList<Board> list=new ArrayList<>();
+		PreparedStatement ps=null;
+		ResultSet rs=null;
+		
+		String sql=prop.getProperty("select5Notice");
+		try {
+			ps=conn.prepareStatement(sql);
+			rs=ps.executeQuery();
+			while(rs.next()) {
+				list.add(new Board(
+						rs.getInt(1),
+						rs.getInt(2),
+						rs.getString(3),
+						rs.getString(4),
+						rs.getString(5),
+						rs.getDate(6)+" "+rs.getTime(6),
+						rs.getDate(7)+" "+rs.getTime(7),
+						rs.getString(8),
+						rs.getString(9),
+						rs.getInt(10),
+						rs.getString(11),
+						rs.getInt(12),
+						rs.getString(13),
+						rs.getString(14)));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	public ArrayList<Board> select5Free(Connection conn) {
+		ArrayList<Board> list=new ArrayList<>();
+		PreparedStatement ps=null;
+		ResultSet rs=null;
+		
+		String sql=prop.getProperty("select5Free");
+		try {
+			ps=conn.prepareStatement(sql);
+			rs=ps.executeQuery();
+			while(rs.next()) {
+				list.add(new Board(
+						rs.getInt(1),
+						rs.getInt(2),
+						rs.getString(3),
+						rs.getString(4),
+						rs.getString(5),
+						rs.getDate(6)+" "+rs.getTime(6),
+						rs.getDate(7)+" "+rs.getTime(7),
+						rs.getString(8),
+						rs.getString(9),
+						rs.getInt(10),
+						rs.getString(11),
+						rs.getInt(12),
+						rs.getString(13),
+						rs.getString(14)));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
 }

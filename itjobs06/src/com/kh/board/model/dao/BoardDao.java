@@ -190,5 +190,19 @@ public class BoardDao {
 		}
 		return list;
 	}
+	public int deleteCancle(Connection conn, int b_no) {
+		int result=0;
+		PreparedStatement ps=null;
+		
+		String sql=prop.getProperty("deleteCancle");
+		try {
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, b_no);
+			result=ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 
 }

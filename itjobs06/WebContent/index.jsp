@@ -124,31 +124,119 @@ table{
 	<%	} %>
 </table>
 </fieldset>
-<fieldset>
-<legend style="text-align:center">프로젝트</legend>
-<table border=1>
-	<tr>
-		<th>글번호</th>
-		<th>제목</th>
-		<th>작성자</th>
-		<th>모집기간</th>
-		<th>등록날짜</th>
-		<th>조회수</th>
-	</tr>
-	<%	ArrayList<Board> plist=(ArrayList<Board>)request.getAttribute("plist");
-		for(Board p:plist){%>
-	<tr>
-		<td><%=p.getB_no() %></td>
-		<td><%=p.getTitle() %></td>
-		<td><%=p.getM_no() %></td>
-		<td><%=p.getTime() %></td>
-		<td><%=p.getEnroll_date() %></td>
-		<td><%=p.getCount() %></td>
-	</tr>
-	<%	} %>
-</table>
-</fieldset>
 
+<!-- 공지사항,자유게시판 -->
+<div>
+	<div style="display:inline-block;width:49%;box-sizing:border-box;">
+		<fieldset>
+		<legend style="text-align:center">공지사항</legend>
+		<table border=1>
+			<tr>
+				<th>글번호</th>
+				<th>제목</th>
+				<th>작성자</th>
+				<th>모집기간</th>
+				<th>등록날짜</th>
+				<th>조회수</th>
+			</tr>
+			<%	ArrayList<Board> nolist=(ArrayList<Board>)request.getAttribute("nolist");
+				for(Board no:nolist){%>
+			<tr>
+				<td><%=no.getB_no() %></td>
+				<td><%=no.getTitle() %></td>
+				<td><%=no.getM_no() %></td>
+				<td><%=no.getTime() %></td>
+				<td><%=no.getEnroll_date() %></td>
+				<td><%=no.getCount() %></td>
+			</tr>
+			<%	} %>
+		</table>
+		</fieldset>
+	</div>
+	<div style="display:inline-block;width:49%;box-sizing:border-box;">
+		<fieldset>
+		<legend style="text-align:center">스터디</legend>
+		<table border=1>
+			<tr>
+				<th>글번호</th>
+				<th>제목</th>
+				<th>작성자</th>
+				<th>모집기간</th>
+				<th>등록날짜</th>
+				<th>조회수</th>
+			</tr>
+			<%	ArrayList<Board> freelist=(ArrayList<Board>)request.getAttribute("freelist");
+				for(Board s:freelist){%>
+			<tr>
+				<td><%=s.getB_no() %></td>
+				<td><%=s.getTitle() %></td>
+				<td><%=s.getM_no() %></td>
+				<td><%=s.getTime() %></td>
+				<td><%=s.getEnroll_date() %></td>
+				<td><%=s.getCount() %></td>
+			</tr>
+			<%	} %>
+		</table>
+		</fieldset>
+	</div>
+</div>
+
+<!-- 프로젝트, 스터디 -->
+<div>
+	<div style="float:left;">
+		<fieldset>
+		<legend style="text-align:center">프로젝트</legend>
+		<table border=1>
+			<tr>
+				<th>글번호</th>
+				<th>제목</th>
+				<th>작성자</th>
+				<th>모집기간</th>
+				<th>등록날짜</th>
+				<th>조회수</th>
+			</tr>
+			<%	ArrayList<Board> plist=(ArrayList<Board>)request.getAttribute("plist");
+				for(Board p:plist){%>
+			<tr>
+				<td><%=p.getB_no() %></td>
+				<td><%=p.getTitle() %></td>
+				<td><%=p.getM_no() %></td>
+				<td><%=p.getTime() %></td>
+				<td><%=p.getEnroll_date() %></td>
+				<td><%=p.getCount() %></td>
+			</tr>
+			<%	} %>
+		</table>
+		</fieldset>
+	</div>
+	<div style="float:left;">
+		<fieldset>
+		<legend style="text-align:center">스터디</legend>
+		<table border=1>
+			<tr>
+				<th>글번호</th>
+				<th>제목</th>
+				<th>작성자</th>
+				<th>모집기간</th>
+				<th>등록날짜</th>
+				<th>조회수</th>
+			</tr>
+			<%	ArrayList<Board> slist=(ArrayList<Board>)request.getAttribute("slist");
+				for(Board s:slist){%>
+			<tr>
+				<td><%=s.getB_no() %></td>
+				<td><%=s.getTitle() %></td>
+				<td><%=s.getM_no() %></td>
+				<td><%=s.getTime() %></td>
+				<td><%=s.getEnroll_date() %></td>
+				<td><%=s.getCount() %></td>
+			</tr>
+			<%	} %>
+		</table>
+		</fieldset>
+	</div>
+</div>
+<br clear="both">
 	<%@ include file="/views/include/footer.jsp" %>
 </body>
 </html>

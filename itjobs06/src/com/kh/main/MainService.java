@@ -31,4 +31,25 @@ public class MainService {
 		return list;
 	}
 
+	public ArrayList<Board> select5Study() {
+		Connection conn = getConnection();
+		ArrayList<Board> list=new MainDao().select5Study(conn);
+		close(conn);
+		return list;
+	}
+
+	public ArrayList<Board> select5Notice() {
+		Connection conn = getConnection();
+		ArrayList<Board> list=new MainDao().select5Notice(conn);
+		close(conn);
+		return list;
+	}
+
+	public ArrayList<Board> select5Free() {
+		Connection conn = getConnection();
+		ArrayList<Board> list=new MainDao().select5Free(conn);
+		close(conn);
+		return list;
+	}
+
 }

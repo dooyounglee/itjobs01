@@ -21,8 +21,9 @@
 		<th>수정일</th>
 		<th>모집날짜</th>
 		<th>조회수</th>
-		<th>다운수</th>
-		<th>다운</th>
+		<th>상태</th>
+		<th>삭제</th>
+		<th>삭제취소</th>
 	</tr>
 	<%	ArrayList<Board> list=(ArrayList<Board>)request.getAttribute("list");
 		for(Board b:list){%>
@@ -37,11 +38,20 @@
 		<td><%=b.getUpdate_date() %></td>
 		<td><%=b.getTime() %></td>
 		<td><%=b.getCount() %></td>
-		<td>다운수1????</td>
-		<td><a href="#">다운</a></td>
+		<td><%=b.getStatus() %></td>
+		<td><button onclick="del(<%=b.getB_no()%>)">삭제</button></td>
+		<td><button onclick="delCancle(<%=b.getB_no()%>)">삭제취소</button></td>
 	</tr>
 	<%	} %>
 </table>
+<script>
+	function del(bno){
+		location.href="<%=contextPath%>/del.bo.ad?bno="+bno
+	}
+	function delCancle(bno){
+		location.href="<%=contextPath%>/delCancle.bo.ad?bno="+bno
+	}
+</script>
 <%@ include file="/views/include/footer.jsp" %>
 </body>
 </html>

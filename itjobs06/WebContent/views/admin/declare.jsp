@@ -18,6 +18,7 @@
 			<th>no</th>
 			<th>b</th>
 			<th>re</th>
+			<th>noti</th>
 			<th>m</th>
 			<th>content</th>
 			<th>등록일</th>
@@ -33,6 +34,7 @@
 			<td><%=m.getDe_no() %></td>
 			<td><%=m.getB_no() %></td>
 			<td><%=m.getRe_no() %></td>
+			<td><%=m.getNoti_no() %></td>
 			<td><%=m.getM_no() %></td>
 			<td><%=m.getContents() %></td>
 			<td><%=m.getEnroll_date() %></td>
@@ -51,6 +53,7 @@
 			<th>no</th>
 			<th>b</th>
 			<th>re</th>
+			<th>noti</th>
 			<th>m</th>
 			<th>content</th>
 			<th>등록일</th>
@@ -66,6 +69,7 @@
 			<td><%=m.getDe_no() %></td>
 			<td><%=m.getB_no() %></td>
 			<td><%=m.getRe_no() %></td>
+			<td><%=m.getNoti_no() %></td>
 			<td><%=m.getM_no() %></td>
 			<td><%=m.getContents() %></td>
 			<td><%=m.getEnroll_date() %></td>
@@ -84,6 +88,7 @@
 			<th>no</th>
 			<th>b</th>
 			<th>re</th>
+			<th>noti</th>
 			<th>m</th>
 			<th>content</th>
 			<th>등록일</th>
@@ -99,6 +104,7 @@
 			<td><%=m.getDe_no() %></td>
 			<td><%=m.getB_no() %></td>
 			<td><%=m.getRe_no() %></td>
+			<td><%=m.getNoti_no() %></td>
 			<td><%=m.getM_no() %></td>
 			<td><%=m.getContents() %></td>
 			<td><%=m.getEnroll_date() %></td>

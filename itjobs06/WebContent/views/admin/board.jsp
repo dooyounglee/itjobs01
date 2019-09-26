@@ -10,6 +10,7 @@
 </head>
 <body>
 <%@ include file="/views/include/header.jsp" %>
+<h1>게시판 관리</h1>
 <table border=1>
 	<tr>
 		<th><input type=checkbox></th>

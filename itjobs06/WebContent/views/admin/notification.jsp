@@ -10,7 +10,7 @@
 </head>
 <body>
 <%@ include file="/views/include/header.jsp" %>
-
+<h1>공고 관리</h1>
 <table border=1>
 	<tr>
 		<th>제목</th>

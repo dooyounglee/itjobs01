@@ -1,3 +1,6 @@
+<%@page import="com.kh.board.model.vo.Board"%>
+<%@page import="com.kh.notification.model.vo.Notification"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -85,118 +88,40 @@ table{
 <legend style="text-align:center">최신공고</legend>
 <table border=1>
 	<tr>
-		<th>기업이름</th>
-		<th>정보들.... 뭘 넣지</th>
-		<th>공고날짜</th>
+		<th>co_no</th>
+		<th>공고제목</th>
 		<th>마감날짜</th>
-		<th>지역</th>
-		<th>근무형태</th>
-		<th>지원자격</th>
+		<th>언어</th>
 	</tr>
+	<%	ArrayList<Notification> nlist=(ArrayList<Notification>)request.getAttribute("nlist");
+		for(Notification n:nlist){%>
 	<tr>
-		<td>kh정보교육원</td>
-		<td>??</td>
-		<td>2019.12.05 23:59</td>
-		<td>2019.12.05 23:59</td>
-		<td>서울</td>
-		<td>정규직</td>
-		<td>학력무관/경력무관</td>
+		<td><%=n.getCo_no() %></td>
+		<td><%=n.getTitle() %></td>
+		<td><%=n.getEnd_date() %></td>
+		<td><%=n.getP_language() %></td>
 	</tr>
-	<tr>
-		<td>kh정보교육원</td>
-		<td>??</td>
-		<td>2019.12.05 23:59</td>
-		<td>2019.12.05 23:59</td>
-		<td>서울</td>
-		<td>정규직</td>
-		<td>학력무관/경력무관</td>
-	</tr>
-	<tr>
-		<td>kh정보교육원</td>
-		<td>??</td>
-		<td>2019.12.05 23:59</td>
-		<td>2019.12.05 23:59</td>
-		<td>서울</td>
-		<td>정규직</td>
-		<td>학력무관/경력무관</td>
-	</tr>
-	<tr>
-		<td>kh정보교육원</td>
-		<td>??</td>
-		<td>2019.12.05 23:59</td>
-		<td>2019.12.05 23:59</td>
-		<td>서울</td>
-		<td>정규직</td>
-		<td>학력무관/경력무관</td>
-	</tr>
-	<tr>
-		<td>kh정보교육원</td>
-		<td>??</td>
-		<td>2019.12.05 23:59</td>
-		<td>2019.12.05 23:59</td>
-		<td>서울</td>
-		<td>정규직</td>
-		<td>학력무관/경력무관</td>
-	</tr>
+	<%	} %>
 </table>
 </fieldset>
 <fieldset>
 <legend style="text-align:center">마감임박</legend>
 <table border=1>
 	<tr>
-		<th>기업이름</th>
-		<th>정보들.... 뭘 넣지</th>
-		<th>공고날짜</th>
+		<th>co_no</th>
+		<th>공고제목</th>
 		<th>마감날짜</th>
-		<th>지역</th>
-		<th>근무형태</th>
-		<th>지원자격</th>
+		<th>언어</th>
 	</tr>
+	<%	ArrayList<Notification> endlist=(ArrayList<Notification>)request.getAttribute("endlist");
+		for(Notification n:endlist){%>
 	<tr>
-		<td>kh정보교육원</td>
-		<td>??</td>
-		<td>2019.12.05 23:59</td>
-		<td>2019.12.05 23:59</td>
-		<td>서울</td>
-		<td>정규직</td>
-		<td>학력무관/경력무관</td>
+		<td><%=n.getCo_no() %></td>
+		<td><%=n.getTitle() %></td>
+		<td><%=n.getEnd_date() %></td>
+		<td><%=n.getP_language() %></td>
 	</tr>
-	<tr>
-		<td>kh정보교육원</td>
-		<td>??</td>
-		<td>2019.12.05 23:59</td>
-		<td>2019.12.05 23:59</td>
-		<td>서울</td>
-		<td>정규직</td>
-		<td>학력무관/경력무관</td>
-	</tr>
-	<tr>
-		<td>kh정보교육원</td>
-		<td>??</td>
-		<td>2019.12.05 23:59</td>
-		<td>2019.12.05 23:59</td>
-		<td>서울</td>
-		<td>정규직</td>
-		<td>학력무관/경력무관</td>
-	</tr>
-	<tr>
-		<td>kh정보교육원</td>
-		<td>??</td>
-		<td>2019.12.05 23:59</td>
-		<td>2019.12.05 23:59</td>
-		<td>서울</td>
-		<td>정규직</td>
-		<td>학력무관/경력무관</td>
-	</tr>
-	<tr>
-		<td>kh정보교육원</td>
-		<td>??</td>
-		<td>2019.12.05 23:59</td>
-		<td>2019.12.05 23:59</td>
-		<td>서울</td>
-		<td>정규직</td>
-		<td>학력무관/경력무관</td>
-	</tr>
+	<%	} %>
 </table>
 </fieldset>
 <fieldset>
@@ -206,58 +131,21 @@ table{
 		<th>글번호</th>
 		<th>제목</th>
 		<th>작성자</th>
+		<th>모집기간</th>
 		<th>등록날짜</th>
-		<th>수정날짜</th>
 		<th>조회수</th>
 	</tr>
+	<%	ArrayList<Board> plist=(ArrayList<Board>)request.getAttribute("plist");
+		for(Board p:plist){%>
 	<tr>
-		<td>1</td>
-		<td>제목01[4]</td>
-		<td>나</td>
-		<td>2019.12.05 23:59</td>
-		<td>2019.12.05 23:59</td>
-		<td>21</td>
+		<td><%=p.getB_no() %></td>
+		<td><%=p.getTitle() %></td>
+		<td><%=p.getM_no() %></td>
+		<td><%=p.getTime() %></td>
+		<td><%=p.getEnroll_date() %></td>
+		<td><%=p.getCount() %></td>
 	</tr>
-	<tr>
-		<td>2</td>
-		<td>제목02[7]</td>
-		<td>너</td>
-		<td>2019.12.05 23:59</td>
-		<td>2019.12.05 23:59</td>
-		<td>56</td>
-	</tr>
-	<tr>
-		<td>1</td>
-		<td>제목01[4]</td>
-		<td>나</td>
-		<td>2019.12.05 23:59</td>
-		<td>2019.12.05 23:59</td>
-		<td>21</td>
-	</tr>
-	<tr>
-		<td>2</td>
-		<td>제목02[7]</td>
-		<td>너</td>
-		<td>2019.12.05 23:59</td>
-		<td>2019.12.05 23:59</td>
-		<td>56</td>
-	</tr>
-	<tr>
-		<td>1</td>
-		<td>제목01[4]</td>
-		<td>나</td>
-		<td>2019.12.05 23:59</td>
-		<td>2019.12.05 23:59</td>
-		<td>21</td>
-	</tr>
-	<tr>
-		<td>2</td>
-		<td>제목02[7]</td>
-		<td>너</td>
-		<td>2019.12.05 23:59</td>
-		<td>2019.12.05 23:59</td>
-		<td>56</td>
-	</tr>
+	<%	} %>
 </table>
 </fieldset>
 

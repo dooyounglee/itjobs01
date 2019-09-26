@@ -29,7 +29,10 @@ ${msg }
 <a href="<%=contextPath%>/list.bo?head=qna">공지사항</a>
 <a href="<%=contextPath%>/list.bo?head=form">서식</a>
 <a href="<%=contextPath%>/list.qu">문의사항</a>
-신고하기
+신고하기(는 각 부분에 버튼으로)
+공고검색창
+인재검색창
+기업검색창?
 <hr>공통
 <a href="<%=contextPath %>/views/login/join_law.jsp">회원가입</a>
 <a href="<%=contextPath %>/login.me">로그인</a>
@@ -52,7 +55,7 @@ ${msg }
 <a href="<%=contextPath%>/memberList.ad">회원관리</a>
 <a href="<%=contextPath%>/noticeList.ad">공고관리</a>
 <a href="<%=contextPath%>/list.qu">문의관리</a>
-<a href="<%=contextPath%>">신고관리</a>
+<a href="<%=contextPath%>/list.de">신고관리</a>
 <hr>
 </body>
 </html>

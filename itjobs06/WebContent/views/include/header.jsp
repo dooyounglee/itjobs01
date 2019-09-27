@@ -52,6 +52,7 @@ ${msg }
 <a href="<%=contextPath%>/mylist.qu">나의 문의</a>
 <hr>관리자
 <a href="<%=contextPath%>/boardList.ad">게시판관리</a>
+<a href="<%=contextPath%>/replyList.ad">댓글관리</a>
 <a href="<%=contextPath%>/memberList.ad">회원관리</a>
 <a href="<%=contextPath%>/noticeList.ad">공고관리</a>
 <a href="<%=contextPath%>/list.qu">문의관리</a>

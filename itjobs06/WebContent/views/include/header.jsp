@@ -48,7 +48,7 @@ ${msg }
 <hr>기업
 <a href="<%=contextPath%>/views/mypage/myinfo.jsp">내 정보 수정</a>
 <a href="<%=contextPath%>/views/mypage/notice/list.jsp">공고리스트</a>
-<a href="<%=contextPath%>/views/mypage/likePersonList.jsp">관심인재</a>
+<a href="<%=contextPath%>/myResumeList.like">관심인재</a>
 <a href="<%=contextPath%>/mylist.qu">나의 문의</a>
 <hr>관리자
 <a href="<%=contextPath%>/boardList.ad">게시판관리</a>

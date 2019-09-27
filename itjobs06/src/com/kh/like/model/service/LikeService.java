@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import com.kh.like.model.dao.LikeDao;
 import com.kh.member.model.vo.Member;
 import com.kh.notification.model.vo.Notification;
+import com.kh.resume.model.vo.Resume;
 
 import static com.kh.common.JDBCTemplate.*;
 
@@ -22,6 +23,13 @@ public class LikeService {
 	public ArrayList<Notification> myNotificationList(int m_no) {
 		Connection conn=getConnection();
 		ArrayList<Notification> list=new LikeDao().myNotificationList(conn,m_no);
+		close(conn);
+		return list;
+	}
+
+	public ArrayList<Resume> myResumeList(int m_no) {
+		Connection conn=getConnection();
+		ArrayList<Resume> list=new LikeDao().myResumeList(conn,m_no);
 		close(conn);
 		return list;
 	}

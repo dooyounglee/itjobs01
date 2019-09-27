@@ -18,13 +18,13 @@ import com.kh.notification.model.vo.Notification;
  * Servlet implementation class MyNotificationListServlet
  */
 @WebServlet("/myNotificationList.like")
-public class MyNotificationListServlet extends HttpServlet {
+public class LikeMyNotificationListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MyNotificationListServlet() {
+    public LikeMyNotificationListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }

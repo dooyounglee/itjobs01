@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
-
+import static com.kh.common.JDBCTemplate.*;
 import com.kh.member.model.vo.Co_Info;
 import com.kh.member.model.vo.Member;
 import com.kh.question.model.vo.Question;
@@ -53,6 +53,9 @@ public class MemberDao {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(ps);
 		}
 		
 		return mem;
@@ -81,6 +84,9 @@ public class MemberDao {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(ps);
 		}
 		
 		return mem;
@@ -99,6 +105,8 @@ public class MemberDao {
 			result=ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			close(ps);
 		}
 		return result;
 	}
@@ -127,6 +135,8 @@ public class MemberDao {
 			result=ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			close(ps);
 		}
 		return result;
 	}
@@ -153,6 +163,9 @@ public class MemberDao {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(ps);
 		}
 		
 		return list;
@@ -169,6 +182,8 @@ public class MemberDao {
 			result=ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			close(ps);
 		}
 		return result;
 	}
@@ -184,6 +199,8 @@ public class MemberDao {
 			result=ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			close(ps);
 		}
 		return result;
 	}

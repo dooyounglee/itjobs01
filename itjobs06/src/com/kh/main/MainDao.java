@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
-
+import static com.kh.common.JDBCTemplate.*;
 import com.kh.board.model.vo.Board;
 import com.kh.member.model.dao.MemberDao;
 import com.kh.notification.model.vo.Notification;
@@ -55,6 +55,9 @@ public class MainDao {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(ps);
 		}
 		
 		return list;
@@ -86,6 +89,9 @@ public class MainDao {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(ps);
 		}
 		
 		return list;
@@ -119,6 +125,9 @@ public class MainDao {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(ps);
 		}
 		return list;
 	}
@@ -151,6 +160,9 @@ public class MainDao {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(ps);
 		}
 		return list;
 	}
@@ -183,6 +195,9 @@ public class MainDao {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(ps);
 		}
 		return list;
 	}
@@ -215,6 +230,9 @@ public class MainDao {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(ps);
 		}
 		return list;
 	}

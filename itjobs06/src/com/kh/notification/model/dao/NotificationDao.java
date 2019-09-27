@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
-
+import static com.kh.common.JDBCTemplate.*;
 import com.kh.member.model.dao.MemberDao;
 import com.kh.member.model.vo.Member;
 import com.kh.notification.model.vo.Notification;
@@ -55,6 +55,9 @@ public class NotificationDao {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(ps);
 		}
 		
 		return list;
@@ -71,6 +74,8 @@ public class NotificationDao {
 			result=ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			close(ps);
 		}
 		return result;
 	}
@@ -86,6 +91,8 @@ public class NotificationDao {
 			result=ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			close(ps);
 		}
 		return result;
 	}

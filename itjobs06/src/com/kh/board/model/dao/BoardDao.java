@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
-
+import static com.kh.common.JDBCTemplate.*;
 import com.kh.board.model.vo.Board;
 
 public class BoardDao {
@@ -55,6 +55,9 @@ public class BoardDao {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(ps);
 		}
 		return list;
 	}
@@ -73,6 +76,8 @@ public class BoardDao {
 			result=ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			close(ps);
 		}
 		return result;
 	}
@@ -90,6 +95,9 @@ public class BoardDao {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(ps);
 		}
 		return result;
 	}
@@ -123,6 +131,9 @@ public class BoardDao {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(ps);
 		}
 		return b;
 	}
@@ -142,6 +153,8 @@ public class BoardDao {
 			result=ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			close(ps);
 		}
 		return result;
 	}
@@ -156,6 +169,8 @@ public class BoardDao {
 			result=ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			close(ps);
 		}
 		return result;
 	}
@@ -187,6 +202,9 @@ public class BoardDao {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(ps);
 		}
 		return list;
 	}
@@ -201,6 +219,8 @@ public class BoardDao {
 			result=ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			close(ps);
 		}
 		return result;
 	}

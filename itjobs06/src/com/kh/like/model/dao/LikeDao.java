@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
-
+import static com.kh.common.JDBCTemplate.*;
 import com.kh.member.model.vo.Member;
 import com.kh.notification.model.vo.Notification;
 import com.kh.question.model.dao.QuestionDao;
@@ -53,6 +53,9 @@ public class LikeDao {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(ps);
 		}
 		return list;
 	}
@@ -84,6 +87,9 @@ public class LikeDao {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(ps);
 		}
 		return list;
 	}

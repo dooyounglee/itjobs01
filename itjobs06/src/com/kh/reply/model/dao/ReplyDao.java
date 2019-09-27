@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
-
+import static com.kh.common.JDBCTemplate.*;
 import com.kh.question.model.dao.QuestionDao;
 import com.kh.reply.model.vo.Reply;
 
@@ -50,6 +50,9 @@ public class ReplyDao {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(ps);
 		}
 		
 		return list;
@@ -66,6 +69,8 @@ public class ReplyDao {
 			result=ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			close(ps);
 		}
 		return result;
 	}
@@ -81,6 +86,8 @@ public class ReplyDao {
 			result=ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			close(ps);
 		}
 		return result;
 	}

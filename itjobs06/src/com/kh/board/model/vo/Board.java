@@ -3,7 +3,8 @@ package com.kh.board.model.vo;
 public class Board {
 
 	private int b_no;
-	private int m_no;
+	private String m_no;
+	private String nickname;
 	private String head;
 	private String title;
 	private String contents;
@@ -19,7 +20,7 @@ public class Board {
 	public Board() {
 		super();
 	}
-	public Board(int b_no, int m_no, String head, String title, String contents, String enroll_date, String update_date,
+	public Board(int b_no, String m_no, String head, String title, String contents, String enroll_date, String update_date,
 			String file, String time, int count, String status, int d_count, String editFile, String path) {
 		super();
 		this.b_no = b_no;
@@ -37,16 +38,49 @@ public class Board {
 		this.editFile = editFile;
 		this.path = path;
 	}
+	
+	public Board(int b_no, String m_no, String head, String title, String contents, String update_date, String time,
+			int count) {
+		super();
+		this.b_no = b_no;
+		this.m_no = m_no;
+		this.head = head;
+		this.title = title;
+		this.contents = contents;
+		this.update_date = update_date;
+		this.time = time;
+		this.count = count;
+	}
+	
+	public Board(int b_no, String m_no, String nickname, String head, String title, String contents, String update_date,
+			String time, int count) {
+		super();
+		this.b_no = b_no;
+		this.m_no = m_no;
+		this.nickname = nickname;
+		this.head = head;
+		this.title = title;
+		this.contents = contents;
+		this.update_date = update_date;
+		this.time = time;
+		this.count = count;
+	}
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
 	public int getB_no() {
 		return b_no;
 	}
 	public void setB_no(int b_no) {
 		this.b_no = b_no;
 	}
-	public int getM_no() {
+	public String getM_no() {
 		return m_no;
 	}
-	public void setM_no(int m_no) {
+	public void setM_no(String m_no) {
 		this.m_no = m_no;
 	}
 	public String getHead() {
@@ -123,10 +157,10 @@ public class Board {
 	}
 	@Override
 	public String toString() {
-		return "Board [b_no=" + b_no + ", m_no=" + m_no + ", head=" + head + ", title=" + title + ", contents="
-				+ contents + ", enroll_date=" + enroll_date + ", update_date=" + update_date + ", file=" + file
-				+ ", time=" + time + ", count=" + count + ", status=" + status + ", d_count=" + d_count + ", editFile="
-				+ editFile + ", path=" + path + "]";
+		return "Board [b_no=" + b_no + ", m_no=" + m_no + ", nickname=" + nickname + ", head=" + head + ", title="
+				+ title + ", contents=" + contents + ", enroll_date=" + enroll_date + ", update_date=" + update_date
+				+ ", file=" + file + ", time=" + time + ", count=" + count + ", status=" + status + ", d_count="
+				+ d_count + ", editFile=" + editFile + ", path=" + path + "]";
 	}
 	
 	

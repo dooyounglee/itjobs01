@@ -1,59 +1,57 @@
 package com.kh.board.model.service;
 
+import static com.kh.common.JDBCTemplate.close;
+import static com.kh.common.JDBCTemplate.getConnection;
+
 import java.sql.Connection;
 import java.util.ArrayList;
 
 import com.kh.board.model.dao.BoardDao;
 import com.kh.board.model.vo.Board;
-
-import static com.kh.common.JDBCTemplate.*;
+import com.kh.board.model.vo.PageInfo;
 
 public class BoardService {
 
-	public ArrayList<Board> getList(String head) {
-		Connection conn=getConnection();
-		ArrayList<Board> list=new BoardDao().getList(conn,head);
+	/**
+	 * 1_1.페이징 처리 위한 게시글 총 개수 조회
+	 * @return
+	 */
+	public int getMainListCount() {
+		Connection conn = getConnection();
+		
+		int result = new BoardDao().getMainListCount(conn);
+		
+		close(conn);
+		return result;
+	}
+	
+	public int getEtcListCount(String head) {
+		Connection conn = getConnection();
+		
+		int result = new BoardDao().getEtcListCount(conn, head);
+		
+		close(conn);
+		return result;
+	}
+	
+	public ArrayList<Board> selectMainList(PageInfo pi){
+		Connection conn = getConnection();
+		
+		ArrayList<Board> list = new BoardDao().selectMainList(conn, pi);
+		
+		close(conn);
 		return list;
+		
 	}
-
-	public int insert(Board b) {
-		Connection conn=getConnection();
-		int result=new BoardDao().insert(conn,b);
+	
+	public ArrayList<Board> selectEtcList(String head, PageInfo pi){
+		Connection conn = getConnection();
+		
+		ArrayList<Board> list = new BoardDao().selectEtcList(conn, head, pi);
+		
 		close(conn);
-		return result;
-	}
-
-	public int getLastest() {
-		Connection conn=getConnection();
-		int result=new BoardDao().getLastest(conn);
-		close(conn);
-		return result;
-	}
-
-	public Board getBoard(int b_no) {
-		Connection conn=getConnection();
-		Board b=new BoardDao().getBoard(conn,b_no);
-		return b;
-	}
-
-	public int update(Board b) {
-		Connection conn=getConnection();
-		int result=new BoardDao().update(conn,b);
-		close(conn);
-		return result;
-	}
-
-	public int delete(int b_no) {
-		Connection conn=getConnection();
-		int result=new BoardDao().delete(conn,b_no);
-		close(conn);
-		return result;
-	}
-
-	public ArrayList<Board> getAllList() {
-		Connection conn=getConnection();
-		ArrayList<Board> list=new BoardDao().getAllList(conn);
 		return list;
+		
 	}
 
 }

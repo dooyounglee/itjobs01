@@ -22,8 +22,8 @@ ${mem }
 ${msg }
 <h1><a href="<%=contextPath %>">ITJobs</a></h1>
 <hr>공통 
-<a href="<%=contextPath%>/list.bo?head=free">게시판</a>
-<a href="<%=contextPath%>/list.bo?head=free">자유게시판(질문포함)</a>
+<a href="<%=contextPath%>/list.bo?head=main">게시판</a>
+<a href="<%=contextPath%>/list.bo?head=free">자유게시판</a>
 <a href="<%=contextPath%>/list.bo?head=study">스터디</a>
 <a href="<%=contextPath%>/list.bo?head=project">프로젝트</a>
 <a href="<%=contextPath%>/list.bo?head=qna">공지사항</a>

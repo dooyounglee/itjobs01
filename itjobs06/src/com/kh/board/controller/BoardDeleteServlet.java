@@ -23,10 +23,15 @@ public class BoardDeleteServlet extends HttpServlet {
     public BoardDeleteServlet() {
         super();
         // TODO Auto-generated constructor stub
+        System.out.println();
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	
+	public void select() {
+		
+		
+		
+	}
 }

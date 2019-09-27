@@ -21,7 +21,7 @@
 ${mem }
 ${msg }
 <h1><a href="<%=contextPath %>">ITJobs</a></h1>
-현재접속자수 : <span id=userCounting></span>명
+현재접속자수 : <span id=userCounting>1</span>명
 <hr>공통 
 <a href="<%=contextPath%>/list.bo?head=free">게시판</a>
 <a href="<%=contextPath%>/list.bo?head=free">자유게시판(질문포함)</a>

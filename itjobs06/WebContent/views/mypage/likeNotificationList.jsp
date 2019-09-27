@@ -33,11 +33,17 @@
 			<td><%=n.getEnroll_date() %></td>
 			<td><%=n.getEnd_date() %></td>
 			<td><%=n.getStatus() %></td>
-			<td><button>삭제</button></td>
+			<td><button onclick="del(<%=n.getNoti_no()%>,<%=mem.getM_no()%>)">삭제</button></td>
 		</tr>
 		<%	} %>
 	</tbody>
 </table>
+<script>
+	function del(noti_no,m_no){
+		location.href="<%=request.getContextPath()%>/delNotification.like?noti_no="+noti_no+"&m_no="+m_no;
+	}
+</script>
+
 <button>삭제</button>
 <table border=1>
 	<tr>

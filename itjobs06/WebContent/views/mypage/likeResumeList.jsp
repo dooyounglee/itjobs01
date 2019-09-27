@@ -21,6 +21,7 @@
 		<th>생년월일</th>
 		<th>학력</th>
 		<th>이력서 보기</th>
+		<th>삭제</th>
 	</tr>
 	<%	ArrayList<Resume> list=(ArrayList<Resume>)request.getAttribute("list");
 		for(Resume r:list){%>
@@ -32,9 +33,15 @@
 		<td><%=r.getBirth_date() %></td>
 		<td><%=r.getSchool() %></td>
 		<td><button>이력서 보기</button></td>
+		<td><button onclick="del(<%=r.getResume_no()%>,<%=mem.getM_no()%>)">삭제</button></td>
 	</tr>
 	<%	} %>
 </table>
+<script>
+	function del(resume_no,m_no){
+		location.href="<%=request.getContextPath()%>/delResume.like?resume_no="+resume_no+"&m_no="+m_no;
+	}
+</script>
 <%@ include file="/views/include/footer.jsp" %>
 </body>
 </html>

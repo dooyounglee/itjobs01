@@ -21,6 +21,7 @@
 ${mem }
 ${msg }
 <h1><a href="<%=contextPath %>">ITJobs</a></h1>
+현재접속자수 : <span id=userCounting></span>명
 <hr>공통 
 <a href="<%=contextPath%>/list.bo?head=free">게시판</a>
 <a href="<%=contextPath%>/list.bo?head=free">자유게시판(질문포함)</a>
@@ -58,5 +59,39 @@ ${msg }
 <a href="<%=contextPath%>/list.qu">문의관리</a>
 <a href="<%=contextPath%>/list.de">신고관리</a>
 <hr>
+<script type="text/javascript">
+    var webSocket = new WebSocket('ws://<%=request.getServerName()%>:<%=request.getServerPort()%>/itjobs/userCounting');
+    webSocket.onerror = function(event) {
+      onError(event)
+    };
+    webSocket.onopen = function(event) {
+      onOpen(event)
+    };
+    webSocket.onmessage = function(event) {
+      onMessage(event)
+    };
+    webSocket.onclose=function(event){
+    	onClose(event)
+    }
+    function onMessage(event) {//다른사람 동작->나한테 발생
+        //textarea.value += "상대 : " + event.data + "\n";
+		//alert("다른사람이 보낸: "+event.data)
+		$('#userCounting').text(event.data);
+		console.log(event.data)
+    }
+    function onOpen(event) {
+        //textarea.value += "연결 성공\n";
+        console.log("연결성공")
+        webSocket.send("어차피 안나올 값"); 
+        console.log("접속자수")
+    }
+    function onError(event) {
+      alert(event.data);
+    }
+    function onClose(event){
+    	console.log("닫힘")
+    	webSocket.send("어차피 안나올 값"); 	
+    }
+  </script>
 </body>
 </html>

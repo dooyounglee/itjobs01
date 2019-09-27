@@ -1,4 +1,4 @@
-package com.kh.declare.controller;
+package com.kh.main;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,20 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.declare.model.service.DeclareService;
-import com.kh.declare.model.vo.Declare;
+import com.kh.board.model.vo.Board;
+import com.kh.notification.model.vo.Notification;
 
 /**
- * Servlet implementation class DeclareListServlet
+ * Servlet implementation class Main
  */
-@WebServlet("/list.de")
-public class DeclareListServlet extends HttpServlet {
+@WebServlet("")
+public class MainServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DeclareListServlet() {
+    public MainServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,17 +33,20 @@ public class DeclareListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		ArrayList<Notification> nlist=new MainService().select5Notification();
+		ArrayList<Notification> endlist=new MainService().select5NotificationEnd();
+		ArrayList<Board> plist=new MainService().select5Project();
+		ArrayList<Board> slist=new MainService().select5Study();
+		ArrayList<Board> nolist=new MainService().select5Notice();
+		ArrayList<Board> freelist=new MainService().select5Free();
 		
-		
-		ArrayList<Declare> blist=new DeclareService().getBoardList();
-		ArrayList<Declare> rlist=new DeclareService().getReplyList();
-		ArrayList<Declare> nlist=new DeclareService().getNotificationList();
-		
-		request.setAttribute("blist", blist);
-		request.setAttribute("rlist", rlist);
 		request.setAttribute("nlist", nlist);
-		
-		request.getRequestDispatcher("views/admin/declare.jsp").forward(request, response);
+		request.setAttribute("endlist", endlist);
+		request.setAttribute("plist", plist);
+		request.setAttribute("slist", slist);
+		request.setAttribute("nolist", nolist);
+		request.setAttribute("freelist", freelist);
+		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
 
 	/**

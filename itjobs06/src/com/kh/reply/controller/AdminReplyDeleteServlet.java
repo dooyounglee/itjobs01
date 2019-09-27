@@ -1,28 +1,27 @@
-package com.kh.declare.controller;
+package com.kh.reply.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.declare.model.service.DeclareService;
-import com.kh.declare.model.vo.Declare;
+import com.kh.board.model.service.BoardService;
+import com.kh.board.model.vo.Board;
+import com.kh.reply.model.service.ReplyService;
 
 /**
- * Servlet implementation class DeclareListServlet
+ * Servlet implementation class AdminReplyDeleteServlet
  */
-@WebServlet("/list.de")
-public class DeclareListServlet extends HttpServlet {
+@WebServlet("/del.re.ad")
+public class AdminReplyDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DeclareListServlet() {
+    public AdminReplyDeleteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,17 +32,10 @@ public class DeclareListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		int r_no=Integer.parseInt(request.getParameter("rno"));
+		int result=new ReplyService().delete(r_no);
 		
-		
-		ArrayList<Declare> blist=new DeclareService().getBoardList();
-		ArrayList<Declare> rlist=new DeclareService().getReplyList();
-		ArrayList<Declare> nlist=new DeclareService().getNotificationList();
-		
-		request.setAttribute("blist", blist);
-		request.setAttribute("rlist", rlist);
-		request.setAttribute("nlist", nlist);
-		
-		request.getRequestDispatcher("views/admin/declare.jsp").forward(request, response);
+		response.sendRedirect(request.getContextPath()+"/replyList.ad");
 	}
 
 	/**

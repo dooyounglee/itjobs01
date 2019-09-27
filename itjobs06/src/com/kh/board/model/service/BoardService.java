@@ -56,4 +56,11 @@ public class BoardService {
 		return list;
 	}
 
+	public int deleteCancle(int b_no) {
+		Connection conn=getConnection();
+		int result=new BoardDao().deleteCancle(conn,b_no);
+		close(conn);
+		return result;
+	}
+
 }

@@ -1,4 +1,4 @@
-package com.kh.declare.controller;
+package com.kh.reply.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,20 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.declare.model.service.DeclareService;
-import com.kh.declare.model.vo.Declare;
+import com.kh.reply.model.service.ReplyService;
+import com.kh.reply.model.vo.Reply;
 
 /**
- * Servlet implementation class DeclareListServlet
+ * Servlet implementation class AdminReplyListServlet
  */
-@WebServlet("/list.de")
-public class DeclareListServlet extends HttpServlet {
+@WebServlet("/replyList.ad")
+public class AdminReplyListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DeclareListServlet() {
+    public AdminReplyListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,17 +33,11 @@ public class DeclareListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		ArrayList<Reply> rlist=new ReplyService().getAllReplyList();
 		
-		
-		ArrayList<Declare> blist=new DeclareService().getBoardList();
-		ArrayList<Declare> rlist=new DeclareService().getReplyList();
-		ArrayList<Declare> nlist=new DeclareService().getNotificationList();
-		
-		request.setAttribute("blist", blist);
 		request.setAttribute("rlist", rlist);
-		request.setAttribute("nlist", nlist);
+		request.getRequestDispatcher("views/admin/reply.jsp").forward(request, response);
 		
-		request.getRequestDispatcher("views/admin/declare.jsp").forward(request, response);
 	}
 
 	/**

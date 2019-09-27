@@ -15,7 +15,7 @@ import com.kh.question.model.dao.QuestionDao;
 
 public class LikeDao {
 
-private Properties prop = new Properties();
+	private Properties prop = new Properties();
 	
 	public LikeDao() {
 		

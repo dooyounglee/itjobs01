@@ -35,7 +35,6 @@ public class MainDao {
 		ResultSet rs=null;
 		
 		String sql=prop.getProperty("select5Notification");
-		System.out.println(sql);
 		try {
 			ps=conn.prepareStatement(sql);
 			rs=ps.executeQuery();
@@ -70,7 +69,6 @@ public class MainDao {
 		ResultSet rs=null;
 		
 		String sql=prop.getProperty("select5NotificationEnd");
-		System.out.println(sql);
 		try {
 			ps=conn.prepareStatement(sql);
 			rs=ps.executeQuery();

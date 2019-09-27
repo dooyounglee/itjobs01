@@ -1,3 +1,5 @@
+<%@page import="com.kh.resume.model.vo.Resume"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -20,15 +22,18 @@
 		<th>학력</th>
 		<th>이력서 보기</th>
 	</tr>
+	<%	ArrayList<Resume> list=(ArrayList<Resume>)request.getAttribute("list");
+		for(Resume r:list){%>
 	<tr>
 		<td><input type=checkbox></td>
-		<td>삼두영</td>
-		<td>java,C</td>
-		<td>신입</td>
-		<td>8.8</td>
-		<td>대졸</td>
+		<td><%=r.getName() %></td>
+		<td><%=r.getP_language() %></td>
+		<td><%=r.getCareer() %></td>
+		<td><%=r.getBirth_date() %></td>
+		<td><%=r.getSchool() %></td>
 		<td><button>이력서 보기</button></td>
 	</tr>
+	<%	} %>
 </table>
 <%@ include file="/views/include/footer.jsp" %>
 </body>

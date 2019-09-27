@@ -31,14 +31,7 @@ public class BoardListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		request.setCharacterEncoding("utf-8");
 		
-		String head=request.getParameter("head");
-		ArrayList<Board> list=new BoardService().getList(head);
-		
-		request.setAttribute("list", list);
 		request.getRequestDispatcher("views/board/list.jsp").forward(request, response);
 	}
 

@@ -28,23 +28,5 @@ public class BoardDeleteServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		request.setCharacterEncoding("utf-8");
-		
-		int b_no=Integer.parseInt(request.getParameter("bno"));
-		Board b=new BoardService().getBoard(b_no);
-		int result=new BoardService().delete(b_no);
-		response.sendRedirect(request.getContextPath()+"/list.bo?head="+b.getHead());
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
-
+	
 }

@@ -1,28 +1,25 @@
-package com.kh.board.controller;
+package com.kh.like.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.board.model.service.BoardService;
-import com.kh.board.model.vo.Board;
+import com.kh.like.model.service.LikeService;
 
 /**
- * Servlet implementation class BoardListServlet
+ * Servlet implementation class LikeMyResumeDeleteServlet
  */
-@WebServlet("/list.bo")
-public class BoardListServlet extends HttpServlet {
+@WebServlet("/delResume.like")
+public class LikeMyResumeDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardListServlet() {
+    public LikeMyResumeDeleteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,8 +28,18 @@ public class BoardListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		int resume_no=Integer.parseInt(request.getParameter("resume_no"));
+		int m_no=Integer.parseInt(request.getParameter("m_no"));
 		
-		request.getRequestDispatcher("views/board/list.jsp").forward(request, response);
+		int result=new LikeService().deleteResume(resume_no,m_no);
+		System.out.println(result);
+		if(result>0) {
+			response.sendRedirect(request.getContextPath()+"/myResumeList.like");
+		}else {
+			
+		}
 	}
 
 	/**

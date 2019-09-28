@@ -21,9 +21,9 @@
 		<th>연봉</th>
 		<th>직군</th>
 		<th>상태</th>
-		<th>신고수</t
+		<th>신고수</th>
 		<th>삭제</th>
-		<th>삭제취소</th>h>
+		<th>삭제취소</th>
 	</tr>
 
 	<%	ArrayList<Notification> list=(ArrayList<Notification>)request.getAttribute("list");

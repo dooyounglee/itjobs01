@@ -1,28 +1,26 @@
-package com.kh.board.controller;
+package com.kh.question.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.board.model.service.BoardService;
-import com.kh.board.model.vo.Board;
+import com.kh.question.model.service.QuestionService;
+import com.kh.question.model.vo.Question;
 
 /**
- * Servlet implementation class BoardListServlet
+ * Servlet implementation class AdminQuestionViewServlet
  */
-@WebServlet("/list.bo")
-public class BoardListServlet extends HttpServlet {
+@WebServlet("/get.qu.ad")
+public class AdminQuestionViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardListServlet() {
+    public AdminQuestionViewServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,8 +29,14 @@ public class BoardListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		request.setCharacterEncoding("utf-8");
 		
-		request.getRequestDispatcher("views/board/list.jsp").forward(request, response);
+		int q_no=Integer.parseInt(request.getParameter("qno"));
+		Question q=new QuestionService().getQuestion(q_no);
+		request.setAttribute("q", q);
+		request.getRequestDispatcher("views/admin/AdminQuestionGet.jsp").forward(request, response);
 	}
 
 	/**

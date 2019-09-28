@@ -31,7 +31,7 @@
 		<td><input type=checkbox></td>
 		<td><%=b.getHead() %></td>
 		<td>
-			<a href="<%=request.getContextPath() %>/get.bo?bno=<%=b.getB_no()%>"><%=b.getTitle() %></a>
+			<a href="<%=request.getContextPath() %>/get.bo.ad?bno=<%=b.getB_no()%>"><%=b.getTitle() %></a>
 		</td>
 		<td><%=b.getM_no() %></td>
 		<td><%=b.getEnroll_date() %></td>

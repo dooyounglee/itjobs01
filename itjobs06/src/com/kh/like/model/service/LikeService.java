@@ -34,5 +34,26 @@ public class LikeService {
 		return list;
 	}
 
+	public int deleteCompany(int co_no, int m_no) {
+		Connection conn=getConnection();
+		int result=new LikeDao().deleteCompany(conn,co_no,m_no);
+		close(conn);
+		return result;
+	}
+
+	public int deleteNotification(int noti_no, int m_no) {
+		Connection conn=getConnection();
+		int result=new LikeDao().deleteNotification(conn,noti_no,m_no);
+		close(conn);
+		return result;
+	}
+
+	public int deleteResume(int resume_no, int m_no) {
+		Connection conn=getConnection();
+		int result=new LikeDao().deleteResume(conn,resume_no,m_no);
+		close(conn);
+		return result;
+	}
+
 	
 }

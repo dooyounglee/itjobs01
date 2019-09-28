@@ -32,11 +32,16 @@
 			<td><%=m.getPw() %></td>
 			<td><%=m.getNickname() %></td>
 			<td><%=m.getStatus() %></td>
-			<td><button>삭제</button></td>
+			<td><button onclick="del(<%=m.getM_no()%>,<%=mem.getM_no()%>)">삭제</button></td>
 		</tr>
 		<%	} %>
 	</tbody>
 </table>
+<script>
+	function del(co_no,m_no){
+		location.href="<%=request.getContextPath()%>/delCompany.like?co_no="+co_no+"&m_no="+m_no;
+	}
+</script>
 
 <button>삭제</button>
 <table border=1>

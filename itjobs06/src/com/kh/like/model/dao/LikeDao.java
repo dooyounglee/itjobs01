@@ -138,4 +138,52 @@ public class LikeDao {
 		return list;
 	}
 
+	public int deleteCompany(Connection conn, int co_no, int m_no) {
+		int result=0;
+		PreparedStatement ps=null;
+		
+		String sql=prop.getProperty("deleteCompany");
+		try {
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, co_no);
+			ps.setInt(2, m_no);
+			result=ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	public int deleteNotification(Connection conn, int noti_no, int m_no) {
+		int result=0;
+		PreparedStatement ps=null;
+		
+		String sql=prop.getProperty("deleteNotification");
+		try {
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, noti_no);
+			ps.setInt(2, m_no);
+			result=ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	public int deleteResume(Connection conn, int resume_no, int m_no) {
+		int result=0;
+		PreparedStatement ps=null;
+		
+		String sql=prop.getProperty("deleteResume");
+		try {
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, resume_no);
+			ps.setInt(2, m_no);
+			result=ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
 }

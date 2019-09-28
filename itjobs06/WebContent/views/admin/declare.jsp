@@ -19,13 +19,38 @@
 		width:30%;
 	}
 </style>
+<%@ include file="/views/include/style.jsp" %>
 </head>
-<body>
-<%@ include file="/views/include/header.jsp" %>
-<h1>게시글 신고 관리</h1>
+<body id="page-top">
+	<!-- Page Wrapper -->
+	<div id="wrapper">
+	
+	<!-- Side bar -->
+	<%@ include file="/views/include/sidebar.jsp" %>
+	<!-- End of Sidebar -->
+	
+	<!-- Content Wrapper -->
+	<div id="content-wrapper" class="d-flex flex-column">
+	
+	<!-- Main Content -->
+	<div id="content">
+	
+	<!-- Topbar -->
+        <%@ include file="/views/include/topbar.jsp" %>
+    <!-- End of Topbar -->
+    
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+    
+    	<!-- Page Heading -->
+          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h1 mb-0 text-gray-800">게시글 신고 관리</h1>
+          </div>
+          
+
 <div id="manageBoard">
 	<div id="listArea">
-		<table border=1>
+		<table class="table table-hover table-sm">
 			<thead>
 				<tr>
 					<th><input type=checkbox></th>
@@ -138,6 +163,27 @@
 		<%	} %>
 	</tbody>
 </table>
+
+	</div>
+    <!-- End of Page Content -->
+    
+	</div>
+	<!-- End of Main Content -->
 	
+	<!-- Footer -->
+		<%@ include file="/views/include/footer.jsp" %>
+	<!-- End of Footer -->
+	
+	</div>
+	<!-- End of Content Wrapper -->
+	
+	</div>
+	<!-- End of Page Wrapper -->
+<%@ include file="/views/include/js.jsp" %>
+<script>
+	var dlendud=$('#accordionSidebar').children('li').eq(5).children();
+	dlendud.eq(0).removeClass('collapsed').attr('aria-expanded','true')
+	dlendud.eq(1).addClass('show').children('div').children('a').eq(0).addClass('active')
+</script>
 </body>
 </html>

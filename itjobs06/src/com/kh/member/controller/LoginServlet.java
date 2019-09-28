@@ -37,6 +37,11 @@ public class LoginServlet extends HttpServlet {
 		ArrayList<Member> list=new MemberService().getAllMemberList();
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("views/login/login.jsp").forward(request, response);
+	
+	
+	
+	
+	
 	}
 
 	/**
@@ -57,6 +62,7 @@ public class LoginServlet extends HttpServlet {
 		System.out.println(m);
 		
 		Member mem=new MemberService().login(m);
+		
 		if(mem!=null) {
 			HttpSession session = request.getSession();
 			session.setAttribute("mem", mem);

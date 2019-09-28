@@ -144,7 +144,7 @@ public class MemberDao {
 	public ArrayList<Member> getAllMemberList(Connection conn) {
 		ArrayList<Member> list=new ArrayList<>();
 		PreparedStatement ps=null;
-		ResultSet rs=null;
+		ResultSet rs=null; 
 		
 		String sql=prop.getProperty("getAllMemberList");
 		try {

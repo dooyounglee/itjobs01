@@ -30,7 +30,6 @@ ${msg }
 <a href="<%=contextPath%>/list.bo?head=qna">공지사항</a>
 <a href="<%=contextPath%>/list.bo?head=form">서식</a>
 <a href="<%=contextPath%>/list.qu">문의사항</a>
-신고하기(는 각 부분에 버튼으로)
 공고검색창
 인재검색창
 기업검색창?
@@ -41,22 +40,22 @@ ${msg }
 <hr>일반
 <a href="<%=contextPath%>/views/mypage/myinfo.jsp">내 정보 수정</a>
 <a href="<%=contextPath%>/views/mypage/applyList.jsp">지원리스트</a>
-<a href="<%=contextPath%>/myCompanyList.like">관심기업</a>
-<a href="<%=contextPath%>/myNotificationList.like">관심공고</a>
+<a href="<%=contextPath%>/myCompanyList.like"><del>관심기업</del></a>
+<a href="<%=contextPath%>/myNotificationList.like"><del>관심공고</del></a>
 <a href="<%=contextPath%>/views/mypage/resume/list.jsp">이력서 관리</a>
 <a href="<%=contextPath%>/mylist.qu">나의 문의</a>
 +지원하기
 <hr>기업
 <a href="<%=contextPath%>/views/mypage/myinfo.jsp">내 정보 수정</a>
 <a href="<%=contextPath%>/views/mypage/notice/list.jsp">공고리스트</a>
-<a href="<%=contextPath%>/myResumeList.like">관심인재</a>
+<a href="<%=contextPath%>/myResumeList.like"><del>관심인재</del></a>
 <a href="<%=contextPath%>/mylist.qu">나의 문의</a>
 <hr>관리자
-<a href="<%=contextPath%>/boardList.ad">게시판관리</a>
+<a href="<%=contextPath%>/boardList.ad"><del>게시판관리</del></a>
 <a href="<%=contextPath%>/replyList.ad">댓글관리</a>
-<a href="<%=contextPath%>/memberList.ad">회원관리</a>
-<a href="<%=contextPath%>/noticeList.ad">공고관리</a>
-<a href="<%=contextPath%>/list.qu">문의관리</a>
+<a href="<%=contextPath%>/memberList.ad"><del>회원관리</del></a>
+<a href="<%=contextPath%>/noticeList.ad"><del>공고관리</del></a>
+<a href="<%=contextPath%>/list.qu.ad">문의관리</a>
 <a href="<%=contextPath%>/list.de">신고관리</a>
 <hr>
 <script type="text/javascript">

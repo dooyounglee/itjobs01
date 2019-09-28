@@ -6,8 +6,8 @@ public class Co_Info {
 	private String regnum;
 	private String file;
 	private String path;
-	private String name;
-	private String phone;
+	private String name;	//담당자이름
+	private String phone;	//담당자번호
 	private String address;
 	private String ceo;
 	private String co_phone;

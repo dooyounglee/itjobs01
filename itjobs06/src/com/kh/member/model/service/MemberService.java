@@ -71,4 +71,57 @@ public class MemberService {
 		return result;
 	}
 
+	public Co_Info getCoInfo(Member m) {
+		Connection conn=getConnection();
+		Co_Info mem=new MemberDao().getCoInfo(conn,m);
+		close(conn);
+		return mem;
+	}
+
+	public int update(Member m) {
+		Connection conn=getConnection();
+		int result=new MemberDao().update(conn,m);
+		
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+	
+	public int update(Member m, Co_Info co) {
+		Connection conn=getConnection();
+		int result1=new MemberDao().update(conn,m);
+		System.out.println(result1);
+		int result2=new MemberDao().update(conn,co);
+		System.out.println(result2);
+		
+		int result=0;
+		if(result1>0 && result2>0) {
+			result=1;
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+
+	public Member changePw(Member m, String newPw) {
+		Connection conn=getConnection();
+		Member mem=null;
+		
+		int result=new MemberDao().changePw(conn,m,newPw);
+		if(result>0) {
+			commit(conn);
+			mem=new MemberDao().getMemberByEmail(conn, m.getEmail());
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return mem;
+	}
+
 }

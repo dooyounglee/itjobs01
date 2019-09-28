@@ -22,7 +22,7 @@ table{
 <body>
 	<%@ include file="/views/include/header.jsp" %>
 	
-	<h1>메인</h1> 
+	<h1>메인</h1>
 	<input><button>검색</button>
 	<button onclick="search()">상세검색</button>
 	<table id=search border=1 style="display:none;">

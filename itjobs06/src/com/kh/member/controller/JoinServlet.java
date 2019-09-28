@@ -47,20 +47,22 @@ public class JoinServlet extends HttpServlet {
 		System.out.println(m);
 
 		int result=new MemberService().insertMember(m);
+		
 		if(result>0) {
 			if(type.equals("일반")) {
-				request.setAttribute("msg", "회운가입 성공");
+				request.setAttribute("msg", "회운가입 성공(일반)");
 				request.setAttribute("nickname", nickname);
 				request.getRequestDispatcher("views/login/join_ok.jsp").forward(request, response);
+			}else {
+				request.setAttribute("msg", "회운가입 실패(일반)");
 			}
 			if(type.equals("기업")) {
 			request.getRequestDispatcher("views/login/join_co_info.jsp").forward(request, response);
-		
-			
+			}else {
+				request.setAttribute("msg", "회운가입 실패(기업)");
 			}
 		}else {
-			request.setAttribute("msg", "회운가입 실패");
-			
+			request.setAttribute("msg", "회운가입 실패(공통)");
 		}
 	}
 	/**

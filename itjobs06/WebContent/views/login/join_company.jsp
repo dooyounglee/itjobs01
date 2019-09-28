@@ -10,7 +10,7 @@
 <%@ include file="/views/include/header.jsp" %>
 <form action="<%=request.getContextPath() %>/join.me" method="post" autocomplete=off>
 
-<h2>기업회원가입1</h2>
+<h2>기업회원가입1</h2><br><br>
 <input value="기업" name=type readonly><br>
 담당자이메일:<input name=email><br>
 비번:<input name=pw><br>
@@ -18,7 +18,7 @@
 기업명(닉네임자리):<input name=nickname><br>
 
 
-<button>회원가입</button>
+<input type="submit" value="다음">
 </form>
 <%@ include file="/views/include/footer.jsp" %>
 </body>

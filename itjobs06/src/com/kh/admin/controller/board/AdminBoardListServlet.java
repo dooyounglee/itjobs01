@@ -1,26 +1,30 @@
-package com.kh.board.controller;
+package com.kh.admin.controller.board;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.kh.board.model.service.BoardService;
 import com.kh.board.model.vo.Board;
+import com.kh.board.model.vo.PageInfo;
 
 /**
- * Servlet implementation class AdminBoardDeleteCancleServlet
+ * Servlet implementation class BoardAllListServlet
  */
-@WebServlet("/delCancle.bo.ad")
-public class AdminBoardDeleteCancleServlet extends HttpServlet {
+@WebServlet("/boardList.ad")
+public class AdminBoardListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminBoardDeleteCancleServlet() {
+    public AdminBoardListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,10 +35,23 @@ public class AdminBoardDeleteCancleServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		int b_no=Integer.parseInt(request.getParameter("bno"));
-		Board b=new BoardService().getBoard(b_no);
-		int result=new BoardService().deleteCancle(b_no);
-		response.sendRedirect(request.getContextPath()+"/boardList.ad");
+		request.setCharacterEncoding("utf-8");
+		
+		int listCount=new BoardService().getListCount();
+		int currentPage=1;
+		if(request.getParameter("currentPage")!=null) {
+			currentPage=Integer.parseInt(request.getParameter("currentPage"));
+		}
+		
+		
+		PageInfo pi=new PageInfo(currentPage,listCount);
+		ArrayList<Board> list=new BoardService().getAllList(pi);
+		
+		HttpSession session = request.getSession();
+		session.setAttribute("head", "admin");
+		request.setAttribute("list", list);
+		request.setAttribute("pi", pi);
+		request.getRequestDispatcher("views/admin/board.jsp").forward(request, response);
 	}
 
 	/**

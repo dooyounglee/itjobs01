@@ -1,4 +1,4 @@
-package com.kh.board.controller;
+package com.kh.admin.controller.board;
 
 import java.io.IOException;
 import javax.servlet.ServletException;

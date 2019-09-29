@@ -16,8 +16,30 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
+<style>
+    div.aaa{
+        width:100px;
+        height:30px;
+        border:0px solid;
+        position:relative;
+        float:left;
+        text-align:center;
+        cursor:pointer;
+    }
+    div.aaa div{
+        position:absolute;
+        bottom:0px;
+        width:0%;
+        height:10%;
+        opacity:0.7;
+        background:white;
+    }
+</style>
 </head>
 <body>
+	
+    
+    
 ${mem }
 ${msg }
 <h1><a href="<%=contextPath %>">ITJobs</a></h1>
@@ -57,6 +79,62 @@ ${msg }
 <a href="<%=contextPath%>/noticeList.ad"><del>공고관리</del></a>
 <a href="<%=contextPath%>/list.qu.ad"><del>문의관리</del></a>
 <a href="<%=contextPath%>/list.de"><del>신고관리</del></a>
+<%-- <div class="aaa" onclick="location.href='<%=contextPath%>/boardList.ad'">게시판 관리
+    <div></div>
+</div>
+<div class="aaa" onclick="location.href='<%=contextPath%>/replyList.ad'">댓글 관리
+    <div></div>
+</div>
+<div class="aaa" onclick="location.href='<%=contextPath%>/memberList.ad'">회원 관리
+    <div></div>
+</div>
+<div class="aaa" onclick="location.href='<%=contextPath%>/noticeList.ad'">공고 관리
+    <div></div>
+</div>
+<div class="aaa" onclick="location.href='<%=contextPath%>/list.qu.ad'">문의 관리
+    <div></div>
+</div>
+<div class="aaa" onclick="location.href='<%=contextPath%>/list.de'">신고 관리
+    <div></div>
+</div>
+<br clear="both">
+<script>
+    function lease(){
+        var bar=aaa_div.eq(n)
+        aaa.eq(n).css({'background':'#ff4e0b','color':'white'})
+        $(bar).animate({
+            width: "100%",
+        }, 2000, 'linear', function(){
+            aaa.css({'background':'white','color':'black'})
+            aaa_div.css('width','0%')
+            n=(n+1)%6
+            lease()
+        });
+    }
+
+    var aaa=$('.aaa')
+
+    aaa.on('mouseover',function(){
+        aaa_div.eq(n).stop()
+    }).on('mouseleave',function(){
+        var bar=aaa_div.eq(n)
+
+        $(bar).animate({
+            width: "100%",
+        }, (2000*(100-parseFloat(bar.css('width')))/100), 'linear', function(){
+        	aaa.css({'background':'white','color':'black'})
+            aaa_div.css('width','0%')
+            n=(n+1)%6
+            lease()
+        });
+    })
+
+    var n=0;
+    var W=$('.aaa').css('width');
+    var aaa_div=$('.aaa').children('div');
+
+    lease()
+</script> --%>
 <hr>
 <script type="text/javascript">
     var webSocket = new WebSocket('ws://<%=request.getServerName()%>:<%=request.getServerPort()%>/itjobs/userCounting');

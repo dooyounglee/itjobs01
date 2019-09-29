@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import com.kh.board.model.dao.BoardDao;
 import com.kh.board.model.vo.Board;
+import com.kh.board.model.vo.PageInfo;
 
 import static com.kh.common.JDBCTemplate.*;
 
@@ -50,15 +51,22 @@ public class BoardService {
 		return result;
 	}
 
-	public ArrayList<Board> getAllList() {
+	public ArrayList<Board> getAllList(PageInfo pi) {
 		Connection conn=getConnection();
-		ArrayList<Board> list=new BoardDao().getAllList(conn);
+		ArrayList<Board> list=new BoardDao().getAllList(conn,pi);
 		return list;
 	}
 
 	public int deleteCancle(int b_no) {
 		Connection conn=getConnection();
 		int result=new BoardDao().deleteCancle(conn,b_no);
+		close(conn);
+		return result;
+	}
+
+	public int getListCount() {
+		Connection conn=getConnection();
+		int result=new BoardDao().getListCount(conn);
 		close(conn);
 		return result;
 	}

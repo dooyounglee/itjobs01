@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Properties;
 import static com.kh.common.JDBCTemplate.*;
 import com.kh.board.model.vo.Board;
+import com.kh.board.model.vo.PageInfo;
 
 public class BoardDao {
 	
@@ -174,7 +175,7 @@ public class BoardDao {
 		}
 		return result;
 	}
-	public ArrayList<Board> getAllList(Connection conn) {
+	public ArrayList<Board> getAllList(Connection conn, PageInfo pi) {
 		ArrayList<Board> list=new ArrayList<>();
 		PreparedStatement ps=null;
 		ResultSet rs=null;
@@ -182,6 +183,10 @@ public class BoardDao {
 		String sql=prop.getProperty("getAllList");
 		try {
 			ps=conn.prepareStatement(sql);
+			ps.setInt(1, pi.getCurrentPage()*pi.getBoardLimit());
+			ps.setInt(2, (pi.getCurrentPage()-1)*pi.getBoardLimit()+1);
+			System.out.println(pi.getCurrentPage()*pi.getBoardLimit());
+			System.out.println((pi.getCurrentPage()-1)*pi.getBoardLimit()+1);
 			rs=ps.executeQuery();
 			while(rs.next()) {
 				list.add(new Board(
@@ -217,6 +222,25 @@ public class BoardDao {
 			ps=conn.prepareStatement(sql);
 			ps.setInt(1, b_no);
 			result=ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(ps);
+		}
+		return result;
+	}
+	public int getListCount(Connection conn) {
+		int result=0;
+		PreparedStatement ps=null;
+		ResultSet rs=null;
+		
+		String sql=prop.getProperty("getListCount");
+		try {
+			ps=conn.prepareStatement(sql);
+			rs=ps.executeQuery();
+			if(rs.next()) {
+				result=rs.getInt(1);
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {

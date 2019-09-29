@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import com.kh.board.model.service.BoardService;
 import com.kh.board.model.vo.Board;
+import com.kh.board.model.vo.PageInfo;
 
 /**
  * Servlet implementation class BoardAllListServlet
@@ -36,11 +37,20 @@ public class AdminBoardListServlet extends HttpServlet {
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		request.setCharacterEncoding("utf-8");
 		
-		ArrayList<Board> list=new BoardService().getAllList();
+		int listCount=new BoardService().getListCount();
+		int currentPage=1;
+		if(request.getParameter("currentPage")!=null) {
+			currentPage=Integer.parseInt(request.getParameter("currentPage"));
+		}
+		
+		
+		PageInfo pi=new PageInfo(currentPage,listCount);
+		ArrayList<Board> list=new BoardService().getAllList(pi);
 		
 		HttpSession session = request.getSession();
 		session.setAttribute("head", "admin");
 		request.setAttribute("list", list);
+		request.setAttribute("pi", pi);
 		request.getRequestDispatcher("views/admin/board.jsp").forward(request, response);
 	}
 

@@ -1,4 +1,4 @@
-package com.kh.question.controller;
+package com.kh.admin.controller.declare;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,20 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.question.model.service.QuestionService;
-import com.kh.question.model.vo.Question;
+import com.kh.admin.model.service.AdminDeclareService;
+import com.kh.declare.model.vo.Declare;
 
 /**
- * Servlet implementation class AdminQuestionListServlet
+ * Servlet implementation class DeclareListServlet
  */
-@WebServlet("/list.qu.ad")
-public class AdminQuestionListServlet extends HttpServlet {
+@WebServlet("/list.de")
+public class AdminDeclareListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminQuestionListServlet() {
+    public AdminDeclareListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,9 +33,17 @@ public class AdminQuestionListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		ArrayList<Question> list=new QuestionService().getQuestionList();
-		request.setAttribute("list", list);
-		request.getRequestDispatcher("views/admin/question.jsp").forward(request, response);
+		
+		
+		ArrayList<Declare> blist=new AdminDeclareService().getBoardList();
+		ArrayList<Declare> rlist=new AdminDeclareService().getReplyList();
+		ArrayList<Declare> nlist=new AdminDeclareService().getNotificationList();
+		
+		request.setAttribute("blist", blist);
+		request.setAttribute("rlist", rlist);
+		request.setAttribute("nlist", nlist);
+		
+		request.getRequestDispatcher("views/admin/declare.jsp").forward(request, response);
 	}
 
 	/**

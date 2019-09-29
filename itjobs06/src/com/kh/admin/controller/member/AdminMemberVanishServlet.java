@@ -1,4 +1,4 @@
-package com.kh.member.controller;
+package com.kh.admin.controller.member;
 
 import java.io.IOException;
 
@@ -8,19 +8,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.member.model.service.MemberService;
+import com.kh.admin.model.service.AdminMemberService;
 
 /**
- * Servlet implementation class MemberVanishCancleServlet
+ * Servlet implementation class MemberVanishServlet
  */
-@WebServlet("/vanishCancle.ad")
-public class MemberVanishCancleServlet extends HttpServlet {
+@WebServlet("/vanish.ad")
+public class AdminMemberVanishServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberVanishCancleServlet() {
+    public AdminMemberVanishServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,7 +32,7 @@ public class MemberVanishCancleServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		int mno=Integer.parseInt(request.getParameter("mno"));
-		int result=new MemberService().vanishCancleMember(mno);
+		int result=new AdminMemberService().vanishMember(mno);
 		if(result>0) {
 			request.setAttribute("msg", "성공");
 		}else {

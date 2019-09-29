@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.kh.board.model.service.BoardService;
+import com.kh.admin.model.service.AdminBoardService;
 import com.kh.board.model.vo.Board;
 import com.kh.board.model.vo.PageInfo;
 
@@ -37,7 +37,7 @@ public class AdminBoardListServlet extends HttpServlet {
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		request.setCharacterEncoding("utf-8");
 		
-		int listCount=new BoardService().getListCount();
+		int listCount=new AdminBoardService().getListCount();
 		int currentPage=1;
 		if(request.getParameter("currentPage")!=null) {
 			currentPage=Integer.parseInt(request.getParameter("currentPage"));
@@ -45,7 +45,7 @@ public class AdminBoardListServlet extends HttpServlet {
 		
 		
 		PageInfo pi=new PageInfo(currentPage,listCount);
-		ArrayList<Board> list=new BoardService().getAllList(pi);
+		ArrayList<Board> list=new AdminBoardService().getAllList(pi);
 		
 		HttpSession session = request.getSession();
 		session.setAttribute("head", "admin");

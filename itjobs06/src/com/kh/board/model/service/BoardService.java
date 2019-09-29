@@ -44,11 +44,6 @@ public class BoardService {
 		return result;
 	}
 
-	public int getListCount() {
-		Connection conn=getConnection();
-		int result=new BoardDao().getListCount(conn);
-		close(conn);
-		return result;
-	}
+
 
 }

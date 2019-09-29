@@ -1,14 +1,14 @@
 package com.kh.admin.controller.board;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.board.model.service.BoardService;
-import com.kh.board.model.vo.Board;
+import com.kh.admin.model.service.AdminBoardService;
 
 /**
  * Servlet implementation class AdminBoardDeleteServlet
@@ -32,9 +32,12 @@ public class AdminBoardDeleteServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		int b_no=Integer.parseInt(request.getParameter("bno"));
-		Board b=new BoardService().getBoard(b_no);
-		int result=new BoardService().delete(b_no);
-		response.sendRedirect(request.getContextPath()+"/boardList.ad");
+		int result=new AdminBoardService().delete(b_no);
+		if(result>0) {
+			response.sendRedirect(request.getContextPath()+"/boardList.ad");
+		}else {
+			
+		}
 	}
 
 	/**

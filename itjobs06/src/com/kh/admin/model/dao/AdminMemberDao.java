@@ -1,4 +1,6 @@
-package com.kh.reply.model.dao;
+package com.kh.admin.model.dao;
+
+import static com.kh.common.JDBCTemplate.close;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -8,17 +10,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
-import static com.kh.common.JDBCTemplate.*;
-import com.kh.question.model.dao.QuestionDao;
-import com.kh.reply.model.vo.Reply;
 
-public class ReplyDao {
+import com.kh.board.model.dao.BoardDao;
+import com.kh.member.model.vo.Member;
 
-	private Properties prop = new Properties();
+public class AdminMemberDao {
+
+private Properties prop = new Properties();
 	
-	public ReplyDao() {
+	public AdminMemberDao() {
 		
-		String fileName = QuestionDao.class.getResource("/com/kh/sql/reply-query.properties").getPath();
+		String fileName = BoardDao.class.getResource("/com/kh/sql/admin-query.properties").getPath();
 		fileName=fileName.replace("WEB-INF/classes/", "");
 		try {
 			prop.load(new FileReader(fileName));
@@ -27,26 +29,26 @@ public class ReplyDao {
 		}
 	}
 	
-	public ArrayList<Reply> getAllReplyList(Connection conn) {
-		ArrayList<Reply> list = new ArrayList<>();
+	public ArrayList<Member> getAllMemberList(Connection conn) {
+		ArrayList<Member> list=new ArrayList<>();
 		PreparedStatement ps=null;
-		ResultSet rs=null;
+		ResultSet rs=null; 
 		
-		String sql=prop.getProperty("getAllReplyList");
+		String sql=prop.getProperty("getAllMemberList");
 		try {
 			ps=conn.prepareStatement(sql);
 			rs=ps.executeQuery();
 			while(rs.next()) {
-				Reply d=new Reply();
-				d.setRe_no(rs.getInt(1));
-				d.setM_no(rs.getInt(2));
-				d.setB_no(rs.getInt(3));
-				d.setEnroll_date(rs.getDate(4)+" "+rs.getTime(4));
-				d.setUpdate_date(rs.getDate(5)+" "+rs.getTime(5));
-				d.setContents(rs.getString(6));
-				d.setStatus(rs.getString(7));
-				d.setD_count(rs.getInt(8));
-				list.add(d);
+				list.add(new Member(
+						rs.getInt(1),
+						rs.getString(2),
+						rs.getString(3),
+						rs.getString(4),
+						rs.getString(5),
+						rs.getDate(6)+" "+rs.getTime(6),
+						rs.getDate(7)+" "+rs.getTime(7),
+						rs.getString(8),
+						rs.getInt(9)));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -57,40 +59,38 @@ public class ReplyDao {
 		
 		return list;
 	}
-
-	public int delete(Connection conn, int r_no) {
-		int result=0;
-		PreparedStatement ps=null;
-		
-		String sql=prop.getProperty("delete");
-		try {
-			ps=conn.prepareStatement(sql);
-			ps.setInt(1, r_no);
-			result=ps.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally {
-			close(ps);
-		}
-		return result;
-	}
-
-	public int deleteCancle(Connection conn, int r_no) {
-		int result=0;
-		PreparedStatement ps=null;
-		
-		String sql=prop.getProperty("deleteCancle");
-		try {
-			ps=conn.prepareStatement(sql);
-			ps.setInt(1, r_no);
-			result=ps.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally {
-			close(ps);
-		}
-		return result;
-	}
-
 	
+	public int vanishMember(Connection conn, int mno) {
+		int result=0;
+		PreparedStatement ps=null;
+		
+		String sql=prop.getProperty("vanishMember");
+		try {
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, mno);
+			result=ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(ps);
+		}
+		return result;
+	}
+
+	public int vanishCancleMember(Connection conn, int mno) {
+		int result=0;
+		PreparedStatement ps=null;
+		
+		String sql=prop.getProperty("vanishCancleMember");
+		try {
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, mno);
+			result=ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(ps);
+		}
+		return result;
+	}
 }

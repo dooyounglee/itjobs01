@@ -7,8 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.admin.model.service.AdminReplyService;
 import com.kh.notification.model.service.NotificationService;
-import com.kh.reply.model.service.ReplyService;
 
 /**
  * Servlet implementation class AdminNotificationDeleteServlet

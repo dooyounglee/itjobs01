@@ -41,26 +41,9 @@ public class MemberService {
 		return result;
 	}
 
-	public ArrayList<Member> getAllMemberList() {
-		Connection conn = getConnection();
-		ArrayList<Member> list = new MemberDao().getAllMemberList(conn);
-		close(conn);
-		return list;
-	}
 
-	public int vanishMember(int mno) {
-		Connection conn = getConnection();
-		int result = new MemberDao().vanishMember(conn, mno);
-		close(conn);
-		return result;
-	}
 
-	public int vanishCancleMember(int mno) {
-		Connection conn = getConnection();
-		int result = new MemberDao().vanishCancleMember(conn, mno);
-		close(conn);
-		return result;
-	}
+
 
 	public Co_Info getCoInfo(Member m) {
 		Connection conn = getConnection();

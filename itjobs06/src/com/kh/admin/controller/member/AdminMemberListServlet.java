@@ -1,4 +1,4 @@
-package com.kh.declare.controller;
+package com.kh.admin.controller.member;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,20 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.declare.model.service.DeclareService;
-import com.kh.declare.model.vo.Declare;
+import com.kh.admin.model.service.AdminMemberService;
+import com.kh.member.model.vo.Member;
 
 /**
- * Servlet implementation class DeclareListServlet
+ * Servlet implementation class MemberListServlet
  */
-@WebServlet("/list.de")
-public class DeclareListServlet extends HttpServlet {
+@WebServlet("/memberList.ad")
+public class AdminMemberListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DeclareListServlet() {
+    public AdminMemberListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,16 +34,9 @@ public class DeclareListServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		
-		
-		ArrayList<Declare> blist=new DeclareService().getBoardList();
-		ArrayList<Declare> rlist=new DeclareService().getReplyList();
-		ArrayList<Declare> nlist=new DeclareService().getNotificationList();
-		
-		request.setAttribute("blist", blist);
-		request.setAttribute("rlist", rlist);
-		request.setAttribute("nlist", nlist);
-		
-		request.getRequestDispatcher("views/admin/declare.jsp").forward(request, response);
+		ArrayList<Member> list=new AdminMemberService().getAllMemberList();
+		request.setAttribute("list", list);
+		request.getRequestDispatcher("views/admin/member.jsp").forward(request, response);
 	}
 
 	/**

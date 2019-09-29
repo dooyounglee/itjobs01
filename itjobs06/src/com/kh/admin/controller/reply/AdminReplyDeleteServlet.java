@@ -1,4 +1,4 @@
-package com.kh.reply.controller;
+package com.kh.admin.controller.reply;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,19 +7,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.reply.model.service.ReplyService;
+import com.kh.admin.model.service.AdminReplyService;
+import com.kh.board.model.service.BoardService;
+import com.kh.board.model.vo.Board;
 
 /**
- * Servlet implementation class AdminReplyDeleteCancleServlet
+ * Servlet implementation class AdminReplyDeleteServlet
  */
-@WebServlet("/delCancle.re.ad")
-public class AdminReplyDeleteCancleServlet extends HttpServlet {
+@WebServlet("/del.re.ad")
+public class AdminReplyDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminReplyDeleteCancleServlet() {
+    public AdminReplyDeleteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,7 +33,7 @@ public class AdminReplyDeleteCancleServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		int r_no=Integer.parseInt(request.getParameter("rno"));
-		int result=new ReplyService().deleteCancle(r_no);
+		int result=new AdminReplyService().delete(r_no);
 		
 		response.sendRedirect(request.getContextPath()+"/replyList.ad");
 	}

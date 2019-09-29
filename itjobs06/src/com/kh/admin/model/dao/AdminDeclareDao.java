@@ -1,4 +1,4 @@
-package com.kh.declare.model.dao;
+package com.kh.admin.model.dao;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -12,11 +12,11 @@ import static com.kh.common.JDBCTemplate.*;
 import com.kh.declare.model.vo.Declare;
 import com.kh.question.model.dao.QuestionDao;
 
-public class DeclareDao {
+public class AdminDeclareDao {
 
 	private Properties prop = new Properties();
 	
-	public DeclareDao() {
+	public AdminDeclareDao() {
 		
 		String fileName = QuestionDao.class.getResource("/com/kh/sql/declare-query.properties").getPath();
 		fileName=fileName.replace("WEB-INF/classes/", "");

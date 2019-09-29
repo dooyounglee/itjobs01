@@ -1,6 +1,8 @@
-package com.kh.question.controller;
+package com.kh.admin.controller.question;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,16 +13,16 @@ import com.kh.question.model.service.QuestionService;
 import com.kh.question.model.vo.Question;
 
 /**
- * Servlet implementation class QuestionAnswerServlet
+ * Servlet implementation class AdminQuestionListServlet
  */
-@WebServlet("/answer.qu")
-public class AnswerServlet extends HttpServlet {
+@WebServlet("/list.qu.ad")
+public class AdminQuestionListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AnswerServlet() {
+    public AdminQuestionListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,19 +33,9 @@ public class AnswerServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		request.setCharacterEncoding("utf-8");
-		
-		int q_no=Integer.parseInt(request.getParameter("qno"));
-		String answer=request.getParameter("answer");
-		Question q=new Question();
-		q.setQ_no(q_no);
-		q.setAnswer(answer);
-		
-		int result=new QuestionService().answerQuestion(q);
-		
-		q=new QuestionService().getQuestion(q_no);
-		request.setAttribute("q", q);
-		request.getRequestDispatcher("views/question/get.jsp").forward(request, response);
+		ArrayList<Question> list=new QuestionService().getQuestionList();
+		request.setAttribute("list", list);
+		request.getRequestDispatcher("views/admin/question.jsp").forward(request, response);
 	}
 
 	/**

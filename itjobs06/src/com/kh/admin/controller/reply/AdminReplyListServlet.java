@@ -1,27 +1,28 @@
-package com.kh.reply.controller;
+package com.kh.admin.controller.reply;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.board.model.service.BoardService;
-import com.kh.board.model.vo.Board;
-import com.kh.reply.model.service.ReplyService;
+import com.kh.admin.model.service.AdminReplyService;
+import com.kh.reply.model.vo.Reply;
 
 /**
- * Servlet implementation class AdminReplyDeleteServlet
+ * Servlet implementation class AdminReplyListServlet
  */
-@WebServlet("/del.re.ad")
-public class AdminReplyDeleteServlet extends HttpServlet {
+@WebServlet("/replyList.ad")
+public class AdminReplyListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminReplyDeleteServlet() {
+    public AdminReplyListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,10 +33,11 @@ public class AdminReplyDeleteServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		int r_no=Integer.parseInt(request.getParameter("rno"));
-		int result=new ReplyService().delete(r_no);
+		ArrayList<Reply> rlist=new AdminReplyService().getAllReplyList();
 		
-		response.sendRedirect(request.getContextPath()+"/replyList.ad");
+		request.setAttribute("rlist", rlist);
+		request.getRequestDispatcher("views/admin/reply.jsp").forward(request, response);
+		
 	}
 
 	/**

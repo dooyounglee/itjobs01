@@ -1,32 +1,32 @@
-package com.kh.declare.model.service;
+package com.kh.admin.model.service;
 
 import java.sql.Connection;
 import java.util.ArrayList;
 
-import com.kh.declare.model.dao.DeclareDao;
+import com.kh.admin.model.dao.AdminDeclareDao;
 import com.kh.declare.model.vo.Declare;
 
 import static com.kh.common.JDBCTemplate.*;
 
-public class DeclareService {
+public class AdminDeclareService {
 
 	public ArrayList<Declare> getBoardList() {
 		Connection conn = getConnection();
-		ArrayList<Declare> list=new DeclareDao().getBoardList(conn);
+		ArrayList<Declare> list=new AdminDeclareDao().getBoardList(conn);
 		close(conn);
 		return list;
 	}
 
 	public ArrayList<Declare> getReplyList() {
 		Connection conn = getConnection();
-		ArrayList<Declare> list=new DeclareDao().getReplyList(conn);
+		ArrayList<Declare> list=new AdminDeclareDao().getReplyList(conn);
 		close(conn);
 		return list;
 	}
 
 	public ArrayList<Declare> getNotificationList() {
 		Connection conn = getConnection();
-		ArrayList<Declare> list=new DeclareDao().getNotificationList(conn);
+		ArrayList<Declare> list=new AdminDeclareDao().getNotificationList(conn);
 		close(conn);
 		return list;
 	}

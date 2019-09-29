@@ -6,11 +6,11 @@ import static com.kh.common.JDBCTemplate.getConnection;
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import com.kh.admin.model.dao.AdminReplyDao;
 import com.kh.member.model.dao.MemberDao;
 import com.kh.member.model.vo.Member;
 import com.kh.notification.model.dao.NotificationDao;
 import com.kh.notification.model.vo.Notification;
-import com.kh.reply.model.dao.ReplyDao;
 
 public class NotificationService {
 

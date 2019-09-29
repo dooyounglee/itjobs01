@@ -14,7 +14,7 @@ public class AdminBoardService {
 
 	public int delete(int b_no) {
 		Connection conn=getConnection();
-		int result=new BoardDao().delete(conn,b_no);
+		int result=new AdminBoardDao().delete(conn,b_no);
 		close(conn);
 		return result;
 	}

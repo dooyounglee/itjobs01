@@ -1,6 +1,7 @@
 package com.kh.member.model.dao;
 
 import static com.kh.common.JDBCTemplate.close;
+import static com.kh.common.JDBCTemplate.getConnection;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -104,43 +105,104 @@ public class MemberDao {
 			ps.setString(3, m.getPw());
 			ps.setString(4, m.getNickname());
 			result=ps.executeUpdate();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
 			close(ps);
-		}
+		}		
 		return result;
-	}
-	public int joinMember(Connection conn, Co_Info co) {
-		int result=0;
-		PreparedStatement ps=null;
 		
-		String sql=prop.getProperty("joinCompany");
+	
+	}
+	
+	
+
+	public void emailCheck(String email) {
+		
+		Member m = new Member();
+		
+		Connection conn = getConnection();
+		
+		PreparedStatement ps = null;
+		
+		ResultSet rs = null;
+		
+		String sql = prop.getProperty("checkemail");
+		
 		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, email);
+			rs=ps.executeQuery();
+			if(rs.next()) {
+			m=new Member(rs.getInt(1));
+			}
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(ps);
+			close(conn);
+		}
+		
+	
+		
+	}
+	
+	
+	public int JoinCoInfo(Connection conn, String email, Co_Info cf) {
+		int result=0;
+		
+		Member m = new Member();
+		
+		PreparedStatement ps=null;
+				
+		ResultSet rs = null;
+		 
+		String sql = prop.getProperty("checkemail");
+		try {
+			
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, email);
+			rs=ps.executeQuery();
+			if(rs.next()) {
+			m=new Member(rs.getInt(1));
+			}
+			
+			sql=prop.getProperty("joinCompany");
+						
 			ps=conn.prepareStatement(sql);
-			ps.setInt(1, co.getM_no());
-			ps.setString(2, co.getRegNum());
-			ps.setString(3, co.getFile());
-			ps.setString(4, co.getPath());
-			ps.setString(5, co.getName());
-			ps.setString(6, co.getPhone());
-			ps.setString(7, co.getAddress());
-			ps.setString(8, co.getCeo());
-			ps.setString(9, co.getCo_phone());
-			ps.setString(10, co.getDescript());
+			ps.setInt(1, m.getM_no());
+			ps.setString(2, cf.getRegNum());
+			ps.setString(3, cf.getFile());
+			ps.setString(4, cf.getPath());
+			ps.setString(5, cf.getName());
+			ps.setString(6, cf.getPhone());
+			ps.setString(7, cf.getAddress());
+			ps.setString(8, cf.getCeo());
+			ps.setString(9, cf.getCo_phone());
+			ps.setString(10, cf.getDescript());
 			ps.setString(11, "2000-01-01");
-			ps.setInt(12, co.getMemsum());
-			ps.setInt(13, co.getRevenue());
-			ps.setString(14, co.getHistory());
-			ps.setString(15, co.getWelfare());
+			ps.setInt(12, cf.getMemsum());
+			ps.setInt(13, cf.getRevenue());
+			ps.setString(14, cf.getHistory());
+			ps.setString(15, cf.getWelfare());
 			result=ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
+			close(rs);
 			close(ps);
 		}
 		return result;
 	}
+	
+	
+	
+	
+	
 	public ArrayList<Member> getAllMemberList(Connection conn) {
 		ArrayList<Member> list=new ArrayList<>();
 		PreparedStatement ps=null;

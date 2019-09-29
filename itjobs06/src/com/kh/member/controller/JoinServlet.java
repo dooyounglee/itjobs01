@@ -1,15 +1,21 @@
 package com.kh.member.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Enumeration;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
+
+import com.kh.common.MyFileRenamePolicy;
 import com.kh.member.model.service.MemberService;
-import com.kh.member.model.vo.Co_Info;
 import com.kh.member.model.vo.Member;
+import com.oreilly.servlet.MultipartRequest;
 
 /**
  * Servlet implementation class JoinServlet
@@ -57,7 +63,10 @@ public class JoinServlet extends HttpServlet {
 				request.setAttribute("msg", "회운가입 실패(일반)");
 			}
 			if(type.equals("기업")) {
-			request.getRequestDispatcher("views/login/join_co_info.jsp").forward(request, response);
+				
+				
+				request.setAttribute("m", m);
+				request.getRequestDispatcher("views/login/join_co_info.jsp").forward(request, response);
 			}else {
 				request.setAttribute("msg", "회운가입 실패(기업)");
 			}

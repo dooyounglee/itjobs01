@@ -14,6 +14,11 @@ public class Member {
 	
 	public Member() {}
 	
+	public Member(int m_no) {
+		super();
+		this.m_no = m_no;
+	}
+	
 	public Member(int m_no, String type, String email, String pw, String nickname, String update_date,
 			String enroll_date, String status, int d_count) {
 		super();

@@ -9,24 +9,28 @@
 <body>
 <%@ include file="/views/include/header.jsp" %>
 <h1>공고 등록</h1>
-제목:<input><br>
-마감일:<input><br>
+<form action="write.no" method="post" autocomplete=off>
+제목:<input name="title"><br>
+마감일:<input type=date name="end_date"><br>
 모집인원:<input><br>
-직군:<input><br>
+직군:<input name="jobs"><br>
 언어:
-<input type=checkbox />java
-<input type=checkbox />javascript
-<input type=checkbox />C
-<input type=checkbox />C++
-<input type=checkbox />C#
-<input type=checkbox />VBA
-<input type=checkbox />python
-<input type=checkbox />php
-<input type=checkbox />asp
+<input type=checkbox name="language" value="java">java
+<input type=checkbox name="language" value="javascript">javascript
+<input type=checkbox name="language" value="C">C
+<input type=checkbox name="language" value="C++">C++
+<input type=checkbox name="language" value="C#">C#
+<input type=checkbox name="language" value="VBA">VBA
+<input type=checkbox name="language" value="python">python
+<input type=checkbox name="language" value="php">php
+<input type=checkbox name="language" value="asp">asp
 <br>
-연봉:<input><br>
-내용:<textarea></textarea><br>
-우대사항:<input><br>
+연봉:<input name="salary"><br>
+내용:<textarea name="contents"></textarea><br>
+우대사항:<input name="hope"><br>
+<button>임시등록</button>
+</form>
+<button>공개</button>
 <button onclick="history.back()">뒤로</button>
 <%@ include file="/views/include/footer.jsp" %>
 </body>

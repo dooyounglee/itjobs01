@@ -6,6 +6,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.kh.member.model.vo.Member;
+import com.kh.notification.model.service.NotificationService;
+import com.kh.notification.model.vo.Notification;
 
 /**
  * Servlet implementation class NotificationWriteServlet
@@ -37,7 +42,36 @@ public class NotificationWriteServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
+		request.setCharacterEncoding("utf-8");
 		
+		HttpSession session = request.getSession();
+		Member co=(Member)session.getAttribute("mem");
+		
+		String title=request.getParameter("title");
+		String end_date=request.getParameter("end_date");
+		String jobs=request.getParameter("jobs");
+		String[] language=request.getParameterValues("language");
+		int salary=Integer.parseInt(request.getParameter("salary"));
+		String contents=request.getParameter("contents");
+		String hope=request.getParameter("hope");
+		
+		Notification n=new Notification();
+		n.setCo_no(co.getM_no());
+		n.setContents(contents);
+		n.setEnd_date(end_date);
+		n.setHope(hope);
+		n.setJobs(jobs);
+		n.setP_language(String.join(",",language));
+		n.setSalary(salary);
+		n.setTitle(title);
+		
+		int result=new NotificationService().insertNotification(n);
+		if(result>0) {
+			Notification newn=new NotificationService().getLastestNotification();
+			
+			request.setAttribute("noti", newn);
+			request.getRequestDispatcher("views/mypage/notice/get.jsp").forward(request, response);
+		}
 	}
 
 }

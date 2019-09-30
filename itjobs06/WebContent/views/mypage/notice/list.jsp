@@ -26,7 +26,6 @@
 		<th>등록일</th>
 		<th>수정일</th>
 		<th>상태</th>
-		<th>수정</th>
 		<th>지원자 확인</th>
 	</tr>
 	<%	ArrayList<Notification> list=(ArrayList<Notification>)request.getAttribute("list");
@@ -37,7 +36,6 @@
 		<td><%=n.getEnroll_date() %></td>
 		<td><%=n.getEnd_date() %></td>
 		<td><%=n.getStatus() %></td>
-		<td><button onclick="location.href='edit.jsp'">수정</button></td>
 		<td><button onclick="location.href='applierList.jsp'">지원자 확인</button></td>
 	</tr>
 	<%	} %>

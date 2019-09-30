@@ -10,16 +10,16 @@ import javax.servlet.http.HttpServletResponse;
 import com.kh.notification.model.service.NotificationService;
 
 /**
- * Servlet implementation class NotificationDeleteServlet
+ * Servlet implementation class NotificationRegisterServlet
  */
-@WebServlet("/del.no")
-public class NotificationDeleteServlet extends HttpServlet {
+@WebServlet("/register.no")
+public class NotificationRegisterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NotificationDeleteServlet() {
+    public NotificationRegisterServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,7 +32,7 @@ public class NotificationDeleteServlet extends HttpServlet {
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		int noti_no=Integer.parseInt(request.getParameter("noti_no"));
 		
-		int result=new NotificationService().delete(noti_no);
+		int result=new NotificationService().deleteCancle(noti_no);
 		if(result>0) {
 			response.sendRedirect(request.getContextPath()+"/myNotification.me");
 		}

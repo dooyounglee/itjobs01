@@ -52,5 +52,26 @@ public class NotificationService {
 		close(conn);
 		return noti;
 	}
+
+	public int insertNotification(Notification n) {
+		Connection conn=getConnection();
+		int result=new NotificationDao().insertNotification(conn,n);
+		close(conn);
+		return result;
+	}
+
+	public Notification getLastestNotification() {
+		Connection conn=getConnection();
+		Notification noti=new NotificationDao().getLastestNotification(conn);
+		close(conn);
+		return noti;
+	}
+
+	public int updateNotification(Notification n) {
+		Connection conn=getConnection();
+		int result=new NotificationDao().updateNotification(conn,n);
+		close(conn);
+		return result;
+	}
 	
 }

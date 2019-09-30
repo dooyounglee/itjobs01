@@ -1,6 +1,7 @@
 package com.kh.notification.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -43,7 +44,37 @@ public class NotificationUpdateServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		//doGet(request, response);
+		request.setCharacterEncoding("utf-8");
+		
+		int noti_no=Integer.parseInt(request.getParameter("noti_no"));
+		
+		String title=request.getParameter("title");
+		String end_date=request.getParameter("end_date");
+		String jobs=request.getParameter("jobs");
+		String[] language=request.getParameterValues("language");
+		int salary=Integer.parseInt(request.getParameter("salary"));
+		String contents=request.getParameter("contents");
+		String hope=request.getParameter("hope");
+		
+		Notification n=new Notification();
+		n.setNoti_no(noti_no);
+		n.setContents(contents);
+		n.setEnd_date(end_date);
+		n.setHope(hope);
+		n.setJobs(jobs);
+		n.setP_language(String.join(",",language));
+		n.setSalary(salary);
+		n.setTitle(title);
+		
+		int result=new NotificationService().updateNotification(n);
+		if(result>0) {
+			//Notification newn=new NotificationService().getNotification(noti_no);
+			
+			//request.setAttribute("noti", newn);
+			//request.getRequestDispatcher("views/mypage/notice/get.jsp").forward(request, response);
+			response.sendRedirect(request.getContextPath()+"/get.no?noti_no="+noti_no);
+		}
 	}
 
 }

@@ -9,10 +9,11 @@
 </head>
 <body>
 <%@ include file="/views/include/header.jsp" %>
-${noti }
+${noti }<br>
 <%	Notification noti=(Notification)request.getAttribute("noti");%>
 <button onclick="edit(<%=noti.getNoti_no() %>)">수정</button>
 <button onclick="del(<%=noti.getNoti_no() %>)">삭제</button>
+<button onclick="register(<%=noti.getNoti_no() %>)">공개</button>
 <button>지원자 확인</button>
 
 <script>
@@ -21,6 +22,9 @@ ${noti }
 	}
 	function del(noti_no){
 		location.href="del.no?noti_no="+noti_no;
+	}
+	function register(noti_no){
+		location.href="register.no?noti_no="+noti_no;
 	}
 </script>
 <%@ include file="/views/include/footer.jsp" %>

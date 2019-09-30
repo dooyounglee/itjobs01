@@ -69,7 +69,7 @@ ${msg }
 +지원하기
 <hr>기업
 <a href="<%=contextPath%>/myInfo.me"><del>내 정보 수정</del></a>
-<a href="<%=contextPath%>/views/mypage/notice/list.jsp">공고리스트</a>
+<a href="<%=contextPath%>/myNotification.me">공고리스트</a>
 <a href="<%=contextPath%>/myResumeList.like"><del>관심인재</del></a>
 <a href="<%=contextPath%>/mylist.qu"><del>나의 문의</del></a>
 <hr>관리자

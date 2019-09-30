@@ -6,6 +6,7 @@ import static com.kh.common.JDBCTemplate.getConnection;
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import com.kh.member.model.vo.Member;
 import com.kh.notification.model.dao.NotificationDao;
 import com.kh.notification.model.vo.Notification;
 
@@ -34,8 +35,22 @@ public class NotificationService {
 	public ArrayList<Notification> getOpenNotificationList() {
 		Connection conn=getConnection();
 		ArrayList<Notification> list=new NotificationDao().getOpenNotificationList(conn);
+		close(conn);
 		return list;
 	}
 
+	public ArrayList<Notification> getMyNotificationList(Member mem) {
+		Connection conn=getConnection();
+		ArrayList<Notification> list=new NotificationDao().getMyNotificationList(conn,mem);
+		close(conn);
+		return list;
+	}
+
+	public Notification getNotification(int noti_no) {
+		Connection conn=getConnection();
+		Notification noti=new NotificationDao().getNotification(conn,noti_no);
+		close(conn);
+		return noti;
+	}
 	
 }

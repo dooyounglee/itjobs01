@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import com.kh.member.model.dao.MemberDao;
+import com.kh.member.model.vo.Member;
 import com.kh.notification.model.vo.Notification;
 
 public class NotificationDao {
@@ -132,4 +133,71 @@ public class NotificationDao {
 		return list;
 	}
 
+	public ArrayList<Notification> getMyNotificationList(Connection conn, Member mem) {
+		ArrayList<Notification> list=new ArrayList<>();
+		PreparedStatement ps=null;
+		ResultSet rs=null;
+		
+		String sql=prop.getProperty("getMyNotificationList");
+		try {
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, mem.getM_no());
+			rs=ps.executeQuery();
+			while(rs.next()) {
+				list.add(new Notification(
+						rs.getInt(1),
+						rs.getInt(2),
+						rs.getString(3),
+						rs.getDate(4)+" "+rs.getTime(4),
+						rs.getDate(5)+" "+rs.getTime(5),
+						rs.getString(6),
+						rs.getInt(7),
+						rs.getString(8),
+						rs.getString(9),
+						rs.getString(10),
+						rs.getString(11),
+						rs.getInt(12)));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(ps);
+		}
+		return list;
+	}
+
+	public Notification getNotification(Connection conn, int noti_no) {
+		Notification noti=null;
+		PreparedStatement ps=null;
+		ResultSet rs=null;
+		
+		String sql=prop.getProperty("getNotification");
+		try {
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, noti_no);
+			rs=ps.executeQuery();
+			if(rs.next()) {
+				noti=new Notification(
+						rs.getInt(1),
+						rs.getInt(2),
+						rs.getString(3),
+						rs.getDate(4)+" "+rs.getTime(4),
+						rs.getDate(5)+" "+rs.getTime(5),
+						rs.getString(6),
+						rs.getInt(7),
+						rs.getString(8),
+						rs.getString(9),
+						rs.getString(10),
+						rs.getString(11),
+						rs.getInt(12));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(ps);
+		}
+		return noti;
+	}
 }

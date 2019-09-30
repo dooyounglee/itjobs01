@@ -1,5 +1,7 @@
 package com.kh.notification.model.dao;
 
+import static com.kh.common.JDBCTemplate.close;
+
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
@@ -8,9 +10,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
-import static com.kh.common.JDBCTemplate.*;
+
 import com.kh.member.model.dao.MemberDao;
-import com.kh.member.model.vo.Member;
 import com.kh.notification.model.vo.Notification;
 
 public class NotificationDao {
@@ -95,6 +96,40 @@ public class NotificationDao {
 			close(ps);
 		}
 		return result;
+	}
+
+	public ArrayList<Notification> getOpenNotificationList(Connection conn) {
+		ArrayList<Notification> list=new ArrayList<>();
+		PreparedStatement ps=null;
+		ResultSet rs=null;
+		
+		String sql=prop.getProperty("getOpenNotificationList");
+		try {
+			ps=conn.prepareStatement(sql);
+			rs=ps.executeQuery();
+			while(rs.next()) {
+				list.add(new Notification(
+						rs.getInt(1),
+						rs.getInt(2),
+						rs.getString(3),
+						rs.getDate(4)+" "+rs.getTime(4),
+						rs.getDate(5)+" "+rs.getTime(5),
+						rs.getString(6),
+						rs.getInt(7),
+						rs.getString(8),
+						rs.getString(9),
+						rs.getString(10),
+						rs.getString(11),
+						rs.getInt(12)));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(ps);
+		}
+		
+		return list;
 	}
 
 }

@@ -52,8 +52,8 @@ ${msg }
 <a href="<%=contextPath%>/list.bo?head=qna">공지사항</a>
 <a href="<%=contextPath%>/list.bo?head=form">서식</a>
 <a href="<%=contextPath%>/list.qu"><del>문의사항</del></a>
-공고검색창
-인재검색창
+<a href="<%=contextPath%>/notificationList.se">공고검색</a>
+<a href="<%=contextPath%>/resumeList.se">인재검색</a>
 기업검색창?
 <hr>공통
 <a href="<%=contextPath %>/views/login/join_law.jsp">회원가입</a>

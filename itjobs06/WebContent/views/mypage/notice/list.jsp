@@ -36,7 +36,7 @@
 		<td><%=n.getEnroll_date() %></td>
 		<td><%=n.getEnd_date() %></td>
 		<td><%=n.getStatus() %></td>
-		<td><button onclick="location.href='applierList.jsp'">지원자 확인</button></td>
+		<td><button onclick="location.href='<%=request.getContextPath()%>/list.vo?noti_no=<%=n.getNoti_no()%>'">지원자 확인</button></td>
 	</tr>
 	<%	} %>
 </table>

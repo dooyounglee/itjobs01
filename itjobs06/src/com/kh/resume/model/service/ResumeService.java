@@ -17,4 +17,11 @@ public class ResumeService {
 		return list;
 	}
 
+	public ArrayList<Resume> getSuperSearchResume(String sText) {
+		Connection conn=getConnection();
+		ArrayList<Resume> list=new ResumeDao().getSuperSearchResume(conn,sText);
+		close(conn);
+		return list;
+	}
+
 }

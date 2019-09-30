@@ -33,11 +33,21 @@ public class SearchResumeListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		request.setCharacterEncoding("utf-8");
+		
 		String sKey=request.getParameter("sKey");
 		String sText=request.getParameter("sText");
 		
-		ArrayList<Resume> list=new ResumeService().getOpenResumeList(sKey,sText);
-		
+		ArrayList<Resume> list=null;
+		if(sKey!=null) {
+			list=new ResumeService().getOpenResumeList(sKey,sText);
+		}else if(sText!=null){
+			System.out.println(sText);
+			list=new ResumeService().getSuperSearchResume(sText);
+		}else {
+			list=new ResumeService().getOpenResumeList(sKey,sText);
+		}
+			
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("views/search/resume.jsp").forward(request, response);
 	}

@@ -7,6 +7,8 @@ public class Volunteer {
 	private int resume_no;
 	private String v_date;
 	private String status;
+	private int m_no;
+	
 	public Volunteer() {
 		super();
 	}
@@ -48,10 +50,17 @@ public class Volunteer {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+	public int getM_no() {
+		return m_no;
+	}
+	public void setM_no(int m_no) {
+		this.m_no = m_no;
+	}
 	@Override
 	public String toString() {
 		return "Volunteer [v_no=" + v_no + ", noti_no=" + noti_no + ", resume_no=" + resume_no + ", v_date=" + v_date
-				+ ", status=" + status + "]";
+				+ ", status=" + status + ", m_no=" + m_no + "]";
 	}
+	
 	
 }

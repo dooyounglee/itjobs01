@@ -1,4 +1,4 @@
-package com.kh.member.controller;
+package com.kh.volunteer.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,21 +10,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.kh.admin.model.service.AdminMemberService;
-import com.kh.member.model.service.MemberService;
 import com.kh.member.model.vo.Member;
+import com.kh.notification.model.vo.Notification;
+import com.kh.volunteer.model.service.VolunteerService;
+import com.kh.volunteer.model.vo.Volunteer;
 
 /**
- * Servlet implementation class LoginServlet
+ * Servlet implementation class VolunteerMyApplyListServlet
  */
-@WebServlet("/login.me")
-public class LoginServlet extends HttpServlet {
+@WebServlet("/myApplyList.vo")
+public class VolunteerMyApplyListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoginServlet() {
+    public VolunteerMyApplyListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,14 +36,13 @@ public class LoginServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		ArrayList<Member> list=new AdminMemberService().getAllMemberList();
+		HttpSession session = request.getSession();
+		Member mem=(Member)session.getAttribute("mem");
+		
+		ArrayList<Notification> list=new VolunteerService().getMyApplyList(mem.getM_no());
+		
 		request.setAttribute("list", list);
-		request.getRequestDispatcher("views/login/login.jsp").forward(request, response);
-	
-	
-	
-	
-	
+		request.getRequestDispatcher("views/mypage/applyList.jsp").forward(request, response);
 	}
 
 	/**
@@ -50,27 +50,7 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.setCharacterEncoding("utf-8");
-		
-		String type=request.getParameter("type");
-		String email=request.getParameter("email");
-		String pw=request.getParameter("pw");
-		
-		Member m=new Member();
-		m.setEmail(email);
-		m.setPw(pw);
-		m.setType(type);
-		System.out.println(m);
-		
-		Member mem=new MemberService().login(m);
-		System.out.println(mem);
-		if(mem!=null) {
-			HttpSession session = request.getSession();
-			session.setAttribute("mem", mem);
-			//request.getRequestDispatcher("views/mypage/myInfo.jsp").forward(request, response);			
-			response.sendRedirect(request.getContextPath()+"/myInfo.me");
-		}else {
-		}
+		doGet(request, response);
 	}
 
 }

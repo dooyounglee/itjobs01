@@ -1,3 +1,6 @@
+<%@page import="com.kh.notification.model.vo.Notification"%>
+<%@page import="com.kh.volunteer.model.vo.Volunteer"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -18,14 +21,17 @@
 		<th>마감일</th>
 		<th>상태</th>
 	</tr>
+	<%	ArrayList<Notification> list=(ArrayList<Notification>)request.getAttribute("list");
+		for(Notification n:list){%>
 	<tr>
 		<td><input type=checkbox></td>
-		<td><a href="#">제목1</a></td>
-		<td>기업1</td>
+		<td><%=n.getTitle() %></td>
+		<td><%=n.getCo_no() %></td>
 		<td>지원일1</td>
-		<td>마감일1</td>
+		<td><%=n.getEnd_date() %></td>
 		<td>서류심사</td>
 	</tr>
+	<%	} %>
 </table>
 <%@ include file="/views/include/footer.jsp" %>
 </body>

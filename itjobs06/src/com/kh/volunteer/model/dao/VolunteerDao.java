@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import com.kh.notification.model.vo.Notification;
 import com.kh.resume.model.dao.ResumeDao;
 import com.kh.volunteer.model.vo.Volunteer;
 
@@ -44,6 +45,37 @@ private Properties prop = new Properties();
 						rs.getInt(3),
 						rs.getDate(4)+" "+rs.getTime(4),
 						rs.getString(5)));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	public ArrayList<Notification> getMyApplyList(Connection conn, int m_no) {
+		ArrayList<Notification> list=new ArrayList<>();
+		PreparedStatement ps=null;
+		ResultSet rs=null;
+		
+		String sql=prop.getProperty("getMyApplyList");
+		try {
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, m_no);
+			rs=ps.executeQuery();
+			while(rs.next()) {
+				list.add(new Notification(
+						rs.getInt(1),
+						rs.getInt(2),
+						rs.getString(3),
+						rs.getDate(4)+" "+rs.getTime(4),
+						rs.getDate(5)+" "+rs.getTime(5),
+						rs.getString(6),
+						rs.getInt(7),
+						rs.getString(8),
+						rs.getString(9),
+						rs.getString(10),
+						rs.getString(11),
+						rs.getInt(12)));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

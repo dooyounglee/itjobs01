@@ -37,9 +37,6 @@
 </style>
 </head>
 <body>
-	
-    
-    
 ${mem }
 ${msg }
 <h1><a href="<%=contextPath %>">ITJobs</a></h1>
@@ -61,7 +58,7 @@ ${msg }
 <a href="<%=contextPath %>/logout.me">로그아웃</a><br>
 <hr>일반
 <a href="<%=contextPath%>/myInfo.me"><del>내 정보 수정</del></a>
-<a href="<%=contextPath%>/views/mypage/applyList.jsp">지원리스트</a>
+<a href="<%=contextPath%>/myApplyList.vo">지원리스트</a>
 <a href="<%=contextPath%>/myCompanyList.like"><del>관심기업</del></a>
 <a href="<%=contextPath%>/myNotificationList.like"><del>관심공고</del></a>
 <a href="<%=contextPath%>/views/mypage/resume/list.jsp">이력서 관리</a>

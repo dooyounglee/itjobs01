@@ -54,8 +54,11 @@
 			<th>삭제</th>
 			<th>삭제취소</th>
 		</tr>
+
 		<%	ArrayList<Board> list=(ArrayList<Board>)request.getAttribute("list");
 		for(Board b:list){%>
+
+
 		<tr>
 			<td><input type=checkbox></td>
 			<td><%=b.getHead() %></td>

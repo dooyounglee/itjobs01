@@ -81,14 +81,34 @@ public class Board {
 		this.time = time;
 		this.count = count;
 	}
-	public Board(int int1, int int2, String string, String string2, String string3, String string4, String string5,
+/*	public Board(int int1, int int2, String string, String string2, String string3, String string4, String string5,
 			String string6, String string7, int int3, String string8, int int4, String string9, String string10) {
 		// TODO Auto-generated constructor stub
-	}
+	}*/
+	
+/*	public Board(int b_no, String m_no, String head, String title, String contents, String enroll_date, String update_date,
+			String file, String time, int count, String status, int d_count, String editFile, String path) {
+			super();
+			this.b_no = b_no;
+			this.m_no = m_no;
+			this.head = head;
+			this.title = title;
+			this.contents = contents;
+			this.enroll_date = enroll_date;
+			this.update_date = update_date;
+			this.file = file;
+			this.time = time;
+			this.count = count;
+			this.status = status;
+			this.d_count = d_count;
+			this.editFile = editFile;
+			this.path = path;
+		}*/
 	
 	public String getNickname() {
 		return nickname;
 	}
+	
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
 	}

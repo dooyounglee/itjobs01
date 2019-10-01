@@ -57,15 +57,11 @@ private Properties prop = new Properties();
 			ps=conn.prepareStatement(sql);
 			ps.setInt(1, pi.getEndRow());
 			ps.setInt(2, pi.getStartRow());
-//			ps.setInt(1, pi.getCurrentPage()*pi.getBoardLimit());
-//			ps.setInt(2, (pi.getCurrentPage()-1)*pi.getBoardLimit()+1);
-			System.out.println(pi.getCurrentPage()*pi.getBoardLimit());
-			System.out.println((pi.getCurrentPage()-1)*pi.getBoardLimit()+1);
 			rs=ps.executeQuery();
 			while(rs.next()) {
-				list.add(new Board(
+				Board b=new Board(
 						rs.getInt(1),
-						rs.getInt(2),
+						rs.getInt(2)+"",
 						rs.getString(3),
 						rs.getString(4),
 						rs.getString(5),
@@ -77,8 +73,11 @@ private Properties prop = new Properties();
 						rs.getString(11),
 						rs.getInt(12),
 						rs.getString(13),
-						rs.getString(14)));
-			
+
+						rs.getString(14));
+				
+				list.add(b);
+		
 			}
 	
 		} catch (SQLException e) {
@@ -87,7 +86,7 @@ private Properties prop = new Properties();
 			close(rs);
 			close(ps);
 		}
-		System.out.println("list 리턴까지 성공");
+
 		return list;
 	}
 	

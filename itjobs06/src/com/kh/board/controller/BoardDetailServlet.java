@@ -33,6 +33,9 @@ public class BoardDetailServlet extends HttpServlet {
 		int bId = Integer.parseInt(request.getParameter("bId"));
 		String head = request.getParameter("head");
 		
+		Board prev = new Board();
+		Board next = new Board();
+		
 		switch(head) {
 		case "free" : head="자유"; break;
 		case "study" : head="스터디"; break;
@@ -48,9 +51,13 @@ public class BoardDetailServlet extends HttpServlet {
 			request.setAttribute("msg", "조회실패");
 		}else {
 			
-			Board prev = new BoardService().prevBoard(bId, head);
-			Board next = new BoardService().nextBoard(bId, head);
-			
+			if(head.equals("main")) {
+				prev = new BoardService().prevMainBoard(bId);
+				next = new BoardService().nextMainBoard(bId);
+			}else {
+				prev = new BoardService().prevEtcBoard(bId, head);
+				next = new BoardService().nextEtcBoard(bId, head);
+			}
 		request.setAttribute("prev", prev);
 		request.setAttribute("next", next);
 		request.setAttribute("b", b);

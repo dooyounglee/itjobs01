@@ -115,30 +115,54 @@ public class BoardService {
 	
 	
 	/**
-	 * 5. 이전글 조회
+	 * 5. 이전글 조회(etc)
 	 * @param bId
 	 * @return
 	 */
-	public Board prevBoard(int bId, String head) {
+	public Board prevEtcBoard(int bId, String head) {
 		Connection conn = getConnection();
 		
-		Board prev = new BoardDao().prevBoard(conn, bId, head);
-		System.out.println(prev);
+		Board prev = new BoardDao().prevEtcBoard(conn, bId, head);
+	
 		
 		close(conn);
 		return prev;
 	}
 	
-	public Board nextBoard(int bId, String head) {
+	/**
+	 * 6. 다음글 조회(etc)
+	 * @param bId
+	 * @param head
+	 * @return
+	 */
+	public Board nextEtcBoard(int bId, String head) {
 		Connection conn = getConnection();
 		
-		Board next = new BoardDao().nextBoard(conn, bId, head);
-		
-		System.out.println(next);
+		Board next = new BoardDao().nextEtcBoard(conn, bId, head);
+
 		
 		close(conn);
 		return next;
 	}
 	
+	
+	public Board prevMainBoard(int bId) {
+		Connection conn = getConnection();
+		
+		Board prev = new BoardDao().prevMainBoard(conn, bId);
+	
+		
+		close(conn);
+		return prev;
+	}
 
+	public Board nextMainBoard(int bId) {
+		Connection conn = getConnection();
+		
+		Board next = new BoardDao().nextMainBoard(conn, bId);
+	
+		
+		close(conn);
+		return next;
+	}
 }

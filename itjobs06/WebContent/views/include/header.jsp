@@ -61,7 +61,7 @@ ${msg }
 <a href="<%=contextPath%>/myApplyList.vo">지원리스트</a>
 <a href="<%=contextPath%>/myCompanyList.like"><del>관심기업</del></a>
 <a href="<%=contextPath%>/myNotificationList.like"><del>관심공고</del></a>
-<a href="<%=contextPath%>/views/mypage/resume/list.jsp">이력서 관리</a>
+<a href="<%=contextPath%>/list.re">이력서 관리</a>
 <a href="<%=contextPath%>/mylist.qu"><del>나의 문의</del></a>
 +지원하기
 <hr>기업

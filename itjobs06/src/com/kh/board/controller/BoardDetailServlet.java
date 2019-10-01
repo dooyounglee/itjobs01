@@ -9,18 +9,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.board.model.service.BoardService;
+import com.kh.board.model.vo.Board;
 
 /**
- * Servlet implementation class BoardDeleteServlet
+ * Servlet implementation class BoardDetailServlet
  */
-@WebServlet("/delete.bo")
-public class BoardDeleteServlet extends HttpServlet {
+@WebServlet("/detail.bo")
+public class BoardDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardDeleteServlet() {
+    public BoardDetailServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,14 +33,28 @@ public class BoardDeleteServlet extends HttpServlet {
 		int bId = Integer.parseInt(request.getParameter("bId"));
 		String head = request.getParameter("head");
 		
-		int result = new BoardService().deleteBoard(bId);
+		switch(head) {
+		case "free" : head="자유"; break;
+		case "study" : head="스터디"; break;
+		case "project" : head="프로젝트"; break;
+		case "qna" : head="공지사항"; break;
+		case "form" : head="서식"; break;
+		case "qu" : head="문의사항"; break;
+		}
 		
-		if(result > 0) {
-			request.setAttribute("head", head);
-			request.getRequestDispatcher("list.bo").forward(request, response);
+		Board b = new BoardService().selectBoard(bId);
+		
+		if(b == null) {
+			request.setAttribute("msg", "조회실패");
 		}else {
-//			request.setAttribute("msg", "삭제 실패");
-//			request.getRequestDispatcher("views/)
+			
+			Board prev = new BoardService().prevBoard(bId, head);
+			Board next = new BoardService().nextBoard(bId, head);
+			
+		request.setAttribute("prev", prev);
+		request.setAttribute("next", next);
+		request.setAttribute("b", b);
+		request.getRequestDispatcher("views/board/detail.jsp").forward(request, response);
 		}
 	}
 

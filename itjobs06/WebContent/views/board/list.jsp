@@ -2,10 +2,9 @@
     pageEncoding="UTF-8" import="com.kh.board.model.vo.*, java.util.ArrayList"%>
 <%
 	Board b = (Board)request.getAttribute("b");
-	
+
 	PageInfo pi = (PageInfo)request.getAttribute("pi");  
 	ArrayList<Board> list = (ArrayList<Board>)request.getAttribute("list");
-
 	
 	int currentPage = pi.getCurrentPage();
 	int maxPage = pi.getMaxPage();
@@ -26,7 +25,8 @@
 		margin-left:auto;
 		margin-right:auto;
 		margin-top:50px;
-	}.tableArea{
+	}
+	.tableArea{
 		width:700px;
 		height:500x;
 		margin-left:auto;
@@ -56,18 +56,22 @@
 		cursor:pointer;
 	}
 	#writeBtnArea{
-		width:640px;
+		width:700px;
 		height:30px;
 		margin-left:auto;
 		margin-right:auto;
 		/*border:1px solid black;*/
+	}
+	#headArea{
+		width:700px;
+		margin-left:auto;
+		margin-right:auto;
 	}
 	.pagingArea>div{
 		width:30px;
 		height:30px;
 		display:inline-block;
 	}
-
 </style>
 </head>
 <body>
@@ -75,21 +79,23 @@
 	
 	<div class="outer">
 		<br>
-		<h1 align="left"><%= head %>게시판</h1>	
+		<div id="headArea"><h1 align="left"><%= head %>게시판</h1></div>
+<%-- <% if(loginUser != null) { %> --%>
 		<div id="writeBtnArea">
-		<div id="writeBtn" onclick="<%= contextPath %>/write.bo">글쓰기</div>
+		<div id="writeBtn" onclick="location.href='<%= contextPath %>/insertForm.bo';">글쓰기</div>
 		</div>
+<%-- <% } %> --%>
 		<div class="tableArea">
-			<table>
+			<table id="listArea">
 				<tr>
 					<th width="50">No.</th>
-					<th width="150">작성자</th>
+					<th width="100">작성자</th>
 					<th width="400">제목</th>
 					<% if(head.equals("study") || head.equals("project")){ %>
 					<th width="300">모집기간</th>
 					<% } %>
-					<th width="100">등록일자</th>
-					<th width="70">조회수</th>
+					<th width="150">등록일자</th>
+					<th width="150">조회수/댓글수</th>
 				</tr>
 				<% if(list.isEmpty()) { %>
 					<tr>
@@ -116,8 +122,27 @@
 				<% } %>
 			</table>
 		</div>
+		
+		<script>
+			$(function(){
+				$("#listArea td").mouseenter(function(){
+					// parent하면 부모요소인 tr이 선택됨
+					$(this).parent().css({"background":"lightgray", "cursor":"pointer"})
+				}).mouseout(function(){
+					$(this).parent().css("background", "white");
+				}).click(function(){
+					// eq(0).text()를 통해 글번호만 알아오기
+					var bId = $(this).parent().children().eq(0).text();
+					location.href="<%= contextPath %>/detail.bo?head=<%=head%>&bId=" + bId;
+				
+				});
+				
+			});
+		
+		</script>
 	
-		<br>
+	
+		<br><br>
 		<!-- 페이징 바  -->
 		<div class="pagingArea" align="center">
 			<div id="맨처음으로"> &lt;&lt; </div>
@@ -126,7 +151,7 @@
 				<% if(i == currentPage){ %>
 				<div id="현재페이지"> <%= i %> </div>
 				<% }else{ %>
-					<div id="페이지"> <%= i %> </div>
+					<div> <%= i %> </div>
 				<% } %>
 			<% } %>
 			
@@ -145,7 +170,7 @@
 			}).mouseout(function(){
 				$(this).css("background", "lightgray");
 			}).click(function(){
-				location.href="<%=contextPath%>/list.bo?currentPage=1";
+				location.href="<%=contextPath%>/list.bo?head=<%=head%>&currentPage=1";
 			});
 		});
 		$(function(){
@@ -155,7 +180,7 @@
 				}).mouseout(function(){
 					$(this).css("background", "lightgray");
 				}).click(function(){
-					location.href="<%=contextPath%>/list.bo?currentPage=<%=currentPage-1%>";
+					location.href="<%=contextPath%>/list.bo?head=<%=head%>&currentPage=<%=currentPage-1%>";
 				});
 			} 
 		});
@@ -164,12 +189,12 @@
 				if(i == <%=currentPage%>){
 					$("#현재페이지").css("background","lightblue");
 				}else{
-					$("#페이지").mouseenter(function(){
+					$(".pagingArea").children().eq(4).mouseenter(function(){
 						$(this).css({"background":"lightblue", "cursor":"pointer"});
 					}).mouseout(function(){
 						$(this).css("background", "lightgray");
 					}).click(function(){
-						location.href='<%=contextPath%>/list.bo?currentPage='+ i;
+						location.href="<%=contextPath%>/list.bo?head=<%=head%>&currentPage=" + i;
 					});
 				}
 			}
@@ -181,11 +206,23 @@
 				}).mouseout(function(){
 					$(this).css("background", "lightgray");
 				}).click(function(){
-					location.href="<%=contextPath%>/list.bo?currentPage=<%=currentPage+1%>";
+					location.href="<%=contextPath%>/list.bo?head=<%=head%>&currentPage=<%=currentPage+1%>";
 				});
 			}
 			
 		});
+		$(function(){
+			$("#맨끝으로").mouseenter(function(){
+				$(this).css({"background":"lightblue", "cursor":"pointer"});
+			}).mouseout(function(){
+				$(this).css("background", "lightgray");
+			}).click(function(){
+				location.href="<%=contextPath%>/list.bo?head=<%=head%>&currentPage=<%=maxPage%>";
+			});
+		});
+		
+			
+		
 		</script>
 		
 	

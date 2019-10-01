@@ -15,11 +15,12 @@ public class PageInfo {
 	public PageInfo(int currentPage,int listCount) {
 		this.currentPage=currentPage;
 		this.listCount=listCount;
-		this.maxPage=(int)Math.ceil((double)listCount/boardLimit);
-		this.startPage=((currentPage-1)/pageLimit)*pageLimit+1;
-		this.endPage=Math.min(startPage+pageLimit-1,maxPage);
-		this.startRow=currentPage*boardLimit;
-		this.endRow=(currentPage-1)*boardLimit+1;
+		
+		maxPage=(int)Math.ceil((double)listCount/boardLimit);
+		startPage=((currentPage-1)/pageLimit)*pageLimit+1;
+		endPage=Math.min(startPage+pageLimit-1,maxPage);
+		startRow=(currentPage-1)*boardLimit+1;
+		endRow=currentPage*boardLimit;
 	}
 
 	public int getCurrentPage() {

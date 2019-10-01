@@ -19,7 +19,7 @@
 	<option value="title">제목</option>
 	<option value="hope_salary">희망연봉</option>
 </select>
-<input id="sText" autocomplete=off><button onclick="search()">검색</button>
+<input id="sText" autocomplete=off><button onclick="search()">검색</button><br>
 <input id="sTextA" name="sText" autocomplete=off><button onclick="searchA()">검색</button>
 <button>상세검색</button>
 <hr>
@@ -35,7 +35,7 @@
 	function search(){
 		var sKey=$('#sKey').val();
 		var sText=$('#sText').val();
-		$('#resultArea').load('<%=request.getContextPath()%>/resumeList.se #result',{'sKey':sKey,'sText':sText')
+		$('#resultArea').load('<%=request.getContextPath()%>/resumeList.se #result',{'sKey':sKey,'sText':sText})
 	}
 	function searchA(){
 		var sTextA=$('#sTextA').val();

@@ -11,6 +11,7 @@
 <%@ include file="/views/include/header.jsp" %>
 ${noti }<br>
 <%	Notification noti=(Notification)request.getAttribute("noti");%>
+
 <button onclick="edit(<%=noti.getNoti_no() %>)">수정</button>
 <button onclick="del(<%=noti.getNoti_no() %>)">삭제</button>
 <button onclick="register(<%=noti.getNoti_no() %>)">공개</button>

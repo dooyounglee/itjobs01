@@ -10,18 +10,13 @@ import static com.kh.common.JDBCTemplate.*;
 
 public class ResumeService {
 
-	public ArrayList<Resume> getOpenResumeList(String sKey, String sText) {
+	public ArrayList<Resume> getOpenResumeList() {
 		Connection conn=getConnection();
-		ArrayList<Resume> list=new ResumeDao().getOpenResumeList(conn,sKey,sText);
+		ArrayList<Resume> list=new ResumeDao().getOpenResumeList(conn);
 		close(conn);
 		return list;
 	}
 
-	public ArrayList<Resume> getSuperSearchResume(String sText) {
-		Connection conn=getConnection();
-		ArrayList<Resume> list=new ResumeDao().getSuperSearchResume(conn,sText);
-		close(conn);
-		return list;
-	}
+	
 
 }

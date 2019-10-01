@@ -70,13 +70,13 @@ ${msg }
 <a href="<%=contextPath%>/myResumeList.like"><del>관심인재</del></a>
 <a href="<%=contextPath%>/mylist.qu"><del>나의 문의</del></a>
 <hr>관리자
-<a href="<%=contextPath%>/boardList.ad"><del>게시판관리</del></a>
+<%-- <a href="<%=contextPath%>/boardList.ad"><del>게시판관리</del></a>
 <a href="<%=contextPath%>/replyList.ad">댓글관리(도 그냥 게시글로 가면 되는건가)</a>
 <a href="<%=contextPath%>/memberList.ad"><del>회원관리</del></a>
 <a href="<%=contextPath%>/noticeList.ad"><del>공고관리</del></a>
 <a href="<%=contextPath%>/list.qu.ad"><del>문의관리</del></a>
-<a href="<%=contextPath%>/list.de"><del>신고관리</del></a>
-<%-- <div class="aaa" onclick="location.href='<%=contextPath%>/boardList.ad'">게시판 관리
+<a href="<%=contextPath%>/list.de"><del>신고관리</del></a> --%>
+<div class="aaa" onclick="location.href='<%=contextPath%>/boardList.ad'">게시판 관리
     <div></div>
 </div>
 <div class="aaa" onclick="location.href='<%=contextPath%>/replyList.ad'">댓글 관리
@@ -131,7 +131,7 @@ ${msg }
     var aaa_div=$('.aaa').children('div');
 
     lease()
-</script> --%>
+</script>
 <hr>
 <script type="text/javascript">
     var webSocket = new WebSocket('ws://<%=request.getServerName()%>:<%=request.getServerPort()%>/itjobs/userCounting');

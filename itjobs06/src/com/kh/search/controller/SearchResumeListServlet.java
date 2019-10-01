@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kh.resume.model.service.ResumeService;
 import com.kh.resume.model.vo.Resume;
+import com.kh.search.model.service.SearchService;
 
 /**
  * Servlet implementation class SearchResumeListServlet
@@ -39,13 +40,13 @@ public class SearchResumeListServlet extends HttpServlet {
 		String sText=request.getParameter("sText");
 		
 		ArrayList<Resume> list=null;
-		if(sKey!=null) {
-			list=new ResumeService().getOpenResumeList(sKey,sText);
+		if(sKey!=null && sText!=null) {
+			list=new SearchService().searchResumeList(sKey,sText);
 		}else if(sText!=null){
 			System.out.println(sText);
-			list=new ResumeService().getSuperSearchResume(sText);
+			list=new SearchService().getSuperSearchResume(sText);
 		}else {
-			list=new ResumeService().getOpenResumeList(sKey,sText);
+			list=new ResumeService().getOpenResumeList();
 		}
 			
 		request.setAttribute("list", list);

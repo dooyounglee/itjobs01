@@ -9,7 +9,7 @@
 </head>
 <body>
 <%@ include file="/views/include/header.jsp" %>
-<h1>공고 등록</h1>
+<h1>공고 수정</h1>
 <%	Notification noti=(Notification)request.getAttribute("noti");
 	String[] arr_language=noti.getP_language().split(",");
 	String[] lan_selected=new String[9];
@@ -33,15 +33,15 @@
 모집인원:<input value="모집인원이 없다고?"><br>
 직군:<input name="jobs" value="<%=noti.getJobs()%>"><br>
 언어:
-<input type=checkbox name="language" <%=lan_selected[0] %>>java
-<input type=checkbox name="language" <%=lan_selected[1] %>>javascript
-<input type=checkbox name="language" <%=lan_selected[2] %>>C
-<input type=checkbox name="language" <%=lan_selected[3] %>>C++
-<input type=checkbox name="language" <%=lan_selected[4] %>>C#
-<input type=checkbox name="language" <%=lan_selected[5] %>>VBA
-<input type=checkbox name="language" <%=lan_selected[6] %>>python
-<input type=checkbox name="language" <%=lan_selected[7] %>>php
-<input type=checkbox name="language" <%=lan_selected[8] %>>asp
+<input type=checkbox name="language" value="java" <%=lan_selected[0] %>>java
+<input type=checkbox name="language" value="javascript" <%=lan_selected[1] %>>javascript
+<input type=checkbox name="language" value="C" <%=lan_selected[2] %>>C
+<input type=checkbox name="language" value="C++" <%=lan_selected[3] %>>C++
+<input type=checkbox name="language" value="C#" <%=lan_selected[4] %>>C#
+<input type=checkbox name="language" value="VBA" <%=lan_selected[5] %>>VBA
+<input type=checkbox name="language" value="python" <%=lan_selected[6] %>>python
+<input type=checkbox name="language" value="php" <%=lan_selected[7] %>>php
+<input type=checkbox name="language" value="asp" <%=lan_selected[8] %>>asp
 <br>
 연봉:<input name="salary" value="<%=noti.getSalary()%>"><br>
 내용:<textarea name="contents"><%=noti.getContents() %></textarea><br>

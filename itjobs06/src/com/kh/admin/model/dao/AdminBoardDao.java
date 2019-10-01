@@ -55,8 +55,8 @@ private Properties prop = new Properties();
 		String sql=prop.getProperty("getAllList");
 		try {
 			ps=conn.prepareStatement(sql);
-			ps.setInt(1, pi.getStartRow());
 			ps.setInt(1, pi.getEndRow());
+			ps.setInt(2, pi.getStartRow());
 //			ps.setInt(1, pi.getCurrentPage()*pi.getBoardLimit());
 //			ps.setInt(2, (pi.getCurrentPage()-1)*pi.getBoardLimit()+1);
 			System.out.println(pi.getCurrentPage()*pi.getBoardLimit());

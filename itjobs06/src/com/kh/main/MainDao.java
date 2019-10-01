@@ -109,7 +109,7 @@ public class MainDao {
 			while(rs.next()) {
 				list.add(new Board(
 						rs.getInt(1),
-						rs.getInt(2),
+						rs.getInt(2)+"",
 						rs.getString(3),
 						rs.getString(4),
 						rs.getString(5),
@@ -144,7 +144,7 @@ public class MainDao {
 			while(rs.next()) {
 				list.add(new Board(
 						rs.getInt(1),
-						rs.getInt(2),
+						rs.getInt(2)+"",
 						rs.getString(3),
 						rs.getString(4),
 						rs.getString(5),
@@ -179,7 +179,7 @@ public class MainDao {
 			while(rs.next()) {
 				list.add(new Board(
 						rs.getInt(1),
-						rs.getInt(2),
+						rs.getInt(2)+"",
 						rs.getString(3),
 						rs.getString(4),
 						rs.getString(5),
@@ -214,7 +214,7 @@ public class MainDao {
 			while(rs.next()) {
 				list.add(new Board(
 						rs.getInt(1),
-						rs.getInt(2),
+						rs.getInt(2)+"",
 						rs.getString(3),
 						rs.getString(4),
 						rs.getString(5),

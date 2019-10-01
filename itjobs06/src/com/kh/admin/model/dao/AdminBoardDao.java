@@ -74,9 +74,7 @@ private Properties prop = new Properties();
 						rs.getInt(12),
 						rs.getString(13),
 						rs.getString(14));
-				System.out.println(b);
 				list.add(b);
-				System.out.println(rs.getString(3)+rs.getString(5));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -84,7 +82,6 @@ private Properties prop = new Properties();
 			close(rs);
 			close(ps);
 		}
-		System.out.println(list);
 		return list;
 	}
 	

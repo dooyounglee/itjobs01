@@ -54,8 +54,11 @@
 			<th>삭제</th>
 			<th>삭제취소</th>
 		</tr>
+
 		<%	ArrayList<Board> list=(ArrayList<Board>)request.getAttribute("list");
-			for(Board b:list){%>
+		for(Board b:list){%>
+
+
 		<tr>
 			<td><input type=checkbox></td>
 			<td><%=b.getHead() %></td>
@@ -63,7 +66,7 @@
 				<a href="<%=request.getContextPath() %>/get.bo.ad?bno=<%=b.getB_no()%>"><%=b.getTitle() %></a>
 			</td>
 			<td><%=b.getM_no() %></td>
-			<td><%=b.getUpdate_date().split(" ")[0] %></td>
+			<%-- <td><%=b.getUpdate_date().split(" ")[0] %></td> --%>
 			<td><%=b.getTime() %></td>
 			<td><%=b.getStatus() %></td>
 			<td><button onclick="del(<%=b.getB_no()%>)">삭제</button></td>

@@ -46,7 +46,6 @@ public class AdminBoardListServlet extends HttpServlet {
 		
 		PageInfo pi=new PageInfo(currentPage,listCount);
 		ArrayList<Board> list=new AdminBoardService().getAllList(pi);
-		
 		HttpSession session = request.getSession();
 //		session.setAttribute("head", "admin");
 		request.setAttribute("list", list);

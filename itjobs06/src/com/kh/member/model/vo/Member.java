@@ -18,7 +18,10 @@ public class Member {
 		super();
 		this.m_no = m_no;
 	}
-	
+	public Member(String pw) {
+		super();
+		this.pw = pw;
+	}
 	public Member(int m_no, String type, String email, String pw, String nickname, String update_date,
 			String enroll_date, String status, int d_count) {
 		super();

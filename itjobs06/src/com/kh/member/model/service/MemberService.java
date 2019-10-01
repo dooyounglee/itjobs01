@@ -7,6 +7,16 @@ import static com.kh.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.Properties;
+
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletRequest;
 
 import com.kh.member.model.dao.MemberDao;
 import com.kh.member.model.vo.Co_Info;
@@ -37,7 +47,7 @@ public class MemberService {
 		} else {
 			rollback(conn);
 		}
-		
+		close(conn);
 		return result;
 	}
 
@@ -116,4 +126,32 @@ public class MemberService {
 
 	}
 
+	public Member findPwd(String email) {
+		
+		Connection conn = getConnection();
+		
+		Member m = new MemberDao().findPwd(conn,email);
+		
+		return m;
+		
+	}
+	
+	public int randomPwd(String userPwd,String email) {
+		
+		Connection conn = getConnection();
+		
+		int result = new MemberDao().randomPwd(conn,userPwd,email);
+		
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		
+		return result ;
+		
+	}
+	
+	
 }

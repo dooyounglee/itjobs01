@@ -61,13 +61,12 @@ private Properties prop = new Properties();
 //			ps.setInt(2, (pi.getCurrentPage()-1)*pi.getBoardLimit()+1);
 			System.out.println(pi.getCurrentPage()*pi.getBoardLimit());
 			System.out.println((pi.getCurrentPage()-1)*pi.getBoardLimit()+1);
-
 			rs=ps.executeQuery();
 			
 			while(rs.next()) {
-				list.add(new Board(
+				Board b=new Board(
 						rs.getInt(1),
-						rs.getInt(2),
+						rs.getInt(2)+"",
 						rs.getString(3),
 						rs.getString(4),
 						rs.getString(5),
@@ -79,14 +78,20 @@ private Properties prop = new Properties();
 						rs.getString(11),
 						rs.getInt(12),
 						rs.getString(13),
-						rs.getString(14)));
+
+						rs.getString(14));
+				
+				list.add(b);
+		
 			}
+	
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
 			close(rs);
 			close(ps);
 		}
+
 		return list;
 	}
 	

@@ -78,13 +78,16 @@ private Properties prop = new Properties();
 						rs.getInt(12),
 						rs.getString(13),
 						rs.getString(14)));
+			
 			}
+	
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
 			close(rs);
 			close(ps);
 		}
+		System.out.println("list 리턴까지 성공");
 		return list;
 	}
 	

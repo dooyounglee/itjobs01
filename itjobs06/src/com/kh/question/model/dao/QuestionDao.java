@@ -54,24 +54,6 @@ public class QuestionDao {
 		return list;
 	}
 
-	public int answerQuestion(Connection conn, Question q) {
-		int result=0;
-		PreparedStatement ps=null;
-		
-		String sql=prop.getProperty("answerQuestion");
-		try {
-			ps=conn.prepareStatement(sql);
-			ps.setString(1, q.getAnswer());
-			ps.setInt(2, q.getQ_no());
-			result=ps.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally {
-			close(ps);
-		}
-		return result;
-	}
-
 	public Question getQuestion(Connection conn, int q_no) {
 		Question q=null;
 		PreparedStatement ps=null;

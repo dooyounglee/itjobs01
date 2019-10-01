@@ -8,11 +8,35 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<%@ include file="/views/include/style.jsp" %>
 </head>
-<body>
-<%@ include file="/views/include/header.jsp" %>
-<h1>리플 관리</h1>
-<table border=1>
+<body id="page-top">
+	<!-- Page Wrapper -->
+	<div id="wrapper">
+	
+	<!-- Side bar -->
+	<%@ include file="/views/include/sidebar.jsp" %>
+	<!-- End of Sidebar -->
+	
+	<!-- Content Wrapper -->
+	<div id="content-wrapper" class="d-flex flex-column">
+	
+	<!-- Main Content -->
+	<div id="content">
+	
+	<!-- Topbar -->
+        <%@ include file="/views/include/topbar.jsp" %>
+    <!-- End of Topbar -->
+    
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+    
+    	<!-- Page Heading -->
+          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h1 mb-0 text-gray-800">리플 관리</h1>
+          </div>
+          
+<table class="table table-hover table-sm">
 	<tr>
 		<th><input type=checkbox></th>
 		<th>본문번호</th>
@@ -41,14 +65,33 @@
 	</tr>
 	<%	} %>
 </table>
+
+	</div>
+    <!-- End of Page Content -->
+    
+	</div>
+	<!-- End of Main Content -->
+	
+	<!-- Footer -->
+		<%@ include file="/views/include/footer.jsp" %>
+	<!-- End of Footer -->
+	
+	</div>
+	<!-- End of Content Wrapper -->
+	
+	</div>
+	<!-- End of Page Wrapper -->
+<%@ include file="/views/include/js.jsp" %>
 <script>
 	function del(rno){
-		location.href="<%=contextPath%>/del.re.ad?rno="+rno
+		location.href="<%=request.getContextPath()%>/del.re.ad?rno="+rno
 	}
 	function delCancle(rno){
-		location.href="<%=contextPath%>/delCancle.re.ad?rno="+rno
+		location.href="<%=request.getContextPath()%>/delCancle.re.ad?rno="+rno
 	}
 </script>
-<%@ include file="/views/include/footer.jsp" %>
+<script>
+	$('#accordionSidebar').children('li.nav-item').eq(4).addClass('active');
+</script>
 </body>
 </html>

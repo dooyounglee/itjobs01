@@ -237,7 +237,6 @@ public class BoardDao {
 		return result;
 	}
 	
-	
 	public Board prevBoard(Connection conn, int bId, String head) {
 		Board b = new Board();
 		PreparedStatement pstmt = null;
@@ -267,7 +266,6 @@ public class BoardDao {
 		System.out.println("prev"+b);
 		return b;
 	}
-	
 
 
 	public Board nextBoard(Connection conn, int bId, String head) {

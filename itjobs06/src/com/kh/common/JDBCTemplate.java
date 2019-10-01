@@ -40,7 +40,7 @@ public class JDBCTemplate {
 			// 2. DBMS와 연결
 			conn = DriverManager.getConnection(url, user, password);
 			
-			conn.setAutoCommit(false); 
+			conn.setAutoCommit(false);
 				
 		} catch (IOException e) {
 			e.printStackTrace();

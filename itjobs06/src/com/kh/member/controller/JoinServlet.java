@@ -1,15 +1,21 @@
 package com.kh.member.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Enumeration;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
+
+import com.kh.common.MyFileRenamePolicy;
 import com.kh.member.model.service.MemberService;
-import com.kh.member.model.vo.Co_Info;
 import com.kh.member.model.vo.Member;
+import com.oreilly.servlet.MultipartRequest;
 
 /**
  * Servlet implementation class JoinServlet
@@ -47,67 +53,27 @@ public class JoinServlet extends HttpServlet {
 		System.out.println(m);
 
 		int result=new MemberService().insertMember(m);
+		
 		if(result>0) {
 			if(type.equals("일반")) {
-				request.setAttribute("msg", "회운가입 성공");
+				request.setAttribute("msg", "회운가입 성공(일반)");
 				request.setAttribute("nickname", nickname);
 				request.getRequestDispatcher("views/login/join_ok.jsp").forward(request, response);
-			}else{
-				Member newm=new MemberService().getMemberByEmail(m.getEmail());
-				System.out.println(newm);
-				
-				String regnum=request.getParameter("regnum");
-				String file=request.getParameter("file");
-				String path="pathh";
-				String name=request.getParameter("name");
-				String phone=request.getParameter("phone");
-				String address=request.getParameter("address");
-				String ceo=request.getParameter("ceo");
-				String co_phone=request.getParameter("co_phone");
-				String discript=request.getParameter("discript");
-				String birth_date=request.getParameter("birth_date");
-				int memsum=Integer.parseInt(request.getParameter("memsum"));
-				int revenue=Integer.parseInt(request.getParameter("revenue"));
-				String history=request.getParameter("history");
-				String welfare=request.getParameter("welfare");
-				
-				Co_Info co=new Co_Info();
-				co.setM_no(newm.getM_no());
-				co.setRegNum(regnum);
-				co.setFile(file);
-				co.setPath(path);
-				co.setAddress(address);
-				co.setBirth_date(birth_date);
-				co.setPhone(phone);
-				co.setCeo(ceo);
-				co.setCo_phone(co_phone);
-				co.setDescript(discript);
-				co.setMemsum(memsum);
-				co.setName(name);
-				co.setPhone(co_phone);
-				co.setRevenue(revenue);
-				co.setHistory(history);
-				co.setWelfare(welfare);
-				System.out.println(co);
-				
-				int result1=new MemberService().insertMember(co);
-				if(result1>0) {
-					request.setAttribute("msg", "회운가입 성공");
-					request.setAttribute("nickname", nickname);
-					request.getRequestDispatcher("views/login/join_ok.jsp").forward(request, response);
-				}else {
-					request.setAttribute("msg", "회운가입 실패");
-				}
+			}else {
+				request.setAttribute("msg", "회운가입 실패(일반)");
 			}
-			
-			
+			if(type.equals("기업")) {
+				
+				
+				request.setAttribute("m", m);
+				request.getRequestDispatcher("views/login/join_co_info.jsp").forward(request, response);
+			}else {
+				request.setAttribute("msg", "회운가입 실패(기업)");
+			}
 		}else {
-			request.setAttribute("msg", "회운가입 실패");
-			request.getRequestDispatcher("views/login/login.jsp").forward(request, response);
+			request.setAttribute("msg", "회운가입 실패(공통)");
 		}
-		
 	}
-
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

@@ -125,6 +125,7 @@ public class LikeDao {
 						rs.getString(16),
 						rs.getDate(17)+" "+rs.getTime(17),
 						rs.getString(18),
+						rs.getString(19),
 						rs.getString(20),
 						rs.getDate(21)+" "+rs.getTime(21),
 						rs.getString(22),

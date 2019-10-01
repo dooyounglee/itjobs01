@@ -25,13 +25,6 @@ public class QuestionService {
 		return result;
 	}
 	
-	public int answerQuestion(Question q) {
-		Connection conn=getConnection();
-		int result=new QuestionDao().answerQuestion(conn,q);
-		close(conn);
-		return result;
-	}
-	
 	public Question getQuestion(int q_no) {
 		Connection conn=getConnection();
 		Question q=new QuestionDao().getQuestion(conn,q_no);

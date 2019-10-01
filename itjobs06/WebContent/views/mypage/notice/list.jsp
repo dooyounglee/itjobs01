@@ -1,3 +1,5 @@
+<%@page import="com.kh.notification.model.vo.Notification"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -9,7 +11,7 @@
 <body>
 <%@ include file="/views/include/header.jsp" %>
 <h1>공고 관리</h1>
-<button onclick="location.href='write.jsp'">공고 만들기</button>
+<button onclick="location.href='<%=request.getContextPath()%>/write.no'">공고 만들기</button>
 <select>
 	<option>제목</option>
 	<option>작성자</option>
@@ -24,18 +26,19 @@
 		<th>등록일</th>
 		<th>수정일</th>
 		<th>상태</th>
-		<th>수정</th>
 		<th>지원자 확인</th>
 	</tr>
+	<%	ArrayList<Notification> list=(ArrayList<Notification>)request.getAttribute("list");
+		for(Notification n:list){%>
 	<tr>
 		<td><input type=checkbox></td>
-		<td><a href="get.jsp?bno=1">제목1[3]</a></td>
-		<td>등록일1</td>
-		<td>수정일1</td>
-		<td>상태</td>
-		<td><button onclick="location.href='edit.jsp'">수정</button></td>
-		<td><button onclick="location.href='applierList.jsp'">지원자 확인</button></td>
+		<td><a href="get.no?noti_no=<%=n.getNoti_no()%>"><%=n.getTitle() %></a></td>
+		<td><%=n.getEnroll_date() %></td>
+		<td><%=n.getEnd_date() %></td>
+		<td><%=n.getStatus() %></td>
+		<td><button onclick="location.href='<%=request.getContextPath()%>/list.vo?noti_no=<%=n.getNoti_no()%>'">지원자 확인</button></td>
 	</tr>
+	<%	} %>
 </table>
 <%@ include file="/views/include/footer.jsp" %>
 </body>

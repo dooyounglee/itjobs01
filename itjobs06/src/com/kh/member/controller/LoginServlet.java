@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.kh.admin.model.service.AdminMemberService;
 import com.kh.member.model.service.MemberService;
 import com.kh.member.model.vo.Member;
 
@@ -34,7 +35,7 @@ public class LoginServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		ArrayList<Member> list=new MemberService().getAllMemberList();
+		ArrayList<Member> list=new AdminMemberService().getAllMemberList();
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("views/login/login.jsp").forward(request, response);
 	
@@ -62,7 +63,7 @@ public class LoginServlet extends HttpServlet {
 		System.out.println(m);
 		
 		Member mem=new MemberService().login(m);
-		
+		System.out.println(mem);
 		if(mem!=null) {
 			HttpSession session = request.getSession();
 			session.setAttribute("mem", mem);

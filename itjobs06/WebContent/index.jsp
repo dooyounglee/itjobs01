@@ -9,9 +9,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script>
-function search(){
-	$('#search').toggle()
-}
+
 </script>
 <style>
 table{
@@ -22,67 +20,81 @@ table{
 <body>
 	<%@ include file="/views/include/header.jsp" %>
 	
-	<h1>메인</h1>
-	<input><button>검색</button>
-	<button onclick="search()">상세검색</button>
+<h1>메인</h1>
+<form id="searchForm" action="main.se" method="post" autocomplete=off>
+	<input name="sText">
+	<button onclick="return searchA()">검색</button>
+	<button onclick="return search()">상세검색</button>
 	<table id=search border=1 style="display:none;">
-	<tr>
-		<th>언어</th>
-		<th>framework/library</th>
-		<th>사용기간</th>
-		<th>프로젝트경험</th>
-		<th>플랫폼</th>
-		<th>자리</th>
-	</tr>
-	<tr>
-		<td>
-			<input type=checkbox />java<br>
-			<input type=checkbox />javascript<br>
-			<input type=checkbox />C<br>
-			<input type=checkbox />C++<br>
-			<input type=checkbox />C#<br>
-			<input type=checkbox />VBA<br>
-			<input type=checkbox />python<br>
-			<input type=checkbox />php<br>
-			<input type=checkbox />asp<br>
-		</td>
-		<td>
-			<input type=checkbox />spring<br>
-			<input type=checkbox />jsp&servlet<br>
-			<input type=checkbox />vue<br>
-			<input type=checkbox />react<br>
-			<input type=checkbox />angular<br>
-			<input type=checkbox />tensorflow<br>
-			<input type=checkbox />keras<br>
-		</td>
-		<td>
-			<input type=checkbox />1년미만<br>
-			<input type=checkbox />2년미만<br>
-			<input type=checkbox />3년미만<br>
-			<input type=checkbox />4년미만<br>
-			<input type=checkbox />4년이상<br>
-		</td>
-		<td>
-			<input type=checkbox />개인<br>
-			<input type=checkbox />중소기업<br>
-			<input type=checkbox />대기업<br>
-		</td>
-		<td>
-			<input type=checkbox />웹<br>
-			<input type=checkbox />iOS<br>
-			<input type=checkbox />Android<br>
-			<input type=checkbox />AI<br>
-			<input type=checkbox />딥러닝<br>
-			<input type=checkbox />응용sw<br>
-		</td>
-		<td>
-			<input type=checkbox />신입<br>
-			<input type=checkbox />팀원급<br>
-			<input type=checkbox />팀장급<br>
-			<input type=checkbox />프리렌서<br>
-		</td>
-	</tr>
-</table>
+		<tr>
+			<th>언어</th>
+			<th>framework/library</th>
+			<th>사용기간</th>
+			<th>프로젝트경험</th>
+			<th>플랫폼</th>
+			<th>자리</th>
+		</tr>
+		<tr>
+			<td>
+				<input type=checkbox name=language value="java">java<br>
+				<input type=checkbox name=language value="javascript">javascript<br>
+				<input type=checkbox name=language value="C">C<br>
+				<input type=checkbox name=language value="C++">C++<br>
+				<input type=checkbox name=language value="C#">C#<br>
+				<input type=checkbox name=language value="VBA">VBA<br>
+				<input type=checkbox name=language value="python">python<br>
+				<input type=checkbox name=language value="php">php<br>
+				<input type=checkbox name=language value="asp">asp<br>
+			</td>
+			<td>
+				<input type=checkbox />spring<br>
+				<input type=checkbox />jsp&servlet<br>
+				<input type=checkbox />vue<br>
+				<input type=checkbox />react<br>
+				<input type=checkbox />angular<br>
+				<input type=checkbox />tensorflow<br>
+				<input type=checkbox />keras<br>
+			</td>
+			<td>
+				<input type=checkbox />1년미만<br>
+				<input type=checkbox />2년미만<br>
+				<input type=checkbox />3년미만<br>
+				<input type=checkbox />4년미만<br>
+				<input type=checkbox />4년이상<br>
+			</td>
+			<td>
+				<input type=checkbox />개인<br>
+				<input type=checkbox />중소기업<br>
+				<input type=checkbox />대기업<br>
+			</td>
+			<td>
+				<input type=checkbox />웹<br>
+				<input type=checkbox />iOS<br>
+				<input type=checkbox />Android<br>
+				<input type=checkbox />AI<br>
+				<input type=checkbox />딥러닝<br>
+				<input type=checkbox />응용sw<br>
+			</td>
+			<td>
+				<input type=checkbox />신입<br>
+				<input type=checkbox />팀원급<br>
+				<input type=checkbox />팀장급<br>
+				<input type=checkbox />프리렌서<br>
+			</td>
+		</tr>
+	</table>
+</form>
+<script>
+	function searchA(){
+		
+	}
+	function search(){
+		$('#search').toggle()
+		$('#searchForm').attr('action','mainDetail.se')
+		
+		return false;
+	}
+</script>
 
 <fieldset>
 <legend style="text-align:center">최신공고</legend>
@@ -93,6 +105,7 @@ table{
 		<th>마감날짜</th>
 		<th>언어</th>
 	</tr>
+	<%-- 
 	<%	ArrayList<Notification> nlist=(ArrayList<Notification>)request.getAttribute("nlist");
 		for(Notification n:nlist){%>
 	<tr>
@@ -101,7 +114,7 @@ table{
 		<td><%=n.getEnd_date() %></td>
 		<td><%=n.getP_language() %></td>
 	</tr>
-	<%	} %>
+	<%	} %> --%>
 </table>
 </fieldset>
 <fieldset>
@@ -113,7 +126,7 @@ table{
 		<th>마감날짜</th>
 		<th>언어</th>
 	</tr>
-	<%	ArrayList<Notification> endlist=(ArrayList<Notification>)request.getAttribute("endlist");
+	<%-- <%	ArrayList<Notification> endlist=(ArrayList<Notification>)request.getAttribute("endlist");
 		for(Notification n:endlist){%>
 	<tr>
 		<td><%=n.getCo_no() %></td>
@@ -121,7 +134,7 @@ table{
 		<td><%=n.getEnd_date() %></td>
 		<td><%=n.getP_language() %></td>
 	</tr>
-	<%	} %>
+	<%	} %> --%>
 </table>
 </fieldset>
 
@@ -135,47 +148,43 @@ table{
 				<th>글번호</th>
 				<th>제목</th>
 				<th>작성자</th>
-				<th>모집기간</th>
 				<th>등록날짜</th>
 				<th>조회수</th>
 			</tr>
-			<%	ArrayList<Board> nolist=(ArrayList<Board>)request.getAttribute("nolist");
+			<%-- <%	ArrayList<Board> nolist=(ArrayList<Board>)request.getAttribute("nolist");
 				for(Board no:nolist){%>
 			<tr>
 				<td><%=no.getB_no() %></td>
 				<td><%=no.getTitle() %></td>
 				<td><%=no.getM_no() %></td>
-				<td><%=no.getTime() %></td>
 				<td><%=no.getEnroll_date() %></td>
 				<td><%=no.getCount() %></td>
 			</tr>
-			<%	} %>
+			<%	} %> --%>
 		</table>
 		</fieldset>
 	</div>
 	<div style="display:inline-block;width:49%;box-sizing:border-box;">
 		<fieldset>
-		<legend style="text-align:center">스터디</legend>
+		<legend style="text-align:center">자유게시판</legend>
 		<table border=1>
 			<tr>
 				<th>글번호</th>
 				<th>제목</th>
 				<th>작성자</th>
-				<th>모집기간</th>
 				<th>등록날짜</th>
 				<th>조회수</th>
 			</tr>
-			<%	ArrayList<Board> freelist=(ArrayList<Board>)request.getAttribute("freelist");
+			<%-- <%	ArrayList<Board> freelist=(ArrayList<Board>)request.getAttribute("freelist");
 				for(Board s:freelist){%>
 			<tr>
 				<td><%=s.getB_no() %></td>
 				<td><%=s.getTitle() %></td>
 				<td><%=s.getM_no() %></td>
-				<td><%=s.getTime() %></td>
 				<td><%=s.getEnroll_date() %></td>
 				<td><%=s.getCount() %></td>
 			</tr>
-			<%	} %>
+			<%	} %> --%>
 		</table>
 		</fieldset>
 	</div>
@@ -195,7 +204,7 @@ table{
 				<th>등록날짜</th>
 				<th>조회수</th>
 			</tr>
-			<%	ArrayList<Board> plist=(ArrayList<Board>)request.getAttribute("plist");
+			<%-- <%	ArrayList<Board> plist=(ArrayList<Board>)request.getAttribute("plist");
 				for(Board p:plist){%>
 			<tr>
 				<td><%=p.getB_no() %></td>
@@ -205,7 +214,7 @@ table{
 				<td><%=p.getEnroll_date() %></td>
 				<td><%=p.getCount() %></td>
 			</tr>
-			<%	} %>
+			<%	} %> --%>
 		</table>
 		</fieldset>
 	</div>
@@ -221,7 +230,7 @@ table{
 				<th>등록날짜</th>
 				<th>조회수</th>
 			</tr>
-			<%	ArrayList<Board> slist=(ArrayList<Board>)request.getAttribute("slist");
+			<%-- <%	ArrayList<Board> slist=(ArrayList<Board>)request.getAttribute("slist");
 				for(Board s:slist){%>
 			<tr>
 				<td><%=s.getB_no() %></td>
@@ -231,7 +240,7 @@ table{
 				<td><%=s.getEnroll_date() %></td>
 				<td><%=s.getCount() %></td>
 			</tr>
-			<%	} %>
+			<%	} %> --%>
 		</table>
 		</fieldset>
 	</div>

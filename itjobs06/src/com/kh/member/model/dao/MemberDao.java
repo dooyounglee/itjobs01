@@ -160,7 +160,7 @@ public class MemberDao {
 				
 		ResultSet rs = null;
 		 
-		String sql = prop.getProperty("checkemail");
+		String sql = prop.getProperty("checkemail"); // 기업회원가입1에서 저장된 Member의 m_no을 가져오기 위한 과정
 		try {
 			
 			ps = conn.prepareStatement(sql);
@@ -299,4 +299,63 @@ public class MemberDao {
 		return result;
 	}
 
+	public Member findPwd(Connection conn, String email) {
+		
+		Member m = new Member();
+		
+		m = null;
+		
+		PreparedStatement ps = null;
+		
+		ResultSet rs = null;
+		
+		String sql = prop.getProperty("findpwd");
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, email);
+			rs=ps.executeQuery();
+			
+			if(rs.next()) {
+			m = new Member(rs.getString(1));
+			}
+		
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(ps);
+		}
+		
+		return m;
+	}
+	
+	public int randomPwd(Connection conn, String userPwd, String email) {
+		
+		int result = 0;
+		
+		PreparedStatement ps = null;
+		
+		String sql = prop.getProperty("randomPwd");
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, userPwd);
+			ps.setString(2, email);
+		
+			result = ps.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(ps);
+		}
+		
+		return result;
+		
+	}
+	
+	
 }

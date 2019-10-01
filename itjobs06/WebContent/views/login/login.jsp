@@ -16,7 +16,7 @@ email:<input name=email><br>
 pw:<input name=pw><button>로그인</button>
 </form>
 <a href="<%=contextPath%>/views/login/join_law.jsp">회원가입</a>
-<a href="find.jsp">비번찾기</a>
+<a href="<%=contextPath%>/views/login/find.jsp">비번찾기</a>
 <script>
 $('input[name=email]').focus();
 </script>

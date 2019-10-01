@@ -40,10 +40,9 @@
 ${mem }
 ${msg }
 <h1><a href="<%=contextPath %>">ITJobs</a></h1>
-현재접속자수 : <span id=userCounting>1</span>명
 <hr>공통 
-<a href="<%=contextPath%>/list.bo?head=free">게시판</a>
-<a href="<%=contextPath%>/list.bo?head=free">자유게시판(질문포함)</a>
+<a href="<%=contextPath%>/list.bo?head=main">게시판</a>
+<a href="<%=contextPath%>/list.bo?head=free">자유게시판</a>
 <a href="<%=contextPath%>/list.bo?head=study">스터디</a>
 <a href="<%=contextPath%>/list.bo?head=project">프로젝트</a>
 <a href="<%=contextPath%>/list.bo?head=qna">공지사항</a>
@@ -65,6 +64,7 @@ ${msg }
 <a href="<%=contextPath%>/mylist.qu"><del>나의 문의</del></a>
 +지원하기
 <hr>기업
+
 <a href="<%=contextPath%>/myInfo.me"><del>내 정보 수정</del></a>
 <a href="<%=contextPath%>/myNotification.me">공고리스트</a>
 <a href="<%=contextPath%>/myResumeList.like"><del>관심인재</del></a>
@@ -133,39 +133,5 @@ ${msg }
     lease()
 </script>
 <hr>
-<script type="text/javascript">
-    var webSocket = new WebSocket('ws://<%=request.getServerName()%>:<%=request.getServerPort()%>/itjobs/userCounting');
-    webSocket.onerror = function(event) {
-      onError(event)
-    };
-    webSocket.onopen = function(event) {
-      onOpen(event)
-    };
-    webSocket.onmessage = function(event) {
-      onMessage(event)
-    };
-    webSocket.onclose=function(event){
-    	onClose(event)
-    }
-    function onMessage(event) {//다른사람 동작->나한테 발생
-        //textarea.value += "상대 : " + event.data + "\n";
-		//alert("다른사람이 보낸: "+event.data)
-		$('#userCounting').text(event.data);
-		console.log(event.data)
-    }
-    function onOpen(event) {
-        //textarea.value += "연결 성공\n";
-        console.log("연결성공")
-        webSocket.send("어차피 안나올 값"); 
-        console.log("접속자수")
-    }
-    function onError(event) {
-      alert(event.data);
-    }
-    function onClose(event){
-    	console.log("닫힘")
-    	webSocket.send("어차피 안나올 값"); 	
-    }
-  </script>
 </body>
 </html>

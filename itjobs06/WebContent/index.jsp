@@ -105,6 +105,7 @@ table{
 		<th>마감날짜</th>
 		<th>언어</th>
 	</tr>
+	<%-- 
 	<%	ArrayList<Notification> nlist=(ArrayList<Notification>)request.getAttribute("nlist");
 		for(Notification n:nlist){%>
 	<tr>
@@ -113,7 +114,7 @@ table{
 		<td><%=n.getEnd_date() %></td>
 		<td><%=n.getP_language() %></td>
 	</tr>
-	<%	} %>
+	<%	} %> --%>
 </table>
 </fieldset>
 <fieldset>
@@ -125,7 +126,7 @@ table{
 		<th>마감날짜</th>
 		<th>언어</th>
 	</tr>
-	<%	ArrayList<Notification> endlist=(ArrayList<Notification>)request.getAttribute("endlist");
+	<%-- <%	ArrayList<Notification> endlist=(ArrayList<Notification>)request.getAttribute("endlist");
 		for(Notification n:endlist){%>
 	<tr>
 		<td><%=n.getCo_no() %></td>
@@ -133,7 +134,7 @@ table{
 		<td><%=n.getEnd_date() %></td>
 		<td><%=n.getP_language() %></td>
 	</tr>
-	<%	} %>
+	<%	} %> --%>
 </table>
 </fieldset>
 
@@ -150,7 +151,7 @@ table{
 				<th>등록날짜</th>
 				<th>조회수</th>
 			</tr>
-			<%	ArrayList<Board> nolist=(ArrayList<Board>)request.getAttribute("nolist");
+			<%-- <%	ArrayList<Board> nolist=(ArrayList<Board>)request.getAttribute("nolist");
 				for(Board no:nolist){%>
 			<tr>
 				<td><%=no.getB_no() %></td>
@@ -159,7 +160,7 @@ table{
 				<td><%=no.getEnroll_date() %></td>
 				<td><%=no.getCount() %></td>
 			</tr>
-			<%	} %>
+			<%	} %> --%>
 		</table>
 		</fieldset>
 	</div>
@@ -174,7 +175,7 @@ table{
 				<th>등록날짜</th>
 				<th>조회수</th>
 			</tr>
-			<%	ArrayList<Board> freelist=(ArrayList<Board>)request.getAttribute("freelist");
+			<%-- <%	ArrayList<Board> freelist=(ArrayList<Board>)request.getAttribute("freelist");
 				for(Board s:freelist){%>
 			<tr>
 				<td><%=s.getB_no() %></td>
@@ -183,7 +184,7 @@ table{
 				<td><%=s.getEnroll_date() %></td>
 				<td><%=s.getCount() %></td>
 			</tr>
-			<%	} %>
+			<%	} %> --%>
 		</table>
 		</fieldset>
 	</div>
@@ -203,7 +204,7 @@ table{
 				<th>등록날짜</th>
 				<th>조회수</th>
 			</tr>
-			<%	ArrayList<Board> plist=(ArrayList<Board>)request.getAttribute("plist");
+			<%-- <%	ArrayList<Board> plist=(ArrayList<Board>)request.getAttribute("plist");
 				for(Board p:plist){%>
 			<tr>
 				<td><%=p.getB_no() %></td>
@@ -213,7 +214,7 @@ table{
 				<td><%=p.getEnroll_date() %></td>
 				<td><%=p.getCount() %></td>
 			</tr>
-			<%	} %>
+			<%	} %> --%>
 		</table>
 		</fieldset>
 	</div>
@@ -229,7 +230,7 @@ table{
 				<th>등록날짜</th>
 				<th>조회수</th>
 			</tr>
-			<%	ArrayList<Board> slist=(ArrayList<Board>)request.getAttribute("slist");
+			<%-- <%	ArrayList<Board> slist=(ArrayList<Board>)request.getAttribute("slist");
 				for(Board s:slist){%>
 			<tr>
 				<td><%=s.getB_no() %></td>
@@ -239,7 +240,7 @@ table{
 				<td><%=s.getEnroll_date() %></td>
 				<td><%=s.getCount() %></td>
 			</tr>
-			<%	} %>
+			<%	} %> --%>
 		</table>
 		</fieldset>
 	</div>

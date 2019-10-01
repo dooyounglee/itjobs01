@@ -10,18 +10,17 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
 	
-<form action="<%= request.getContextPath() %>/coinfo.me" method="post" autocomplete="off">
+<form action="<%= request.getContextPath() %>/coinfo.me" method="post" enctype="multipart/form-data" autocomplete="off">
 	<h2>기업가입2</h2><br><br>
-<input type="hidden" value="<%=m.getEmail()%>" name="email">
 
+<input type="hidden" value="<%=m.getEmail()%>" name="email">
 사업자등록번호*<input type="text" name="regnum"><br>
-사업자등록파일첨부*<input type="text" name="file"><br>
-<!-- 
-사업자등록파일첨부*<input type="file" name="file"><br>
- -->
+사업자등록파일첨부*<input type="file" name="file" onchange="loadImg(this,1);">
+<span><img id ="titleImg" width="150" height="100"></span><br>
 첨부경로명*<input type="text" name="path"><br>
 담당자명*<input type="text" name="name"><br>
 담당자폰*<input type="text" name="phone"><br>
@@ -37,5 +36,25 @@
 
 <input type="submit" value="가입신청하기">
 </form>
+
+<script>
+	 function loadImg(value,num){
+ 		
+		 if(value.files && value.files[0]){
+			var reader = new FileReader();
+			
+			reader.onload = function(e){
+				switch(num){
+				case 1 : $("#titleImg").attr("src",e.target.result); //date:URL
+				 break;
+				}
+			}
+			reader.readAsDataURL(value.files[0]);
+		 }
+	 	}
+	
+</script>
+
+
 </body>
 </html>

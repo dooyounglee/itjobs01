@@ -48,7 +48,7 @@ public class AdminBoardListServlet extends HttpServlet {
 		ArrayList<Board> list=new AdminBoardService().getAllList(pi);
 		
 		HttpSession session = request.getSession();
-		session.setAttribute("head", "admin");
+//		session.setAttribute("head", "admin");
 		request.setAttribute("list", list);
 		request.setAttribute("pi", pi);
 		request.getRequestDispatcher("views/admin/board.jsp").forward(request, response);

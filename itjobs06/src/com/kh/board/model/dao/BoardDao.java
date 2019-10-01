@@ -237,11 +237,11 @@ public class BoardDao {
 		return result;
 	}
 	
-	public Board prevBoard(Connection conn, int bId, String head) {
+	public Board prevEtcBoard(Connection conn, int bId, String head) {
 		Board b = new Board();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String sql = prop.getProperty("prevBoard");
+		String sql = prop.getProperty("prevEtcBoard");
 		
 		System.out.println(bId);
 		System.out.println(head);
@@ -253,7 +253,7 @@ public class BoardDao {
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
-				System.out.println("if" + rset.getString("title"));
+			
 				b.setTitle(rset.getString("title"));
 			}
 					
@@ -268,11 +268,11 @@ public class BoardDao {
 	}
 
 
-	public Board nextBoard(Connection conn, int bId, String head) {
+	public Board nextEtcBoard(Connection conn, int bId, String head) {
 		Board b = new Board();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String sql = prop.getProperty("nextBoard");
+		String sql = prop.getProperty("nextEtcBoard");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -293,6 +293,57 @@ public class BoardDao {
 		}
 		
 		System.out.println("next"+b);
+		return b;
+	}
+	
+	public Board prevMainBoard(Connection conn, int bId) {
+		Board b = new Board();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("prevMainBoard");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, bId);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				b.setTitle(rset.getString("title"));
+			}
+					
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return b;
+	}
+
+	
+	public Board nextMainBoard(Connection conn, int bId) {
+		Board b = new Board();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("nextMainBoard");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, bId);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				b.setTitle(rset.getString("title"));
+			}
+					
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
 		return b;
 	}
 	

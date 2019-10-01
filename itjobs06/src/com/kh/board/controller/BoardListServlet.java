@@ -75,7 +75,7 @@ public class BoardListServlet extends HttpServlet {
 			endPage = maxPage;
 		}
 		
-		PageInfo pi = new PageInfo(currentPage, listCount, pageLimit, maxPage, startPage, endPage, boardLimit);
+		PageInfo pi = new PageInfo(currentPage, listCount);
 		
 		ArrayList<Board> list = new ArrayList<>();
 		if(head.equals("main")) {

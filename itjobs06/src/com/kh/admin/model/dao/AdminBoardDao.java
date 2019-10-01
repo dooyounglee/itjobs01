@@ -61,7 +61,9 @@ private Properties prop = new Properties();
 //			ps.setInt(2, (pi.getCurrentPage()-1)*pi.getBoardLimit()+1);
 			System.out.println(pi.getCurrentPage()*pi.getBoardLimit());
 			System.out.println((pi.getCurrentPage()-1)*pi.getBoardLimit()+1);
+
 			rs=ps.executeQuery();
+			
 			while(rs.next()) {
 				list.add(new Board(
 						rs.getInt(1),

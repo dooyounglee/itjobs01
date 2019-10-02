@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import com.kh.admin.model.dao.AdminBoardDao;
+import com.kh.board.model.dao.BoardDao;
 import com.kh.board.model.vo.Board;
 import com.kh.board.model.vo.PageInfo;
 
@@ -37,5 +38,12 @@ public class AdminBoardService {
 		int result=new AdminBoardDao().getListCount(conn);
 		close(conn);
 		return result;
+	}
+	
+	public Board selectBoard(int bId) {
+		Connection conn = getConnection();
+		Board b = new BoardDao().selectBoard(conn, bId);
+		close(conn);
+		return b;
 	}
 }

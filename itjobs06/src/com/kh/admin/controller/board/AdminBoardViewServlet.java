@@ -1,13 +1,14 @@
 package com.kh.admin.controller.board;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.board.model.service.BoardService;
+import com.kh.admin.model.service.AdminBoardService;
 import com.kh.board.model.vo.Board;
 
 /**
@@ -34,7 +35,7 @@ public class AdminBoardViewServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		
 		int b_no=Integer.parseInt(request.getParameter("bno"));
-		Board b=new BoardService().getBoard(b_no);
+		Board b=new AdminBoardService().selectBoard(b_no);
 		
 		request.setAttribute("b", b);
 		request.getRequestDispatcher("views/admin/AdminBoardGet.jsp").forward(request, response);

@@ -21,7 +21,7 @@ public class MainService {
 		Connection conn = getConnection();
 		ArrayList<Notification> list=new MainDao().select5NotificationEnd(conn);
 		close(conn);
-		return list;//dlendud
+		return list;
 	}
 
 	public ArrayList<Board> select5Project() {

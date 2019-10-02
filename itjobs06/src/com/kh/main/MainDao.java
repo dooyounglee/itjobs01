@@ -25,7 +25,7 @@ public class MainDao {
 			prop.load(new FileReader(fileName));
 		} catch (IOException e) {
 			e.printStackTrace();
-		}//dlendud
+		}
 		
 	}
 

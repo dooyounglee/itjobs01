@@ -27,7 +27,7 @@
 	<div id="result">
 <%	ArrayList<Notification> list=(ArrayList<Notification>)request.getAttribute("list");
 	for(Notification n:list){%>
-	<%=n %><br>
+	<%=n %><button onclick="location.href='<%=request.getContextPath()%>/detail.co?co_no=<%=n.getCo_no()%>'">기업정보</button><br>
 <%	} %>
 	</div>
 </div>

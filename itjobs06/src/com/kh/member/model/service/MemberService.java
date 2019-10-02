@@ -152,6 +152,13 @@ public class MemberService {
 		return result ;
 		
 	}
+
+	public Member getMemberByM_no(int co_no) {
+		Connection conn = getConnection();
+		Member m = new MemberDao().getMemberByM_no(conn, co_no);
+		close(conn);
+		return m;
+	}
 	
 	
 }

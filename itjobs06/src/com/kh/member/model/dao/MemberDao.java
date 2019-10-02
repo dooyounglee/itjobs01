@@ -356,6 +356,36 @@ public class MemberDao {
 		return result;
 		
 	}
+	public Member getMemberByM_no(Connection conn, int co_no) {
+		Member mem=new Member();
+		PreparedStatement ps=null;
+		ResultSet rs=null;
+		
+		String sql=prop.getProperty("selectMemberByM_no");
+		try {
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, co_no);
+			rs=ps.executeQuery();
+			if(rs.next()) {
+				mem=new Member(
+						rs.getInt(1),
+						rs.getString(2),
+						rs.getString(3),
+						rs.getString(4),
+						rs.getString(5),
+						rs.getDate(6)+" "+rs.getTime(6),
+						rs.getDate(7)+" "+rs.getTime(7),
+						rs.getString(8),
+						rs.getInt(9));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(ps);
+		}
+		return mem;
+	}
 	
 	
 }

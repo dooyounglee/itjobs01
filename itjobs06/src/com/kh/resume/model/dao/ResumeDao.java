@@ -103,7 +103,7 @@ public class ResumeDao {
 			pstmt.setString(14, re.getCer_date());
 			pstmt.setString(15, re.getTitle());
 			pstmt.setString(16, re.getCover_letter());
-			pstmt.setString(17, re.getPub());
+			pstmt.setString(17, re.getOpen());
 			pstmt.setString(18, re.getP_language());
 			pstmt.setString(19, re.getHope_salary());
 			

@@ -16,7 +16,7 @@ import com.kh.resume.model.vo.Resume;
 
 /**
  * Servlet implementation class resumDetailServlet
- */
+ */ 
 @WebServlet("/detail.re")
 public class ResumDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

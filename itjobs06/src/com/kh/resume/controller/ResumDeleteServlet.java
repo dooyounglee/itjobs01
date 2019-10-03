@@ -17,7 +17,7 @@ import com.kh.resume.model.service.ResumeService;
 @WebServlet("/deleteResum.re")
 public class ResumDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+        
     /**
      * @see HttpServlet#HttpServlet()
      */

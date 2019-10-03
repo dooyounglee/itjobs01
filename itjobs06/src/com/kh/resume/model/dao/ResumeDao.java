@@ -18,7 +18,7 @@ import com.kh.resume.model.vo.Resume;
 
 import static com.kh.common.JDBCTemplate.*;
 
-
+ 
 public class ResumeDao {
 
 	private Properties prop = new Properties();

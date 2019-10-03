@@ -3,8 +3,8 @@
 <%@page import="com.kh.board.model.vo.PageInfo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" %>
-<%
-	/* Resume re = (Resume)request.getAttribute("re"); */
+<% 
+	/* Resume re = (Resume)request.getAttribute("re"); */ 
 	//String contextPath = request.getContextPath();
 	Member m = (Member)session.getAttribute("loginUser"); 
 	PageInfo pi = (PageInfo)request.getAttribute("pi");

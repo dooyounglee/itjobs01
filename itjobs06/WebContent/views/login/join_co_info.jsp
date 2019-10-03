@@ -21,7 +21,7 @@
 사업자등록번호*<input type="text" name="regnum"><br>
 사업자등록파일첨부*<input type="file" name="file" onchange="loadImg(this,1);">
 <span><img id ="titleImg" width="150" height="100"></span><br>
-첨부경로명*<input type="text" name="path"><br>
+<!-- 첨부경로명*<input type="text" name="path"><br> -->
 담당자명*<input type="text" name="name"><br>
 담당자폰*<input type="text" name="phone"><br>
 주소*<input type="text" name="address"><br>

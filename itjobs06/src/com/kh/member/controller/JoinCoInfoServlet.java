@@ -71,7 +71,7 @@ public class JoinCoInfoServlet extends HttpServlet {
 		String email = multiRequest.getParameter("email");
 		String regnum = multiRequest.getParameter("regnum");
 		String file = fileName;
-		String path = multiRequest.getParameter("path");
+//		String path = multiRequest.getParameter("path");
 		String name = multiRequest.getParameter("name");
 		String phone = multiRequest.getParameter("phone");
 		String address = multiRequest.getParameter("address");
@@ -92,7 +92,7 @@ public class JoinCoInfoServlet extends HttpServlet {
 		
 		cf.setRegNum(regnum);
 		cf.setFile(file);
-		cf.setPath(path);
+		cf.setPath(savePath);
 		cf.setName(name);
 		cf.setPhone(phone);
 		cf.setAddress(address);

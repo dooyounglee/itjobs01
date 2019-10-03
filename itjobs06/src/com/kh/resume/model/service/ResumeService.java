@@ -1,5 +1,10 @@
 package com.kh.resume.model.service;
 
+import static com.kh.common.JDBCTemplate.close;
+import static com.kh.common.JDBCTemplate.commit;
+import static com.kh.common.JDBCTemplate.getConnection;
+import static com.kh.common.JDBCTemplate.rollback;
+
 import java.sql.Connection;
 import java.util.ArrayList;
 
@@ -8,6 +13,7 @@ import com.kh.resume.model.dao.ResumeDao;
 import com.kh.resume.model.vo.Resume;
 
 import static com.kh.common.JDBCTemplate.*;
+
 
 public class ResumeService {
 
@@ -130,6 +136,22 @@ public int insertResum(Resume re){
 		 }
 		  close(conn);
 		  return re;
+	}
+	
+public int deleteResume(int resume_no){
+		
+		Connection conn = getConnection();
+		
+		int result = new ResumeDao().deleteResume(conn,resume_no);
+		
+		if(result > 0){
+			commit(conn);
+		}else{
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+		
 	}
 	
 	

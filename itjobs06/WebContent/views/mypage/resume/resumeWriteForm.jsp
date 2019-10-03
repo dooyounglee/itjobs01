@@ -282,7 +282,7 @@
 	</div>
 	
 	<br><br>
-	<%-- <input type="hidden" name="m_no"value="<%=loginUser.get %>" --%>
+
 	<input type="submit" value="작성완료">
 	
 	</div>

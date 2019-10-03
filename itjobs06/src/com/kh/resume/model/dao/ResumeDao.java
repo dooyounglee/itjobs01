@@ -266,7 +266,7 @@ public class ResumeDao {
 								   rset.getString("CER_DATE"),
 								   rset.getString("TITLE"),
 								   rset.getString("COVER_LETTER"),
-								   rset.getString("public"),
+								   rset.getString("pub"),
 								   rset.getString("UPDATE_DATE"),
 								   rset.getString("P_LANGUAGE"),
 								   rset.getString("HOPE_SALARY"),
@@ -342,5 +342,36 @@ public class ResumeDao {
 		return re;
 		
 	}
+	
+	public int deleteResume(Connection conn, int resume_no){
+		
+		int result = 0;
+	   PreparedStatement pstmt = null;
+	   
+	   String sql = prop.getProperty("deleteResum");
+	   
+	   try {
+		pstmt=conn.prepareStatement(sql);
+		
+		pstmt.setInt(1, resume_no);
+		
+	    result = pstmt.executeUpdate();
+	   
+		
+	} catch (SQLException e) {
+		
+		e.printStackTrace();
+	}finally{
+		close(pstmt);
+	} 
+	  
+	   return result;
+	   
+	
+	
+	
+	
+	
+}
 
 }

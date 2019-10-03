@@ -103,7 +103,7 @@ request.setCharacterEncoding("UTF-8");
 		
 		if(result > 0){
 			System.out.println("저장성공");
-			response.sendRedirect(request.getContextPath()+"list.re");
+			response.sendRedirect(/*request.getContextPath()+*/"list.re");
 		}else{
 			System.out.println("저장실패");
 		}

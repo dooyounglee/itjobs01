@@ -11,7 +11,7 @@
 <h1>공고 등록</h1>
 <form action="write.no" method="post" autocomplete=off>
 제목:<input name="title"><br>
-마감일:<input type=date name="end_date"><br>
+마감일:<input type=date name="end_date"><input type=time name="end_time"><br>
 모집인원:<input><br>
 직군:<input name="jobs"><br>
 언어:

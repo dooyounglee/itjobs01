@@ -157,7 +157,8 @@ public class NotificationDao {
 						rs.getString(9),
 						rs.getString(10),
 						rs.getString(11),
-						rs.getInt(12)));
+						rs.getInt(12),
+						rs.getString(13)));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -191,7 +192,8 @@ public class NotificationDao {
 						rs.getString(9),
 						rs.getString(10),
 						rs.getString(11),
-						rs.getInt(12));
+						rs.getInt(12),
+						rs.getString(13));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -206,6 +208,7 @@ public class NotificationDao {
 		int result=0;
 		PreparedStatement ps=null;
 		
+		System.out.println(n);
 		String sql=prop.getProperty("insertNotification");
 		try {
 			ps=conn.prepareStatement(sql);
@@ -246,7 +249,8 @@ public class NotificationDao {
 						rs.getString(9),
 						rs.getString(10),
 						rs.getString(11),
-						rs.getInt(12));
+						rs.getInt(12),
+						rs.getString(13));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -275,6 +279,40 @@ public class NotificationDao {
 			result=ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}
+		return result;
+	}
+
+	public int openNotification(Connection conn, int noti_no) {
+		int result=0;
+		PreparedStatement ps=null;
+		
+		String sql=prop.getProperty("openNotification");
+		try {
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, noti_no);
+			result=ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(ps);
+		}
+		return result;
+	}
+
+	public int openCancleNotification(Connection conn, int noti_no) {
+		int result=0;
+		PreparedStatement ps=null;
+		
+		String sql=prop.getProperty("openCancleNotification");
+		try {
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, noti_no);
+			result=ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(ps);
 		}
 		return result;
 	}

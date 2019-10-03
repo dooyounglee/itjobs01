@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import com.kh.board.model.vo.PageInfo;
+import com.kh.member.model.vo.Member;
 import com.kh.resume.model.dao.ResumeDao;
 import com.kh.resume.model.vo.Resume;
 
@@ -136,6 +137,17 @@ public int insertResum(Resume re){
 		 }
 		  close(conn);
 		  return re;
+	}
+
+
+	public ArrayList<Resume> getMyResumeList(Member m) {
+		Connection conn = getConnection();
+		
+		ArrayList<Resume> list = new ResumeDao().getMyResumeList(conn, m);
+		
+		close(conn);
+		
+		return list;
 	}
 	
 public int deleteResume(int resume_no){

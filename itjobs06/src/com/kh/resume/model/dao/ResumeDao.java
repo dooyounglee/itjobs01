@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import com.kh.board.model.vo.PageInfo;
+import com.kh.member.model.vo.Member;
 import com.kh.resume.model.vo.Resume;
 
 import static com.kh.common.JDBCTemplate.*;
@@ -56,7 +57,7 @@ public class ResumeDao {
 						rs.getString(14),
 						rs.getString(15),
 						rs.getString(16),
-						rs.getDate(17)+" "+rs.getTime(17),
+						rs.getString(17),
 						rs.getString(18),
 						rs.getString(19),
 						rs.getString(20),
@@ -64,6 +65,7 @@ public class ResumeDao {
 						rs.getString(22),
 						rs.getString(23),
 						rs.getInt(24)));
+				System.out.println(list);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -373,5 +375,59 @@ public class ResumeDao {
 	
 	
 }
+
+	public ArrayList<Resume> getMyResumeList(Connection conn, Member m) {
+		
+		ArrayList<Resume> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1,m.getM_no());
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Resume(rset.getInt("RESUME_NO"),
+								   rset.getString("PHOTO"),
+								   rset.getString("PATH"),
+								   rset.getString("NAME"),
+								   rset.getString("BIRTH_DATE"),
+								   rset.getString("PHONE"),
+								   rset.getString("ADDRESS"),
+								   rset.getString("EMAIL"),
+								   rset.getString("SCHOOL"),
+								   rset.getString("DEPARTMENT"),
+								   rset.getString("SCHOOL_PERIOD"),
+								   rset.getString("CAREER"),
+								   rset.getString("WORK_PLACE"),
+								   rset.getString("WORK_DATE"),
+								   rset.getString("WORK"),
+								   rset.getString("CERTIFICATE"),
+								   rset.getString("CER_DATE"),
+								   rset.getString("TITLE"),
+								   rset.getString("COVER_LETTER"),
+								   rset.getString("open"),
+								   rset.getString("UPDATE_DATE"),
+								   rset.getString("P_LANGUAGE"),
+								   rset.getString("HOPE_SALARY"),
+								   rset.getInt("M_NO")
+								   
+								   ));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		} 
+		return list;
+	}
+
 
 }

@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%
+	String clickHead = request.getParameter("head");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -60,8 +62,8 @@
 	<div class="outer">
 	<br>
 	<div id="headArea"><h1 align="left">새 글 작성</h1></div>
-	
-	<form action="<%=contextPath%>/insert.bo" method="post" enctype="multipart/form-data" id="form">
+	<form action="<%=contextPath%>/insert.bo?head=<%=head%>" method="post" enctype="multipart/form-data" id="form">
+		<input type="hidden" value="<%= clickHead %>" name="clickHead">
 		<div id="tableArea">
 			<table>
 				<tr>

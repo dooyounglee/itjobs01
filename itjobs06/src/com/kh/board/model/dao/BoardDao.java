@@ -87,17 +87,14 @@ public class BoardDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
-			int startRow = (pi.getCurrentPage() -1) * pi.getBoardLimit();
-			int endRow = startRow + pi.getBoardLimit() -1;
-			
-			pstmt.setInt(1, startRow);
-			pstmt.setInt(2, endRow);
+			pstmt.setInt(1, pi.getEndRow());
+			pstmt.setInt(2, pi.getStartRow());
 			
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
 				list.add(new Board(rset.getInt("b_no"),
-									rset.getString("m_no"),
+									rset.getInt("m_no"),
 									rset.getString("nickname"), 
 									rset.getString("head"),
 									rset.getString("title"),
@@ -127,18 +124,15 @@ public class BoardDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
-			int startRow = (pi.getCurrentPage() -1) * pi.getBoardLimit();
-			int endRow = startRow + pi.getBoardLimit() -1;
-			
 			pstmt.setString(1, head);
-			pstmt.setInt(2, startRow);
-			pstmt.setInt(3, endRow);
+			pstmt.setInt(3, pi.getEndRow());
+			pstmt.setInt(2, pi.getStartRow());
 			
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
 				list.add(new Board(rset.getInt("b_no"),
-									rset.getString("m_no"),
+									rset.getInt("m_no"),
 									rset.getString("nickname"), 
 									rset.getString("head"),
 									rset.getString("title"),
@@ -194,7 +188,7 @@ public class BoardDao {
 			
 			if(rset.next()) {
 				b = new Board(rset.getInt("b_no"),
-								rset.getString("m_no"),
+								rset.getInt("m_no"),
 								rset.getString("nickname"),
 								rset.getString("head"),
 								rset.getString("title"),
@@ -204,7 +198,9 @@ public class BoardDao {
 								rset.getString("time"),
 								rset.getInt("count"),
 								rset.getString("editfile"),
-								rset.getString("path"));	
+								rset.getString("path"),
+								rset.getInt("down_count"),
+								rset.getInt("reply_count"));	
 			}
 			
 			
@@ -347,4 +343,150 @@ public class BoardDao {
 		return b;
 	}
 	
+	public int insertBoard(Connection conn, Board b) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertBoard");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1,b.getM_no());
+			pstmt.setString(2, b.getHead());
+			pstmt.setString(3, b.getTitle());
+			pstmt.setString(4, b.getContents());
+			pstmt.setString(5, b.getFile());
+			pstmt.setString(6, b.getTime());
+			pstmt.setString(7, b.getEditFile());
+			pstmt.setString(8, b.getPath());
+			
+			result = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	
+	public Board selectUpdateBoard(Connection conn, int bId) {
+		Board b = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectUpdateBoard");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, bId);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				b = new Board(rset.getInt("b_no"),
+								rset.getInt("m_no"),
+								rset.getString("nickname"),
+								rset.getString("head"),
+								rset.getString("title"),
+								rset.getString("contents"),
+								rset.getString("update_date"),
+								rset.getString("file_oriname"),
+								rset.getString("time"),
+								rset.getInt("count"),
+								rset.getString("editfile"),
+								rset.getString("path"),
+								rset.getInt("down_count"),
+								rset.getInt("reply_count"));	
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return b;
+	}
+	
+	public int updateBoard(Connection conn, Board b) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateBoard");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setString(1, b.getHead());
+			pstmt.setString(2, b.getTitle());
+			pstmt.setString(3, b.getContents());
+			pstmt.setString(4, b.getFile());
+			pstmt.setString(5, b.getTime());
+			pstmt.setString(6, b.getEditFile());
+			pstmt.setString(7, b.getPath());
+			pstmt.setInt(8, b.getB_no());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	
+	public String selectHead(Connection conn, int b_no) {
+		String head = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectHead");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, b_no);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				head = rset.getString("head");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return head;
+	}
+	
+	
+	public int insertDeclareBoard(Connection conn, int bId, String title) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertDeclare");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, bId);
+			
+			result = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			close(pstmt);
+		}
+		
+		return result;
+		
+	}
 }

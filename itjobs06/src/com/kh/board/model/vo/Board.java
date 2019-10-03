@@ -3,7 +3,7 @@ package com.kh.board.model.vo;
 public class Board {
 
 	private int b_no;
-	private String m_no;
+	private int m_no;
 	private String nickname;
 	private String head;
 	private String title;
@@ -17,10 +17,36 @@ public class Board {
 	private int d_count;
 	private String editFile;
 	private String path;
+	private int down_count;
+	private int reply_count;
+	
 	public Board() {
 		super();
 	}
-	public Board(int b_no, String m_no, String head, String title, String contents, String enroll_date, String update_date,
+	
+	public Board(int b_no, int m_no, String nickname, String head, String title, String contents, String enroll_date,
+			String update_date, String file, String time, int count, String status, int d_count, String editFile,
+			String path, int down_count, int reply_count) {
+		super();
+		this.b_no = b_no;
+		this.m_no = m_no;
+		this.nickname = nickname;
+		this.head = head;
+		this.title = title;
+		this.contents = contents;
+		this.enroll_date = enroll_date;
+		this.update_date = update_date;
+		this.file = file;
+		this.time = time;
+		this.count = count;
+		this.status = status;
+		this.d_count = d_count;
+		this.editFile = editFile;
+		this.path = path;
+		this.down_count = down_count;
+		this.reply_count = reply_count;
+	}
+	public Board(int b_no, int m_no, String head, String title, String contents, String enroll_date, String update_date,
 			String file, String time, int count, String status, int d_count, String editFile, String path) {
 		super();
 		this.b_no = b_no;
@@ -39,8 +65,8 @@ public class Board {
 		this.path = path;
 	}
 	
-	public Board(int b_no, String m_no, String nickname, String head, String title, String contents, String update_date,
-			String file, String time, int count, String editFile, String path) {
+	public Board(int b_no, int m_no, String nickname, String head, String title, String contents, String update_date,
+			String file, String time, int count, String editFile, String path, int down_count, int reply_count) {
 		super();
 		this.b_no = b_no;
 		this.m_no = m_no;
@@ -54,8 +80,10 @@ public class Board {
 		this.count = count;
 		this.editFile = editFile;
 		this.path = path;
+		this.down_count = down_count;
+		this.reply_count = reply_count;
 	}
-	public Board(int b_no, String m_no, String head, String title, String contents, String update_date, String time,
+	public Board(int b_no, int m_no, String head, String title, String contents, String update_date, String time,
 			int count) {
 		super();
 		this.b_no = b_no;
@@ -68,7 +96,7 @@ public class Board {
 		this.count = count;
 	}
 	
-	public Board(int b_no, String m_no, String nickname, String head, String title, String contents, String update_date,
+	public Board(int b_no, int m_no, String nickname, String head, String title, String contents, String update_date,
 			String time, int count) {
 		super();
 		this.b_no = b_no;
@@ -81,29 +109,6 @@ public class Board {
 		this.time = time;
 		this.count = count;
 	}
-/*	public Board(int int1, int int2, String string, String string2, String string3, String string4, String string5,
-			String string6, String string7, int int3, String string8, int int4, String string9, String string10) {
-		// TODO Auto-generated constructor stub
-	}*/
-	
-/*	public Board(int b_no, String m_no, String head, String title, String contents, String enroll_date, String update_date,
-			String file, String time, int count, String status, int d_count, String editFile, String path) {
-			super();
-			this.b_no = b_no;
-			this.m_no = m_no;
-			this.head = head;
-			this.title = title;
-			this.contents = contents;
-			this.enroll_date = enroll_date;
-			this.update_date = update_date;
-			this.file = file;
-			this.time = time;
-			this.count = count;
-			this.status = status;
-			this.d_count = d_count;
-			this.editFile = editFile;
-			this.path = path;
-		}*/
 	
 	public String getNickname() {
 		return nickname;
@@ -118,10 +123,10 @@ public class Board {
 	public void setB_no(int b_no) {
 		this.b_no = b_no;
 	}
-	public String getM_no() {
+	public int getM_no() {
 		return m_no;
 	}
-	public void setM_no(String m_no) {
+	public void setM_no(int m_no) {
 		this.m_no = m_no;
 	}
 	public String getHead() {
@@ -157,6 +162,22 @@ public class Board {
 	public String getFile() {
 		return file;
 	}
+	public int getDown_count() {
+		return down_count;
+	}
+
+	public void setDown_count(int down_count) {
+		this.down_count = down_count;
+	}
+
+	public int getReply_count() {
+		return reply_count;
+	}
+
+	public void setReply_count(int reply_count) {
+		this.reply_count = reply_count;
+	}
+
 	public void setFile(String file) {
 		this.file = file;
 	}
@@ -201,7 +222,8 @@ public class Board {
 		return "Board [b_no=" + b_no + ", m_no=" + m_no + ", nickname=" + nickname + ", head=" + head + ", title="
 				+ title + ", contents=" + contents + ", enroll_date=" + enroll_date + ", update_date=" + update_date
 				+ ", file=" + file + ", time=" + time + ", count=" + count + ", status=" + status + ", d_count="
-				+ d_count + ", editFile=" + editFile + ", path=" + path + "]";
+				+ d_count + ", editFile=" + editFile + ", path=" + path + ", down_count=" + down_count
+				+ ", reply_count=" + reply_count + "]";
 	}
 	
 	

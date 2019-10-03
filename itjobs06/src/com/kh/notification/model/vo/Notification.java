@@ -15,6 +15,15 @@ public class Notification {
 	private String status;
 	private int d_count;
 	private String open;
+	
+	private String v_date; //resume테이블의 v_date(지원날짜)
+	
+	public String getV_date() {
+		return v_date;
+	}
+	public void setV_date(String v_date) {
+		this.v_date = v_date;
+	}
 	public Notification() {
 		super();
 	}

@@ -66,7 +66,7 @@ private Properties prop = new Properties();
 			while(rs.next()) {
 				Board b=new Board(
 						rs.getInt(1),
-						rs.getInt(2)+"",
+						rs.getInt(2),
 						rs.getString(3),
 						rs.getString(4),
 						rs.getString(5),

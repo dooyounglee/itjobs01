@@ -39,7 +39,7 @@ public class MemberMyInfo extends HttpServlet {
 		HttpSession session = request.getSession();
 		Member m=(Member)session.getAttribute("mem");
 		
-		if(m.getType().equals("기업")) {
+		if(m.getType().equals("2")) {
 			Co_Info co=new MemberService().getCoInfo(m);
 			session.setAttribute("co", co);
 		}

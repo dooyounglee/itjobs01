@@ -1,14 +1,14 @@
 package com.kh.volunteer.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import com.kh.member.model.vo.Member;
+import com.kh.volunteer.model.service.VolunteerService;
 
 /**
  * Servlet implementation class VolunteerApplyServlet
@@ -32,10 +32,14 @@ public class VolunteerApplyServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		int noti_no=Integer.parseInt(request.getParameter("noti_no"));
+		int resume_no=Integer.parseInt(request.getParameter("resume_no"));
 		
-		HttpSession session = request.getSession();
-		Member mem=(Member)session.getAttribute("mem");
-		int m_no=mem.getM_no();
+		int result=new VolunteerService().apply(noti_no,resume_no);
+		if(result>0) {
+			request.getRequestDispatcher("views/mypage/resume/list.jsp").forward(request, response);
+		}else {
+			
+		}
 		
 		//모달창에서 post로 noti_no,resume_no도 받아서 넘어오자
 	}

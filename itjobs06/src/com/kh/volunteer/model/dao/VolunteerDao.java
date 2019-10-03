@@ -63,7 +63,7 @@ private Properties prop = new Properties();
 			ps.setInt(1, m_no);
 			rs=ps.executeQuery();
 			while(rs.next()) {
-				list.add(new Notification(
+				Notification n=new Notification(
 						rs.getInt(1),
 						rs.getInt(2),
 						rs.getString(3),
@@ -75,12 +75,30 @@ private Properties prop = new Properties();
 						rs.getString(9),
 						rs.getString(10),
 						rs.getString(11),
-						rs.getInt(12)));
+						rs.getInt(12));
+				n.setV_date(rs.getString("v_date"));
+				list.add(n);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return list;
+	}
+
+	public int apply(Connection conn, int noti_no, int resume_no) {
+		int result=0;
+		PreparedStatement ps=null;
+		
+		String sql=prop.getProperty("apply");
+		try {
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, noti_no);
+			ps.setInt(2, resume_no);
+			result=ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
 
 }

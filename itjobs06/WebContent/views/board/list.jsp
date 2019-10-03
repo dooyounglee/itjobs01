@@ -80,11 +80,13 @@
 	<div class="outer">
 		<br>
 		<div id="headArea"><h1 align="left"><%= head %>게시판</h1></div>
-<%-- <% if(loginUser != null) { %> --%>
 		<div id="writeBtnArea">
-		<div id="writeBtn" onclick="location.href='<%= contextPath %>/insertForm.bo';">글쓰기</div>
+		<div id="writeBtn" onclick="location.href='<%= contextPath %>/insertForm.bo?head=<%=head%>';">글쓰기</div>
+		<%-- <button id="writeBtn" onclick="writeBtn1()">글쓰기</button>--%>
+	
+		
 		</div>
-<%-- <% } %> --%>
+
 		<div class="tableArea">
 			<table id="listArea">
 				<tr>
@@ -144,7 +146,20 @@
 	
 		<br><br>
 		<!-- 페이징 바  -->
-		<div class="pagingArea" align="center">
+		<div id=pageArea>
+		<button onclick="send(<%=pi.getCurrentPage()-1%>)"></button>
+		<%	for(int i=pi.getStartPage();i<=pi.getEndPage();i++){%>
+				<%if(i==pi.getCurrentPage()){%>
+		<button onclick="send(<%=i%>)"><b><%=i %></b></button>
+		<%		}else{ %>
+		<button onclick="send(<%=i%>)"><%=i %></button>
+		<%		} %>
+		<%	} %>
+		<button onclick="send(<%=pi.getCurrentPage()+1%>)">></button>
+		</div>
+		
+		
+		<%-- <div class="pagingArea" align="center">
 			<div id="맨처음으로"> &lt;&lt; </div>
 			<div id="이전으로"> &lt; </div>
 			<% for(int i=startPage; i<=endPage; i++){ %>
@@ -157,14 +172,35 @@
 			
 			<div id="다음으로"> &gt; </div>
 			<div id="맨끝으로"> &gt;&gt; </div>
-		</div>
+		</div> --%>
 	
 	
 		<script>
 		$(function(){
 			$(".pagingArea").children().css("background","lightgray");
 		});
-		$(function(){
+		
+		<%-- function writeBtn1(){
+			if(<%= mem.getM_no() %> != null){
+				location.href='<%= contextPath %>/insertForm.bo?head=<%=head%>';
+			}else{
+				alert('로그인을 해야 글쓰기가 가능합니다.');
+			}
+		}  --%>
+		
+		<%-- $(function(){
+			$("#writeBtn").click(function(){
+				if(<%= mem.getM_no() %> != null){
+					location.href='<%= contextPath %>/insertForm.bo?head=<%=head%>';
+				}else{
+					alert('로그인을 해야 글쓰기가 가능합니다.');
+				}
+			});
+		}); --%>
+				
+			
+		
+		<%-- $(function(){
 			$("#맨처음으로").mouseenter(function(){
 				$(this).css({"background":"lightblue", "cursor":"pointer"});
 			}).mouseout(function(){
@@ -220,7 +256,7 @@
 				location.href="<%=contextPath%>/list.bo?head=<%=head%>&currentPage=<%=maxPage%>";
 			});
 		});
-		
+		 --%>
 			
 		
 		</script>

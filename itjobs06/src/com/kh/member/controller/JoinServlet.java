@@ -56,7 +56,7 @@ public class JoinServlet extends HttpServlet {
 		
 		if(result>0) {
 			System.out.println(type);
-			if(type.equals("일반")) {
+			if(type.equals("1")) {
 				request.setAttribute("msg", "회운가입 성공(일반)");
 				request.setAttribute("nickname", nickname);
 				
@@ -69,7 +69,7 @@ public class JoinServlet extends HttpServlet {
 			}
 			
 			
-			if(type.equals("기업")) {
+			if(type.equals("2")) {
 				
 				request.setAttribute("m", m);
 				request.getRequestDispatcher("views/login/join_co_info.jsp").forward(request, response);

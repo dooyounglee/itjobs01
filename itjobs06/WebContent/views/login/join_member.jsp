@@ -9,7 +9,7 @@
 <body>
 <%@ include file="/views/include/header.jsp" %>
 <form action="<%=request.getContextPath() %>/join.me" method="post" autocomplete=off>
-<input value="일반" name=type readonly><br>
+<input value=1 name=type readonly><br>
 이메일:<input name=email><br>
 비번:<input name=pw><br>
 비번확인:<input name=pw1><br>

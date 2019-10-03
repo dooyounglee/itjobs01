@@ -9,6 +9,8 @@
 <!-- <title>네이버 로그인</title> -->
   <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
   <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+	
+	
 <style>
 	
 
@@ -61,14 +63,18 @@ $('input[name=email]').focus();
 <%@ include file="/views/include/footer.jsp" %>
 
 <script type="text/javascript">
-  	var naver_id_login = new naver_id_login("ybquUitRdYWWMHEEV389", "http://localhost:8888/itjobs" redirect);
+  	var naver_id_login = new naver_id_login("ybquUitRdYWWMHEEV389", "http://localhost:8888/itjobs");
   	var state = naver_id_login.getUniqState();
   	naver_id_login.setButton("green", 1,30);
-    naver_id_login.setDomain("http://localhost:8888/itjobs");  
+    naver_id_login.setDomain("");  
   	naver_id_login.setState(state);
   	naver_id_login.setPopup();
   	naver_id_login.init_naver_id_login();
+  
   </script>
+
+
+
 
 
 

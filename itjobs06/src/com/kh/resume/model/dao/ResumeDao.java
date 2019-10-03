@@ -56,7 +56,7 @@ public class ResumeDao {
 						rs.getString(14),
 						rs.getString(15),
 						rs.getString(16),
-						rs.getDate(17)+" "+rs.getTime(17),
+						rs.getString(17),
 						rs.getString(18),
 						rs.getString(19),
 						rs.getString(20),
@@ -64,6 +64,7 @@ public class ResumeDao {
 						rs.getString(22),
 						rs.getString(23),
 						rs.getInt(24)));
+				System.out.println(list);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

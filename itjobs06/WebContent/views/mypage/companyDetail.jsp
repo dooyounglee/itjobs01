@@ -13,6 +13,10 @@
 ${co }<br>
 ${co_Info }<br>
 
+<button>지원하기(일반회원)</button>
+<button>수정(해당기업)</button>
+<button>삭제(해당기업)</button>
+<button>신고하기</button>
 <!-- 지도api -->
 <div id="map" style="width:100%;height:350px;"></div>
 

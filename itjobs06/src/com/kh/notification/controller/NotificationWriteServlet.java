@@ -49,6 +49,7 @@ public class NotificationWriteServlet extends HttpServlet {
 		
 		String title=request.getParameter("title");
 		String end_date=request.getParameter("end_date");
+		String end_time=request.getParameter("end_time");
 		String jobs=request.getParameter("jobs");
 		String[] language=request.getParameterValues("language");
 		int salary=Integer.parseInt(request.getParameter("salary"));
@@ -58,12 +59,13 @@ public class NotificationWriteServlet extends HttpServlet {
 		Notification n=new Notification();
 		n.setCo_no(co.getM_no());
 		n.setContents(contents);
-		n.setEnd_date(end_date);
+		n.setEnd_date(end_date+" "+end_time);
 		n.setHope(hope);
 		n.setJobs(jobs);
 		n.setP_language(String.join(",",language));
 		n.setSalary(salary);
 		n.setTitle(title);
+		System.out.println(n);
 		
 		int result=new NotificationService().insertNotification(n);
 		if(result>0) {

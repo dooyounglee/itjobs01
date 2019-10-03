@@ -73,5 +73,20 @@ public class NotificationService {
 		close(conn);
 		return result;
 	}
+
+	public int openNotification(int noti_no) {
+		Connection conn=getConnection();
+		int result=new NotificationDao().openNotification(conn,noti_no);
+		System.out.println("service-------"+result);
+		close(conn);
+		return result;
+	}
+
+	public int openCancleNotification(int noti_no) {
+		Connection conn=getConnection();
+		int result=new NotificationDao().openCancleNotification(conn,noti_no);
+		close(conn);
+		return result;
+	}
 	
 }

@@ -14,6 +14,7 @@ public class Notification {
 	private String hope;
 	private String status;
 	private int d_count;
+	private String open;
 	public Notification() {
 		super();
 	}
@@ -32,6 +33,24 @@ public class Notification {
 		this.hope = hope;
 		this.status = status;
 		this.d_count = d_count;
+	}
+	
+	public Notification(int noti_no, int co_no, String title, String end_date, String enroll_date, String p_language,
+			int salary, String contents, String jobs, String hope, String status, int d_count, String open) {
+		super();
+		this.noti_no = noti_no;
+		this.co_no = co_no;
+		this.title = title;
+		this.end_date = end_date;
+		this.enroll_date = enroll_date;
+		this.p_language = p_language;
+		this.salary = salary;
+		this.contents = contents;
+		this.jobs = jobs;
+		this.hope = hope;
+		this.status = status;
+		this.d_count = d_count;
+		this.open = open;
 	}
 	public int getNoti_no() {
 		return noti_no;
@@ -105,11 +124,19 @@ public class Notification {
 	public void setD_count(int d_count) {
 		this.d_count = d_count;
 	}
+	
+	public String getOpen() {
+		return open;
+	}
+	public void setOpen(String open) {
+		this.open = open;
+	}
 	@Override
 	public String toString() {
 		return "Notification [noti_no=" + noti_no + ", co_no=" + co_no + ", title=" + title + ", end_date=" + end_date
 				+ ", enroll_date=" + enroll_date + ", p_language=" + p_language + ", salary=" + salary + ", contents="
-				+ contents + ", jobs=" + jobs + ", hope=" + hope + ", status=" + status + ", d_count=" + d_count + "]";
+				+ contents + ", jobs=" + jobs + ", hope=" + hope + ", status=" + status + ", d_count=" + d_count
+				+ ", open=" + open + "]";
 	}
 	
 }

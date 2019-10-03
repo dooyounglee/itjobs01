@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.board.model.service.BoardService;
+import com.kh.admin.model.service.AdminBoardService;
 import com.kh.board.model.vo.Board;
 
 /**
@@ -37,7 +37,7 @@ public class AdminDeclareBoardViewServlet extends HttpServlet {
 		
 		int b_no=Integer.parseInt(request.getParameter("b_no"));
 		System.out.println(b_no);
-		Board b=new BoardService().getBoard(b_no);
+		Board b=new AdminBoardService().selectBoard(b_no);
 		
 		PrintWriter out=response.getWriter();
 		out.println(b);

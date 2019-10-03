@@ -37,14 +37,14 @@ public class MemberUpdateServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		Member m=(Member)session.getAttribute("mem");
-		
+
 		String nickname=request.getParameter("nickname");
 		m.setNickname(nickname);
 		
 		int result=0;
-		if(m.getType().equals("일반")) {
+		if(m.getType().equals("1")) {
 			result=new MemberService().update(m);
-		}else if(m.getType().equals("기업")) {
+		}else if(m.getType().equals("2")) {
 			String regNum=request.getParameter("regnum");
 			String ceo=request.getParameter("ceo");
 			String name=request.getParameter("name");
@@ -54,7 +54,12 @@ public class MemberUpdateServlet extends HttpServlet {
 			String birth_date=request.getParameter("birth_date");
 			int memsum=Integer.parseInt(request.getParameter("memsum"));
 			int revenue=Integer.parseInt(request.getParameter("revenue"));
-			String address=request.getParameter("address");
+			
+			String postcode=request.getParameter("sample3_postcode");
+			String address_=request.getParameter("sample3_address");
+			String detailAddress=request.getParameter("sample3_detailAddress");
+			String address=postcode+"+"+address_+"+"+detailAddress;
+			
 			String history=request.getParameter("history");
 			String welfare=request.getParameter("welfare");
 			

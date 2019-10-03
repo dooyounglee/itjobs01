@@ -1,30 +1,25 @@
-package com.kh.member.controller;
+package com.kh.notification.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import com.kh.member.model.vo.Member;
 import com.kh.notification.model.service.NotificationService;
-import com.kh.notification.model.vo.Notification;
 
 /**
- * Servlet implementation class CoMyNotificationListServlet
+ * Servlet implementation class NotificationRegisterServlet
  */
-@WebServlet("/myNotification.me")
-public class CoMyNotificationListServlet extends HttpServlet {
+@WebServlet("/open.no")
+public class NotificationOpenServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CoMyNotificationListServlet() {
+    public NotificationOpenServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,13 +30,12 @@ public class CoMyNotificationListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		HttpSession session = request.getSession();
-		Member mem=(Member)session.getAttribute("mem");
+		int noti_no=Integer.parseInt(request.getParameter("noti_no"));
 		
-		ArrayList<Notification> list=new NotificationService().getMyNotificationList(mem);
-
-		request.setAttribute("list", list);
-		request.getRequestDispatcher("views/mypage/notice/list.jsp").forward(request, response);
+		int result=new NotificationService().openNotification(noti_no);
+		if(result>0) {
+			response.sendRedirect(request.getContextPath()+"/myNotification.me");
+		}
 	}
 
 	/**

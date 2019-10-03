@@ -26,6 +26,7 @@
 		<th>등록일</th>
 		<th>수정일</th>
 		<th>상태</th>
+		<th>공개</th>
 		<th>지원자 확인</th>
 	</tr>
 	<%	ArrayList<Notification> list=(ArrayList<Notification>)request.getAttribute("list");
@@ -36,6 +37,7 @@
 		<td><%=n.getEnroll_date() %></td>
 		<td><%=n.getEnd_date() %></td>
 		<td><%=n.getStatus() %></td>
+		<td><%=n.getOpen() %></td>
 		<td><button onclick="location.href='<%=request.getContextPath()%>/list.vo?noti_no=<%=n.getNoti_no()%>'">지원자 확인</button></td>
 	</tr>
 	<%	} %>

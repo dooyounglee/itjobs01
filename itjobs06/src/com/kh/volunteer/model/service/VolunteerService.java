@@ -24,4 +24,16 @@ public class VolunteerService {
 		return list;
 	}
 
+	public int apply(int noti_no, int resume_no) {
+		Connection conn=getConnection();
+		int result=new VolunteerDao().apply(conn,noti_no,resume_no);
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+
 }

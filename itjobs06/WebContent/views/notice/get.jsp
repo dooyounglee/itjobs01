@@ -25,13 +25,15 @@ ${noti }<br>
 일반
 지원서: 
 	<%	ArrayList<Resume> rlist=(ArrayList<Resume>)request.getAttribute("rlist"); %>
-<select>
-	<% for(Resume r:rlist){%>
-	<option><%=r.getTitle() %></option>
-	<%	} %>
-</select>
-<button onclick="apply(<%=noti.getNoti_no() %>)">지원하기</button>
-
+<form action="apply.vo" method="post">
+	<input type=hidden name="noti_no" value="<%=noti.getNoti_no() %>">
+	<select name="resume_no">
+		<% for(Resume r:rlist){%>
+		<option value="<%=r.getResume_no()%>"><%=r.getTitle() %></option>
+		<%	} %>
+	</select>
+	<button onclick="apply(<%=noti.getNoti_no() %>)">지원하기</button>
+</form>
 <script>
 	function edit(noti_no){
 		location.href="edit.no?noti_no="+noti_no;

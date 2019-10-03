@@ -27,7 +27,7 @@
 		<td><input type=checkbox></td>
 		<td><a href="<%=request.getContextPath()%>/get.no?noti_no=<%=n.getNoti_no()%>"><%=n.getTitle() %></a></td>
 		<td><%=n.getCo_no() %></td>
-		<td>지원일1</td>
+		<td><%=n.getV_date() %></td>
 		<td><%=n.getEnd_date() %></td>
 		<td>서류심사</td>
 	</tr>

@@ -84,7 +84,7 @@ public int insertResum(Resume re){
 		Connection conn = getConnection();
 		
 		ArrayList<Resume> list = new ResumeDao().selectResume(conn, pi,mno);
-		
+		System.out.println(list);
 		close(conn);
 		
 		return list;
@@ -129,7 +129,7 @@ public int insertResum(Resume re){
 		
 		Resume re = new ResumeDao().selectUpdateResum(conn,resume_no);
 		
-		
+		System.out.println("서비스"+re);
 		if(re != null){ 
 			 commit(conn);
 		 }else{
@@ -155,7 +155,7 @@ public int deleteResume(int resume_no){
 		Connection conn = getConnection();
 		
 		int result = new ResumeDao().deleteResume(conn,resume_no);
-		
+		System.out.println(result+" ㅅㅓㅂㅣㅅㅡ");
 		if(result > 0){
 			commit(conn);
 		}else{

@@ -59,7 +59,7 @@
 </head>
 <body>
 <%@ include file="/views/include/header.jsp" %>
-<form action="<%=contextPath%>/addResum.re" method="post">
+<form action="<%=contextPath%>/update.re" method="post">
 <h2 align="center">이력서 수정</h2>
 <div id="first">
 	
@@ -292,7 +292,7 @@
 	
 	<br><br>
 	<%-- <input type="hidden" name="m_no"value="<%=loginUser.get %>" --%>
-	<input type="submit" value="작성완료">
+	<input type="submit" value="수정완료">
 	
 	</div>
 </div>

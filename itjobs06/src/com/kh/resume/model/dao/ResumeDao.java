@@ -1,6 +1,7 @@
 package com.kh.resume.model.dao;
 
 import java.io.FileReader;
+
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,7 +14,10 @@ import com.kh.board.model.vo.PageInfo;
 import com.kh.member.model.vo.Member;
 import com.kh.resume.model.vo.Resume;
 
+
+
 import static com.kh.common.JDBCTemplate.*;
+
 
 public class ResumeDao {
 
@@ -65,6 +69,7 @@ public class ResumeDao {
 						rs.getString(22),
 						rs.getString(23),
 						rs.getInt(24)));
+						
 				System.out.println(list);
 			}
 		} catch (SQLException e) {
@@ -86,18 +91,18 @@ public class ResumeDao {
 		   
 		   String sql = prop.getProperty("insertResum");
 		   
-		   
+		   System.out.println("Dao-"+re);
 		   try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, re.getName());
-			pstmt.setString(2, (re.getBirth_date()));
+			pstmt.setString(2, re.getBirth_date());
 			pstmt.setString(3, re.getPhone());
 			pstmt.setString(4, re.getAddress());
 			pstmt.setString(5, re.getEmail());
 			pstmt.setString(6, re.getSchool());
 			pstmt.setString(7, re.getDepartment());
 			pstmt.setString(8,re.getSchool_period());
-			pstmt.setString(9, re.getCareer());
+			pstmt.setString(9, re.getCareer());//ㅇㅕㄱㅣ ㅅㅓㄹㅁㅏ 'ㅅㅣㄴㅇㅣㅂ','ㄱㅕㅇㄹㅕㄱ' ㅇㅣㄴㄱㅓ ㅇㅏㄴㅣㄱㅔㅆㅈㅛ??
 			pstmt.setString(10, re.getWork_place());
 			pstmt.setString(11, re.getWork_date());
 			pstmt.setString(12, re.getWork());
@@ -108,6 +113,10 @@ public class ResumeDao {
 			pstmt.setString(17, re.getOpen());
 			pstmt.setString(18, re.getP_language());
 			pstmt.setString(19, re.getHope_salary());
+			pstmt.setInt(20, re.getM_no());
+			
+			
+			
 			
 			
 			
@@ -166,11 +175,13 @@ public class ResumeDao {
 							   rset.getString("CER_DATE"),
 							   rset.getString("TITLE"),
 							   rset.getString("COVER_LETTER"),
-							   rset.getString("public"),
+							   rset.getString("open"),
 							   rset.getString("UPDATE_DATE"),
 							   rset.getString("P_LANGUAGE"),
 							   rset.getString("HOPE_SALARY"),
-							   rset.getInt("M_NO")
+							   rset.getInt("M_NO"),
+							   rset.getInt("CAREER_YEAR"),
+							   rset.getString("SCHOOL_FINAL")
 							   );
 				}
 				
@@ -268,13 +279,16 @@ public class ResumeDao {
 								   rset.getString("CER_DATE"),
 								   rset.getString("TITLE"),
 								   rset.getString("COVER_LETTER"),
-								   rset.getString("pub"),
+								   rset.getString("open"),//open으로 바꾸기로 했구
 								   rset.getString("UPDATE_DATE"),
 								   rset.getString("P_LANGUAGE"),
 								   rset.getString("HOPE_SALARY"),
-								   rset.getInt("M_NO")
+								   rset.getInt("M_NO"),
+								   rset.getInt("CAREER_YEAR"),
+								   rset.getString("SCHOOL_FINAL")
 								   
 								   ));
+				System.out.println(list);
 			}
 			
 		} catch (SQLException e) {
@@ -326,11 +340,13 @@ public class ResumeDao {
 						   rset.getString("CER_DATE"),
 						   rset.getString("TITLE"),
 						   rset.getString("COVER_LETTER"),
-						   rset.getString("pub"),
+						   rset.getString("open"),
 						   rset.getString("UPDATE_DATE"),
 						   rset.getString("P_LANGUAGE"),
 						   rset.getString("HOPE_SALARY"),
-						   rset.getInt("M_NO")
+						   rset.getInt("M_NO"),
+						   rset.getInt("CAREER_YEAR"),
+						   rset.getString("SCHOOL_FINAL")
 						   );
 			}
 		} catch (SQLException e) {
@@ -347,34 +363,31 @@ public class ResumeDao {
 	
 	public int deleteResume(Connection conn, int resume_no){
 		
+		PreparedStatement pstmt = null;
 		int result = 0;
-	   PreparedStatement pstmt = null;
-	   
-	   String sql = prop.getProperty("deleteResum");
-	   
-	   try {
-		pstmt=conn.prepareStatement(sql);
 		
-		pstmt.setInt(1, resume_no);
+		String sql = prop.getProperty("deleteResum1");
 		
-	    result = pstmt.executeUpdate();
-	   
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, resume_no);
+			
+			result = pstmt.executeUpdate();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
 		
-	} catch (SQLException e) {
-		
-		e.printStackTrace();
-	}finally{
-		close(pstmt);
-	} 
-	  
-	   return result;
-	   
+		return result;
+	}   
 	
 	
 	
 	
 	
-}
+
 
 	public ArrayList<Resume> getMyResumeList(Connection conn, Member m) {
 		
@@ -415,7 +428,9 @@ public class ResumeDao {
 								   rset.getString("UPDATE_DATE"),
 								   rset.getString("P_LANGUAGE"),
 								   rset.getString("HOPE_SALARY"),
-								   rset.getInt("M_NO")
+								   rset.getInt("M_NO"),
+								   rset.getInt("CAREER_YEAR"),
+								   rset.getString("SCHOOL_FINAL")
 								   
 								   ));
 			}

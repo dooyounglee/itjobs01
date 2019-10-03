@@ -69,7 +69,7 @@ public class ResumListServlet extends HttpServlet {
 		
 		PageInfo pi = new PageInfo(currentPage, listCount);
 		ArrayList<Resume> list = new ResumeService().selectResume(pi,mno);
-		
+		System.out.println("리스트서블릿에 "+list);
 		request.setAttribute("pi", pi);
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("views/mypage/resume/resumeListView.jsp").forward(request, response);

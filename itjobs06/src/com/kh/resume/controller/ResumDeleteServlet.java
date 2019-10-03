@@ -6,7 +6,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.kh.member.model.vo.Member;
 import com.kh.resume.model.service.ResumeService;
 
 /**
@@ -29,8 +31,9 @@ public class ResumDeleteServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		
 	int resume_no = Integer.parseInt(request.getParameter("resume_no"));
-
+	
 	int result = new ResumeService().deleteResume(resume_no);
 	
 	if(result > 0) {

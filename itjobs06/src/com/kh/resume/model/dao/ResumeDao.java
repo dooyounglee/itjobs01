@@ -1,7 +1,8 @@
 package com.kh.resume.model.dao;
 
-import java.io.FileReader;
+import static com.kh.common.JDBCTemplate.close;
 
+import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,10 +14,6 @@ import java.util.Properties;
 import com.kh.board.model.vo.PageInfo;
 import com.kh.member.model.vo.Member;
 import com.kh.resume.model.vo.Resume;
-
-
-
-import static com.kh.common.JDBCTemplate.*;
 
  
 public class ResumeDao {
@@ -507,6 +504,7 @@ public class ResumeDao {
 	
 	public int supportResume(Connection conn, int resume_no){
 		
+		 ResultSet rset = null;
 		 int su_result = 0;
 		 PreparedStatement pstmt = null;
 		 
@@ -517,7 +515,13 @@ public class ResumeDao {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, resume_no);
 			
-			su_result = pstmt.executeUpdate();
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()){
+				su_result = rset.getInt(resume_no);
+			}
+			
+			
 		   } catch (SQLException e) {
 				
 				e.printStackTrace();

@@ -1,4 +1,4 @@
-package com.kh.board.controller;
+package com.kh.resume.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -6,18 +6,18 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+ 
 /**
- * Servlet implementation class BoardInsertFormServlet
+ * Servlet implementation class ResumeAddFormServlet
  */
-@WebServlet("/insertForm.bo")
-public class BoardInsertFormServlet extends HttpServlet {
+@WebServlet("/add.re")
+public class ResumeAddFormServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardInsertFormServlet() {
+    public ResumeAddFormServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,9 +26,8 @@ public class BoardInsertFormServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String head = request.getParameter("head");
-		request.setAttribute("head", head);
-		request.getRequestDispatcher("views/board/write.jsp").forward(request, response);
+		request.getRequestDispatcher("views/mypage/resume/resumeWriteForm.jsp").forward(request, response);
+	
 	}
 
 	/**

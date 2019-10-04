@@ -1,3 +1,5 @@
+<%@page import="com.kh.resume.model.vo.Resume"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="com.kh.notification.model.vo.Notification"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -21,11 +23,17 @@ ${noti }<br>
 <button onclick="showApplier(<%=noti.getNoti_no() %>)">지원자 확인</button>
 <br>
 일반
-<button onclick="apply(<%=noti.getNoti_no() %>)">지원하기</button>
-<select>
-
-</select>
-
+지원서: 
+	<%	ArrayList<Resume> rlist=(ArrayList<Resume>)request.getAttribute("rlist"); %>
+<form action="apply.vo" method="post">
+	<input type=hidden name="noti_no" value="<%=noti.getNoti_no() %>">
+	<select name="resume_no">
+		<% for(Resume r:rlist){%>
+		<option value="<%=r.getResume_no()%>"><%=r.getTitle() %></option>
+		<%	} %>
+	</select>
+	<button onclick="apply(<%=noti.getNoti_no() %>)">지원하기</button>
+</form>
 <script>
 	function edit(noti_no){
 		location.href="edit.no?noti_no="+noti_no;

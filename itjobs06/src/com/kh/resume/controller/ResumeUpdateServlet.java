@@ -1,4 +1,4 @@
-package com.kh.board.controller;
+package com.kh.resume.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -6,21 +6,18 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.kh.board.model.service.BoardService;
-import com.kh.board.model.vo.Board;
-
+ 
 /**
- * Servlet implementation class BoardViewServlet
+ * Servlet implementation class ResumeUpdateServlet
  */
-@WebServlet("/get.bo")
-public class BoardViewServlet extends HttpServlet {
+@WebServlet("/update.re")
+public class ResumeUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardViewServlet() {
+    public ResumeUpdateServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,15 +26,10 @@ public class BoardViewServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		request.setCharacterEncoding("utf-8");
+	
+		response.sendRedirect("list.re");
 		
-		int b_no=Integer.parseInt(request.getParameter("bno"));
-		Board b=new BoardService().getBoard(b_no);
 		
-		request.setAttribute("b", b);
-		request.getRequestDispatcher("views/board/get.jsp").forward(request, response);
 	}
 
 	/**

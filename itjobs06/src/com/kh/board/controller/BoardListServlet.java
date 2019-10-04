@@ -53,29 +53,13 @@ public class BoardListServlet extends HttpServlet {
 		}
 			
 		// 페이징처리
-		int currentPage = 1;
-		if(request.getParameter("currentPage") != null) {
-			currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		int currentPage=1;
+		if(request.getParameter("currentPage")!=null) {
+			currentPage=Integer.parseInt(request.getParameter("currentPage"));
 		}
 		
-		int pageLimit; 	
-		int boardLimit;	
-		int maxPage;
-		int startPage;
-		int endPage;
-
-		pageLimit = 10;
-		boardLimit = 10;
-
-		maxPage = (int)Math.ceil((double)listCount / boardLimit);
-		startPage = (currentPage-1)/pageLimit * pageLimit + 1;
-		endPage = startPage + pageLimit - 1;
 		
-		if(maxPage < endPage) {
-			endPage = maxPage;
-		}
-		
-		PageInfo pi = new PageInfo(currentPage, listCount);
+		PageInfo pi=new PageInfo(currentPage,listCount);
 		
 		ArrayList<Board> list = new ArrayList<>();
 		if(head.equals("main")) {

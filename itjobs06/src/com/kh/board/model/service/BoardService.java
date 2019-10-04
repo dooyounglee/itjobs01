@@ -1,7 +1,6 @@
 package com.kh.board.model.service;
 
 import static com.kh.common.JDBCTemplate.*;
-import static com.kh.common.JDBCTemplate.getConnection;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -146,6 +145,11 @@ public class BoardService {
 	}
 	
 	
+	/**
+	 * 이전글 조회 main
+	 * @param bId
+	 * @return
+	 */
 	public Board prevMainBoard(int bId) {
 		Connection conn = getConnection();
 		
@@ -156,6 +160,11 @@ public class BoardService {
 		return prev;
 	}
 
+	/**
+	 * 다음글 조회 main
+	 * @param bId
+	 * @return
+	 */
 	public Board nextMainBoard(int bId) {
 		Connection conn = getConnection();
 		
@@ -165,4 +174,86 @@ public class BoardService {
 		close(conn);
 		return next;
 	}
+	
+	/**
+	 * 게시판 글 추가
+	 * @param b
+	 * @return
+	 */
+	public int insertBoard(Board b) {
+		Connection conn = getConnection();
+		
+		int result = new BoardDao().insertBoard(conn, b);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		return result;
+	}
+	
+	/**
+	 * 수정용 게시판 조회
+	 * @param bId
+	 * @return
+	 */
+	public Board selectUpdateBoard(int bId) {
+		Connection conn = getConnection();
+		
+		Board b = new BoardDao().selectUpdateBoard(conn, bId);
+		
+		close(conn);
+		return b;
+	}
+	
+	/**
+	 * 게시판 수정
+	 * @param b
+	 * @return
+	 */
+	public int updateBoard(Board b) {
+		Connection conn = getConnection();
+		
+		int result = new BoardDao().updateBoard(conn, b);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+	
+	public String selectHead(int b_no) {
+		Connection conn = getConnection();
+		
+		String head = new BoardDao().selectHead(conn, b_no);
+	
+		close(conn);
+		return head;
+	}
+	
+	public int insertDeclareBoard(int bId, String title) {
+		Connection conn = getConnection();
+		
+		int result = new BoardDao().insertDeclareBoard(conn, bId, title);
+	
+		if(result > 0) {
+			commit(conn);
+		}else{
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+	
+	
+	
+	
+	
+	
 }

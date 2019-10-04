@@ -3,10 +3,12 @@
 <%@page import="com.kh.board.model.vo.PageInfo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" %>
-<%
+<% 
+	/* Resume re = (Resume)request.getAttribute("re"); */ 
 	//String contextPath = request.getContextPath();
-	/* Member m = (Member)session.getAttribute("loginUser"); */
+	Member m = (Member)session.getAttribute("loginUser"); 
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	
 	ArrayList<Resume> list = (ArrayList<Resume>)request.getAttribute("list");
 	
 	int currentPage = pi.getCurrentPage();
@@ -43,9 +45,10 @@
 <%@ include file="/views/include/header.jsp" %>
 <h3>나의 이력서</h3>
 <div id="tableArea">
+<input type="button" id="addRe" value="+ 새이력서 작성하기" onclick="location.href='<%=contextPath%>/add.re';">
 	<table align="center" id="listArea" border="1px">
 		<tr>
-		<th></th>
+	
 		<th>No</th>
 		<th>제목</th>
 		<th>최근수정일자</th>
@@ -62,7 +65,7 @@
 						<td><%=re.getResume_no()%></td>
 						<td name="title" onclick="goDetail(this);"><%= re.getTitle() %></td>
 						<td ><%= re.getUpdate_date() %></td>
-						<td><input type="button" value="수정하기" onclick="updateResum();"></td>
+					
 					</tr>
 					<% } %>
 				
@@ -88,15 +91,21 @@
 			
 			function goDetail(abc){//abc로 바꿨음
 				var resume_no = $(abc).parent().children().eq(0).text();//$(abc)
-				//console.log(resume_no);
+				console.log(resume_no);
 				//return false;
 				location.href="<%=contextPath%>/detail.re?resume_no="+resume_no;
 			}
 			
-			function updateResum(){
-				var resume_no = $(abc).parent().children().eq(0).text();//$(abc)
+			<%-- function updateResum(aaa){
+				var resume_no = $(aaa).parent().children().eq(2).text();
+				console.log(resume_no);
 				location.href="<%=contextPath%>/updateForm.re?resume_no="+resume_no;
 			}
+			
+			function deleteResum(abc){
+				var resume_no = $(abc).parent().children().eq(0).text();
+				location.href="<%=contextPath%>/deleteResum.re?resume_no="+resume_no;
+			} --%>
 				
 			
 		</script>

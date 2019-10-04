@@ -136,9 +136,13 @@
             <div id="topArea">
                 <div id="headArea"><%= b.getHead() %></div>
                 <div id="topBtn">
+                	<%if(mem.getM_no() == b.getM_no()) { %>
                     <div onclick="deleteBtn()">삭제</div>
-                    <div>수정</div>
-                    <div>신고</div>
+                    <div onclick="location.href='<%=contextPath %>/updateForm.bo?bId=<%=b.getB_no()%>';">수정</div>
+                    <%}else{ %>
+                    <div onclick="location.href='<%=contextPath %>/insertForm.de?bId=<%=b.getB_no()%>&title=<%=b.getTitle()%>';">신고</div>
+                   <%} %>
+                 
                 </div>
             </div>
             <br>
@@ -151,14 +155,16 @@
             </div>
             <div id="nickname"><%=b.getNickname() %></div>
             <br>
-            <div id="content"><%=b.getContents() %></div>
+            <div id="content"><%=b.getContents() %><br><br>
+            	<img id="img" src="<%= contextPath %>/resources/fileupload_board/<%= b.getEditFile()%>">
+            </div>
         
         	<br>
             <div id="nextArea">
                 <div>이전글 - <%=prev.getTitle() %> </div>
                 <div>다음글 - <%=next.getTitle() %> </div>
             </div>
-        	
+        	<button onclick="location.href='<%= contextPath %>/download.bo?bId=<%=b.getB_no()%>';">다운로드</button>
         
         
         
@@ -166,9 +172,11 @@
     </div>
 
 
-	<<script>
+	<script>
 		function deleteBtn(){
+
 			if(confirm("정말 삭제하시겠습니까?") == true){
+				
 				location.href="<%=contextPath%>/delete.bo?bId=<%=b.getB_no()%>&head=<%=b.getHead()%>";
 			}else{
 				return;

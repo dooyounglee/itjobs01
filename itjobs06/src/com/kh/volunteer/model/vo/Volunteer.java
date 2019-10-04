@@ -7,7 +7,17 @@ public class Volunteer {
 	private int resume_no;
 	private String v_date;
 	private String status;
+	
+	//Resume
 	private int m_no;
+	
+	//Notification
+	private String title;
+	private String end_date;
+	private String p_language;
+	
+	//Member
+	private String nickname;	//기업명
 	
 	public Volunteer() {
 		super();
@@ -56,10 +66,35 @@ public class Volunteer {
 	public void setM_no(int m_no) {
 		this.m_no = m_no;
 	}
+	
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getEnd_date() {
+		return end_date;
+	}
+	public void setEnd_date(String end_date) {
+		this.end_date = end_date;
+	}
+	public String getP_language() {
+		return p_language;
+	}
+	public void setP_language(String p_language) {
+		this.p_language = p_language;
+	}
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
 	@Override
 	public String toString() {
 		return "Volunteer [v_no=" + v_no + ", noti_no=" + noti_no + ", resume_no=" + resume_no + ", v_date=" + v_date
-				+ ", status=" + status + ", m_no=" + m_no + "]";
+				+ ", status=" + status + "]";
 	}
 	
 	

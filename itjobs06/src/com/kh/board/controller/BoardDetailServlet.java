@@ -30,6 +30,7 @@ public class BoardDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("디테일 서블릿 " + request.getParameter("bId"));
 		int bId = Integer.parseInt(request.getParameter("bId"));
 		String head = request.getParameter("head");
 		
@@ -43,6 +44,7 @@ public class BoardDetailServlet extends HttpServlet {
 		case "qna" : head="공지사항"; break;
 		case "form" : head="서식"; break;
 		case "qu" : head="문의사항"; break;
+		default : return;
 		}
 		
 		Board b = new BoardService().selectBoard(bId);

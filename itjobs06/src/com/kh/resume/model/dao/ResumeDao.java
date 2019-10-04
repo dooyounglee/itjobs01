@@ -1,6 +1,7 @@
 package com.kh.resume.model.dao;
 
 import java.io.FileReader;
+
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,10 +11,14 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import com.kh.board.model.vo.PageInfo;
+import com.kh.member.model.vo.Member;
 import com.kh.resume.model.vo.Resume;
+
+
 
 import static com.kh.common.JDBCTemplate.*;
 
+ 
 public class ResumeDao {
 
 	private Properties prop = new Properties();
@@ -64,7 +69,7 @@ public class ResumeDao {
 						rs.getString(22),
 						rs.getString(23),
 						rs.getInt(24)));
-				System.out.println(list);
+						
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -85,28 +90,39 @@ public class ResumeDao {
 		   
 		   String sql = prop.getProperty("insertResum");
 		   
-		   
+		   System.out.println("Dao-"+re);
 		   try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, re.getName());
-			pstmt.setString(2, (re.getBirth_date()));
-			pstmt.setString(3, re.getPhone());
-			pstmt.setString(4, re.getAddress());
-			pstmt.setString(5, re.getEmail());
-			pstmt.setString(6, re.getSchool());
-			pstmt.setString(7, re.getDepartment());
-			pstmt.setString(8,re.getSchool_period());
-			pstmt.setString(9, re.getCareer());
-			pstmt.setString(10, re.getWork_place());
-			pstmt.setString(11, re.getWork_date());
-			pstmt.setString(12, re.getWork());
-			pstmt.setString(13, re.getCertification());
-			pstmt.setString(14, re.getCer_date());
-			pstmt.setString(15, re.getTitle());
-			pstmt.setString(16, re.getCover_letter());
-			pstmt.setString(17, re.getOpen());
-			pstmt.setString(18, re.getP_language());
-			pstmt.setString(19, re.getHope_salary());
+			pstmt.setString(1, re.getPhoto());
+			pstmt.setString(2, re.getPath());
+			pstmt.setString(3, re.getName());
+			pstmt.setString(4, re.getBirth_date());
+			
+			pstmt.setString(5, re.getPhone());
+			pstmt.setString(6, re.getAddress());
+			pstmt.setString(7, re.getEmail());
+			
+			pstmt.setString(8, re.getSchool());
+			pstmt.setString(9, re.getDepartment());
+			pstmt.setString(10,re.getSchool_period());
+			
+			pstmt.setString(11, re.getCareer());
+			pstmt.setString(12, re.getWork_place());
+			pstmt.setString(13, re.getWork_date());
+			pstmt.setString(14, re.getWork());
+			
+			pstmt.setString(15, re.getCertification());
+			pstmt.setString(16, re.getCer_date());
+			
+			pstmt.setString(17, re.getTitle());
+			pstmt.setString(18, re.getCover_letter());
+			pstmt.setString(19, re.getOpen());
+			pstmt.setString(20, re.getP_language());
+			pstmt.setString(21, re.getHope_salary());
+			pstmt.setInt(22, re.getM_no());
+			
+			
+			
 			
 			
 			
@@ -165,11 +181,13 @@ public class ResumeDao {
 							   rset.getString("CER_DATE"),
 							   rset.getString("TITLE"),
 							   rset.getString("COVER_LETTER"),
-							   rset.getString("public"),
+							   rset.getString("open"),
 							   rset.getString("UPDATE_DATE"),
 							   rset.getString("P_LANGUAGE"),
 							   rset.getString("HOPE_SALARY"),
-							   rset.getInt("M_NO")
+							   rset.getInt("M_NO"),
+							   rset.getInt("CAREER_YEAR"),
+							   rset.getString("SCHOOL_FINAL")
 							   );
 				}
 				
@@ -267,13 +285,16 @@ public class ResumeDao {
 								   rset.getString("CER_DATE"),
 								   rset.getString("TITLE"),
 								   rset.getString("COVER_LETTER"),
-								   rset.getString("public"),
+								   rset.getString("open"),//open으로 바꾸기로 했구
 								   rset.getString("UPDATE_DATE"),
 								   rset.getString("P_LANGUAGE"),
 								   rset.getString("HOPE_SALARY"),
-								   rset.getInt("M_NO")
+								   rset.getInt("M_NO"),
+								   rset.getInt("CAREER_YEAR"),
+								   rset.getString("SCHOOL_FINAL")
 								   
 								   ));
+				System.out.println(list);
 			}
 			
 		} catch (SQLException e) {
@@ -325,11 +346,13 @@ public class ResumeDao {
 						   rset.getString("CER_DATE"),
 						   rset.getString("TITLE"),
 						   rset.getString("COVER_LETTER"),
-						   rset.getString("pub"),
+						   rset.getString("open"),
 						   rset.getString("UPDATE_DATE"),
 						   rset.getString("P_LANGUAGE"),
 						   rset.getString("HOPE_SALARY"),
-						   rset.getInt("M_NO")
+						   rset.getInt("M_NO"),
+						   rset.getInt("CAREER_YEAR"),
+						   rset.getString("SCHOOL_FINAL")
 						   );
 			}
 		} catch (SQLException e) {
@@ -343,5 +366,89 @@ public class ResumeDao {
 		return re;
 		
 	}
+	
+	public int deleteResume(Connection conn, int resume_no){
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String sql = prop.getProperty("deleteResum1");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, resume_no);
+			
+			result = pstmt.executeUpdate();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}   
+	
+	
+	
+	
+	
+
+
+	public ArrayList<Resume> getMyResumeList(Connection conn, Member m) {
+		
+		ArrayList<Resume> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1,m.getM_no());
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Resume(rset.getInt("RESUME_NO"),
+								   rset.getString("PHOTO"),
+								   rset.getString("PATH"),
+								   rset.getString("NAME"),
+								   rset.getString("BIRTH_DATE"),
+								   rset.getString("PHONE"),
+								   rset.getString("ADDRESS"),
+								   rset.getString("EMAIL"),
+								   rset.getString("SCHOOL"),
+								   rset.getString("DEPARTMENT"),
+								   rset.getString("SCHOOL_PERIOD"),
+								   rset.getString("CAREER"),
+								   rset.getString("WORK_PLACE"),
+								   rset.getString("WORK_DATE"),
+								   rset.getString("WORK"),
+								   rset.getString("CERTIFICATE"),
+								   rset.getString("CER_DATE"),
+								   rset.getString("TITLE"),
+								   rset.getString("COVER_LETTER"),
+								   rset.getString("open"),
+								   rset.getString("UPDATE_DATE"),
+								   rset.getString("P_LANGUAGE"),
+								   rset.getString("HOPE_SALARY"),
+								   rset.getInt("M_NO"),
+								   rset.getInt("CAREER_YEAR"),
+								   rset.getString("SCHOOL_FINAL")
+								   
+								   ));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		} 
+		return list;
+	}
+
 
 }

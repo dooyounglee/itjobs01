@@ -1,13 +1,20 @@
 package com.kh.resume.model.service;
 
+import static com.kh.common.JDBCTemplate.close;
+import static com.kh.common.JDBCTemplate.commit;
+import static com.kh.common.JDBCTemplate.getConnection;
+import static com.kh.common.JDBCTemplate.rollback;
+
 import java.sql.Connection;
 import java.util.ArrayList;
 
 import com.kh.board.model.vo.PageInfo;
+import com.kh.member.model.vo.Member;
 import com.kh.resume.model.dao.ResumeDao;
 import com.kh.resume.model.vo.Resume;
 
 import static com.kh.common.JDBCTemplate.*;
+ 
 
 public class ResumeService {
 
@@ -77,7 +84,7 @@ public int insertResum(Resume re){
 		Connection conn = getConnection();
 		
 		ArrayList<Resume> list = new ResumeDao().selectResume(conn, pi,mno);
-		
+		System.out.println(list);
 		close(conn);
 		
 		return list;
@@ -122,7 +129,7 @@ public int insertResum(Resume re){
 		
 		Resume re = new ResumeDao().selectUpdateResum(conn,resume_no);
 		
-		
+		System.out.println("서비스"+re);
 		if(re != null){ 
 			 commit(conn);
 		 }else{
@@ -130,6 +137,33 @@ public int insertResum(Resume re){
 		 }
 		  close(conn);
 		  return re;
+	}
+
+
+	public ArrayList<Resume> getMyResumeList(Member m) {
+		Connection conn = getConnection();
+		
+		ArrayList<Resume> list = new ResumeDao().getMyResumeList(conn, m);
+		
+		close(conn);
+		
+		return list;
+	}
+	
+public int deleteResume(int resume_no){
+		
+		Connection conn = getConnection();
+		
+		int result = new ResumeDao().deleteResume(conn,resume_no);
+		System.out.println(result+" ㅅㅓㅂㅣㅅㅡ");
+		if(result > 0){
+			commit(conn);
+		}else{
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+		
 	}
 	
 	

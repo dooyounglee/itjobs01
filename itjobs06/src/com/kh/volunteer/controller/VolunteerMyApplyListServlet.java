@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.kh.member.model.vo.Member;
-import com.kh.notification.model.vo.Notification;
 import com.kh.volunteer.model.service.VolunteerService;
 import com.kh.volunteer.model.vo.Volunteer;
 
@@ -39,7 +38,7 @@ public class VolunteerMyApplyListServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		Member mem=(Member)session.getAttribute("mem");
 		
-		ArrayList<Notification> list=new VolunteerService().getMyApplyList(mem.getM_no());
+		ArrayList<Volunteer> list=new VolunteerService().getMyApplyList(mem.getM_no());
 		
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("views/mypage/applyList.jsp").forward(request, response);

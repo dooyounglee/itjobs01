@@ -518,7 +518,7 @@ public class ResumeDao {
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()){
-				su_result = rset.getInt(resume_no);
+				su_result = rset.getInt(1);
 			}
 			
 			

@@ -155,8 +155,8 @@
 
 <div id="carrer">
 	<h3>경력 사항</h3>
-	<input type="radio" id="newCarrer" name="carrer" value="신입" >신입
-	<input type="radio" id="oldCarrer" name="carrer" value="경력" >경력
+	<input type="radio" id="newCarrer" name="career" value="N" >신입
+	<input type="radio" id="oldCarrer" name="career" value="Y" >경력
 	<input type="button" onclick="add_div()" id="carrerInsert" name="carrerInsert" value="+ 경력추가하기">
 	<div id="carrerList">
 	
@@ -240,8 +240,8 @@
 	<div id="public">
 	<h3>이력서 공개 여부</h3>
 	<label>공개여부</label><br>
-	<input type="radio" id="public_Y" name="public" value="y" >Y
-	<input type="radio" id="public_N" name="public" value="n" >N
+	<input type="radio" id="public_Y" name="open" value="y" >Y
+	<input type="radio" id="public_N" name="open" value="n" >N
 	
 	
 	

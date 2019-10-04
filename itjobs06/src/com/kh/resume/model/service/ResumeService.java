@@ -165,6 +165,20 @@ public int deleteResume(int resume_no){
 		return result;
 		
 	}
+
+	public int updateResume(Resume re){
+		Connection conn = getConnection();
+		
+		int result = new ResumeDao().updateResume(conn,re);
+		
+		if(result >0 ){
+			commit(conn);
+		}else{
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
 	
 	
 }

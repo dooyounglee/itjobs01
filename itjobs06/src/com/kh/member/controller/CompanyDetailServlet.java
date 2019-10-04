@@ -39,6 +39,7 @@ public class CompanyDetailServlet extends HttpServlet {
 		
 		request.setAttribute("co", co);
 		request.setAttribute("co_Info", co_Info);
+		
 		request.getRequestDispatcher("views/mypage/companyDetail.jsp").forward(request, response);
 	}
 

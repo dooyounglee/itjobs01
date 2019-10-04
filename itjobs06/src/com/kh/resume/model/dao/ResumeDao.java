@@ -504,4 +504,28 @@ public class ResumeDao {
 			   return result;
 			   
 		   }
+	
+	public int supportResume(Connection conn, int resume_no){
+		
+		 int su_result = 0;
+		 PreparedStatement pstmt = null;
+		 
+		 String sql = prop.getProperty("supportResum");
+
+		   
+		   try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, resume_no);
+			
+			su_result = pstmt.executeUpdate();
+		   } catch (SQLException e) {
+				
+				e.printStackTrace();
+			}finally{
+				close(pstmt);
+			}
+			   return su_result;
+			   
+		   }
+	
 }

@@ -77,25 +77,17 @@ public class BoardService {
 	public Board selectBoard(int bId, int loginM_no) {
 		Connection conn = getConnection();
 		Board b = null;
-		System.out.println("서비스 로그인 넘버            :        " + loginM_no);
 		
-		int result = new BoardDao().countBoard(conn, bId);
-		
-		if(result > 0) {	// 우선 카운트 증가 시키고 성공했으면
-			b = new BoardDao().selectBoard(conn, bId);	// 보드 객체 조회
-			System.out.println("서비스 게시글 엠 넘버            :        " + b.getM_no());
-			
-			if(loginM_no != 0 && loginM_no == b.getM_no()) {	// 조회된 보드 객체의 m_no와 로그인한 m_no와 일치하면
-				rollback(conn);	// count 롤백(증가시키지 않음)
-			}else {
-				commit(conn);	//일치하지 않으면 commit(증가)
-			}
-		}else { // 카운트 증가 실패했으면 무조건 rollback후 오류페이지 
-			rollback(conn);
+		b = new BoardDao().selectBoard(conn, bId);	
+
+		if(loginM_no == 0 || loginM_no != b.getM_no()) {	
+			int result = new BoardDao().countBoard(conn, bId);
+			commit(conn);	
+			b = new BoardDao().selectBoard(conn, bId);
+		}else {
+			rollback(conn);	
 		}
-		
-		System.out.println("최종 카운트 수 : " + b.getCount());
-		
+
 		close(conn);
 		return b;
 	}

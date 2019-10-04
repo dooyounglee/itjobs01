@@ -57,10 +57,6 @@ private Properties prop = new Properties();
 			ps=conn.prepareStatement(sql);
 			ps.setInt(1, pi.getEndRow());
 			ps.setInt(2, pi.getStartRow());
-//			ps.setInt(1, pi.getCurrentPage()*pi.getBoardLimit());
-//			ps.setInt(2, (pi.getCurrentPage()-1)*pi.getBoardLimit()+1);
-			System.out.println(pi.getCurrentPage()*pi.getBoardLimit());
-			System.out.println((pi.getCurrentPage()-1)*pi.getBoardLimit()+1);
 			rs=ps.executeQuery();
 			
 			while(rs.next()) {
@@ -78,11 +74,8 @@ private Properties prop = new Properties();
 						rs.getString(11),
 						rs.getInt(12),
 						rs.getString(13),
-
 						rs.getString(14));
-						
 				list.add(b);
-				
 			}
 			
 		} catch (SQLException e) {

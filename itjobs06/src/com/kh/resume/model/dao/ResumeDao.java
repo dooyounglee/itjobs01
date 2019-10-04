@@ -153,8 +153,8 @@ public class ResumeDao {
 			try {
 				pstmt = conn.prepareStatement(sql);
 				
-				pstmt.setInt(1, mno);
-				pstmt.setInt(2, resume_no);
+				//pstmt.setInt(1, mno);
+				pstmt.setInt(1, resume_no);
 				
 				rset = pstmt.executeQuery();
 				

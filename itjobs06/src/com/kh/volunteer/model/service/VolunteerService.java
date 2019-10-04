@@ -1,12 +1,15 @@
 package com.kh.volunteer.model.service;
 
+import static com.kh.common.JDBCTemplate.close;
+import static com.kh.common.JDBCTemplate.commit;
+import static com.kh.common.JDBCTemplate.getConnection;
+import static com.kh.common.JDBCTemplate.rollback;
+
 import java.sql.Connection;
 import java.util.ArrayList;
 
-import com.kh.notification.model.vo.Notification;
 import com.kh.volunteer.model.dao.VolunteerDao;
 import com.kh.volunteer.model.vo.Volunteer;
-import static com.kh.common.JDBCTemplate.*;
 
 public class VolunteerService {
 
@@ -17,9 +20,9 @@ public class VolunteerService {
 		return list;
 	}
 
-	public ArrayList<Notification> getMyApplyList(int m_no) {
+	public ArrayList<Volunteer> getMyApplyList(int m_no) {
 		Connection conn=getConnection();
-		ArrayList<Notification> list=new VolunteerDao().getMyApplyList(conn,m_no);
+		ArrayList<Volunteer> list=new VolunteerDao().getMyApplyList(conn,m_no);
 		close(conn);
 		return list;
 	}

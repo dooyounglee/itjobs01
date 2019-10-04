@@ -9,7 +9,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
 
-import com.kh.notification.model.vo.Notification;
 import com.kh.resume.model.dao.ResumeDao;
 import com.kh.volunteer.model.vo.Volunteer;
 
@@ -52,8 +51,8 @@ private Properties prop = new Properties();
 		return list;
 	}
 
-	public ArrayList<Notification> getMyApplyList(Connection conn, int m_no) {
-		ArrayList<Notification> list=new ArrayList<>();
+	public ArrayList<Volunteer> getMyApplyList(Connection conn, int m_no) {
+		ArrayList<Volunteer> list=new ArrayList<>();
 		PreparedStatement ps=null;
 		ResultSet rs=null;
 		
@@ -63,21 +62,18 @@ private Properties prop = new Properties();
 			ps.setInt(1, m_no);
 			rs=ps.executeQuery();
 			while(rs.next()) {
-				Notification n=new Notification(
+				Volunteer v=new Volunteer(
 						rs.getInt(1),
 						rs.getInt(2),
-						rs.getString(3),
+						rs.getInt(3),
 						rs.getDate(4)+" "+rs.getTime(4),
-						rs.getDate(5)+" "+rs.getTime(5),
-						rs.getString(6),
-						rs.getInt(7),
-						rs.getString(8),
-						rs.getString(9),
-						rs.getString(10),
-						rs.getString(11),
-						rs.getInt(12));
-				n.setV_date(rs.getString("v_date"));
-				list.add(n);
+						rs.getString(5));
+				v.setM_no(rs.getInt("m_no"));
+				v.setTitle(rs.getString("title"));
+				v.setEnd_date(rs.getString("end_date"));
+				v.setP_language(rs.getString("p_language"));
+				v.setNickname(rs.getString("nickname"));
+				list.add(v);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

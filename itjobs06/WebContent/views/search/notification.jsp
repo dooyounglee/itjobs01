@@ -7,6 +7,28 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+
+<style>
+
+	.like{
+	width:20px;
+	height:20px;
+	}
+
+	.likeimg{
+	width:20px;
+	height:20px;
+	box-sizing:border-box;
+	text-align:center;
+	}
+	
+	.likeimg:hover{
+	cursor:pointer;
+	}
+
+</style>
+
+
 </head>
 <body>
 	<%@ include file="/views/include/header.jsp" %>
@@ -27,8 +49,18 @@
 	<div id="result">
 <%	ArrayList<Notification> list=(ArrayList<Notification>)request.getAttribute("list");
 	for(Notification n:list){%>
-	<%=n %><button onclick="location.href='<%=request.getContextPath()%>/detail.co?co_no=<%=n.getCo_no()%>'">기업정보</button><br>
+	<%=n %>
+	<!-- 좋아요 버튼 -->
+	<span class="like">
+		<img src="./resources/img/like-before.png" class="likeimg" onclick="likeimg();">
+	</span>
+	
+	<button onclick="location.href='<%=request.getContextPath()%>/detail.co?co_no=<%=n.getCo_no()%>'">기업정보</button>
+	<br>	
 <%	} %>
+	
+	
+
 	</div>
 </div>
 
@@ -43,6 +75,22 @@
 		var sTextA=$('#sTextA').val();
 		$('#resultArea').load('<%=request.getContextPath()%>/notificationList.se #result',{"sText":sTextA})
 	}
+	
+	// like ajax
+	function likeimg(){
+			
+		$.ajax({
+			url:"like"
+		})
+		
+		
+		}
+		
+		
+		
+		
+		
+	
 </script>
 </body>
 </html>

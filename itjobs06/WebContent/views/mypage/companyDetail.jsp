@@ -8,6 +8,8 @@
 <title>Insert title here</title>
 </head>
 <body>
+
+
 ${co }<br>
 ${co_Info }<br>
 
@@ -18,7 +20,7 @@ ${co_Info }<br>
 <!-- 지도api -->
 <div id="map" style="width:100%;height:350px;"></div>
 
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3f8e5a5f11c657a1034900d7a303bc56&libraries=services"></script>
+<%-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3f8e5a5f11c657a1034900d7a303bc56&libraries=services"></script>
 <script>
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = {
@@ -26,6 +28,7 @@ var mapContainer = document.getElementById('map'), // 지도를 표시할 div
         level: 3 // 지도의 확대 레벨
     };  
 
+<%System.out.println("-----2-----"); %>
 // 지도를 생성합니다    
 var map = new kakao.maps.Map(mapContainer, mapOption); 
 
@@ -54,11 +57,11 @@ geocoder.addressSearch('<%=addresss[1]+" "+addresss[2]%>', function(result, stat
         });
         infowindow.open(map, marker);
 
-        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+        // 지도의 중심을 결과값으로 받은 위치로 h이동시킵니다
         map.setCenter(coords);
     } 
 });    
-</script>
+</script> --%>
 <!-- end of 지도api -->
 
 

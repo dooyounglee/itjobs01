@@ -4,6 +4,7 @@
 <%
 	Resume re = (Resume)request.getAttribute("re");
 
+
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -16,7 +17,7 @@
 <h2 align="center">이력서 작성</h2>
 <div id="first">
 	
-	<h3><%= re.getTitle()%></h3>
+	<h3><%= re.getTitle()%></h3> <!-- re제일 처음 . 을 찍었는데 여기서 오류난거면 re=null일듯. -->
 	<label name="name" id="name"><%= re.getName()%></label>
 
 	
@@ -63,7 +64,7 @@
 	<br>
 	<label><%= re.getHope_salary()%></label>
 	
-	<label><%= re.getPub()%></label>
+	<label><%= re.getOpen()%></label>
 	
 	<label><%= re.getP_language()%></label>
 		
@@ -78,6 +79,8 @@
 	<%-- <input type="hidden" name="m_no"value="<%=loginUser.get %>" --%>
 	<%-- <input type="submit" value="목록으로" onclick="location.href="<%= contextPath %>/detail.bo?bId=" + bId;"> --%>
 	
+	<button type="button"  onclick="location.href='<%=contextPath%>/updateForm.re?resume_no=<%=re.getResume_no()%>';">수정하기</button>
+	<button type="button"  onclick="location.href='<%=contextPath%>/deleteResum.re?resume_no=<%=re.getResume_no()%>';">삭제하기</button>
 	</div>
 	
 	

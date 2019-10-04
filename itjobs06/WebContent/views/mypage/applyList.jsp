@@ -20,16 +20,18 @@
 		<th>지원일</th>
 		<th>마감일</th>
 		<th>상태</th>
+		<th>지원한 내 이력서</th>
 	</tr>
-	<%	ArrayList<Notification> list=(ArrayList<Notification>)request.getAttribute("list");
-		for(Notification n:list){%>
+	<%	ArrayList<Volunteer> list=(ArrayList<Volunteer>)request.getAttribute("list");
+		for(Volunteer n:list){%>
 	<tr>
 		<td><input type=checkbox></td>
 		<td><a href="<%=request.getContextPath()%>/get.no?noti_no=<%=n.getNoti_no()%>"><%=n.getTitle() %></a></td>
-		<td><%=n.getCo_no() %></td>
-		<td>지원일1</td>
+		<td><%=n.getNickname() %></td>
+		<td><%=n.getV_date() %></td>
 		<td><%=n.getEnd_date() %></td>
-		<td>서류심사</td>
+		<td><%=n.getStatus() %></td>
+		<td><%=n.getResume_no() %></td>
 	</tr>
 	<%	} %>
 </table>

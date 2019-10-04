@@ -16,12 +16,11 @@ import com.kh.resume.model.vo.Resume;
 
 /**
  * Servlet implementation class resumDetailServlet
- */
+ */ 
 @WebServlet("/detail.re")
 public class ResumDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
+     /*  
      * @see HttpServlet#HttpServlet()
      */
     public ResumDetailServlet() {
@@ -45,7 +44,7 @@ public class ResumDetailServlet extends HttpServlet {
 		
 		Resume re= new ResumeService().selectResumDetail(mno,resume_no);
 		
-		System.out.println(re);
+		System.out.println(re);//콘솔창에 찍혔겠네. 아..null
 		
 		request.setAttribute("re", re);
 	

@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Properties;
 
@@ -87,8 +88,8 @@ public class BoardDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setInt(1, pi.getEndRow());
-			pstmt.setInt(2, pi.getStartRow());
+			pstmt.setInt(1, pi.getStartRow());
+			pstmt.setInt(2, pi.getEndRow());
 			
 			rset = pstmt.executeQuery();
 			
@@ -120,7 +121,7 @@ public class BoardDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String sql = prop.getProperty("selectEtcList");
-		
+	
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
@@ -239,8 +240,6 @@ public class BoardDao {
 		ResultSet rset = null;
 		String sql = prop.getProperty("prevEtcBoard");
 		
-		System.out.println(bId);
-		System.out.println(head);
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, head);
@@ -259,7 +258,7 @@ public class BoardDao {
 			close(rset);
 			close(pstmt);
 		}
-		System.out.println("prev"+b);
+		
 		return b;
 	}
 
@@ -288,7 +287,6 @@ public class BoardDao {
 			close(pstmt);
 		}
 		
-		System.out.println("next"+b);
 		return b;
 	}
 	
@@ -440,8 +438,9 @@ public class BoardDao {
 	}
 	
 	
-	public String selectHead(Connection conn, int b_no) {
-		String head = null;
+	public String[] selectHead(Connection conn, int b_no) {
+		String[] head = new String[2];
+		
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String sql = prop.getProperty("selectHead");
@@ -452,8 +451,9 @@ public class BoardDao {
 			
 			rset = pstmt.executeQuery();
 			
-			if(rset.next()) {
-				head = rset.getString("head");
+			while(rset.next()) {
+				head[0] = String.valueOf(rset.getString("head"));
+				head[1] = String.valueOf(rset.getInt("m_no"));
 			}
 			
 		} catch (SQLException e) {
@@ -487,6 +487,78 @@ public class BoardDao {
 		}
 		
 		return result;
+	}
+	
+	public int downCountUpBoard(Connection conn, int bId) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("downCountUpBoard");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, bId);
+			
+			result = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			close(pstmt);
+		}
+		
+		return result;
+	}
+		
+	public Board selectDownCountBoard(Connection conn, int bId) {
+		Board b = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectDownCountBoard");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, bId);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				b = new Board(rset.getInt("b_no"),
+								rset.getInt("m_no"),
+								rset.getString("nickname"),
+								rset.getString("head"),
+								rset.getString("title"),
+								rset.getString("contents"),
+								rset.getString("update_date"),
+								rset.getString("file_oriname"),
+								rset.getString("time"),
+								rset.getInt("count"),
+								rset.getString("editfile"),
+								rset.getString("path"),
+								rset.getInt("down_count"),
+								rset.getInt("reply_count"));	
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return b;
+		
+		
+		
 		
 	}
+		
+	
+	
+	
+	
+	
+	
 }

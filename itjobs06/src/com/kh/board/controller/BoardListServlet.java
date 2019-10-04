@@ -35,7 +35,6 @@ public class BoardListServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		
 		String head = request.getParameter("head");
-		
 		int listCount = 0;
 		
 		if(head.equals("main")) {

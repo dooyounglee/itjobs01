@@ -37,8 +37,6 @@ public class BoardInsertServlet extends HttpServlet {
 	 */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		// TODO Auto-generated method stub
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
 
 		if(ServletFileUpload.isMultipartContent(request)) {
 			int maxSize = 10*1024*1024;
@@ -62,12 +60,8 @@ public class BoardInsertServlet extends HttpServlet {
 				}
 			}
 		
-		
-	//		HttpSession session = request.getSession();
-	//		int m_no = ((Member)session.getAttribute("mem")).getM_no();
-	//		String m_noStr = String.valueOf(m_no);
-	//		String m_no = String.valueOf(((Member)request.getSession().getAttribute("loginUser")).getM_no());
-			int m_no = 1;
+
+			int m_no = Integer.parseInt(multiRequest.getParameter("m_no"));
 			String head = multiRequest.getParameter("writehead");
 			String title = multiRequest.getParameter("title");
 			String contents = multiRequest.getParameter("content");

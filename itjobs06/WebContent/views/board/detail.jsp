@@ -136,13 +136,14 @@
             <div id="topArea">
                 <div id="headArea"><%= b.getHead() %></div>
                 <div id="topBtn">
-                	<%if(mem.getM_no() == b.getM_no()) { %>
+                
+                	<%if(mem != null && mem.getM_no() == b.getM_no()) { %>
                     <div onclick="deleteBtn()">삭제</div>
                     <div onclick="location.href='<%=contextPath %>/updateForm.bo?bId=<%=b.getB_no()%>';">수정</div>
                     <%}else{ %>
                     <div onclick="location.href='<%=contextPath %>/insertForm.de?bId=<%=b.getB_no()%>&title=<%=b.getTitle()%>';">신고</div>
-                   <%} %>
-                 
+                   	<%}%>
+                   	
                 </div>
             </div>
             <br>
@@ -154,18 +155,30 @@
 	            <div id="img2_1">30</div>
             </div>
             <div id="nickname"><%=b.getNickname() %></div>
+            <div id="updateDate"><%=b.getUpdate_date() %></div>
+            
             <br>
             <div id="content"><%=b.getContents() %><br><br>
+            <%if(b.getEditFile() != null){ %>
             	<img id="img" src="<%= contextPath %>/resources/fileupload_board/<%= b.getEditFile()%>">
+            <% } %>
             </div>
         
         	<br>
             <div id="nextArea">
+            <%if(prev.getTitle() != null){ %>
                 <div>이전글 - <%=prev.getTitle() %> </div>
+             <%}else { %>
+             	<div>이전글 - 이전 글이 없습니다.</div>
+             <%} %>
+             <%if(next.getTitle() != null){ %>
                 <div>다음글 - <%=next.getTitle() %> </div>
+              <%}else { %>
+             	 <div>다음글 - 다음 글이 없습니다.</div>
+              <%} %>
             </div>
         	<button onclick="location.href='<%= contextPath %>/download.bo?bId=<%=b.getB_no()%>';">다운로드</button>
-        
+        	<div>다운로드 횟수 - <%= b.getDown_count() %></div>
         
         
         </div>

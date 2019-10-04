@@ -32,10 +32,15 @@
 		<td><%=v.getResume_no() %></td>
 		<td><%=v.getV_date() %></td>
 		<td><%=v.getStatus() %></td>
-		<td><button>이력서 보기</button></td>
+		<td><button onclick="showResume(<%=v.getResume_no()%>)">이력서 보기</button></td>
 	</tr>
 	<%	} %>
 </table>
+<script>
+	function showResume(resume_no){
+		location.href="detail.re?resume_no="+resume_no
+	}
+</script>
 <%@ include file="/views/include/footer.jsp" %>
 </body>
 </html>

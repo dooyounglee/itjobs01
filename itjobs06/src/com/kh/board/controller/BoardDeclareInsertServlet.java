@@ -13,16 +13,16 @@ import com.kh.board.model.service.BoardService;
 import com.kh.member.model.vo.Member;
 
 /**
- * Servlet implementation class BoardDeclareInsertFormServlet
+ * Servlet implementation class BoardDeclareInsertServlet
  */
-@WebServlet("/insertForm.de")
-public class BoardDeclareInsertFormServlet extends HttpServlet {
+@WebServlet("/insert.de")
+public class BoardDeclareInsertServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardDeclareInsertFormServlet() {
+    public BoardDeclareInsertServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,17 +31,23 @@ public class BoardDeclareInsertFormServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String bId = request.getParameter("bId");
-		String title = request.getParameter("title");
-		String boardNick = request.getParameter("boardNick");
+		int bId = Integer.parseInt(request.getParameter("bId"));
+		String content = request.getParameter("declare_content");
 		String head= request.getParameter("head");
 		
-		request.setAttribute("bId", bId);
-		request.setAttribute("title",title);
-		request.setAttribute("boardNick",boardNick);
-		request.setAttribute("head",head);
+		HttpSession session = request.getSession();
+	    Member mem=(Member)session.getAttribute("mem");
+	    int m_no = mem.getM_no();
+	
+	    int result = new BoardService().insertDeclareBoard(bId, m_no, content);
+	
+	    if(result > 0) {
+	    	response.sendRedirect("detail.bo?head="+head+"&bId="+bId);
+	    }else {
+	    	request.setAttribute("msg", "신고 실패");
+	    	request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
+	    }
 		
-		request.getRequestDispatcher("views/declare/declare.jsp").forward(request, response);
 	}
 
 	/**

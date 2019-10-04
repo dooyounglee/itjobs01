@@ -59,6 +59,7 @@ public class BoardDetailServlet extends HttpServlet {
 		}else {
 			
 			if(head.equals("main")) {
+				System.out.println("메인으로 왔다.");
 				prev = new BoardService().prevMainBoard(bId);
 				next = new BoardService().nextMainBoard(bId);
 			}else {

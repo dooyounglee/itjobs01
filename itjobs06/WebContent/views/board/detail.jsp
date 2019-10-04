@@ -141,7 +141,7 @@
                     <div onclick="deleteBtn()">삭제</div>
                     <div onclick="location.href='<%=contextPath %>/updateForm.bo?bId=<%=b.getB_no()%>';">수정</div>
                     <%}else{ %>
-                    <div onclick="location.href='<%=contextPath %>/insertForm.de?bId=<%=b.getB_no()%>&title=<%=b.getTitle()%>';">신고</div>
+                    <div onclick="location.href='<%=contextPath %>/insertForm.de?bId=<%=b.getB_no()%>&title=<%=b.getTitle()%>&boardNick=<%=b.getNickname()%>&head=<%=b.getHead()%>';">신고</div>
                    	<%}%>
                    	
                 </div>

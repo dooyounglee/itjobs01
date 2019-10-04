@@ -186,7 +186,7 @@ public class BoardDao {
 			pstmt.setInt(1, bId);
 			
 			rset = pstmt.executeQuery();
-			
+		
 			if(rset.next()) {
 				b = new Board(rset.getInt("b_no"),
 								rset.getInt("m_no"),
@@ -204,7 +204,7 @@ public class BoardDao {
 								rset.getInt("reply_count"));	
 			}
 			
-			
+	
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -251,7 +251,7 @@ public class BoardDao {
 			
 				b.setTitle(rset.getString("title"));
 			}
-					
+		
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -305,7 +305,7 @@ public class BoardDao {
 			if(rset.next()) {
 				b.setTitle(rset.getString("title"));
 			}
-					
+			System.out.println(rset.getString("title"));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -467,7 +467,7 @@ public class BoardDao {
 	}
 	
 	
-	public int insertDeclareBoard(Connection conn, int bId, String title) {
+	public int insertDeclareBoard(Connection conn, int bId, int m_no, String content) {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("insertDeclare");
@@ -476,6 +476,8 @@ public class BoardDao {
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setInt(1, bId);
+			pstmt.setInt(2, m_no);
+			pstmt.setString(3, content);
 			
 			result = pstmt.executeUpdate();
 			

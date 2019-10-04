@@ -150,20 +150,66 @@ public int insertResum(Resume re){
 		return list;
 	}
 	
-public int deleteResume(int resume_no){
+	public int deleteResume(int resume_no){
 		
 		Connection conn = getConnection();
 		
 		int result = new ResumeDao().deleteResume(conn,resume_no);
+		// result = 0이면 이력서 삭제 실패 --> 지원중인지 확인 
+		//			1이면 이력서 삭제 성공 
+		
+		
+		
+		
 		System.out.println(result+" ㅅㅓㅂㅣㅅㅡ");
+		
 		if(result > 0){
+			commit(conn);
+			
+		}else{
+			rollback(conn);
+			
+		}
+		close(conn);
+		
+		return result;
+		
+	}
+	
+	public int supportResume(int resume_no){
+		
+		Connection conn = getConnection();
+		
+		int su_result = new ResumeDao().supportResume(conn,resume_no);
+		
+		if(su_result > 0){
+			commit(conn);
+			
+		}else{
+			rollback(conn);
+			
+		}
+		close(conn);
+		
+		return su_result;
+		
+	}
+		
+
+
+	public int updateResume(Resume re){
+		
+		Connection conn = getConnection();
+		
+		int result = new ResumeDao().updateResume(conn,re);
+		
+		if(result >0 ){
 			commit(conn);
 		}else{
 			rollback(conn);
 		}
 		close(conn);
 		return result;
-		
 	}
 	
 	

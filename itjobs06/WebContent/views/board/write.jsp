@@ -64,6 +64,9 @@
 	<div id="headArea"><h1 align="left">새 글 작성</h1></div>
 	<form action="<%=contextPath%>/insert.bo?head=<%=head%>" method="post" enctype="multipart/form-data" id="form">
 		<input type="hidden" value="<%= clickHead %>" name="clickHead">
+		<input type="hidden" value="<%= mem.getM_no() %>" name="m_no">
+		
+		
 		<div id="tableArea">
 			<table>
 				<tr>
@@ -143,13 +146,9 @@
 		
 		function fileName(value){
 			if(value.files && value.files[0]){
-				var filename = $("#file1").val();
-				
-					$("#fileAddArea").text(filename);
-				
-				
-			}
 			
+				$("#fileAddArea").text(value.files[0].name);
+			}
 		}
 		
 	</script>

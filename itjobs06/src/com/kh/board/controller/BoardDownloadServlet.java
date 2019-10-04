@@ -36,7 +36,10 @@ public class BoardDownloadServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int bId = Integer.parseInt(request.getParameter("bId"));
 		
-		Board b = new BoardService().selectBoard(bId);
+		Board b = new BoardService().selectDownCountBoard(bId);
+		 
+		System.out.println("***************   다운로드 서블릿 :            " + b);
+		
 		
 		File downFile = new File(request.getSession().getServletContext().getRealPath("/resources")+"/fileupload_board/" + b.getEditFile());
 		String oriName = new String(b.getFile().getBytes("UTF-8"),"ISO-8859-1");

@@ -74,19 +74,20 @@ public class BoardService {
 	 * @param bId
 	 * @return
 	 */
-	public Board selectBoard(int bId) {
+	public Board selectBoard(int bId, int loginM_no) {
 		Connection conn = getConnection();
+		Board b = null;
 		
-		int result = new BoardDao().countBoard(conn, bId);
-		
-		Board b = new Board();
-		if(result > 0) {
-			commit(conn);
-			 b = new BoardDao().selectBoard(conn, bId);
+		b = new BoardDao().selectBoard(conn, bId);	
+
+		if(loginM_no == 0 || loginM_no != b.getM_no()) {	
+			int result = new BoardDao().countBoard(conn, bId);
+			commit(conn);	
+			b = new BoardDao().selectBoard(conn, bId);
 		}else {
-			rollback(conn);
+			rollback(conn);	
 		}
-		
+
 		close(conn);
 		return b;
 	}
@@ -228,10 +229,10 @@ public class BoardService {
 		return result;
 	}
 	
-	public String selectHead(int b_no) {
+	public String[] selectHead(int b_no) {
 		Connection conn = getConnection();
 		
-		String head = new BoardDao().selectHead(conn, b_no);
+		String[] head = new BoardDao().selectHead(conn, b_no);
 	
 		close(conn);
 		return head;
@@ -251,7 +252,22 @@ public class BoardService {
 		return result;
 	}
 	
-	
+	public Board selectDownCountBoard(int bId) {
+		Connection conn = getConnection();
+		Board b = null;
+		
+		int result = new BoardDao().downCountUpBoard(conn, bId);
+		
+		if(result > 0) {
+			commit(conn);
+			b = new BoardDao().selectDownCountBoard(conn, bId);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		return b;
+	}
 	
 	
 	

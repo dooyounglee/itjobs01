@@ -34,7 +34,10 @@ public class ResumDeleteServlet extends HttpServlet {
 		
 	int resume_no = Integer.parseInt(request.getParameter("resume_no"));
 	
-	int result = new ResumeService().deleteResume(resume_no);
+	//지원중인 지원서인지? 0이면 좋아요삭제,이력서삭제
+	//				1이면 지원취소하고 삭제하라고 해
+	
+	//int result = new ResumeService().deleteResume(resume_no);
 	
 	if(result > 0) {
 		response.sendRedirect("list.re");

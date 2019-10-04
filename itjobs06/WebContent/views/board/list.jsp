@@ -1,8 +1,8 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="com.kh.board.model.vo.*, java.util.ArrayList"%>
 <%
 	Board b = (Board)request.getAttribute("b");
-
 	PageInfo pi = (PageInfo)request.getAttribute("pi");  
 	ArrayList<Board> list = (ArrayList<Board>)request.getAttribute("list");
 	
@@ -81,7 +81,7 @@
 		<br>
 		<div id="headArea"><h1 align="left"><%= head %>게시판</h1></div>
 		<div id="writeBtnArea">
-		<div id="writeBtn" onclick="location.href='<%= contextPath %>/insertForm.bo?head=<%=head%>';">글쓰기</div>
+		<div id="writeBtn" onclick="writeBtn()">글쓰기</div>
 		<%-- <button id="writeBtn" onclick="writeBtn1()">글쓰기</button>--%>
 	
 		
@@ -117,14 +117,14 @@
 						<% if(head.equals("study") || head.equals("project")){ %>
 						<td><%= i.getTime() %></td>				
 						<% } %>		
-						<td><%= i.getEnroll_date() %></td>				
+						<td><%= i.getUpdate_date() %></td>				
 						<td><%= i.getCount() %></td>				
 					</tr>
 					<% } %>
 				<% } %>
 			</table>
 		</div>
-		
+			
 		<script>
 			$(function(){
 				$("#listArea td").mouseenter(function(){
@@ -135,8 +135,11 @@
 				}).click(function(){
 					// eq(0).text()를 통해 글번호만 알아오기
 					var bId = $(this).parent().children().eq(0).text();
-					location.href="<%= contextPath %>/detail.bo?head=<%=head%>&bId=" + bId;
-				
+					<%if(mem != null){%>
+						location.href="<%= contextPath %>/detail.bo?head=<%=head%>&m_no=<%=mem.getM_no()%>&bId=" + bId;
+					<%}else{%>
+						location.href="<%= contextPath %>/detail.bo?head=<%=head%>&bId=" + bId;
+					<%}%>
 				});
 				
 			});
@@ -180,13 +183,13 @@
 			$(".pagingArea").children().css("background","lightgray");
 		});
 		
-		<%-- function writeBtn1(){
-			if(<%= mem.getM_no() %> != null){
+		function writeBtn(){
+			<%if(mem != null) {%>
 				location.href='<%= contextPath %>/insertForm.bo?head=<%=head%>';
-			}else{
+			<%}else{%>
 				alert('로그인을 해야 글쓰기가 가능합니다.');
-			}
-		}  --%>
+			<%}%>
+		}  
 		
 		<%-- $(function(){
 			$("#writeBtn").click(function(){

@@ -6,9 +6,89 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+<!-- import jobx -->
+<%@ include file="/views/include/user/style.jsp" %>
+<!-- End of import from jobx -->
+
 </head>
 <body>
-<%@ include file="/views/include/header.jsp" %>
+	<header id="home" class="hero-area">
+	<%@ include file="/views/include/user/header_nav.jsp" %>
+	</header>
+
+	<!-- page-header -->
+	<%@ include file="/views/include/user/page_header.jsp" %>
+	<script>
+		var page_header_title='내 정보 수정'
+	</script>
+	<!-- end of page-header -->
+
+
+	<!-- content -->
+	<div id="content">
+	
+		<!-- container -->
+		<div class="container">
+			
+			<!-- row -->
+			<div class="row">
+				
+				<!-- left -->
+				<%@ include file="/views/include/user/mypage_menu.jsp" %>
+				<!-- End of left -->
+				
+				<!-- right  -->
+				<div class="col-md-8 col-sm-8 col-xs-12">
+					<div class="job-alerts-item">
+						<h3 class="alerts-title">정보 변경</h3>
+						<form class="form" action="changePw.me" method="post" autocomplete=off>
+							<div class="form-group is-empty">
+								<label class="control-label">현재 비밀번호*</label> <input
+									class="form-control" type="text" name="pw"> <span
+									class="material-input"></span>
+							</div>
+							<div class="form-group is-empty">
+								<label class="control-label">새로운 비밀번호*</label> <input
+									class="form-control" type="text" name="newPw"> <span
+									class="material-input"></span>
+							</div>
+							<div class="form-group is-empty">
+								<label class="control-label">새로운 비밀번호 확인*</label> <input
+									class="form-control" type="text" name="checkPw"> <span
+									class="material-input"></span>
+							</div>
+							<button id="submit" class="btn btn-common">Save Change</button>
+						</form>
+						<hr>
+						<form class="form" action="update.me" method="post" autocomplete=off>
+							<div class="form-group is-empty">
+								<label class="control-label">닉네임 변경</label> <input
+									class="form-control" type="text" name="nickname" value="${mem.nickname }"> <span
+									class="material-input"></span>
+							</div>
+							<button id="submit" class="btn btn-common">Save Change</button>
+						</form>
+					</div>
+				</div>
+				<!-- End of right -->
+				
+			</div>
+			<!-- End of row -->
+			
+		</div>
+		<!-- End of container -->
+	</div>
+	<!-- End of content -->
+	
+	
+	
+	
+	
+	
+	
+	
+	<%@ include file="/views/include/header.jsp" %>
 <form action="update.me" method="post" autocomplete="off">
 	${mem }<br>
 	닉네임수정:<input name=nickname value="<%=mem.getNickname()%>"><br>
@@ -136,6 +216,29 @@
 		return false;
 	}
 </script>
-<%@ include file="/views/include/footer.jsp" %>
+
+	<!-- footer -->
+		<%@ include file="/views/include/user/footer.jsp" %>
+	<!-- End of footer -->
+	
+	<!-- back to top button -->
+		<a href="#" class="back-to-top"> <i class="lni-arrow-up"></i></a>
+	<!-- End of back to top button -->
+	
+	<!-- 뭔지 모르겠어 -->
+	<div id="preloader">
+		<div class="loader" id="loader-1"></div>
+	</div>
+	<!-- 뭔지 모르겠어 -->
+
+
+	<!-- import of jobx -->
+	<%@ include file="/views/include/user/js.jsp" %>
+	<!-- End of import of jobx -->
+
+<script>
+	$('.inner-header').children('h3').text(page_header_title)
+</script>
+	
 </body>
 </html>

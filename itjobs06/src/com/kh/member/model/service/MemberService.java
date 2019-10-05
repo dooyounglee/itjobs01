@@ -41,7 +41,6 @@ public class MemberService {
 	public int insertMember(Member m) {
 		Connection conn = getConnection();
 		int result = new MemberDao().joinMember(conn, m);
-		System.out.println(m.getM_no()+"mNo");
 		if (result > 0) {
 			commit(conn);
 		} else {
@@ -78,9 +77,7 @@ public class MemberService {
 	public int update(Member m, Co_Info co) {
 		Connection conn = getConnection();
 		int result1 = new MemberDao().update(conn, m);
-		System.out.println(result1);
 		int result2 = new MemberDao().update(conn, co);
-		System.out.println(result2);
 
 		int result = 0;
 		if (result1 > 0 && result2 > 0) {

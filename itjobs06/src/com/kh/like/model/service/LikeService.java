@@ -48,9 +48,9 @@ public class LikeService {
 		return result;
 	}
 
-	public int deleteResume(int resume_no, int m_no) {
+	public int deleteResume(int resume_no, int co_no) {
 		Connection conn=getConnection();
-		int result=new LikeDao().deleteResume(conn,resume_no,m_no);
+		int result=new LikeDao().deleteResume(conn,resume_no,co_no);
 		close(conn);
 		return result;
 	}

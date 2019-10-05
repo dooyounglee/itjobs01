@@ -30,9 +30,13 @@ public class BoardDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("디테일 서블릿 " + request.getParameter("bId"));
 		int bId = Integer.parseInt(request.getParameter("bId"));
 		String head = request.getParameter("head");
+		int loginM_no = 0;
+		
+		if(request.getParameter("m_no") != null) {	// 로그인 했을 때만 실행되게
+			loginM_no = Integer.parseInt(request.getParameter("m_no"));
+		}
 		
 		Board prev = new Board();
 		Board next = new Board();
@@ -44,16 +48,18 @@ public class BoardDetailServlet extends HttpServlet {
 		case "qna" : head="공지사항"; break;
 		case "form" : head="서식"; break;
 		case "qu" : head="문의사항"; break;
-		default : return;
+		default : break;
 		}
 		
-		Board b = new BoardService().selectBoard(bId);
-		
+		Board b = new BoardService().selectBoard(bId, loginM_no);
+
+
 		if(b == null) {
 			request.setAttribute("msg", "조회실패");
 		}else {
 			
 			if(head.equals("main")) {
+				System.out.println("메인으로 왔다.");
 				prev = new BoardService().prevMainBoard(bId);
 				next = new BoardService().nextMainBoard(bId);
 			}else {

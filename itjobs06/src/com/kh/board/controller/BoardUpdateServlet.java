@@ -56,17 +56,13 @@ public class BoardUpdateServlet extends HttpServlet {
 
 				}
 			}
-		
-		
-	//		HttpSession session = request.getSession();
-	//		int m_no = ((Member)session.getAttribute("mem")).getM_no();
-	//		String m_noStr = String.valueOf(m_no);
-	//		String m_no = String.valueOf(((Member)request.getSession().getAttribute("loginUser")).getM_no());
 			
 			int b_no = Integer.parseInt(multiRequest.getParameter("b_no"));
 			int m_no = Integer.parseInt(multiRequest.getParameter("m_no"));
 			String strB_no = multiRequest.getParameter("b_no");
-		
+			
+			System.out.println(strB_no + "**************************");
+			
 			String head = multiRequest.getParameter("writehead");
 			String title = multiRequest.getParameter("title");
 			String contents = multiRequest.getParameter("content");
@@ -87,12 +83,10 @@ public class BoardUpdateServlet extends HttpServlet {
 			int result = new BoardService().updateBoard(b);
 			
 			if(result > 0) {
-				String afterHead = new BoardService().selectHead(b_no);
-				System.out.println("업댓서블릿헤드 " + afterHead);
-				System.out.println("업댓서블릿비넘 " + strB_no);
-				request.setAttribute("head", afterHead);
-				request.setAttribute("bId", strB_no);
-				request.getRequestDispatcher("detail.bo").forward(request, response);
+				String[] afterHeadAry = new BoardService().selectHead(b_no);
+				String afterHead = afterHeadAry[0];		// M_no받아오는 디테일 서블릿이랑 sql구문 같이쓰려고 배열로 받음 [0]은 해당 게시글 head, [1]은 해당게시글 m_no
+	
+				response.sendRedirect("detail.bo?head="+afterHead+"&bId=" + strB_no);
 			}else {
 				request.setAttribute("msg", "게시글 등록 실패");
 				request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);

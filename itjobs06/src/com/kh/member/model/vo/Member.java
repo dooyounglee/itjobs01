@@ -12,6 +12,10 @@ public class Member {
 	private String status;
 	private int d_count;
 	
+	private String address;	//기업주소
+	private int NumberOfNotification;
+	
+	
 	public Member() {}
 	
 	public Member(int m_no) {
@@ -106,6 +110,22 @@ public class Member {
 
 	public void setD_count(int d_count) {
 		this.d_count = d_count;
+	}
+	
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public int getNumberOfNotification() {
+		return NumberOfNotification;
+	}
+
+	public void setNumberOfNotification(int numberOfNotification) {
+		NumberOfNotification = numberOfNotification;
 	}
 
 	@Override

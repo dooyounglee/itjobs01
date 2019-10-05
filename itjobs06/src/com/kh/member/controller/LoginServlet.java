@@ -60,10 +60,8 @@ public class LoginServlet extends HttpServlet {
 		m.setEmail(email);
 		m.setPw(pw);
 		m.setType(type);
-		System.out.println(m);
 		
 		Member mem=new MemberService().login(m);
-		System.out.println(mem);
 		if(mem!=null) {
 			HttpSession session = request.getSession();
 			session.setAttribute("mem", mem);

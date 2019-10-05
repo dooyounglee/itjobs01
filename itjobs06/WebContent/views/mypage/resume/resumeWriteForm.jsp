@@ -37,19 +37,19 @@
 	#academyInfo{
 	/* display:none; */
 	}
-	#academy,#carrer{
+	#academy,#career{
 	margin-left:100px;
 	}
 	
-	#carrerList,#carrerList2,#cerList,,#resum_title{
+	#careerList,#careerList2,#cerList,,#resum_title{
 	border:1px solid black;
 	}
 	
-	#carrerList2,#cerList2{
+	#careerList2,#cerList2{
 	display:none;	
 	}
 	
-	#carrerList2{
+	#careerList2{
 	margin-bottom:100px;
 	}
 
@@ -141,29 +141,29 @@
 
 <br><br>
 
-<div id="carrer">
+<div id="career">
 	<h3>경력 사항</h3>
 	<input type="radio" name="career" value="N" checked>신입
 	<input type="radio" name="career" value="Y" >경력
-	<input type="button" onclick="add_div()" name="carrerInsert" value="+ 경력추가하기" disabled>
-	<div id="carrerList">
-	
-		<label>근무 회사명</label>
-		<input type="text" name="companyName" value="1"><br><br>
-		 
-		<label>업무 내용 </label>
-		<input type="text" name="workList" value="1"><br><br>
-		
-		<label>근무 일자</label>
-		<input type="date" name="workDate1" value="2010-01-01"> ~
-		<input type="date" name="workDate2" value="2010-01-01">
-		<br><br>
-
+	<input type="button" onclick="add_career()" value="+ 경력추가하기">
+	<div id="careerList">
+		<div id="careerForm">
+			<label>근무 회사명</label>
+			<input type="text" name="companyName" value="1"><br><br>
+			 
+			<label>업무 내용 </label>
+			<input type="text" name="workList" value="1"><br><br>
+			
+			<label>근무 일자</label>
+			<input type="date" name="workDate1" value="2010-01-01"> ~
+			<input type="date" name="workDate2" value="2010-01-01">
+			<br><br>
+		</div>
 	</div>
 
 	<br>
 	
-<!-- 	<div id="carrerList2">
+<!-- 	<div id="careerList2">
 	<br>---------------------------------------------------------------------------<br><br>
 	
 	
@@ -178,7 +178,7 @@
 	<input type="date" id="workDate2" name="workDate2">
 
 	<br>
-	<input type="button" value="삭제하기" id="carrerDelete" name="carrerDelete" onclick="remove_div(this)">
+	<input type="button" value="삭제하기" id="careerDelete" name="careerDelete" onclick="remove_div(this)">
 	
 	
 	</div> -->
@@ -188,15 +188,17 @@
 	
 	<div id="cer">
 	<h3>자격증</h3>
-	<input type="button" name="cerInsert" value="+ 자격증 추가하기" onclick="add_cer()" disabled>
+	<input type="button" value="+ 자격증 추가하기" onclick="add_cer()">
 	<div id="cerList">
-	<label>자격증명</label>
-	<input type="text" name="cer_name" value="1"><br><br>
-	<label>취득날짜</label>
-	<input type="date" name="cer_date"  value="2010-01-01">
-	
-	
-	<br>
+		<div id="cerForm">
+			<label>자격증명</label>
+			<input type="text" name="cer_name" value="1"><br><br>
+			<label>취득날짜</label>
+			<input type="date" name="cer_date"  value="2010-01-01">
+			
+			
+			<br>
+		</div>
 	</div>
 	
 	<!-- <div id="cerList2">
@@ -309,20 +311,20 @@ function setDisplay(){
     }
 }
 
-function add_div(){
+/* function add_div(){
 
     var div = document.createElement('div');
 
-    div.innerHTML = document.getElementById('carrerList2').innerHTML 
+    div.innerHTML = document.getElementById('careerList2').innerHTML 
 
-    document.getElementById('carrerList').appendChild(div);
+    document.getElementById('careerList').appendChild(div);
     
     
     }
     
 function remove_div(obj){
 
-	document.getElementById('carrerList').removeChild(obj.parentNode);
+	document.getElementById('careerList').removeChild(obj.parentNode);
 
 	}
 	
@@ -353,9 +355,45 @@ function selectInput(){
 	
 	
 }
+ */
+	function add_career(){
+	/* 	 var form=$('#careerForm')
+		 var str=form.html();
+		 str=str.replace('</div>','<button onclick="del_career()">삭제</button></div>')
+		 console.log(str)
+		 $('#careerList').append(str) */
+	 	var str='<div id="careerForm">';
+		str+='<label>근무 회사명</label>';
+		str+='<input type="text" name="companyName" value="1"><br><br>';
+		str+='<label>업무 내용 </label>';
+		str+='<input type="text" name="workList" value="1"><br><br>';
+		str+='<label>근무 일자</label>';
+		str+='<input type="date" name="workDate1" value="2010-01-01"> ~';
+		str+='<input type="date" name="workDate2" value="2010-01-01">';
+		str+='<br><br>';
+		str+='<span class="del_career" style="cursor:pointer;">삭제</span></div>';
+		str+='</div>';
+		$('#careerList').append(str)
+	}
+	$(document).on('click','.del_career',function(){
+		$(this).closest('div #careerForm').remove();
+	})
 
-
-
+	function add_cer(){
+		
+		var str='<div id="cerForm">';
+		str+='<label>자격증명</label>';
+		str+='<input type="text" name="cer_name" value="1"><br><br>';
+		str+='<label>취득날짜</label>';
+		str+='<input type="date" name="cer_date"  value="2010-01-01">';
+		str+='<br>';
+		str+='<span class="del_cer" style="cursor:pointer;">삭제</span></div>';
+		str+='</div>';
+		$('#cerList').append(str)
+	}
+	$(document).on('click','.del_cer',function(){
+		$(this).closest('div #cerForm').remove();
+	})
 
 </script>
 

@@ -50,7 +50,6 @@ public class LikeDao {
 						rs.getDate(7)+" "+rs.getTime(7),
 						rs.getString(8),
 						rs.getInt(9)));
-				System.out.println(list);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -72,19 +71,14 @@ public class LikeDao {
 			ps.setInt(1, m_no);
 			rs=ps.executeQuery();
 			while(rs.next()) {
-				list.add(new Notification(
-						rs.getInt(1),
-						rs.getInt(2),
-						rs.getString(3),
-						rs.getDate(4)+" "+rs.getTime(4),
-						rs.getDate(5)+" "+rs.getTime(5),
-						rs.getString(6),
-						rs.getInt(7),
-						rs.getString(8),
-						rs.getString(9),
-						rs.getString(10),
-						rs.getString(11),
-						rs.getInt(12)));
+				Notification n=new Notification();
+				n.setNoti_no(rs.getInt("noti_no"));
+				n.setTitle(rs.getString("title"));
+				n.setEnroll_date(rs.getDate("enroll_date")+" "+rs.getTime("enroll_date"));
+				n.setEnd_date(rs.getDate("end_date")+" "+rs.getTime("end_date"));
+				n.setAddress(rs.getString("address"));
+				n.setNickname(rs.getString("nickname"));
+				list.add(n);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -132,7 +126,6 @@ public class LikeDao {
 						rs.getString(23),
 						rs.getInt(24)));
 			}
-			System.out.println(list);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

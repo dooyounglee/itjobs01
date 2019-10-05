@@ -23,22 +23,22 @@
 							Home </a></li>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false"> Pages </a>
+						aria-haspopup="true" aria-expanded="false"> 게시판 </a>
 						<ul class="dropdown-menu">
-							<li><a class="dropdown-item" href="about.html">About</a></li>
-							<li><a class="dropdown-item" href="job-page.html">Job
-									Page</a></li>
-							<li><a class="dropdown-item" href="job-details.html">Job
-									Details</a></li>
-							<li><a class="dropdown-item" href="resume.html">Resume
-									Page</a></li>
-							<li><a class="dropdown-item" href="privacy-policy.html">Privacy
-									Policy</a></li>
-							<li><a class="dropdown-item" href="faq.html">FAQ</a></li>
+							<li><a class="dropdown-item" href="<%=request.getContextPath()%>/list.bo?head=main">전체</a></li>
+							<li><a class="dropdown-item" href="<%=request.getContextPath()%>/list.bo?head=free">자유</a></li>
+							<li><a class="dropdown-item" href="<%=request.getContextPath()%>/list.bo?head=study">스터디</a></li>
+							<li><a class="dropdown-item" href="<%=request.getContextPath()%>/list.bo?head=project">프로젝트</a></li>
+							<li><a class="dropdown-item" href="<%=request.getContextPath()%>/list.bo?head=qna">공지사항</a></li>
+							<li><a class="dropdown-item" href="<%=request.getContextPath()%>/list.bo?head=form">서식</a></li>
 							<li><a class="dropdown-item" href="pricing.html">Pricing
 									Tables</a></li>
 							<li><a class="dropdown-item" href="contact.html">Contact</a></li>
 						</ul></li>
+					<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/notificationList.se">
+							공고검색 </a></li>
+					<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/resumeList.se">
+							인재검색 </a></li>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"
 						aria-haspopup="true" aria-expanded="false"> Candidates </a>
@@ -84,8 +84,8 @@
 							Contact </a></li>
 					<li class="nav-item"><a class="nav-link" href="login.html">Sign
 							In</a></li>
-					<li class="button-group"><a href="post-job.html"
-						class="button btn btn-common">Post a Job</a></li>
+					<li class="button-group"><a href="<%=request.getContextPath()%>/views/admin/main.jsp"
+						class="button btn btn-common">관리자</a></li>
 				</ul>
 			</div>
 		</div>

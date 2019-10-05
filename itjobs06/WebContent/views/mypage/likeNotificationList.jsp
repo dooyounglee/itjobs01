@@ -228,7 +228,7 @@
 	</tr>
 </table>
 
-<!-- footer -->
+	<!-- footer -->
 		<%@ include file="/views/include/user/footer.jsp" %>
 	<!-- End of footer -->
 	

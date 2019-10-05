@@ -5,7 +5,7 @@
 		<h4>Manage Account</h4>
 		<ul class="list-item">
 			<li><a href="resume.html">이력서 관리</a></li>
-			<li><a href="bookmarked.html">내가 지원한 공고</a></li>
+			<li><a href="bookmarked.html">내가 지원한 기업</a></li>
 			<li><a href="notifications.html">Notifications <span
 					class="notinumber">2</span></a></li>
 			<li><a href="<%=request.getContextPath()%>/myCompanyList.like">관심기업</a></li>

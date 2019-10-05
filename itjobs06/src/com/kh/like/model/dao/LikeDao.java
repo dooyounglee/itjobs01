@@ -40,16 +40,12 @@ public class LikeDao {
 			ps.setInt(1, m_no);
 			rs=ps.executeQuery();
 			while(rs.next()) {
-				list.add(new Member(
-						rs.getInt(1),
-						rs.getString(2),
-						rs.getString(3),
-						rs.getString(4),
-						rs.getString(5),
-						rs.getDate(6)+" "+rs.getTime(6),
-						rs.getDate(7)+" "+rs.getTime(7),
-						rs.getString(8),
-						rs.getInt(9)));
+				Member m=new Member();
+				m.setM_no(rs.getInt("co_no"));
+				m.setNickname(rs.getString("nickname"));
+				m.setAddress(rs.getString("address"));
+				m.setNumberOfNotification(rs.getInt("t"));
+				list.add(m);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

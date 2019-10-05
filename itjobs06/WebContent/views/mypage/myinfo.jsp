@@ -6,9 +6,96 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+<!-- import jobx -->
+<link rel="stylesheet" href="resources/jobx/assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="resources/jobx/assets/css/line-icons.css">
+<link rel="stylesheet" href="resources/jobx/assets/css/owl.carousel.min.css">
+<link rel="stylesheet" href="resources/jobx/assets/css/owl.theme.default.css">
+<link rel="stylesheet" href="resources/jobx/assets/css/slicknav.min.css">
+<link rel="stylesheet" href="resources/jobx/assets/css/animate.css">
+<link rel="stylesheet" href="resources/jobx/assets/css/main.css">
+<link rel="stylesheet" href="resources/jobx/assets/css/responsive.css">
+<!-- End of import from jobx -->
+
 </head>
 <body>
-<%@ include file="/views/include/header.jsp" %>
+	<header id="home" class="hero-area">
+		<%@ include file="/views/include/user/header_nav.jsp" %>
+	</header>
+
+	<!-- page-header -->
+	<%@ include file="/views/include/user/page_header.jsp" %>
+	<script>
+		var page_header_title='내 정보 수정'
+	</script>
+	<!-- end of page-header -->
+
+
+	<!-- content -->
+	<div id="content">
+	
+		<!-- container -->
+		<div class="container">
+			
+			<!-- row -->
+			<div class="row">
+				
+				<!-- left -->
+				<%@ include file="/views/include/user/mypage_menu.jsp" %>
+				<!-- End of left -->
+				
+				<!-- right  -->
+				<div class="col-md-8 col-sm-8 col-xs-12">
+					<div class="job-alerts-item">
+						<h3 class="alerts-title">정보 변경</h3>
+						<form class="form">
+							<div class="form-group is-empty">
+								<label class="control-label">닉네임 변경</label> <input
+									class="form-control" type="text" value="${mem.nickname }"> <span
+									class="material-input"></span>
+							</div>
+							<a href="#" id="submit" class="btn btn-common">Save Change</a>
+						</form>
+						<hr>
+						<form class="form">
+							<div class="form-group is-empty">
+								<label class="control-label">현재 비밀번호*</label> <input
+									class="form-control" type="text"> <span
+									class="material-input"></span>
+							</div>
+							<div class="form-group is-empty">
+								<label class="control-label">새로운 비밀번호*</label> <input
+									class="form-control" type="text"> <span
+									class="material-input"></span>
+							</div>
+							<div class="form-group is-empty">
+								<label class="control-label">새로운 비밀번호 확인*</label> <input
+									class="form-control" type="text"> <span
+									class="material-input"></span>
+							</div>
+							<a href="#" id="submit" class="btn btn-common">Save Change</a>
+						</form>
+					</div>
+				</div>
+				<!-- End of right -->
+				
+			</div>
+			<!-- End of row -->
+			
+		</div>
+		<!-- End of container -->
+	</div>
+	<!-- End of content -->
+	
+	
+	
+	
+	
+	
+	
+	
+	<%@ include file="/views/include/header.jsp" %>
 <form action="update.me" method="post" autocomplete="off">
 	${mem }<br>
 	닉네임수정:<input name=nickname value="<%=mem.getNickname()%>"><br>
@@ -136,6 +223,38 @@
 		return false;
 	}
 </script>
-<%@ include file="/views/include/footer.jsp" %>
+
+	<!-- footer -->
+		<%@ include file="/views/include/user/footer.jsp" %>
+	<!-- End of footer -->
+	
+	<!-- back to top button -->
+		<a href="#" class="back-to-top"> <i class="lni-arrow-up"></i></a>
+	<!-- End of back to top button -->
+	
+	<!-- 뭔지 모르겠어 -->
+	<div id="preloader">
+		<div class="loader" id="loader-1"></div>
+	</div>
+	<!-- 뭔지 모르겠어 -->
+
+
+	<!-- import of jobx -->
+<script src="resources/jobx/assets/js/jquery-min.js"></script>
+<script src="resources/jobx/assets/js/popper.min.js"></script>
+<script src="resources/jobx/assets/js/color-switcher.js"></script>
+<script src="resources/jobx/assets/js/owl.carousel.min.js"></script>
+<script src="resources/jobx/assets/js/jquery.slicknav.js"></script>
+<script src="resources/jobx/assets/js/jquery.counterup.min.js"></script>
+<script src="resources/jobx/assets/js/waypoints.min.js"></script>
+<script src="resources/jobx/assets/js/form-validator.min.js"></script>
+<script src="resources/jobx/assets/js/contact-form-script.js"></script>
+<script src="resources/jobx/assets/js/main.js"></script>
+<!-- End of import of jobx -->
+
+<script>
+	$('.inner-header').children('h3').text(page_header_title)
+</script>
+	
 </body>
 </html>

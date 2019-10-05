@@ -35,8 +35,8 @@ public class CompanyLikeSerlvet extends HttpServlet {
 		
 		int memNo = Integer.parseInt(request.getParameter("memNo"));
 		
-		System.out.println(likeCo);
-		System.out.println(memNo);
+//		System.out.println(likeCo);
+//		System.out.println(memNo);
 		
 		int result = new MemberService().CoLikeCheck(likeCo,memNo);
 		

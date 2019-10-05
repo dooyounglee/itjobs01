@@ -35,8 +35,8 @@ public class ResumeLikeServlet extends HttpServlet {
 		
 		int memNo = Integer.parseInt(request.getParameter("memNo"));
 		
-		System.out.println(likeRes);
-		System.out.println(memNo);
+//		System.out.println(likeRes);
+//		System.out.println(memNo);
 		
 		int result = new ResumeService().ResLikeCheck(likeRes,memNo);
 		

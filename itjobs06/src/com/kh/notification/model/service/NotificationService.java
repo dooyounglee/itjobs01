@@ -89,7 +89,7 @@ public class NotificationService {
 		return result;
 	}
 	
-	public int notiLikeCheck(int likeNo, int memNo) {
+	public int NotiLikeCheck(int likeNo, int memNo) {
 		
 		
 	 	

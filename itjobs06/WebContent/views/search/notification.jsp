@@ -58,7 +58,7 @@
 
 	<!-- 좋아요 버튼 -->
 	
-	<input type="hidden" value="<%=n.getNoti_no()%>" class="co_no">
+	<input type="hidden" value="<%=n.getNoti_no()%>" class="no_no">
 	<span class="like">
 		<img src="./resources/img/like-before.png" class="likeimg">
 	</span>
@@ -88,7 +88,7 @@
 		$('#resultArea').load('<%=request.getContextPath()%>/notificationList.se #result',{"sText":sTextA})
 	}
 
-		
+	// 좋아요 ajax
 	$(function(){
 	
 		var memNo = $("#memNo").val();
@@ -96,17 +96,18 @@
 		
 		$(".likeimg").click(function(){
 			
-			var coNo =	$(this).parent().prev().val()
+			var noNo =	$(this).parent().prev().val()
 			
 			var likeimg = $(this).parent().children() 
 			
 	 			 $.ajax({
 					url:"like.no",
-					data:{coNo:coNo, memNo:memNo},
+					data:{noNo:noNo, memNo:memNo},
 					type:"get",
 					success:function(result){
-						console.log("ajax성공");
-						console.log(result);
+						
+						/* console.log("ajax성공");
+						console.log(result); */
 						
 						if(result==0){
 						likeimg.attr('src','./resources/img/like-after.png');							

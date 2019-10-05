@@ -387,5 +387,93 @@ public class MemberDao {
 		return mem;
 	}
 	
+	public int MemLikeCheck(Connection conn, int likeCo, int memNo) {
+		
+		int result = 0;
+		
+		PreparedStatement ps = null;
+		
+		ResultSet rs = null;
+		
+		String sql = prop.getProperty("likeCheck");
+		
+		try {
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1,memNo);
+			ps.setInt(2, likeCo);
+		
+			rs=ps.executeQuery();
+			
+			if(rs.next()) {
+			result = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(ps);
+			close(rs);
+		}
+		
+		//System.out.println(result);
+		
+		return result;
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	public int deleteLike(Connection conn, int likeCo, int memNo) {
+		
+		int result = 0;
+		
+		PreparedStatement ps = null;
+		
+		String sql = prop.getProperty("deleteLike");
+		
+		try {
+			ps = conn.prepareStatement(sql);
+
+			ps.setInt(1, memNo);
+			ps.setInt(2, likeCo);
+		
+			result = ps.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(ps);
+		}
+		
+		return result;
+	}
+	
+	public int insertLike(Connection conn, int likeCo, int memNo) {
+		
+	int result = 0;
+	
+	PreparedStatement ps = null;
+	
+	String sql = prop.getProperty("insertLike");
+	
+	try {
+		ps = conn.prepareStatement(sql);
+	
+		ps.setInt(1, memNo);
+		ps.setInt(2, likeCo);
+	
+		result = ps.executeUpdate();
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}finally {
+		close(ps);
+	}
+		return result;
+	}
 	
 }

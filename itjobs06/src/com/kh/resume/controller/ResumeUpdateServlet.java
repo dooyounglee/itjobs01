@@ -33,8 +33,12 @@ public class ResumeUpdateServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-request.setCharacterEncoding("UTF-8");
 		
+		
+		request.setCharacterEncoding("UTF-8");
+		
+		int resume_no = Integer.parseInt(request.getParameter("re_no"));
+		System.out.println("수정서블릿에서"+resume_no);
 		String name = request.getParameter("name");
 		String birth_date = request.getParameter("birth");
 		String phone = request.getParameter("phone");
@@ -109,6 +113,7 @@ request.setCharacterEncoding("UTF-8");
 		//path랑 photo는 sql에 넣어놔서?
 		//Resume re = new Resume(name,birth_date,phone,address,email,school,department,school_period,carrer,work_place,work_dateList,work,certification,cer_date,title,cover_letter,open,p_language,hope_salary);
 		Resume re = new Resume();
+		re.setResume_no(resume_no);
 		re.setPhoto("photO");//이렇게 넣을께요. 그래야 나중에 첨부파일 추가하면 여기만 바꾸면 되거든요 ㅎㅎ
 		re.setPath("patH");//이거도 마찬가지
 		re.setName(name);

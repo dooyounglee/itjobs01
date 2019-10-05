@@ -42,32 +42,32 @@
 				<div class="col-md-8 col-sm-8 col-xs-12">
 					<div class="job-alerts-item">
 						<h3 class="alerts-title">정보 변경</h3>
-						<form class="form">
-							<div class="form-group is-empty">
-								<label class="control-label">닉네임 변경</label> <input
-									class="form-control" type="text" value="${mem.nickname }"> <span
-									class="material-input"></span>
-							</div>
-							<a href="#" id="submit" class="btn btn-common">Save Change</a>
-						</form>
-						<hr>
-						<form class="form">
+						<form class="form" action="changePw.me" method="post" autocomplete=off>
 							<div class="form-group is-empty">
 								<label class="control-label">현재 비밀번호*</label> <input
-									class="form-control" type="text"> <span
+									class="form-control" type="text" name="pw"> <span
 									class="material-input"></span>
 							</div>
 							<div class="form-group is-empty">
 								<label class="control-label">새로운 비밀번호*</label> <input
-									class="form-control" type="text"> <span
+									class="form-control" type="text" name="newPw"> <span
 									class="material-input"></span>
 							</div>
 							<div class="form-group is-empty">
 								<label class="control-label">새로운 비밀번호 확인*</label> <input
-									class="form-control" type="text"> <span
+									class="form-control" type="text" name="checkPw"> <span
 									class="material-input"></span>
 							</div>
-							<a href="#" id="submit" class="btn btn-common">Save Change</a>
+							<button id="submit" class="btn btn-common">Save Change</button>
+						</form>
+						<hr>
+						<form class="form" action="update.me" method="post" autocomplete=off>
+							<div class="form-group is-empty">
+								<label class="control-label">닉네임 변경</label> <input
+									class="form-control" type="text" name="nickname" value="${mem.nickname }"> <span
+									class="material-input"></span>
+							</div>
+							<button id="submit" class="btn btn-common">Save Change</button>
 						</form>
 					</div>
 				</div>

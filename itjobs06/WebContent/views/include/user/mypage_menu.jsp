@@ -12,7 +12,7 @@
 			<li><a href="<%=request.getContextPath()%>/myNotificationList.like">관심공고</a></li>
 			<li><a href="<%=request.getContextPath()%>/myResumeList.like">관심인재</a></li>
 			<li><a href="job-alerts.html">비번변경</a></li>
-			<li><a href="change-password.html">정보 변경</a></li>
+			<li><a href="<%=request.getContextPath()%>/changePw.me">정보 변경</a></li>
 			<li><a href="change-password.html">나의 문의</a></li>
 			<li><a href="index.html">탈퇴</a></li>
 		</ul>

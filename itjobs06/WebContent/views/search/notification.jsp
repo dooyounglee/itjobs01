@@ -29,6 +29,7 @@
 </style>
 
 
+
 </head>
 <body>
 	<%@ include file="/views/include/header.jsp" %>
@@ -45,24 +46,36 @@
 <input id="sTextA" name="sText" autocomplete=off><button onclick="searchA()">검색</button>
 <button>상세검색</button>
 <hr>
+
+	<input type="hidden" value="<%=mem.getM_no() %>" id="memNo">
+
 <div id="resultArea">
 	<div id="result">
 <%	ArrayList<Notification> list=(ArrayList<Notification>)request.getAttribute("list");
 	for(Notification n:list){%>
 	<%=n %>
+	
+	
+	
+	
 	<!-- 좋아요 버튼 -->
+	
+	<input type="hidden" value="<%=n.getNoti_no()%>" class="co_no">
 	<span class="like">
-		<img src="./resources/img/like-before.png" class="likeimg" onclick="likeimg();">
+		<img src="./resources/img/like-before.png" class="likeimg">
 	</span>
 	
 	<button onclick="location.href='<%=request.getContextPath()%>/detail.co?co_no=<%=n.getCo_no()%>'">기업정보</button>
 	<br>	
 <%	} %>
+<script>
 	
-	
+</script>
 
 	</div>
 </div>
+
+<!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
 
 <script>
 	function search(){
@@ -71,26 +84,52 @@
 		var sText=$('#sText').val();
 		$('#resultArea').load('<%=request.getContextPath()%>/notificationList.se #result',{'sKey':sKey,'sText':sText})
 	}
+	
 	function searchA(){
 		var sTextA=$('#sTextA').val();
 		$('#resultArea').load('<%=request.getContextPath()%>/notificationList.se #result',{"sText":sTextA})
 	}
+
+		
+	$(function(){
 	
-	// like ajax
-	function likeimg(){
+		var memNo = $("#memNo").val();
+		
+		$(".likeimg").click(function(){
 			
-		$.ajax({
-			url:"like"
+			var coNo =	$(this).parent().prev().val()
+		
+	 			 $.ajax({
+					url:"like.no",
+					data:{coNo:coNo, memNo:memNo},
+					type:"get",
+					success:function(result){
+						console.log("ajax성공");
+						console.log(result);
+					},error:function(){
+						console.log("ajax실패");
+					}
+			
+				}); 
 		})
+	})
 		
-		
-		}
-		
-		
-		
-		
-		
+
 	
+	
+	
+		
+		
+		
+		
+		
+		
+		
+			
+
 </script>
+
+
+
 </body>
 </html>

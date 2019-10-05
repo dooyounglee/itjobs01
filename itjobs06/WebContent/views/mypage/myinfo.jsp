@@ -8,20 +8,13 @@
 <title>Insert title here</title>
 
 <!-- import jobx -->
-<link rel="stylesheet" href="resources/jobx/assets/css/bootstrap.min.css">
-<link rel="stylesheet" href="resources/jobx/assets/css/line-icons.css">
-<link rel="stylesheet" href="resources/jobx/assets/css/owl.carousel.min.css">
-<link rel="stylesheet" href="resources/jobx/assets/css/owl.theme.default.css">
-<link rel="stylesheet" href="resources/jobx/assets/css/slicknav.min.css">
-<link rel="stylesheet" href="resources/jobx/assets/css/animate.css">
-<link rel="stylesheet" href="resources/jobx/assets/css/main.css">
-<link rel="stylesheet" href="resources/jobx/assets/css/responsive.css">
+<%@ include file="/views/include/user/style.jsp" %>
 <!-- End of import from jobx -->
 
 </head>
 <body>
 	<header id="home" class="hero-area">
-		<%@ include file="/views/include/user/header_nav.jsp" %>
+	<%@ include file="/views/include/user/header_nav.jsp" %>
 	</header>
 
 	<!-- page-header -->
@@ -240,17 +233,8 @@
 
 
 	<!-- import of jobx -->
-<script src="resources/jobx/assets/js/jquery-min.js"></script>
-<script src="resources/jobx/assets/js/popper.min.js"></script>
-<script src="resources/jobx/assets/js/color-switcher.js"></script>
-<script src="resources/jobx/assets/js/owl.carousel.min.js"></script>
-<script src="resources/jobx/assets/js/jquery.slicknav.js"></script>
-<script src="resources/jobx/assets/js/jquery.counterup.min.js"></script>
-<script src="resources/jobx/assets/js/waypoints.min.js"></script>
-<script src="resources/jobx/assets/js/form-validator.min.js"></script>
-<script src="resources/jobx/assets/js/contact-form-script.js"></script>
-<script src="resources/jobx/assets/js/main.js"></script>
-<!-- End of import of jobx -->
+	<%@ include file="/views/include/user/js.jsp" %>
+	<!-- End of import of jobx -->
 
 <script>
 	$('.inner-header').children('h3').text(page_header_title)

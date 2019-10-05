@@ -6,8 +6,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.kh.like.model.service.LikeService;
+import com.kh.member.model.vo.Member;
 
 /**
  * Servlet implementation class LikeMyResumeDeleteServlet
@@ -31,10 +33,12 @@ public class LikeMyResumeDeleteServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		int resume_no=Integer.parseInt(request.getParameter("resume_no"));
-		int m_no=Integer.parseInt(request.getParameter("m_no"));
 		
-		int result=new LikeService().deleteResume(resume_no,m_no);
-		System.out.println(result);
+		HttpSession session = request.getSession();
+		Member m=(Member)session.getAttribute("mem");
+		int co_no=m.getM_no();
+		
+		int result=new LikeService().deleteResume(resume_no,co_no);
 		if(result>0) {
 			response.sendRedirect(request.getContextPath()+"/myResumeList.like");
 		}else {

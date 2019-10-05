@@ -8,3 +8,5 @@
 <link rel="stylesheet" href="resources/jobx/assets/css/animate.css">
 <link rel="stylesheet" href="resources/jobx/assets/css/main.css">
 <link rel="stylesheet" href="resources/jobx/assets/css/responsive.css">
+<link rel="stylesheet" href="resources/jobx/assets/css/colors/cyan.css">
+<link rel="stylesheet" href="resources/jobx/assets/css/color-switcher.css">

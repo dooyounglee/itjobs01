@@ -129,6 +129,7 @@ public class AddResumServlet extends HttpServlet {
 		re.setPhone(phone);
 		re.setAddress(address);
 		re.setEmail(email);
+		re.setSchool_final(school_final);
 		re.setSchool(school);
 		re.setDepartment(department);
 		re.setSchool_period(school_period);

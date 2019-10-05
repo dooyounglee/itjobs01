@@ -1,6 +1,9 @@
 package com.kh.board.model.service;
 
-import static com.kh.common.JDBCTemplate.*;
+import static com.kh.common.JDBCTemplate.close;
+import static com.kh.common.JDBCTemplate.commit;
+import static com.kh.common.JDBCTemplate.getConnection;
+import static com.kh.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -123,8 +126,7 @@ public class BoardService {
 		Connection conn = getConnection();
 		
 		Board prev = new BoardDao().prevEtcBoard(conn, bId, head);
-	
-		
+
 		close(conn);
 		return prev;
 	}
@@ -155,7 +157,7 @@ public class BoardService {
 		Connection conn = getConnection();
 		
 		Board prev = new BoardDao().prevMainBoard(conn, bId);
-	
+		System.out.println("서비스로 왔다" + prev);
 		
 		close(conn);
 		return prev;
@@ -238,10 +240,10 @@ public class BoardService {
 		return head;
 	}
 	
-	public int insertDeclareBoard(int bId, String title) {
+	public int insertDeclareBoard(int bId, int m_no, String content) {
 		Connection conn = getConnection();
 		
-		int result = new BoardDao().insertDeclareBoard(conn, bId, title);
+		int result = new BoardDao().insertDeclareBoard(conn, bId, m_no, content);
 	
 		if(result > 0) {
 			commit(conn);

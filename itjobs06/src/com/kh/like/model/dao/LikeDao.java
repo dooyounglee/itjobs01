@@ -40,17 +40,12 @@ public class LikeDao {
 			ps.setInt(1, m_no);
 			rs=ps.executeQuery();
 			while(rs.next()) {
-				list.add(new Member(
-						rs.getInt(1),
-						rs.getString(2),
-						rs.getString(3),
-						rs.getString(4),
-						rs.getString(5),
-						rs.getDate(6)+" "+rs.getTime(6),
-						rs.getDate(7)+" "+rs.getTime(7),
-						rs.getString(8),
-						rs.getInt(9)));
-				System.out.println(list);
+				Member m=new Member();
+				m.setM_no(rs.getInt("co_no"));
+				m.setNickname(rs.getString("nickname"));
+				m.setAddress(rs.getString("address"));
+				m.setNumberOfNotification(rs.getInt("t"));
+				list.add(m);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -72,19 +67,14 @@ public class LikeDao {
 			ps.setInt(1, m_no);
 			rs=ps.executeQuery();
 			while(rs.next()) {
-				list.add(new Notification(
-						rs.getInt(1),
-						rs.getInt(2),
-						rs.getString(3),
-						rs.getDate(4)+" "+rs.getTime(4),
-						rs.getDate(5)+" "+rs.getTime(5),
-						rs.getString(6),
-						rs.getInt(7),
-						rs.getString(8),
-						rs.getString(9),
-						rs.getString(10),
-						rs.getString(11),
-						rs.getInt(12)));
+				Notification n=new Notification();
+				n.setNoti_no(rs.getInt("noti_no"));
+				n.setTitle(rs.getString("title"));
+				n.setEnroll_date(rs.getDate("enroll_date")+" "+rs.getTime("enroll_date"));
+				n.setEnd_date(rs.getDate("end_date")+" "+rs.getTime("end_date"));
+				n.setAddress(rs.getString("address"));
+				n.setNickname(rs.getString("nickname"));
+				list.add(n);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -106,33 +96,14 @@ public class LikeDao {
 			ps.setInt(1, m_no);
 			rs=ps.executeQuery();
 			while(rs.next()) {
-				list.add(new Resume(
-						rs.getInt(1),
-						rs.getString(2),
-						rs.getString(3),
-						rs.getString(4),
-						rs.getDate(5)+" "+rs.getTime(5),
-						rs.getString(6),
-						rs.getString(7),
-						rs.getString(8),
-						rs.getString(9),
-						rs.getString(10),
-						rs.getString(11),
-						rs.getString(12),
-						rs.getString(13),
-						rs.getString(14),
-						rs.getString(15),
-						rs.getString(16),
-						rs.getDate(17)+" "+rs.getTime(17),
-						rs.getString(18),
-						rs.getString(19),
-						rs.getString(20),
-						rs.getDate(21)+" "+rs.getTime(21),
-						rs.getString(22),
-						rs.getString(23),
-						rs.getInt(24)));
+				Resume r=new Resume();
+				r.setResume_no(rs.getInt("resume_no"));
+				r.setP_language(rs.getString("p_language"));
+				r.setTitle(rs.getString("title"));
+				r.setDepartment(rs.getString("department"));
+				r.setCareer(rs.getString("career"));
+				list.add(r);
 			}
-			System.out.println(list);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -171,7 +142,7 @@ public class LikeDao {
 		return result;
 	}
 
-	public int deleteResume(Connection conn, int resume_no, int m_no) {
+	public int deleteResume(Connection conn, int resume_no, int co_no) {
 		int result=0;
 		PreparedStatement ps=null;
 		
@@ -179,7 +150,7 @@ public class LikeDao {
 		try {
 			ps=conn.prepareStatement(sql);
 			ps.setInt(1, resume_no);
-			ps.setInt(2, m_no);
+			ps.setInt(2, co_no);
 			result=ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

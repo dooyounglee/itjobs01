@@ -1,6 +1,6 @@
 package com.kh.notification.model.service;
 
-import static com.kh.common.JDBCTemplate.close;
+import static com.kh.common.JDBCTemplate.*;
 import static com.kh.common.JDBCTemplate.getConnection;
 
 import java.sql.Connection;
@@ -88,5 +88,37 @@ public class NotificationService {
 		close(conn);
 		return result;
 	}
+	
+	public int notiLikeCheck(int likeNo, int memNo) {
+		
+		
+	 	
+		Connection conn = getConnection();
+		//좋아요 중복체크하기 위해서
+		int result = new NotificationDao().notiLikeCheck(conn,likeNo,memNo);
+		
+		if(result>0) { // 중복으로 좋아요 한 기업이 있으면 
+		  int result1 = new NotificationDao().deleteLike(conn,likeNo,memNo);
+		  	if(result1>0) {
+		  		commit(conn);
+		  	}else {
+		  		rollback(conn);
+		  	}
+		  
+		
+		}else { // 좋아요가 없으면
+		   int result2 = new NotificationDao().insertLike(conn,likeNo,memNo);
+		   	if(result2>0) {
+		   		commit(conn);
+		   	}else {
+		   		rollback(conn);
+		   	}
+		   
+		}
+		close(conn);
+	
+		return result;
+	}
+	
 	
 }

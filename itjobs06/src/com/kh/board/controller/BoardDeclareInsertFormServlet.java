@@ -7,8 +7,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.kh.board.model.service.BoardService;
+import com.kh.member.model.vo.Member;
 
 /**
  * Servlet implementation class BoardDeclareInsertFormServlet
@@ -29,14 +31,17 @@ public class BoardDeclareInsertFormServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int bId = Integer.parseInt(request.getParameter("bId"));
+		String bId = request.getParameter("bId");
 		String title = request.getParameter("title");
+		String boardNick = request.getParameter("boardNick");
+		String head= request.getParameter("head");
 		
-		int result = new BoardService().insertDeclareBoard(bId, title);
+		request.setAttribute("bId", bId);
+		request.setAttribute("title",title);
+		request.setAttribute("boardNick",boardNick);
+		request.setAttribute("head",head);
 		
-		if(result > 0) {
-			
-		}
+		request.getRequestDispatcher("views/declare/declare.jsp").forward(request, response);
 	}
 
 	/**

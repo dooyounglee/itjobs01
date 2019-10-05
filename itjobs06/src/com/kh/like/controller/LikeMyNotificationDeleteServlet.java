@@ -6,8 +6,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.kh.like.model.service.LikeService;
+import com.kh.member.model.vo.Member;
 
 /**
  * Servlet implementation class LikeMyNotificationServlet
@@ -31,7 +33,10 @@ public class LikeMyNotificationDeleteServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		int noti_no=Integer.parseInt(request.getParameter("noti_no"));
-		int m_no=Integer.parseInt(request.getParameter("m_no"));
+		
+		HttpSession session = request.getSession();
+		Member m=(Member)session.getAttribute("mem");
+		int m_no=m.getM_no();
 		
 		int result=new LikeService().deleteNotification(noti_no,m_no);
 		if(result>0) {

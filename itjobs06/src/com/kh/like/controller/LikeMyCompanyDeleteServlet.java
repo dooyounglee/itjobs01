@@ -6,8 +6,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.kh.like.model.service.LikeService;
+import com.kh.member.model.vo.Member;
 
 /**
  * Servlet implementation class LikeMyCompanyDeleteServlet
@@ -31,10 +33,12 @@ public class LikeMyCompanyDeleteServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		int co_no=Integer.parseInt(request.getParameter("co_no"));
-		int m_no=Integer.parseInt(request.getParameter("m_no"));
+		
+		HttpSession session = request.getSession();
+		Member m=(Member)session.getAttribute("mem");
+		int m_no=m.getM_no();
 		
 		int result=new LikeService().deleteCompany(co_no,m_no);
-		System.out.println(result);
 		if(result>0) {
 			response.sendRedirect(request.getContextPath()+"/myCompanyList.like");
 		}else {

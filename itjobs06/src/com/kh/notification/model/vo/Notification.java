@@ -16,7 +16,14 @@ public class Notification {
 	private int d_count;
 	private String open;
 	
+	//resume
 	private String v_date; //resume테이블의 v_date(지원날짜)
+	
+	//Member
+	private String nickname;	//기업이름
+	
+	//Co_Info
+	private String address;	//기업주소
 	
 	public String getV_date() {
 		return v_date;
@@ -139,6 +146,18 @@ public class Notification {
 	}
 	public void setOpen(String open) {
 		this.open = open;
+	}
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
 	}
 	@Override
 	public String toString() {

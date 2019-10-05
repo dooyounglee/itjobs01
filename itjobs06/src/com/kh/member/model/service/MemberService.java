@@ -160,13 +160,13 @@ public class MemberService {
 	
 	// 기업 좋아요
 	
-public int MemLikeCheck(int likeCo, int memNo) {
+	public int CoLikeCheck(int likeCo, int memNo) {
 		
 		
 	 	
 		Connection conn = getConnection();
 		//좋아요 중복체크하기 위해서
-		int result = new MemberDao().MemLikeCheck(conn,likeCo,memNo);
+		int result = new MemberDao().CoLikeCheck(conn,likeCo,memNo);
 		
 		if(result>0) { // 중복으로 좋아요 한 기업이 있으면 
 		  int result1 = new MemberDao().deleteLike(conn,likeCo,memNo);

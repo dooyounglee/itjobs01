@@ -7,6 +7,28 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+
+<style>
+
+	.like{
+	width:20px;
+	height:20px;
+	}
+
+	.likeimg{
+	width:20px;
+	height:20px;
+	box-sizing:border-box;
+	text-align:center;
+	}
+	
+	.likeimg:hover{
+	cursor:pointer;
+	}
+
+</style>
+
+
 </head>
 <body>
 	<%@ include file="/views/include/header.jsp" %>
@@ -23,11 +45,22 @@
 <input id="sTextA" name="sText" autocomplete=off><button onclick="searchA()">검색</button>
 <button>상세검색</button>
 <hr>
+
 <div id="resultArea">
+
+	<input type="hidden" value="<%=mem.getM_no() %>" id="memNo">
+
 	<div id="result">
 <%	ArrayList<Resume> list=(ArrayList<Resume>)request.getAttribute("list");
 	for(Resume r:list){%>
-	<%=r %><br>
+	<%=r %>
+	
+	<input type="hidden" value="<%=r.getResume_no()%>" class="res_no">
+<span class="like">
+		<img src="./resources/img/like-before.png" class="likeimg">
+</span>
+	
+	<br>
 <%	} %>
 	</div>
 </div>
@@ -41,6 +74,44 @@
 		var sTextA=$('#sTextA').val();
 		$('#resultArea').load('<%=request.getContextPath()%>/resumeList.se #result',{"sText":sTextA})
 	}
+
+	// 좋아요 ajax
+		$(function(){
+		
+			var memNo = $("#memNo").val();
+			
+			
+			$(".likeimg").click(function(){
+				
+				var resNo =	$(this).parent().prev().val()
+				
+				var likeimg = $(this).parent().children() 
+				
+			
+				
+		 			 $.ajax({
+						url:"like.res",
+						data:{resNo:resNo, memNo:memNo},
+						type:"get",
+						success:function(result){
+						
+							
+							if(result==0){
+							likeimg.attr('src','./resources/img/like-after.png');							
+							}else{
+							likeimg.attr('src','./resources/img/like-before.png');		
+							}
+						
+						},error:function(){
+							
+							console.log("ajax실패");
+						}
+				
+					}); 
+			})
+		})
+				
+	
 </script>
 </body>
 </html>

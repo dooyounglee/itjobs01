@@ -1,4 +1,4 @@
-package com.kh.member.controller;
+package com.kh.resume.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -9,19 +9,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.member.model.service.MemberService;
+import com.kh.resume.model.service.ResumeService;
 
 /**
- * Servlet implementation class CompanyLikeSerlvet
+ * Servlet implementation class ResumeLikeServlet
  */
-@WebServlet("/like.co")
-public class CompanyLikeSerlvet extends HttpServlet {
+@WebServlet("/like.res")
+public class ResumeLikeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CompanyLikeSerlvet() {
+    public ResumeLikeServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,15 +30,15 @@ public class CompanyLikeSerlvet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
-		int likeCo = Integer.parseInt(request.getParameter("coNo"));
+		
+		int likeRes = Integer.parseInt(request.getParameter("resNo"));
 		
 		int memNo = Integer.parseInt(request.getParameter("memNo"));
 		
-		System.out.println(likeCo);
+		System.out.println(likeRes);
 		System.out.println(memNo);
 		
-		int result = new MemberService().CoLikeCheck(likeCo,memNo);
+		int result = new ResumeService().ResLikeCheck(likeRes,memNo);
 		
 //		System.out.println(result);
 		
@@ -49,8 +49,6 @@ public class CompanyLikeSerlvet extends HttpServlet {
 		}else {
 			out.print(1);
 		}
-		
-		
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub

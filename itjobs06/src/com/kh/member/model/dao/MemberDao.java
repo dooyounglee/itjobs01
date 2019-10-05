@@ -387,7 +387,7 @@ public class MemberDao {
 		return mem;
 	}
 	
-	public int MemLikeCheck(Connection conn, int likeCo, int memNo) {
+	public int CoLikeCheck(Connection conn, int likeCo, int memNo) {
 		
 		int result = 0;
 		

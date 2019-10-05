@@ -55,9 +55,7 @@
 	for(Notification n:list){%>
 	<%=n %>
 	
-	
-	
-	
+
 	<!-- 좋아요 버튼 -->
 	
 	<input type="hidden" value="<%=n.getNoti_no()%>" class="co_no">
@@ -95,10 +93,13 @@
 	
 		var memNo = $("#memNo").val();
 		
+		
 		$(".likeimg").click(function(){
 			
 			var coNo =	$(this).parent().prev().val()
-		
+			
+			var likeimg = $(this).parent().children() 
+			
 	 			 $.ajax({
 					url:"like.no",
 					data:{coNo:coNo, memNo:memNo},
@@ -106,7 +107,17 @@
 					success:function(result){
 						console.log("ajax성공");
 						console.log(result);
+						
+						if(result==0){
+						likeimg.attr('src','./resources/img/like-after.png');							
+						}else{
+						likeimg.attr('src','./resources/img/like-before.png');		
+						}
+				
+					
+					
 					},error:function(){
+						
 						console.log("ajax실패");
 					}
 			

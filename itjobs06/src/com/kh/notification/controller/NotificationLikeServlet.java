@@ -38,9 +38,17 @@ public class NotificationLikeServlet extends HttpServlet {
 //		System.out.println(likeNo);
 //		System.out.println(memNo);
 		
-		int result = new NotificationService().notiLike(likeNo,memNo);
+		int result = new NotificationService().notiLikeCheck(likeNo,memNo);
 		
+//		System.out.println(result);
 		
+		PrintWriter out = response.getWriter();
+		
+		if(result==0) {
+			out.print(0);
+		}else {
+			out.print(1);
+		}
 		
 		
 	}

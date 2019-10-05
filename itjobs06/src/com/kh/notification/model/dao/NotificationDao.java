@@ -317,7 +317,7 @@ public class NotificationDao {
 		return result;
 	}
 	
-	public int likeNotification(Connection conn, int likeNo, int memNo) {
+	public int notiLikeCheck(Connection conn, int likeNo, int memNo) {
 		
 		int result = 0;
 		
@@ -345,11 +345,61 @@ public class NotificationDao {
 			close(rs);
 		}
 		
+		//System.out.println(result);
+		
 		return result;
 		
 		
 	}
 	
+	public int deleteLike(Connection conn, int likeNo, int memNo) {
+		
+		int result = 0;
+		
+		PreparedStatement ps = null;
+		
+		String sql = prop.getProperty("deleteLike");
+		
+		try {
+			ps = conn.prepareStatement(sql);
+
+			ps.setInt(1, likeNo);
+			ps.setInt(2, memNo);
+		
+			result = ps.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(ps);
+		}
+		
+		return result;
+	}
 	
+	public int insertLike(Connection conn, int likeNo, int memNo) {
+		
+	int result = 0;
+	
+	PreparedStatement ps = null;
+	
+	String sql = prop.getProperty("insertLike");
+	
+	try {
+		ps = conn.prepareStatement(sql);
+	
+		ps.setInt(1, likeNo);
+		ps.setInt(2, memNo);
+	
+		result = ps.executeUpdate();
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}finally {
+		close(ps);
+	}
+		return result;
+	}
+
 	
 }

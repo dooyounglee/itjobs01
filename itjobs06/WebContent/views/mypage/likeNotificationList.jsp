@@ -67,7 +67,7 @@
 								</div>
 								<div class="col-lg-3 col-md-12 col-xs-12 text-right">
 									<span class="btn-apply">Apply Now</span>
-									<span class="btn-apply">삭제</span>
+									<span class="btn-apply" onclick="return del(<%=n.getNoti_no()%>);">삭제</span>
 								</div>
 							</div>
 						</a>
@@ -202,8 +202,9 @@
 	</tbody>
 </table>
 <script>
-	function del(noti_no,m_no){
-		location.href="<%=request.getContextPath()%>/delNotification.like?noti_no="+noti_no+"&m_no="+m_no;
+	function del(noti_no){
+		location.href="<%=request.getContextPath()%>/delNotification.like?noti_no="+noti_no;
+		return false;
 	}
 </script>
 

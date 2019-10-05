@@ -8,7 +8,7 @@
 			<li><a href="bookmarked.html">내가 지원한 공고</a></li>
 			<li><a href="notifications.html">Notifications <span
 					class="notinumber">2</span></a></li>
-			<li><a href="manage-applications.html">관심기업</a></li>
+			<li><a href="<%=request.getContextPath()%>/myCompanyList.like">관심기업</a></li>
 			<li><a href="<%=request.getContextPath()%>/myNotificationList.like">관심공고</a></li>
 			<li><a href="job-alerts.html">비번변경</a></li>
 			<li><a href="change-password.html">정보 변경</a></li>

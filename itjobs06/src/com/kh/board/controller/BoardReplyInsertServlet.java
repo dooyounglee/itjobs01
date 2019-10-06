@@ -1,7 +1,6 @@
-package com.kh.notification.controller;
+package com.kh.board.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,19 +8,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.notification.model.service.NotificationService;
+import com.kh.board.model.service.BoardService;
+import com.kh.reply.model.vo.Reply;
 
 /**
- * Servlet implementation class NotificationLikeServlet
+ * Servlet implementation class BoardReplyInsertServlet
  */
-@WebServlet("/like.no")
-public class NotificationLikeServlet extends HttpServlet {
+@WebServlet("/brinsert.bo")
+public class BoardReplyInsertServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NotificationLikeServlet() {
+    public BoardReplyInsertServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,27 +30,24 @@ public class NotificationLikeServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
-		int likeNo = Integer.parseInt(request.getParameter("noNo"));
+		int bId = Integer.parseInt(request.getParameter("bId"));
+		int m_no = Integer.parseInt(request.getParameter("m_no"));
+		String content = request.getParameter("content");
 		
-		int memNo = Integer.parseInt(request.getParameter("memNo"));
+		Reply r = new Reply();
+		r.setB_no(bId);
+		r.setM_no(m_no);
+		r.setContents(content);
+
+		int result = new BoardService().insertReplyBoard(bId, m_no, content);
 		
-//		System.out.println(likeNo);
-//		System.out.println(memNo);
-		
-		int result = new NotificationService().NotiLikeCheck(likeNo,memNo);
-		
-//		System.out.println(result);
-		
-		PrintWriter out = response.getWriter();
-		
-		if(result==0) {
-			out.print(0);
+		if(result >  0) {
+			response.getWriter().print("success");
 		}else {
-			out.print(1);
+			response.getWriter().print("fail");
 		}
-		
-		
+	
+	
 	}
 
 	/**

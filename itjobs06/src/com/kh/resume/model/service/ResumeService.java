@@ -9,11 +9,10 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import com.kh.board.model.vo.PageInfo;
+import com.kh.member.model.dao.MemberDao;
 import com.kh.member.model.vo.Member;
 import com.kh.resume.model.dao.ResumeDao;
 import com.kh.resume.model.vo.Resume;
-
-import static com.kh.common.JDBCTemplate.*;
  
 
 public class ResumeService {
@@ -211,6 +210,39 @@ public int insertResum(Resume re){
 		close(conn);
 		return result;
 	}
+	
+	public int ResLikeCheck(int likeRes, int memNo) {
+		
+		
+	 	
+		Connection conn = getConnection();
+		//좋아요 중복체크하기 위해서
+		int result = new ResumeDao().ResLikeCheck(conn,likeRes,memNo);
+		
+		if(result>0) { // 중복으로 좋아요 한 기업이 있으면 
+		  int result1 = new ResumeDao().deleteLike(conn,likeRes,memNo);
+		  	if(result1>0) {
+		  		commit(conn);
+		  	}else {
+		  		rollback(conn);
+		  	}
+		  
+		
+		}else { // 좋아요가 없으면
+		   int result2 = new ResumeDao().insertLike(conn,likeRes,memNo);
+		   	if(result2>0) {
+		   		commit(conn);
+		   	}else {
+		   		rollback(conn);
+		   	}
+		   
+		}
+		close(conn);
+	
+		return result;
+	}
+	
+	
 	
 	
 }

@@ -21,6 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 import com.kh.member.model.dao.MemberDao;
 import com.kh.member.model.vo.Co_Info;
 import com.kh.member.model.vo.Member;
+import com.kh.notification.model.dao.NotificationDao;
 
 public class MemberService {
 
@@ -155,6 +156,39 @@ public class MemberService {
 		Member m = new MemberDao().getMemberByM_no(conn, co_no);
 		close(conn);
 		return m;
+	}
+	
+	// 기업 좋아요
+	
+	public int CoLikeCheck(int likeCo, int memNo) {
+		
+		
+	 	
+		Connection conn = getConnection();
+		//좋아요 중복체크하기 위해서
+		int result = new MemberDao().CoLikeCheck(conn,likeCo,memNo);
+		
+		if(result>0) { // 중복으로 좋아요 한 기업이 있으면 
+		  int result1 = new MemberDao().deleteLike(conn,likeCo,memNo);
+		  	if(result1>0) {
+		  		commit(conn);
+		  	}else {
+		  		rollback(conn);
+		  	}
+		  
+		
+		}else { // 좋아요가 없으면
+		   int result2 = new MemberDao().insertLike(conn,likeCo,memNo);
+		   	if(result2>0) {
+		   		commit(conn);
+		   	}else {
+		   		rollback(conn);
+		   	}
+		   
+		}
+		close(conn);
+	
+		return result;
 	}
 	
 	

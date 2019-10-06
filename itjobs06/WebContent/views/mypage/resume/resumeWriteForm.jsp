@@ -155,8 +155,14 @@
 			<input type="text" name="workList" value="1"><br><br>
 			
 			<label>근무 일자</label>
-			<input type="date" name="workDate1" value="2010-01-01"> ~
-			<input type="date" name="workDate2" value="2010-01-01">
+			<input type="date" name="workDate1" id="workDate1" value="2006-01-01"> ~
+			<input type="date" name="workDate2" id="workDate2" value="2010-01-01">
+			
+			<label>경력 년수</label>
+			<input type="button" id="careerButton" value="경력 계산" onclick="math();" > 
+			<br>
+			<div id="durl"></div>
+
 			<br><br>
 		</div>
 	</div>
@@ -394,6 +400,36 @@ function selectInput(){
 	$(document).on('click','.del_cer',function(){
 		$(this).closest('div #cerForm').remove();
 	})
+
+	
+	function math(){
+		
+	var inputDate1 = $("#workDate1").val();
+	var inputDate2 = $("#workDate2").val(); 
+	  
+	var dateArrayDate1 = inputDate1.split("-");  	
+	var dateArrayDate2 = inputDate2.split("-");
+
+	
+	var dateObj1 = new Date(dateArrayDate1[0], Number(dateArrayDate1[1])-1, dateArrayDate1[2]);  
+	var dateObj2 = new Date(dateArrayDate2[0], Number(dateArrayDate2[1])-1, dateArrayDate2[2]);  
+	  
+	var betweenDay = (dateObj2.getTime() - dateObj1.getTime())/1000/60/60/24;  
+	
+	if(betweenDay < 0){
+		alert("날짜값이 맞지않습니다. 다시 입력해주세요");
+	
+	}else{
+		
+
+		var lastDate = parseInt((betweenDay/365));
+		alert("경력"+lastDate+"년차입니다.");
+	}
+  
+	
+		
+	}
+	
 
 </script>
 

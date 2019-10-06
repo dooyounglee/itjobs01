@@ -24,7 +24,16 @@
 작성자:<div name="boardNick"><%=boardNick %></div><br>
 신고내용:<br>
 <textarea rows="10" cols="40" name="declare_content"></textarea><br>
-<button>신고</button>
+<button type="submit" onclick="Btn();">신고</button>
 </form>
+
+<script>
+	function Btn(){
+		alert("신고되었습니다.");
+		window.close();
+	}
+</script>
+
+
 </body>
 </html>

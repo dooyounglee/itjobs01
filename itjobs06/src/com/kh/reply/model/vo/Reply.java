@@ -5,6 +5,7 @@ public class Reply {
 	private int re_no;
 	private int m_no;
 	private int b_no;
+	private String nickname;
 	private String enroll_date;
 	private String update_date;
 	private String contents;
@@ -13,6 +14,7 @@ public class Reply {
 	public Reply() {
 		super();
 	}
+	
 	public Reply(int re_no, int m_no, int b_no, String enroll_date, String update_date, String contents, String status,
 			int d_count) {
 		super();
@@ -24,6 +26,27 @@ public class Reply {
 		this.contents = contents;
 		this.status = status;
 		this.d_count = d_count;
+	}
+	
+	public Reply(int re_no, int m_no, int b_no, String nickname, String enroll_date, String update_date, String contents, String status,
+			int d_count) {
+		super();
+		this.re_no = re_no;
+		this.m_no = m_no;
+		this.b_no = b_no;
+		this.nickname = nickname;
+		this.enroll_date = enroll_date;
+		this.update_date = update_date;
+		this.contents = contents;
+		this.status = status;
+		this.d_count = d_count;
+	}
+	
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
 	public int getRe_no() {
 		return re_no;
@@ -75,9 +98,9 @@ public class Reply {
 	}
 	@Override
 	public String toString() {
-		return "Reply [re_no=" + re_no + ", m_no=" + m_no + ", b_no=" + b_no + ", enroll_date=" + enroll_date
-				+ ", update_date=" + update_date + ", contents=" + contents + ", status=" + status + ", d_count="
-				+ d_count + "]";
+		return "Reply [re_no=" + re_no + ", m_no=" + m_no + ", b_no=" + b_no + ", nickname=" + nickname
+				+ ", enroll_date=" + enroll_date + ", update_date=" + update_date + ", contents=" + contents
+				+ ", status=" + status + ", d_count=" + d_count + "]";
 	}
 	
 }

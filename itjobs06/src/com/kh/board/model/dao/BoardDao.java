@@ -14,6 +14,7 @@ import java.util.Properties;
 
 import com.kh.board.model.vo.Board;
 import com.kh.board.model.vo.PageInfo;
+import com.kh.reply.model.vo.Reply;
 
 public class BoardDao {
 	
@@ -551,16 +552,58 @@ public class BoardDao {
 		}
 		
 		return b;
-		
-		
-		
-		
 	}
+	
+	public ArrayList<Reply> selectRlist(Connection conn, int bId){
+		ArrayList<Reply> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectRlist");
 		
+		try {
+			pstmt = conn.prepareStatement(sql);			
+			pstmt.setInt(1, bId);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Reply(rset.getInt("re_no"),
+									rset.getInt("m_no"),
+									rset.getInt("b_no"),
+									rset.getString("nickname"),
+									rset.getString("enroll_date"),
+									rset.getString("update_date"),
+									rset.getString("contents"),
+									rset.getString("status"),
+									rset.getInt("d_count")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
 	
-	
-	
-	
-	
-	
+	public int insertReplyBoard(Connection conn, int bId, int m_no, String content) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertReplyBoard");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, m_no);
+			pstmt.setInt(2, bId);
+			pstmt.setString(3, content);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
 }

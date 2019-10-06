@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import com.kh.board.model.dao.BoardDao;
 import com.kh.board.model.vo.Board;
 import com.kh.board.model.vo.PageInfo;
+import com.kh.reply.model.vo.Reply;
 
 public class BoardService {
 
@@ -271,7 +272,28 @@ public class BoardService {
 		return b;
 	}
 	
+	public ArrayList<Reply> selectRlist(int bId) {
+		Connection conn = getConnection();
+		
+		ArrayList<Reply> list  = new BoardDao().selectRlist(conn, bId);
+
+		close(conn);
+		return list;
+	}
 	
-	
+	public int insertReplyBoard(int bId, int m_no, String content) {
+		Connection conn = getConnection();
+		
+		int result = new BoardDao().insertReplyBoard(conn, bId, m_no, content);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		return result;
+	}
 	
 }

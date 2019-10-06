@@ -141,7 +141,7 @@
                     <div onclick="deleteBtn()">삭제</div>
                     <div onclick="location.href='<%=contextPath %>/updateForm.bo?bId=<%=b.getB_no()%>';">수정</div>
                     <%}else{ %>
-                    <div onclick="location.href='<%=contextPath %>/insertForm.de?bId=<%=b.getB_no()%>&title=<%=b.getTitle()%>&boardNick=<%=b.getNickname()%>&head=<%=b.getHead()%>';">신고</div>
+                    	<div onclick="deBtn();">신고</div>
                    	<%}%>
                    	
                 </div>
@@ -179,6 +179,20 @@
             </div>
         	<button onclick="location.href='<%= contextPath %>/download.bo?bId=<%=b.getB_no()%>';">다운로드</button>
         	<div>다운로드 횟수 - <%= b.getDown_count() %></div>
+        	
+        	<div id="replyArea">
+        		<div id="replyWrite">
+        		 <div>댓글작성</div>
+				 <textarea rows="2" cols="80" id="replyContent" style="resize: none; overflow:auto;"></textarea>  
+				 <button id="addReply">댓글등록</button>      		
+        		</div>
+        	
+        		<div id="replySelect">
+        			
+        		
+        		</div>
+        	
+        	</div>
         
         
         </div>
@@ -195,6 +209,84 @@
 				return;
 			}
 		}
+		
+	<%-- 	function deBtn(){
+		
+			if(<%= mem.getM_no() %> != null){
+				window.open("<%=contextPath %>/insertForm.de?bId=<%=b.getB_no()%>&title=<%=b.getTitle()%>&boardNick=<%=b.getNickname()%>&head=<%=b.getHead()%>", "ITJOBS_게시글 신고", "width=500, height=600, toolbar=no, menubar=no, scrollbars=no, resizable=no");
+
+			}else{
+				alert("로그인해주세요");
+			} 
+		} 
+		 --%>
+		 
+		 $(function(){
+				// 화면 로딩 시 댓글 출력
+				selectRlist();
+				
+				setInterval(function(){
+					selectRlist();
+				}, 4000);
+				
+				$("#addReply").click(function(){
+					var content = $("#replyContent").val();
+					var bId = <%= b.getB_no()%>;
+					var m_no = <%= mem.getM_no()%>;
+					
+					$.ajax({
+						url:"brinsert.bo",
+						type:"post",
+						data:{content:content, bId:bId, m_no:m_no},
+						success:function(status){
+							if(status == "success"){
+								selectRlist();
+								$("#replyContent").val("");
+							}else{
+								alert("댓글 작성 실패");
+							}
+						},error:function(){
+							console.log("서버 통신 실패");
+						}
+	
+					});
+					
+				});
+		 });
+		 
+		function selectRlist(){
+			$.ajax({
+				url:"brlist.bo",
+				data:{bId:<%=b.getB_no() %>},
+				dataType:"json",
+				success:function(list){
+					console.log(list);
+					
+					var replySelect = $("#replySelect");
+					
+					replySelect.html("");
+					
+					$.each(list,function(index, value){
+						var div = $("<div>");
+						var writer = $("<div>").text(value.nickname).css("width","100px");
+						var content = $("<div>").text(value.contents).css("width","400px");
+						var date = $("<div>").text(value.update_date).css("width","200px");
+						
+						div.append(writer);
+						div.append(content);
+						div.append(date);
+						
+						replySelect.append(div);
+					});
+					
+					
+					
+				},error:function(){
+					console.log("서버와의 통신실패!!");
+				}
+			});
+		}
+		
 	</script>
 
 </body>

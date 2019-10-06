@@ -10,6 +10,16 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+<style>
+	h3{
+		margin:0px;
+	}
+
+
+</style>
+
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
@@ -27,11 +37,12 @@
 <!-- 주소*<input type="text" name="address"><br> -->
 
 <!-- 주소api -->
-<%-- 	<%	String[] address = co.getAddress().split("\\+"); %> --%>
-	<input type="text" id="sample3_postcode" name="sample3_postcode" <%-- value="<%=address[0]%>" --%> placeholder="우편번호">
+
+	<h3>본사 주소</h2>
+	<input type="text" id="sample3_postcode" name="sample3_postcode"  placeholder="우편번호">
 	<input type="button" onclick="sample3_execDaumPostcode()" value="우편번호 찾기"><br>
-	<input type="text" id="sample3_address" name="sample3_address" <%-- value="<%=address[1]%>" --%> placeholder="주소">
-	<input type="text" id="sample3_detailAddress" name="sample3_detailAddress" <%-- value="<%=address[2]%>" --%> placeholder="상세주소">
+	<input type="text" id="sample3_address" name="sample3_address" placeholder="주소">
+	<input type="text" id="sample3_detailAddress" name="sample3_detailAddress" placeholder="상세주소">
 	<input type="hidden" id="sample3_extraAddress" placeholder="참고항목">
 	
 	<div id="wrap" style="display:none;border:1px solid;width:500px;height:300px;margin:5px 0;position:relative">

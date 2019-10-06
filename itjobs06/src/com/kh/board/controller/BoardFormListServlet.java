@@ -14,16 +14,16 @@ import com.kh.board.model.vo.Board;
 import com.kh.board.model.vo.PageInfo;
 
 /**
- * Servlet implementation class BoardListServlet
+ * Servlet implementation class BoardFormListServlet
  */
-@WebServlet("/list.bo")
-public class BoardListServlet extends HttpServlet {
+@WebServlet("/listForm.bo")
+public class BoardFormListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardListServlet() {
+    public BoardFormListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,25 +32,14 @@ public class BoardListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		
 		String head = request.getParameter("head");
-		int listCount = 0;
 		
-		if(head.equals("main")) {
-			listCount = new BoardService().getMainListCount();
-		}else {
-			switch(head) {
-			case "free" : head="자유"; break;
-			case "study" : head="스터디"; break;
-			case "project" : head="프로젝트"; break;
-			case "qna" : head="공지사항"; break;
-			case "form" : head="서식"; break;
-			case "qu" : head="문의사항"; break;
-			}
-			listCount =  new BoardService().getEtcListCount(head);
+		if(head.equals("form")) {
+			head = "서식"; 
 		}
-			
+
+		int listCount =  new BoardService().getEtcListCount(head);
+		
 		// 페이징처리
 		int currentPage=1;
 		if(request.getParameter("currentPage")!=null) {
@@ -58,20 +47,15 @@ public class BoardListServlet extends HttpServlet {
 		}
 		
 		
-		PageInfo pi = new PageInfo(currentPage, listCount, 5, 10);
+		PageInfo pi=new PageInfo(currentPage,listCount, 5, 10);
 		
-		ArrayList<Board> list = new ArrayList<>();
-		if(head.equals("main")) {
-			list = new BoardService().selectMainList(pi);
-			
-		}else {
-			list = new BoardService().selectEtcList(head, pi);
-		}
+		ArrayList<Board> list = new BoardService().selectEtcList(head, pi);
 		
 		request.setAttribute("pi",pi);
 		request.setAttribute("list", list);
 		
-		request.getRequestDispatcher("views/board/list.jsp").forward(request, response);
+		
+		request.getRequestDispatcher("views/board/FormList.jsp").forward(request, response);;
 	}
 
 	/**

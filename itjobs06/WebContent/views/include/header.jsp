@@ -46,7 +46,7 @@ ${msg }
 <a href="<%=contextPath%>/list.bo?head=study">스터디</a>
 <a href="<%=contextPath%>/list.bo?head=project">프로젝트</a>
 <a href="<%=contextPath%>/list.bo?head=qna">공지사항</a>
-<a href="<%=contextPath%>/list.bo?head=form">서식</a>
+<a href="<%=contextPath%>/listForm.bo?head=form">서식</a>
 <a href="<%=contextPath%>/list.qu"><del>문의사항</del></a>
 <a href="<%=contextPath%>/notificationList.se">공고검색(기업상세정보)</a>
 <a href="<%=contextPath%>/resumeList.se">인재검색</a>

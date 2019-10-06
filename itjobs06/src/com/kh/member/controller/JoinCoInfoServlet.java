@@ -74,7 +74,13 @@ public class JoinCoInfoServlet extends HttpServlet {
 //		String path = multiRequest.getParameter("path");
 		String name = multiRequest.getParameter("name");
 		String phone = multiRequest.getParameter("phone");
-		String address = multiRequest.getParameter("address");
+//		String address = multiRequest.getParameter("address");
+		
+		String postcode=multiRequest.getParameter("sample3_postcode");
+		String address_=multiRequest.getParameter("sample3_address");
+		String detailAddress=multiRequest.getParameter("sample3_detailAddress");
+		String address=postcode+"+"+address_+"+"+detailAddress;
+		
 		String ceo = multiRequest.getParameter("ceo");
 		String co_phone = multiRequest.getParameter("co_phone");
 		String descript = multiRequest.getParameter("descript");
@@ -125,6 +131,8 @@ public class JoinCoInfoServlet extends HttpServlet {
 		
 		
 		}	
+	
+
 	}
 
 	/**

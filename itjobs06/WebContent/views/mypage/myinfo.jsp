@@ -13,6 +13,7 @@
 
 </head>
 <body>
+
 	<header id="home" class="hero-area">
 	<%@ include file="/views/include/user/header_nav.jsp" %>
 	</header>
@@ -239,6 +240,5 @@
 <script>
 	$('.inner-header').children('h3').text(page_header_title)
 </script>
-	
 </body>
 </html>

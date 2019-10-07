@@ -149,7 +149,7 @@
 			<%	} %>
 			<%	PageInfo pi=(PageInfo)request.getAttribute("pi");
 				int currentPage=(int)request.getAttribute("currentPage");%>
-				<ul class="pagination">
+				<ul class="pagination" style="display:block;">
 					<%	if(currentPage>1){ %>
 					<li class="active"><a href="<%=request.getContextPath()%>/notificationList.se?currentPage=<%=currentPage-1%>" class="btn-prev"><i
 							class="lni-angle-left"></i> prev</a></li>

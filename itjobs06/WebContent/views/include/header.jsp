@@ -2,12 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	String contextPath=request.getContextPath();
-	Member mem=(Member)session.getAttribute("mem");
-	String head=request.getParameter("head");
-	if(head!=null){
-		session.setAttribute("head", head);
-	}
+
 	
 %>
 <!DOCTYPE html>

@@ -11,9 +11,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import com.kh.board.model.vo.PageInfo;
 import com.kh.member.model.dao.MemberDao;
 import com.kh.member.model.vo.Member;
 import com.kh.notification.model.vo.Notification;
+import com.sun.corba.se.spi.orbutil.fsm.Guard.Result;
 
 public class NotificationDao {
 
@@ -31,7 +33,7 @@ public class NotificationDao {
 		
 	}
 
-	public ArrayList<Notification> getAllNotificationList(Connection conn) {
+	public ArrayList<Notification> getAllNotificationList(Connection conn, PageInfo pi) {
 		ArrayList<Notification> list=new ArrayList<>();
 		PreparedStatement ps=null;
 		ResultSet rs=null;
@@ -39,6 +41,8 @@ public class NotificationDao {
 		String sql=prop.getProperty("getAllNotificationList");
 		try {
 			ps=conn.prepareStatement(sql);
+			ps.setInt(1, pi.getEndRow());
+			ps.setInt(2, pi.getStartRow());
 			rs=ps.executeQuery();
 			while(rs.next()) {
 				list.add(new Notification(
@@ -401,5 +405,24 @@ public class NotificationDao {
 		return result;
 	}
 
+	public int getListCount(Connection conn) {
+		int result=0;
+		PreparedStatement ps=null;
+		ResultSet rs=null;
+		
+		String sql=prop.getProperty("getListCount");
+		try {
+			ps=conn.prepareStatement(sql);
+			rs=ps.executeQuery();
+			if(rs.next()) {
+				result=rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(ps);
+		}
+		return result;
+	}
 	
 }

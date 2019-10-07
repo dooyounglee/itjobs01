@@ -240,7 +240,7 @@ public class ResumeDao {
 		 * @param mno
 		 * @return
 		 */
-		public ArrayList<Resume> selectResume(Connection conn,/*PageInfo pi,*/int mno) {
+		public ArrayList<Resume> selectResume(Connection conn,PageInfo pi,int mno) {
 
 		ArrayList<Resume> list = new ArrayList<>();
 		

@@ -79,10 +79,10 @@ public int insertResum(Resume re){
 	 * @param pi
 	 * @return
 	 */
-	public ArrayList<Resume> selectResume(/*PageInfo pi,*/int mno){
+	public ArrayList<Resume> selectResume(PageInfo pi,int mno){
 		Connection conn = getConnection();
 		
-		ArrayList<Resume> list = new ResumeDao().selectResume(conn, /*pi,*/mno);
+		ArrayList<Resume> list = new ResumeDao().selectResume(conn, pi,mno);
 		System.out.println(list);
 		close(conn);
 		

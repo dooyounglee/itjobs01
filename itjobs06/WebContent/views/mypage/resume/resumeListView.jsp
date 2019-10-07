@@ -48,7 +48,7 @@
 	}
 	
 	#new{
-		margin-left:66.5%;
+		margin-left:65%;
 	}
 </style>
 </head>
@@ -78,56 +78,54 @@
 				<!-- End of left -->
 				
 				<!-- right  -->
-				<div class="col-lg-8 col-md-12 col-xs-12">
+
+<div class="col-lg-8 col-md-12 col-xs-12">
 <div class="job-alerts-item candidates">
-<h3 class="alerts-title">Manage Resumes</h3>
+<h3 class="alerts-title">나의 이력서</h3>
+<a class="btn btn-common btn-sm" id="new" href="<%=contextPath%>/add.re">새 이력서 추가하기</a>
+<% if(list.isEmpty()){ %>
+
+<label>조회된 리스트가 없습니다</label>
+				
+<% }else{ %>
+			<% for(Resume re : list){ %>
 <div class="manager-resumes-item">
 <div class="manager-content">
 <a href="resume.html"><img class="resume-thumb" src="assets/img/jobs/avatar-1.jpg" alt=""></a>
 <div class="manager-info">
 <div class="manager-name">
-<h4><a href="#">Zane Joyner</a></h4>
-<h5>Front-end developer</h5>
+<h4><a href="<%=contextPath%>/detail.re?resume_no=<%= re.getResume_no()%>"><%= re.getTitle() %></a></h4>
+<h5><%=re.getCover_letter() %></h5>
 </div>
 <div class="manager-meta">
-<span class="location"><i class="lni-map-marker"></i> Cupertino, CA, USA</span>
-<span class="rate"><i class="lni-alarm-clock"></i> $55 per hour</span>
+<span class="location"><i class="lni-map-marker"></i>
+<%if(re.getOpen().equals("Y")){ %>
+현재 공개중인 이력서 입니다.
+<%}else{%>
+비공개중인 이력서입니다.
+<%} %>
+</span>
+<span class="rate"><i class="lni-alarm-clock"></i>
+<% if(re.getCareer_year() == 0){ %>
+신입
+<%}else{ %>
+경력<%=re.getCareer_year() %>년차
+<%} %>
+</span>
 </div>
 </div>
 </div>
 <div class="update-date">
 <p class="status">
-<strong>Updated on:</strong> Fab 22, 2020
+<strong><%=re.getUpdate_date() %></strong>에 수정된 이력서입니다.
 </p>
-<div class="action-btn">
-<a class="btn btn-xs btn-gray" href="#">Hide</a>
-<a class="btn btn-xs btn-gray" href="#">Edit</a>
-<a class="btn btn-xs btn-danger" href="#">Delete</a>
+
 </div>
 </div>
-</div>
-<div class="manager-resumes-item">
-<div class="manager-content">
-<a href="resume.html"><img class="resume-thumb" src="assets/img/jobs/avatar-1.jpg" alt=""></a>
-<div class="manager-info">
-<div class="manager-name">
-<h4><a href="#">Zane Joyner</a></h4>
-<h5>Front-end developer</h5>
-</div>
-<div class="manager-meta">
-<span class="location"><i class="lni-map-marker"></i> Cupertino, CA, USA</span>
-<span class="rate"><i class="lni-alarm-clock"></i> $55 per hour</span>
-</div>
-</div>
-</div>
-<div class="update-date">
-<p class="status">
-<strong>Updated on:</strong> Fab 22, 2020
-</p>
-<div class="action-btn">
-<a class="btn btn-xs btn-gray" href="#">Hide</a>
-<a class="btn btn-xs btn-gray" href="#">Edit</a>
-<a class="btn btn-xs btn-danger" href="#">Delete</a>
+<%} %>
+<%} %>
+
+
 </div>
 </div>
 </div>
@@ -136,15 +134,6 @@
 </div>
 </div>
 
-</p>
-<div class="action-btn">
-<a class="btn btn-xs btn-gray" href="#">Hide</a>
-<a class="btn btn-xs btn-gray" href="#">Edit</a>
-<a class="btn btn-xs btn-danger" href="#">Delete</a>
-</div>
-</div>
-</div>
-<a class="btn btn-common btn-sm" href="add-resume.html">Add new resume</a>
 </div>
 </div>
 				<!-- End of right -->
@@ -157,174 +146,7 @@
 	</div>
 	<!-- End of content -->
 	
-<% if(list.isEmpty()){ %>
-<tr>
-					<td colspasn="5">조회된 리스트가 없습니다.</td>
-				</tr>
-<% }else{ %>
-			<% for(Resume re : list){ %>
-				
-<div class="col-lg-12 col-md-6 col-xs-12">
-<div class="manager-resumes-item">
-<div class="manager-content">
-<a href="resume.html"><img class="resume-thumb" src="assets/img/jobs/avatar-1.jpg" alt=""></a>
-<div class="manager-info">
-<div class="manager-name">
-<h4><a href="<%=contextPath%>/detail.re?resume_no=<%= re.getResume_no()%>"><%= re.getTitle() %></a></h4>
-<% if(re.getOpen().equals("Y")){ %>
 
-<h5>공개중인 이력서입니다.</h5>
-<%}else{%>
-<h5>비공개중인 이력서입니다.</h5>
-<%} %>
-</div>
-<div class="manager-meta">
-<span class="location"><i class="ti-location-pin"></i><%= re.getUpdate_date() %>에 수정된 이력서입니다.</span>
-</div>
-</div>
-</div>
-<div class="item-body">
-<div class="content">
-<p><%= re.getCover_letter() %></p>
-</div>
-
-<div class="resume-skills">
-<% String[] p_langs = re.getP_language().split(","); %>
-<% for(int i=0; i < p_langs.length; i++){ %>
-<div class="tag-list float-left">
-<% for(int j=0; j< p_langs.length; j++){ %>
-<span><%= p_langs[i] %></span>
-
-<%} %>
-</div>
-<%} %>
-<div class="resume-exp float-right">
-<a  class="btn btn-common btn-xs">
-<% if(re.getCareer_year() == 0){ %>
-		신입
-<% }else{ %>
-	경력 <%= re.getCareer_year() %>년차
-<%} %>
-</a>
-</div>
-</div>
-</div>
-</div>
-</div>
-
-</div>
-</div>
-<% } %>
-<%} %>
-</div>
-
-	
-<%-- <%-- 
-<div id="tableArea">
-<input type="button" id="addRe" value="+ 새이력서 작성하기" onclick="location.href='<%=contextPath%>/add.re';">
-	<table align="center" id="listArea" border="1px">
-		<tr>
-	
-		<th>No</th>
-		<th>제목</th>
-		<th>최근수정일자</th>
-		
-		</tr>
-			<% if(list.isEmpty()){ %>
-				<tr>
-					<td colspan="5">조회된 리스트가 없습니다.</td>
-				</tr>
-				<% }else{ %>
-				
-					<% for(Resume re : list){ %>
-					<tr>
-						<td><%=re.getResume_no()%></td>
-						<td name="title" onclick="goDetail(this);"><%= re.getTitle() %></td>
-						<td ><%= re.getUpdate_date() %></td>
-					
-					</tr>
-					<% } %>
-				
-				<% } %>
-		
-	
-	</table>
-	
-	
-
-</div>
-		<script>
-			$(function(){
-				$("#listArea td").mouseenter(function(){
-					$(this).parent().css({"background":"darkgray", "cursor":"pointer"});
-				}).mouseout(function(){
-					$(this).parent().css("background", "white");
-				});
-			});
-			
-			
-			
-		
-			function goDetail(abc){//abc로 바꿨음
-				var resume_no = $(abc).parent().children().eq(0).text();//$(abc)
-				console.log(resume_no);
-				//return false;
-				location.href="<%=contextPath%>/detail.re?resume_no="+resume_no;
-			}
-			
-			--%>
-		
-			<%-- function updateResum(aaa){
-				var resume_no = $(aaa).parent().children().eq(2).text();
-				console.log(resume_no);
-				location.href="<%=contextPath%>/updateForm.re?resume_no="+resume_no;
-			}
-			
-			function deleteResum(abc){
-				var resume_no = $(abc).parent().children().eq(0).text();
-				location.href="<%=contextPath%>/deleteResum.re?resume_no="+resume_no;
-			} --%>
-				
-			
-		</script>
-		
-		<%-- <!-- ----------- 페이징 바 ------------ -->
-		<div class="pagingArea" align="center">
-			
-			<!-- 맨처음으로(<<) -->
-			<button onclick="location.href='<%=contextPath%>/list.re?currentPage=1';"> &lt;&lt; </button>
-			
-			<!-- 이전 페이지로(<) -->
-			<% if(currentPage == 1){ %>
-			<button disabled> &lt; </button>
-			<% }else{ %>
-			<button onclick="location.href='<%=contextPath%>/list.re?currentPage=<%= currentPage-1 %>';"> &lt; </button>
-			<% } %>
-			
-			<!-- 10개의 페이지 목록 -->
-			<% for(int p=startPage; p<=endPage; p++){ %>
-				
-				<% if(p == currentPage){ %>
-				<button disabled> <%= p %> </button>
-				<% }else { %>
-				<button onclick="location.href='<%=contextPath%>/list.bo?currentPage=<%=p%>';"> <%= p %> </button>
-				<% } %>
-				
-			<% } %>
-			
-			<!-- 다음 페이지로(>) -->
-			<% if(currentPage == maxPage){ %>
-			<button disabled> &gt; </button>
-			<% }else{ %>
-			<button onclick="location.href='<%=contextPath%>/list.re?currentPage=<%=currentPage+1%>';"> &gt; </button>
-			<% } %>
-			
-			<!-- 맨끝으로(>>) -->
-			<button onclick="location.href='<%=contextPath%>/list.bo?currentPage=<%=maxPage%>';"> &gt;&gt; </button>
-			
-		</div>
-		<br>
-	 --%>
 		<!-- footer -->
 		<%@ include file="/views/include/user/footer.jsp" %>
 	<!-- End of footer -->

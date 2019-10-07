@@ -42,7 +42,7 @@
 <h3>
 Login
 </h3>
-<form class="login-form" action="<%=contextPath1%>/login.me" method=post autocomplete=off>
+<form class="login-form" action="<%=contextPath%>/login.me" method=post autocomplete=off>
 <div class="form-group">
 <div class="input-icon">
 <i class="lni-user"></i>
@@ -62,7 +62,7 @@ Login
 <button class="btn btn-common log-btn">Submit</button>
 </form>
 <ul class="form-links">
-<li class="text-center"><a href="<%=contextPath1%>/joinlaw.jo">Join</a></li>
+<li class="text-center"><a href="<%=contextPath%>/joinlaw.jo">Join</a></li>
 </ul>
 </div>
 </div>

@@ -216,7 +216,7 @@
 			<option value="특수목적">특수목적고</option>
 		</select> -->
 		날짜: <input type="date" name="school_Date1" value="2010-01-01"> ~
-		<input type="date" name="school_Date2" value="2010-01-01">
+		<input type="date" name="school_Date2" value="2010-01-02">
 	</div>
 	
 	<div id="collegeInfo">
@@ -224,7 +224,7 @@
 		학교명: <input type="text" name="school" value="1"><br><br>
 		학과명: <input type="text" name="Department" value="1"><br><br>
 		날짜: <input type="date" name="school_Date1" value="2010-01-01"> ~
-		<input type="date" name="school_Date2" value="2010-01-01">
+		<input type="date" name="school_Date2" value="2010-01-02">
 	</div>
 	
 	<div id="academyInfo">
@@ -241,7 +241,7 @@
 		학교명: <input type="text" name="school" value="1"><br>
 		학과명: <input type="text" name="Department" value="1"><br>
 		날짜: <input type="date" name="school_Date1" value="2010-01-01"> ~
-		<input type="date" name="school_Date2" value="2010-01-01">
+		<input type="date" name="school_Date2" value="2010-01-02">
 	</div>
 </div>
 

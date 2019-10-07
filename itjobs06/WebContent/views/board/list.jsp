@@ -17,6 +17,10 @@
 <%@ include file="/views/include/user/style.jsp" %>
 <!-- End of import from jobx -->
 
+<!-- import of jobx -->
+<%@ include file="/views/include/user/js.jsp" %>
+<!-- End of import of jobx -->
+	
 </head>
 <body>
 
@@ -63,8 +67,10 @@
 	%>
 	
 	<div class="col-lg-8 col-md-12 col-xs-12">
+	
+	
 	<div class="job-alerts-item">
-	<h3 class="alerts-title"><%=head%></h3>
+	<h3 class="alerts-title" style="display:inline-block"><%=head%></h3> <span class="full-time" onclick="writeBtn();" style="float:right">글쓰기</span>
 	<div class="alerts-list">
 	<div class="row">
 	<div class="col-md-3">
@@ -190,10 +196,6 @@
 	<!-- 뭔지 모르겠어 -->
 
 
-	<!-- import of jobx -->
-	<%@ include file="/views/include/user/js.jsp" %>
-	<!-- End of import of jobx -->
-	
 	<script>
 	$('.inner-header').children('h3').text(page_header_title)
 	</script>

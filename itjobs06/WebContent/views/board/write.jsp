@@ -1,145 +1,149 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.kh.board.model.vo.*, java.util.ArrayList"%>
 <%
 	String clickHead = request.getParameter("head");
 %>
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<style>
-	.outer{
-		width:900px;
-		height:600px;
-		/*background:lightpink;*/
-		color:black;
-		margin-left:auto;
-		margin-right:auto;
-		margin-top:50px;
-	}
-	.tableArea{
-		width:700px;
-		height:500x;
-		margin-left:auto;
-		margin-right:auto;
-		border:1px solid black;
-	}
-	table{
-		margin-left:auto;
-		margin-right:auto;
-	}
-	#headArea{
-		width:425px;
-		margin-left:auto;
-		margin-right:auto;
-	}
-	
-	.addBtnArea>div{
-		width:60px;
-		height:25px;
-		background:lightblue;
-		text-align:center;
-		border-radius:8px;
-		display:inline-block;
-	}
-	#addBtn:hover, #cancelBtn:hover{
-		cursor:pointer;
-	}
-	#fileAddArea{
-		width:280px;
-		height:20px;
-		border:1px solid lightgray;
-	}
-	#time{
-		width:280px;
-	}
-</style>
+
+<!-- import jobx -->
+<%@ include file="/views/include/user/style.jsp" %>
+<!-- End of import from jobx -->
+
+<!-- import of jobx -->
+<%@ include file="/views/include/user/js.jsp" %>
+<!-- End of import of jobx -->
 </head>
 <body>
-	<%@ include file="/views/include/header.jsp" %>
 
-	<div class="outer">
-	<br>
-	<div id="headArea"><h1 align="left">새 글 작성</h1></div>
-	<form action="<%=contextPath%>/insert.bo?head=<%=head%>" method="post" enctype="multipart/form-data" id="form">
-		<input type="hidden" value="<%= clickHead %>" name="clickHead">
-		<input type="hidden" value="<%= mem.getM_no() %>" name="m_no">
-		
-		
-		<div id="tableArea">
-			<table>
-				<tr>
-					<td>제 목 : 
-						<select name="writehead" id="writehead">
-							<option value="no">-------</option>
-							<option value="자유">자유</option>
-							<option value="스터디">스터디</option>
-							<option value="프로젝트">프로젝트</option>
-							<option value="공지">공지</option>
-							<option value="서식">서식</option>
-						</select>
-					</td>
-					<td colspan="2"><input type="text" name="title" placeholder="제목을 입력하세요"  style="width:280px;"></td>
-				</tr>
-				<tr>
-					<td colspan="3"></td>
-				</tr>
-				<tr>
-					<td colspan="3"><textarea rows="20" cols="60" name="content"></textarea></td>
-				</tr>
-				<tr id="time">
-					<td>모집기간 : </td>
-					<td colspan="2"><input type="text" name="time" id="time" placeholder="ex)2019.09.29~2019.10.05 형식으로 입력하세요"></td>
-				</tr>
-				<tr id="fileAdd">
-					<td>파일첨부 : </td>
-					<td><div id="fileAddArea">이곳을 누르세요</div></td>
-				</tr>
-			</table>
-			<br>
-				<div class="addBtnArea" align="center">
-					<div id="cancelBtn" onclick="window.history.back();">취   소</div>
-					<div id="addBtn" onclick="return writeAdd()">등   록</div>
-				</div>
-				<div id="fileArea"><input type="file" name="file1" id="file1" onchange="fileName(this);"></div>
-			</div>
-		</form>
+	<header id="home" class="hero-area">
+	<%@ include file="/views/include/user/header_nav.jsp" %>
+	</header>
+
+	<!-- page-header -->
+	<%@ include file="/views/include/user/page_header.jsp" %>
+	<script>
+		var page_header_title='게시판'
+	</script>
+	<!-- end of page-header -->
+	
+
+	
+	
+	<div id="content">
+	<div class="container">
+	<div class="row">
+	<div class="col-lg-4 col-md-12 col-xs-12">
+	<div class="right-sideabr">
+	<h4>게시판</h4>
+	<ul class="list-item">
+	<li><a href="<%=contextPath%>/list.bo?head=main">전체보기</a></li>
+	<li><a href="<%=contextPath%>/list.bo?head=free">자유</a></li>
+	<li><a href="<%=contextPath%>/list.bo?head=study">스터디</a></li>
+	<li><a href="<%=contextPath%>/list.bo?head=project">프로젝트</a></li>
+	<li><a href="<%=contextPath%>/list.bo?head=qu">공지사항</a></li>
+	<li><a href="<%=contextPath%>/listForm.bo?head=form">서식</a></li>
+	</ul>
+	</div>
+	</div>
+	
+
+	
+	<div class="col-lg-8 col-md-12 col-xs-12">
+	
+	<div class="post-job box">
+	<h3 class="job-title">새 글쓰기</h3>
+	<form class="form-ad" action="<%=contextPath%>/insert.bo?head=<%=head%>" method="post" enctype="multipart/form-data" id="form" >
+	<input type="hidden" value="<%= clickHead %>" name="clickHead">
+	<input type="hidden" value="<%= mem.getM_no() %>" name="m_no">
+	<div class="form-group">
+	<label class="control-label">Category</label>
+	<div class="search-category-container">
+	<label class="styled-select">
+	<select class="dropdown-product selectpicker" name="writehead" id="writehead">
+		<option value="no">-------</option>
+		<option value="자유">자유</option>
+		<option value="스터디">스터디</option>
+		<option value="프로젝트">프로젝트</option>
+		<option value="공지">공지</option>
+		<option value="서식">서식</option>
+	</select>
+	</label>
+	</div>
+	</div>
+	<div class="form-group">
+	<label class="control-label">제목</label>
+	<!-- <input type="text" class="form-control" name="title" placeholder="제목을 입력하세요."> -->
+	<input type="text" class="form-control" name="title" id="title" placeholder="제목을 입력하세요">
+	</div>
+	<section id="editor">
+	<div class="form-group">
+	<label for="comment">내용</label>
+	<textarea class="form-control" rows="5" id="comment" name="content"></textarea>
+	</div>
+	</section>
+	<div class="form-group time" >
+	<label class="control-label">모집 시작</label>
+	<input type="date" class="form-control" name="time1" placeholder="yyyy-mm-dd">
+	</div>
+	<div class="form-group time" >
+	<label class="control-label">모집 마감</label>
+	<input type="date" class="form-control" name="time2" placeholder="yyyy-mm-dd">
+	</div>
+	<div class="custom-file mb-3">
+	<input type="file" class="custom-file-input" name="file1" id="validatedCustomFile" onchange="fileName(this);" required>
+	<label class="custom-file-label form-control" for="validatedCustomFile" id="fileAddArea">Choose file...</label>
+	<div class="invalid-feedback">Example invalid custom file feedback</div>
+	</div>
+	<div onclick="window.history.back()" class="btn btn-common">취소</div>
+	<div onclick="writeAdd();" class="btn btn-common">등록</div>
+	</form>
+	</div>	
+
+
+	</div>
+	</div>
+	</div>
 	</div>
 	
 	<script>
 		function writeAdd(){
-			var title = $("#tableArea input[name=title]");
-			var content = $("#tableArea textarea[name=content]");
+			var title = $("#title");
+			var content = $("#comment");
 			var select = $("#writehead");
 			
-			if(title.val().trim().length == 0){
-				alert("제목을 입력해주세요.");
-				title.focus();
-				return false;
-			}
 			if(select.val() == "no"){
 				alert("머리말을 선택해주세요.");
 				select.focus();
 				return false;
 			}
+			if(title.val().trim().length == 0){
+				alert("제목을 입력해주세요.");
+				title.focus();
+				return false;
+			} 
 			if(content.val().trim().length == 0){
 				alert("내용을 입력해주세요.") 
 				content.focus();
-				return false;
+				return false; 
 				
 			}else{
 				$("#form").submit();
-			}	
+			}
 		};
 		$(function(){
 			$("#writehead").change(function(){
 				var select = $("select[name=writehead]").val();
 
 				if(select == "자유" || select == "공지"){
-					$("#time").hide();
+					$(".time").hide();
+					
 				}else{
-					$("#time").show();
+					$(".time").show();
 				}
 			});
 		});
@@ -159,7 +163,29 @@
 		}
 		
 	</script>
+	
+	
+	
 
-	<%@ include file="/views/include/footer.jsp" %>
+	
+	<!-- footer -->
+		<%@ include file="/views/include/user/footer.jsp" %>
+	<!-- End of footer -->
+	
+	<!-- back to top button -->
+		<a href="#" class="back-to-top"> <i class="lni-arrow-up"></i></a>
+	<!-- End of back to top button -->
+	
+	<!-- 뭔지 모르겠어 -->
+	<div id="preloader">
+		<div class="loader" id="loader-1"></div>
+	</div>
+	<!-- 뭔지 모르겠어 -->
+	
+	
+	
+	<script>
+	$('.inner-header').children('h3').text(page_header_title)
+	</script>
 </body>
 </html>

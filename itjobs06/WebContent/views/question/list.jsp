@@ -37,7 +37,7 @@
 <div class="container">
 <div class="row">
 <div class="col-lg-6 col-md-6 col-xs-12">
-
+<a href="<%=request.getContextPath()%>/views/question/write.jsp">문의하기  </a>
 <div class="panel-group" id="accordion">
 <% for(int i=0;i<10;i++){ %>
 <div class="panel panel-default">
@@ -190,7 +190,7 @@ Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richa
 
 
 <!-- -------------------------------------------- -->
-<%@ include file="/views/include/header.jsp" %>
+
 <h1>문의 게시판</h1>
 <button onclick="location.href='<%=request.getContextPath()%>/views/question/write.jsp'">문의하기</button>
 <select>

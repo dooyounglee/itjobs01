@@ -190,7 +190,7 @@ Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richa
 
 
 <!-- -------------------------------------------- -->
-<%@ include file="/views/include/header.jsp" %>
+
 <h1>문의 게시판</h1>
 <button onclick="location.href='<%=request.getContextPath()%>/views/question/write.jsp'">문의하기</button>
 <select>

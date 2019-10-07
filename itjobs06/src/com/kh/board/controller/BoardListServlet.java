@@ -37,7 +37,7 @@ public class BoardListServlet extends HttpServlet {
 		String head = request.getParameter("head");
 		int listCount = 0;
 		
-		if(head.equals("main")) {
+		if(head.equals("main")||head.equals("전체보기")) {
 			listCount = new BoardService().getMainListCount();
 		}else {
 			switch(head) {
@@ -46,10 +46,11 @@ public class BoardListServlet extends HttpServlet {
 			case "project" : head="프로젝트"; break;
 			case "qna" : head="공지사항"; break;
 			case "form" : head="서식"; break;
+			default: break;
 			}
 			listCount =  new BoardService().getEtcListCount(head);
 		}
-			
+		
 		// 페이징처리
 		int currentPage=1;
 		if(request.getParameter("currentPage")!=null) {
@@ -57,16 +58,16 @@ public class BoardListServlet extends HttpServlet {
 		}
 		
 		
-		PageInfo pi = new PageInfo(currentPage, listCount, 5, 10);
+		PageInfo pi = new PageInfo(currentPage, listCount, 5, 5);
 		
 		ArrayList<Board> list = new ArrayList<>();
-		if(head.equals("main")) {
+		if(head.equals("main")||head.equals("전체보기")) {
 			list = new BoardService().selectMainList(pi);
 			
 		}else {
 			list = new BoardService().selectEtcList(head, pi);
 		}
-		
+	
 		request.setAttribute("pi",pi);
 		request.setAttribute("list", list);
 		

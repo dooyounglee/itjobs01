@@ -12,126 +12,116 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style>
-    .outer{
-        width:900px;
-        height:600px;
-        background:lightpink;
-        color:black;
-        margin-left:auto;
-        margin-right:auto;
-        margin-top:50px;
-    
-    }
-    #inner{
-        width:700px;
-        height:600px;
-        background:white;
-        margin-left:auto;
-        margin-right:auto;
-        margin-top:auto;
-        overflow:auto;
-        
-    }
-    #topArea{
-        width:100%;
-        height:25px;
-        margin-left:auto;
-        margin-right:auto;
-        margin-top:20px;
-     
-    }
-    #headArea{
-        width:150px;
-        height:25px;
-        text-align: left;
-        float:left;
-        font-size: 20px;
-        font-weight: bold;
-        
-    }
-    #topBtn{
-        width:200px;
-        height:25px;
-        float:right;
-      
-    }
-    #topBtn div{
-        display:inline-block;
-        background:lightblue;
-        width:60px;
-        height:25px;
-        text-align:center;
-        border-radius: 10px;
-    } 
-    #topBtn div:hover{
-    	cursor:pointer;
-    }
-    #content{
-        width:698px;
-        height:150px;
-        border:1px solid black;
-        overflow:auto;
-    }
-    #title{
-        font-size: 25px;
-        width:500px;
-        height:35px;
-        position: absolute;
-    }
-    #nickname{
-        font-size: 15px;
-    }
-    #bottomArea{
-        width:100%;
-        height:35px;
-        position:relative;
-    }
-    #img1{
-        background:url("<%=request.getContextPath()%>/resources/img/eye.jpg");
-        background-size:cover;
-        width:27px;
-        height:25px;
-        float:right;
-        position:absolute;
-        top:3px;
-        right:130px;
-    }
-    #img2{
-        background:url("<%=request.getContextPath()%>/resources/img/review.jpg");
-        background-size:cover;
-        width:25px;
-        height:25px;
-        float:right;
-        position:absolute;
-        top:3px;
-        right:50px;
-    }
-    #img1_1{
-        float:right;
-        position:absolute;
-        top:3px;
-        right:105px;
 
-    }
-    #img2_1{
-        float:right;
-        position:absolute;
-        top:3px;
-        right:25px;
-    }
-    #nextArea{
-        width:100%;
-        height:45px;
-        border:1px solid black;
-    }
-</style>
 </head>
 <body>
-	<%@ include file="/views/include/header.jsp" %>
+	
+	<!-- import jobx -->
+<%@ include file="/views/include/user/style.jsp" %>
+<!-- End of import from jobx -->
+
+<!-- import of jobx -->
+<%@ include file="/views/include/user/js.jsp" %>
+<!-- End of import of jobx -->
+</head>
+<body>
+
+	<header id="home" class="hero-area">
+	<%@ include file="/views/include/user/header_nav.jsp" %>
+	</header>
+
+	<!-- page-header -->
+	<%@ include file="/views/include/user/page_header.jsp" %>
+	<script>
+		var page_header_title='게시판'
+	</script>
+	<!-- end of page-header -->
+	
+
 	
 	
-	 <div class="outer">
+	<div id="content">
+	<div class="container">
+	<div class="row">
+	<div class="col-lg-4 col-md-12 col-xs-12">
+	<div class="right-sideabr">
+	<h4>게시판</h4>
+	<ul class="list-item">
+	<li><a href="<%=contextPath%>/list.bo?head=main">전체보기</a></li>
+	<li><a href="<%=contextPath%>/list.bo?head=free">자유</a></li>
+	<li><a href="<%=contextPath%>/list.bo?head=study">스터디</a></li>
+	<li><a href="<%=contextPath%>/list.bo?head=project">프로젝트</a></li>
+	<li><a href="<%=contextPath%>/list.bo?head=qu">공지사항</a></li>
+	<li><a href="<%=contextPath%>/listForm.bo?head=form">서식</a></li>
+	</ul>
+	</div>
+	</div>
+	
+
+	
+	<div class="col-lg-8 col-md-12 col-xs-12">
+	
+	 <section class="job-detail section">
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col-lg-8 col-md-12 col-xs-12">
+            <div class="content-area">  
+              <h4>상세보기</h4>
+              <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi umsan ipsum velit. Nam nec tellus a odio tincidunt auctor a ornare odio. Sed non mauris vitae erat consequat auctor eu in elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Mauris in erat justo. Nullam ac urna eu felis dapibus condimentum sit amet a augue. Sed non neque elit</p>
+              <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi umsan ipsum velit. Nam nec tellus a odio tincidunt auctor a ornare odio.</p>
+              <h5>What You Need for this Position</h5>
+              <ul>
+                <li>- Objective-C</li>
+                <li>- iOS SDK</li>
+                <li>- XCode</li>
+                <li>- Cocoa</li>
+                <li>- ClojureScript</li>
+              </ul>
+              <h5>How To Apply</h5>
+              <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris.</p>
+              <a href="#" class="btn btn-common">Apply job</a> 
+            </div>
+          </div>
+      
+        </div>
+      </div>
+    </section>
+
+
+	</div>
+	</div>
+	</div>
+	</div>
+	
+	
+	
+	
+
+	
+	<!-- footer -->
+		<%@ include file="/views/include/user/footer.jsp" %>
+	<!-- End of footer -->
+	
+	<!-- back to top button -->
+		<a href="#" class="back-to-top"> <i class="lni-arrow-up"></i></a>
+	<!-- End of back to top button -->
+	
+	<!-- 뭔지 모르겠어 -->
+	<div id="preloader">
+		<div class="loader" id="loader-1"></div>
+	</div>
+	<!-- 뭔지 모르겠어 -->
+	
+	
+	
+	<script>
+	$('.inner-header').children('h3').text(page_header_title)
+	</script>
+	
+	
+	
+	
+<%-- 	 <div class="outer">
         <div id="inner">
             <div id="topArea">
                 <div id="headArea"><%= b.getHead() %></div>
@@ -196,7 +186,7 @@
         
         
         </div>
-    </div>
+    </div> --%>
 
 
 	<script>
@@ -210,17 +200,7 @@
 			}
 		}
 		
-	<%-- 	function deBtn(){
-		
-			if(<%= mem.getM_no() %> != null){
-				window.open("<%=contextPath %>/insertForm.de?bId=<%=b.getB_no()%>&title=<%=b.getTitle()%>&boardNick=<%=b.getNickname()%>&head=<%=b.getHead()%>", "ITJOBS_게시글 신고", "width=500, height=600, toolbar=no, menubar=no, scrollbars=no, resizable=no");
 
-			}else{
-				alert("로그인해주세요");
-			} 
-		} 
-		 --%>
-		 
 		 $(function(){
 				// 화면 로딩 시 댓글 출력
 				selectRlist();

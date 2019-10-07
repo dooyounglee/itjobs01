@@ -65,8 +65,11 @@ public class BoardInsertServlet extends HttpServlet {
 			String head = multiRequest.getParameter("writehead");
 			String title = multiRequest.getParameter("title");
 			String contents = multiRequest.getParameter("content");
-			String time = multiRequest.getParameter("time");
+			String time1 = multiRequest.getParameter("time1");
+			String time2 = multiRequest.getParameter("time2");
 			String clickHead = multiRequest.getParameter("clickHead");	// 메뉴바에서 클릭한 헤드(인설트 후 리스트 재조회 시 필요)
+
+			String time = time1 + "~" + time2;
 			
 			Board b = new Board();
 			b.setM_no(m_no);

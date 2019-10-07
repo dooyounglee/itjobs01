@@ -128,8 +128,8 @@ public class BoardDao {
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setString(1, head);
-			pstmt.setInt(3, pi.getEndRow());
 			pstmt.setInt(2, pi.getStartRow());
+			pstmt.setInt(3, pi.getEndRow());
 			
 			rset = pstmt.executeQuery();
 			

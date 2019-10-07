@@ -12,66 +12,24 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<style>
-	.outer{
-		width:900px;
-		height:600px;
-		/*background:lightpink;*/
-		color:black;
-		margin-left:auto;
-		margin-right:auto;
-		margin-top:50px;
-	}
-	.tableArea{
-		width:700px;
-		height:500x;
-		margin-left:auto;
-		margin-right:auto;
-	}
-	table{
-		border:1px solid white;
-		text-align:center;
-		margin-left:auto;
-		margin-right:auto;
-	}
-	
-	th{
-		background:lightgray;
-	}
-	#writeBtn{
-		border-radius:8px;
-		background:lightblue;
-		width:60px;
-		height:25px;
-		text-align:center;
-		float:right;
-	
-		
-	}
-	#writeBtn:hover{
-		cursor:pointer;
-	}
-	#writeBtnArea{
-		width:700px;
-		height:30px;
-		margin-left:auto;
-		margin-right:auto;
-		/*border:1px solid black;*/
-	}
-	#headArea{
-		width:700px;
-		margin-left:auto;
-		margin-right:auto;
-	}
-	.pagingArea>div{
-		width:30px;
-		height:30px;
-		display:inline-block;
-	}
-</style>
+
+<!-- import jobx -->
+<%@ include file="/views/include/user/style.jsp" %>
+<!-- End of import from jobx -->
+
 </head>
 <body>
-	<%@ include file="/views/include/header.jsp" %>
+
+	<header id="home" class="hero-area">
+	<%@ include file="/views/include/user/header_nav.jsp" %>
+	</header>
+
+	<!-- page-header -->
+	<%@ include file="/views/include/user/page_header.jsp" %>
+	<script>
+		var page_header_title='내 정보 수정'
+	</script>
+	<!-- end of page-header -->
 	
 	<div class="outer">
 		<br>

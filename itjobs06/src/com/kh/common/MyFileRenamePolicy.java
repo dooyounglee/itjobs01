@@ -25,7 +25,7 @@ public class MyFileRenamePolicy implements FileRenamePolicy{
 			ext = name.substring(dot);
 		}
 		
-		String fileName = name+sdf.format(new Date(currentTime)) + ext;
+		String fileName = sdf.format(new Date(currentTime)) + ext;
 		
 		File newFile = new File(originFile.getParent(), fileName);
 		

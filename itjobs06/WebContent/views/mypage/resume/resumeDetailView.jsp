@@ -16,59 +16,32 @@
 <%@ include file="/views/include/header.jsp" %>
 <h2 align="center">이력서 작성</h2>
 <div id="first">
-	
-	<h3><%= re.getTitle()%></h3> 
-	<label name="name" id="name"><%= re.getName()%></label>
-
-	
-	<label name="birth"><%= re.getBirth_date()%> </label>
-
-	<br>
-	<label name="phone"><%= re.getPhone()%></label>
-	
-	
-	<label name="address"><%= re.getAddress() %> </label>
-	
-	
-	<label name="email"><%= re.getEmail() %></label>
-
-	
-	
-
+	제목 : <%= re.getTitle()%><br> 
+	이름 : <%= re.getName()%><br> 
+	생년월일 : <%= re.getBirth_date()%><br> 
+	폰 : <%= re.getPhone()%><br> 
+	주소 : <%= re.getAddress() %><br> 
+	이메일 : <%= re.getEmail() %><br> 
 </div><br><br>
-<div id="academy">
+	<div id="academy">
 	<h3>최종 학력</h3>
-	<label><%= re.getSchool()%></label>
-	<label><%= re.getDepartment()%></label>
-	<label><%= re.getSchool_period()%></label>
-	<br>
-	<br>
-
+	학교 : <%= re.getSchool()%><br> 
+	학과 : <%= re.getDepartment()%><br> 
+	기간 : <%= re.getSchool_period()%><br> 
 	</div>
-	
 <br><br>
 
 <div id="carrer">
-	<h3>경력 사항</h3>
-	<label><%= re.getCareer()%></label>
-	<label><%= re.getWork_place()%></label>
-	<label><%= re.getWork_date()%></label>
-	<label><%= re.getWork()%></label>
-	
-	<br>
-	
-	<label><%= re.getCertification()%></label>
-	<label><%= re.getCer_date()%></label>
-	
-	
-	<br>
-	<label><%= re.getHope_salary()%></label>
-	
-	<label><%= re.getOpen()%></label>
-	
-	<label><%= re.getP_language()%></label>
-		
-	<label><%= re.getCover_letter()%></label>
+	경력 : <%= re.getCareer()%><br>
+	일한장소 : <%= re.getWork_place()%><br>
+	일한날짜 : <%= re.getWork_date()%><br>
+	한 일 : <%= re.getWork()%><br>
+	자격증 : <%= re.getCertification()%><br>
+	자격날짜 : <%= re.getCer_date()%><br>
+	희망연봉 : <%= re.getHope_salary()%><br>
+	공개 : <%= re.getOpen()%><br>
+	언어 : <%= re.getP_language()%><br>
+	자소서 : <%= re.getCover_letter()%><br>
 
 	
 	

@@ -161,7 +161,6 @@
 
 <%	co = (Member) request.getAttribute("co");%>
 
-<%@ include file="/views/include/header.jsp" %>
 
 <input type="hidden" value="<%=mem.getM_no()%>" id="memNo">
 

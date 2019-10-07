@@ -77,6 +77,7 @@
 							<option value="스터디">스터디</option>
 							<option value="프로젝트">프로젝트</option>
 							<option value="공지">공지</option>
+							<option value="서식">서식</option>
 						</select>
 					</td>
 					<td colspan="2"><input type="text" name="title" placeholder="제목을 입력하세요"  style="width:280px;"></td>

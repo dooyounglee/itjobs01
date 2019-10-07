@@ -191,5 +191,25 @@ public class MemberService {
 		return result;
 	}
 	
+	public void certifyMem(String email, String cer_no) {
+		
+		
+		Connection conn = getConnection();
+		
+		int result = new MemberDao().certifyMem(conn,email,cer_no);
+		
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+	}
+	
+	
+	
+	
 	
 }

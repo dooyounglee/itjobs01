@@ -50,7 +50,7 @@ public class findPwdServlet extends HttpServlet {
 			
 			int result = new MemberService().randomPwd(userPwd,email); // 보내준다
 			
-			if(result>0) {	// 정상적으로 비밀번호 변경 이메일에 전송
+			if(result>0) {	// 정상적으로 비밀번호 변경 이메일에 임시 비밀번호 전송
 				
 				new sendEmail().sendPwd(email,userPwd);
 				

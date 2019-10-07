@@ -83,7 +83,6 @@ public int insertResum(Resume re){
 		Connection conn = getConnection();
 		
 		ArrayList<Resume> list = new ResumeDao().selectResume(conn, pi,mno);
-		System.out.println(list);
 		close(conn);
 		
 		return list;

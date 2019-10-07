@@ -34,7 +34,7 @@
 		일반
 		</h3>
 		<form class="login-form" action="<%=request.getContextPath() %>/join.me" method="post" autocomplete=off>
-		<input value=1 name=type readonly>
+		<input type="hidden"value=1 name=type readonly>
 		<div class="form-group">
 		<div class="input-icon">
 		<i class="lni-user"></i>

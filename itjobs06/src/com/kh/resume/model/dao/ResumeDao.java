@@ -86,8 +86,6 @@ public class ResumeDao {
 		   PreparedStatement pstmt = null;
 		   
 		   String sql = prop.getProperty("insertResum");
-		   
-		   System.out.println("Dao-"+re);
 		   try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, re.getPhoto());
@@ -117,21 +115,13 @@ public class ResumeDao {
 			pstmt.setString(20, re.getP_language());
 			pstmt.setString(21, re.getHope_salary());
 			pstmt.setInt(22, re.getM_no());
-			
-			
-			
-			
-			
-			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
-			
 			e.printStackTrace();
 		}finally{
 			close(pstmt);
 		}
 		   return result;
-		   
 	   }
 	   
 	/**
@@ -142,20 +132,15 @@ public class ResumeDao {
 	 * @return
 	 */
 	public Resume selectResumDetail(Connection conn,int mno,int resume_no){
-		 
 	 
 			Resume re = null;
 			PreparedStatement pstmt =null;
 			ResultSet rset = null;
 			
 			String sql = prop.getProperty("selectResumDetail");
-			
 			try {
 				pstmt = conn.prepareStatement(sql);
-				
-				//pstmt.setInt(1, mno);
 				pstmt.setInt(1, resume_no);
-				
 				rset = pstmt.executeQuery();
 				
 				if(rset.next()) {
@@ -163,7 +148,7 @@ public class ResumeDao {
 							   rset.getString("PHOTO"),
 							   rset.getString("PATH"),
 							   rset.getString("NAME"),
-							   rset.getString("BIRTH_DATE"),
+							   rset.getDate("BIRTH_DATE")+"",
 							   rset.getString("PHONE"),
 							   rset.getString("ADDRESS"),
 							   rset.getString("EMAIL"),
@@ -194,7 +179,6 @@ public class ResumeDao {
 				close(rset);
 				close(pstmt);
 			}
-			
 			return re;
 	 }
 	
@@ -327,7 +311,7 @@ public class ResumeDao {
 						   rset.getString("PHOTO"),
 						   rset.getString("PATH"),
 						   rset.getString("NAME"),
-						   rset.getString("BIRTH_DATE"),
+						   rset.getDate("BIRTH_DATE")+"",
 						   rset.getString("PHONE"),
 						   rset.getString("ADDRESS"),
 						   rset.getString("EMAIL"),
@@ -447,17 +431,18 @@ public class ResumeDao {
 	}
 	
 	public int updateResume(Connection conn, Resume re){
-		
 		 int result = 0;
 		 PreparedStatement pstmt = null;
 		 
 		 String sql = prop.getProperty("updateResum");
-		   
-		   System.out.println(re);
-		   
 		   try {
 			pstmt = conn.prepareStatement(sql);
-			
+			//PHOTO=?,PATH=?,NAME=?,BIRTH_DATE=to_date(?,'yyyy-mm-dd'),
+			//PHONE=?,ADDRESS=?,EMAIL=?,
+			//SCHOOL=?,DEPARTMENT=?,SCHOOL_PERIOD=?,CAREER=?,WORK_PLACE=?,
+			//WORK_DATE=?,WORK=?,CERTIFICATE=?,CER_DATE=?,TITLE=?,
+			//COVER_LETTER=?,OPEN=?,UPDATE_DATE=SYSDATE,P_LANGUAGE=?,
+			//HOPE_SALARY=? WHERE RESUME_NO=?
 			pstmt.setString(1, re.getPhoto());
 			pstmt.setString(2, re.getPath());
 			pstmt.setString(3, re.getName());
@@ -485,21 +470,13 @@ public class ResumeDao {
 			pstmt.setString(20, re.getP_language());
 			pstmt.setString(21, re.getHope_salary());
 			pstmt.setInt(22, re.getResume_no());
-			
-			
-			
-			
-			
-			
 			result = pstmt.executeUpdate();
 			} catch (SQLException e) {
-				
 				e.printStackTrace();
 			}finally{
 				close(pstmt);
 			}
 			   return result;
-			   
 		   }
 	
 	public int supportResume(Connection conn, int resume_no){
@@ -509,14 +486,10 @@ public class ResumeDao {
 		 PreparedStatement pstmt = null;
 		 
 		 String sql = prop.getProperty("supportResum");
-
-		   
 		   try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, resume_no);
-			
 			rset = pstmt.executeQuery();
-			
 			while(rset.next()){
 				su_result = rset.getInt(1);
 			}

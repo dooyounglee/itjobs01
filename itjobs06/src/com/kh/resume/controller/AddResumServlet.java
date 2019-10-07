@@ -78,43 +78,29 @@ public class AddResumServlet extends HttpServlet {
 			String school = String.join(",", multiRequest.getParameterValues("school"));
 			String department = String.join(",", multiRequest.getParameterValues("Department"));
 			String school_period = String.join(",",multiRequest.getParameterValues("school_Date1"))+"~"+String.join(",",multiRequest.getParameterValues("school_Date2"));
-			
+			System.out.println(school_period);
 			String career = multiRequest.getParameter("career");
 			String work_place="";
 			String work="";
 			String work_date="";
 			if(career.equals("Y")) {
-				String[] work_places = multiRequest.getParameterValues("companyName");
-				work_place = String.join(",", work_places);
-				
-				String[] works = multiRequest.getParameterValues("workList");
-				work = String.join(",", works);
-				
-				String[] work_date1s = multiRequest.getParameterValues("workDate1");
-				String[] work_date2s = multiRequest.getParameterValues("workDate2");
-				String[] work_dateB = new String[work_date1s.length];
-				for(int i=0; i<work_date1s.length; i++){
-					work_dateB[i]= work_date1s[i] + "~"+work_date2s[i];
-				}
-				work_date = String.join(",", work_dateB);
+				work_place = String.join(",", multiRequest.getParameterValues("companyName"));
+				work = String.join(",", multiRequest.getParameterValues("workList"));
+				work_date = String.join(",",multiRequest.getParameterValues("workDate1"))+"~"+String.join(",",multiRequest.getParameterValues("workDate2"));
 			}
 			
-			
-			String[] certifications = multiRequest.getParameterValues("cer_name");
 			String certification ="";
-			certification = String.join(",", certifications);
+			certification = String.join(",", multiRequest.getParameterValues("cer_name"));
 			
-			String[] cer_dates = multiRequest.getParameterValues("cer_date");
 			String cer_date="";
-			cer_date = String.join(",", cer_dates);
+			cer_date = String.join(",", multiRequest.getParameterValues("cer_date"));
 			
 			String title = multiRequest.getParameter("title");
 			String cover_letter= multiRequest.getParameter("self");
 			String open = multiRequest.getParameter("open");
 			
-			String[] p_languages = multiRequest.getParameterValues("p");
 			String p_language="";
-			p_language = String.join(",", p_languages);
+			p_language = String.join(",", multiRequest.getParameterValues("p"));
 			
 			String hope_salary = multiRequest.getParameter("hope_salary");
 			
@@ -122,13 +108,6 @@ public class AddResumServlet extends HttpServlet {
 			Member m=(Member)session.getAttribute("mem");
 			int m_no=m.getM_no();
 			
-			
-			
-		
-		
-	
-	
-		
 		
 		
 	

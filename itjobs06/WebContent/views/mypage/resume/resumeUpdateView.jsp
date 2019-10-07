@@ -2,12 +2,8 @@
 <%@page import="com.kh.resume.model.vo.Resume,java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" %>
- <% 
-
-
-	//String contextPath = request.getContextPath();
+<% 
  	Resume re = (Resume)request.getAttribute("re");
-
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -16,104 +12,71 @@
 <title>이력서 수정</title>
 </head> 
 <body>
-<style>
-	#header{
-	width:100%;
-	height:250px;	
-	background-color:lightgray;
-	}
-	#first{
-	margin-left:100px;
-	border:1px solid black;
-	}
-	
-	#collegeInfo{
-	
-	/* display:none; */
-	}
-	
-	#collegeInfo,#highInfo,#academyInfo{
-		padding:20px;
-		border:1px solid black;
-		width:600px;
-		background-color:lightgray;
-	}
-	#academyInfo{
-	/* display:none; */
-	}
-	#academy,#career/* ,#cer,#salary,#public,#resum_title,#self */{
-	margin-left:100px;
-	}
-	
-	#careerList,#careerList2,#cerList,,#resum_title{
-	border:1px solid black;
-	}
-	
-	#careerList2,#cerList2{
-	display:none;	
-	}
-	
-	#careerList2{
-	margin-bottom:100px;
-	}
-
-	
-</style>
 <div id="head"></div>
 </head>
 <body>
 <%@ include file="/views/include/header.jsp" %>
-<form action="<%=contextPath%>/update.re" method="post">
-<h2 align="center">이력서 수정</h2>
-<div id="first">
+<form action="<%=contextPath%>/update.re" method="post" enctype="multipart/form-data">
+<h2 align="center">이력서 작성</h2>
+	<%	if(re.getPath()==null|| re.getPhoto()==null || re.getPath().equals("null") || re.getPhoto().equals("null")){ %>
+	<img id="titleImg"></img>
+	<%	} else { %>
+	<img id="titleImg" src="resources/fileupload_resumeImg/<%=re.getPhoto()%>"><br>
+	<% } %>
+<input type="file" name="file" onchange="loadImg(this)">
+<script>
+	function loadImg(value){
+		console.log(value.files)
+		console.log(value.files[0])
+		if(value.files && value.files[0]){
+			var reader = new FileReader();
+			reader.onload = function(e){
+				console.log(e.target)
+				 $("#titleImg").attr("src", e.target.result); // data:URL
+				 console.log(e.target.result);
+			}
+			reader.readAsDataURL(value.files[0]);
+		}
+	}
+</script>
+<hr><% System.out.print(re.getBirth_date()); %>
+	<input type=hidden name="resume_no" value="<%=re.getResume_no()%>">
+	<input type=hidden name="path" value="<%=re.getPath()%>">
+	<input type=hidden name="photo" value="<%=re.getPhoto()%>">
+	이름: <input type="text" id="name" name="name" value="<%=re.getName()%>"><br>
+	생년월일: <input type="Date" id="birth" name="birth" value="<%=re.getBirth_date()%>"><br>
+	핸드폰번호: <input type="text" id="phone" name="phone" value="<%=re.getPhone()%>"><br>
+	이메일: <input type="text" id="email" name="email" value="<%=re.getEmail()%>"><br>
 	
-	<input type="hidden" value="<%= re.getResume_no() %>" name="re_no">
-	
-
-	<label name="name">* 이름 : </label>
-	<input type="text" id="name" name="name" value="<%= re.getName() %> "><br><br>
-	
-
-	<label name="birth">* 생년월일 : </label>
-	<input type="date" id="birth" name="birth" value="<%= re.getBirth_date().substring(0,10) %>" >
-
-
-   
-	<label name="phone">* 핸드폰번호 : </label>
-	<input type="text" id="phone" name="phone" value="<%= re.getPhone() %> "><br><br>
-	
-	<label name="address">* 주소: </label>
-	<input type="text" id="address" name="address" value="<%= re.getAddress() %> "><br><br>
-	
-	<label name="email">* 이메일: </label>
-	<input type="text" id="email" name="email" value="<%= re.getEmail() %> "><br><br>
-	
-	
-
-</div><br><br>
-<div id="academy">
-
- <% if(re.getSchool_final().equals("1")){%> 
-
-
-	<script>
-	$(".high").attr("checked",true);
-
-	</script>
-
- <%} %> 
-
-	<h3>최종 학력</h3>
-	<br>
-	<div id="highInfo">
-		<input type="radio" id="high"name="school_final" > 고등학교 졸업<br>
-		<label>학교명</label>
-		<input type="text" name="school" value="<%=re.getSchool()%>"><br><br>
-	
-	
-	<!-- 보류하고  후에 값넣겠습니당 -->
-		<label>학과명</label>
-		<select name="Department" >
+	<%	String[] arr_address=re.getAddress().split("\\+"); %>
+	<!-- 주소api -->
+	주소:
+	<input type="text" id="sample3_postcode" name="sample3_postcode" value="<%=arr_address[0] %>" placeholder="우편번호">
+	<input type="button" onclick="sample3_execDaumPostcode()" value="우편번호 찾기"><br>
+	<input type="text" id="sample3_address" name="sample3_address" value="<%=arr_address[1] %>" placeholder="주소">
+	<input type="text" id="sample3_detailAddress" name="sample3_detailAddress" value="<%=arr_address[2] %>" placeholder="상세주소">
+	<input type="hidden" id="sample3_extraAddress" placeholder="참고항목">
+	<div id="wrap" style="display:none;border:1px solid;width:500px;height:300px;margin:5px 0;position:relative">
+		<img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnFoldWrap" style="cursor:pointer;position:absolute;right:0px;top:-1px;z-index:1" onclick="foldDaumPostcode()" alt="접기 버튼">
+	</div>
+	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script src="resources/util/address_api.js"></script>
+	<!-- end of 주소api -->	
+<hr>
+	<%	String school_final=re.getSchool_final();
+		String[] checked_school_final=new String[3];
+		switch(school_final){
+		case "1":checked_school_final[0]="checked";break;
+		case "2":checked_school_final[1]="checked";break;
+		case "3":checked_school_final[2]="checked";break;
+		}
+		
+		String[] arr_school=re.getSchool().split(",");
+		String[] arr_department=re.getDepartment().split(",");%>
+		<input type="radio" name="school_final" value="1" <%=checked_school_final[0] %>>고등학교 졸업<br>	
+		학교명: <input type="text" name="school" value="<%=arr_school[0] %>"><br>
+		학과명: <input type="text" name="Department" value="<%=arr_department[0] %>"><br>
+<!-- 		<select name="Department">
 			<option value="">--학교계열--</option>
 			<option value="문과" selected>문과계열</option>
 			<option value="이과">이과계열</option>
@@ -121,322 +84,117 @@
 			<option value="예체능">예체능계</option>
 			<option value="특성화/마이스터">특성화/마이스터고</option>
 			<option value="특수목적">특수목적고</option>
-		</select>
-		
-		<input type="date" name="school_Date1" value="<%= re.getSchool_period().substring(0,10) %>"> ~
-		<input type="date" name="school_Date2" value="<%= re.getSchool_period().substring(11,21) %>">
-		<br><br>
-	</div>
+		</select> -->
+		날짜: <input type="date" name="school_Date1" value="2010-01-01"> ~
+		<input type="date" name="school_Date2" value="2010-01-02">
+<hr>	
+		<input type="radio" id="college" name="school_final" value="2" <%=checked_school_final[1] %>>초대졸 졸업<br>
+		학교명: <input type="text" name="school" value="<%=arr_school[1] %>"><br>
+		학과명: <input type="text" name="Department" value="<%=arr_department[1] %>"><br>
+		날짜: <input type="date" name="school_Date1" value="2010-01-01"> ~
+		<input type="date" name="school_Date2" value="2010-01-02">
 	
-	<div id="collegeInfo">
-		<input type="radio" id="college" name="school_final" value="2" >초대졸 졸업<br>
-		<label>학교명 </label>
-		<input type="text" name="school" value="<%=re.getSchool()%>"><br><br>
-		
-		<label>학과명 </label>
-		<input type="text" name="Department" value="<%=re.getDepartment()%>"><br><br>
-		
-		<input type="date" name="school_Date1" value="<%= re.getSchool_period().substring(0,10) %>"> ~
-		<input type="date" name="school_Date2" value="<%= re.getSchool_period().substring(11,21) %>">
-	</div>
-	
-	<div id="academyInfo">
-		<input type="radio" id="university" name="school_final" value="3">대졸 졸업 이상<br>
+<hr>
+		<input type="radio" id="university" name="school_final" value="3" <%=checked_school_final[2] %>>대졸 졸업 이상<br>
 		<label>학교</label>
-	
-		<select >
-			<option>--대학교--</option>
-			<option>대학교 4년제</option>
-			<option>대학원(석사)</option>
-			<option>대학원(박사)</option>
+		<select name="gubun">
+			<option value="4">--대학교--</option>
+			<option value="4">대학교 4년제</option>
+			<option value="s">대학원(석사)</option>
+			<option value="p">대학원(박사)</option>
 		</select>
 		<br>
-		<label>학교명</label>
-		<input type="text" name="school" value="<%=re.getSchool()%>"><br>
 		
-		<label>학과명</label>
-		<input type="text" name="Department" value="<%=re.getDepartment()%>"><br>
-		
-		<label>재학기간 </label>
-		<input type="date" name="school_Date1" value="<%= re.getSchool_period().substring(0,10) %>"> ~
-		<input type="date" name="school_Date2" value="<%= re.getSchool_period().substring(11,21) %>">
+		학교명: <input type="text" name="school" value="<%=arr_school[2] %>"><br>
+		학과명: <input type="text" name="Department" value="<%=arr_department[2] %>"><br>
+		날짜: <input type="date" name="school_Date1" value="2010-01-01"> ~
+		<input type="date" name="school_Date2" value="2010-01-02">
 	</div>
-</div>
-
-<%   
-	String[] workDates = re.getWork_date().split(","); 	// 2019-01-01~2019-09-09
-	String[] workPlaces = re.getWork_place().split(",");
-	String[] works = re.getWork().split(",");
-%>
-  
-
-<br><br>
-
-<div id="career">
-	<h3>경력 사항</h3>
+<hr>
 	<input type="radio" name="career" value="N" checked>신입
 	<input type="radio" name="career" value="Y" >경력
 	<input type="button" onclick="add_career()" value="+ 경력추가하기">
 	<div id="careerList">
-	<% if(workPlaces.length == 1){ %>
 		<div id="careerForm">
-			<label>근무 회사명</label>
-			<input type="text" name="companyName" value="<%=re.getWork_place()%>"><br><br>
-			 
-			<label>업무 내용 </label>
-			<input type="text" name="workList" value="<%=re.getWork()%>"><br><br>
-			
-			<label>근무 일자</label>
-			<input type="date" name="workDate1" value="<%=re.getWork_date().substring(0,10)%>"> ~
-			<input type="date" name="workDate2" value="<%=re.getWork_date().substring(11,21)%>">
+			일한회사: <input type="text" name="companyName" value="1"><br>
+			한 일: <input type="text" name="workList" value="1"><br>
+			근무날짜: 
+			<input type="date" name="workDate1" id="workDate1" value="2006-01-01"> ~
+			<input type="date" name="workDate2" id="workDate2" value="2010-01-01"><br>
+			경력년수 : <input name="career_year" value="2">
+			<!-- <input type="button" id="careerButton" value="경력 계산" onclick="math();" >  -->
 			<br>
+			<div id="durl"></div>
 		</div>
-	
-	
-	<%}else{ %>
-	<% for(int i=0; i<workPlaces.length-1; i++ ){ %>
-	
-		<div id="careerForm">
-			<label>근무 회사명</label>
-			<input type="text" name="companyName" value="<%= workPlaces[i]%>"><br><br>
-			 
-			<label>업무 내용 </label>
-			<input type="text" name="workList" value="<%=works[i]%>"><br><br>
-			
-			<label>근무 일자</label>
-			<input type="date" name="workDate1" value="<%=workDates[i].substring(0,10)%>"> ~
-			<input type="date" name="workDate2" value="<%=workDates[i].substring(11,21)%>">
-			<br>
-		<% if(i > 0) {%>
-			<span class="del_career" style="cursor:pointer;">삭제</span></div>
-		<%} %>
-			<br><br>
-			</div>
-			
-	<%} %>
-<%} %>	
-		
 	</div>
-
-	<br>
-	
-<!-- 	<div id="careerList2">
-	<br>---------------------------------------------------------------------------<br><br>
-	
-	
-	<label>근무 회사명</label>
-	<input type="text" id="companyName" name="companyName"><br><br>
-	
-	<label>업무 내용 </label>
-	<input type="text" id="workList" name="workList"><br><br>
-	
-	<label>근무 일자</label>
-	<input type="date" id="workDate1" name="workDate1"> ~
-	<input type="date" id="workDate2" name="workDate2">
-
-	<br>
-	<input type="button" value="삭제하기" id="careerDelete" name="careerDelete" onclick="remove_div(this)">
-	
-	
-	</div> -->
-	
-	<br>
-	
-<%   
-	String[] cers = re.getCertification().split(",");
-	String[] cerDates = re.getCer_date().split(",");
-%>
-	
-	<div id="cer">
-	<h3>자격증</h3>
+<hr>
 	<input type="button" value="+ 자격증 추가하기" onclick="add_cer()">
 	<div id="cerList">
-	
-	<% if(cers.length == 1){ %>
-	
-	<div id="cerForm">
-			<label>자격증명</label>
-			<input type="text" name="cer_name" value="<%= re.getCertification()%>"><br><br>
-			<label>취득날짜</label>
-			<input type="date" name="cer_date"  value="<%=re.getCer_date().substring(0,10)%>">
-		
-			
-			<br>
-		</div>
-	<%}else{ %>
-	<% for(int j=0; j<cers.length-1; j++){ %>
-	
 		<div id="cerForm">
-			<label>자격증명</label>
-			<input type="text" name="cer_name" value="<%= cers[j]%>"><br><br>
-			<label>취득날짜</label>
-			<input type="date" name="cer_date"  value="<%=cerDates[j].substring(0,10)%>">
-			<br>
-			<% if(j > 0){ %>
-			<span class="del_cer" style="cursor:pointer;">삭제</span></div>
-			<%} %> 
-			
-			<br>
+			자격증: <input type="text" name="cer_name" value="1"><br>
+			날짜: <input type="date" name="cer_date"  value="2010-01-01">
 		</div>
-		<% } %>
-	<%} %>
 	</div>
-</div>
-	<!-- <div id="cerList2">
-	<br>---------------------------------------------------------------------------<br><br>
-	<label>자격증명</label>
-	<input type="text" id="cer_id" name="cer_name"><br><br>
-	<label>취득날짜</label>
-	<input type="date" id="cer_date" name="cer_date"><br>
-	<input type="button" value="삭제하기" id="cerDelete" name="cerDelete" onclick="remove_cer(this)">
-	<br>
-	</div> -->
-	<br><br>
-	
-	<div id="salary">
-	<h3>희망연봉</h3><br>
-	<label>희망연봉금액</label>
+<hr>
+	희망연봉금액: 
 	<select name="hope_salary">
-	    <option value="회사내규에따름" selected>회사내규에따름<option>
+	    <option value="회사내규에따름">회사내규에따름<option>
 		<option value="2000만원 ~ 2200만원">2000만원 ~ 2200만원<option>
 		<option value="2200만원 ~ 2400만원">2200만원 ~ 2400만원<option>
 		<option value="2400만원 ~ 2600만원">2400만원 ~ 2600만원<option>
 		<option value="2600만원 ~ 2800만원">2600만원 ~ 2800만원<option>
 		<option value="2800만원 ~ 3000만원">2800만원 ~ 3000만원<option>
 	</select>
-	</div>
-	<br><br>
-	
-	<div id="public">
-	<h3>이력서 공개 여부</h3>
-	<label>공개여부</label><br>
-	<input type="radio" name="open" value="Y" checked>Y
-	<input type="radio" name="open" value="N" >N
-	
-	
-	
-	</div>
-		
-	
-
-	
-	
-	<br><br>
-	
-	<div id="resum_title">
-		<h3>이력서 제목</h3>
-		<label>제목 </label>
-		<input type="text" maxlength="100" size="100px" name="title" value="<%= re.getTitle()%>">
-		
-		<br><br>
-		
-		<select name="select" onchange="selectInput();">
-			<option value="">== 선택없음 ==</option>
-			<option value="title_1" selected>많이 일하고 조금 받겠습니다 뽑아주세요</option>
-			<option value="title_2">취업하고 싶습니다 채용해주세요</option>
-			<option value="title_3">백수그만하고싶습니다 돈벌게해주세요</option>
-		</select>
-		<br><br>
-		
-		<div id="p_lang">
-			<h3>프로그램언어</h3><br>
-			<input type="checkbox" name="p" value="c언어" checked>c언어
-			<input type="checkbox" name="p" value="자바">자바
-			<input type="checkbox" name="p" value="CSS">css
-			<input type="checkbox" name="p" value="javascript">javascript
-		
-		
-		
-		</div>
-	
-
-
-
-	</div>
-	<br><br>
-	
-	<div id="self">
-		<h3>자기소개</h3>
-		<textarea id="self" cols="60" rows="10" name="self"><%= re.getCover_letter() %></textarea>
-	</div>
-	
-	<br><br>
-
-	<input type="submit" value="수정완료">
-	
-	</div>
-	
-	
-	
-</div>
-
-
+<hr>	
+	<input type="radio" name="open" value="Y" checked>공개
+	<input type="radio" name="open" value="N" >비공개
+<hr>
+	이력서 제목: <input type="text" maxlength="100" size="100px" name="title" value="1"><br>
+	<select name="select" onchange="selectInput();">
+		<option value="">== 선택없음 ==</option>
+		<option value="title_1" selected>많이 일하고 조금 받겠습니다 뽑아주세요</option>
+		<option value="title_2">취업하고 싶습니다 채용해주세요</option>
+		<option value="title_3">백수그만하고싶습니다 돈벌게해주세요</option>
+	</select>
+<hr>
+	<%	String[] arr_lan=re.getP_language().split(",");
+		String[] checked_lan=new String[4];
+		for(int i=0;i<arr_lan.length;i++){
+			switch(arr_lan[i]){
+			case "c언어":checked_lan[0]="checked";break;
+			case "자바":checked_lan[1]="checked";break;
+			case "CSS":checked_lan[2]="checked";break;
+			case "javascript":checked_lan[3]="checked";break;
+			}
+		}%>
+	프로그램언어: 
+	<input type="checkbox" name="p" value="c언어" <%=checked_lan[0] %>>c언어
+	<input type="checkbox" name="p" value="자바" <%=checked_lan[1] %>>자바
+	<input type="checkbox" name="p" value="CSS" <%=checked_lan[2] %>>css
+	<input type="checkbox" name="p" value="javascript" <%=checked_lan[3] %>>javascript
+	<br>
+	자기소개: <textarea id="self" name="self"><%=re.getCover_letter()%></textarea><br>
+	<input type="submit" value="작성완료">
 </form>
 
 <script>
-
-function setDisplay(){
-    if($('input:radio[id=high]').is(':checked')){
-        $('#highInfo').show();
-        $('#collegeInfo').hide();
-        $('#academyInfo').hide();
-        
-    }else if($('input:radio[id=college]').is(':checked')){ 
-    	$('#highInfo').hide();
-    	 $('#collegeInfo').show();
-        $('#academyInfo').hide();
-    }else{
-    	$('#highInfo').hide();
-   	 $('#collegeInfo').hide();
-       $('#academyInfo').show();
-    }
-}
-
-/* function add_div(){
-
-    var div = document.createElement('div');
-
-    div.innerHTML = document.getElementById('careerList2').innerHTML 
-
-    document.getElementById('careerList').appendChild(div);
-    
-    
-    }
-    
-function remove_div(obj){
-
-	document.getElementById('careerList').removeChild(obj.parentNode);
-
+	function setDisplay(){
+	    if($('input:radio[id=high]').is(':checked')){
+	        $('#highInfo').show();
+	        $('#collegeInfo').hide();
+	        $('#academyInfo').hide();
+	        
+	    }else if($('input:radio[id=college]').is(':checked')){ 
+	    	$('#highInfo').hide();
+	    	 $('#collegeInfo').show();
+	        $('#academyInfo').hide();
+	    }else{
+	    	$('#highInfo').hide();
+	   	 $('#collegeInfo').hide();
+	       $('#academyInfo').show();
+	    }
 	}
-	
-function add_cer(){
-	
-	var cer = document.createElement('cer');
-	
-	cer.innerHTML = document.getElementById('cerList2').innerHTML
-	
-	document.getElementById('cerList').appendChild(cer);
-}
-
-function remove_cer(obj){
-
-	document.getElementById('cerList').removeChild(obj.parentNode);
-
-	}
-
-function selectInput(){
-	
-	var val = $("#select option:selected").html();
-	console.log(val); 
-	
-	
-	var a =$("#title").val(val);
-	
-	
-	
-	
-}
- */
+ 
 	function add_career(){
 	/* 	 var form=$('#careerForm')
 		 var str=form.html();
@@ -461,7 +219,6 @@ function selectInput(){
 	})
 
 	function add_cer(){
-		
 		var str='<div id="cerForm">';
 		str+='<label>자격증명</label>';
 		str+='<input type="text" name="cer_name" value="1"><br><br>';
@@ -475,13 +232,23 @@ function selectInput(){
 	$(document).on('click','.del_cer',function(){
 		$(this).closest('div #cerForm').remove();
 	})
-
+	
+	function math(){
+		var inputDate1 = $("#workDate1").val();
+		var inputDate2 = $("#workDate2").val(); 
+		var dateArrayDate1 = inputDate1.split("-");  	
+		var dateArrayDate2 = inputDate2.split("-");
+		var dateObj1 = new Date(dateArrayDate1[0], Number(dateArrayDate1[1])-1, dateArrayDate1[2]);  
+		var dateObj2 = new Date(dateArrayDate2[0], Number(dateArrayDate2[1])-1, dateArrayDate2[2]);  
+		var betweenDay = (dateObj2.getTime() - dateObj1.getTime());  
+		if(betweenDay/1000 /60 /60 /24 < 0){
+			alert("날짜값이 맞지않습니다. 다시 입력해주세요");
+		}else{
+			var lastDate = parseInt((betweenDay/365));
+			alert("경력"+lastDate+"년차입니다.");
+		}
+	}
 </script>
-
-
-
-
-<br><br><br><br><br><br><br><br><br><br><br>
 
 <%@ include file="/views/include/footer.jsp" %>
 </body>

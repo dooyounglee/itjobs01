@@ -43,28 +43,9 @@ public class ResumListServlet extends HttpServlet {
 		int mno=mem.getM_no();
 		
 		int listCount = new ResumeService().getListCount(mno);
-		request.getParameter("");
 		int currentPage = 1;
 		if(request.getParameter("currentPage") != null) { 
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
-		}
-		
-		int pageLimit;		
-		int boardLimit; 	
-		int maxPage;	
-		int startPage;		
-		int endPage;	 	
-		
-		pageLimit = 10;
-		boardLimit = 5;
-		
-		maxPage = (int)Math.ceil((double)listCount / boardLimit);
-		startPage = (currentPage-1)/pageLimit * pageLimit + 1;
-		
-		endPage = startPage + pageLimit - 1;
-		
-		if(maxPage < endPage) {
-			endPage = maxPage;
 		}
 		
 		PageInfo pi = new PageInfo(currentPage, listCount,5,10);

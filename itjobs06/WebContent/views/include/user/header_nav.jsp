@@ -55,7 +55,7 @@
 						aria-haspopup="true" aria-expanded="false"> 일반 마이페이지 </a>
 						<ul class="dropdown-menu">
 							<li><a class="dropdown-item" href="<%=request.getContextPath()%>/myInfo.me">내 정보수정
-									</a></li>
+									</ a></li>
 							<li><a class="dropdown-item" href="<%=request.getContextPath()%>/myApplyList.vo">지원리스트
 									</a></li>
 							<li><a class="dropdown-item" href="<%=request.getContextPath()%>/myCompanyList.like">관심기업

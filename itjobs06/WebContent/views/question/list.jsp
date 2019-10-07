@@ -14,7 +14,7 @@
 
 </head>
 <body>
-<<<<<<< HEAD
+
 
 	<header id="home" class="hero-area">
 	<%@ include file="/views/include/user/header_nav.jsp" %>

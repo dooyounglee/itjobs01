@@ -66,18 +66,104 @@
 	<!-- end of page-header -->
 	
 <div id="content">
-<div id="newButton">
+<div class="container">
+<div class="row">
+
+<%-- <div id="newButton">
 <a href="<%=contextPath%>/add.re" class="btn btn-common btn-xs" id="new">+ 새 이력서 작성하기</a>
+</div> --%>
+
+				<!-- left -->
+				<%@ include file="/views/include/user/mypage_menu.jsp" %>
+				<!-- End of left -->
+				
+				<!-- right  -->
+				<div class="col-lg-8 col-md-12 col-xs-12">
+<div class="job-alerts-item candidates">
+<h3 class="alerts-title">Manage Resumes</h3>
+<div class="manager-resumes-item">
+<div class="manager-content">
+<a href="resume.html"><img class="resume-thumb" src="assets/img/jobs/avatar-1.jpg" alt=""></a>
+<div class="manager-info">
+<div class="manager-name">
+<h4><a href="#">Zane Joyner</a></h4>
+<h5>Front-end developer</h5>
 </div>
-<br>
+<div class="manager-meta">
+<span class="location"><i class="lni-map-marker"></i> Cupertino, CA, USA</span>
+<span class="rate"><i class="lni-alarm-clock"></i> $55 per hour</span>
+</div>
+</div>
+</div>
+<div class="update-date">
+<p class="status">
+<strong>Updated on:</strong> Fab 22, 2020
+</p>
+<div class="action-btn">
+<a class="btn btn-xs btn-gray" href="#">Hide</a>
+<a class="btn btn-xs btn-gray" href="#">Edit</a>
+<a class="btn btn-xs btn-danger" href="#">Delete</a>
+</div>
+</div>
+</div>
+<div class="manager-resumes-item">
+<div class="manager-content">
+<a href="resume.html"><img class="resume-thumb" src="assets/img/jobs/avatar-1.jpg" alt=""></a>
+<div class="manager-info">
+<div class="manager-name">
+<h4><a href="#">Zane Joyner</a></h4>
+<h5>Front-end developer</h5>
+</div>
+<div class="manager-meta">
+<span class="location"><i class="lni-map-marker"></i> Cupertino, CA, USA</span>
+<span class="rate"><i class="lni-alarm-clock"></i> $55 per hour</span>
+</div>
+</div>
+</div>
+<div class="update-date">
+<p class="status">
+<strong>Updated on:</strong> Fab 22, 2020
+</p>
+<div class="action-btn">
+<a class="btn btn-xs btn-gray" href="#">Hide</a>
+<a class="btn btn-xs btn-gray" href="#">Edit</a>
+<a class="btn btn-xs btn-danger" href="#">Delete</a>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+
+</p>
+<div class="action-btn">
+<a class="btn btn-xs btn-gray" href="#">Hide</a>
+<a class="btn btn-xs btn-gray" href="#">Edit</a>
+<a class="btn btn-xs btn-danger" href="#">Delete</a>
+</div>
+</div>
+</div>
+<a class="btn btn-common btn-sm" href="add-resume.html">Add new resume</a>
+</div>
+</div>
+				<!-- End of right -->
+
+			</div>
+			<!-- End of row -->
+			
+		</div>
+		<!-- End of container -->
+	</div>
+	<!-- End of content -->
+	
 <% if(list.isEmpty()){ %>
 <tr>
 					<td colspasn="5">조회된 리스트가 없습니다.</td>
 				</tr>
 <% }else{ %>
 			<% for(Resume re : list){ %>
-<div class="container">
-<div class="row">
+				
 <div class="col-lg-12 col-md-6 col-xs-12">
 <div class="manager-resumes-item">
 <div class="manager-content">

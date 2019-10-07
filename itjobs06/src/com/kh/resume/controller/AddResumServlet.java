@@ -1,7 +1,8 @@
 package com.kh.resume.controller;
 
 import java.io.IOException;
-
+import java.util.ArrayList;
+import java.util.Enumeration;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,9 +11,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
+
+import com.kh.common.MyFileRenamePolicy;
 import com.kh.member.model.vo.Member;
 import com.kh.resume.model.service.ResumeService;
 import com.kh.resume.model.vo.Resume;
+import com.oreilly.servlet.MultipartRequest;
 
 /**
  * Servlet implementation class addResumServlet
@@ -34,6 +39,36 @@ public class AddResumServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
+		
+		if(ServletFileUpload.isMultipartContent(request)) {
+		
+			int maxSize=10*1024*1024;
+			
+		
+			String root = request.getSession().getServletContext().getRealPath("/resources");
+		
+			String savePath = root + "/fileupload_resumeImg/";
+			
+			System.out.println(savePath);
+			
+		
+			
+			MultipartRequest multiRequest = new MultipartRequest(request, savePath, maxSize, "UTF-8", new MyFileRenamePolicy());
+		
+			
+			String changeName = new String();
+			
+			Enumeration<String> files = multiRequest.getFileNames();
+			
+			while(files.hasMoreElements()) {
+				String nameF = files.nextElement();
+				
+				if(multiRequest.getFilesystemName(nameF) != null) {
+		
+					changeName = multiRequest.getFilesystemName(nameF);
+
+				}
+			
 		
 		String name = request.getParameter("name");
 		String birth_date = request.getParameter("birth");
@@ -102,28 +137,20 @@ public class AddResumServlet extends HttpServlet {
 		
 		
 		String school_final = request.getParameter("school_final");
+		
+		
 	
-	
-		
-		
-		
-		
-		
-		
-		
-		
-		
 	
 		
 		
 		
-		
+	
 		//왜 name부터 입력하기로??암튼 이걸쓰고..
 		//path랑 photo는 sql에 넣어놔서?
 		//Resume re = new Resume(name,birth_date,phone,address,email,school,department,school_period,carrer,work_place,work_dateList,work,certification,cer_date,title,cover_letter,open,p_language,hope_salary);
 		Resume re = new Resume();
-		re.setPhoto("photO");//이렇게 넣을께요. 그래야 나중에 첨부파일 추가하면 여기만 바꾸면 되거든요 ㅎㅎ
-		re.setPath("patH");//이거도 마찬가지
+		re.setPhoto(changeName); //이렇게 넣을께요. 그래야 나중에 첨부파일 추가하면 여기만 바꾸면 되거든요 ㅎㅎ
+		re.setPath(savePath); //이거도 마찬가지
 		re.setName(name);
 		re.setBirth_date(birth_date);
 		re.setPhone(phone);
@@ -170,8 +197,9 @@ public class AddResumServlet extends HttpServlet {
 			System.out.println("저장실패");
 		}
 		
-	}
-
+			}
+		}
+}
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

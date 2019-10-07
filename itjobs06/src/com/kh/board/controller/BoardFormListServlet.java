@@ -1,4 +1,4 @@
-package com.kh.admin.controller.board;
+package com.kh.board.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -8,23 +8,22 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import com.kh.admin.model.service.AdminBoardService;
+import com.kh.board.model.service.BoardService;
 import com.kh.board.model.vo.Board;
 import com.kh.board.model.vo.PageInfo;
 
 /**
- * Servlet implementation class BoardAllListServlet
+ * Servlet implementation class BoardFormListServlet
  */
-@WebServlet("/boardList.ad")
-public class AdminBoardListServlet extends HttpServlet {
+@WebServlet("/listForm.bo")
+public class BoardFormListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminBoardListServlet() {
+    public BoardFormListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,24 +32,30 @@ public class AdminBoardListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		request.setCharacterEncoding("utf-8");
+		String head = request.getParameter("head");
 		
-		int listCount=new AdminBoardService().getListCount();
+		if(head.equals("form")) {
+			head = "서식"; 
+		}
+
+		int listCount =  new BoardService().getEtcListCount(head);
+		
+		// 페이징처리
 		int currentPage=1;
 		if(request.getParameter("currentPage")!=null) {
 			currentPage=Integer.parseInt(request.getParameter("currentPage"));
 		}
 		
 		
-		PageInfo pi=new PageInfo(currentPage,listCount,5,10);
-		ArrayList<Board> list=new AdminBoardService().getAllList(pi);
-//		HttpSession session = request.getSession();
-//		session.setAttribute("head", "admin");
+		PageInfo pi=new PageInfo(currentPage,listCount, 5, 10);
+		
+		ArrayList<Board> list = new BoardService().selectEtcList(head, pi);
+		
+		request.setAttribute("pi",pi);
 		request.setAttribute("list", list);
-		request.setAttribute("pi", pi);
-		request.getRequestDispatcher("views/admin/board.jsp").forward(request, response);
+		
+		
+		request.getRequestDispatcher("views/board/FormList.jsp").forward(request, response);;
 	}
 
 	/**

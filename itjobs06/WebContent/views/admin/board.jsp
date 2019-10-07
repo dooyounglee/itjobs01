@@ -66,7 +66,7 @@
 				<a href="<%=request.getContextPath() %>/get.bo.ad?bno=<%=b.getB_no()%>"><%=b.getTitle() %></a>
 			</td>
 			<td><%=b.getM_no() %></td>
-			<%-- <td><%=b.getUpdate_date().split(" ")[0] %></td> --%>
+			<td><%=b.getUpdate_date().split(" ")[0] %></td>
 			<td><%=b.getTime() %></td>
 			<td><%=b.getStatus() %></td>
 			<td><button onclick="del(<%=b.getB_no()%>)">삭제</button></td>

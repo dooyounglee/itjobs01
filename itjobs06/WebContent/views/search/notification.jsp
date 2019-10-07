@@ -121,7 +121,7 @@
 			<%	ArrayList<Notification> list=(ArrayList<Notification>)request.getAttribute("list");
 				for(Notification n:list){%>
 				<div class="col-lg-6 col-md-12 col-xs-12">
-					<a class="job-listings-featured" href="job-details.html">
+					<a class="job-listings-featured" href="#">
 						<div class="row">
 							<div class="col-lg-6 col-md-6 col-xs-12">
 								<div class="job-company-logo">
@@ -129,7 +129,7 @@
 								</div>
 								<div class="job-details">
 									<h3><%=n.getTitle() %></h3>
-									<span class="company-neme"><%=n.getCo_no() %></span>
+									<span class="company-neme" onclick="detailCo(<%=n.getCo_no()%>)"><%=n.getCo_no()%></span>
 									<div class="tags">
 										<span><i class="lni-map-marker"></i> 위치</span> <span><i
 											class="lni-user"></i><%=n.getSalary() %> 만원</span>
@@ -208,6 +208,10 @@
 	function searchA(){
 		var sTextA=$('#sTextA').val();
 		$('#resultArea').load('<%=request.getContextPath()%>/notificationList.se #result',{"sText":sTextA})
+	}
+	
+	function detailCo(co_no){
+		location.href="<%=request.getContextPath()%>/detail.co?co_no="+co_no
 	}
 
 	// 좋아요 ajax

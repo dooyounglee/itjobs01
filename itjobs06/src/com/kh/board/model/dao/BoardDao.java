@@ -92,7 +92,7 @@ public class BoardDao {
 			pstmt.setInt(1, pi.getStartRow());
 			pstmt.setInt(2, pi.getEndRow());
 			
-			rset = pstmt.executeQuery();
+			rset = pstmt.executeQuery(); 
 			
 			while(rset.next()) {
 				list.add(new Board(rset.getInt("b_no"),
@@ -102,6 +102,7 @@ public class BoardDao {
 									rset.getString("title"),
 									rset.getString("contents"),
 									rset.getString("update_date"),
+									rset.getString("editfile"),
 									rset.getString("time"),
 									rset.getInt("count")));
 			}
@@ -140,6 +141,7 @@ public class BoardDao {
 									rset.getString("title"),
 									rset.getString("contents"),
 									rset.getString("update_date"),
+									rset.getString("editfile"),
 									rset.getString("time"),
 									rset.getInt("count")));
 			}
@@ -185,7 +187,7 @@ public class BoardDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, bId);
-			
+			pstmt.setInt(2, bId);
 			rset = pstmt.executeQuery();
 		
 			if(rset.next()) {

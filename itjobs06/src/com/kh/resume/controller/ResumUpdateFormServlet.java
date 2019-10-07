@@ -41,7 +41,7 @@ public class ResumUpdateFormServlet extends HttpServlet {
 			
 		}else {
 			System.out.print("수정실패");
-		}
+	}
 	}
 
 	/**

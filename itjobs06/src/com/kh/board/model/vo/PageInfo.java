@@ -4,17 +4,20 @@ public class PageInfo {
 
    private int currentPage;
    private int listCount;
-   private int pageLimit=5;
-   private int boardLimit=10;
+   private int pageLimit;
+   private int boardLimit;
    private int maxPage;
    private int startPage;
    private int endPage;
    private int startRow;
    private int endRow;
    
-   public PageInfo(int currentPage,int listCount) {
+   public PageInfo(int currentPage,int listCount, int pageLimit, int boardLimit) {
       this.currentPage=currentPage;
       this.listCount=listCount;
+      this.pageLimit = pageLimit;
+      this.boardLimit = boardLimit;
+      
       
       maxPage=(int)Math.ceil((double)listCount/boardLimit);
       startPage=((currentPage-1)/pageLimit)*pageLimit+1;

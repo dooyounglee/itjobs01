@@ -97,7 +97,7 @@ public class Board {
 	}
 	
 	public Board(int b_no, int m_no, String nickname, String head, String title, String contents, String update_date,
-			String time, int count) {
+			String editFile, String time, int count) {
 		super();
 		this.b_no = b_no;
 		this.m_no = m_no;
@@ -106,6 +106,7 @@ public class Board {
 		this.title = title;
 		this.contents = contents;
 		this.update_date = update_date;
+		this.editFile = editFile;
 		this.time = time;
 		this.count = count;
 	}

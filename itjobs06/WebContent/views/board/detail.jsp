@@ -152,7 +152,7 @@
 	            <div id="img1"></div>
 	            <div id="img1_1"><%=b.getCount() %></div>   
 	            <div id="img2"></div>
-	            <div id="img2_1">30</div>
+	            <div id="img2_1"><%=b.getReply_count() %></div>
             </div>
             <div id="nickname"><%=b.getNickname() %></div>
             <div id="updateDate"><%=b.getUpdate_date() %></div>
@@ -230,6 +230,8 @@
 				}, 4000);
 				
 				$("#addReply").click(function(){
+					
+					<%if(mem != null) { %>
 					var content = $("#replyContent").val();
 					var bId = <%= b.getB_no()%>;
 					var m_no = <%= mem.getM_no()%>;
@@ -251,6 +253,9 @@
 	
 					});
 					
+				<% }else{%>
+				alert("로그인해야 댓글작성이 가능합니다.");
+				<%}%>
 				});
 		 });
 		 

@@ -41,7 +41,7 @@
 	#academyInfo{
 	/* display:none; */
 	}
-	#academy,#career{
+	#academy,#career/* ,#cer,#salary,#public,#resum_title,#self */{
 	margin-left:100px;
 	}
 	
@@ -60,7 +60,7 @@
 	
 </style>
 <div id="head"></div>
-</head>newnewnew
+</head>
 <body>
 <%@ include file="/views/include/header.jsp" %>
 <form action="<%=contextPath%>/update.re" method="post">
@@ -69,7 +69,7 @@
 	
 	<input type="hidden" value="<%= re.getResume_no() %>" name="re_no">
 	
-	<% System.out.println("수정페이지 이력서번호"+re.getResume_no()); %>
+
 	<label name="name">* 이름 : </label>
 	<input type="text" id="name" name="name" value="<%= re.getName() %> "><br><br>
 	
@@ -143,7 +143,7 @@
 	<div id="academyInfo">
 		<input type="radio" id="university" name="school_final" value="3">대졸 졸업 이상<br>
 		<label>학교</label>
-		<!-- DB추가할지 고민 -->
+	
 		<select >
 			<option>--대학교--</option>
 			<option>대학교 4년제</option>
@@ -163,6 +163,12 @@
 	</div>
 </div>
 
+<%   
+	String[] workDates = re.getWork_date().split(","); 	// 2019-01-01~2019-09-09
+	String[] workPlaces = re.getWork_place().split(",");
+	String[] works = re.getWork().split(",");
+%>
+  
 
 <br><br>
 
@@ -172,18 +178,44 @@
 	<input type="radio" name="career" value="Y" >경력
 	<input type="button" onclick="add_career()" value="+ 경력추가하기">
 	<div id="careerList">
+	<% if(workPlaces.length == 1){ %>
 		<div id="careerForm">
 			<label>근무 회사명</label>
 			<input type="text" name="companyName" value="<%=re.getWork_place()%>"><br><br>
 			 
 			<label>업무 내용 </label>
-			<input type="text" name="workList" value="<%= re.getWork()%>"><br><br>
+			<input type="text" name="workList" value="<%=re.getWork()%>"><br><br>
 			
 			<label>근무 일자</label>
 			<input type="date" name="workDate1" value="<%=re.getWork_date().substring(0,10)%>"> ~
 			<input type="date" name="workDate2" value="<%=re.getWork_date().substring(11,21)%>">
-			<br><br>
+			<br>
 		</div>
+	
+	
+	<%}else{ %>
+	<% for(int i=0; i<workPlaces.length-1; i++ ){ %>
+	
+		<div id="careerForm">
+			<label>근무 회사명</label>
+			<input type="text" name="companyName" value="<%= workPlaces[i]%>"><br><br>
+			 
+			<label>업무 내용 </label>
+			<input type="text" name="workList" value="<%=works[i]%>"><br><br>
+			
+			<label>근무 일자</label>
+			<input type="date" name="workDate1" value="<%=workDates[i].substring(0,10)%>"> ~
+			<input type="date" name="workDate2" value="<%=workDates[i].substring(11,21)%>">
+			<br>
+		<% if(i > 0) {%>
+			<span class="del_career" style="cursor:pointer;">삭제</span></div>
+		<%} %>
+			<br><br>
+			</div>
+			
+	<%} %>
+<%} %>	
+		
 	</div>
 
 	<br>
@@ -210,22 +242,46 @@
 	
 	<br>
 	
+<%   
+	String[] cers = re.getCertification().split(",");
+	String[] cerDates = re.getCer_date().split(",");
+%>
 	
 	<div id="cer">
 	<h3>자격증</h3>
 	<input type="button" value="+ 자격증 추가하기" onclick="add_cer()">
 	<div id="cerList">
-		<div id="cerForm">
+	
+	<% if(cers.length == 1){ %>
+	
+	<div id="cerForm">
 			<label>자격증명</label>
-			<input type="text" name="cer_name" value="<%= re.getCertification() %>"><br><br>
+			<input type="text" name="cer_name" value="<%= re.getCertification()%>"><br><br>
 			<label>취득날짜</label>
 			<input type="date" name="cer_date"  value="<%=re.getCer_date().substring(0,10)%>">
-			
+		
 			
 			<br>
 		</div>
-	</div>
+	<%}else{ %>
+	<% for(int j=0; j<cers.length-1; j++){ %>
 	
+		<div id="cerForm">
+			<label>자격증명</label>
+			<input type="text" name="cer_name" value="<%= cers[j]%>"><br><br>
+			<label>취득날짜</label>
+			<input type="date" name="cer_date"  value="<%=cerDates[j].substring(0,10)%>">
+			<br>
+			<% if(j > 0){ %>
+			<span class="del_cer" style="cursor:pointer;">삭제</span></div>
+			<%} %> 
+			
+			<br>
+		</div>
+		<% } %>
+	<%} %>
+	</div>
+</div>
 	<!-- <div id="cerList2">
 	<br>---------------------------------------------------------------------------<br><br>
 	<label>자격증명</label>

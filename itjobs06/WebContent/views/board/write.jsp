@@ -72,7 +72,7 @@
 				<tr>
 					<td>제 목 : 
 						<select name="writehead" id="writehead">
-							<option>-------</option>
+							<option value="no">-------</option>
 							<option value="자유">자유</option>
 							<option value="스터디">스터디</option>
 							<option value="프로젝트">프로젝트</option>
@@ -110,10 +110,16 @@
 		function writeAdd(){
 			var title = $("#tableArea input[name=title]");
 			var content = $("#tableArea textarea[name=content]");
+			var select = $("#writehead");
 			
 			if(title.val().trim().length == 0){
 				alert("제목을 입력해주세요.");
 				title.focus();
+				return false;
+			}
+			if(select.val() == "no"){
+				alert("머리말을 선택해주세요.");
+				select.focus();
 				return false;
 			}
 			if(content.val().trim().length == 0){

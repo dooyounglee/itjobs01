@@ -17,7 +17,7 @@
 <h2 align="center">이력서 작성</h2>
 <div id="first">
 	
-	<h3><%= re.getTitle()%></h3> <!-- re제일 처음 . 을 찍었는데 여기서 오류난거면 re=null일듯. -->
+	<h3><%= re.getTitle()%></h3> 
 	<label name="name" id="name"><%= re.getName()%></label>
 
 	

@@ -67,7 +67,7 @@ public class ResumListServlet extends HttpServlet {
 			endPage = maxPage;
 		}
 		
-		PageInfo pi = new PageInfo(currentPage, listCount);
+		PageInfo pi = new PageInfo(currentPage, listCount,5,10);
 		ArrayList<Resume> list = new ResumeService().selectResume(pi,mno);
 		System.out.println("리스트서블릿에 "+list);
 		request.setAttribute("pi", pi);

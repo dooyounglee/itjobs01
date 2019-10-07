@@ -101,7 +101,6 @@
 
 
 
-<%@ include file="/views/include/header.jsp" %>
 <h1>기업 좋아요</h1>
 <table border=1>
 	<thead>

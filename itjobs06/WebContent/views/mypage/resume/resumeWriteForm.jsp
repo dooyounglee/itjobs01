@@ -61,15 +61,28 @@
 
 	
 </style>
-<div id="head"></div>
 </head>
 <body>
 <%@ include file="/views/include/header.jsp" %>
 <form action="<%=contextPath%>/addResum.re" method="post" enctype="multipart/form-data">
 <h2 align="center">이력서 작성</h2>
-<div id="titleImgArea"></div>
-<div id="file"><input type="file" name="file" id="file" onchange="fileName(this);"></div>
-
+<img id="titleImg"></img>
+<input type="file" name="file" onchange="loadImg(this)">
+<script>
+	function loadImg(value){
+		console.log(value.files)
+		console.log(value.files[0])
+		if(value.files && value.files[0]){
+			var reader = new FileReader();
+			reader.onload = function(e){
+				console.log(e.target)
+				 $("#titleImg").attr("src", e.target.result); // data:URL
+				 console.log(e.target.result);
+			}
+			reader.readAsDataURL(value.files[0]);
+		}
+	}
+</script>
 
 <div id="first">
 	<label name="name">* 이름 : </label>
@@ -84,9 +97,9 @@
 	<label name="address">* 주소: </label>
 	<!-- <input type="text" id="address" name="address" value="1"> -->
 	<br>
+	
+	
 	<!-- 주소api -->
-
-
 	<input type="text" id="sample3_postcode" name="sample3_postcode"  placeholder="우편번호">
 	<input type="button" onclick="sample3_execDaumPostcode()" value="우편번호 찾기"><br>
 	<input type="text" id="sample3_address" name="sample3_address" placeholder="주소">
@@ -175,6 +188,9 @@
     }
 </script>
 	<!-- end of 주소api -->
+	
+	
+	
 	<br>
 	
 	<label name="email">* 이메일: </label>
@@ -187,12 +203,10 @@
 	<h3>최종 학력</h3>
 	<br>
 	<div id="highInfo">
-		<input type="radio" name="school_final" value="1"> 고등학교 졸업<br>
-		<label>학교명</label>
-		<input type="text" name="school" value="1"><br><br>
-	
-		<label>학과명</label>
-		<select name="Department">
+		<input type="radio" name="school_final" value="1">고등학교 졸업<br>	
+		학교명: <input type="text" name="school" value="1"><br>
+		학과명: <input type="text" name="Department" value="학과1"><br>
+<!-- 		<select name="Department">
 			<option value="">--학교계열--</option>
 			<option value="문과" selected>문과계열</option>
 			<option value="이과">이과계열</option>
@@ -200,43 +214,33 @@
 			<option value="예체능">예체능계</option>
 			<option value="특성화/마이스터">특성화/마이스터고</option>
 			<option value="특수목적">특수목적고</option>
-		</select>
-		
-		<input type="date" name="school_Date1" value="2010-01-01"> ~
+		</select> -->
+		날짜: <input type="date" name="school_Date1" value="2010-01-01"> ~
 		<input type="date" name="school_Date2" value="2010-01-01">
-		<br><br>
 	</div>
 	
 	<div id="collegeInfo">
 		<input type="radio" id="college" name="school_final" value="2" checked>초대졸 졸업<br>
-		<label>학교명 </label>
-		<input type="text" name="school" value="1"><br><br>
-		
-		<label>학과명 </label>
-		<input type="text" name="Department" value="1"><br><br>
-		
-		<input type="date" name="school_Date1" value="2010-01-01"> ~
+		학교명: <input type="text" name="school" value="1"><br><br>
+		학과명: <input type="text" name="Department" value="1"><br><br>
+		날짜: <input type="date" name="school_Date1" value="2010-01-01"> ~
 		<input type="date" name="school_Date2" value="2010-01-01">
 	</div>
 	
 	<div id="academyInfo">
 		<input type="radio" id="university" name="school_final" value="3">대졸 졸업 이상<br>
 		<label>학교</label>
-		<select >
-			<option>--대학교--</option>
-			<option>대학교 4년제</option>
-			<option>대학원(석사)</option>
-			<option>대학원(박사)</option>
+		<select name="gubun">
+			<option value="4">--대학교--</option>
+			<option value="4">대학교 4년제</option>
+			<option value="s">대학원(석사)</option>
+			<option value="p">대학원(박사)</option>
 		</select>
 		<br>
-		<label>학교명</label>
-		<input type="text" name="school" value="1"><br>
 		
-		<label>학과명</label>
-		<input type="text" name="Department" value="1"><br>
-		
-		<label>재학기간 </label>
-		<input type="date" name="school_Date1" value="2010-01-01"> ~
+		학교명: <input type="text" name="school" value="1"><br>
+		학과명: <input type="text" name="Department" value="1"><br>
+		날짜: <input type="date" name="school_Date1" value="2010-01-01"> ~
 		<input type="date" name="school_Date2" value="2010-01-01">
 	</div>
 </div>
@@ -260,8 +264,8 @@
 			<input type="date" name="workDate1" id="workDate1" value="2006-01-01"> ~
 			<input type="date" name="workDate2" id="workDate2" value="2010-01-01">
 			
-			<label>경력 년수</label>
-			<input type="button" id="careerButton" value="경력 계산" onclick="math();" > 
+			경력년수 : <input name="career_year" value="2">
+			<!-- <input type="button" id="careerButton" value="경력 계산" onclick="math();" >  -->
 			<br>
 			<div id="durl"></div>
 
@@ -420,77 +424,8 @@ function setDisplay(){
        $('#academyInfo').show();
     }
 }
+	
 
-/* function add_div(){
-
-    var div = document.createElement('div');
-
-    div.innerHTML = document.getElementById('careerList2').innerHTML 
-
-    document.getElementById('careerList').appendChild(div);
-    
-    
-    }
-    
-function remove_div(obj){
-
-	document.getElementById('careerList').removeChild(obj.parentNode);
-
-	}
-	
-function add_cer(){
-	
-	var cer = document.createElement('cer');
-	
-	cer.innerHTML = document.getElementById('cerList2').innerHTML
-	
-	document.getElementById('cerList').appendChild(cer);
-}
-
-function remove_cer(obj){
-
-	document.getElementById('cerList').removeChild(obj.parentNode);
-
-	}
-
-function selectInput(){
-	
-	var val = $("#select option:selected").html();
-	console.log(val); 
-	
-	
-	var a =$("#title").val(val);
-	
-	
-	
-	
-}
- */
- 
- $(function(){
-		$("#fileArea").hide();
-		
-		$("#titleImgArea").click(function(){
-			$("#thumbnailImg1").click();
-		});
-		});
-	});
-	
-	function loadImg(value, num){
-	
-			if(value.files && value.files[0]){
-				
-			
-				var reader = new FileReader();
-				
-				
-				reader.onload = function(e){
-					 $("#titleImg").attr("src", e.target.result); // data:URL
-							break;
-					
-				}
-				
-				reader.readAsDataURL(value.files[0]);
  
  
 	function add_career(){
@@ -534,31 +469,19 @@ function selectInput(){
 
 	
 	function math(){
-		
-	var inputDate1 = $("#workDate1").val();
-	var inputDate2 = $("#workDate2").val(); 
-	  
-	var dateArrayDate1 = inputDate1.split("-");  	
-	var dateArrayDate2 = inputDate2.split("-");
-
-	
-	var dateObj1 = new Date(dateArrayDate1[0], Number(dateArrayDate1[1])-1, dateArrayDate1[2]);  
-	var dateObj2 = new Date(dateArrayDate2[0], Number(dateArrayDate2[1])-1, dateArrayDate2[2]);  
-	  
-	var betweenDay = (dateObj2.getTime() - dateObj1.getTime())/1000/60/60/24;  
-	
-	if(betweenDay < 0){
-		alert("날짜값이 맞지않습니다. 다시 입력해주세요");
-		
-	}else{
-		
-
-		var lastDate = parseInt((betweenDay/365));
-		alert("경력"+lastDate+"년차입니다.");
-	}
-  
-	
-		
+		var inputDate1 = $("#workDate1").val();
+		var inputDate2 = $("#workDate2").val(); 
+		var dateArrayDate1 = inputDate1.split("-");  	
+		var dateArrayDate2 = inputDate2.split("-");
+		var dateObj1 = new Date(dateArrayDate1[0], Number(dateArrayDate1[1])-1, dateArrayDate1[2]);  
+		var dateObj2 = new Date(dateArrayDate2[0], Number(dateArrayDate2[1])-1, dateArrayDate2[2]);  
+		var betweenDay = (dateObj2.getTime() - dateObj1.getTime());  
+		if(betweenDay/1000 /60 /60 /24 < 0){
+			alert("날짜값이 맞지않습니다. 다시 입력해주세요");
+		}else{
+			var lastDate = parseInt((betweenDay/365));
+			alert("경력"+lastDate+"년차입니다.");
+		}
 	}
 	
 	
@@ -568,9 +491,6 @@ function selectInput(){
 </script>
 
 
-
-
-<br><br><br><br><br><br><br><br><br><br><br>
 <%@ include file="/views/include/footer.jsp" %>
 </body>
 </html>

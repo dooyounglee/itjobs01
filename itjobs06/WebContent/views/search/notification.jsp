@@ -154,7 +154,6 @@
 	</section>
 	<!-- End of list section -->
 	
-	<%@ include file="/views/include/header.jsp" %>
 <h1>공고 검색창</h1>
 <select id="sKey">
 	<option value="address">지역</option>

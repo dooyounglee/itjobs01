@@ -28,7 +28,6 @@
 	<!-- end of page-header -->
 	
 	
-<%@ include file="/views/include/header.jsp" %>
 ${noti }<br>
 <%	Notification noti=(Notification)request.getAttribute("noti");%>
 

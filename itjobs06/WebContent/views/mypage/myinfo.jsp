@@ -88,8 +88,7 @@
 	
 	
 	
-	
-<%--  	<%@ include file="/views/include/header.jsp" %>  --%>
+
 <form action="update.me" method="post" autocomplete="off">
 	${mem }<br>
 	닉네임수정:<input name=nickname value="<%=mem.getNickname()%>"><br>

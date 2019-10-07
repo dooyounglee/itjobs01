@@ -291,7 +291,6 @@ public class ResumeDao {
 								   rset.getString("SCHOOL_FINAL")
 								   
 								   ));
-				System.out.println(list);
 			}
 			
 		} catch (SQLException e) {

@@ -101,6 +101,7 @@
 
 
 
+<%@ include file="/views/include/header.jsp" %>
 <h1>인재 좋아요</h1>
 <button>삭제</button>
 <table border=1>

@@ -476,4 +476,31 @@ public class MemberDao {
 		return result;
 	}
 	
+	public int certifyMem(Connection conn, String email, String cer_no) {
+		
+		int result =0;
+		
+		PreparedStatement ps = null;
+		
+		String sql = prop.getProperty("certifyMem");
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setString(1,email);
+			ps.setString(2, cer_no);
+		
+			result = ps.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(ps);
+		}
+		
+		return result;
+		
+	}
+	
+	
 }

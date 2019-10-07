@@ -11,22 +11,98 @@
   <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 	
 	
-<style>
-	
 
-
-</style>
 
 
 </head>
 <body>
+
+<%@ include file="/views/include/user/style.jsp" %>
+
+<%@ include file="/views/include/user/header_nav.jsp" %>
+
+<div class="page-header">
+<div class="container">
+<div class="row">
+<div class="col-lg-12">
+<div class="inner-header">
+<h3>Login</h3>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<section id="content" class="section-padding">
+<div class="container">
+<div class="row justify-content-center">
+<div class="col-lg-5 col-md-6 col-xs-12">
+<div class="page-login-form box">
+<h3>
+Login
+</h3>
+<form class="login-form" action="<%=contextPath1%>/login.me" method=post autocomplete=off>
+<div class="form-group">
+<div class="input-icon">
+<i class="lni-user"></i>
+<input type="text" id="sender-email" class="form-control" name="email" placeholder="Username">
+</div>
+</div>
+<div class="form-group">
+<div class="input-icon">
+<i class="lni-lock"></i>
+<input type="password" class="form-control" name="pw" placeholder="Password">
+</div>
+</div>
+<div class="form-group form-check">
+<input type="checkbox" class="form-check-input" id="exampleCheck1">
+<label class="form-check-label" for="exampleCheck1">Keep Me Signed In</label>
+</div>
+<button class="btn btn-common log-btn">Submit</button>
+</form>
+<ul class="form-links">
+<li class="text-center"><a href="<%=contextPath1%>/joinlaw.jo">Join</a></li>
+</ul>
+</div>
+</div>
+</div>
+ </div>
+</section>
+
+
+
+<%@ include file="/views/include/user/footer.jsp" %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <%@ include file="/views/include/header.jsp" %>
-<form action="<%=contextPath%>/login.me" method=post autocomplete=off>
+ <form action="<%=contextPath%>/login.me" method=post autocomplete=off> 
 <!-- <input type=radio value="일반" name=type checked>일반
 <input type=radio value="기업" name=type>기업<br> -->
 email:<input name=email><br>
 pw:<input name=pw><button>로그인</button><div id="naver_id_login" ></div>
-</form>
+ </form> 
 <a href="<%=contextPath%>/views/login/join_law.jsp">회원가입</a>
 <a href="<%=contextPath%>/views/login/find.jsp">비번찾기</a>
 <script>
@@ -72,6 +148,7 @@ $('input[name=email]').focus();
   	naver_id_login.init_naver_id_login();
   
   </script>
+
 
 
 

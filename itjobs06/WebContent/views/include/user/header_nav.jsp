@@ -1,15 +1,8 @@
-<%@page import="com.kh.member.model.vo.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%
-	String contextPath=request.getContextPath();
-	Member mem=(Member)session.getAttribute("mem");
-	String head=request.getParameter("head");
-	if(head!=null){
-		session.setAttribute("head", head);
-	}
-	
-%>
+
+<% String contextPath1=request.getContextPath(); %>
+
 <nav class="navbar navbar-expand-lg fixed-top scrolling-navbar">
 	<div class="container">
 		<div class="theme-header clearfix">

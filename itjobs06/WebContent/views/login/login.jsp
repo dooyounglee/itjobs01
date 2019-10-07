@@ -96,7 +96,7 @@ Login
 
 
 
-<%@ include file="/views/include/header.jsp" %>
+
  <form action="<%=contextPath%>/login.me" method=post autocomplete=off> 
 <!-- <input type=radio value="일반" name=type checked>일반
 <input type=radio value="기업" name=type>기업<br> -->

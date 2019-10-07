@@ -47,7 +47,6 @@ public class BoardDetailServlet extends HttpServlet {
 		case "project" : head="프로젝트"; break;
 		case "qna" : head="공지사항"; break;
 		case "form" : head="서식"; break;
-		case "qu" : head="문의사항"; break;
 		default : break;
 		}
 		

@@ -77,7 +77,7 @@ public class AddResumServlet extends HttpServlet {
 			
 			String school = String.join(",", multiRequest.getParameterValues("school"));
 			String department = String.join(",", multiRequest.getParameterValues("Department"));
-			String school_period = String.join(",",multiRequest.getParameterValues("school_Date1"))+"~"+String.join(",",multiRequest.getParameter("school_Date2"));
+			String school_period = String.join(",",multiRequest.getParameterValues("school_Date1"))+"~"+String.join(",",multiRequest.getParameterValues("school_Date2"));
 			
 			String career = multiRequest.getParameter("career");
 			String work_place="";

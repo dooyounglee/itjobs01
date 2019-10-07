@@ -7,13 +7,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
-<!-- import jobx -->
-<%@ include file="/views/include/user/style.jsp" %>
-<!-- End of import from jobx -->
-
 </head>
 <body>
+
 
 	<header id="home" class="hero-area">
 	<%@ include file="/views/include/user/header_nav.jsp" %>
@@ -190,6 +186,7 @@ Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richa
 
 
 <!-- -------------------------------------------- -->
+
 
 <h1>문의 게시판</h1>
 <button onclick="location.href='<%=request.getContextPath()%>/views/question/write.jsp'">문의하기</button>

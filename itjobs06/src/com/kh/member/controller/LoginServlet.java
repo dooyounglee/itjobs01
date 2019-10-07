@@ -39,7 +39,7 @@ public class LoginServlet extends HttpServlet {
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("views/login/login.jsp").forward(request, response);
 	
-	
+		
 	
 	
 	
@@ -66,7 +66,7 @@ public class LoginServlet extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.setAttribute("mem", mem);
 			//request.getRequestDispatcher("views/mypage/myInfo.jsp").forward(request, response);			
-			response.sendRedirect(request.getContextPath()+"/myInfo.me");
+			response.sendRedirect(request.getContextPath());
 		}else {
 		}
 	}

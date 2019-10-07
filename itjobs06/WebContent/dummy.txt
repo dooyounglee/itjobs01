@@ -9,7 +9,6 @@ DROP TABLE "REPLY";
 DROP TABLE "VOLUNTEER";
 DROP TABLE "RESUME";
 DROP TABLE "SCHOOL_FINAL";
-
 DROP TABLE "NOTIFICATION";
 
 DROP TABLE "QUESTION";
@@ -39,6 +38,11 @@ CREATE TABLE "MEMBER" (
    "STATUS"   VARCHAR2(2)   DEFAULT 'Y'   NOT NULL,
    "D_COUNT"   NUMBER   DEFAULT 0   NOT NULL
 );
+
+--CREATE TABLE "JOIN_CER"(
+--    "M_EMAIL" VARCHAR2(100) NOT NULL,
+--    "CER_NO" VARCHAR2(100) NOT NULL
+--);
 
 CREATE TABLE "CO_INFO" (
    "M_NO"   NUMBER      REFERENCES "MEMBER" PRIMARY KEY,
@@ -73,8 +77,7 @@ CREATE TABLE "BOARD" (
    "D_COUNT"   NUMBER   DEFAULT 0   NOT NULL,
    "EDITFILE"   VARCHAR2(100)      NULL,
    "PATH"   VARCHAR2(100)      NULL,
-   "DOWN_COUNT" NUMBER DEFAULT 0 NOT NULL,
-   "REPLY_COUNT" NUMBER DEFAULT 0 NOT NULL
+   "DOWN_COUNT" NUMBER DEFAULT 0 NOT NULL
 );
 
 CREATE TABLE "REPLY" (
@@ -172,6 +175,7 @@ CREATE TABLE "VOLUNTEER" (
 CREATE TABLE "QUESTION" (
    "Q_NO"   NUMBER      PRIMARY KEY,
    "M_NO"   NUMBER      REFERENCES "MEMBER",
+   "TITLE"   VARCHAR2(1000)   NOT NULL,
    "CONTENTS"   VARCHAR2(1000)      NOT NULL,
    "ANSWER"   VARCHAR2(1000)      NULL,
    "ENROLL_DATE"   DATE   DEFAULT SYSDATE   NOT NULL,
@@ -240,6 +244,13 @@ CREATE SEQUENCE SEQ_VOLUNTEER;
 
 
 
+
+
+
+
+
+
+
 insert into member values(seq_member.nextval,1,'user1','pass1','nick1',sysdate,sysdate,'Y',0);
 insert into member values(seq_member.nextval,1,'user2','pass2','nick2',sysdate,sysdate,'Y',1);
 insert into member values(seq_member.nextval,1,'user3','pass3','nick3',sysdate,sysdate,'Y',2);
@@ -283,147 +294,147 @@ insert into member values(seq_member.nextval,2,'user40','pass40','nick40',sysdat
 
 
 
-insert into board values(seq_board.nextval,1,'자유','제목1','내용1',sysdate,sysdate,'file1','날짜1~날짜2',0,'Y',0,'editfile1','path1',default,default);
-insert into board values(seq_board.nextval,2,'스터디','제목2','내용2',sysdate,sysdate,'file2','날짜1~날짜2',0,'Y',0,'editfile2','path2',default,default);
-insert into board values(seq_board.nextval,3,'프로젝트','제목3','내용3',sysdate,sysdate,'file3','날짜1~날짜2',0,'Y',0,'editfile3','path3',default,default);
-insert into board values(seq_board.nextval,4,'공지','제목4','내용4',sysdate,sysdate,'file4','날짜1~날짜2',0,'Y',0,'editfile4','path4',default,default);
-insert into board values(seq_board.nextval,5,'자유','제목5','내용5',sysdate,sysdate,'file5','날짜1~날짜2',0,'Y',0,'editfile5','path5',default,default);
-insert into board values(seq_board.nextval,1,'스터디','제목6','내용6',sysdate,sysdate,'file6','날짜1~날짜2',0,'Y',0,'editfile6','path6',default,default);
-insert into board values(seq_board.nextval,2,'프로젝트','제목7','내용7',sysdate,sysdate,'file7','날짜1~날짜2',0,'Y',0,'editfile7','path7',default,default);
-insert into board values(seq_board.nextval,3,'공지','제목8','내용8',sysdate,sysdate,'file8','날짜1~날짜2',0,'Y',0,'editfile8','path8',default,default);
-insert into board values(seq_board.nextval,4,'자유','제목9','내용9',sysdate,sysdate,'file9','날짜1~날짜2',0,'Y',0,'editfile9','path9',default,default);
-insert into board values(seq_board.nextval,5,'스터디','제목10','내용10',sysdate,sysdate,'file10','날짜1~날짜2',0,'Y',0,'editfile10','path10',default,default);
-insert into board values(seq_board.nextval,1,'프로젝트','제목11','내용11',sysdate,sysdate,'file11','날짜1~날짜2',0,'Y',0,'editfile11','path11',default,default);
-insert into board values(seq_board.nextval,2,'공지','제목12','내용12',sysdate,sysdate,'file12','날짜1~날짜2',0,'Y',0,'editfile12','path12',default,default);
-insert into board values(seq_board.nextval,3,'자유','제목13','내용13',sysdate,sysdate,'file13','날짜1~날짜2',0,'Y',0,'editfile13','path13',default,default);
-insert into board values(seq_board.nextval,4,'스터디','제목14','내용14',sysdate,sysdate,'file14','날짜1~날짜2',0,'Y',0,'editfile14','path14',default,default);
-insert into board values(seq_board.nextval,5,'프로젝트','제목15','내용15',sysdate,sysdate,'file15','날짜1~날짜2',0,'Y',0,'editfile15','path15',default,default);
-insert into board values(seq_board.nextval,1,'공지','제목16','내용16',sysdate,sysdate,'file16','날짜1~날짜2',0,'Y',0,'editfile16','path16',default,default);
-insert into board values(seq_board.nextval,2,'자유','제목17','내용17',sysdate,sysdate,'file17','날짜1~날짜2',0,'Y',0,'editfile17','path17',default,default);
-insert into board values(seq_board.nextval,3,'스터디','제목18','내용18',sysdate,sysdate,'file18','날짜1~날짜2',0,'Y',0,'editfile18','path18',default,default);
-insert into board values(seq_board.nextval,4,'프로젝트','제목19','내용19',sysdate,sysdate,'file19','날짜1~날짜2',0,'Y',0,'editfile19','path19',default,default);
-insert into board values(seq_board.nextval,5,'공지','제목20','내용20',sysdate,sysdate,'file20','날짜1~날짜2',0,'Y',0,'editfile20','path20',default,default);
-insert into board values(seq_board.nextval,1,'자유','제목21','내용21',sysdate,sysdate,'file21','날짜1~날짜2',0,'Y',0,'editfile21','path21',default,default);
-insert into board values(seq_board.nextval,2,'스터디','제목22','내용22',sysdate,sysdate,'file22','날짜1~날짜2',0,'Y',0,'editfile22','path22',default,default);
-insert into board values(seq_board.nextval,3,'프로젝트','제목23','내용23',sysdate,sysdate,'file23','날짜1~날짜2',0,'Y',0,'editfile23','path23',default,default);
-insert into board values(seq_board.nextval,4,'공지','제목24','내용24',sysdate,sysdate,'file24','날짜1~날짜2',0,'Y',0,'editfile24','path24',default,default);
-insert into board values(seq_board.nextval,5,'자유','제목25','내용25',sysdate,sysdate,'file25','날짜1~날짜2',0,'Y',0,'editfile25','path25',default,default);
-insert into board values(seq_board.nextval,1,'스터디','제목26','내용26',sysdate,sysdate,'file26','날짜1~날짜2',0,'Y',0,'editfile26','path26',default,default);
-insert into board values(seq_board.nextval,2,'프로젝트','제목27','내용27',sysdate,sysdate,'file27','날짜1~날짜2',0,'Y',0,'editfile27','path27',default,default);
-insert into board values(seq_board.nextval,3,'공지','제목28','내용28',sysdate,sysdate,'file28','날짜1~날짜2',0,'Y',0,'editfile28','path28',default,default);
-insert into board values(seq_board.nextval,4,'자유','제목29','내용29',sysdate,sysdate,'file29','날짜1~날짜2',0,'Y',0,'editfile29','path29',default,default);
-insert into board values(seq_board.nextval,5,'스터디','제목30','내용30',sysdate,sysdate,'file30','날짜1~날짜2',0,'Y',0,'editfile30','path30',default,default);
-insert into board values(seq_board.nextval,1,'프로젝트','제목31','내용31',sysdate,sysdate,'file31','날짜1~날짜2',0,'Y',0,'editfile31','path31',default,default);
-insert into board values(seq_board.nextval,2,'공지','제목32','내용32',sysdate,sysdate,'file32','날짜1~날짜2',0,'Y',0,'editfile32','path32',default,default);
-insert into board values(seq_board.nextval,3,'자유','제목33','내용33',sysdate,sysdate,'file33','날짜1~날짜2',0,'Y',0,'editfile33','path33',default,default);
-insert into board values(seq_board.nextval,4,'스터디','제목34','내용34',sysdate,sysdate,'file34','날짜1~날짜2',0,'Y',0,'editfile34','path34',default,default);
-insert into board values(seq_board.nextval,5,'프로젝트','제목35','내용35',sysdate,sysdate,'file35','날짜1~날짜2',0,'Y',0,'editfile35','path35',default,default);
-insert into board values(seq_board.nextval,1,'공지','제목36','내용36',sysdate,sysdate,'file36','날짜1~날짜2',0,'Y',0,'editfile36','path36',default,default);
-insert into board values(seq_board.nextval,2,'자유','제목37','내용37',sysdate,sysdate,'file37','날짜1~날짜2',0,'Y',0,'editfile37','path37',default,default);
-insert into board values(seq_board.nextval,3,'스터디','제목38','내용38',sysdate,sysdate,'file38','날짜1~날짜2',0,'Y',0,'editfile38','path38',default,default);
-insert into board values(seq_board.nextval,4,'프로젝트','제목39','내용39',sysdate,sysdate,'file39','날짜1~날짜2',0,'Y',0,'editfile39','path39',default,default);
-insert into board values(seq_board.nextval,5,'공지','제목40','내용40',sysdate,sysdate,'file40','날짜1~날짜2',0,'Y',0,'editfile40','path40',default,default);
-insert into board values(seq_board.nextval,1,'자유','제목41','내용41',sysdate,sysdate,'file41','날짜1~날짜2',0,'Y',0,'editfile41','path41',default,default);
-insert into board values(seq_board.nextval,2,'스터디','제목42','내용42',sysdate,sysdate,'file42','날짜1~날짜2',0,'Y',0,'editfile42','path42',default,default);
-insert into board values(seq_board.nextval,3,'프로젝트','제목43','내용43',sysdate,sysdate,'file43','날짜1~날짜2',0,'Y',0,'editfile43','path43',default,default);
-insert into board values(seq_board.nextval,4,'공지','제목44','내용44',sysdate,sysdate,'file44','날짜1~날짜2',0,'Y',0,'editfile44','path44',default,default);
-insert into board values(seq_board.nextval,5,'자유','제목45','내용45',sysdate,sysdate,'file45','날짜1~날짜2',0,'Y',0,'editfile45','path45',default,default);
-insert into board values(seq_board.nextval,1,'스터디','제목46','내용46',sysdate,sysdate,'file46','날짜1~날짜2',0,'Y',0,'editfile46','path46',default,default);
-insert into board values(seq_board.nextval,2,'프로젝트','제목47','내용47',sysdate,sysdate,'file47','날짜1~날짜2',0,'Y',0,'editfile47','path47',default,default);
-insert into board values(seq_board.nextval,3,'공지','제목48','내용48',sysdate,sysdate,'file48','날짜1~날짜2',0,'Y',0,'editfile48','path48',default,default);
-insert into board values(seq_board.nextval,4,'자유','제목49','내용49',sysdate,sysdate,'file49','날짜1~날짜2',0,'Y',0,'editfile49','path49',default,default);
-insert into board values(seq_board.nextval,5,'스터디','제목50','내용50',sysdate,sysdate,'file50','날짜1~날짜2',0,'Y',0,'editfile50','path50',default,default);
-insert into board values(seq_board.nextval,1,'프로젝트','제목51','내용51',sysdate,sysdate,'file51','날짜1~날짜2',0,'Y',0,'editfile51','path51',default,default);
-insert into board values(seq_board.nextval,2,'공지','제목52','내용52',sysdate,sysdate,'file52','날짜1~날짜2',0,'Y',0,'editfile52','path52',default,default);
-insert into board values(seq_board.nextval,3,'자유','제목53','내용53',sysdate,sysdate,'file53','날짜1~날짜2',0,'Y',0,'editfile53','path53',default,default);
-insert into board values(seq_board.nextval,4,'스터디','제목54','내용54',sysdate,sysdate,'file54','날짜1~날짜2',0,'Y',0,'editfile54','path54',default,default);
-insert into board values(seq_board.nextval,5,'프로젝트','제목55','내용55',sysdate,sysdate,'file55','날짜1~날짜2',0,'Y',0,'editfile55','path55',default,default);
-insert into board values(seq_board.nextval,1,'공지','제목56','내용56',sysdate,sysdate,'file56','날짜1~날짜2',0,'Y',0,'editfile56','path56',default,default);
-insert into board values(seq_board.nextval,2,'자유','제목57','내용57',sysdate,sysdate,'file57','날짜1~날짜2',0,'Y',0,'editfile57','path57',default,default);
-insert into board values(seq_board.nextval,3,'자유','제목58','내용58',sysdate,sysdate,'file58','날짜1~날짜2',0,'Y',0,'editfile58','path58',default,default);
-insert into board values(seq_board.nextval,4,'스터디','제목59','내용59',sysdate,sysdate,'file59','날짜1~날짜2',0,'Y',0,'editfile59','path59',default,default);
-insert into board values(seq_board.nextval,5,'프로젝트','제목60','내용60',sysdate,sysdate,'file60','날짜1~날짜2',0,'Y',0,'editfile60','path60',default,default);
-insert into board values(seq_board.nextval,1,'공지','제목61','내용61',sysdate,sysdate,'file61','날짜1~날짜2',0,'Y',0,'editfile61','path61',default,default);
-insert into board values(seq_board.nextval,2,'자유','제목62','내용62',sysdate,sysdate,'file62','날짜1~날짜2',0,'Y',0,'editfile62','path62',default,default);
-insert into board values(seq_board.nextval,3,'스터디','제목63','내용63',sysdate,sysdate,'file63','날짜1~날짜2',0,'Y',0,'editfile63','path63',default,default);
-insert into board values(seq_board.nextval,4,'프로젝트','제목64','내용64',sysdate,sysdate,'file64','날짜1~날짜2',0,'Y',0,'editfile64','path64',default,default);
-insert into board values(seq_board.nextval,5,'공지','제목65','내용65',sysdate,sysdate,'file65','날짜1~날짜2',0,'Y',0,'editfile65','path65',default,default);
-insert into board values(seq_board.nextval,1,'자유','제목66','내용66',sysdate,sysdate,'file66','날짜1~날짜2',0,'Y',0,'editfile66','path66',default,default);
-insert into board values(seq_board.nextval,2,'스터디','제목67','내용67',sysdate,sysdate,'file67','날짜1~날짜2',0,'Y',0,'editfile67','path67',default,default);
-insert into board values(seq_board.nextval,3,'프로젝트','제목68','내용68',sysdate,sysdate,'file68','날짜1~날짜2',0,'Y',0,'editfile68','path68',default,default);
-insert into board values(seq_board.nextval,4,'공지','제목69','내용69',sysdate,sysdate,'file69','날짜1~날짜2',0,'Y',0,'editfile69','path69',default,default);
-insert into board values(seq_board.nextval,5,'자유','제목70','내용70',sysdate,sysdate,'file70','날짜1~날짜2',0,'Y',0,'editfile70','path70',default,default);
-insert into board values(seq_board.nextval,1,'스터디','제목71','내용71',sysdate,sysdate,'file71','날짜1~날짜2',0,'Y',0,'editfile71','path71',default,default);
-insert into board values(seq_board.nextval,2,'프로젝트','제목72','내용72',sysdate,sysdate,'file72','날짜1~날짜2',0,'Y',0,'editfile72','path72',default,default);
-insert into board values(seq_board.nextval,3,'공지','제목73','내용73',sysdate,sysdate,'file73','날짜1~날짜2',0,'Y',0,'editfile73','path73',default,default);
-insert into board values(seq_board.nextval,4,'자유','제목74','내용74',sysdate,sysdate,'file74','날짜1~날짜2',0,'Y',0,'editfile74','path74',default,default);
-insert into board values(seq_board.nextval,5,'스터디','제목75','내용75',sysdate,sysdate,'file75','날짜1~날짜2',0,'Y',0,'editfile75','path75',default,default);
-insert into board values(seq_board.nextval,1,'프로젝트','제목76','내용76',sysdate,sysdate,'file76','날짜1~날짜2',0,'Y',0,'editfile76','path76',default,default);
-insert into board values(seq_board.nextval,2,'공지','제목77','내용77',sysdate,sysdate,'file77','날짜1~날짜2',0,'Y',0,'editfile77','path77',default,default);
-insert into board values(seq_board.nextval,3,'자유','제목78','내용78',sysdate,sysdate,'file78','날짜1~날짜2',0,'Y',0,'editfile78','path78',default,default);
-insert into board values(seq_board.nextval,4,'스터디','제목79','내용79',sysdate,sysdate,'file79','날짜1~날짜2',0,'Y',0,'editfile79','path79',default,default);
-insert into board values(seq_board.nextval,5,'프로젝트','제목80','내용80',sysdate,sysdate,'file80','날짜1~날짜2',0,'Y',0,'editfile80','path80',default,default);
-insert into board values(seq_board.nextval,1,'공지','제목81','내용81',sysdate,sysdate,'file81','날짜1~날짜2',0,'Y',0,'editfile81','path81',default,default);
-insert into board values(seq_board.nextval,2,'자유','제목82','내용82',sysdate,sysdate,'file82','날짜1~날짜2',0,'Y',0,'editfile82','path82',default,default);
-insert into board values(seq_board.nextval,3,'스터디','제목83','내용83',sysdate,sysdate,'file83','날짜1~날짜2',0,'Y',0,'editfile83','path83',default,default);
-insert into board values(seq_board.nextval,4,'프로젝트','제목84','내용84',sysdate,sysdate,'file84','날짜1~날짜2',0,'Y',0,'editfile84','path84',default,default);
-insert into board values(seq_board.nextval,5,'공지','제목85','내용85',sysdate,sysdate,'file85','날짜1~날짜2',0,'Y',0,'editfile85','path85',default,default);
-insert into board values(seq_board.nextval,1,'자유','제목86','내용86',sysdate,sysdate,'file86','날짜1~날짜2',0,'Y',0,'editfile86','path86',default,default);
-insert into board values(seq_board.nextval,2,'스터디','제목87','내용87',sysdate,sysdate,'file87','날짜1~날짜2',0,'Y',0,'editfile87','path87',default,default);
-insert into board values(seq_board.nextval,3,'프로젝트','제목88','내용88',sysdate,sysdate,'file88','날짜1~날짜2',0,'Y',0,'editfile88','path88',default,default);
-insert into board values(seq_board.nextval,4,'공지','제목89','내용89',sysdate,sysdate,'file89','날짜1~날짜2',0,'Y',0,'editfile89','path89',default,default);
-insert into board values(seq_board.nextval,5,'자유','제목90','내용90',sysdate,sysdate,'file90','날짜1~날짜2',0,'Y',0,'editfile90','path90',default,default);
-insert into board values(seq_board.nextval,1,'스터디','제목91','내용91',sysdate,sysdate,'file91','날짜1~날짜2',0,'Y',0,'editfile91','path91',default,default);
-insert into board values(seq_board.nextval,2,'프로젝트','제목92','내용92',sysdate,sysdate,'file92','날짜1~날짜2',0,'Y',0,'editfile92','path92',default,default);
-insert into board values(seq_board.nextval,3,'공지','제목93','내용93',sysdate,sysdate,'file93','날짜1~날짜2',0,'Y',0,'editfile93','path93',default,default);
-insert into board values(seq_board.nextval,4,'자유','제목94','내용94',sysdate,sysdate,'file94','날짜1~날짜2',0,'Y',0,'editfile94','path94',default,default);
-insert into board values(seq_board.nextval,5,'스터디','제목95','내용95',sysdate,sysdate,'file95','날짜1~날짜2',0,'Y',0,'editfile95','path95',default,default);
-insert into board values(seq_board.nextval,1,'프로젝트','제목96','내용96',sysdate,sysdate,'file96','날짜1~날짜2',0,'Y',0,'editfile96','path96',default,default);
-insert into board values(seq_board.nextval,2,'공지','제목97','내용97',sysdate,sysdate,'file97','날짜1~날짜2',0,'Y',0,'editfile97','path97',default,default);
-insert into board values(seq_board.nextval,3,'자유','제목98','내용98',sysdate,sysdate,'file98','날짜1~날짜2',0,'Y',0,'editfile98','path98',default,default);
-insert into board values(seq_board.nextval,4,'스터디','제목99','내용99',sysdate,sysdate,'file99','날짜1~날짜2',0,'Y',0,'editfile99','path99',default,default);
-insert into board values(seq_board.nextval,5,'프로젝트','제목100','내용100',sysdate,sysdate,'file100','날짜1~날짜2',0,'Y',0,'editfile100','path100',default,default);
-insert into board values(seq_board.nextval,1,'공지','제목101','내용101',sysdate,sysdate,'file101','날짜1~날짜2',0,'Y',0,'editfile101','path101',default,default);
-insert into board values(seq_board.nextval,2,'자유','제목102','내용102',sysdate,sysdate,'file102','날짜1~날짜2',0,'Y',0,'editfile102','path102',default,default);
-insert into board values(seq_board.nextval,3,'스터디','제목103','내용103',sysdate,sysdate,'file103','날짜1~날짜2',0,'Y',0,'editfile103','path103',default,default);
-insert into board values(seq_board.nextval,4,'프로젝트','제목104','내용104',sysdate,sysdate,'file104','날짜1~날짜2',0,'Y',0,'editfile104','path104',default,default);
-insert into board values(seq_board.nextval,5,'공지','제목105','내용105',sysdate,sysdate,'file105','날짜1~날짜2',0,'Y',0,'editfile105','path105',default,default);
-insert into board values(seq_board.nextval,1,'자유','제목106','내용106',sysdate,sysdate,'file106','날짜1~날짜2',0,'Y',0,'editfile106','path106',default,default);
-insert into board values(seq_board.nextval,2,'스터디','제목107','내용107',sysdate,sysdate,'file107','날짜1~날짜2',0,'Y',0,'editfile107','path107',default,default);
-insert into board values(seq_board.nextval,3,'프로젝트','제목108','내용108',sysdate,sysdate,'file108','날짜1~날짜2',0,'Y',0,'editfile108','path108',default,default);
-insert into board values(seq_board.nextval,4,'공지','제목109','내용109',sysdate,sysdate,'file109','날짜1~날짜2',0,'Y',0,'editfile109','path109',default,default);
-insert into board values(seq_board.nextval,5,'자유','제목110','내용110',sysdate,sysdate,'file110','날짜1~날짜2',0,'Y',0,'editfile110','path110',default,default);
-insert into board values(seq_board.nextval,1,'스터디','제목111','내용111',sysdate,sysdate,'file111','날짜1~날짜2',0,'Y',0,'editfile111','path111',default,default);
-insert into board values(seq_board.nextval,2,'프로젝트','제목112','내용112',sysdate,sysdate,'file112','날짜1~날짜2',0,'Y',0,'editfile112','path112',default,default);
-insert into board values(seq_board.nextval,3,'공지','제목113','내용113',sysdate,sysdate,'file113','날짜1~날짜2',0,'Y',0,'editfile113','path113',default,default);
-insert into board values(seq_board.nextval,4,'자유','제목114','내용114',sysdate,sysdate,'file114','날짜1~날짜2',0,'Y',0,'editfile114','path114',default,default);
-insert into board values(seq_board.nextval,5,'자유','제목115','내용115',sysdate,sysdate,'file115','날짜1~날짜2',0,'Y',0,'editfile115','path115',default,default);
-insert into board values(seq_board.nextval,1,'스터디','제목116','내용116',sysdate,sysdate,'file116','날짜1~날짜2',0,'Y',0,'editfile116','path116',default,default);
-insert into board values(seq_board.nextval,2,'프로젝트','제목117','내용117',sysdate,sysdate,'file117','날짜1~날짜2',0,'Y',0,'editfile117','path117',default,default);
-insert into board values(seq_board.nextval,3,'공지','제목118','내용118',sysdate,sysdate,'file118','날짜1~날짜2',0,'Y',0,'editfile118','path118',default,default);
-insert into board values(seq_board.nextval,4,'자유','제목119','내용119',sysdate,sysdate,'file119','날짜1~날짜2',0,'Y',0,'editfile119','path119',default,default);
-insert into board values(seq_board.nextval,5,'스터디','제목120','내용120',sysdate,sysdate,'file120','날짜1~날짜2',0,'Y',0,'editfile120','path120',default,default);
-insert into board values(seq_board.nextval,1,'프로젝트','제목121','내용121',sysdate,sysdate,'file121','날짜1~날짜2',0,'Y',0,'editfile121','path121',default,default);
-insert into board values(seq_board.nextval,2,'공지','제목122','내용122',sysdate,sysdate,'file122','날짜1~날짜2',0,'Y',0,'editfile122','path122',default,default);
-insert into board values(seq_board.nextval,3,'자유','제목123','내용123',sysdate,sysdate,'file123','날짜1~날짜2',0,'Y',0,'editfile123','path123',default,default);
-insert into board values(seq_board.nextval,4,'스터디','제목124','내용124',sysdate,sysdate,'file124','날짜1~날짜2',0,'Y',0,'editfile124','path124',default,default);
-insert into board values(seq_board.nextval,5,'프로젝트','제목125','내용125',sysdate,sysdate,'file125','날짜1~날짜2',0,'Y',0,'editfile125','path125',default,default);
-insert into board values(seq_board.nextval,1,'공지','제목126','내용126',sysdate,sysdate,'file126','날짜1~날짜2',0,'Y',0,'editfile126','path126',default,default);
-insert into board values(seq_board.nextval,2,'자유','제목127','내용127',sysdate,sysdate,'file127','날짜1~날짜2',0,'Y',0,'editfile127','path127',default,default);
-insert into board values(seq_board.nextval,3,'스터디','제목128','내용128',sysdate,sysdate,'file128','날짜1~날짜2',0,'Y',0,'editfile128','path128',default,default);
-insert into board values(seq_board.nextval,4,'프로젝트','제목129','내용129',sysdate,sysdate,'file129','날짜1~날짜2',0,'Y',0,'editfile129','path129',default,default);
-insert into board values(seq_board.nextval,5,'공지','제목130','내용130',sysdate,sysdate,'file130','날짜1~날짜2',0,'Y',0,'editfile130','path130',default,default);
-insert into board values(seq_board.nextval,1,'자유','제목131','내용131',sysdate,sysdate,'file131','날짜1~날짜2',0,'Y',0,'editfile131','path131',default,default);
-insert into board values(seq_board.nextval,2,'스터디','제목132','내용132',sysdate,sysdate,'file132','날짜1~날짜2',0,'Y',0,'editfile132','path132',default,default);
-insert into board values(seq_board.nextval,3,'프로젝트','제목133','내용133',sysdate,sysdate,'file133','날짜1~날짜2',0,'Y',0,'editfile133','path133',default,default);
-insert into board values(seq_board.nextval,4,'공지','제목134','내용134',sysdate,sysdate,'file134','날짜1~날짜2',0,'Y',0,'editfile134','path134',default,default);
-insert into board values(seq_board.nextval,5,'자유','제목135','내용135',sysdate,sysdate,'file135','날짜1~날짜2',0,'Y',0,'editfile135','path135',default,default);
-insert into board values(seq_board.nextval,1,'스터디','제목136','내용136',sysdate,sysdate,'file136','날짜1~날짜2',0,'Y',0,'editfile136','path136',default,default);
-insert into board values(seq_board.nextval,2,'프로젝트','제목137','내용137',sysdate,sysdate,'file137','날짜1~날짜2',0,'Y',0,'editfile137','path137',default,default);
-insert into board values(seq_board.nextval,3,'공지','제목138','내용138',sysdate,sysdate,'file138','날짜1~날짜2',0,'Y',0,'editfile138','path138',default,default);
-insert into board values(seq_board.nextval,4,'자유','제목139','내용139',sysdate,sysdate,'file139','날짜1~날짜2',0,'Y',0,'editfile139','path139',default,default);
-insert into board values(seq_board.nextval,5,'스터디','제목140','내용140',sysdate,sysdate,'file140','날짜1~날짜2',0,'Y',0,'editfile140','path140',default,default);
-insert into board values(seq_board.nextval,1,'프로젝트','제목141','내용141',sysdate,sysdate,'file141','날짜1~날짜2',0,'Y',0,'editfile141','path141',default,default);
+insert into board values(seq_board.nextval,1,'자유','제목1','내용1',sysdate,sysdate,'file1','날짜1~날짜2',0,'Y',0,'editfile1','path1',default);
+insert into board values(seq_board.nextval,2,'스터디','제목2','내용2',sysdate,sysdate,'file2','날짜1~날짜2',0,'Y',0,'editfile2','path2',default);
+insert into board values(seq_board.nextval,3,'프로젝트','제목3','내용3',sysdate,sysdate,'file3','날짜1~날짜2',0,'Y',0,'editfile3','path3',default);
+insert into board values(seq_board.nextval,4,'공지','제목4','내용4',sysdate,sysdate,'file4','날짜1~날짜2',0,'Y',0,'editfile4','path4',default);
+insert into board values(seq_board.nextval,5,'자유','제목5','내용5',sysdate,sysdate,'file5','날짜1~날짜2',0,'Y',0,'editfile5','path5',default);
+insert into board values(seq_board.nextval,1,'스터디','제목6','내용6',sysdate,sysdate,'file6','날짜1~날짜2',0,'Y',0,'editfile6','path6',default);
+insert into board values(seq_board.nextval,2,'프로젝트','제목7','내용7',sysdate,sysdate,'file7','날짜1~날짜2',0,'Y',0,'editfile7','path7',default);
+insert into board values(seq_board.nextval,3,'공지','제목8','내용8',sysdate,sysdate,'file8','날짜1~날짜2',0,'Y',0,'editfile8','path8',default);
+insert into board values(seq_board.nextval,4,'자유','제목9','내용9',sysdate,sysdate,'file9','날짜1~날짜2',0,'Y',0,'editfile9','path9',default);
+insert into board values(seq_board.nextval,5,'스터디','제목10','내용10',sysdate,sysdate,'file10','날짜1~날짜2',0,'Y',0,'editfile10','path10',default);
+insert into board values(seq_board.nextval,1,'프로젝트','제목11','내용11',sysdate,sysdate,'file11','날짜1~날짜2',0,'Y',0,'editfile11','path11',default);
+insert into board values(seq_board.nextval,2,'공지','제목12','내용12',sysdate,sysdate,'file12','날짜1~날짜2',0,'Y',0,'editfile12','path12',default);
+insert into board values(seq_board.nextval,3,'자유','제목13','내용13',sysdate,sysdate,'file13','날짜1~날짜2',0,'Y',0,'editfile13','path13',default);
+insert into board values(seq_board.nextval,4,'스터디','제목14','내용14',sysdate,sysdate,'file14','날짜1~날짜2',0,'Y',0,'editfile14','path14',default);
+insert into board values(seq_board.nextval,5,'프로젝트','제목15','내용15',sysdate,sysdate,'file15','날짜1~날짜2',0,'Y',0,'editfile15','path15',default);
+insert into board values(seq_board.nextval,1,'공지','제목16','내용16',sysdate,sysdate,'file16','날짜1~날짜2',0,'Y',0,'editfile16','path16',default);
+insert into board values(seq_board.nextval,2,'자유','제목17','내용17',sysdate,sysdate,'file17','날짜1~날짜2',0,'Y',0,'editfile17','path17',default);
+insert into board values(seq_board.nextval,3,'스터디','제목18','내용18',sysdate,sysdate,'file18','날짜1~날짜2',0,'Y',0,'editfile18','path18',default);
+insert into board values(seq_board.nextval,4,'프로젝트','제목19','내용19',sysdate,sysdate,'file19','날짜1~날짜2',0,'Y',0,'editfile19','path19',default);
+insert into board values(seq_board.nextval,5,'공지','제목20','내용20',sysdate,sysdate,'file20','날짜1~날짜2',0,'Y',0,'editfile20','path20',default);
+insert into board values(seq_board.nextval,1,'자유','제목21','내용21',sysdate,sysdate,'file21','날짜1~날짜2',0,'Y',0,'editfile21','path21',default);
+insert into board values(seq_board.nextval,2,'스터디','제목22','내용22',sysdate,sysdate,'file22','날짜1~날짜2',0,'Y',0,'editfile22','path22',default);
+insert into board values(seq_board.nextval,3,'프로젝트','제목23','내용23',sysdate,sysdate,'file23','날짜1~날짜2',0,'Y',0,'editfile23','path23',default);
+insert into board values(seq_board.nextval,4,'공지','제목24','내용24',sysdate,sysdate,'file24','날짜1~날짜2',0,'Y',0,'editfile24','path24',default);
+insert into board values(seq_board.nextval,5,'자유','제목25','내용25',sysdate,sysdate,'file25','날짜1~날짜2',0,'Y',0,'editfile25','path25',default);
+insert into board values(seq_board.nextval,1,'스터디','제목26','내용26',sysdate,sysdate,'file26','날짜1~날짜2',0,'Y',0,'editfile26','path26',default);
+insert into board values(seq_board.nextval,2,'프로젝트','제목27','내용27',sysdate,sysdate,'file27','날짜1~날짜2',0,'Y',0,'editfile27','path27',default);
+insert into board values(seq_board.nextval,3,'공지','제목28','내용28',sysdate,sysdate,'file28','날짜1~날짜2',0,'Y',0,'editfile28','path28',default);
+insert into board values(seq_board.nextval,4,'자유','제목29','내용29',sysdate,sysdate,'file29','날짜1~날짜2',0,'Y',0,'editfile29','path29',default);
+insert into board values(seq_board.nextval,5,'스터디','제목30','내용30',sysdate,sysdate,'file30','날짜1~날짜2',0,'Y',0,'editfile30','path30',default);
+insert into board values(seq_board.nextval,1,'프로젝트','제목31','내용31',sysdate,sysdate,'file31','날짜1~날짜2',0,'Y',0,'editfile31','path31',default);
+insert into board values(seq_board.nextval,2,'공지','제목32','내용32',sysdate,sysdate,'file32','날짜1~날짜2',0,'Y',0,'editfile32','path32',default);
+insert into board values(seq_board.nextval,3,'자유','제목33','내용33',sysdate,sysdate,'file33','날짜1~날짜2',0,'Y',0,'editfile33','path33',default);
+insert into board values(seq_board.nextval,4,'스터디','제목34','내용34',sysdate,sysdate,'file34','날짜1~날짜2',0,'Y',0,'editfile34','path34',default);
+insert into board values(seq_board.nextval,5,'프로젝트','제목35','내용35',sysdate,sysdate,'file35','날짜1~날짜2',0,'Y',0,'editfile35','path35',default);
+insert into board values(seq_board.nextval,1,'공지','제목36','내용36',sysdate,sysdate,'file36','날짜1~날짜2',0,'Y',0,'editfile36','path36',default);
+insert into board values(seq_board.nextval,2,'자유','제목37','내용37',sysdate,sysdate,'file37','날짜1~날짜2',0,'Y',0,'editfile37','path37',default);
+insert into board values(seq_board.nextval,3,'스터디','제목38','내용38',sysdate,sysdate,'file38','날짜1~날짜2',0,'Y',0,'editfile38','path38',default);
+insert into board values(seq_board.nextval,4,'프로젝트','제목39','내용39',sysdate,sysdate,'file39','날짜1~날짜2',0,'Y',0,'editfile39','path39',default);
+insert into board values(seq_board.nextval,5,'공지','제목40','내용40',sysdate,sysdate,'file40','날짜1~날짜2',0,'Y',0,'editfile40','path40',default);
+insert into board values(seq_board.nextval,1,'자유','제목41','내용41',sysdate,sysdate,'file41','날짜1~날짜2',0,'Y',0,'editfile41','path41',default);
+insert into board values(seq_board.nextval,2,'스터디','제목42','내용42',sysdate,sysdate,'file42','날짜1~날짜2',0,'Y',0,'editfile42','path42',default);
+insert into board values(seq_board.nextval,3,'프로젝트','제목43','내용43',sysdate,sysdate,'file43','날짜1~날짜2',0,'Y',0,'editfile43','path43',default);
+insert into board values(seq_board.nextval,4,'공지','제목44','내용44',sysdate,sysdate,'file44','날짜1~날짜2',0,'Y',0,'editfile44','path44',default);
+insert into board values(seq_board.nextval,5,'자유','제목45','내용45',sysdate,sysdate,'file45','날짜1~날짜2',0,'Y',0,'editfile45','path45',default);
+insert into board values(seq_board.nextval,1,'스터디','제목46','내용46',sysdate,sysdate,'file46','날짜1~날짜2',0,'Y',0,'editfile46','path46',default);
+insert into board values(seq_board.nextval,2,'프로젝트','제목47','내용47',sysdate,sysdate,'file47','날짜1~날짜2',0,'Y',0,'editfile47','path47',default);
+insert into board values(seq_board.nextval,3,'공지','제목48','내용48',sysdate,sysdate,'file48','날짜1~날짜2',0,'Y',0,'editfile48','path48',default);
+insert into board values(seq_board.nextval,4,'자유','제목49','내용49',sysdate,sysdate,'file49','날짜1~날짜2',0,'Y',0,'editfile49','path49',default);
+insert into board values(seq_board.nextval,5,'스터디','제목50','내용50',sysdate,sysdate,'file50','날짜1~날짜2',0,'Y',0,'editfile50','path50',default);
+insert into board values(seq_board.nextval,1,'프로젝트','제목51','내용51',sysdate,sysdate,'file51','날짜1~날짜2',0,'Y',0,'editfile51','path51',default);
+insert into board values(seq_board.nextval,2,'공지','제목52','내용52',sysdate,sysdate,'file52','날짜1~날짜2',0,'Y',0,'editfile52','path52',default);
+insert into board values(seq_board.nextval,3,'자유','제목53','내용53',sysdate,sysdate,'file53','날짜1~날짜2',0,'Y',0,'editfile53','path53',default);
+insert into board values(seq_board.nextval,4,'스터디','제목54','내용54',sysdate,sysdate,'file54','날짜1~날짜2',0,'Y',0,'editfile54','path54',default);
+insert into board values(seq_board.nextval,5,'프로젝트','제목55','내용55',sysdate,sysdate,'file55','날짜1~날짜2',0,'Y',0,'editfile55','path55',default);
+insert into board values(seq_board.nextval,1,'공지','제목56','내용56',sysdate,sysdate,'file56','날짜1~날짜2',0,'Y',0,'editfile56','path56',default);
+insert into board values(seq_board.nextval,2,'자유','제목57','내용57',sysdate,sysdate,'file57','날짜1~날짜2',0,'Y',0,'editfile57','path57',default);
+insert into board values(seq_board.nextval,3,'자유','제목58','내용58',sysdate,sysdate,'file58','날짜1~날짜2',0,'Y',0,'editfile58','path58',default);
+insert into board values(seq_board.nextval,4,'스터디','제목59','내용59',sysdate,sysdate,'file59','날짜1~날짜2',0,'Y',0,'editfile59','path59',default);
+insert into board values(seq_board.nextval,5,'프로젝트','제목60','내용60',sysdate,sysdate,'file60','날짜1~날짜2',0,'Y',0,'editfile60','path60',default);
+insert into board values(seq_board.nextval,1,'공지','제목61','내용61',sysdate,sysdate,'file61','날짜1~날짜2',0,'Y',0,'editfile61','path61',default);
+insert into board values(seq_board.nextval,2,'자유','제목62','내용62',sysdate,sysdate,'file62','날짜1~날짜2',0,'Y',0,'editfile62','path62',default);
+insert into board values(seq_board.nextval,3,'스터디','제목63','내용63',sysdate,sysdate,'file63','날짜1~날짜2',0,'Y',0,'editfile63','path63',default);
+insert into board values(seq_board.nextval,4,'프로젝트','제목64','내용64',sysdate,sysdate,'file64','날짜1~날짜2',0,'Y',0,'editfile64','path64',default);
+insert into board values(seq_board.nextval,5,'공지','제목65','내용65',sysdate,sysdate,'file65','날짜1~날짜2',0,'Y',0,'editfile65','path65',default);
+insert into board values(seq_board.nextval,1,'자유','제목66','내용66',sysdate,sysdate,'file66','날짜1~날짜2',0,'Y',0,'editfile66','path66',default);
+insert into board values(seq_board.nextval,2,'스터디','제목67','내용67',sysdate,sysdate,'file67','날짜1~날짜2',0,'Y',0,'editfile67','path67',default);
+insert into board values(seq_board.nextval,3,'프로젝트','제목68','내용68',sysdate,sysdate,'file68','날짜1~날짜2',0,'Y',0,'editfile68','path68',default);
+insert into board values(seq_board.nextval,4,'공지','제목69','내용69',sysdate,sysdate,'file69','날짜1~날짜2',0,'Y',0,'editfile69','path69',default);
+insert into board values(seq_board.nextval,5,'자유','제목70','내용70',sysdate,sysdate,'file70','날짜1~날짜2',0,'Y',0,'editfile70','path70',default);
+insert into board values(seq_board.nextval,1,'스터디','제목71','내용71',sysdate,sysdate,'file71','날짜1~날짜2',0,'Y',0,'editfile71','path71',default);
+insert into board values(seq_board.nextval,2,'프로젝트','제목72','내용72',sysdate,sysdate,'file72','날짜1~날짜2',0,'Y',0,'editfile72','path72',default);
+insert into board values(seq_board.nextval,3,'공지','제목73','내용73',sysdate,sysdate,'file73','날짜1~날짜2',0,'Y',0,'editfile73','path73',default);
+insert into board values(seq_board.nextval,4,'자유','제목74','내용74',sysdate,sysdate,'file74','날짜1~날짜2',0,'Y',0,'editfile74','path74',default);
+insert into board values(seq_board.nextval,5,'스터디','제목75','내용75',sysdate,sysdate,'file75','날짜1~날짜2',0,'Y',0,'editfile75','path75',default);
+insert into board values(seq_board.nextval,1,'프로젝트','제목76','내용76',sysdate,sysdate,'file76','날짜1~날짜2',0,'Y',0,'editfile76','path76',default);
+insert into board values(seq_board.nextval,2,'공지','제목77','내용77',sysdate,sysdate,'file77','날짜1~날짜2',0,'Y',0,'editfile77','path77',default);
+insert into board values(seq_board.nextval,3,'자유','제목78','내용78',sysdate,sysdate,'file78','날짜1~날짜2',0,'Y',0,'editfile78','path78',default);
+insert into board values(seq_board.nextval,4,'스터디','제목79','내용79',sysdate,sysdate,'file79','날짜1~날짜2',0,'Y',0,'editfile79','path79',default);
+insert into board values(seq_board.nextval,5,'프로젝트','제목80','내용80',sysdate,sysdate,'file80','날짜1~날짜2',0,'Y',0,'editfile80','path80',default);
+insert into board values(seq_board.nextval,1,'공지','제목81','내용81',sysdate,sysdate,'file81','날짜1~날짜2',0,'Y',0,'editfile81','path81',default);
+insert into board values(seq_board.nextval,2,'자유','제목82','내용82',sysdate,sysdate,'file82','날짜1~날짜2',0,'Y',0,'editfile82','path82',default);
+insert into board values(seq_board.nextval,3,'스터디','제목83','내용83',sysdate,sysdate,'file83','날짜1~날짜2',0,'Y',0,'editfile83','path83',default);
+insert into board values(seq_board.nextval,4,'프로젝트','제목84','내용84',sysdate,sysdate,'file84','날짜1~날짜2',0,'Y',0,'editfile84','path84',default);
+insert into board values(seq_board.nextval,5,'공지','제목85','내용85',sysdate,sysdate,'file85','날짜1~날짜2',0,'Y',0,'editfile85','path85',default);
+insert into board values(seq_board.nextval,1,'자유','제목86','내용86',sysdate,sysdate,'file86','날짜1~날짜2',0,'Y',0,'editfile86','path86',default);
+insert into board values(seq_board.nextval,2,'스터디','제목87','내용87',sysdate,sysdate,'file87','날짜1~날짜2',0,'Y',0,'editfile87','path87',default);
+insert into board values(seq_board.nextval,3,'프로젝트','제목88','내용88',sysdate,sysdate,'file88','날짜1~날짜2',0,'Y',0,'editfile88','path88',default);
+insert into board values(seq_board.nextval,4,'공지','제목89','내용89',sysdate,sysdate,'file89','날짜1~날짜2',0,'Y',0,'editfile89','path89',default);
+insert into board values(seq_board.nextval,5,'자유','제목90','내용90',sysdate,sysdate,'file90','날짜1~날짜2',0,'Y',0,'editfile90','path90',default);
+insert into board values(seq_board.nextval,1,'스터디','제목91','내용91',sysdate,sysdate,'file91','날짜1~날짜2',0,'Y',0,'editfile91','path91',default);
+insert into board values(seq_board.nextval,2,'프로젝트','제목92','내용92',sysdate,sysdate,'file92','날짜1~날짜2',0,'Y',0,'editfile92','path92',default);
+insert into board values(seq_board.nextval,3,'공지','제목93','내용93',sysdate,sysdate,'file93','날짜1~날짜2',0,'Y',0,'editfile93','path93',default);
+insert into board values(seq_board.nextval,4,'자유','제목94','내용94',sysdate,sysdate,'file94','날짜1~날짜2',0,'Y',0,'editfile94','path94',default);
+insert into board values(seq_board.nextval,5,'스터디','제목95','내용95',sysdate,sysdate,'file95','날짜1~날짜2',0,'Y',0,'editfile95','path95',default);
+insert into board values(seq_board.nextval,1,'프로젝트','제목96','내용96',sysdate,sysdate,'file96','날짜1~날짜2',0,'Y',0,'editfile96','path96',default);
+insert into board values(seq_board.nextval,2,'공지','제목97','내용97',sysdate,sysdate,'file97','날짜1~날짜2',0,'Y',0,'editfile97','path97',default);
+insert into board values(seq_board.nextval,3,'자유','제목98','내용98',sysdate,sysdate,'file98','날짜1~날짜2',0,'Y',0,'editfile98','path98',default);
+insert into board values(seq_board.nextval,4,'스터디','제목99','내용99',sysdate,sysdate,'file99','날짜1~날짜2',0,'Y',0,'editfile99','path99',default);
+insert into board values(seq_board.nextval,5,'프로젝트','제목100','내용100',sysdate,sysdate,'file100','날짜1~날짜2',0,'Y',0,'editfile100','path100',default);
+insert into board values(seq_board.nextval,1,'공지','제목101','내용101',sysdate,sysdate,'file101','날짜1~날짜2',0,'Y',0,'editfile101','path101',default);
+insert into board values(seq_board.nextval,2,'자유','제목102','내용102',sysdate,sysdate,'file102','날짜1~날짜2',0,'Y',0,'editfile102','path102',default);
+insert into board values(seq_board.nextval,3,'스터디','제목103','내용103',sysdate,sysdate,'file103','날짜1~날짜2',0,'Y',0,'editfile103','path103',default);
+insert into board values(seq_board.nextval,4,'프로젝트','제목104','내용104',sysdate,sysdate,'file104','날짜1~날짜2',0,'Y',0,'editfile104','path104',default);
+insert into board values(seq_board.nextval,5,'공지','제목105','내용105',sysdate,sysdate,'file105','날짜1~날짜2',0,'Y',0,'editfile105','path105',default);
+insert into board values(seq_board.nextval,1,'자유','제목106','내용106',sysdate,sysdate,'file106','날짜1~날짜2',0,'Y',0,'editfile106','path106',default);
+insert into board values(seq_board.nextval,2,'스터디','제목107','내용107',sysdate,sysdate,'file107','날짜1~날짜2',0,'Y',0,'editfile107','path107',default);
+insert into board values(seq_board.nextval,3,'프로젝트','제목108','내용108',sysdate,sysdate,'file108','날짜1~날짜2',0,'Y',0,'editfile108','path108',default);
+insert into board values(seq_board.nextval,4,'공지','제목109','내용109',sysdate,sysdate,'file109','날짜1~날짜2',0,'Y',0,'editfile109','path109',default);
+insert into board values(seq_board.nextval,5,'자유','제목110','내용110',sysdate,sysdate,'file110','날짜1~날짜2',0,'Y',0,'editfile110','path110',default);
+insert into board values(seq_board.nextval,1,'스터디','제목111','내용111',sysdate,sysdate,'file111','날짜1~날짜2',0,'Y',0,'editfile111','path111',default);
+insert into board values(seq_board.nextval,2,'프로젝트','제목112','내용112',sysdate,sysdate,'file112','날짜1~날짜2',0,'Y',0,'editfile112','path112',default);
+insert into board values(seq_board.nextval,3,'공지','제목113','내용113',sysdate,sysdate,'file113','날짜1~날짜2',0,'Y',0,'editfile113','path113',default);
+insert into board values(seq_board.nextval,4,'자유','제목114','내용114',sysdate,sysdate,'file114','날짜1~날짜2',0,'Y',0,'editfile114','path114',default);
+insert into board values(seq_board.nextval,5,'자유','제목115','내용115',sysdate,sysdate,'file115','날짜1~날짜2',0,'Y',0,'editfile115','path115',default);
+insert into board values(seq_board.nextval,1,'스터디','제목116','내용116',sysdate,sysdate,'file116','날짜1~날짜2',0,'Y',0,'editfile116','path116',default);
+insert into board values(seq_board.nextval,2,'프로젝트','제목117','내용117',sysdate,sysdate,'file117','날짜1~날짜2',0,'Y',0,'editfile117','path117',default);
+insert into board values(seq_board.nextval,3,'공지','제목118','내용118',sysdate,sysdate,'file118','날짜1~날짜2',0,'Y',0,'editfile118','path118',default);
+insert into board values(seq_board.nextval,4,'자유','제목119','내용119',sysdate,sysdate,'file119','날짜1~날짜2',0,'Y',0,'editfile119','path119',default);
+insert into board values(seq_board.nextval,5,'스터디','제목120','내용120',sysdate,sysdate,'file120','날짜1~날짜2',0,'Y',0,'editfile120','path120',default);
+insert into board values(seq_board.nextval,1,'프로젝트','제목121','내용121',sysdate,sysdate,'file121','날짜1~날짜2',0,'Y',0,'editfile121','path121',default);
+insert into board values(seq_board.nextval,2,'공지','제목122','내용122',sysdate,sysdate,'file122','날짜1~날짜2',0,'Y',0,'editfile122','path122',default);
+insert into board values(seq_board.nextval,3,'자유','제목123','내용123',sysdate,sysdate,'file123','날짜1~날짜2',0,'Y',0,'editfile123','path123',default);
+insert into board values(seq_board.nextval,4,'스터디','제목124','내용124',sysdate,sysdate,'file124','날짜1~날짜2',0,'Y',0,'editfile124','path124',default);
+insert into board values(seq_board.nextval,5,'프로젝트','제목125','내용125',sysdate,sysdate,'file125','날짜1~날짜2',0,'Y',0,'editfile125','path125',default);
+insert into board values(seq_board.nextval,1,'공지','제목126','내용126',sysdate,sysdate,'file126','날짜1~날짜2',0,'Y',0,'editfile126','path126',default);
+insert into board values(seq_board.nextval,2,'자유','제목127','내용127',sysdate,sysdate,'file127','날짜1~날짜2',0,'Y',0,'editfile127','path127',default);
+insert into board values(seq_board.nextval,3,'스터디','제목128','내용128',sysdate,sysdate,'file128','날짜1~날짜2',0,'Y',0,'editfile128','path128',default);
+insert into board values(seq_board.nextval,4,'프로젝트','제목129','내용129',sysdate,sysdate,'file129','날짜1~날짜2',0,'Y',0,'editfile129','path129',default);
+insert into board values(seq_board.nextval,5,'공지','제목130','내용130',sysdate,sysdate,'file130','날짜1~날짜2',0,'Y',0,'editfile130','path130',default);
+insert into board values(seq_board.nextval,1,'자유','제목131','내용131',sysdate,sysdate,'file131','날짜1~날짜2',0,'Y',0,'editfile131','path131',default);
+insert into board values(seq_board.nextval,2,'스터디','제목132','내용132',sysdate,sysdate,'file132','날짜1~날짜2',0,'Y',0,'editfile132','path132',default);
+insert into board values(seq_board.nextval,3,'프로젝트','제목133','내용133',sysdate,sysdate,'file133','날짜1~날짜2',0,'Y',0,'editfile133','path133',default);
+insert into board values(seq_board.nextval,4,'공지','제목134','내용134',sysdate,sysdate,'file134','날짜1~날짜2',0,'Y',0,'editfile134','path134',default);
+insert into board values(seq_board.nextval,5,'자유','제목135','내용135',sysdate,sysdate,'file135','날짜1~날짜2',0,'Y',0,'editfile135','path135',default);
+insert into board values(seq_board.nextval,1,'스터디','제목136','내용136',sysdate,sysdate,'file136','날짜1~날짜2',0,'Y',0,'editfile136','path136',default);
+insert into board values(seq_board.nextval,2,'프로젝트','제목137','내용137',sysdate,sysdate,'file137','날짜1~날짜2',0,'Y',0,'editfile137','path137',default);
+insert into board values(seq_board.nextval,3,'공지','제목138','내용138',sysdate,sysdate,'file138','날짜1~날짜2',0,'Y',0,'editfile138','path138',default);
+insert into board values(seq_board.nextval,4,'자유','제목139','내용139',sysdate,sysdate,'file139','날짜1~날짜2',0,'Y',0,'editfile139','path139',default);
+insert into board values(seq_board.nextval,5,'스터디','제목140','내용140',sysdate,sysdate,'file140','날짜1~날짜2',0,'Y',0,'editfile140','path140',default);
+insert into board values(seq_board.nextval,1,'프로젝트','제목141','내용141',sysdate,sysdate,'file141','날짜1~날짜2',0,'Y',0,'editfile141','path141',default);
 
 
 
@@ -1126,80 +1137,80 @@ insert into re_declare values(seq_re_declare.nextval,4,15,'내용84',sysdate,sys
 
 
 
-insert into question values(seq_question.nextval,1,'내용1',null,sysdate,null,'N');
-insert into question values(seq_question.nextval,2,'내용2',null,sysdate,null,'N');
-insert into question values(seq_question.nextval,3,'내용3',null,sysdate,null,'N');
-insert into question values(seq_question.nextval,4,'내용4',null,sysdate,null,'N');
-insert into question values(seq_question.nextval,5,'내용5',null,sysdate,null,'N');
-insert into question values(seq_question.nextval,6,'내용6',null,sysdate,null,'N');
-insert into question values(seq_question.nextval,7,'내용7',null,sysdate,null,'N');
-insert into question values(seq_question.nextval,8,'내용8',null,sysdate,null,'N');
-insert into question values(seq_question.nextval,9,'내용9',null,sysdate,null,'N');
-insert into question values(seq_question.nextval,10,'내용10',null,sysdate,null,'N');
-insert into question values(seq_question.nextval,11,'내용11',null,sysdate,null,'N');
-insert into question values(seq_question.nextval,12,'내용12',null,sysdate,null,'N');
-insert into question values(seq_question.nextval,13,'내용13',null,sysdate,null,'N');
-insert into question values(seq_question.nextval,14,'내용14',null,sysdate,null,'N');
-insert into question values(seq_question.nextval,15,'내용15',null,sysdate,null,'N');
-insert into question values(seq_question.nextval,16,'내용16',null,sysdate,null,'N');
-insert into question values(seq_question.nextval,17,'내용17',null,sysdate,null,'N');
-insert into question values(seq_question.nextval,1,'내용1','답변1',sysdate,sysdate,'N');
-insert into question values(seq_question.nextval,2,'내용2','답변2',sysdate,sysdate,'N');
-insert into question values(seq_question.nextval,3,'내용3','답변3',sysdate,sysdate,'N');
-insert into question values(seq_question.nextval,4,'내용4','답변4',sysdate,sysdate,'N');
-insert into question values(seq_question.nextval,5,'내용5','답변5',sysdate,sysdate,'N');
-insert into question values(seq_question.nextval,6,'내용6','답변6',sysdate,sysdate,'N');
-insert into question values(seq_question.nextval,7,'내용7','답변7',sysdate,sysdate,'N');
-insert into question values(seq_question.nextval,8,'내용8','답변8',sysdate,sysdate,'N');
-insert into question values(seq_question.nextval,9,'내용9','답변9',sysdate,sysdate,'N');
-insert into question values(seq_question.nextval,10,'내용10','답변10',sysdate,sysdate,'N');
-insert into question values(seq_question.nextval,11,'내용11','답변11',sysdate,sysdate,'N');
-insert into question values(seq_question.nextval,12,'내용12','답변12',sysdate,sysdate,'N');
-insert into question values(seq_question.nextval,13,'내용13','답변13',sysdate,sysdate,'N');
-insert into question values(seq_question.nextval,14,'내용14','답변14',sysdate,sysdate,'N');
-insert into question values(seq_question.nextval,15,'내용15','답변15',sysdate,sysdate,'N');
-insert into question values(seq_question.nextval,16,'내용16','답변16',sysdate,sysdate,'N');
-insert into question values(seq_question.nextval,17,'내용17','답변17',sysdate,sysdate,'N');
-insert into question values(seq_question.nextval,18,'내용18','답변18',sysdate,sysdate,'N');
-insert into question values(seq_question.nextval,19,'내용19','답변19',sysdate,sysdate,'N');
-insert into question values(seq_question.nextval,20,'내용20','답변20',sysdate,sysdate,'N');
-insert into question values(seq_question.nextval,1,'내용1',null,sysdate,null,'N');
-insert into question values(seq_question.nextval,2,'내용2',null,sysdate,null,'N');
-insert into question values(seq_question.nextval,3,'내용3',null,sysdate,null,'N');
-insert into question values(seq_question.nextval,4,'내용4',null,sysdate,null,'N');
-insert into question values(seq_question.nextval,5,'내용5',null,sysdate,null,'N');
-insert into question values(seq_question.nextval,6,'내용6',null,sysdate,null,'N');
-insert into question values(seq_question.nextval,7,'내용7',null,sysdate,null,'N');
-insert into question values(seq_question.nextval,8,'내용8',null,sysdate,null,'N');
-insert into question values(seq_question.nextval,9,'내용9',null,sysdate,null,'N');
-insert into question values(seq_question.nextval,10,'내용10',null,sysdate,null,'N');
-insert into question values(seq_question.nextval,11,'내용11',null,sysdate,null,'N');
-insert into question values(seq_question.nextval,12,'내용12',null,sysdate,null,'N');
-insert into question values(seq_question.nextval,13,'내용13',null,sysdate,null,'N');
-insert into question values(seq_question.nextval,14,'내용14',null,sysdate,null,'N');
-insert into question values(seq_question.nextval,15,'내용15',null,sysdate,null,'N');
-insert into question values(seq_question.nextval,16,'내용16',null,sysdate,null,'N');
-insert into question values(seq_question.nextval,17,'내용17',null,sysdate,null,'N');
-insert into question values(seq_question.nextval,1,'내용1','답변1',sysdate,sysdate,'N');
-insert into question values(seq_question.nextval,2,'내용2','답변2',sysdate,sysdate,'N');
-insert into question values(seq_question.nextval,3,'내용3','답변3',sysdate,sysdate,'N');
-insert into question values(seq_question.nextval,4,'내용4','답변4',sysdate,sysdate,'N');
-insert into question values(seq_question.nextval,5,'내용5','답변5',sysdate,sysdate,'N');
-insert into question values(seq_question.nextval,6,'내용6','답변6',sysdate,sysdate,'N');
-insert into question values(seq_question.nextval,7,'내용7','답변7',sysdate,sysdate,'N');
-insert into question values(seq_question.nextval,8,'내용8','답변8',sysdate,sysdate,'N');
-insert into question values(seq_question.nextval,9,'내용9','답변9',sysdate,sysdate,'N');
-insert into question values(seq_question.nextval,10,'내용10','답변10',sysdate,sysdate,'N');
-insert into question values(seq_question.nextval,11,'내용11','답변11',sysdate,sysdate,'N');
-insert into question values(seq_question.nextval,12,'내용12','답변12',sysdate,sysdate,'N');
-insert into question values(seq_question.nextval,13,'내용13','답변13',sysdate,sysdate,'N');
-insert into question values(seq_question.nextval,14,'내용14','답변14',sysdate,sysdate,'N');
-insert into question values(seq_question.nextval,15,'내용15','답변15',sysdate,sysdate,'N');
-insert into question values(seq_question.nextval,16,'내용16','답변16',sysdate,sysdate,'N');
-insert into question values(seq_question.nextval,17,'내용17','답변17',sysdate,sysdate,'N');
-insert into question values(seq_question.nextval,18,'내용18','답변18',sysdate,sysdate,'N');
-insert into question values(seq_question.nextval,19,'내용19','답변19',sysdate,sysdate,'N');
-insert into question values(seq_question.nextval,20,'내용20','답변20',sysdate,sysdate,'N');
+insert into question values(seq_question.nextval,1,'제목1','내용1',null,sysdate,null,'N');
+insert into question values(seq_question.nextval,2,'제목2','내용2',null,sysdate,null,'N');
+insert into question values(seq_question.nextval,3,'제목1','내용3',null,sysdate,null,'N');
+insert into question values(seq_question.nextval,4,'제목2','내용4',null,sysdate,null,'N');
+insert into question values(seq_question.nextval,5,'제목1','내용5',null,sysdate,null,'N');
+insert into question values(seq_question.nextval,6,'제목2','내용6',null,sysdate,null,'N');
+insert into question values(seq_question.nextval,7,'제목1','내용7',null,sysdate,null,'N');
+insert into question values(seq_question.nextval,8,'제목2','내용8',null,sysdate,null,'N');
+insert into question values(seq_question.nextval,9,'제목1','내용9',null,sysdate,null,'N');
+insert into question values(seq_question.nextval,10,'제목2','내용10',null,sysdate,null,'N');
+insert into question values(seq_question.nextval,11,'제목1','내용11',null,sysdate,null,'N');
+insert into question values(seq_question.nextval,12,'제목2','내용12',null,sysdate,null,'N');
+insert into question values(seq_question.nextval,13,'제목1','내용13',null,sysdate,null,'N');
+insert into question values(seq_question.nextval,14,'제목1','내용14',null,sysdate,null,'N');
+insert into question values(seq_question.nextval,15,'제목2','내용15',null,sysdate,null,'N');
+insert into question values(seq_question.nextval,16,'제목1','내용16',null,sysdate,null,'N');
+insert into question values(seq_question.nextval,17,'제목2','내용17',null,sysdate,null,'N');
+insert into question values(seq_question.nextval,1,'제목1','내용1','답변1',sysdate,sysdate,'N');
+insert into question values(seq_question.nextval,2,'제목2','내용2','답변2',sysdate,sysdate,'N');
+insert into question values(seq_question.nextval,3,'제목1','내용3','답변3',sysdate,sysdate,'N');
+insert into question values(seq_question.nextval,4,'제목2','내용4','답변4',sysdate,sysdate,'N');
+insert into question values(seq_question.nextval,5,'제목1','내용5','답변5',sysdate,sysdate,'N');
+insert into question values(seq_question.nextval,6,'제목2','내용6','답변6',sysdate,sysdate,'N');
+insert into question values(seq_question.nextval,7,'제목1','내용7','답변7',sysdate,sysdate,'N');
+insert into question values(seq_question.nextval,8,'제목2','내용8','답변8',sysdate,sysdate,'N');
+insert into question values(seq_question.nextval,9,'제목1','내용9','답변9',sysdate,sysdate,'N');
+insert into question values(seq_question.nextval,10,'제목2','내용10','답변10',sysdate,sysdate,'N');
+insert into question values(seq_question.nextval,11,'제목1','내용11','답변11',sysdate,sysdate,'N');
+insert into question values(seq_question.nextval,12,'제목2','내용12','답변12',sysdate,sysdate,'N');
+insert into question values(seq_question.nextval,13,'제목1','내용13','답변13',sysdate,sysdate,'N');
+insert into question values(seq_question.nextval,14,'제목2','내용14','답변14',sysdate,sysdate,'N');
+insert into question values(seq_question.nextval,15,'제목1','내용15','답변15',sysdate,sysdate,'N');
+insert into question values(seq_question.nextval,16,'제목2','내용16','답변16',sysdate,sysdate,'N');
+insert into question values(seq_question.nextval,17,'제목1','내용17','답변17',sysdate,sysdate,'N');
+insert into question values(seq_question.nextval,18,'제목2','내용18','답변18',sysdate,sysdate,'N');
+insert into question values(seq_question.nextval,19,'제목1','내용19','답변19',sysdate,sysdate,'N');
+insert into question values(seq_question.nextval,20,'제목2','내용20','답변20',sysdate,sysdate,'N');
+insert into question values(seq_question.nextval,1,'제목1','내용1',null,sysdate,null,'N');
+insert into question values(seq_question.nextval,2,'제목2','내용2',null,sysdate,null,'N');
+insert into question values(seq_question.nextval,3,'제목1','내용3',null,sysdate,null,'N');
+insert into question values(seq_question.nextval,4,'제목2','내용4',null,sysdate,null,'N');
+insert into question values(seq_question.nextval,5,'제목1','내용5',null,sysdate,null,'N');
+insert into question values(seq_question.nextval,6,'제목2','내용6',null,sysdate,null,'N');
+insert into question values(seq_question.nextval,7,'제목1','내용7',null,sysdate,null,'N');
+insert into question values(seq_question.nextval,8,'제목2','내용8',null,sysdate,null,'N');
+insert into question values(seq_question.nextval,9,'제목1','내용9',null,sysdate,null,'N');
+insert into question values(seq_question.nextval,10,'제목2','내용10',null,sysdate,null,'N');
+insert into question values(seq_question.nextval,11,'제목1','내용11',null,sysdate,null,'N');
+insert into question values(seq_question.nextval,12,'제목1','내용12',null,sysdate,null,'N');
+insert into question values(seq_question.nextval,13,'제목1','내용13',null,sysdate,null,'N');
+insert into question values(seq_question.nextval,14,'제목2','내용14',null,sysdate,null,'N');
+insert into question values(seq_question.nextval,15,'제목1','내용15',null,sysdate,null,'N');
+insert into question values(seq_question.nextval,16,'제목2','내용16',null,sysdate,null,'N');
+insert into question values(seq_question.nextval,17,'제목1','내용17',null,sysdate,null,'N');
+insert into question values(seq_question.nextval,1,'제목2','내용1','답변1',sysdate,sysdate,'N');
+insert into question values(seq_question.nextval,2,'제목1','내용2','답변2',sysdate,sysdate,'N');
+insert into question values(seq_question.nextval,3,'제목2','내용3','답변3',sysdate,sysdate,'N');
+insert into question values(seq_question.nextval,4,'제목1','내용4','답변4',sysdate,sysdate,'N');
+insert into question values(seq_question.nextval,5,'제목2','내용5','답변5',sysdate,sysdate,'N');
+insert into question values(seq_question.nextval,6,'제목1','내용6','답변6',sysdate,sysdate,'N');
+insert into question values(seq_question.nextval,7,'제목1','내용7','답변7',sysdate,sysdate,'N');
+insert into question values(seq_question.nextval,8,'제목2','내용8','답변8',sysdate,sysdate,'N');
+insert into question values(seq_question.nextval,9,'제목1','내용9','답변9',sysdate,sysdate,'N');
+insert into question values(seq_question.nextval,10,'제목2','내용10','답변10',sysdate,sysdate,'N');
+insert into question values(seq_question.nextval,11,'제목1','내용11','답변11',sysdate,sysdate,'N');
+insert into question values(seq_question.nextval,12,'제목2','내용12','답변12',sysdate,sysdate,'N');
+insert into question values(seq_question.nextval,13,'제목1','내용13','답변13',sysdate,sysdate,'N');
+insert into question values(seq_question.nextval,14,'제목2','내용14','답변14',sysdate,sysdate,'N');
+insert into question values(seq_question.nextval,15,'제목1','내용15','답변15',sysdate,sysdate,'N');
+insert into question values(seq_question.nextval,16,'제목2','내용16','답변16',sysdate,sysdate,'N');
+insert into question values(seq_question.nextval,17,'제목1','내용17','답변17',sysdate,sysdate,'N');
+insert into question values(seq_question.nextval,18,'제목2','내용18','답변18',sysdate,sysdate,'N');
+insert into question values(seq_question.nextval,19,'제목1','내용19','답변19',sysdate,sysdate,'N');
+insert into question values(seq_question.nextval,20,'제목1','내용20','답변20',sysdate,sysdate,'N');
 
 
 
@@ -1474,4 +1485,7 @@ insert into volunteer values(seq_volunteer.nextval,5,35,sysdate,default);
 insert into volunteer values(seq_volunteer.nextval,1,36,sysdate,default);
 
 
-commit;
+
+
+
+COMMIT;

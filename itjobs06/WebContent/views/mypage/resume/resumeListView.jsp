@@ -7,14 +7,14 @@
 	/* Resume re = (Resume)request.getAttribute("re"); */ 
 	//String contextPath = request.getContextPath();
 	Member m = (Member)session.getAttribute("loginUser"); 
-	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	/* PageInfo pi = (PageInfo)request.getAttribute("pi"); */
 	
 	ArrayList<Resume> list = (ArrayList<Resume>)request.getAttribute("list");
-	
+	/* 
 	int currentPage = pi.getCurrentPage();
 	int maxPage = pi.getMaxPage();
 	int startPage = pi.getStartPage();
-	int endPage = pi.getEndPage();
+	int endPage = pi.getEndPage(); */
 	
 	
 %>    

@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.board.model.service.BoardService;
+import com.kh.board.model.vo.PageInfo;
 import com.kh.notification.model.service.NotificationService;
 import com.kh.notification.model.vo.Notification;
 import com.kh.search.model.service.SearchService;
@@ -36,6 +38,13 @@ public class SearchNotificationListServlet extends HttpServlet {
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		request.setCharacterEncoding("utf-8");
 		
+		int listCount =  new NotificationService().getListCount();
+		int currentPage=1;
+		if(request.getParameter("currentPage")!=null) {
+			currentPage=Integer.parseInt(request.getParameter("currentPage"));
+		}
+		PageInfo pi = new PageInfo(currentPage, listCount, 10, 10);
+		
 		String sKey=request.getParameter("sKey");
 		String sText=request.getParameter("sText");
 		
@@ -46,10 +55,12 @@ public class SearchNotificationListServlet extends HttpServlet {
 			System.out.println(sText);
 			list=new SearchService().getSuperSearchNotification(sText);
 		}else {
-			list=new NotificationService().getAllNotificationList();
+			list=new NotificationService().getAllNotificationList(pi);
 		}
 				
 		request.setAttribute("list", list);
+		request.setAttribute("pi", pi);
+		request.setAttribute("currentPage", currentPage);
 		request.getRequestDispatcher("views/search/notification.jsp").forward(request, response);
 	}
 

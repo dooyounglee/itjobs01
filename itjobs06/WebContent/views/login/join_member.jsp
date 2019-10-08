@@ -94,7 +94,7 @@
 
 
 
-<%@ include file="/views/include/header.jsp" %>
+
 
 <form action="<%=request.getContextPath() %>/join.me" method="post" autocomplete=off>
 <input value=1 name=type readonly><br>

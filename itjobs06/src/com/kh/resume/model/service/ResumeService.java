@@ -127,7 +127,6 @@ public int insertResum(Resume re){
 		
 		Resume re = new ResumeDao().selectUpdateResum(conn,resume_no);
 		
-		System.out.println("서비스"+re);
 		if(re != null){ 
 			 commit(conn);
 		 }else{
@@ -155,11 +154,6 @@ public int insertResum(Resume re){
 		int result = new ResumeDao().deleteResume(conn,resume_no);
 		// result = 0이면 이력서 삭제 실패 --> 지원중인지 확인 
 		//			1이면 이력서 삭제 성공 
-		
-		
-		
-		
-		System.out.println(result+" ㅅㅓㅂㅣㅅㅡ");
 		
 		if(result > 0){
 			commit(conn);

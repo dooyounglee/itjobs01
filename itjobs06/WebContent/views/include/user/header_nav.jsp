@@ -30,6 +30,7 @@
 			</div>
 			<div class="collapse navbar-collapse" id="main-navbar">
 				<ul class="navbar-nav mr-auto w-100 justify-content-end">
+					<li class="nav-item"><a class="nav-link"> ${mem.nickname }님 안녕하세요.</a></li>
 					<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath() %>">
 							Home </a></li>
 					<li class="nav-item dropdown"><a
@@ -53,7 +54,7 @@
 					<%	if(mem!=null && mem.getType().equals("1")){ %>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="<%=request.getContextPath()%>/list.re" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false"> 일반 마이페이지 </a>
+						aria-haspopup="true" aria-expanded="false"> 마이페이지 </a>
 						<ul class="dropdown-menu">
 							<li><a class="dropdown-item" href="<%=request.getContextPath()%>/myInfo.me">내 정보수정
 									</a></li>
@@ -71,7 +72,7 @@
 					<%	}else if(mem!=null && mem.getType().equals("2")){ %>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false"> 기업 마이페이지 </a>
+						aria-haspopup="true" aria-expanded="false"> 마이페이지 </a>
 						<ul class="dropdown-menu">
 							<li><a class="dropdown-item" href="<%=request.getContextPath()%>/myInfo.me">내 정보수정
 									</a></li>

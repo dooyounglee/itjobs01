@@ -49,9 +49,9 @@ public class SearchNotificationListServlet extends HttpServlet {
 		String sText=request.getParameter("sText");
 		
 		ArrayList<Notification> list=null;
-		if(sKey!=null && sText!=null) {
+		if(sKey!=null && (sText!=null || sText.equals("null"))) {
 			//list=new SearchService().searchNotificationList(sKey,sText);
-		}else if(sText!=null){
+		}else if(sText!=null || sText.equals("null")){
 			System.out.println(sText);
 			listCount=new NotificationService().getSuperSearchNotificationListCount(sText);
 			System.out.println(listCount);

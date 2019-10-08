@@ -80,23 +80,10 @@
 									</a></li>
 							<li><a class="dropdown-item" href="<%=request.getContextPath()%>/mylist.qu">나의문의
 									</a></li>
-						</ul></li>
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false">adsfs </a>
-						<ul class="dropdown-menu">
-							<li><a class="dropdown-item" href="#">sdfsdg
-									</a></li>
-							<li><a class="dropdown-item" href="blog-left-sidebar.html">Blog
-									- Left Sidebar</a></li>
-							<li><a class="dropdown-item" href="blog-full-width.html">
-									Blog full width</a></li>
-							<li><a class="dropdown-item" href="single-post.html">Blog
-									Single Post</a></li>
-						</ul></li>
-					<li class="nav-item"><a class="nav-link" href="contact.html">
-							Contact </a></li>
+						</ul>
+					</li>
 					<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/login.me">로그인</a></li>
+					<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/logout.me">로그아웃</a></li>
 					<li class="button-group"><a href="<%=request.getContextPath()%>/views/admin/main.jsp"
 						class="button btn btn-common">관리자</a></li>
 				</ul>

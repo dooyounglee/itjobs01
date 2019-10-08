@@ -50,6 +50,7 @@
 							공고검색 </a></li>
 					<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/resumeList.se">
 							인재검색 </a></li>
+					<%	if(mem!=null && mem.getType().equals("1")){ %>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="<%=request.getContextPath()%>/list.re" data-toggle="dropdown"
 						aria-haspopup="true" aria-expanded="false"> 일반 마이페이지 </a>
@@ -59,7 +60,6 @@
 							<li><a class="dropdown-item" href="<%=request.getContextPath()%>/myApplyList.vo">지원리스트
 									</a></li>
 							<li><a class="dropdown-item" href="<%=request.getContextPath()%>/myCompanyList.like">관심기업
-							
 									</a></li>
 							<li><a class="dropdown-item active"
 								href="<%=request.getContextPath()%>/list.re">이력서관리</a></li>
@@ -68,6 +68,7 @@
 							<li><a class="dropdown-item" href="job-alerts.html">지원하기
 									</a></li>
 						</ul></li>
+					<%	}else if(mem!=null && mem.getType().equals("2")){ %>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"
 						aria-haspopup="true" aria-expanded="false"> 기업 마이페이지 </a>
@@ -82,8 +83,14 @@
 									</a></li>
 						</ul>
 					</li>
-					<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/login.me">로그인</a></li>
+					<%	}else{ %>
+					<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/login.me">마이페이지</a></li>
+					<%	} %>
+					<%	if(mem!=null){ %>
 					<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/logout.me">로그아웃</a></li>
+					<%	}else{ %>
+					<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/login.me">로그인</a></li>
+					<%	} %>
 					<li class="button-group"><a href="<%=request.getContextPath()%>/views/admin/main.jsp"
 						class="button btn btn-common">관리자</a></li>
 				</ul>

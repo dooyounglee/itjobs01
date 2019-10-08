@@ -83,10 +83,10 @@
 						</ul></li>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false"> Blog </a>
+						aria-haspopup="true" aria-expanded="false">adsfs </a>
 						<ul class="dropdown-menu">
-							<li><a class="dropdown-item" href="blog.html">Blog -
-									Right Sidebar</a></li>
+							<li><a class="dropdown-item" href="#">sdfsdg
+									</a></li>
 							<li><a class="dropdown-item" href="blog-left-sidebar.html">Blog
 									- Left Sidebar</a></li>
 							<li><a class="dropdown-item" href="blog-full-width.html">

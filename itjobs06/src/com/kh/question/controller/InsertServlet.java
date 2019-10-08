@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import com.kh.question.model.service.QuestionService;
 import com.kh.member.model.vo.Member;
 import com.kh.question.model.vo.Question;
+import com.oracle.jrockit.jfr.RequestableEvent;
 
 /**
  * Servlet implementation class QuestionInsertServlet
@@ -39,14 +40,18 @@ public class InsertServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		Member m=(Member)session.getAttribute("mem");
 		int m_no=m.getM_no();
+		String title = request.getParameter("title");
 		String contents=request.getParameter("contents");
+		
+		
 		Question q=new Question();
 		q.setM_no(m_no);
+		q.setTitle(title);
 		q.setContents(contents);
 		System.out.println(q);
 		
 		int result=new QuestionService().insertQuestion(q);
-		response.sendRedirect(request.getContextPath()+"/list.qu");
+		response.sendRedirect(request.getContextPath()+"/mylist.qu");
 		
 	}
 

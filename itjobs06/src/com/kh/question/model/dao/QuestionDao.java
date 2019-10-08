@@ -41,9 +41,10 @@ public class QuestionDao {
 					rs.getInt(2),
 					rs.getString(3),
 					rs.getString(4),
-					rs.getDate(5)+" "+rs.getTime(5),
+					rs.getString(5),
 					rs.getDate(6)+" "+rs.getTime(6),
-					rs.getString(7)));
+					rs.getDate(7)+" "+rs.getTime(7),
+					rs.getString(8)));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -51,6 +52,7 @@ public class QuestionDao {
 			close(rs);
 			close(ps);
 		}
+	
 		return list;
 	}
 
@@ -70,9 +72,10 @@ public class QuestionDao {
 					rs.getInt(2),
 					rs.getString(3),
 					rs.getString(4),
-					rs.getDate(5)+" "+rs.getTime(5),
+					rs.getString(5),
 					rs.getDate(6)+" "+rs.getTime(6),
-					rs.getString(7));
+					rs.getDate(7)+" "+rs.getTime(7),
+					rs.getString(8));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -91,7 +94,8 @@ public class QuestionDao {
 		try {
 			ps=conn.prepareStatement(sql);
 			ps.setInt(1, q.getM_no());
-			ps.setString(2, q.getContents());
+			ps.setString(2, q.getTitle());
+			ps.setString(3, q.getContents());
 			result=ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -117,9 +121,10 @@ public class QuestionDao {
 					rs.getInt(2),
 					rs.getString(3),
 					rs.getString(4),
-					rs.getDate(5)+" "+rs.getTime(5),
+					rs.getString(5),
 					rs.getDate(6)+" "+rs.getTime(6),
-					rs.getString(7)));
+					rs.getDate(7)+" "+rs.getTime(7),
+					rs.getString(8)));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

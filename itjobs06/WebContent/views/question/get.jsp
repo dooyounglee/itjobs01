@@ -6,9 +6,27 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+<!-- import jobx -->
+<%@ include file="/views/include/user/style.jsp" %>
+<!-- End of import from jobx -->
+
+<!-- import of jobx -->
+<%@ include file="/views/include/user/js.jsp" %>
+<!-- End of import of jobx -->
 </head>
 <body>
-<%@ include file="/views/include/header.jsp" %>
+
+  <header id="home" class="hero-area">
+   <%@ include file="/views/include/user/header_nav.jsp" %>
+   </header>
+
+   <!-- page-header -->
+   <%@ include file="/views/include/user/page_header.jsp" %>
+   <script>
+      var page_header_title='문의하기'
+   </script>
+   <!-- end of page-header -->
 
 <h1>문의보기</h1>
 ${q }<br>

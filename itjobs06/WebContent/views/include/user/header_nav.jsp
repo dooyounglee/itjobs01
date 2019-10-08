@@ -30,7 +30,9 @@
 			</div>
 			<div class="collapse navbar-collapse" id="main-navbar">
 				<ul class="navbar-nav mr-auto w-100 justify-content-end">
+					<%	if(mem!=null){ %>
 					<li class="nav-item"><a class="nav-link"> ${mem.nickname }님 안녕하세요.</a></li>
+					<%	} %>
 					<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath() %>">
 							Home </a></li>
 					<li class="nav-item dropdown"><a

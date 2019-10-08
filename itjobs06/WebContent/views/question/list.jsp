@@ -52,7 +52,7 @@
    <div class="job-alerts-item">
    <h3 class="alerts-title">나의 문의</h3>
    <div class="col-md-3">
-   <p><span class="full-time"><a href="<%=contextPath%>//views/question/write.jsp">문의하기</a></span></p>
+   <p><span class="full-time"><a href="<%= contextPath %>/insertForm.qu">문의하기</a></span></p>
    </div>
    <div class="alerts-list">
    <div class="row">

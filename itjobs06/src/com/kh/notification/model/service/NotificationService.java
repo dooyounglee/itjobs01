@@ -127,6 +127,13 @@ public class NotificationService {
 		close(conn);
 		return result;
 	}
+
+	public int getSuperSearchNotificationListCount(String sText) {
+		Connection conn=getConnection();
+		int result=new NotificationDao().getSuperSearchNotificationListCount(conn,sText);
+		close(conn);
+		return result;
+	}
 	
 	
 }

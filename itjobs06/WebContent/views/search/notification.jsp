@@ -148,18 +148,19 @@
 				</div>
 			<%	} %>
 			<%	PageInfo pi=(PageInfo)request.getAttribute("pi");
+				System.out.println(pi);
 				int currentPage=pi.getCurrentPage();
 				String sText=(String)request.getAttribute("sText");%>
 				<ul class="pagination" style="display:block;">
 					<%	if(currentPage>1){ %>
-					<li class="active"><a href="<%=request.getContextPath()%>/notificationList.se?currentPage=<%=currentPage-1%>" class="btn-prev"><i
+					<li class="active"><a href="<%=request.getContextPath()%>/notificationList.se?sText=<%=sText %>&currentPage=<%=currentPage-1%>" class="btn-prev"><i
 							class="lni-angle-left"></i> prev</a></li>
 					<%	} %>
 					<%	for(int i=pi.getStartPage();i<=pi.getEndPage();i++){ %>
 					<li><a href="<%=request.getContextPath()%>/notificationList.se?sText=<%=sText %>&currentPage=<%=i%>"><%=i %></a></li>
 					<%	} %>
 					<%	if(currentPage<pi.getMaxPage()){ %>
-					<li class="active"><a href="<%=request.getContextPath()%>/notificationList.se?currentPage=<%=currentPage+1%> class="btn-next">Next <i
+					<li class="active"><a href="<%=request.getContextPath()%>/notificationList.se?sText=<%=sText %>&currentPage=<%=currentPage+1%> class="btn-next">Next <i
 							class="lni-angle-right"></i></a></li>
 					<%	} %>
 				</ul>

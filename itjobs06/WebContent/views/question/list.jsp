@@ -80,7 +80,6 @@
    </div>
 
 
-   
    <%   ArrayList<Question> list =(ArrayList<Question>)request.getAttribute("list");
       for(Question q:list){%>
    <div class="alerts-content">

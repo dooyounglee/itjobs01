@@ -52,9 +52,9 @@
 
 </div>
 
-<button class="btn btn-common log-btn" onclick="location.href='<%=contextPath1%>/join.seeker'">일반(구직)</button>
+<button class="btn btn-common log-btn" onclick="location.href='<%=contextPath%>/join.seeker'">일반(구직)</button>
 
-<button class="btn btn-common log-btn" onclick="location.href='<%=contextPath1%>/join.co'">기업(구인)</button>
+<button class="btn btn-common log-btn" onclick="location.href='<%=contextPath%>/join.co'">기업(구인)</button>
 
 
 </div>
@@ -82,7 +82,7 @@
 	
 	
 	
-	<%@ include file="/views/include/header.jsp" %>
+	
 	<h1>join</h1>
 	일반회원 이용약관<br>
 	<a href="<%=contextPath %>/views/login/join_member.jsp">다음</a>

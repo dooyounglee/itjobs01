@@ -61,7 +61,7 @@
 		<input type="password" class="form-control" name="pw1" placeholder="비밀번호 확인">
 		</div>
 		</div>
-		<button class="btn btn-common log-btn mt-3" onclick="location.href='<%=contextPath1%>'">다음</button>
+		<button class="btn btn-common log-btn mt-3">다음</button>
 		<p class="text-center">Already have an account?<a href="login.html"> Sign In</a></p>
 		</form>
 		</div>
@@ -83,7 +83,7 @@
 
 
 
-<%@ include file="/views/include/header.jsp" %>
+
 
 <form action="<%=request.getContextPath() %>/join.me" method="post" autocomplete=off>
 

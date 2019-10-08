@@ -179,8 +179,10 @@
 
 <div id="resultArea">
 
+	<%	if(mem!=null){ %>
 	<input type="hidden" value="<%=mem.getM_no() %>" id="memNo">
-
+	<%	} %>
+	
 	<div id="result">
 <%	list=(ArrayList<Resume>)request.getAttribute("list");
 	for(Resume r:list){%>

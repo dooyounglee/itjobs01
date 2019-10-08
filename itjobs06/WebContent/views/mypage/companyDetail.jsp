@@ -161,8 +161,9 @@
 
 <%	co = (Member) request.getAttribute("co");%>
 
-
+<%	if(mem!=null){ %>
 <input type="hidden" value="<%=mem.getM_no()%>" id="memNo">
+	<%	} %>
 
 
 ${co }<br>

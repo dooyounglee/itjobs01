@@ -186,8 +186,9 @@
 <input id="sTextA" name="sText" autocomplete=off><button onclick="searchA()">검색</button>
 <button>상세검색</button>
 <hr>
-
+	<%	if(mem!=null){ %>
 	<input type="hidden" value="<%=mem.getM_no() %>" id="memNo">
+	<%	} %>
 
 <div id="resultArea">
 	<div id="result">

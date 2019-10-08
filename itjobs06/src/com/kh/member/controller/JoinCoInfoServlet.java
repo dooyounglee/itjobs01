@@ -39,9 +39,13 @@ public class JoinCoInfoServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		
+		
+		
 		request.setCharacterEncoding("utf-8");
 		
 		if(ServletFileUpload.isMultipartContent(request)) {
+
+			
 			
 			int maxSize = 10*1024*1024;
 			
@@ -67,6 +71,7 @@ public class JoinCoInfoServlet extends HttpServlet {
 				}
 			}
 		
+			
 		
 		String email = multiRequest.getParameter("email");
 		String regnum = multiRequest.getParameter("regnum");
@@ -119,7 +124,7 @@ public class JoinCoInfoServlet extends HttpServlet {
 		if(result>0) {
 			request.setAttribute("msg", "회운가입 성공(기업2)");
 			request.setAttribute("cf",cf);
-			request.getRequestDispatcher("views/login/join_ok.jsp").forward(request, response);
+			response.sendRedirect(request.getContextPath());
 		}else {
 			
 			File faildFile = new File(savePath+fileName);

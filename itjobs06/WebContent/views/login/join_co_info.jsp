@@ -17,6 +17,23 @@
 	}
 
 
+	 #file{
+		font-size: 45px;
+		position: absolute;
+		right: 0px;
+		top: 0px;
+		opacity: 0;
+	}
+	#filediv{
+	position: relative;
+    width: 380px;
+    height: 40px;
+    overflow: hidden;
+	text-align:center;
+	}
+	
+	
+
 </style>
 
 
@@ -50,33 +67,27 @@
 		<h3>
 		기업 상세정보
 		</h3>
-		<form class="login-form" action="<%=request.getContextPath() %>/join.me" method="post" autocomplete=off>
-		<input type="hidden"value=2 name=type readonly>
-		<div class="form-group">
-		<div class="input-icon">
-		<i class="lni-user"></i>
-		<input type="text" class="form-control" name="nickname" placeholder="사업자등록번호*">
-		</div>
-		</div>
-		<div class="form-group">
-		<div class="input-icon">
-		<i class="lni-envelope"></i>
-		<input type="text" class="form-control" name="email" placeholder="담당자명*">
-		</div>
-		</div>
+		<form class="login-form" action="<%=request.getContextPath() %>/coinfo.me" method="post" autocomplete=off enctype="multipart/form-data" >
+		
+		<input type="hidden"value=2 name="type" readonly>
+		<input type="hidden" value="<%=m.getEmail()%>" name="email" id="eamil">
+		
+		
+		
 		<div class="form-group">
 		<div class="input-icon">
 		<i class="lni-lock"></i>
-		<input type="password" class="form-control" name="pw" placeholder="담당자폰*">
-		</div>
-		</div>
-		<div class="form-group">
-		<div class="input-icon">
-		<i class="lni-unlock"></i>
-		<input type="password" class="form-control" name="pw1" placeholder="대표자명*">
+		<input type="text" class="form-control" name="regnum" placeholder="사업자등록번호*">
 		</div>
 		</div>
 		
+		<div class="btn btn-common log-btn mt-3" id="filediv">
+		사업자등록파일첨부
+		<input type="file" id="file" name="file" onchange="loadImg(this,1);">
+		</div>
+		<img id ="titleImg" width="380" height="100" style="margin-bottom:13px;">
+		
+		<h3>본사 주소지</h3>
 		<input type="text" id="sample3_postcode" name="sample3_postcode"  placeholder="우편번호">
 		<input type="button" onclick="sample3_execDaumPostcode()" value="우편번호 찾기"><br>
 		<input type="text" id="sample3_address" name="sample3_address" placeholder="주소">
@@ -87,53 +98,70 @@
 		<img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnFoldWrap" style="cursor:pointer;position:absolute;right:0px;top:-1px;z-index:1" onclick="foldDaumPostcode()" alt="접기 버튼">
 		</div>
 		
-		<br>
+		<div class="form-group"style="margin-top:15px;">
+		<div class="input-icon">
+		<i class="lni-lock"></i>
+		<input type="text" class="form-control" name="name" placeholder="담당자명*">
+		</div>
+		</div>
+		<div class="form-group">
+		<div class="input-icon">
+		<i class="lni-lock"></i>
+		<input type="text" class="form-control" name="phone" placeholder="담당자폰*">
+		</div>
+		</div>
+		<div class="form-group">
+		<div class="input-icon">
+		<i class="lni-lock"></i>
+		<input type="text" class="form-control" name="ceo" placeholder="대표자명*">
+		</div>
+		</div>
 		
 		
 		
-		<div class="form-group">
+		<div class="form-group" >
 		<div class="input-icon">
-		<i class="lni-unlock"></i>
-		<input type="password" class="form-control" name="pw1" placeholder="대표자폰*">
-		</div>
-		</div>
-		<div class="form-group">
-		<div class="input-icon">
-		<i class="lni-unlock"></i>
-		<input type="password" class="form-control" name="pw1" placeholder="사업내용">
+		<i class="lni-lock"></i>
+		<input type="text" class="form-control" name="co_phone" placeholder="대표자폰*">
 		</div>
 		</div>
 		<div class="form-group">
 		<div class="input-icon">
-		<i class="lni-unlock"></i>
-		<input type="password" class="form-control" name="pw1" placeholder="설립일">
+		<i class="lni-lock"></i>
+		<input type="text" class="form-control" name="descript" placeholder="사업내용">
 		</div>
 		</div>
 		<div class="form-group">
 		<div class="input-icon">
-		<i class="lni-unlock"></i>
-		<input type="password" class="form-control" name="pw1" placeholder="사원수">
+		<i class="lni-lock"></i>
+		<input type="text" class="form-control" name="birth_date" placeholder="설립일">
 		</div>
 		</div>
 		<div class="form-group">
 		<div class="input-icon">
-		<i class="lni-unlock"></i>
-		<input type="password" class="form-control" name="pw1" placeholder="매출액">
+		<i class="lni-lock"></i>
+		<input type="text" class="form-control" name="memsum" placeholder="사원수">
 		</div>
 		</div>
 		<div class="form-group">
 		<div class="input-icon">
-		<i class="lni-unlock"></i>
-		<input type="password" class="form-control" name="pw1" placeholder="연혁">
+		<i class="lni-lock"></i>
+		<input type="text" class="form-control" name="revenue" placeholder="매출액">
 		</div>
 		</div>
 		<div class="form-group">
 		<div class="input-icon">
-		<i class="lni-unlock"></i>
-		<input type="password" class="form-control" name="pw1" placeholder="복지">
+		<i class="lni-lock"></i>
+		<input type="text" class="form-control" name="history" placeholder="연혁">
 		</div>
 		</div>
-		<button class="btn btn-common log-btn mt-3">다음</button>
+		<div class="form-group">
+		<div class="input-icon">
+		<i class="lni-lock"></i>
+		<input type="text" class="form-control" name="welfair" placeholder="복지">
+		</div>
+		</div>
+		<input type="submit" class="btn btn-common log-btn mt-3" value="가입신청" onclick="join();">
 		<p class="text-center">Already have an account?<a href="login.html"> Sign In</a></p>
 		</form>
 		</div>
@@ -141,8 +169,13 @@
 		</div>
 		</div>
 		</section>
-
-
+		
+		
+		<script>
+		function join(){
+		alert("회원가입을 환영 합니다. 승인절차는 1~2일 정도 소요되며 결과는 이메일,문자로 발송해 드립니다.");				
+		}
+		</script>
 
 <%@ include file="/views/include/user/footer.jsp" %>
 

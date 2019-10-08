@@ -59,7 +59,7 @@
 		<input type="password" class="form-control" name="pw1" placeholder="비밀번호 확인">
 		</div>
 		</div>
-		<button class="btn btn-common log-btn mt-3">가입</button>
+		<input type="submit" class="btn btn-common log-btn mt-3" value="가입" onclick="join();">
 		<p class="text-center">Already have an account?<a href="login.html"> Sign In</a></p>
 		</form>
 		</div>
@@ -67,9 +67,13 @@
 		</div>
 		</div>
 		</section>
-
-
-
+		
+		<script>
+		function join(){
+			alert("회원가입을 환영 합니다. 로그인을 진행해 주세요");
+		}
+		</script>
+		
 <%@ include file="/views/include/user/footer.jsp" %>
 
 

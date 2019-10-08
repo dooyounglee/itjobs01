@@ -60,7 +60,7 @@ public class JoinServlet extends HttpServlet {
 				request.setAttribute("msg", "회운가입 성공(일반)");
 				request.setAttribute("nickname", nickname);
 				
-				request.getRequestDispatcher("views/login/join_ok.jsp").forward(request, response);
+				request.getRequestDispatcher("views/login/login.jsp").forward(request, response);
 			
 				
 			}else {

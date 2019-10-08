@@ -3,6 +3,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<style>
+	.col-md-3{
+	width:10px;
+	}
+</style>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -31,135 +36,87 @@
 
 
 
-
-
-
 <div id="faq" class="section pb-45">
+
 <div class="container">
+
 <div class="row">
-<div class="col-lg-6 col-md-6 col-xs-12">
-<a href="<%=request.getContextPath()%>/views/question/write.jsp">문의하기  </a>
-<div class="panel-group" id="accordion">
-<% for(int i=0;i<10;i++){ %>
-<div class="panel panel-default">
-<div class="panel-heading">
-<h4 class="panel-title">
-<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-이두영
-</a>
-</h4>
-</div>
-<div id="collapseOne" class="panel-collapse collapse in">
-<div class="panel-body">
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam consectetur sit amet ante nec vulputate. Nulla aliquam, justo auctor consequat tincidunt, arcu erat mattis lorem, lacinia lacinia dui enim at eros. Pellentesque ut gravida augue. Duis ac dictum tellus </p>
-<br>
-<p>
-Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute. non cupidatat skateboard dolor brunch. Foosd truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt alqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim ke ffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-</p>
-</div>
-</div>
-</div>
-<%	} %>
-</div>
+	
+				<!-- left -->
+				<%@ include file="/views/include/user/mypage_menu.jsp" %>
+				<!-- End of left -->
+				
+	
+	
+	<div class="col-lg-8 col-md-12 col-xs-12">
+	<div class="job-alerts-item">
+	<h3 class="alerts-title">나의 문의</h3>
+	<div class="col-md-3">
+	<p><span class="full-time"><a href="<%=contextPath%>//views/question/write.jsp">문의하기</a></span></p>
+	</div>
+	<div class="alerts-list">
+	<div class="row">
+	<div >
+	
+	<p><input type="checkbox"></p>
+	</div>
+	
+	<div class="col-md-3">
+	<p>내용</p>
+	</div>
+	<div class="col-md-3">
+	<p>작성자</p>
+	</div>
+	<div class="col-md-3">
+	 <p>등록일</p>
+	</div>
+	<div class="col-md-3">
+	 <p>처리일</p>
+	</div>
+	<div class="col-md-3">
+	 <p>상태</p>
+	</div>
+	</div>
+	</div>
 
-</div>
-<div class="col-lg-6 col-md-6 col-xs-12">
 
-<div class="panel-group" id="accordion1">
-<div class="panel panel-default">
-<div class="panel-heading">
-<h4 class="panel-title">
-<a data-toggle="collapse" data-parent="#accordion1" href="#collapseOne1">
-How do I place an ad?
-</a>
-</h4>
-</div>
-<div id="collapseOne1" class="panel-collapse collapse">
-<div class="panel-body">
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam consectetur sit amet ante nec vulputate. Nulla aliquam, justo auctor consequat tincidunt, arcu erat mattis lorem, lacinia lacinia dui enim at eros. Pellentesque ut gravida augue. Duis ac dictum tellus </p>
-<br>
-<p>
-Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute. non cupidatat skateboard dolor brunch. Foosd truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt alqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim ke ffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-</p>
-</div>
-</div>
-</div>
-<div class="panel panel-default">
-<div class="panel-heading">
-<h4 class="panel-title">
-<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo2">
-Who shouldi to contact if i Have any question?
-</a>
-</h4>
-</div>
-<div id="collapseTwo2" class="panel-collapse collapse">
-<div class="panel-body">
-<p>
-Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute. non cupidatat skateboard dolor brunch. Foosd truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt alqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim ke ffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-</p>
-<br>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam consectetur sit amet ante nec vulputate. Nulla aliquam, justo auctor consequat tincidunt, arcu erat mattis lorem, lacinia lacinia dui enim at eros. Pellentesque ut gravida augue. Duis ac dictum tellus </p>
-</div>
-</div>
-</div>
-<div class="panel panel-default">
-<div class="panel-heading">
-<h4 class="panel-title">
-<a data-toggle="collapse" data-parent="#accordion" href="#collapseThree3">
-How can i cancel or change my order?
-</a>
-</h4>
-</div>
-<div id="collapseThree3" class="panel-collapse collapse">
-<div class="panel-body">
-<p>
-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas expedita, repellendus est nemo cum quibusdam optio, voluptate hic a tempora facere, nihil non itaque alias similique quas quam odit consequatur.
-</p>
-</div>
-</div>
-</div>
-<div class="panel panel-default">
-<div class="panel-heading">
-<h4 class="panel-title">
-<a data-toggle="collapse" data-parent="#accordion" href="#collapseFour4">
-How can i Return A Product?
-</a>
-</h4>
-</div>
-<div id="collapseFour4" class="panel-collapse collapse">
-<div class="panel-body">
-<p>
-Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute. non cupidatat skateboard dolor brunch. Foosd truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt alqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et.
-</p>
-<br>
-<p>
-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident iure ab nisi, magnam vitae. Laboriosam laborum suscipit recusandae officia laudantium, consectetur adipisci voluptates doloremque quisquam. Id rerum iusto reprehenderit assumenda!
-</p>
-</div>
-</div>
-</div>
-<div class="panel panel-default">
-<div class="panel-heading">
-<h4 class="panel-title">
-<a data-toggle="collapse" data-parent="#accordion" href="#collapseFive5">
-How Long will it take to get my package?
-</a>
-</h4>
-</div>
-<div id="collapseFive5" class="panel-collapse collapse">
-<div class="panel-body">
-<p>
-Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute. non cupidatat skateboard dolor brunch. Foosd truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt alqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et.
-</p>
-</div>
-</div>
-</div>
-</div>
+	
+	<%	ArrayList<Question> list =(ArrayList<Question>)request.getAttribute("list");
+		for(Question q:list){%>
+	<div class="alerts-content">
+	<div class="row">
+	
+	<div class="col-md-3">
+	<p><input type="checkbox"></p>
+	</div>
+	<div class="col-md-3">
+	<p><a href="get.qu?qno=<%=q.getQ_no()%>"><%=q.getContents() %></a></p>
+	</div>
+	<div class="col-md-3">
+	<p><%=q.getM_no() %></p>
+	</div>
+	<div class="col-md-3">
+	<p><%=q.getEnroll_date() %></p>
+	</div>
+	<div class="col-md-3">
+	<p><%=q.getEnd_date() %></p>
+	</div>
+	<div class="col-md-3">
+	<p><%=q.getStatus() %></p>
+	</div>
+	</div>
+	</div>
+<%} %>	
+	
 
 </div>
 </div>
 </div>
-</div>
+</div> 
+	</div>
+	<!--container  -->
+	</div>
+	<!--end container -->
 
 
 
@@ -211,8 +168,8 @@ Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richa
 		<th>처리일</th>
 		<th>상태</th>
 	</tr>
-	<%	ArrayList<Question> list=(ArrayList<Question>)request.getAttribute("list");
-		for(Question q:list){%>
+<%-- 	<%	ArrayList<Question> list1 =(ArrayList<Question>)request.getAttribute("list");
+		for(Question q:list1){%>
 	<tr>
 		<td><input type=checkbox></td>
 		<td><a href="get.qu?qno=<%=q.getQ_no()%>"><%=q.getContents() %></a></td>
@@ -221,7 +178,7 @@ Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richa
 		<td><%=q.getEnd_date() %></td>
 		<td><%=q.getStatus() %></td>
 	</tr>
-	<%	} %>
+	<%	} %> --%>
 </table>
 <%@ include file="/views/include/footer.jsp" %>
 </body>

@@ -1,3 +1,4 @@
+<%@page import="com.kh.board.model.vo.PageInfo"%>
 <%@page import="com.kh.notification.model.vo.Notification"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -146,6 +147,22 @@
 					</a>
 				</div>
 			<%	} %>
+			<%	PageInfo pi=(PageInfo)request.getAttribute("pi");
+				int currentPage=(int)request.getAttribute("currentPage");%>
+				<ul class="pagination" style="display:block;">
+					<%	if(currentPage>1){ %>
+					<li class="active"><a href="<%=request.getContextPath()%>/notificationList.se?currentPage=<%=currentPage-1%>" class="btn-prev"><i
+							class="lni-angle-left"></i> prev</a></li>
+					<%	} %>
+					<%	for(int i=pi.getStartPage();i<=pi.getEndPage();i++){ %>
+					<li><a href="<%=request.getContextPath()%>/notificationList.se?currentPage=<%=i%>"><%=i %></a></li>
+					<%	} %>
+					<%	if(currentPage<pi.getMaxPage()){ %>
+					<li class="active"><a href="<%=request.getContextPath()%>/notificationList.se?currentPage=<%=currentPage+1%> class="btn-next">Next <i
+							class="lni-angle-right"></i></a></li>
+					<%	} %>
+				</ul>
+				
 				<div class="col-12 text-center mt-4">
 					<a href="job-page.html" class="btn btn-common">Browse All Jobs</a>
 				</div>
@@ -154,7 +171,6 @@
 	</section>
 	<!-- End of list section -->
 	
-	<%@ include file="/views/include/header.jsp" %>
 <h1>공고 검색창</h1>
 <select id="sKey">
 	<option value="address">지역</option>

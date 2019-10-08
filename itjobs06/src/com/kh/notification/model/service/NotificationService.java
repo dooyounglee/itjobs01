@@ -6,15 +6,16 @@ import static com.kh.common.JDBCTemplate.getConnection;
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import com.kh.board.model.vo.PageInfo;
 import com.kh.member.model.vo.Member;
 import com.kh.notification.model.dao.NotificationDao;
 import com.kh.notification.model.vo.Notification;
 
 public class NotificationService {
 
-	public ArrayList<Notification> getAllNotificationList() {
+	public ArrayList<Notification> getAllNotificationList(PageInfo pi) {
 		Connection conn=getConnection();
-		ArrayList<Notification> list=new NotificationDao().getAllNotificationList(conn);
+		ArrayList<Notification> list=new NotificationDao().getAllNotificationList(conn, pi);
 		return list;
 	}
 
@@ -117,6 +118,13 @@ public class NotificationService {
 		}
 		close(conn);
 	
+		return result;
+	}
+
+	public int getListCount() {
+		Connection conn=getConnection();
+		int result=new NotificationDao().getListCount(conn);
+		close(conn);
 		return result;
 	}
 	

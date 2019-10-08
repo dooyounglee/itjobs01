@@ -16,7 +16,7 @@
 </head>
 <body>
 	
-	<!-- import jobx -->
+<!-- import jobx -->
 <%@ include file="/views/include/user/style.jsp" %>
 <!-- End of import from jobx -->
 
@@ -60,15 +60,16 @@
 
 	
 	<div class="col-lg-8 col-md-12 col-xs-12">
-	
-	 <section class="job-detail section">
-      <div class="container">
+
+	<!--  <section class="job-detail section"> -->
+      <div class="job-alerts-item">
         <div class="row justify-content-between">
           <div class="col-lg-8 col-md-12 col-xs-12">
             <div class="content-area">  
+              <p style="font-size:20px;"> &nbsp;<%=b.getHead() %></p>
               <h4>상세보기</h4>
-              <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi umsan ipsum velit. Nam nec tellus a odio tincidunt auctor a ornare odio. Sed non mauris vitae erat consequat auctor eu in elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Mauris in erat justo. Nullam ac urna eu felis dapibus condimentum sit amet a augue. Sed non neque elit</p>
-              <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi umsan ipsum velit. Nam nec tellus a odio tincidunt auctor a ornare odio.</p>
+              <p></p>
+              <p></p>
               <h5>What You Need for this Position</h5>
               <ul>
                 <li>- Objective-C</li>
@@ -85,7 +86,7 @@
       
         </div>
       </div>
-    </section>
+   <!--  </section> -->
 
 
 	</div>
@@ -121,72 +122,6 @@
 	
 	
 	
-<%-- 	 <div class="outer">
-        <div id="inner">
-            <div id="topArea">
-                <div id="headArea"><%= b.getHead() %></div>
-                <div id="topBtn">
-                
-                	<%if(mem != null && mem.getM_no() == b.getM_no()) { %>
-                    <div onclick="deleteBtn()">삭제</div>
-                    <div onclick="location.href='<%=contextPath %>/updateForm.bo?bId=<%=b.getB_no()%>';">수정</div>
-                    <%}else{ %>
-                    	<div onclick="deBtn();">신고</div>
-                   	<%}%>
-                   	
-                </div>
-            </div>
-            <br>
-            <div id="bottomArea">
-	            <div id="title"><%=b.getTitle() %></div>
-	            <div id="img1"></div>
-	            <div id="img1_1"><%=b.getCount() %></div>   
-	            <div id="img2"></div>
-	            <div id="img2_1"><%=b.getReply_count() %></div>
-            </div>
-            <div id="nickname"><%=b.getNickname() %></div>
-            <div id="updateDate"><%=b.getUpdate_date() %></div>
-            
-            <br>
-            <div id="content"><%=b.getContents() %><br><br>
-            <%if(b.getEditFile() != null){ %>
-            	<img id="img" src="<%= contextPath %>/resources/fileupload_board/<%= b.getEditFile()%>">
-            <% } %>
-            </div>
-        
-        	<br>
-            <div id="nextArea">
-            <%if(prev.getTitle() != null){ %>
-                <div>이전글 - <%=prev.getTitle() %> </div>
-             <%}else { %>
-             	<div>이전글 - 이전 글이 없습니다.</div>
-             <%} %>
-             <%if(next.getTitle() != null){ %>
-                <div>다음글 - <%=next.getTitle() %> </div>
-              <%}else { %>
-             	 <div>다음글 - 다음 글이 없습니다.</div>
-              <%} %>
-            </div>
-        	<button onclick="location.href='<%= contextPath %>/download.bo?bId=<%=b.getB_no()%>';">다운로드</button>
-        	<div>다운로드 횟수 - <%= b.getDown_count() %></div>
-        	
-        	<div id="replyArea">
-        		<div id="replyWrite">
-        		 <div>댓글작성</div>
-				 <textarea rows="2" cols="80" id="replyContent" style="resize: none; overflow:auto;"></textarea>  
-				 <button id="addReply">댓글등록</button>      		
-        		</div>
-        	
-        		<div id="replySelect">
-        			
-        		
-        		</div>
-        	
-        	</div>
-        
-        
-        </div>
-    </div> --%>
 
 
 	<script>

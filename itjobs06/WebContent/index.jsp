@@ -25,12 +25,12 @@
 						<h2 class="head-title">Find the job that fits your life</h2>
 						<p style="font-size:50px">메인 페이지</p>
 						<div class="job-search-form">
-							<form>
+							<form action="main.se" method="get" autocomplete=off>
 								<div class="row">
 									<div class="col-lg-5 col-md-6 col-xs-12">
 										<div class="form-group">
 											<input class="form-control" type="text"
-												placeholder="Job Title or Company Name">
+												placeholder="Job Title or Company Name" name="sText">
 										</div>
 									</div>
 									<div class="col-lg-3 col-md-6 col-xs-12">
@@ -468,7 +468,7 @@
 	<%@ include file="/views/include/header.jsp" %>
 	
 <h1>메인</h1>
-<form id="searchForm" action="main.se" method="post" autocomplete=off>
+<form id="searchForm" action="main.se" method="get" autocomplete=off>
 	<input name="sText">
 	<button onclick="return searchA()">검색</button>
 	<button onclick="return search()">상세검색</button>

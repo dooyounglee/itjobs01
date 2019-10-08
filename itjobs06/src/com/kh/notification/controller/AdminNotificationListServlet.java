@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.board.model.vo.PageInfo;
 import com.kh.member.model.service.MemberService;
 import com.kh.member.model.vo.Member;
 import com.kh.notification.model.service.NotificationService;
@@ -35,7 +36,8 @@ public class AdminNotificationListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		ArrayList<Notification> list=new NotificationService().getAllNotificationList();
+		PageInfo pi = new PageInfo(1, 10, 10, 10);
+		ArrayList<Notification> list=new NotificationService().getAllNotificationList(pi);
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("views/admin/notification.jsp").forward(request, response);
 	}

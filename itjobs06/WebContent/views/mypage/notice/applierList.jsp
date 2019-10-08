@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%@ include file="/views/include/header.jsp" %>
+<%-- <%@ include file="/views/include/header.jsp" %> --%>
 <h1>지원자 관리</h1>
 
 <button onclick="history.back()">뒤로</button>

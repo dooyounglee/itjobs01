@@ -4,9 +4,11 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <style>
+
    .col-md-3{
    width:10px;
    }
+
 </style>
 <html>
 <head>
@@ -33,14 +35,12 @@
    <!-- end of page-header -->
 
 
-
-
-
 <div id="faq" class="section pb-45">
 
 <div class="container">
 
 <div class="row">
+
    
             <!-- left -->
             <%@ include file="/views/include/user/mypage_menu.jsp" %>
@@ -50,58 +50,63 @@
    
    <div class="col-lg-8 col-md-12 col-xs-12">
    <div class="job-alerts-item">
-   <h3 class="alerts-title">나의 문의</h3>
+   <h3 class="alerts-title">문의사항</h3>
    <div class="col-md-3">
    <p><span class="full-time"><a href="<%= contextPath %>/insertForm.qu">문의하기</a></span></p>
    </div>
    <div class="alerts-list">
    <div class="row">
-   <div >
-   
+   <!-- <div > 
    <p><input type="checkbox"></p>
+   </div> --> 
+   <div class="col-md-2">
+   <p>제목</p>
    </div>
-   
-   <div class="col-md-3">
+   <div class="col-md-2">
    <p>내용</p>
    </div>
-   <div class="col-md-3">
+   <div class="col-md-2">
    <p>작성자</p>
    </div>
-   <div class="col-md-3">
+   <div class="col-md-2">
     <p>등록일</p>
    </div>
-   <div class="col-md-3">
+   <div class="col-md-2">
     <p>처리일</p>
    </div>
-   <div class="col-md-3">
+   <div class="col-md-2">
     <p>상태</p>
    </div>
    </div>
    </div>
 
 
-   
+
+
    <%   ArrayList<Question> list =(ArrayList<Question>)request.getAttribute("list");
       for(Question q:list){%>
    <div class="alerts-content">
    <div class="row">
    
-   <div class="col-md-3">
+  <!--  <div class="col-md-2">
    <p><input type="checkbox"></p>
+   </div> -->
+   <div class="col-md-2">
+   <p><a href="get.qu?qno=<%=q.getQ_no()%>"><%=q.getTitle() %></a></p>
    </div>
-   <div class="col-md-3">
-   <p><a href="get.qu?qno=<%=q.getQ_no()%>"><%=q.getContents() %></a></p>
+   <div class="col-md-2">
+   <p><%=q.getContents()%></p>
    </div>
-   <div class="col-md-3">
+   <div class="col-md-2">
    <p><%=q.getM_no() %></p>
    </div>
-   <div class="col-md-3">
+   <div class="col-md-2">
    <p><%=q.getEnroll_date() %></p>
    </div>
-   <div class="col-md-3">
+   <div class="col-md-2">
    <p><%=q.getEnd_date() %></p>
    </div>
-   <div class="col-md-3">
+   <div class="col-md-2">
    <p><%=q.getStatus() %></p>
    </div>
    </div>
@@ -109,14 +114,17 @@
 <%} %>   
    
 
+
 </div>
 </div>
 </div>
 </div> 
+
    </div>
    <!--container  -->
    </div>
    <!--end container -->
+
 
 
 
@@ -160,6 +168,7 @@
 <input>
 <button>검색</button>
 <table border=1>
+
    <tr>
       <th><input type=checkbox></th>
       <th>내용</th>
@@ -168,7 +177,7 @@
       <th>처리일</th>
       <th>상태</th>
    </tr>
-<%--    <%   ArrayList<Question> list1 =(ArrayList<Question>)request.getAttribute("list");
+   <%   ArrayList<Question> list1 =(ArrayList<Question>)request.getAttribute("list");
       for(Question q:list1){%>
    <tr>
       <td><input type=checkbox></td>
@@ -178,7 +187,8 @@
       <td><%=q.getEnd_date() %></td>
       <td><%=q.getStatus() %></td>
    </tr>
-   <%   } %> --%>
+   <%   } %> 
+
 </table>
 <%@ include file="/views/include/footer.jsp" %>
 </body>

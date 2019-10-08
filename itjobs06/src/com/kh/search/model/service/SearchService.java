@@ -6,6 +6,7 @@ import static com.kh.common.JDBCTemplate.getConnection;
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import com.kh.board.model.vo.PageInfo;
 import com.kh.notification.model.vo.Notification;
 import com.kh.resume.model.vo.Resume;
 import com.kh.search.model.dao.SearchDao;
@@ -26,9 +27,9 @@ public class SearchService {
 		return list;
 	}
 
-	public ArrayList<Notification> getSuperSearchNotification(String sText) {
+	public ArrayList<Notification> getSuperSearchNotification(String sText, PageInfo pi) {
 		Connection conn=getConnection();
-		ArrayList<Notification> list=new SearchDao().getSuperSearchNotification(conn,sText);
+		ArrayList<Notification> list=new SearchDao().getSuperSearchNotification(conn,sText,pi);
 		close(conn);
 		return list;
 	}

@@ -48,40 +48,35 @@
 									to login</a>
 							</p>
 						</div>
-						<form class="form-ad">
+						<form class="form-ad" action="<%=contextPath%>/addResum.re" method="post" enctype="multipart/form-data">
 							<h3>기본정보</h3>
 							<div class="form-group">
-								<label class="control-label">이름</label> <input type="text"
-									class="form-control" placeholder="이름">
+								<label class="control-label">이름</label>
+								<input type="text" class="form-control" name="name" placeholder="이름" value="1">
 							</div>
 							<div class="form-group">
 								<label class="control-label"></label> <label
 									class="control-label">Email</label> <input type="text"
-									class="form-control" placeholder="Your@domain.com">
+									class="form-control" name="email" placeholder="Your@domain.com"  value="1">
 							</div>
 							<div class="form-group">
 								<label class="control-label">생년월일</label> <input
-									type="date" class="form-control"
-									placeholder="Headline (e.g. Front-end developer)">
-							</div>
-							<div class="form-group">
-								<label class="control-label">Location</label>
-								<input type="text"
-									class="form-control" placeholder="Location, e.g">
+									type="date" class="form-control" name="birth"
+									placeholder="Headline (e.g. Front-end developer)"  value="2019-02-01">
 							</div>
 							<div class="form-group">
 								<div class="row">
 									<div class="col-md-3">
 									<label class="control-label">Phone</label> <input type="text"
-										class="form-control" placeholder="010">
+										class="form-control" name="phone1" placeholder="010"  value="1">
 									</div>
 									<div class="col-md-3">
 									<label class="control-label" style="color:white;">phone</label> <input type="text"
-										class="form-control" placeholder="0000">
+										class="form-control" name="phone2" placeholder="0000"  value="1">
 									</div>
 									<div class="col-md-3">
 									<label class="control-label" style="color:white;">phone</label> <input type="text"
-										class="form-control" placeholder="0000">
+										class="form-control" name="phone3" placeholder="0000"  value="1">
 									</div>
 								</div>
 							</div>
@@ -141,56 +136,55 @@
 							<h3>최종학력</h3>
 							<div class="form-group">
 								<label class="control-label">학교</label> <input type="text"
-									class="form-control" placeholder="Degree, e.g. Bachelor">
+									class="form-control" name="school" placeholder="Degree, e.g. Bachelor"  value="1">
 							</div>
 							<div class="form-group">
 								<label class="control-label">학과</label> <input
-									type="text" class="form-control"
-									placeholder="Major, e.g Computer Science">
+									type="text" class="form-control" name="Department"
+									placeholder="Major, e.g Computer Science"  value="1">
 							</div>
 							<div class="form-group">
 								<div class="row">
 									<div class="col-md-6">
 										<label class="control-label">From</label> <input type="date"
-											class="form-control" placeholder="e.g 2014">
+											class="form-control" name="school_Date1" placeholder="e.g 2014"  value="2019-01-01">
 									</div>
 									<div class="col-md-6">
 										<label class="control-label">To</label> <input type="date"
-											class="form-control" placeholder="e.g 2020">
+											class="form-control" name="school_Date2" placeholder="e.g 2020" value="2019-01-01">
 									</div>
 								</div>
 							</div>
-							<div class="add-post-btn">
-								<div class="float-left">
-									<a href="#" class="btn-added"><i class="ti-plus"></i> Add
-										New Education</a>
-								</div>
-								<div class="float-right">
-									<a href="#" class="btn-delete"><i class="ti-trash"></i>
-										Delete This</a>
-								</div>
-							</div>
+
 							<div class="divider">
 								<h3>경력</h3>
+							</div>
+							<div class="form-group">
+								<input type="radio" name="career" value="N" checked>신입
+								<input type="radio" name="career" value="Y" >경력
 							</div>
 							<div id="careerList">
 								<div class="form-group">
 									<label class="control-label">회사이름</label> <input
-										type="text" class="form-control" placeholder="Company name">
+										type="text" class="form-control" name="companyName" placeholder="Company name" value="1">
 								</div>
 								<div class="form-group">
 									<label class="control-label">한일</label> <input type="text"
-										class="form-control" placeholder="e.g UI/UX Researcher">
+										class="form-control" name="workList" placeholder="e.g UI/UX Researcher" value="1">
 								</div>
 								<div class="form-group">
 									<div class="row">
-										<div class="col-md-6">
+										<div class="col-md-4">
 											<label class="control-label">Date From</label> <input
-												type="date" class="form-control" placeholder="e.g 2014">
+												type="date" class="form-control" name="workDate1" placeholder="e.g 2014" value="2019-01-01">
 										</div>
-										<div class="col-md-6">
+										<div class="col-md-4">
 											<label class="control-label">Date To</label> <input
-												type="date" class="form-control" placeholder="e.g 2020">
+												type="date" class="form-control" name="workDate2" placeholder="e.g 2020" value="2019-01-01">
+										</div>
+										<div class="col-md-4">
+											<label class="control-label">경력년수</label> <input
+												type="text" class="form-control" name="career_year" placeholder="e.g 2020" value="2">
 										</div>
 									</div>
 								</div>
@@ -210,21 +204,21 @@
 	function add_career(){
 		str ='<hr><div class="form-group">';
 		str+='<label class="control-label">회사이름</label>';
-		str+='<input type="text" class="form-control" placeholder="Company name">';
+		str+='<input type="text" class="form-control" name="companyName" placeholder="Company name">';
 		str+='</div>';
 		str+='<div class="form-group">';
 		str+='<label class="control-label">한일</label>';
-		str+='<input type="text" class="form-control" placeholder="e.g UI/UX Researcher">';
+		str+='<input type="text" class="form-control" name="workList" placeholder="e.g UI/UX Researcher">';
 		str+='</div>';
 		str+='<div class="form-group">';
 		str+='<div class="row">';
 		str+='<div class="col-md-6">';
 		str+='<label class="control-label">Date From</label>';
-		str+='<input type="date" class="form-control" placeholder="e.g 2014">';
+		str+='<input type="date" class="form-control" name="workDate1" placeholder="e.g 2014">';
 		str+='</div>';
 		str+='<div class="col-md-6">';
 		str+='<label class="control-label">Date To</label>';
-		str+='<input type="date" class="form-control" placeholder="e.g 2020">';
+		str+='<input type="date" class="form-control" name="workDate2" placeholder="e.g 2020">';
 		str+='</div>';
 		str+='</div>';
 		str+='</div>';
@@ -250,13 +244,13 @@
 								<div id="cer_row" class="row">
 									<div class="col-md-6">
 										<label class="control-label">자격증</label> <input
-											class="form-control" placeholder="Skill name, e.g. HTML"
-											type="text">
+											class="form-control" name="cer_name" placeholder="Skill name, e.g. HTML"
+											type="text" value="1">
 									</div>
 									<div class="col-md-6">
 										<label class="control-label">날짜</label> <input
-											class="form-control" placeholder="Skill proficiency, e.g. 90"
-											type="text">
+											class="form-control" name="cer_date" placeholder="Skill proficiency, e.g. 90"
+											type="date" value="2019-01-01">
 									</div>
 								</div>
 							</div>
@@ -273,11 +267,11 @@
 									<div class="col-md-6">
 										<label class="control-label">희망연봉</label>
 										<label class="styled-select">
-											<select>
-												<option>회사내규</option>
-												<option>2000</option>
-												<option>3000</option>
-												<option>4000</option>
+											<select name="hope_salary">
+												<option value="0" selected>회사내규</option>
+												<option value="2000">2000</option>
+							 					<option value="3000">3000</option>
+												<option value="4000">4000</option>
 											</select>
 										</label>
 									</div>
@@ -287,17 +281,37 @@
 								<input type="radio" name="open" value="Y" checked>공개
 								<input type="radio" name="open" value="N" >비공개
 							</div>
+							<div class="form-group">
+								<label class="control-label">이력서 제목</label>
+								<input type="text" class="form-control" name="title" placeholder="제목" value="1">
+							</div>
+							<div class="form-group">
+								<label class="control-label">프로그래밍 언어</label><br>
+								<input type="checkbox" class="form-check-input" name="p" value="c언어" checked>
+								<label class="form-check-label">c언어</label><br>
+								<input type="checkbox" class="form-check-input" name="p" value="자바">
+								<label class="form-check-label">자바</label><br>
+								<input type="checkbox" class="form-check-input" name="p" value="CSS">
+								<label class="form-check-label">css</label><br>
+								<input type="checkbox" class="form-check-input" name="p" value="javascript">
+								<label class="form-check-label">javascript</label><br>
+							</div>
+							<div class="form-group">
+								<label class="control-label">자소서</label>
+								<textarea class="form-control" name="self" rows="5" id="자소서">1</textarea>
+							</div>
+							<input type="submit" class="btn btn-common" value="작성완료">
 						</form>
 <script>
 	function add_cer(){
 		str='<div id="cer_row" class="row">';
 		str+='<div class="col-md-6">';
 		str+='<label class="control-label">자격증</label>';
-		str+='<input class="form-control" placeholder="Skill name, e.g. HTML" type="text">';
+		str+='<input class="form-control" name="cer_name" placeholder="Skill name, e.g. HTML" type="text">';
 		str+='</div>';
 		str+='<div class="col-md-6">';
 		str+='<label class="control-label">날짜</label>';
-		str+='<input class="form-control" placeholder="Skill proficiency, e.g. 90" type="text">';
+		str+='<input class="form-control" name="cer_date" placeholder="Skill proficiency, e.g. 90" type="date">';
 		str+='</div>';
 		str+='</div>';
 		$('#cer_form-group').append(str)
@@ -310,7 +324,6 @@
 		return false;
 	}
 </script>
-						<a href="resume.html" class="btn btn-common">Save</a>
 					</div>
 				</div>
 				<!-- End of right -->
@@ -330,7 +343,7 @@
 	
 	
 <%-- <%@ include file="/views/include/header.jsp" %> --%>
-<form action="<%=contextPath%>/addResum.re" method="post" enctype="multipart/form-data">
+<%-- <form action="<%=contextPath%>/addResum.re" method="post" enctype="multipart/form-data">
 <h2 align="center">이력서 작성</h2>
 <img id="titleImg"></img>
 <input type="file" name="file" onchange="loadImg(this)">
@@ -460,7 +473,7 @@
 	<br>
 	자기소개: <textarea id="self" name="self">1</textarea><br>
 	<input type="submit" value="작성완료">
-</form>
+</form> --%>
 
 <script>
 

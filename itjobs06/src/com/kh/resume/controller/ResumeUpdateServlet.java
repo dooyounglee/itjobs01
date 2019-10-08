@@ -80,7 +80,11 @@ public class ResumeUpdateServlet extends HttpServlet {
 			int resume_no=Integer.parseInt(multiRequest.getParameter("resume_no"));
 			String name = multiRequest.getParameter("name");
 			String birth_date = multiRequest.getParameter("birth");
-			String phone = multiRequest.getParameter("phone");
+			
+			String phone1 = multiRequest.getParameter("phone1");
+			String phone2 = multiRequest.getParameter("phone2");
+			String phone3 = multiRequest.getParameter("phone3");
+			String phone=phone1+"-"+phone2+"-"+phone3;
 			
 			String postcode=multiRequest.getParameter("sample3_postcode");
 			String address_=multiRequest.getParameter("sample3_address");
@@ -100,37 +104,26 @@ public class ResumeUpdateServlet extends HttpServlet {
 			String work="";
 			String work_date="";
 			if(career.equals("Y")) {
-				String[] work_places = multiRequest.getParameterValues("companyName");
-				work_place = String.join(",", work_places);
-				
-				String[] works = multiRequest.getParameterValues("workList");
-				work = String.join(",", works);
-				
-				String[] work_date1s = multiRequest.getParameterValues("workDate1");
-				String[] work_date2s = multiRequest.getParameterValues("workDate2");
-				String[] work_dateB = new String[work_date1s.length];
-				for(int i=0; i<work_date1s.length; i++){
-					work_dateB[i]= work_date1s[i] + "~"+work_date2s[i];
-				}
-				work_date = String.join(",", work_dateB);
+				work_place = String.join(",", multiRequest.getParameterValues("companyName"));
+				work = String.join(",", multiRequest.getParameterValues("workList"));
+				work_date = String.join(",",multiRequest.getParameterValues("workDate1"))+"~"+String.join(",",multiRequest.getParameterValues("workDate2"));
 			}
 			
 			
-			String[] certifications = multiRequest.getParameterValues("cer_name");
 			String certification ="";
-			certification = String.join(",", certifications);
+			certification = String.join(",", multiRequest.getParameterValues("cer_name"));
 			
-			String[] cer_dates = multiRequest.getParameterValues("cer_date");
 			String cer_date="";
-			cer_date = String.join(",", cer_dates);
+			cer_date = String.join(",", multiRequest.getParameterValues("cer_date"));
 			
 			String title = multiRequest.getParameter("title");
 			String cover_letter= multiRequest.getParameter("self");
 			String open = multiRequest.getParameter("open");
 			
-			String[] p_languages = multiRequest.getParameterValues("p");
 			String p_language="";
-			p_language = String.join(",", p_languages);
+			if(multiRequest.getParameterValues("p")!=null) {
+				p_language = String.join(",", multiRequest.getParameterValues("p"));
+			}
 			
 			String hope_salary = multiRequest.getParameter("hope_salary");
 			

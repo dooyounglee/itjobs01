@@ -48,40 +48,35 @@
 									to login</a>
 							</p>
 						</div>
-						<form class="form-ad">
+						<form class="form-ad" action="<%=contextPath%>/addResum.re" method="post" enctype="multipart/form-data">
 							<h3>기본정보</h3>
 							<div class="form-group">
-								<label class="control-label">이름</label> <input type="text"
-									class="form-control" placeholder="이름">
+								<label class="control-label">이름</label>
+								<input type="text" class="form-control" name="name" placeholder="이름" value="1">
 							</div>
 							<div class="form-group">
 								<label class="control-label"></label> <label
 									class="control-label">Email</label> <input type="text"
-									class="form-control" placeholder="Your@domain.com">
+									class="form-control" name="email" placeholder="Your@domain.com"  value="1">
 							</div>
 							<div class="form-group">
 								<label class="control-label">생년월일</label> <input
-									type="date" class="form-control"
-									placeholder="Headline (e.g. Front-end developer)">
-							</div>
-							<div class="form-group">
-								<label class="control-label">Location</label>
-								<input type="text"
-									class="form-control" placeholder="Location, e.g">
+									type="date" class="form-control" name="birth"
+									placeholder="Headline (e.g. Front-end developer)"  value="2019-02-01">
 							</div>
 							<div class="form-group">
 								<div class="row">
 									<div class="col-md-3">
 									<label class="control-label">Phone</label> <input type="text"
-										class="form-control" placeholder="010">
+										class="form-control" name="phone1" placeholder="010"  value="1">
 									</div>
 									<div class="col-md-3">
 									<label class="control-label" style="color:white;">phone</label> <input type="text"
-										class="form-control" placeholder="0000">
+										class="form-control" name="phone2" placeholder="0000"  value="1">
 									</div>
 									<div class="col-md-3">
 									<label class="control-label" style="color:white;">phone</label> <input type="text"
-										class="form-control" placeholder="0000">
+										class="form-control" name="phone3" placeholder="0000"  value="1">
 									</div>
 								</div>
 							</div>
@@ -141,89 +136,107 @@
 							<h3>최종학력</h3>
 							<div class="form-group">
 								<label class="control-label">학교</label> <input type="text"
-									class="form-control" placeholder="Degree, e.g. Bachelor">
+									class="form-control" name="school" placeholder="Degree, e.g. Bachelor"  value="1">
 							</div>
 							<div class="form-group">
 								<label class="control-label">학과</label> <input
-									type="text" class="form-control"
-									placeholder="Major, e.g Computer Science">
+									type="text" class="form-control" name="Department"
+									placeholder="Major, e.g Computer Science"  value="1">
 							</div>
 							<div class="form-group">
 								<div class="row">
 									<div class="col-md-6">
 										<label class="control-label">From</label> <input type="date"
-											class="form-control" placeholder="e.g 2014">
+											class="form-control" name="school_Date1" placeholder="e.g 2014"  value="2019-01-01">
 									</div>
 									<div class="col-md-6">
 										<label class="control-label">To</label> <input type="date"
-											class="form-control" placeholder="e.g 2020">
+											class="form-control" name="school_Date2" placeholder="e.g 2020" value="2019-01-01">
 									</div>
 								</div>
 							</div>
-							<div class="add-post-btn">
-								<div class="float-left">
-									<a href="#" class="btn-added"><i class="ti-plus"></i> Add
-										New Education</a>
-								</div>
-								<div class="float-right">
-									<a href="#" class="btn-delete"><i class="ti-trash"></i>
-										Delete This</a>
-								</div>
-							</div>
+
 							<div class="divider">
-								<h3>Work Experience</h3>
+								<h3>경력</h3>
 							</div>
 							<div class="form-group">
-								<label class="control-label">Company Name</label> <input
-									type="text" class="form-control" placeholder="Company name">
+								<input type="radio" name="career" value="N" checked>신입
+								<input type="radio" name="career" value="Y" >경력
 							</div>
-							<div class="form-group">
-								<label class="control-label">Title</label> <input type="text"
-									class="form-control" placeholder="e.g UI/UX Researcher">
-							</div>
-							<div class="form-group">
-								<div class="row">
-									<div class="col-md-6">
-										<label class="control-label">Date Form</label> <input
-											type="text" class="form-control" placeholder="e.g 2014">
-									</div>
-									<div class="col-md-6">
-										<label class="control-label">Date To</label> <input
-											type="text" class="form-control" placeholder="e.g 2020">
-									</div>
+							<div id="careerList">
+								<div class="form-group">
+									<label class="control-label">회사이름</label> <input
+										type="text" class="form-control" name="companyName" placeholder="Company name" value="1">
 								</div>
-							</div>
-							<div class="form-group">
-								<label class="control-label">Description</label>
-							</div>
-							<section id="editor" style="margin-bottom: 30px;">
-							<div id="summernote">
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-									Rem quia aut modi fugit, ratione saepe perferendis odio optio
-									repellat dolorum voluptas excepturi possimus similique
-									veritatis nobis. Provident cupiditate delectus, optio?</p>
-							</div>
-							</section>
-							<div class="form-group">
-								<div class="button-group">
-									<div class="action-buttons">
-										<div class="upload-button">
-											<button class="btn btn-common">Choose a cover Logo</button>
-											<input id="cover_img_file_1" type="file">
+								<div class="form-group">
+									<label class="control-label">한일</label> <input type="text"
+										class="form-control" name="workList" placeholder="e.g UI/UX Researcher" value="1">
+								</div>
+								<div class="form-group">
+									<div class="row">
+										<div class="col-md-4">
+											<label class="control-label">Date From</label> <input
+												type="date" class="form-control" name="workDate1" placeholder="e.g 2014" value="2019-01-01">
+										</div>
+										<div class="col-md-4">
+											<label class="control-label">Date To</label> <input
+												type="date" class="form-control" name="workDate2" placeholder="e.g 2020" value="2019-01-01">
+										</div>
+										<div class="col-md-4">
+											<label class="control-label">경력년수</label> <input
+												type="text" class="form-control" name="career_year" placeholder="e.g 2020" value="2">
 										</div>
 									</div>
 								</div>
 							</div>
+							</section>
 							<div class="add-post-btn">
 								<div class="float-left">
-									<a href="#" class="btn-added"><i class="ti-plus"></i> Add
+									<a href="#" class="btn-added" onclick="return add_career()"><i class="ti-plus"></i> Add
 										New Experience</a>
 								</div>
 								<div class="float-right">
-									<a href="#" class="btn-delete"><i class="ti-trash"></i>
+									<a href="#" class="btn-delete" onclick="return del_career()"><i class="ti-trash"></i>
 										Delete This</a>
 								</div>
 							</div>
+<script>
+	function add_career(){
+		str ='<hr><div class="form-group">';
+		str+='<label class="control-label">회사이름</label>';
+		str+='<input type="text" class="form-control" name="companyName" placeholder="Company name">';
+		str+='</div>';
+		str+='<div class="form-group">';
+		str+='<label class="control-label">한일</label>';
+		str+='<input type="text" class="form-control" name="workList" placeholder="e.g UI/UX Researcher">';
+		str+='</div>';
+		str+='<div class="form-group">';
+		str+='<div class="row">';
+		str+='<div class="col-md-6">';
+		str+='<label class="control-label">Date From</label>';
+		str+='<input type="date" class="form-control" name="workDate1" placeholder="e.g 2014">';
+		str+='</div>';
+		str+='<div class="col-md-6">';
+		str+='<label class="control-label">Date To</label>';
+		str+='<input type="date" class="form-control" name="workDate2" placeholder="e.g 2020">';
+		str+='</div>';
+		str+='</div>';
+		str+='</div>';
+		$('#careerList').append(str);
+		return false;
+	}
+	function del_career(){
+		if($('#careerList').children('div.form-group').length>3){
+			$('#careerList').children('div.form-group:last').remove()
+			$('#careerList').children('hr:last').remove()
+			$('#careerList').children('div.form-group:last').remove()
+			$('#careerList').children('hr:last').remove()
+			$('#careerList').children('div.form-group:last').remove()
+			$('#careerList').children('hr:last').remove()
+		}
+		return false;
+	}
+</script>
 							<div class="divider">
 								<h3>자격증</h3>
 							</div>
@@ -231,37 +244,86 @@
 								<div id="cer_row" class="row">
 									<div class="col-md-6">
 										<label class="control-label">자격증</label> <input
-											class="form-control" placeholder="Skill name, e.g. HTML"
-											type="text">
+											class="form-control" name="cer_name" placeholder="Skill name, e.g. HTML"
+											type="text" value="1">
 									</div>
 									<div class="col-md-6">
 										<label class="control-label">날짜</label> <input
-											class="form-control" placeholder="Skill proficiency, e.g. 90"
-											type="text">
+											class="form-control" name="cer_date" placeholder="Skill proficiency, e.g. 90"
+											type="date" value="2019-01-01">
 									</div>
 								</div>
 							</div>
 							<div class="add-post-btn">
 								<div class="float-left">
-									<a class="btn-added" onclick="return add_cer()"><i class="ti-plus"></i> Add
-										New Skills</a>
+									<a href="#" class="btn-added" onclick="return add_cer()"><i class="ti-plus"></i>추가</a>
 								</div>
 								<div class="float-right">
-									<a href="#" class="btn-delete"><i class="ti-trash"></i>
-										Delete This</a>
+									<a href="#" class="btn-delete" onclick="return del_cer()"><i class="ti-trash"></i>삭제</a>
 								</div>
+							</div>
+							<div class="form-group">
+								<div class="row">
+									<div class="col-md-6">
+										<label class="control-label">희망연봉</label>
+										<label class="styled-select">
+											<select name="hope_salary">
+												<option value="0" selected>회사내규</option>
+												<option value="2000">2000</option>
+							 					<option value="3000">3000</option>
+												<option value="4000">4000</option>
+											</select>
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<input type="radio" name="open" value="Y" checked>공개
+								<input type="radio" name="open" value="N" >비공개
+							</div>
+							<div class="form-group">
+								<label class="control-label">이력서 제목</label>
+								<input type="text" class="form-control" name="title" placeholder="제목" value="1">
+							</div>
+							<div class="form-group">
+								<label class="control-label">프로그래밍 언어</label><br>
+								<input type="checkbox" class="form-check-input" name="p" value="c언어" checked>
+								<label class="form-check-label">c언어</label><br>
+								<input type="checkbox" class="form-check-input" name="p" value="자바">
+								<label class="form-check-label">자바</label><br>
+								<input type="checkbox" class="form-check-input" name="p" value="CSS">
+								<label class="form-check-label">css</label><br>
+								<input type="checkbox" class="form-check-input" name="p" value="javascript">
+								<label class="form-check-label">javascript</label><br>
+							</div>
+							<div class="form-group">
+								<label class="control-label">자소서</label>
+								<textarea class="form-control" name="self" rows="5" id="자소서">1</textarea>
+							</div>
+							<input type="submit" class="btn btn-common" value="작성완료">
+						</form>
 <script>
 	function add_cer(){
-		$('#cer_form-group').append()
+		str='<div id="cer_row" class="row">';
+		str+='<div class="col-md-6">';
+		str+='<label class="control-label">자격증</label>';
+		str+='<input class="form-control" name="cer_name" placeholder="Skill name, e.g. HTML" type="text">';
+		str+='</div>';
+		str+='<div class="col-md-6">';
+		str+='<label class="control-label">날짜</label>';
+		str+='<input class="form-control" name="cer_date" placeholder="Skill proficiency, e.g. 90" type="date">';
+		str+='</div>';
+		str+='</div>';
+		$('#cer_form-group').append(str)
 		return false;
 	}
-	$(document).on('click','.del_cer',function(){
-		$(this).closest('div #cerForm').remove();
-	})
+	function del_cer(){
+		if($('#cer_form-group').children('div#cer_row').length>1){
+			$('#cer_form-group').children('div#cer_row:last').remove()
+		}
+		return false;
+	}
 </script>
-							</div>
-						</form>
-						<a href="resume.html" class="btn btn-common">Save</a>
 					</div>
 				</div>
 				<!-- End of right -->
@@ -281,7 +343,7 @@
 	
 	
 <%-- <%@ include file="/views/include/header.jsp" %> --%>
-<form action="<%=contextPath%>/addResum.re" method="post" enctype="multipart/form-data">
+<%-- <form action="<%=contextPath%>/addResum.re" method="post" enctype="multipart/form-data">
 <h2 align="center">이력서 작성</h2>
 <img id="titleImg"></img>
 <input type="file" name="file" onchange="loadImg(this)">
@@ -411,7 +473,7 @@
 	<br>
 	자기소개: <textarea id="self" name="self">1</textarea><br>
 	<input type="submit" value="작성완료">
-</form>
+</form> --%>
 
 <script>
 
@@ -435,7 +497,7 @@ function setDisplay(){
 
  
  
-	function add_career(){
+/* 	function add_career(){
 	/* 	 var form=$('#careerForm')
 		 var str=form.html();
 		 str=str.replace('</div>','<button onclick="del_career()">삭제</button></div>')
@@ -456,7 +518,7 @@ function setDisplay(){
 	}
 	$(document).on('click','.del_career',function(){
 		$(this).closest('div #careerForm').remove();
-	})
+	}) */
 
 /* 	function add_cer(){
 		

@@ -63,8 +63,10 @@ public class AddResumServlet extends HttpServlet {
 		
 			String name = multiRequest.getParameter("name");
 			String birth_date = multiRequest.getParameter("birth");
-			String phone = multiRequest.getParameter("phone");
-			//String address = multiRequest.getParameter("address");
+			String phone1 = multiRequest.getParameter("phone1");
+			String phone2 = multiRequest.getParameter("phone2");
+			String phone3 = multiRequest.getParameter("phone3");
+			String phone=phone1+"-"+phone2+"-"+phone3;
 			
 			String postcode=multiRequest.getParameter("sample3_postcode");
 			String address_=multiRequest.getParameter("sample3_address");
@@ -78,7 +80,7 @@ public class AddResumServlet extends HttpServlet {
 			String school = String.join(",", multiRequest.getParameterValues("school"));
 			String department = String.join(",", multiRequest.getParameterValues("Department"));
 			String school_period = String.join(",",multiRequest.getParameterValues("school_Date1"))+"~"+String.join(",",multiRequest.getParameterValues("school_Date2"));
-			System.out.println(school_period);
+			
 			String career = multiRequest.getParameter("career");
 			String work_place="";
 			String work="";

@@ -52,14 +52,13 @@ public class SearchNotificationListServlet extends HttpServlet {
 		if(sKey!=null && sText!=null) {
 			//list=new SearchService().searchNotificationList(sKey,sText);
 		}else if(sText!=null){
-			System.out.println(sText);
-			list=new SearchService().getSuperSearchNotification(sText);
+			list=new SearchService().getSuperSearchNotification(sText,pi);
 		}else {
 			list=new NotificationService().getAllNotificationList(pi);
 		}
-				
 		request.setAttribute("list", list);
 		request.setAttribute("pi", pi);
+		request.setAttribute("sText", sText);
 		request.setAttribute("currentPage", currentPage);
 		request.getRequestDispatcher("views/search/notification.jsp").forward(request, response);
 	}

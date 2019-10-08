@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import com.kh.board.model.vo.PageInfo;
 import com.kh.notification.model.vo.Notification;
 import com.kh.resume.model.dao.ResumeDao;
 import com.kh.resume.model.vo.Resume;
@@ -125,7 +126,7 @@ public class SearchDao {
 		return list;
 	}
 
-	public ArrayList<Notification> getSuperSearchNotification(Connection conn, String sText) {
+	public ArrayList<Notification> getSuperSearchNotification(Connection conn, String sText, PageInfo pi) {
 		ArrayList<Notification> list=new ArrayList<>();
 		PreparedStatement ps=null;
 		ResultSet rs=null;
@@ -134,6 +135,9 @@ public class SearchDao {
 		try {
 			ps=conn.prepareStatement(sql);
 			ps.setString(1, sText.replace(" ", "|"));
+			System.out.println(sText.replace(" ", "|")+"Dao에서");
+			ps.setInt(2, pi.getEndRow());
+			ps.setInt(3, pi.getStartRow());
 			rs=ps.executeQuery();
 			while(rs.next()) {
 				list.add(new Notification(

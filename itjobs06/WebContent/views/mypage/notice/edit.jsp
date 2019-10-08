@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%@ include file="/views/include/header.jsp" %>
+
 <h1>공고 수정</h1>
 <%	Notification noti=(Notification)request.getAttribute("noti");
 	String[] arr_language=noti.getP_language().split(",");

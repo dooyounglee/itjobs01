@@ -1,3 +1,5 @@
+<%@page import="com.kh.resume.model.vo.Resume"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="com.kh.notification.model.vo.Notification"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -68,7 +70,27 @@
 						<p><%=noti.getHope() %></p>
 						<h4>직군</h4>
 						<p><%=noti.getJobs() %></p>
-						<a href="#" class="btn btn-common">Apply job</a>
+						<h4>세부내용</h4>
+						<p><%=noti.getContents() %></p>
+						<%	if(mem!=null && mem.getM_no()==noti.getCo_no()){ %>
+						<a href="#" onclick="edit(<%=noti.getNoti_no() %>)" class="btn btn-common">수정</a>
+						<a href="#" onclick="del(<%=noti.getNoti_no() %>)" class="btn btn-common">삭제</a>
+						<a href="#" onclick="open_(<%=noti.getNoti_no() %>)" class="btn btn-common">공개</a>
+						<a href="#" onclick="openCancle(<%=noti.getNoti_no() %>)" class="btn btn-common">비공개</a>
+						<a href="#" onclick="location.href='<%=request.getContextPath() %>/myNotification.me'" class="btn btn-common">나의 공고목록</a>
+						<a href="#" onclick="showApplier(<%=noti.getNoti_no() %>)" class="btn btn-common">지원자 확인</a>
+						<%	}else if(mem!=null && mem.getType().equals("1")){
+								ArrayList<Resume> rlist=(ArrayList<Resume>)request.getAttribute("rlist"); %>
+							<form action="apply.vo" method="post">
+								<input type=hidden name="noti_no" value="<%=noti.getNoti_no() %>">
+								<select name="resume_no">
+									<% for(Resume r:rlist){%>
+									<option value="<%=r.getResume_no()%>"><%=r.getTitle() %></option>
+									<%	} %>
+								</select>
+								<a href="#" onclick="apply(<%=noti.getNoti_no() %>)" class="btn btn-common">지원하기</a>
+							</form>
+						<%	} %>
 					</div>
 				</div>
 				<div class="col-lg-4 col-md-12 col-xs-12">
@@ -186,7 +208,7 @@
 
 
 
-기업
+<%-- 기업
 <button onclick="edit(<%=noti.getNoti_no() %>)">수정</button>
 <button onclick="del(<%=noti.getNoti_no() %>)">삭제</button>
 <button onclick="open_(<%=noti.getNoti_no() %>)">공개</button>
@@ -198,7 +220,8 @@
 <button onclick="apply(<%=noti.getNoti_no() %>)">지원하기</button>
 <select>
 
-</select>
+</select> --%>
+
 
 <script>
 	function edit(noti_no){

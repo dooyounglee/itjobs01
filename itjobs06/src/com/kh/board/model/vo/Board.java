@@ -170,15 +170,7 @@ public class Board {
 	public void setDown_count(int down_count) {
 		this.down_count = down_count;
 	}
-
-	public int getReply_count() {
-		return reply_count;
-	}
-
-	public void setReply_count(int reply_count) {
-		this.reply_count = reply_count;
-	}
-
+	
 	public void setFile(String file) {
 		this.file = file;
 	}
@@ -218,6 +210,15 @@ public class Board {
 	public void setPath(String path) {
 		this.path = path;
 	}
+	
+	public int getReply_count() {
+		return reply_count;
+	}
+
+	public void setReply_count(int reply_count) {
+		this.reply_count = reply_count;
+	}
+
 	@Override
 	public String toString() {
 		return "Board [b_no=" + b_no + ", m_no=" + m_no + ", nickname=" + nickname + ", head=" + head + ", title="

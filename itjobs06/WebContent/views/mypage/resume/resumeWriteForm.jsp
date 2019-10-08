@@ -171,59 +171,78 @@
 								</div>
 							</div>
 							<div class="divider">
-								<h3>Work Experience</h3>
+								<h3>경력</h3>
 							</div>
-							<div class="form-group">
-								<label class="control-label">Company Name</label> <input
-									type="text" class="form-control" placeholder="Company name">
-							</div>
-							<div class="form-group">
-								<label class="control-label">Title</label> <input type="text"
-									class="form-control" placeholder="e.g UI/UX Researcher">
-							</div>
-							<div class="form-group">
-								<div class="row">
-									<div class="col-md-6">
-										<label class="control-label">Date Form</label> <input
-											type="text" class="form-control" placeholder="e.g 2014">
-									</div>
-									<div class="col-md-6">
-										<label class="control-label">Date To</label> <input
-											type="text" class="form-control" placeholder="e.g 2020">
-									</div>
+							<div id="careerList">
+								<div class="form-group">
+									<label class="control-label">회사이름</label> <input
+										type="text" class="form-control" placeholder="Company name">
 								</div>
-							</div>
-							<div class="form-group">
-								<label class="control-label">Description</label>
-							</div>
-							<section id="editor" style="margin-bottom: 30px;">
-							<div id="summernote">
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-									Rem quia aut modi fugit, ratione saepe perferendis odio optio
-									repellat dolorum voluptas excepturi possimus similique
-									veritatis nobis. Provident cupiditate delectus, optio?</p>
-							</div>
-							</section>
-							<div class="form-group">
-								<div class="button-group">
-									<div class="action-buttons">
-										<div class="upload-button">
-											<button class="btn btn-common">Choose a cover Logo</button>
-											<input id="cover_img_file_1" type="file">
+								<div class="form-group">
+									<label class="control-label">한일</label> <input type="text"
+										class="form-control" placeholder="e.g UI/UX Researcher">
+								</div>
+								<div class="form-group">
+									<div class="row">
+										<div class="col-md-6">
+											<label class="control-label">Date From</label> <input
+												type="date" class="form-control" placeholder="e.g 2014">
+										</div>
+										<div class="col-md-6">
+											<label class="control-label">Date To</label> <input
+												type="date" class="form-control" placeholder="e.g 2020">
 										</div>
 									</div>
 								</div>
 							</div>
+							</section>
 							<div class="add-post-btn">
 								<div class="float-left">
-									<a href="#" class="btn-added"><i class="ti-plus"></i> Add
+									<a href="#" class="btn-added" onclick="return add_career()"><i class="ti-plus"></i> Add
 										New Experience</a>
 								</div>
 								<div class="float-right">
-									<a href="#" class="btn-delete"><i class="ti-trash"></i>
+									<a href="#" class="btn-delete" onclick="return del_career()"><i class="ti-trash"></i>
 										Delete This</a>
 								</div>
 							</div>
+<script>
+	function add_career(){
+		str ='<hr><div class="form-group">';
+		str+='<label class="control-label">회사이름</label>';
+		str+='<input type="text" class="form-control" placeholder="Company name">';
+		str+='</div>';
+		str+='<div class="form-group">';
+		str+='<label class="control-label">한일</label>';
+		str+='<input type="text" class="form-control" placeholder="e.g UI/UX Researcher">';
+		str+='</div>';
+		str+='<div class="form-group">';
+		str+='<div class="row">';
+		str+='<div class="col-md-6">';
+		str+='<label class="control-label">Date From</label>';
+		str+='<input type="date" class="form-control" placeholder="e.g 2014">';
+		str+='</div>';
+		str+='<div class="col-md-6">';
+		str+='<label class="control-label">Date To</label>';
+		str+='<input type="date" class="form-control" placeholder="e.g 2020">';
+		str+='</div>';
+		str+='</div>';
+		str+='</div>';
+		$('#careerList').append(str);
+		return false;
+	}
+	function del_career(){
+		if($('#careerList').children('div.form-group').length>3){
+			$('#careerList').children('div.form-group:last').remove()
+			$('#careerList').children('hr:last').remove()
+			$('#careerList').children('div.form-group:last').remove()
+			$('#careerList').children('hr:last').remove()
+			$('#careerList').children('div.form-group:last').remove()
+			$('#careerList').children('hr:last').remove()
+		}
+		return false;
+	}
+</script>
 							<div class="divider">
 								<h3>자격증</h3>
 							</div>
@@ -243,24 +262,54 @@
 							</div>
 							<div class="add-post-btn">
 								<div class="float-left">
-									<a class="btn-added" onclick="return add_cer()"><i class="ti-plus"></i> Add
-										New Skills</a>
+									<a href="#" class="btn-added" onclick="return add_cer()"><i class="ti-plus"></i>추가</a>
 								</div>
 								<div class="float-right">
-									<a href="#" class="btn-delete"><i class="ti-trash"></i>
-										Delete This</a>
+									<a href="#" class="btn-delete" onclick="return del_cer()"><i class="ti-trash"></i>삭제</a>
 								</div>
-<script>
-	function add_cer(){
-		$('#cer_form-group').append()
-		return false;
-	}
-	$(document).on('click','.del_cer',function(){
-		$(this).closest('div #cerForm').remove();
-	})
-</script>
+							</div>
+							<div class="form-group">
+								<div class="row">
+									<div class="col-md-6">
+										<label class="control-label">희망연봉</label>
+										<label class="styled-select">
+											<select>
+												<option>회사내규</option>
+												<option>2000</option>
+												<option>3000</option>
+												<option>4000</option>
+											</select>
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<input type="radio" name="open" value="Y" checked>공개
+								<input type="radio" name="open" value="N" >비공개
 							</div>
 						</form>
+<script>
+	function add_cer(){
+		str='<div id="cer_row" class="row">';
+		str+='<div class="col-md-6">';
+		str+='<label class="control-label">자격증</label>';
+		str+='<input class="form-control" placeholder="Skill name, e.g. HTML" type="text">';
+		str+='</div>';
+		str+='<div class="col-md-6">';
+		str+='<label class="control-label">날짜</label>';
+		str+='<input class="form-control" placeholder="Skill proficiency, e.g. 90" type="text">';
+		str+='</div>';
+		str+='</div>';
+		$('#cer_form-group').append(str)
+		return false;
+	}
+	function del_cer(){
+		if($('#cer_form-group').children('div#cer_row').length>1){
+			$('#cer_form-group').children('div#cer_row:last').remove()
+		}
+		return false;
+	}
+</script>
 						<a href="resume.html" class="btn btn-common">Save</a>
 					</div>
 				</div>
@@ -435,7 +484,7 @@ function setDisplay(){
 
  
  
-	function add_career(){
+/* 	function add_career(){
 	/* 	 var form=$('#careerForm')
 		 var str=form.html();
 		 str=str.replace('</div>','<button onclick="del_career()">삭제</button></div>')
@@ -456,7 +505,7 @@ function setDisplay(){
 	}
 	$(document).on('click','.del_career',function(){
 		$(this).closest('div #careerForm').remove();
-	})
+	}) */
 
 /* 	function add_cer(){
 		

@@ -1,9 +1,6 @@
+<%@page import="com.kh.resume.model.vo.Resume"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
-<%
-	//String contextPath = request.getContextPath();
-%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -11,9 +8,279 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <title>이력서 작성하기</title>
 
+<!-- import jobx -->
+<%@ include file="/views/include/user/style.jsp" %>
+<!-- End of import from jobx -->
+
 </head>
 <body>
-<%@ include file="/views/include/header.jsp" %>
+
+	<header id="home" class="hero-area">
+	<%@ include file="/views/include/user/header_nav.jsp" %>
+	</header>
+
+	<!-- page-header -->
+	<%@ include file="/views/include/user/page_header.jsp" %>
+	<script>
+		var page_header_title='내 정보 수정'
+	</script>
+	<!-- end of page-header -->
+	
+	<!-- content -->
+	<div id="content">
+	
+		<!-- container -->
+		<div class="container">
+			
+			<!-- row -->
+			<div class="row">
+				
+				<!-- left -->
+				<%@ include file="/views/include/user/mypage_menu.jsp" %>
+				<!-- End of left -->
+				
+				<!-- right  -->
+				<div class="col-lg-8 col-md-12 col-xs-12">
+					<div class="add-resume box">
+						<div class="post-header">
+							<p>
+								Already have an account? <a href="register.html">Click here
+									to login</a>
+							</p>
+						</div>
+						<form class="form-ad">
+							<h3>기본정보</h3>
+							<div class="form-group">
+								<label class="control-label">이름</label> <input type="text"
+									class="form-control" placeholder="이름">
+							</div>
+							<div class="form-group">
+								<label class="control-label"></label> <label
+									class="control-label">Email</label> <input type="text"
+									class="form-control" placeholder="Your@domain.com">
+							</div>
+							<div class="form-group">
+								<label class="control-label">생년월일</label> <input
+									type="date" class="form-control"
+									placeholder="Headline (e.g. Front-end developer)">
+							</div>
+							<div class="form-group">
+								<label class="control-label">Location</label>
+								<input type="text"
+									class="form-control" placeholder="Location, e.g">
+							</div>
+							<div class="form-group">
+								<div class="row">
+									<div class="col-md-3">
+									<label class="control-label">Phone</label> <input type="text"
+										class="form-control" placeholder="010">
+									</div>
+									<div class="col-md-3">
+									<label class="control-label" style="color:white;">phone</label> <input type="text"
+										class="form-control" placeholder="0000">
+									</div>
+									<div class="col-md-3">
+									<label class="control-label" style="color:white;">phone</label> <input type="text"
+										class="form-control" placeholder="0000">
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="row">
+									<div class="col-md-3">
+										<label class="control-label" >우편번호</label>
+										<input type="text" class="form-control" id="sample3_postcode" name="sample3_postcode" placeholder="우편번호">
+									</div>
+									<div class="col-md-3">
+									<label class="control-label">우편번호버튼</label>
+									<input type="button"
+										class="btn btn-common" value="우편번호 찾기" onclick="sample3_execDaumPostcode()">
+									</div>
+									<div id="wrap" style="display:none;border:1px solid;width:500px;height:300px;margin:5px 0;position:relative">
+										<img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnFoldWrap" style="cursor:pointer;position:absolute;right:0px;top:-1px;z-index:1" onclick="foldDaumPostcode()" alt="접기 버튼">
+									</div>
+									<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+									<script src="resources/util/address_api.js"></script>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="row">
+									<div class="col-md-6">
+									<label class="control-label">주소</label> <input type="text"
+										class="form-control" id="sample3_address" name="sample3_address" placeholder="주소">
+									</div>
+									<div class="col-md-6">
+									<label class="control-label">상세주소</label> <input type="text"
+										class="form-control" id="sample3_detailAddress" name="sample3_detailAddress" placeholder="상세주소">
+									<input type="hidden" id="sample3_extraAddress" placeholder="참고항목">
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="button-group">
+									<div class="action-buttons">
+										<div class="upload-button">
+											<button class="btn btn-common">증명사진</button>
+											<input id="cover_img_file_2" name="file"  type="file" onchange="loadImg(this)">
+											<img id="titleImg"></img>
+										</div>
+									</div>
+								</div>
+							</div>
+<script>
+	function loadImg(value){
+		if(value.files && value.files[0]){
+			var reader = new FileReader();
+			reader.onload = function(e){
+				 $("#titleImg").attr("src", e.target.result); // data:URL
+			}
+			reader.readAsDataURL(value.files[0]);
+		}
+	}
+</script>
+							<h3>최종학력</h3>
+							<div class="form-group">
+								<label class="control-label">학교</label> <input type="text"
+									class="form-control" placeholder="Degree, e.g. Bachelor">
+							</div>
+							<div class="form-group">
+								<label class="control-label">학과</label> <input
+									type="text" class="form-control"
+									placeholder="Major, e.g Computer Science">
+							</div>
+							<div class="form-group">
+								<div class="row">
+									<div class="col-md-6">
+										<label class="control-label">From</label> <input type="date"
+											class="form-control" placeholder="e.g 2014">
+									</div>
+									<div class="col-md-6">
+										<label class="control-label">To</label> <input type="date"
+											class="form-control" placeholder="e.g 2020">
+									</div>
+								</div>
+							</div>
+							<div class="add-post-btn">
+								<div class="float-left">
+									<a href="#" class="btn-added"><i class="ti-plus"></i> Add
+										New Education</a>
+								</div>
+								<div class="float-right">
+									<a href="#" class="btn-delete"><i class="ti-trash"></i>
+										Delete This</a>
+								</div>
+							</div>
+							<div class="divider">
+								<h3>Work Experience</h3>
+							</div>
+							<div class="form-group">
+								<label class="control-label">Company Name</label> <input
+									type="text" class="form-control" placeholder="Company name">
+							</div>
+							<div class="form-group">
+								<label class="control-label">Title</label> <input type="text"
+									class="form-control" placeholder="e.g UI/UX Researcher">
+							</div>
+							<div class="form-group">
+								<div class="row">
+									<div class="col-md-6">
+										<label class="control-label">Date Form</label> <input
+											type="text" class="form-control" placeholder="e.g 2014">
+									</div>
+									<div class="col-md-6">
+										<label class="control-label">Date To</label> <input
+											type="text" class="form-control" placeholder="e.g 2020">
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label">Description</label>
+							</div>
+							<section id="editor" style="margin-bottom: 30px;">
+							<div id="summernote">
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+									Rem quia aut modi fugit, ratione saepe perferendis odio optio
+									repellat dolorum voluptas excepturi possimus similique
+									veritatis nobis. Provident cupiditate delectus, optio?</p>
+							</div>
+							</section>
+							<div class="form-group">
+								<div class="button-group">
+									<div class="action-buttons">
+										<div class="upload-button">
+											<button class="btn btn-common">Choose a cover Logo</button>
+											<input id="cover_img_file_1" type="file">
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="add-post-btn">
+								<div class="float-left">
+									<a href="#" class="btn-added"><i class="ti-plus"></i> Add
+										New Experience</a>
+								</div>
+								<div class="float-right">
+									<a href="#" class="btn-delete"><i class="ti-trash"></i>
+										Delete This</a>
+								</div>
+							</div>
+							<div class="divider">
+								<h3>자격증</h3>
+							</div>
+							<div id="cer_form-group" class="form-group">
+								<div id="cer_row" class="row">
+									<div class="col-md-6">
+										<label class="control-label">자격증</label> <input
+											class="form-control" placeholder="Skill name, e.g. HTML"
+											type="text">
+									</div>
+									<div class="col-md-6">
+										<label class="control-label">날짜</label> <input
+											class="form-control" placeholder="Skill proficiency, e.g. 90"
+											type="text">
+									</div>
+								</div>
+							</div>
+							<div class="add-post-btn">
+								<div class="float-left">
+									<a class="btn-added" onclick="return add_cer()"><i class="ti-plus"></i> Add
+										New Skills</a>
+								</div>
+								<div class="float-right">
+									<a href="#" class="btn-delete"><i class="ti-trash"></i>
+										Delete This</a>
+								</div>
+<script>
+	function add_cer(){
+		$('#cer_form-group').append()
+		return false;
+	}
+	$(document).on('click','.del_cer',function(){
+		$(this).closest('div #cerForm').remove();
+	})
+</script>
+							</div>
+						</form>
+						<a href="resume.html" class="btn btn-common">Save</a>
+					</div>
+				</div>
+				<!-- End of right -->
+				
+			</div>
+			<!-- End of row -->
+			
+		</div>
+		<!-- End of container -->
+	</div>
+	<!-- End of content -->
+	
+	
+	
+	
+	
+	
+	
+<%-- <%@ include file="/views/include/header.jsp" %> --%>
 <form action="<%=contextPath%>/addResum.re" method="post" enctype="multipart/form-data">
 <h2 align="center">이력서 작성</h2>
 <img id="titleImg"></img>
@@ -40,7 +307,7 @@
 	이메일: <input type="text" id="email" name="email" value="1"><br>
 	주소:
 	<!-- 주소api -->
-	<input type="text" id="sample3_postcode" name="sample3_postcode"  placeholder="우편번호">
+<!-- 	<input type="text" id="sample3_postcode" name="sample3_postcode"  placeholder="우편번호">
 	<input type="button" onclick="sample3_execDaumPostcode()" value="우편번호 찾기"><br>
 	<input type="text" id="sample3_address" name="sample3_address" placeholder="주소">
 	<input type="text" id="sample3_detailAddress" name="sample3_detailAddress" placeholder="상세주소">
@@ -49,7 +316,7 @@
 		<img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnFoldWrap" style="cursor:pointer;position:absolute;right:0px;top:-1px;z-index:1" onclick="foldDaumPostcode()" alt="접기 버튼">
 	</div>
 	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-	<script src="resources/util/address_api.js"></script>
+	<script src="resources/util/address_api.js"></script> -->
 	<!-- end of 주소api -->	
 <hr>
 		<input type="radio" name="school_final" value="1">고등학교 졸업<br>	
@@ -108,12 +375,12 @@
 	</div>
 <hr>
 	<input type="button" value="+ 자격증 추가하기" onclick="add_cer()">
-	<div id="cerList">
+	<!-- <div id="cerList">
 		<div id="cerForm">
 			자격증: <input type="text" name="cer_name" value="1"><br>
 			날짜: <input type="date" name="cer_date"  value="2010-01-01">
 		</div>
-	</div>
+	</div> -->
 <hr>
 	희망연봉금액: 
 	<select name="hope_salary">
@@ -191,7 +458,7 @@ function setDisplay(){
 		$(this).closest('div #careerForm').remove();
 	})
 
-	function add_cer(){
+/* 	function add_cer(){
 		
 		var str='<div id="cerForm">';
 		str+='<label>자격증명</label>';
@@ -205,7 +472,7 @@ function setDisplay(){
 	}
 	$(document).on('click','.del_cer',function(){
 		$(this).closest('div #cerForm').remove();
-	})
+	}) */
 
 	
 	function math(){
@@ -225,6 +492,27 @@ function setDisplay(){
 	}
 </script>
 
-<%@ include file="/views/include/footer.jsp" %>
+<!-- footer -->
+		<%@ include file="/views/include/user/footer.jsp" %>
+	<!-- End of footer -->
+	
+	<!-- back to top button -->
+		<a href="#" class="back-to-top"> <i class="lni-arrow-up"></i></a>
+	<!-- End of back to top button -->
+	
+	<!-- 뭔지 모르겠어 -->
+	<div id="preloader">
+		<div class="loader" id="loader-1"></div>
+	</div>
+	<!-- 뭔지 모르겠어 -->
+
+
+	<!-- import of jobx -->
+	<%@ include file="/views/include/user/js.jsp" %>
+	<!-- End of import of jobx -->
+
+<script>
+	$('.inner-header').children('h3').text(page_header_title)
+</script>
 </body>
 </html>

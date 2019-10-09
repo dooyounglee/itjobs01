@@ -96,6 +96,8 @@ public class MemberDao {
 		int result=0;
 		PreparedStatement ps=null;
 		
+		System.out.println(m);
+		
 		String sql=prop.getProperty("joinMember");
 		try {
 			ps=conn.prepareStatement(sql);

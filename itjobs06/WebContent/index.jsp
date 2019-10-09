@@ -3,14 +3,33 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<% String alert = (String)session.getAttribute("alert"); %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<%@ include file="/views/include/user/style.jsp" %>
+
+<%@ include file="/views/include/user/js.jsp" %>
+<script>
+	$(function(){
+		var msg = "<%=alert%>";
+		
+		if(msg != "null"){
+			alert(msg);
+			
+			// 세션에 담긴 메세지 한번만 출력하고 삭제하기
+			<% session.removeAttribute("alert"); %>
+		}
+		
+	});
+	</script>
+
+
+
 
 <!-- import jobx -->
-<%@ include file="/views/include/user/style.jsp" %>
 <!-- End of import from jobx -->
 
 </head>
@@ -458,7 +477,6 @@
 
 
 	<!-- import of jobx -->
-	<%@ include file="/views/include/user/js.jsp" %>
 	<!-- End of import of jobx -->
 	
 	

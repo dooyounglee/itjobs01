@@ -1,32 +1,139 @@
 <%@page import="com.kh.notification.model.vo.Notification"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%	Notification noti=(Notification)request.getAttribute("noti"); %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+<!-- import jobx -->
+<%@ include file="/views/include/user/style.jsp" %>
+<!-- End of import from jobx -->
+
 </head>
 <body>
 
+		<header id="home" class="hero-area">
+	<%@ include file="/views/include/user/header_nav.jsp" %>
+	</header>
+
+	<!-- page-header -->
+	<%@ include file="/views/include/user/page_header.jsp" %>
+	<script>
+		var page_header_title='내 정보 수정'
+	</script>
+	<!-- end of page-header -->
+
+
+	<!-- content -->
+	<div id="content">
+	
+		<!-- container -->
+		<div class="container">
+			
+			<!-- row -->
+			<div class="row">
+				
+				<!-- left -->
+				<%@ include file="/views/include/user/mypage_menu.jsp" %>
+				<!-- End of left -->
+				
+				<!-- right  -->
+				<div class="col-md-8 col-sm-8 col-xs-12">
+					<div class="job-alerts-item">
+						<h3 class="alerts-title">공고 수정</h3>
+						<form class="form" action="edit.no" method="post" autocomplete=off>
+							<div class="form-group is-empty">
+								<label class="control-label">공고 제목</label> <input
+									class="form-control" type="text" name="title" value="<%=noti.getTitle()%>"> <span
+									class="material-input"></span>
+							</div>
+							<div class="form-group is-empty">
+								<div class="row">
+									<div class="col-md-6">
+										<label class="control-label">마감일</label>
+										<input class="form-control" type="date" name="end_date" value="<%=noti.getEnd_date().split(" ")[0]%>">
+										<span class="material-input"></span>
+									</div>
+									<div class="col-md-6">
+										<label class="control-label">마감시간</label>
+										<input class="form-control" type="time" name="end_time" value="<%=noti.getEnd_date().split(" ")[1]%>">
+										<span class="material-input"></span>
+									</div>
+								</div>
+							</div>
+							<%	String[] arr_language=noti.getP_language().split(",");
+								String[] lan_selected=new String[9];
+								for(int i=0;i<arr_language.length;i++){
+									System.out.println(arr_language[i]);
+									switch(arr_language[i]){
+									case "java": 		lan_selected[0]="checked";break;
+									case "javascript": 	lan_selected[1]="checked";break;
+									case "C": 			lan_selected[2]="checked";break;
+									case "C++": 		lan_selected[3]="checked";break;
+									case "C#": 			lan_selected[4]="checked";break;
+									case "VBA": 		lan_selected[5]="checked";break;
+									case "python": 		lan_selected[6]="checked";break;
+									case "php": 		lan_selected[7]="checked";break;
+									case "asp": 		lan_selected[8]="checked";break;
+									}
+								} %>
+							<div class="form-group is-empty">
+								<label class="control-label">직군</label>
+								<input type=checkbox name="language" value="java" <%=lan_selected[0] %>>java
+								<input type=checkbox name="language" value="javascript" <%=lan_selected[1] %>>javascript
+								<input type=checkbox name="language" value="C" <%=lan_selected[2] %>>C
+								<input type=checkbox name="language" value="C++" <%=lan_selected[3] %>>C++
+								<input type=checkbox name="language" value="C#" <%=lan_selected[4] %>>C#
+								<input type=checkbox name="language" value="VBA" <%=lan_selected[5] %>>VBA
+								<input type=checkbox name="language" value="python" <%=lan_selected[6] %>>python
+								<input type=checkbox name="language" value="php" <%=lan_selected[7] %>>php
+								<input type=checkbox name="language" value="asp" <%=lan_selected[8] %>>asp
+								<span class="material-input"></span>
+							</div>
+							<div class="form-group is-empty">
+								<label class="control-label">직군</label>
+								<input class="form-control" type="text" name="jobs" value="<%=noti.getJobs()%>">
+								<span class="material-input"></span>
+							</div>
+							<div class="form-group is-empty">
+								<label class="control-label">연봉</label> <input
+									class="form-control" type="text" name="salary" value="<%=noti.getSalary()%>"> <span
+									class="material-input"></span>
+							</div>
+							<div class="form-group is-empty">
+								<label class="control-label">내용</label> <input
+									class="form-control" type="text" name="contents" value="<%=noti.getContents()%>"> <span
+									class="material-input"></span>
+							</div>
+							<div class="form-group is-empty">
+								<label class="control-label">우대사항</label> <input
+									class="form-control" type="text" name="hope" value="<%=noti.getHope()%>"> <span
+									class="material-input"></span>
+							</div>
+							<button id="submit" class="btn btn-common">Save Change</button>
+							<input type=hidden name="noti_no" value="<%=noti.getNoti_no()%>">
+						</form>
+					</div>
+				</div>
+				<!-- End of right -->
+				
+			</div>
+			<!-- End of row -->
+			
+		</div>
+		<!-- End of container -->
+	</div>
+	<!-- End of content -->
+	
+	
+	
+	
+	
 <h1>공고 수정</h1>
-<%	Notification noti=(Notification)request.getAttribute("noti");
-	String[] arr_language=noti.getP_language().split(",");
-	String[] lan_selected=new String[9];
-	for(int i=0;i<arr_language.length;i++){
-		System.out.println(arr_language[i]);
-		switch(arr_language[i]){
-		case "java": 		lan_selected[0]="checked";break;
-		case "javascript": 	lan_selected[1]="checked";break;
-		case "C": 			lan_selected[2]="checked";break;
-		case "C++": 		lan_selected[3]="checked";break;
-		case "C#": 			lan_selected[4]="checked";break;
-		case "VBA": 		lan_selected[5]="checked";break;
-		case "python": 		lan_selected[6]="checked";break;
-		case "php": 		lan_selected[7]="checked";break;
-		case "asp": 		lan_selected[8]="checked";break;
-		}
-	}%>
+
 <form action="edit.no" method="post" autocomplete=off>
 제목:<input name="title" value="<%=noti.getTitle()%>"><br>
 마감일:<input type=date name="end_date" value="<%=noti.getEnd_date().split(" ")[0]%>"><br>
@@ -55,6 +162,31 @@
 		location.href="<%=request.getContextPath()%>/get.no?noti_no="+noti_no
 	}
 </script>
-<%@ include file="/views/include/footer.jsp" %>
+
+
+
+
+	<!-- footer -->
+		<%@ include file="/views/include/user/footer.jsp" %>
+	<!-- End of footer -->
+	
+	<!-- back to top button -->
+		<a href="#" class="back-to-top"> <i class="lni-arrow-up"></i></a>
+	<!-- End of back to top button -->
+	
+	<!-- 뭔지 모르겠어 -->
+	<div id="preloader">
+		<div class="loader" id="loader-1"></div>
+	</div>
+	<!-- 뭔지 모르겠어 -->
+
+
+	<!-- import of jobx -->
+	<%@ include file="/views/include/user/js.jsp" %>
+	<!-- End of import of jobx -->
+
+<script>
+	$('.inner-header').children('h3').text(page_header_title)
+</script>
 </body>
 </html>

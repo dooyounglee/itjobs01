@@ -125,14 +125,14 @@
 			<%	ArrayList<Notification> list=(ArrayList<Notification>)request.getAttribute("list");
 				for(Notification n:list){%>
 				<div class="col-lg-6 col-md-12 col-xs-12">
-					<a class="job-listings-featured" href="<%=request.getContextPath()%>/get.no?noti_no=<%=n.getNoti_no()%>">
+					<a class="job-listings-featured" href="#">
 						<div class="row">
 							<div class="col-lg-6 col-md-6 col-xs-12">
 								<div class="job-company-logo">
 									<img src="assets/img/features/img1.png" alt="">
 								</div>
 								<div class="job-details">
-									<h3><%=n.getTitle() %></h3>
+									<h3 onclick="location.href='<%=request.getContextPath()%>/get.no?noti_no=<%=n.getNoti_no()%>'"><%=n.getTitle() %></h3>
 									<span class="company-neme" onclick="detailCo(<%=n.getCo_no()%>)"><%=n.getCo_no()%></span>
 									<div class="tags">
 										<span><i class="lni-map-marker"></i> 위치</span> <span><i

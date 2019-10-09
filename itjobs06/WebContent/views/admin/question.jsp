@@ -74,6 +74,18 @@
 			$('#showAreaa').load("<%=request.getContextPath()%>/get.qu.ad?qno="+q_no+" div.inner-box.my-resume");
 			return false;
 		}
+		function answerInsert(){
+			
+			var answer = $('#answer');
+			
+			if(answer.val().trim().length == 0){
+				alert("답변내용을입력해주세요");
+				answer.focus();
+				return false;
+			}else{
+				$('#answerForm').submit();
+			}
+		}
 	
 	</script>
     <!-- End of Page Content -->

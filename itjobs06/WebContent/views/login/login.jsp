@@ -73,6 +73,29 @@ Login
  </div>
 </section>
 
+<script>
+	function validate(){
+		 $('input[name=email]').focus(); 
+		
+		 if($("#sender-email").val().trim().length==0){
+			alert("이메일을 입력해주세요");
+			$("#sender-email").focus();
+			return false;
+		}
+	
+		if($("#pw").val().trim().length==0){
+			alert("비밀번호를 입력해주세요");
+			$("#pw").focus();
+			return false;
+		}
+	
+	
+	
+	}
+
+
+
+</script>
 
 
 <%@ include file="/views/include/user/footer.jsp" %>

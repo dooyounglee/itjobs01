@@ -465,7 +465,7 @@
 	
 	
 
-	<%@ include file="/views/include/header.jsp" %>
+	<%-- <%@ include file="/views/include/header.jsp" %> --%>
 	
 <h1>메인</h1>
 <form id="searchForm" action="main.se" method="get" autocomplete=off>

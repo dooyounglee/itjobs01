@@ -68,7 +68,7 @@
 	</div>
 	<script>
 		function showQ(q_no){
-			$('#showAreaa').load("<%=request.getContextPath()%>/get.qu.ad?qno="+q_no)
+			$('#showAreaa').load("<%=request.getContextPath()%>/get.qu.ad?qno="+q_no+" div.inner-box.my-resume")
 			return false;
 		}
 	

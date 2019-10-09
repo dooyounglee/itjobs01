@@ -32,6 +32,9 @@
 <!-- import jobx -->
 <%@ include file="/views/include/user/style.jsp" %>
 <!-- End of import from jobx -->
+	<!-- import of jobx -->
+	<%@ include file="/views/include/user/js.jsp" %>
+	<!-- End of import of jobx -->
 
 </head>
 <body>

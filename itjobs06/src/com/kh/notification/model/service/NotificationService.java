@@ -78,7 +78,6 @@ public class NotificationService {
 	public int openNotification(int noti_no) {
 		Connection conn=getConnection();
 		int result=new NotificationDao().openNotification(conn,noti_no);
-		System.out.println("service-------"+result);
 		close(conn);
 		return result;
 	}

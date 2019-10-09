@@ -11,6 +11,26 @@
 }
 %>
 
+<!-- <style>
+    div.aaa{
+        width:100px;
+        height:30px;
+        border:0px solid;
+        position:relative;
+        float:left;
+        text-align:center;
+        cursor:pointer;
+    }
+    div.aaa div{
+        position:absolute;
+        bottom:0px;
+        width:0%;
+        height:10%;
+        opacity:0.7;
+        background:transparent;
+    }
+</style> -->
+
 <nav class="navbar navbar-expand-lg fixed-top scrolling-navbar">
 	<div class="container">
 		<div class="theme-header clearfix">
@@ -33,9 +53,10 @@
 					<%	if(mem!=null){ %>
 					<li class="nav-item"><a class="nav-link"> ${mem.nickname }님 안녕하세요.</a></li>
 					<%	} %>
-					<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath() %>">
+					<li class="aaa nav-item"><a class="nav-link" href="<%=request.getContextPath() %>">
 							Home </a></li>
-					<li class="nav-item dropdown"><a
+					<li class="nav-item aaa dropdown">
+						<div></div><a
 						class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"
 						aria-haspopup="true" aria-expanded="false"> 게시판 </a>
 						<ul class="dropdown-menu">
@@ -49,12 +70,12 @@
 									Tables</a></li>
 							<li><a class="dropdown-item" href="contact.html">Contact</a></li>
 						</ul></li>
-					<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/notificationList.se">
+					<li class="nav-item aaa"><a class="nav-link" href="<%=request.getContextPath()%>/notificationList.se">
 							공고검색 </a></li>
-					<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/resumeList.se">
+					<li class="nav-item aaa"><a class="nav-link" href="<%=request.getContextPath()%>/resumeList.se">
 							인재검색 </a></li>
 					<%	if(mem!=null && mem.getType().equals("1")){ %>
-					<li class="nav-item dropdown"><a
+					<li class="nav-item dropdown aaa"><a
 						class="nav-link dropdown-toggle" href="<%=request.getContextPath()%>/list.re" data-toggle="dropdown"
 						aria-haspopup="true" aria-expanded="false"> 마이페이지 </a>
 						<ul class="dropdown-menu">
@@ -72,7 +93,7 @@
 									</a></li>
 						</ul></li>
 					<%	}else if(mem!=null && mem.getType().equals("2")){ %>
-					<li class="nav-item dropdown"><a
+					<li class="nav-item dropdown aaa"><a
 						class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"
 						aria-haspopup="true" aria-expanded="false"> 마이페이지 </a>
 						<ul class="dropdown-menu">
@@ -87,12 +108,12 @@
 						</ul>
 					</li>
 					<%	}else{ %>
-					<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/login.me">마이페이지</a></li>
+					<li class="nav-item aaa"><a class="nav-link" href="<%=request.getContextPath()%>/login.me">마이페이지</a></li>
 					<%	} %>
 					<%	if(mem!=null){ %>
-					<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/logout.me">로그아웃</a></li>
+					<li class="nav-item aaa"><a class="nav-link" href="<%=request.getContextPath()%>/logout.me">로그아웃</a></li>
 					<%	}else{ %>
-					<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/login.me">로그인</a></li>
+					<li class="nav-item aaa"><a class="nav-link" href="<%=request.getContextPath()%>/login.me">로그인</a></li>
 					<%	} %>
 					<li class="button-group"><a href="<%=request.getContextPath()%>/views/admin/main.jsp"
 						class="button btn btn-common">관리자</a></li>
@@ -102,3 +123,5 @@
 	</div>
 	<div class="mobile-menu" data-logo="assets/img/logo-mobile.png"></div>
 </nav>
+
+<script src="resources/util/menubar_animation.js"></script>

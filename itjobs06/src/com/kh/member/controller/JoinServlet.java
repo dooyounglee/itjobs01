@@ -45,12 +45,12 @@ public class JoinServlet extends HttpServlet {
 		m.setEmail(email);
 		m.setPw(pw);
 		m.setNickname(nickname);
-		System.out.println(m);
+//		System.out.println(m);
 
 		int result=new MemberService().insertMember(m);
 		
 		if(result>0) {
-			System.out.println(type);
+//			System.out.println(type);
 			if(type.equals("1")) {
 				
 				HttpSession session = request.getSession();

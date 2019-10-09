@@ -100,13 +100,23 @@ public class MemberDao {
 		
 		String sql=prop.getProperty("joinMember");
 		try {
-			ps=conn.prepareStatement(sql);
-			ps.setString(1, m.getType());
-			ps.setString(2, m.getEmail());
-			ps.setString(3, m.getPw());
-			ps.setString(4, m.getNickname());
-			result=ps.executeUpdate();
 			
+			if(m.getType().equals("1")) {
+				ps=conn.prepareStatement(sql);
+				ps.setString(1, m.getType());
+				ps.setString(2, m.getEmail());
+				ps.setString(3, m.getPw());
+				ps.setString(4, m.getNickname());
+				result=ps.executeUpdate();
+				}else {
+				sql=prop.getProperty("joinCo");
+				ps=conn.prepareStatement(sql);
+				ps.setString(1, m.getType());
+				ps.setString(2, m.getEmail());
+				ps.setString(3, m.getPw());
+				ps.setString(4, m.getNickname());
+				result=ps.executeUpdate();
+				}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {

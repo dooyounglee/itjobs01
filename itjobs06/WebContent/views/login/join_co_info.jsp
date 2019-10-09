@@ -18,21 +18,29 @@
 
 
 	 #file{
-		font-size: 45px;
+		font-size: 19.5px;
 		position: absolute;
 		right: 0px;
 		top: 0px;
 		opacity: 0;
+ 	    overflow: hidden;
 	}
+	#file:hover{
+		cursor:pointer;
+	}
+
 	#filediv{
 	position: relative;
     width: 380px;
     height: 40px;
-    overflow: hidden;
 	text-align:center;
+		margin-bottom: 0px;
 	}
 	
-	
+	#check{
+	border:0px;
+	}
+
 
 </style>
 
@@ -83,10 +91,12 @@
 		</div>
 		</div>
 		
-		<div class="btn btn-common log-btn mt-3" id="filediv">
-		사업자등록파일첨부
-		<input type="file" id="file" name="file" onchange="loadImg(this,1);" required>
-		</div>
+		<div class="btn btn-common log-btn mt-3" id="filediv" >
+		사업자등록파일 첨부
+		<input type="file" id="file" name="file" value="" onchange="loadImg(this,1);" required>
+		</div>  
+		<input type="text" id="check" value="선택된 파일이 없습니다." style="color:red;" readonly>
+		
 		<!-- 우선 주석처리 -->
 		<!-- <img id ="titleImg" width="380" height="100" style="margin-bottom:13px;"> -->
 		
@@ -172,6 +182,26 @@
 		</div>
 		</div>
 		</section>
+		
+		<script>
+		
+		$(function(){
+				
+		$("#file").change(function(){
+			
+			var file = $("#file").val();
+
+				if(file != null || file != ""){
+					$("#check").attr('value',file).attr('style','color:green');
+				}
+				if(file == null || file ==""){
+					$("#check").attr('value','선택된 파일이 없습니다.').attr('style','color:red');
+				}
+			})
+		})
+		
+		</script>
+		
 		
 		
 		

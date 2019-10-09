@@ -61,13 +61,13 @@
 		<div class="form-group">
 		<div class="input-icon">
 		<i class="lni-lock"></i>
-		<input type="password" class="form-control" name="userPwd1" placeholder="비밀번호" required>
+		<input type="password" class="form-control" name="pw" placeholder="비밀번호" required>
 		</div>
 		</div>
 		<div class="form-group">
 		<div class="input-icon">
 		<i class="lni-unlock"></i>
-		<input type="password" class="form-control" name="userPwd2" placeholder="비밀번호 확인" required>
+		<input type="password" class="form-control" name="pw1" placeholder="비밀번호 확인" required>
 		</div>
 		</div>
 		<input type="submit" id="submit" class="btn btn-common log-btn mt-3" value="가입" disabled>
@@ -82,8 +82,8 @@
 		<script>
 		function validate(){
 			
-		var pw1 = $("#joinForm input[name=userPwd1]");
-		var pw2 = $("#joinForm input[name=userPwd2]");
+		var pw1 = $("#joinForm input[name=pw]");
+		var pw2 = $("#joinForm input[name=pw1]");
 		
 		
 		

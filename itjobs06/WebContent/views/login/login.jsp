@@ -1,6 +1,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ <% String alert = (String)session.getAttribute("alert"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +10,19 @@
 <!-- <title>네이버 로그인</title> -->
   <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
   <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-	
+	<script>
+	$(function(){
+		var msg = "<%=alert%>";
+		
+		if(msg != "null"){
+			alert(msg);
+			
+			// 세션에 담긴 메세지 한번만 출력하고 삭제하기
+			<% session.removeAttribute("alert"); %>
+		}
+		
+	});
+	</script>
 	
 
 
@@ -46,7 +59,7 @@ Login
 <div class="form-group">
 <div class="input-icon">
 <i class="lni-user"></i>
-<input type="text" id="sender-email" class="form-control" name="email" placeholder="Username">
+<input type="text" id="sender-email" class="form-control" name="email" placeholder="EmailAddress">
 </div>
 <script>
 	$('#sender-email').focus()

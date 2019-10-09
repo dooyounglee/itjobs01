@@ -1,21 +1,16 @@
 package com.kh.member.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Enumeration;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
-
-import com.kh.common.MyFileRenamePolicy;
 import com.kh.member.model.service.MemberService;
 import com.kh.member.model.vo.Member;
-import com.oreilly.servlet.MultipartRequest;
 
 /**
  * Servlet implementation class JoinServlet
@@ -50,14 +45,16 @@ public class JoinServlet extends HttpServlet {
 		m.setEmail(email);
 		m.setPw(pw);
 		m.setNickname(nickname);
-		System.out.println(m);
+//		System.out.println(m);
 
 		int result=new MemberService().insertMember(m);
 		
 		if(result>0) {
-			System.out.println(type);
+//			System.out.println(type);
 			if(type.equals("1")) {
-				request.setAttribute("msg", "회운가입 성공(일반)");
+				
+				HttpSession session = request.getSession();
+				session.setAttribute("alert", "회원가입을 환영합니다.로그인을 진행해 주세요");
 				request.setAttribute("nickname", nickname);
 				
 				request.getRequestDispatcher("views/login/login.jsp").forward(request, response);

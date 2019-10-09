@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
@@ -122,7 +123,9 @@ public class JoinCoInfoServlet extends HttpServlet {
 		
 		
 		if(result>0) {
-			request.setAttribute("msg", "회운가입 성공(기업2)");
+			HttpSession session = request.getSession();
+			session.setAttribute("alert", "회원가입을 환영합니다. 승인절차는 1~2일정도 소요되며 결과는 문자,이메일로 발송해 드립니다.");
+			
 			request.setAttribute("cf",cf);
 			response.sendRedirect(request.getContextPath());
 		}else {

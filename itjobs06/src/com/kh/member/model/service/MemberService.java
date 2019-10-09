@@ -51,10 +51,6 @@ public class MemberService {
 		return result;
 	}
 
-
-
-
-
 	public Co_Info getCoInfo(Member m) {
 		Connection conn = getConnection();
 		Co_Info mem = new MemberDao().getCoInfo(conn, m);

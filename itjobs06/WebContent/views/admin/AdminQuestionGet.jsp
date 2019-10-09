@@ -76,6 +76,7 @@
 <a class="btn btn-common btn-sm" onclick="answer()">답변하기</a>
 
 
+
 <form id=answerForm action="answer.qu" method=post autocomplete=off style="display:none">
 <input type=hidden name="qno" value="<%=q.getQ_no() %>">
 
@@ -84,7 +85,11 @@
 <a class="btn btn-common btn-sm" onclick="answerInsert()">답변등록</a>
 
 </form>
-
+<script>
+function answer(){
+	$('#answerForm').toggle();
+}
+</script>
 <a class="btn btn-common btn-sm" id="new" href="<%=contextPath%>/list.qu.ad">목록으로</a>
 
 <%-- <%	} %> --%>

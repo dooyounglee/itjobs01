@@ -36,14 +36,14 @@
           </div>
           
           
-<select>
+<!-- <select>
 	<option>제목</option>
 	<option>작성자</option>
 	<option>내용</option>
 </select>
 <input>
-<button>검색</button>
-<table class="table table-hover table-sm" style="width:500px; float:right;">
+<button>검색</button> -->
+<table class="table table-hover table-sm" style="width:60%; float:right;">
 	<tr>
 		<th><input type=checkbox></th>
 		<th>내용</th>
@@ -64,11 +64,14 @@
 	</tr>
 	<%	} %>
 </table>
-	<div id="showAreaa" style="float:right;width:200px;">77878</div>
+	<div id="showAreaa" style="float:right;width:40%;">77878</div>
 	</div>
 	<script>
+		function answer(){
+			$('#answerForm').toggle();
+		}
 		function showQ(q_no){
-			$('#showAreaa').load("<%=request.getContextPath()%>/get.qu.ad?qno="+q_no+" div.inner-box.my-resume")
+			$('#showAreaa').load("<%=request.getContextPath()%>/get.qu.ad?qno="+q_no+" div.inner-box.my-resume");
 			return false;
 		}
 	

@@ -502,5 +502,40 @@ public class MemberDao {
 		
 	}
 	
+	public int EmailCheck(Connection conn, String email) {
+		
+		int result = 0;
+		
+		PreparedStatement ps = null;
+		
+		ResultSet rs = null;
+		
+		String sql = prop.getProperty("emailOverCheck");
+		
+		try {
+			ps = conn.prepareStatement(sql);
+		
+			ps.setString(1, email);
+		
+			rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				result = rs.getInt(1);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(ps);
+		}
+		
+		
+		return result;
+		
+	}
+	
+	
 	
 }

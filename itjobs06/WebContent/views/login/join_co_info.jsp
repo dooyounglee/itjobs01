@@ -40,6 +40,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
+
+<%@ include file="/views/include/user/js.jsp" %>  
 	
 <%@ include file="/views/include/user/style.jsp" %>
 
@@ -67,7 +69,7 @@
 		<h3>
 		기업 상세정보
 		</h3>
-		<form class="login-form" action="<%=request.getContextPath() %>/coinfo.me" method="post" autocomplete=off enctype="multipart/form-data" >
+		<form class="login-form" action="<%=request.getContextPath() %>/coinfo.me" method="post" autocomplete=off enctype="multipart/form-data" onsubmit="return validate();">
 		
 		<input type="hidden"value=2 name="type" readonly>
 		<input type="hidden" value="<%=m.getEmail()%>" name="email" id="eamil">
@@ -77,20 +79,21 @@
 		<div class="form-group">
 		<div class="input-icon">
 		<i class="lni-lock"></i>
-		<input type="text" class="form-control" name="regnum" placeholder="사업자등록번호*">
+		<input type="text" class="form-control" id="regnum" name="regnum" placeholder="사업자등록번호*" required>
 		</div>
 		</div>
 		
 		<div class="btn btn-common log-btn mt-3" id="filediv">
 		사업자등록파일첨부
-		<input type="file" id="file" name="file" onchange="loadImg(this,1);">
+		<input type="file" id="file" name="file" onchange="loadImg(this,1);" required>
 		</div>
-		<img id ="titleImg" width="380" height="100" style="margin-bottom:13px;">
+		<!-- 우선 주석처리 -->
+		<!-- <img id ="titleImg" width="380" height="100" style="margin-bottom:13px;"> -->
 		
 		<h3>본사 주소지</h3>
-		<input type="text" id="sample3_postcode" name="sample3_postcode"  placeholder="우편번호">
-		<input type="button" onclick="sample3_execDaumPostcode()" value="우편번호 찾기"><br>
-		<input type="text" id="sample3_address" name="sample3_address" placeholder="주소">
+		<input type="text" id="sample3_postcode" name="sample3_postcode"  placeholder="우편번호" required>
+		<input type="button" onclick="sample3_execDaumPostcode()" value="우편번호 찾기" required><br>
+		<input type="text" id="sample3_address" name="sample3_address" placeholder="주소" required>
 		<input type="text" id="sample3_detailAddress" name="sample3_detailAddress" placeholder="상세주소">
 		<input type="hidden" id="sample3_extraAddress" placeholder="참고항목">
 	
@@ -101,19 +104,19 @@
 		<div class="form-group"style="margin-top:15px;">
 		<div class="input-icon">
 		<i class="lni-lock"></i>
-		<input type="text" class="form-control" name="name" placeholder="담당자명*">
+		<input type="text" class="form-control" id="name" name="name" placeholder="담당자명*" required>
 		</div>
 		</div>
 		<div class="form-group">
 		<div class="input-icon">
 		<i class="lni-lock"></i>
-		<input type="text" class="form-control" name="phone" placeholder="담당자폰*">
+		<input type="text" class="form-control" id="phone"name="phone" placeholder="담당자폰*" required>
 		</div>
 		</div>
 		<div class="form-group">
 		<div class="input-icon">
 		<i class="lni-lock"></i>
-		<input type="text" class="form-control" name="ceo" placeholder="대표자명*">
+		<input type="text" class="form-control" id="ceo" name="ceo" placeholder="대표자명*" required>
 		</div>
 		</div>
 		
@@ -122,7 +125,7 @@
 		<div class="form-group" >
 		<div class="input-icon">
 		<i class="lni-lock"></i>
-		<input type="text" class="form-control" name="co_phone" placeholder="대표자폰*">
+		<input type="text" class="form-control" id="co_phone"name="co_phone" placeholder="대표자폰*" required>
 		</div>
 		</div>
 		<div class="form-group">
@@ -140,13 +143,13 @@
 		<div class="form-group">
 		<div class="input-icon">
 		<i class="lni-lock"></i>
-		<input type="text" class="form-control" name="memsum" placeholder="사원수">
+		<input type="text" class="form-control" id="memsum" name="memsum" placeholder="사원수*" required> <!-- 우선 필수로 받자 오류는 다음에  -->
 		</div>
 		</div>
 		<div class="form-group">
 		<div class="input-icon">
 		<i class="lni-lock"></i>
-		<input type="text" class="form-control" name="revenue" placeholder="매출액">
+		<input type="text" class="form-control" name="revenue" placeholder="매출액*" required> <!-- 이놈도 필수로 받자   -->
 		</div>
 		</div>
 		<div class="form-group">
@@ -161,7 +164,7 @@
 		<input type="text" class="form-control" name="welfair" placeholder="복지">
 		</div>
 		</div>
-		<input type="submit" class="btn btn-common log-btn mt-3" value="가입신청" onclick="join();">
+		<input type="submit" class="btn btn-common log-btn mt-3" value="가입신청"  >
 		<p class="text-center">Already have an account?<a href="login.html"> Sign In</a></p>
 		</form>
 		</div>
@@ -171,11 +174,7 @@
 		</section>
 		
 		
-		<script>
-		function join(){
-		alert("회원가입을 환영 합니다. 승인절차는 1~2일 정도 소요되며 결과는 이메일,문자로 발송해 드립니다.");				
-		}
-		</script>
+		
 
 <%@ include file="/views/include/user/footer.jsp" %>
 
@@ -295,6 +294,11 @@
         // iframe을 넣은 element를 보이게 한다.
         element_wrap.style.display = 'block';
     }
+    
+    
+    
+    
+    
 </script>
 	<!-- end of 주소api -->
 
@@ -328,6 +332,11 @@
 		 }
 	 	}
 	
+	 
+	 
+	 
+	 
+	 
 </script>
 
 

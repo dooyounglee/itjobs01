@@ -46,7 +46,7 @@ Login
 <div class="form-group">
 <div class="input-icon">
 <i class="lni-user"></i>
-<input type="text" id="sender-email" class="form-control" name="email" placeholder="Username">
+<input type="text" id="sender-email" class="form-control" name="email" placeholder="EmailAddress">
 </div>
 <script>
 	$('#sender-email').focus()

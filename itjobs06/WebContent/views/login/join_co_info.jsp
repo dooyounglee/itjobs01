@@ -31,7 +31,9 @@
     overflow: hidden;
 	text-align:center;
 	}
-	
+	#filediv:hover{
+		cursor:pointer;
+	}
 	
 
 </style>
@@ -86,7 +88,7 @@
 		<div class="btn btn-common log-btn mt-3" id="filediv">
 		사업자등록파일첨부
 		<input type="file" id="file" name="file" onchange="loadImg(this,1);" required>
-		</div>
+		</div> 
 		<!-- 우선 주석처리 -->
 		<!-- <img id ="titleImg" width="380" height="100" style="margin-bottom:13px;"> -->
 		

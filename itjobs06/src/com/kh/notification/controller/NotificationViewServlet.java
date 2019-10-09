@@ -45,10 +45,12 @@ public class NotificationViewServlet extends HttpServlet {
 		Notification noti=new NotificationService().getNotification(noti_no);
 		request.setAttribute("noti", noti);
 		
-		if(m.getType().equals("1")) {
+		if(m==null) {
+			request.getRequestDispatcher("views/mypage/notice/get.jsp").forward(request, response);
+		}else if(m.getType().equals("1")) {
 			ArrayList<Resume> rlist=new ResumeService().getMyResumeList(m);
 			request.setAttribute("rlist", rlist);
-			request.getRequestDispatcher("views/notice/get.jsp").forward(request, response);
+			request.getRequestDispatcher("views/mypage/notice/get.jsp").forward(request, response);
 		}else if(m.getType().equals("2")) {
 			request.getRequestDispatcher("views/mypage/notice/get.jsp").forward(request, response);
 		}

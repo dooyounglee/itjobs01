@@ -25,7 +25,7 @@
 						<h2 class="head-title">Find the job that fits your life</h2>
 						<p style="font-size:50px">메인 페이지</p>
 						<div class="job-search-form">
-							<form action="main.se" method="get" autocomplete=off>
+							<form action="notificationList.se" method="get" autocomplete=off>
 								<div class="row">
 									<div class="col-lg-5 col-md-6 col-xs-12">
 										<div class="form-group">

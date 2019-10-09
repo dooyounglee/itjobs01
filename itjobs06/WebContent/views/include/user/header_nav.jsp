@@ -10,7 +10,6 @@
 		session.setAttribute("head", head);
 }
 %>
-
 <nav class="navbar navbar-expand-lg fixed-top scrolling-navbar">
 	<div class="container">
 		<div class="theme-header clearfix">
@@ -30,9 +29,15 @@
 			</div>
 			<div class="collapse navbar-collapse" id="main-navbar">
 				<ul class="navbar-nav mr-auto w-100 justify-content-end">
-					<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath() %>">
+					<%	if(mem!=null){ %>
+					<li class="nav-item"><a class="nav-link"> ${mem.nickname }님 안녕하세요.</a></li>
+					<%	} %>
+					<li class="aaa nav-item">
+						<div></div>
+						<a class="nav-link" href="<%=request.getContextPath() %>">
 							Home </a></li>
-					<li class="nav-item dropdown"><a
+					<li class="nav-item aaa dropdown">
+						<div></div><a
 						class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"
 						aria-haspopup="true" aria-expanded="false"> 게시판 </a>
 						<ul class="dropdown-menu">
@@ -46,20 +51,23 @@
 									Tables</a></li>
 							<li><a class="dropdown-item" href="contact.html">Contact</a></li>
 						</ul></li>
-					<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/notificationList.se">
+					<li class="nav-item aaa"><div></div>
+						<a class="nav-link" href="<%=request.getContextPath()%>/notificationList.se">
 							공고검색 </a></li>
-					<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/resumeList.se">
+					<li class="nav-item aaa"><div></div>
+						<a class="nav-link" href="<%=request.getContextPath()%>/resumeList.se">
 							인재검색 </a></li>
-					<li class="nav-item dropdown"><a
+					<%	if(mem!=null && mem.getType().equals("1")){ %>
+					<li class="nav-item dropdown aaa"><div></div>
+					<a
 						class="nav-link dropdown-toggle" href="<%=request.getContextPath()%>/list.re" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false"> 일반 마이페이지 </a>
+						aria-haspopup="true" aria-expanded="false"> 마이페이지 </a>
 						<ul class="dropdown-menu">
 							<li><a class="dropdown-item" href="<%=request.getContextPath()%>/myInfo.me">내 정보수정
 									</a></li>
 							<li><a class="dropdown-item" href="<%=request.getContextPath()%>/myApplyList.vo">지원리스트
 									</a></li>
 							<li><a class="dropdown-item" href="<%=request.getContextPath()%>/myCompanyList.like">관심기업
-							
 									</a></li>
 							<li><a class="dropdown-item active"
 								href="<%=request.getContextPath()%>/list.re">이력서관리</a></li>
@@ -68,9 +76,11 @@
 							<li><a class="dropdown-item" href="job-alerts.html">지원하기
 									</a></li>
 						</ul></li>
-					<li class="nav-item dropdown"><a
+					<%	}else if(mem!=null && mem.getType().equals("2")){ %>
+					<li class="nav-item dropdown aaa"><div></div>
+					<a
 						class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false"> 기업 마이페이지 </a>
+						aria-haspopup="true" aria-expanded="false"> 마이페이지 </a>
 						<ul class="dropdown-menu">
 							<li><a class="dropdown-item" href="<%=request.getContextPath()%>/myInfo.me">내 정보수정
 									</a></li>
@@ -80,23 +90,19 @@
 									</a></li>
 							<li><a class="dropdown-item" href="<%=request.getContextPath()%>/mylist.qu">나의문의
 									</a></li>
-						</ul></li>
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false">adsfs </a>
-						<ul class="dropdown-menu">
-							<li><a class="dropdown-item" href="#">sdfsdg
-									</a></li>
-							<li><a class="dropdown-item" href="blog-left-sidebar.html">Blog
-									- Left Sidebar</a></li>
-							<li><a class="dropdown-item" href="blog-full-width.html">
-									Blog full width</a></li>
-							<li><a class="dropdown-item" href="single-post.html">Blog
-									Single Post</a></li>
-						</ul></li>
-					<li class="nav-item"><a class="nav-link" href="contact.html">
-							Contact </a></li>
-					<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/login.me">로그인</a></li>
+						</ul>
+					</li>
+					<%	}else{ %>
+					<li class="nav-item aaa"><div></div>
+					<a class="nav-link" href="<%=request.getContextPath()%>/login.me">마이페이지</a></li>
+					<%	} %>
+					<%	if(mem!=null){ %>
+					<li class="nav-item aaa"><div></div>
+					<a class="nav-link" href="<%=request.getContextPath()%>/logout.me">로그아웃</a></li>
+					<%	}else{ %>
+					<li class="nav-item aaa"><div></div>
+					<a class="nav-link" href="<%=request.getContextPath()%>/login.me">로그인</a></li>
+					<%	} %>
 					<li class="button-group"><a href="<%=request.getContextPath()%>/views/admin/main.jsp"
 						class="button btn btn-common">관리자</a></li>
 				</ul>
@@ -105,3 +111,4 @@
 	</div>
 	<div class="mobile-menu" data-logo="assets/img/logo-mobile.png"></div>
 </nav>
+

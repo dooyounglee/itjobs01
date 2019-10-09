@@ -32,6 +32,9 @@
 <!-- import jobx -->
 <%@ include file="/views/include/user/style.jsp" %>
 <!-- End of import from jobx -->
+	<!-- import of jobx -->
+	<%@ include file="/views/include/user/js.jsp" %>
+	<!-- End of import of jobx -->
 
 </head>
 <body>
@@ -122,7 +125,7 @@
 			<%	ArrayList<Notification> list=(ArrayList<Notification>)request.getAttribute("list");
 				for(Notification n:list){%>
 				<div class="col-lg-6 col-md-12 col-xs-12">
-					<a class="job-listings-featured" href="#">
+					<a class="job-listings-featured" href="<%=request.getContextPath()%>/get.no?noti_no=<%=n.getNoti_no()%>">
 						<div class="row">
 							<div class="col-lg-6 col-md-6 col-xs-12">
 								<div class="job-company-logo">
@@ -148,18 +151,19 @@
 				</div>
 			<%	} %>
 			<%	PageInfo pi=(PageInfo)request.getAttribute("pi");
+				System.out.println(pi);
 				int currentPage=pi.getCurrentPage();
 				String sText=(String)request.getAttribute("sText");%>
 				<ul class="pagination" style="display:block;">
 					<%	if(currentPage>1){ %>
-					<li class="active"><a href="<%=request.getContextPath()%>/notificationList.se?currentPage=<%=currentPage-1%>" class="btn-prev"><i
+					<li class="active"><a href="<%=request.getContextPath()%>/notificationList.se?sText=<%=sText %>&currentPage=<%=currentPage-1%>" class="btn-prev"><i
 							class="lni-angle-left"></i> prev</a></li>
 					<%	} %>
 					<%	for(int i=pi.getStartPage();i<=pi.getEndPage();i++){ %>
 					<li><a href="<%=request.getContextPath()%>/notificationList.se?sText=<%=sText %>&currentPage=<%=i%>"><%=i %></a></li>
 					<%	} %>
 					<%	if(currentPage<pi.getMaxPage()){ %>
-					<li class="active"><a href="<%=request.getContextPath()%>/notificationList.se?currentPage=<%=currentPage+1%> class="btn-next">Next <i
+					<li class="active"><a href="<%=request.getContextPath()%>/notificationList.se?sText=<%=sText %>&currentPage=<%=currentPage+1%> class="btn-next">Next <i
 							class="lni-angle-right"></i></a></li>
 					<%	} %>
 				</ul>
@@ -185,8 +189,9 @@
 <input id="sTextA" name="sText" autocomplete=off><button onclick="searchA()">검색</button>
 <button>상세검색</button>
 <hr>
-
+	<%	if(mem!=null){ %>
 	<input type="hidden" value="<%=mem.getM_no() %>" id="memNo">
+	<%	} %>
 
 <div id="resultArea">
 	<div id="result">

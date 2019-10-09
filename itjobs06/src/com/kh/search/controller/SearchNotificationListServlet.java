@@ -38,24 +38,31 @@ public class SearchNotificationListServlet extends HttpServlet {
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		request.setCharacterEncoding("utf-8");
 		
-		int listCount =  new NotificationService().getListCount();
+		int listCount = 0;
 		int currentPage=1;
 		if(request.getParameter("currentPage")!=null) {
 			currentPage=Integer.parseInt(request.getParameter("currentPage"));
 		}
-		PageInfo pi = new PageInfo(currentPage, listCount, 10, 10);
+		PageInfo pi = null;
 		
 		String sKey=request.getParameter("sKey");
 		String sText=request.getParameter("sText");
 		
 		ArrayList<Notification> list=null;
-		if(sKey!=null && sText!=null) {
+		if(sKey!=null && (sText!=null && !sText.equals("null"))) {
 			//list=new SearchService().searchNotificationList(sKey,sText);
-		}else if(sText!=null){
+		}else if(sText!=null && !sText.equals("null")){
+			System.out.println(sText);
+			listCount=new NotificationService().getSuperSearchNotificationListCount(sText);
+			System.out.println(listCount);
+			pi = new PageInfo(currentPage, listCount, 10, 10);
 			list=new SearchService().getSuperSearchNotification(sText,pi);
 		}else {
+			listCount=new NotificationService().getListCount();
+			pi = new PageInfo(currentPage, listCount, 10, 10);
 			list=new NotificationService().getAllNotificationList(pi);
 		}
+		
 		request.setAttribute("list", list);
 		request.setAttribute("pi", pi);
 		request.setAttribute("sText", sText);

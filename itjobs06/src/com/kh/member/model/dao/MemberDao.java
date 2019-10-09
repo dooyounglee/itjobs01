@@ -29,7 +29,7 @@ public class MemberDao {
 		}
 		
 	}
-	public Member login(Connection conn, Member m) {
+	public Member login(Connection conn,  Member m) {
 		Member mem=new Member();
 		PreparedStatement ps=null;
 		ResultSet rs=null;

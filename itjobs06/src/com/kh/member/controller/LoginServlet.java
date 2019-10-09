@@ -36,6 +36,8 @@ public class LoginServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		ArrayList<Member> list=new AdminMemberService().getAllMemberList();
+		
+		
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("views/login/login.jsp").forward(request, response);
 	
@@ -52,23 +54,47 @@ public class LoginServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("utf-8");
 		
-		String type=request.getParameter("type");
+//		String type=request.getParameter("type");
 		String email=request.getParameter("email");
 		String pw=request.getParameter("pw");
 		
 		Member m=new Member();
 		m.setEmail(email);
 		m.setPw(pw);
-		m.setType(type);
+//		m.setType(type);
 		
 		Member mem=new MemberService().login(m);
-		if(mem!=null) {
+		System.out.println(mem);
+		
+		if(mem.getEmail()!=null && mem.getPw() != null && mem.getStatus().equals("Y")) {
 			HttpSession session = request.getSession();
 			session.setAttribute("mem", mem);
 			//request.getRequestDispatcher("views/mypage/myInfo.jsp").forward(request, response);			
 			response.sendRedirect(request.getContextPath());
-		}else {
+			System.out.println("로그인성공");
+			
 		}
+
+	
+		if(mem.getEmail()!=null && mem.getPw() != null && mem.getType().equals("1") && mem.getStatus().equals("N")) {
+			request.setAttribute("error", "활동정지 회원 입니다. 문의사항은 고객센터에 전화주세요.");
+			request.getRequestDispatcher("views/login/login.jsp").forward(request, response);
+			System.out.println("활동정지");
+		}
+	
+		if(mem.getEmail()!=null && mem.getPw() != null && mem.getType().equals("2") && mem.getStatus().equals("N")) {
+			request.setAttribute("error", "아직 승인절차 진행중 입니다(1~2일정도 소요됩니다).");
+			request.getRequestDispatcher("views/login/login.jsp").forward(request, response);
+			System.out.println("승인절차");
+		}
+	
+		if(mem.getEmail()==null && mem.getPw() == null) {
+			request.setAttribute("error", "이메일과 비밀번호를 다시 확인해 주세요.");
+			request.getRequestDispatcher("views/login/login.jsp").forward(request, response);
+			System.out.println("이메일,비밀번호오류");
+		}
+	
+	
 	}
 
 }

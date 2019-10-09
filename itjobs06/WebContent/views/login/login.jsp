@@ -1,7 +1,8 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- <% String alert = (String)session.getAttribute("alert"); %>
+ <% String alert = (String)session.getAttribute("alert"); 
+ 	String error = (String)request.getAttribute("error"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,6 +14,7 @@
 	<script>
 	$(function(){
 		var msg = "<%=alert%>";
+		var error = "<%=error%>";
 		
 		if(msg != "null"){
 			alert(msg);
@@ -20,6 +22,14 @@
 			// 세션에 담긴 메세지 한번만 출력하고 삭제하기
 			<% session.removeAttribute("alert"); %>
 		}
+		
+		if(error != "null"){
+			alert(error);
+			
+			<% session.removeAttribute("error");%>
+		}
+		
+		
 		
 	});
 	</script>
@@ -100,10 +110,7 @@ Login
 			alert("비밀번호를 입력해주세요");
 			$("#pw").focus();
 			return false;
-		}
-	
-	
-	
+		}		
 	}
 
 

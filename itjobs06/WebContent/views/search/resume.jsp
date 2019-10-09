@@ -118,7 +118,7 @@
 				<div class="col-lg-6 col-md-6 col-xs-12">
 					<div class="manager-resumes-item">
 						<div class="manager-content">
-							<a href="detail.re"><img class="resume-thumb"
+							<a href="detail.re?resume_no=<%=n.getResume_no()%>"><img class="resume-thumb"
 								src="resources/jobx/assets/img/jobs/avatar-1.png" alt=""></a>
 							<div class="manager-info">
 								<div class="manager-name">

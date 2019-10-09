@@ -35,10 +35,16 @@
 		<div class="container">
 			
 			<!-- row -->
+			<%	if(mem!=null && mem.getM_no()==re.getM_no()){ %>
 			<div class="row">
+			<%	}else{ %>
+			<div class="row justify-content-center">
+			<%	} %>
 				
 				<!-- left -->
+				<%	if(mem!=null && mem.getM_no()==re.getM_no()){ %>
 				<%@ include file="/views/include/user/mypage_menu.jsp" %>
+				<%	} %>
 				<!-- End of left -->
 				
 				<!-- right  -->

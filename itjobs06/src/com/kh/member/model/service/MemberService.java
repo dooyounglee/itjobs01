@@ -208,7 +208,21 @@ public class MemberService {
 		
 	}
 	
-	
+	public int EmailCheck(String email) {
+		
+		Connection conn = getConnection();
+		
+		int result = new MemberDao().EmailCheck(conn,email);
+		
+		close(conn);
+		
+//		System.out.println(result);
+		
+		return result;
+		
+		
+		
+	}
 	
 	
 	

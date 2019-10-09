@@ -42,7 +42,7 @@
 <h3>
 Login
 </h3>
-<form class="login-form" action="<%=contextPath%>/login.me" method=post autocomplete=off>
+<form class="login-form" action="<%=contextPath%>/login.me" method=post autocomplete=off onsubmit="return validate();">
 <div class="form-group">
 <div class="input-icon">
 <i class="lni-user"></i>
@@ -55,7 +55,7 @@ Login
 <div class="form-group">
 <div class="input-icon">
 <i class="lni-lock"></i>
-<input type="password" class="form-control" name="pw" placeholder="Password">
+<input type="password" id="pw"class="form-control" name="pw" placeholder="Password">
 </div>
 </div>
 <div class="form-group form-check">
@@ -73,6 +73,29 @@ Login
  </div>
 </section>
 
+<script>
+	function validate(){
+		 $('input[name=email]').focus(); 
+		
+		 if($("#sender-email").val().trim().length==0){
+			alert("이메일을 입력해주세요");
+			$("#sender-email").focus();
+			return false;
+		}
+	
+		if($("#pw").val().trim().length==0){
+			alert("비밀번호를 입력해주세요");
+			$("#pw").focus();
+			return false;
+		}
+	
+	
+	
+	}
+
+
+
+</script>
 
 
 <%@ include file="/views/include/user/footer.jsp" %>

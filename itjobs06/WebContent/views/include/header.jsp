@@ -89,7 +89,7 @@ ${msg }
     <div></div>
 </div>
 <br clear="both">
-<!-- <script>
+<script>
     function lease(){
         var bar=aaa_div.eq(n)
         aaa.eq(n).css({'background':'#ff4e0b','color':'white'})
@@ -125,7 +125,7 @@ ${msg }
     var aaa_div=$('.aaa').children('div');
 
     lease()
-</script> -->
+</script> 
 <hr>
 </body>
 </html>

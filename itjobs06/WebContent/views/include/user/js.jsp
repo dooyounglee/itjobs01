@@ -10,3 +10,4 @@
 <script src="resources/jobx/assets/js/form-validator.min.js"></script>
 <script src="resources/jobx/assets/js/contact-form-script.js"></script>
 <script src="resources/jobx/assets/js/main.js"></script>
+<!-- <script src="resources/util/menubar_animation.js"></script> -->

@@ -12,7 +12,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+.max-small {
+    width: auto; height: auto;
+    max-width: 500px;
+    max-height: 500px;
+}
 
+</style>
 </head>
 <body>
 	
@@ -64,37 +71,80 @@
 	<!--  <section class="job-detail section"> -->
       <div class="job-alerts-item">
         <div class="row justify-content-between">
-          <div class="col-lg-8 col-md-12 col-xs-12">
-            <div class="content-area">  
-              <p style="font-size:20px;"> &nbsp;<%=b.getHead() %></p>
-              <h4>상세보기</h4>
-              <p></p>
-              <p></p>
-              <h5>What You Need for this Position</h5>
-              <ul>
-                <li>- Objective-C</li>
-                <li>- iOS SDK</li>
-                <li>- XCode</li>
-                <li>- Cocoa</li>
-                <li>- ClojureScript</li>
-              </ul>
-              <h5>How To Apply</h5>
-              <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris.</p>
-              <a href="#" class="btn btn-common">Apply job</a> 
+          <div class="col-lg-12 col-md-12 col-xs-12">
+           <%if(mem != null && mem.getM_no() == b.getM_no()) { %>
+          <span class="btn btn-common float-right" onclick="deleteBtn()" >삭제</span>&nbsp;&nbsp;&nbsp;
+          <span class="btn btn-common float-right" onclick="location.href='<%=contextPath %>/updateForm.bo?bId=<%=b.getB_no()%>';" >수정</span>&nbsp;&nbsp;
+          <%}else{ %>
+        	<span class="btn btn-common float-right" onclick="deBtn();">신고</span>
+       		<%}%>
+            <div class="content-area" style="border-bottom:1px solid lightgray">  
+       
+              <span style="font-size:20px;"> &nbsp;<%=b.getHead() %></span><br><br>
+              
+              <p style="font-size:30px; color:black; font-weight:border;"><%=b.getTitle() %></p><br>
+              <span style="font-size:18px; color:black;"> &nbsp;<%=b.getNickname() %></span>  &nbsp; &nbsp;
+              <span style="font-size:18px; color:black;"><%=b.getUpdate_date() %></span>&nbsp; &nbsp;&nbsp; &nbsp;
+              <span id="img1">조회수</span>
+              <span style="font-size:18px; color:black;" id="img1_1"><%=b.getCount() %></span>&nbsp; &nbsp;
+              <span id="img2">댓글수</span>
+			  <span style="font-size:18px; color:black;" id="img2_1"><%=b.getReply_count() %></span> &nbsp; &nbsp;
+			  <span id="img2">다운로드수</span>
+			  <span style="font-size:18px; color:black;" id="img2_1"><%= b.getDown_count() %></span>
+			  </div>
+			  
+			  
+			  <br><br>
+			  <div style="border-bottom:1px solid lightgray">
+             <p style="font-size:20px;color:black;"><%=b.getContents() %></p><br><br>
+
+            <%if(b.getEditFile() != null){ %>
+            	<img class='max-small' id="img" src="<%= contextPath %>/resources/fileupload_board/<%= b.getEditFile()%>">
+            <br><br>
+            <a href="<%= contextPath %>/download.bo?bId=<%=b.getB_no()%>" class="btn btn-common">다운로드</a> <br><br>
+            <% } %>
             </div>
+            <br>
+            <%if(b.getTime() != null){ %>
+				<div style="font-size:15px;color:black;">모집기간 - <%=b.getTime() %></div><br>
+			<%} %>              
+           
+			<%if(prev.getTitle() != null){ %>
+		    	<div>이전글 - <%=prev.getTitle() %> </div>
+		    <%}else { %>
+		    	<div>이전글 - 이전 글이 없습니다.</div>
+		    <%} %>
+		    <%if(next.getTitle() != null){ %>
+		    	<div>다음글 - <%=next.getTitle() %> </div>
+		    <%}else { %>
+		    	<div>다음글 - 다음 글이 없습니다.</div>
+		    <%} %>
+            
           </div>
-      
         </div>
       </div>
    <!--  </section> -->
-
-
+   
+	<br>
+	<div class="job-alerts-item">
+		<div id="replyWrite" style="height:50px;">
+			<span><textarea rows="2" cols="70" id="replyContent" style="resize: none; overflow:auto;"></textarea></span>&nbsp;&nbsp;
+			<span><a class="btn btn-common" id="addReply" >댓글등록</a></span>      		
+   		</div>
+      	
+      		<div id="replySelect">
+      			
+      		
+     		</div>
+	
 	</div>
+	</div>
+	
 	</div>
 	</div>
 	</div>
 	
-	
+		
 	
 	
 
@@ -145,7 +195,13 @@
 				}, 4000);
 				
 				$("#addReply").click(function(){
-					
+					var reply = $("#replyContent");
+					if(reply.val().trim().length == 0){
+						alert("댓글 내용을 입력해주세요.");
+						reply.focus();
+						return false;
+					} 
+				
 					<%if(mem != null) { %>
 					var content = $("#replyContent").val();
 					var bId = <%= b.getB_no()%>;
@@ -165,7 +221,6 @@
 						},error:function(){
 							console.log("서버 통신 실패");
 						}
-	
 					});
 					
 				<% }else{%>
@@ -187,19 +242,19 @@
 					replySelect.html("");
 					
 					$.each(list,function(index, value){
-						var div = $("<div>");
-						var writer = $("<div>").text(value.nickname).css("width","100px");
+						var div = $("<div>").css("border-bottom", "1px dashed lightgray ");
+						var writer = $("<span>").text(value.nickname).css("width","100px");
+					 	var str1 = $("<span>").text(" | ");
 						var content = $("<div>").text(value.contents).css("width","400px");
-						var date = $("<div>").text(value.update_date).css("width","200px");
+						var date = $("<span>").text(value.update_date).css("width","200px");
 						
 						div.append(writer);
-						div.append(content);
+					 	div.append(str1);
 						div.append(date);
+						div.append(content);
 						
 						replySelect.append(div);
 					});
-					
-					
 					
 				},error:function(){
 					console.log("서버와의 통신실패!!");

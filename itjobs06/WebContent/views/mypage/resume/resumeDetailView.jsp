@@ -35,10 +35,16 @@
 		<div class="container">
 			
 			<!-- row -->
+			<%	if(mem!=null && mem.getM_no()==re.getM_no()){ %>
 			<div class="row">
+			<%	}else{ %>
+			<div class="row justify-content-center">
+			<%	} %>
 				
 				<!-- left -->
+				<%	if(mem!=null && mem.getM_no()==re.getM_no()){ %>
 				<%@ include file="/views/include/user/mypage_menu.jsp" %>
+				<%	} %>
 				<!-- End of left -->
 				
 				<!-- right  -->
@@ -110,6 +116,14 @@
 						<div class="education item">
 							<h3>자소서</h3>
 							<p><%= re.getCover_letter()%></p>
+						</div>
+						<div class="other item">
+							<h3>공개비공개</h3>
+							<p><%= re.getOpen()%></p>
+							<h3>이력서 제목</h3>
+							<p><%= re.getTitle()%></p>
+							<h3>희망연봉</h3>
+							<p><%= re.getHope_salary()%></p>
 						</div>
 					</div>
 				</div>

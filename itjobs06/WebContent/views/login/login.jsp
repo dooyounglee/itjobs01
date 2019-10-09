@@ -48,6 +48,9 @@ Login
 <i class="lni-user"></i>
 <input type="text" id="sender-email" class="form-control" name="email" placeholder="Username">
 </div>
+<script>
+	$('#sender-email').focus()
+</script>
 </div>
 <div class="form-group">
 <div class="input-icon">
@@ -70,29 +73,6 @@ Login
  </div>
 </section>
 
-<script>
-	function validate(){
-		 $('input[name=email]').focus(); 
-		
-		 if($("#sender-email").val().trim().length==0){
-			alert("이메일을 입력해주세요");
-			$("#sender-email").focus();
-			return false;
-		}
-	
-		if($("#pw").val().trim().length==0){
-			alert("비밀번호를 입력해주세요");
-			$("#pw").focus();
-			return false;
-		}
-	
-	
-	
-	}
-
-
-
-</script>
 
 
 <%@ include file="/views/include/user/footer.jsp" %>
@@ -129,6 +109,7 @@ pw:<input name=pw><button>로그인</button><div id="naver_id_login" ></div>
 <a href="<%=contextPath%>/views/login/join_law.jsp">회원가입</a>
 <a href="<%=contextPath%>/views/login/find.jsp">비번찾기</a>
 <script>
+//$('input[name=email]').focus();
 </script>
 
 <table border=1>

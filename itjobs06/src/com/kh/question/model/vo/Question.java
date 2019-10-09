@@ -4,24 +4,28 @@ public class Question {
 
 	private int q_no;
 	private int m_no;
+	private String title;
 	private String contents;
 	private String answer;
 	private String enroll_date;
 	private String end_date;
 	private String status;
+	
 	public Question() {
 		super();
 	}
-	public Question(int q_no, int m_no, String contents, String answer, String enroll_date, String end_date,
+	public Question(int q_no, int m_no,String title, String contents, String answer, String enroll_date, String end_date,
 			String status) {
 		super();
 		this.q_no = q_no;
 		this.m_no = m_no;
+		this.title=title;
 		this.contents = contents;
 		this.answer = answer;
 		this.enroll_date = enroll_date;
 		this.end_date = end_date;
 		this.status = status;
+		
 	}
 	public int getQ_no() {
 		return q_no;
@@ -34,6 +38,13 @@ public class Question {
 	}
 	public void setM_no(int m_no) {
 		this.m_no = m_no;
+	}
+	
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
 	}
 	public String getContents() {
 		return contents;
@@ -65,10 +76,14 @@ public class Question {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+
+	
 	@Override
 	public String toString() {
 		return "Question [q_no=" + q_no + ", m_no=" + m_no + ", contents=" + contents + ", answer=" + answer
-				+ ", enroll_date=" + enroll_date + ", end_date=" + end_date + ", status=" + status + "]";
+				+ ", enroll_date=" + enroll_date + ", end_date=" + end_date + ", status=" + status + ", title=" + title
+				+ "]";
 	}
+	
 	
 }

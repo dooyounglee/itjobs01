@@ -424,5 +424,26 @@ public class NotificationDao {
 		}
 		return result;
 	}
+
+	public int getSuperSearchNotificationListCount(Connection conn, String sText) {
+		int result=0;
+		PreparedStatement ps=null;
+		ResultSet rs=null;
+		
+		String sql=prop.getProperty("getSuperSearchNotification");
+		try {
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, sText);
+			rs=ps.executeQuery();
+			if(rs.next()) {
+				result=rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(ps);
+		}
+		return result;
+	}
 	
 }

@@ -73,18 +73,18 @@
 	<h3 class="alerts-title" style="display:inline-block"><%=head%></h3> <span class="full-time" onclick="writeBtn();" style="float:right">글쓰기</span>
 	<div class="alerts-list">
 	<div class="row">
-	<div class="col-md-3">
+	<div class="col-md-4">
 	<p>제목</p>
 	</div>
-	<div class="col-md-3">
+	<div class="col-md-4">
 	<% if(head.equals("스터디") || head.equals("프로젝트")){ %>
 	<p>모집기간</p>
 	<%} %>
 	</div>
-	<div class="col-md-3">
+	<div class="col-md-2">
 	<p>등록일자</p>
 	</div>
-	<div class="col-md-3">
+	<div class="col-md-2">
 	 <p>조회수</p>
 	</div>
 	</div>
@@ -99,7 +99,7 @@
 		<%}%>
 	<div class="alerts-content">
 	<div class="row">
-	<div class="col-md-3">
+	<div class="col-md-4">
 	<span class="full-time"><%= "No." + i.getB_no() %></span>
 	<br>
 	<% if(list.isEmpty()) { %>
@@ -112,15 +112,15 @@
 				<% } %>	
 	<% } %>	
 	</div>
-	<div class="col-md-3">
+	<div class="col-md-4">
 	<% if(head.equals("스터디") || head.equals("프로젝트")){ %>
 	<p><%= i.getTime() %></p>
 	<% } %>
 	</div>
-	<div class="col-md-3">
+	<div class="col-md-2">
 	<p><span class="location"><%= i.getUpdate_date() %></span></p>
 	</div>
-	<div class="col-md-3">
+	<div class="col-md-2">
 	<p><%= i.getCount() %></p>
 	</div>
 	</div>

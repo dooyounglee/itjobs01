@@ -77,7 +77,7 @@
 
       <!-- Nav Item - Tables -->
       <li class="nav-item">
-        <a class="nav-link" href="list.qu.ad">
+        <a class="nav-link" href="<%=request.getContextPath()%>/list.qu.ad">
           <i class="fas fa-fw fa-table"></i>
           <span>문의관리</span></a>
       </li>

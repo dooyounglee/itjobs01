@@ -43,7 +43,7 @@
 </select>
 <input>
 <button>검색</button>
-<table class="table table-hover table-sm">
+<table class="table table-hover table-sm" style="width:500px; float:right;">
 	<tr>
 		<th><input type=checkbox></th>
 		<th>내용</th>
@@ -56,7 +56,7 @@
 		for(Question q:list){%>
 	<tr>
 		<td><input type=checkbox></td>
-		<td><a href="get.qu.ad?qno=<%=q.getQ_no()%>"><%=q.getContents() %></a></td>
+		<td><button onclick="return showQ(<%=q.getQ_no()%>)"><%=q.getContents() %></button></td>
 		<td><%=q.getM_no() %></td>
 		<td><%=q.getEnroll_date() %></td>
 		<td><%=q.getEnd_date() %></td>
@@ -64,8 +64,15 @@
 	</tr>
 	<%	} %>
 </table>
-	
+	<div id="showAreaa" style="float:right;width:200px;">77878</div>
 	</div>
+	<script>
+		function showQ(q_no){
+			$('#showAreaa').load("<%=request.getContextPath()%>/get.qu.ad?qno="+q_no+" div.inner-box.my-resume")
+			return false;
+		}
+	
+	</script>
     <!-- End of Page Content -->
     
 	</div>

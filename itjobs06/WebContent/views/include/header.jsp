@@ -125,7 +125,7 @@ ${msg }
     var aaa_div=$('.aaa').children('div');
 
     lease()
-</script>
+</script> 
 <hr>
 </body>
 </html>

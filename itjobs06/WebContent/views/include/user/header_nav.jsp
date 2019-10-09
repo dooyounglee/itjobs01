@@ -24,8 +24,8 @@
 					<span class="lni-menu"></span>
 				</button>
 				<a href="<%=request.getContextPath() %>" class="navbar-brand"><img
-					src="resources/images/logo1.png"
-					style="width: 160px; height: 32px;" alt=""></a>
+					src="resources/images/logo12.png"
+					style="width: 80px; height: 32px;" alt=""></a>
 			</div>
 			<div class="collapse navbar-collapse" id="main-navbar">
 				<ul class="navbar-nav mr-auto w-100 justify-content-end">

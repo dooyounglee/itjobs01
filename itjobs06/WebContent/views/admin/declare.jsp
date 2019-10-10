@@ -2,6 +2,14 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<% 
+	String Dhead = (String)request.getAttribute("Dhead");
+	switch(Dhead){
+	case "noti" : Dhead="공고"; break;
+	case "board" : Dhead="게시글"; break;
+	case "reply" : Dhead="댓글"; break;
+	}
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,7 +30,7 @@
 <%@ include file="/views/include/style.jsp" %>
 </head>
 <body id="page-top">
-	<!-- Page Wrapper -->
+ 	<!-- Page Wrapper -->
 	<div id="wrapper">
 	
 	<!-- Side bar -->
@@ -44,7 +52,7 @@
     
     	<!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h1 mb-0 text-gray-800">게시글 신고 관리</h1>
+            <h1 class="h1 mb-0 text-gray-800"><%= Dhead %>신고 관리</h1>
           </div>
           
 
@@ -66,6 +74,7 @@
 				</tr>
 			</thead>
 			<tbody>
+				<%if(Dhead=="게시글"){%>
 				<%	ArrayList<Declare> blist=(ArrayList<Declare>)request.getAttribute("blist");
 					for(Declare m:blist){%>
 				<tr>
@@ -80,7 +89,40 @@
 					<td><button onclick="view(<%=m.getB_no()%>)">보기</button></td>
 					<td><button>처리완료</button></td>
 				</tr>
-				<%	} %>
+					<%} %>
+				<%	}else if(Dhead=="공고") {%>
+				<%	ArrayList<Declare> nlist=(ArrayList<Declare>)request.getAttribute("nlist");
+					for(Declare m:nlist){%>
+				<tr>
+					<td><input type=checkbox data-mno="<%=m.getM_no()%>"></td>
+					<td><%=m.getDe_no() %></td>
+					<td><%=m.getB_no() %></td>
+					<td><%=m.getM_no() %></td>
+					<td><%=m.getContents() %></td>
+					<td><%=m.getEnroll_date() %></td>
+					<td><%=m.getComp_date() %></td>
+					<td><%=m.getStatus() %></td>
+					<td><button onclick="view(<%=m.getB_no()%>)">보기</button></td>
+					<td><button>처리완료</button></td>
+				</tr>
+					<%} %>
+				<%	}else if(Dhead=="댓글") {%>
+				<%	ArrayList<Declare> rlist=(ArrayList<Declare>)request.getAttribute("rlist");
+					for(Declare m:rlist){%>
+				<tr>
+					<td><input type=checkbox data-mno="<%=m.getM_no()%>"></td>
+					<td><%=m.getDe_no() %></td>
+					<td><%=m.getB_no() %></td>
+					<td><%=m.getM_no() %></td>
+					<td><%=m.getContents() %></td>
+					<td><%=m.getEnroll_date() %></td>
+					<td><%=m.getComp_date() %></td>
+					<td><%=m.getStatus() %></td>
+					<td><button onclick="view(<%=m.getB_no()%>)">보기</button></td>
+					<td><button>처리완료</button></td>
+				</tr>
+				<%} %>
+				<%} %>
 			</tbody>
 		</table>
 	</div>
@@ -88,12 +130,14 @@
 		내용이 보여질꺼야
 	</div>
 </div>
+
 <script>
 	function view(b_no){
-		$('#viewArea').load("<%=request.getContextPath()%>/get.bo.ad?bno="+b_no+" #content")
+		 $('#viewArea').load("<%=request.getContextPath()%>/get.bo.ad?bno="+b_no);
+
 	}
 </script>
-<hr>
+<%-- <hr>
 <h1>게시판 신고</h1>
 <table border=1>
 	<thead>
@@ -162,7 +206,7 @@
 		</tr>
 		<%	} %>
 	</tbody>
-</table>
+</table> --%>
 
 	</div>
     <!-- End of Page Content -->

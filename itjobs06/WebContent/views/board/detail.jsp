@@ -128,8 +128,8 @@
 	<br>
 	<div class="job-alerts-item">
 		<div id="replyWrite" style="height:50px;">
-			<span><textarea rows="2" cols="70" id="replyContent" style="resize: none; overflow:auto;"></textarea></span>&nbsp;&nbsp;
-			<span><a class="btn btn-common" id="addReply" >댓글등록</a></span>      		
+			<span><textarea rows="2" cols="60" id="replyContent" style="resize: none; overflow:auto;"></textarea></span>
+			<span><a class="btn btn-common" id="addReply">등록</a></span>      		
    		</div>
       	
       		<div id="replySelect">

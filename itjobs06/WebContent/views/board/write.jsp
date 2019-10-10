@@ -70,7 +70,7 @@
 		<option value="스터디">스터디</option>
 		<option value="프로젝트">프로젝트</option>
 		<%if(mem.getM_no() == 1){ %>
-		<option value="공지">공지</option>
+		<option value="공지사항">공지</option>
 		<option value="서식">서식</option>
 		<%} %>
 	</select>
@@ -141,7 +141,7 @@
 			$("#writehead").change(function(){
 				var select = $("select[name=writehead]").val();
 
-				if(select == "자유" || select == "공지"){
+				if(select == "자유" || select == "공지사항"){
 					$(".time").hide();
 					
 				}else{

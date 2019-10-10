@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<!-- import of jobx -->
+<%-- <%@ include file="/views/include/user/js.jsp" %> --%>
+<!-- End of import of jobx -->
+	
+    
 	<!-- Sidebar -->
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
@@ -68,9 +74,9 @@
         </a>
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="list.de">공고 신고</a>
-            <a class="collapse-item" href="list.de">게시글 신고</a>
-            <a class="collapse-item" href="list.de">댓글 신고</a>
+            <a class="collapse-item" href="list.de?head=noti">공고 신고</a>
+            <a class="collapse-item" href="list.de?head=board">게시글 신고</a>
+            <a class="collapse-item" href="list.de?head=reply">댓글 신고</a>
           </div>
         </div>
       </li>
@@ -181,3 +187,16 @@
 
     </ul>
     <!-- End of Sidebar -->
+    
+    
+  <!--   <script>
+    
+    $(function(){
+		$(".collapse-item").click(function(){
+			$(this).attr("color:blue");
+		});
+		
+	});
+   	
+    </script> -->
+    

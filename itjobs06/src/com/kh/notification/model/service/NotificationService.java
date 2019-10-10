@@ -1,12 +1,15 @@
 package com.kh.notification.model.service;
 
-import static com.kh.common.JDBCTemplate.*;
+import static com.kh.common.JDBCTemplate.close;
+import static com.kh.common.JDBCTemplate.commit;
 import static com.kh.common.JDBCTemplate.getConnection;
+import static com.kh.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.ArrayList;
 
 import com.kh.board.model.vo.PageInfo;
+import com.kh.like.model.vo.Like;
 import com.kh.member.model.vo.Member;
 import com.kh.notification.model.dao.NotificationDao;
 import com.kh.notification.model.vo.Notification;
@@ -133,6 +136,9 @@ public class NotificationService {
 		close(conn);
 		return result;
 	}
+	
+
+	
 	
 	
 }

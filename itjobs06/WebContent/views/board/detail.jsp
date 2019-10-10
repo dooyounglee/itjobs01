@@ -76,7 +76,7 @@
           <span class="btn btn-common float-right" onclick="deleteBtn()" >삭제</span>&nbsp;&nbsp;&nbsp;
           <span class="btn btn-common float-right" onclick="location.href='<%=contextPath %>/updateForm.bo?bId=<%=b.getB_no()%>';" >수정</span>&nbsp;&nbsp;
           <%}else{ %>
-        	<span class="btn btn-common float-right" onclick="deBtn();">신고</span>
+        	<span class="btn btn-common float-right" id="deBtn">신고</span>
        		<%}%>
             <div class="content-area" style="border-bottom:1px solid lightgray">  
        
@@ -147,34 +147,29 @@
 		
 	
 	
-
+		<script>
 	
-	<!-- footer -->
-		<%@ include file="/views/include/user/footer.jsp" %>
-	<!-- End of footer -->
+		$(function(){
+			$("#deBtn").click(function(){
+				<%	if(mem!=null){ %>
+				window.open("<%=contextPath %>/insertForm.de?bId=<%=b.getB_no()%>&title=<%=b.getTitle()%>&boardNick=<%=b.getNickname()%>&head=<%=b.getHead()%>", "ITJOBS_게시글 신고", "width=500, height=600, toolbar=no, menubar=no, scrollbars=no, resizable=no"); 
+				<%} else{%>
+				alert("로그인해주세요");
+				<%}%>
+			});
+		});
+		
+		
+<%-- 	function deBtn(){
+		
+		if(<%= mem %> != null){
+			window.open("<%=contextPath %>/insertForm.de?bId=<%=b.getB_no()%>&title=<%=b.getTitle()%>&boardNick=<%=b.getNickname()%>&head=<%=b.getHead()%>", "ITJOBS_게시글 신고", "width=500, height=600, toolbar=no, menubar=no, scrollbars=no, resizable=no");
+		}else{
+			alert("로그인해주세요");
+		} 
+	}  --%>
+	 
 	
-	<!-- back to top button -->
-		<a href="#" class="back-to-top"> <i class="lni-arrow-up"></i></a>
-	<!-- End of back to top button -->
-	
-	<!-- 뭔지 모르겠어 -->
-	<div id="preloader">
-		<div class="loader" id="loader-1"></div>
-	</div>
-	<!-- 뭔지 모르겠어 -->
-	
-	
-	
-	<script>
-	$('.inner-header').children('h3').text(page_header_title)
-	</script>
-	
-	
-	
-	
-
-
-	<script>
 		function deleteBtn(){
 
 			if(confirm("정말 삭제하시겠습니까?") == true){
@@ -263,6 +258,36 @@
 		}
 		
 	</script>
+	
+	
+	
+
+	
+	<!-- footer -->
+		<%@ include file="/views/include/user/footer.jsp" %>
+	<!-- End of footer -->
+	
+	<!-- back to top button -->
+		<a href="#" class="back-to-top"> <i class="lni-arrow-up"></i></a>
+	<!-- End of back to top button -->
+	
+	<!-- 뭔지 모르겠어 -->
+	<div id="preloader">
+		<div class="loader" id="loader-1"></div>
+	</div>
+	<!-- 뭔지 모르겠어 -->
+	
+	
+	
+	<script>
+	$('.inner-header').children('h3').text(page_header_title)
+	</script>
+	
+	
+	
+	
+
+
 
 </body>
 </html>

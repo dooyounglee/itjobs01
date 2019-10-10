@@ -23,7 +23,7 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item">
-        <a class="nav-link" href="<%=request.getContextPath()%>/views/admin/main.jsp">
+        <a class="nav-link" href="<%=request.getContextPath()%>/main.ad">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>관리자 메인</span></a>
       </li>

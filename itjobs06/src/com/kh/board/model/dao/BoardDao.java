@@ -16,6 +16,8 @@ import com.kh.board.model.vo.Board;
 import com.kh.board.model.vo.PageInfo;
 import com.kh.reply.model.vo.Reply;
 
+import oracle.jdbc.proxy.annotation.Pre;
+
 public class BoardDao {
 	
 	private Properties prop = new Properties();
@@ -608,4 +610,26 @@ public class BoardDao {
 		}
 		return result;
 	}
-}
+	
+	public int deleteReply(Connection conn, int re_no){
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("deleteReply");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, re_no);
+			
+			result=pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+		
+	}

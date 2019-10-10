@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	String message = (String)request.getAttribute("msg");
+ %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -19,9 +22,14 @@
 	<!-- page-header -->
 	<%@ include file="/views/include/user/page_header.jsp" %>
 	<script>
-		var page_header_title='공고 관리'
+		var page_header_title='에러'
 	</script>
 	<!-- end of page-header -->
+
+	<h1><%= message %></h1>
+	
+	<div onclick="location.href='<%= request.getContextPath() %>';" class="btn btn-common">홈으로 돌아가기</div>
+
 
 
 

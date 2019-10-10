@@ -86,7 +86,7 @@
 	
 	<% for(int i=0; i<list.size(); i++) { %>
 	<div class="col-lg-3 col-md-6 col-xs-12 f-category">
-	<a href="browse-jobs.html">
+	<a href="<%= contextPath %>/detail.bo?head=form&bId=<%= list.get(i).getB_no() %>">
 	<div class="icon bg-color-1">
 	<img onclick="imgBtn();" src="<%=contextPath%>/resources/fileupload_board/<%= list.get(i).getEditFile() %>"  width="70px" height="50px"></i>
 	</div>
@@ -115,7 +115,7 @@
 	
 	
 	
-	<script>
+<%-- 	<script>
 		$(function(){
 			$("img").mouseenter(function(){
 				$(this).css({"cursor":"pointer"})
@@ -127,7 +127,7 @@
 			});
 		});
 	
-	</script>
+	</script> --%>
 	
 	
 	

@@ -105,7 +105,7 @@
             <% } %>
             </div>
             <br>
-            <%if(b.getTime() != null){ %>
+            <%if(b.getTime() != null && b.getTime() == "~"){ %>
 				<div style="font-size:15px;color:black;">모집기간 - <%=b.getTime() %></div><br>
 			<%} %>              
            

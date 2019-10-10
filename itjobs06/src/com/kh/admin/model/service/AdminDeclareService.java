@@ -31,4 +31,46 @@ public class AdminDeclareService {
 		return list;
 	}
 
+	public Declare getBoard(int de_no) {
+		Connection conn = getConnection();
+		Declare de=new AdminDeclareDao().getBoard(conn,de_no);
+		close(conn);
+		return de;
+	}
+
+	public Declare getNotification(int de_no) {
+		Connection conn = getConnection();
+		Declare de=new AdminDeclareDao().getNotification(conn,de_no);
+		close(conn);
+		return de;
+	}
+
+	public Declare getReply(int de_no) {
+		Connection conn = getConnection();
+		Declare de=new AdminDeclareDao().getReply(conn,de_no);
+		close(conn);
+		return de;
+	}
+
+	public int completeBoard(int de_no) {
+		Connection conn = getConnection();
+		int result=new AdminDeclareDao().completeBoard(conn,de_no);
+		close(conn);
+		return result;
+	}
+
+	public int completeNotification(int de_no) {
+		Connection conn = getConnection();
+		int result=new AdminDeclareDao().completeNotification(conn,de_no);
+		close(conn);
+		return result;
+	}
+
+	public int completeReply(int de_no) {
+		Connection conn = getConnection();
+		int result=new AdminDeclareDao().completeReply(conn,de_no);
+		close(conn);
+		return result;
+	}
+
 }

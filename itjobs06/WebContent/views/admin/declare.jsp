@@ -63,7 +63,9 @@
 				<tr>
 					<th><input type=checkbox></th>
 					<th>no</th>
-					<th>b</th>
+					<th>noti_no</th>
+					<th>b_no</th>
+					<th>r_no</th>
 					<th>m</th>
 					<th>content</th>
 					<th>등록일</th>
@@ -80,14 +82,16 @@
 				<tr>
 					<td><input type=checkbox data-mno="<%=m.getM_no()%>"></td>
 					<td><%=m.getDe_no() %></td>
+					<td><%=m.getNoti_no() %></td>
 					<td><%=m.getB_no() %></td>
+					<td><%=m.getRe_no() %></td>
 					<td><%=m.getM_no() %></td>
 					<td><%=m.getContents() %></td>
 					<td><%=m.getEnroll_date() %></td>
 					<td><%=m.getComp_date() %></td>
 					<td><%=m.getStatus() %></td>
-					<td><button onclick="view(<%=m.getB_no()%>)">보기</button></td>
-					<td><button>처리완료</button></td>
+					<td><button onclick="view(<%=m.getDe_no()%>)">보기</button></td>
+					<td><button onclick="complete(<%=m.getDe_no()%>)">처리완료</button></td>
 				</tr>
 					<%} %>
 				<%	}else if(Dhead=="공고") {%>
@@ -96,14 +100,16 @@
 				<tr>
 					<td><input type=checkbox data-mno="<%=m.getM_no()%>"></td>
 					<td><%=m.getDe_no() %></td>
+					<td><%=m.getNoti_no() %></td>
 					<td><%=m.getB_no() %></td>
+					<td><%=m.getRe_no() %></td>
 					<td><%=m.getM_no() %></td>
 					<td><%=m.getContents() %></td>
 					<td><%=m.getEnroll_date() %></td>
 					<td><%=m.getComp_date() %></td>
 					<td><%=m.getStatus() %></td>
-					<td><button onclick="view(<%=m.getB_no()%>)">보기</button></td>
-					<td><button>처리완료</button></td>
+					<td><button onclick="view(<%=m.getDe_no()%>)">보기</button></td>
+					<td><button onclick="complete(<%=m.getDe_no()%>)">처리완료</button></td>
 				</tr>
 					<%} %>
 				<%	}else if(Dhead=="댓글") {%>
@@ -112,14 +118,16 @@
 				<tr>
 					<td><input type=checkbox data-mno="<%=m.getM_no()%>"></td>
 					<td><%=m.getDe_no() %></td>
+					<td><%=m.getNoti_no() %></td>
 					<td><%=m.getB_no() %></td>
+					<td><%=m.getRe_no() %></td>
 					<td><%=m.getM_no() %></td>
 					<td><%=m.getContents() %></td>
 					<td><%=m.getEnroll_date() %></td>
 					<td><%=m.getComp_date() %></td>
 					<td><%=m.getStatus() %></td>
-					<td><button onclick="view(<%=m.getB_no()%>)">보기</button></td>
-					<td><button>처리완료</button></td>
+					<td><button onclick="view(<%=m.getDe_no()%>)">보기</button></td>
+					<td><button onclick="complete(<%=m.getDe_no()%>)">처리완료</button></td>
 				</tr>
 				<%} %>
 				<%} %>
@@ -132,10 +140,33 @@
 </div>
 
 <script>
-	function view(b_no){
-		 $('#viewArea').load("<%=request.getContextPath()%>/get.bo.ad?bno="+b_no);
-
+	<%if(Dhead=="게시글"){%>
+	function view(de_no){
+		 $('#viewArea').load("<%=request.getContextPath()%>/get.de.bo?de_no="+de_no+" div#detail");
 	}
+	<%}else if(Dhead=="공고"){%>
+	function view(de_no){
+		 $('#viewArea').load("<%=request.getContextPath()%>/get.de.no?de_no="+de_no+" div#detail");
+	}	 
+	<%}else if(Dhead=="댓글"){%>
+	function view(de_no){
+		 $('#viewArea').load("<%=request.getContextPath()%>/get.de.re?de_no="+de_no+" div#detail");
+	}
+	<%}%>
+	
+	<%if(Dhead=="게시글"){%>
+	function complete(de_no){
+		location.href="<%=request.getContextPath()%>/complete.de.bo?de_no="+de_no
+	}
+	<%}else if(Dhead=="공고"){%>
+	function complete(de_no){
+		location.href="<%=request.getContextPath()%>/complete.de.no?de_no="+de_no
+	}	 
+	<%}else if(Dhead=="댓글"){%>
+	function complete(de_no){
+		location.href="<%=request.getContextPath()%>/complete.de.re?de_no="+de_no
+	}
+	<%}%>
 </script>
 <%-- <hr>
 <h1>게시판 신고</h1>

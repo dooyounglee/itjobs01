@@ -50,7 +50,9 @@
 				<!-- right  -->
 				<div class="col-lg-8 col-md-12 col-xs-12">
 					<div class="inner-box my-resume">
+					<%	if(mem!=null && mem.getM_no()==re.getM_no()){ %>
 					<button onclick="location.href='<%=request.getContextPath()%>/update.re?resume_no=<%=re.getResume_no()%>'">수정하기</button>
+					<%	} %>
 						<div class="author-resume">
 							<div class="thumb">
 								<img src="<%=request.getContextPath() %>/resources/fileupload_resumeImg/<%=re.getPhoto() %>" alt="">

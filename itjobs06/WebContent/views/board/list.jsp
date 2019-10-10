@@ -61,7 +61,7 @@
 		case "free" : head="자유"; break;
 		case "study" : head="스터디"; break;
 		case "project" : head="프로젝트"; break;
-		case "qna" : head="공지사항"; break;
+		case "qu" : head="공지사항"; break;
 		case "form" : head="서식"; break;
 	}
 	%>

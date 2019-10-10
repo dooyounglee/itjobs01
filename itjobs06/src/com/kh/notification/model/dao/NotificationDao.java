@@ -12,10 +12,10 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import com.kh.board.model.vo.PageInfo;
+import com.kh.like.model.vo.Like;
 import com.kh.member.model.dao.MemberDao;
 import com.kh.member.model.vo.Member;
 import com.kh.notification.model.vo.Notification;
-import com.sun.corba.se.spi.orbutil.fsm.Guard.Result;
 
 public class NotificationDao {
 
@@ -444,6 +444,7 @@ public class NotificationDao {
 			close(ps);
 		}
 		return result;
-	}
+		}
 	
+
 }

@@ -33,7 +33,7 @@ public class AdminDeclareListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		
+		String Dhead = request.getParameter("head");
 		
 		ArrayList<Declare> blist=new AdminDeclareService().getBoardList();
 		ArrayList<Declare> rlist=new AdminDeclareService().getReplyList();
@@ -42,6 +42,7 @@ public class AdminDeclareListServlet extends HttpServlet {
 		request.setAttribute("blist", blist);
 		request.setAttribute("rlist", rlist);
 		request.setAttribute("nlist", nlist);
+		request.setAttribute("Dhead", Dhead);
 		
 		request.getRequestDispatcher("views/admin/declare.jsp").forward(request, response);
 	}

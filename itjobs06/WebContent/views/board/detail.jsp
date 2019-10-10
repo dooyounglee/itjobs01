@@ -245,9 +245,10 @@
 						var content = $("<div>").text(value.contents).css("width","400px");
 						var date = $("<span>").text(value.update_date).css("width","200px");
 						
-						if(<%=mem.getM_no()%> == value.m_no){
+						<%-- if(<%=mem.getM_no()%> == value.m_no){ --%>
+						<%	if(mem!=null){ %>
 						var deleteRe= $("<span>").text("삭제");
-						}			
+						<%}%>			
 					
 						
 						div.append(a);

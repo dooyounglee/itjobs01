@@ -42,7 +42,12 @@
 	<header id="home" class="hero-area">
 	<%@ include file="/views/include/user/header_nav.jsp" %>
 	</header>
-
+	
+	<%	if(mem!=null){ %>
+	<input type="hidden" value="<%=mem.getM_no() %>" id="memNo">
+	<%	} %>
+	
+	
 	<!-- page-header -->
 	<div class="page-header">
 		<div class="container">
@@ -142,7 +147,8 @@
 							</div>
 							<div class="col-lg-6 col-md-6 col-xs-12 text-right">
 								<div class="tag-type">
-									<sapn class="heart-icon"> <i class="lni-heart"></i> </sapn>
+									<input type="hidden" value="<%=n.getNoti_no()%>" class="no_no">
+									<sapn class="heart-icon"> <img src="./resources/img/like-before.png" class="likeimg"> </sapn>
 									<span class="full-time">~<%=n.getEnd_date().split(" ")[0] %></span>
 								</div>
 							</div>
@@ -220,6 +226,8 @@
 <!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
 
 <script>
+	
+	
 	function search(){
 		return false;
 		var sKey=$('#sKey').val();
@@ -237,12 +245,11 @@
 	}
 
 	// 좋아요 ajax
-	$(function(){
-	
+	 $(function(){
+		
 		var memNo = $("#memNo").val();
 		
-		
-		$(".likeimg").click(function(){
+		var likeNo = $(".likeimg").click(function (){
 			
 			var noNo =	$(this).parent().prev().val()
 			
@@ -258,7 +265,7 @@
 						console.log(result); */
 						
 						if(result==0){
-						likeimg.attr('src','./resources/img/like-after.png');							
+						likeimg.attr('src','./resources/img/like-after1.png');							
 						}else{
 						likeimg.attr('src','./resources/img/like-before.png');		
 						}
@@ -271,10 +278,31 @@
 					}
 			
 				}); 
+			})
 		})
-	})
 		
-
+		function likeMem(){
+		
+			$.ajax({
+				url:"likeMem.no",	
+				data:{},
+				type:"get",
+				success:function(result){
+				
+					
+					
+				},error:function(){
+					
+					
+					
+				}
+			
+			});
+			
+		
+		
+		
+		}
 	
 	
 	

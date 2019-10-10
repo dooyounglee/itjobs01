@@ -8,9 +8,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import com.kh.board.model.service.BoardService;
 import com.kh.board.model.vo.PageInfo;
+import com.kh.like.model.vo.Like;
+import com.kh.member.model.vo.Member;
 import com.kh.notification.model.service.NotificationService;
 import com.kh.notification.model.vo.Notification;
 import com.kh.search.model.service.SearchService;
@@ -62,6 +64,17 @@ public class SearchNotificationListServlet extends HttpServlet {
 			pi = new PageInfo(currentPage, listCount, 10, 10);
 			list=new NotificationService().getAllNotificationList(pi);
 		}
+		
+//		HttpSession session = request.getSession();
+//		Member mem = (Member) session.getAttribute("mem");
+//		
+//		System.out.println(mem);
+//		
+//		if(mem != null) {
+//			Like likeMem = new NotificationService().NoLikeMem(mem);
+//		}
+//		
+		
 		
 		request.setAttribute("list", list);
 		request.setAttribute("pi", pi);

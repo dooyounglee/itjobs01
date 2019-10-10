@@ -543,8 +543,7 @@ public class BoardDao {
 								rset.getInt("count"),
 								rset.getString("editfile"),
 								rset.getString("path"),
-								rset.getInt("down_count"),
-								rset.getInt("reply_count"));	
+								rset.getInt("down_count"));	
 			}
 			
 			

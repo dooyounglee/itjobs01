@@ -14,6 +14,9 @@
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+<style>
+/* #test{width:20px;} */
+</style>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
@@ -39,51 +42,79 @@
 	</script>
 	<!-- end of page-header -->
 	
-	<div class="thumbnailArea">
-			
-			<% for(int i=0; i<list.size(); i++) { %>
-				<div class="thumb-list" align="center">
-					<input type="hidden" value="<%= list.get(i).getB_no() %>" id="bId">
-					<div>
-						<img onclick="imgBtn();" src="<%=contextPath%>/resources/fileupload_board/<%= list.get(i).getEditFile() %>"  width="200px" height="150px">
-					</div>	
-					<p>
-						 <%= list.get(i).getTitle() %>	<br>
-						조회수 : <%= list.get(i).getCount() %>
-					</p>
-				</div>
-			<% } %>
-		</div>
+	
+	
+	<div id="content">
+	<div class="container">
+	<div class="row">
+	<div class="col-lg-4 col-md-12 col-xs-12">
+	<div class="right-sideabr">
+	<h4>게시판</h4>
+	<ul class="list-item">
+	<li><a href="<%=contextPath%>/list.bo?head=main">전체보기</a></li>
+	<li><a href="<%=contextPath%>/list.bo?head=free">자유</a></li>
+	<li><a href="<%=contextPath%>/list.bo?head=study">스터디</a></li>
+	<li><a href="<%=contextPath%>/list.bo?head=project">프로젝트</a></li>
+	<li><a href="<%=contextPath%>/list.bo?head=qu">공지사항</a></li>
+	<li><a href="<%=contextPath%>/listForm.bo?head=form">서식</a></li>
+	</ul>
+	
+	</div>
+	</div>
+	
+	<% 
+	switch(head) {
+		case "main" : head="전체보기"; break;
+		case "free" : head="자유"; break;
+		case "study" : head="스터디"; break;
+		case "project" : head="프로젝트"; break;
+		case "qna" : head="공지사항"; break;
+		case "form" : head="서식"; break;
+	}
+	%>
+	
+	<div class="col-lg-8 col-md-12 col-xs-12">
+	
+	
+	<div class="job-alerts-item">
+	<h3 class="alerts-title" style="display:inline-block"><%=head%></h3>
+	
+
+	<section class="category section bg-white">
+	<div class="container">
+	<div class="row">
+	
+	<% for(int i=0; i<list.size(); i++) { %>
+	<div class="col-lg-3 col-md-6 col-xs-12 f-category">
+	<a href="browse-jobs.html">
+	<div class="icon bg-color-1">
+	<img onclick="imgBtn();" src="<%=contextPath%>/resources/fileupload_board/<%= list.get(i).getEditFile() %>"  width="70px" height="50px"></i>
+	</div>
+	<h3> <%= list.get(i).getTitle() %></h3>
+	<p>조회수 : <%= list.get(i).getCount() %><br>
+		다운로드수 : <%=list.get(i).getDown_count() %></p>
+	</a>
+	</div>
+	<!-- <div style='width:70px;'></div> -->
+	<% } %>
+
+	
+
+	</div>
+	</div>
+	</section>
+
+	</div>
+	</div>
+	
+	</div>
+	</div>
 	</div>
 
-		<br><br>
-		<!-- 페이징 바  -->
-		<div id=pageArea>
-		<button onclick="location.href='<%=contextPath%>/listForm.bo?head=<%=head%>&currentPage=1';"><<</button>
-		
-		<% if(pi.getCurrentPage() == 1) {%>
-			<button disabled><</button>
-		<%}else{ %>
-			<button onclick="location.href='<%=contextPath%>/listForm.bo?head=<%=head%>&currentPage=<%=pi.getCurrentPage()-1%>';"><</button>
-		<%} %>
-		
-		<%	for(int i=pi.getStartPage(); i<=pi.getEndPage(); i++){%>
-		
-				<%if(i == pi.getCurrentPage()){%>
-					<button disabled><%= i %></button>
-				<%}else{ %>
-					<button onclick="location.href='<%=contextPath%>/listForm.bo?head=<%=head%>&currentPage=<%=i%>';"><%=i %></button>
-				<%} %>
-		<%	} %>
-		
-		<% if(pi.getCurrentPage() == pi.getMaxPage()){ %>
-			<button disabled>></button>
-		<%}else{ %>
-			<button onclick="location.href='<%=contextPath%>/listForm.bo?head=<%=head%>&currentPage=<%=pi.getCurrentPage()+1%>';">></button>
-		<%} %>
-		<button onclick="location.href='<%=contextPath %>/listForm.bo?head=<%=head%>&currentPage=<%=pi.getMaxPage() %>';">>></button>
-		</div>
-
+	
+	
+	
+	
 	<script>
 		$(function(){
 			$("img").mouseenter(function(){

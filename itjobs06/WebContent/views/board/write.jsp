@@ -69,8 +69,10 @@
 		<option value="자유">자유</option>
 		<option value="스터디">스터디</option>
 		<option value="프로젝트">프로젝트</option>
+		<%if(mem.getM_no() == 1){ %>
 		<option value="공지">공지</option>
 		<option value="서식">서식</option>
+		<%} %>
 	</select>
 	</label>
 	</div>

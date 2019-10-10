@@ -19,6 +19,8 @@ public class Volunteer {
 	//Member
 	private String nickname;	//기업명
 	
+	private int sum;//총지원자수
+	
 	public Volunteer() {
 		super();
 	}
@@ -90,6 +92,12 @@ public class Volunteer {
 	}
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
+	}
+	public int getSum() {
+		return sum;
+	}
+	public void setSum(int sum) {
+		this.sum = sum;
 	}
 	@Override
 	public String toString() {

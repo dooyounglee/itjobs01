@@ -1,6 +1,7 @@
-package com.kh.volunteer.controller;
+package com.kh.resume.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,19 +9,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.kh.volunteer.model.service.VolunteerService;
+import com.kh.volunteer.model.vo.Volunteer;
 
 /**
- * Servlet implementation class VolunteerApplyServlet
+ * Servlet implementation class ResumeAjaxGetAvgServlet
  */
-@WebServlet("/apply.vo")
-public class VolunteerApplyServlet extends HttpServlet {
+@WebServlet("/getAvg.re.ajax")
+public class ResumeAjaxGetAvgServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public VolunteerApplyServlet() {
+    public ResumeAjaxGetAvgServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,16 +36,13 @@ public class VolunteerApplyServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		int noti_no=Integer.parseInt(request.getParameter("noti_no"));
-		int resume_no=Integer.parseInt(request.getParameter("resume_no"));
 		
-		int result=new VolunteerService().apply(noti_no,resume_no);
-		if(result>0) {
-			request.getRequestDispatcher("views/mypage/resume/resumeListView.jsp").forward(request, response);
-		}else {
-			
-		}
+		ArrayList<Volunteer> list=new VolunteerService().getList(noti_no);
 		
-		//모달창에서 post로 noti_no,resume_no도 받아서 넘어오자
+		response.setContentType("application/json; charset=UTF-8");
+		Gson gson = new GsonBuilder().setDateFormat("yy-MM-dd HH:mm:ss").create();
+		
+		gson.toJson(list,response.getWriter());
 	}
 
 	/**

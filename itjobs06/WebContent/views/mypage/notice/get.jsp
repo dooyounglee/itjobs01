@@ -130,12 +130,13 @@
 								ArrayList<Resume> rlist=(ArrayList<Resume>)request.getAttribute("rlist"); %>
 							<form action="apply.vo" method="post">
 								<input type=hidden name="noti_no" value="<%=noti.getNoti_no() %>">
-								<select name="resume_no">
+								<select name="resume_no" id="resume_no" onchange="test(this)">
 									<% for(Resume r:rlist){%>
 									<option value="<%=r.getResume_no()%>"><%=r.getTitle() %></option>
 									<%	} %>
 								</select>
 								<a href="#" onclick="apply(<%=noti.getNoti_no() %>)" class="btn btn-common">지원하기</a>
+								<div id="info"></div>
 							</form>
 						<%	} %>
 					</div>
@@ -143,6 +144,67 @@
 			</div>
 		</div>
 	</section>
+	<script>
+		var noti_no=<%=noti.getNoti_no()%>;
+		var noti_lan="<%=noti.getP_language()%>";
+		
+		function score(resume_lan,noti_lan){
+			var arr_re=resume_lan.split(",");
+			var arr_noti=noti_lan.split(",");
+
+			var score=0;
+			for(i=0;i<arr_re.length;i++){
+				for(j=0;j<arr_noti.length;j++){
+					if(arr_re[i]==arr_noti[j]){
+						score++;
+						break;
+					}
+				}
+			}
+			return score;			
+		}
+		
+		function test(val){
+			var resume_no=val.value;
+
+			//내점수
+			$.ajax({
+				url:'get.re.ajax',
+				type:'post',
+				data:{
+					resume_no:resume_no,
+				},
+				dataType:'json',
+				success:function(result){
+					//내점수
+					//result=resume객체
+
+					$('#info').html("내 점수는"+score(result.p_language,noti_lan))
+				},
+			})
+
+			//총지원자 평균
+			
+			$.ajax({
+				url:'getAvg.re.ajax',
+				type:'post',
+				data:{
+					noti_no:noti_no,
+				},
+				dataType:'json',
+				success:function(result){
+					var count=result[0].sum
+					var sum=0;
+					for(k=0;k<result.length;k++){
+						//alert(k+"/"+result[k].p_language+"/"+noti_lan)
+						sum+=score(result[k].p_language,noti_lan)
+						
+					}
+					$('#info').html($('#info').html()+"/지원자평균 "+(sum/count))
+				},
+			})
+		}
+	</script>
 
 
 	<section id="featured" class="section bg-gray pb-45">
@@ -240,7 +302,7 @@
 		location.href="list.vo?noti_no="+noti_no;
 	}
 	function apply(noti_no){
-		
+		location.href="apply.vo?noti_no="+noti_no+"&resume_no="+$('#resume_no').val()
 	}
 </script>
 

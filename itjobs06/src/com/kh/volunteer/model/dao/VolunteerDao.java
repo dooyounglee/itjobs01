@@ -36,14 +36,18 @@ private Properties prop = new Properties();
 		try {
 			ps=conn.prepareStatement(sql);
 			ps.setInt(1, noti_no);
+			ps.setInt(2, noti_no);
 			rs=ps.executeQuery();
 			while(rs.next()) {
-				list.add(new Volunteer(
-						rs.getInt(1),
-						rs.getInt(2),
-						rs.getInt(3),
-						rs.getDate(4)+" "+rs.getTime(4),
-						rs.getString(5)));
+				Volunteer v=new Volunteer(
+						rs.getInt("v_no"),
+						rs.getInt("noti_no"),
+						rs.getInt("resume_no"),
+						rs.getDate("v_Date")+" "+rs.getTime("v_Date"),
+						rs.getString("status"));
+				v.setP_language(rs.getString("p_language"));
+				v.setSum(rs.getInt("sum"));
+				list.add(v);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

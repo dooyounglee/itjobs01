@@ -75,17 +75,17 @@
 		<%	} %>
 	</table>
 	<div id=pageArea>
-      <%   PageInfo pi=(PageInfo)request.getAttribute("pi");%>
-      <button onclick="send(<%=pi.getCurrentPage()-1%>)"><</button>
-      <%   for(int i=pi.getStartPage();i<=pi.getEndPage();i++){
-            if(i==pi.getCurrentPage()){%>
-      <button onclick="send(<%=i%>)"><b><%=i %></b></button>
-      <%      }else{ %>
-      <button onclick="send(<%=i%>)"><%=i %></button>
-      <%      } %>
-      <%   } %>
-      <button onclick="send(<%=pi.getCurrentPage()+1%>)">></button>
-   </div>
+		<%	PageInfo pi=(PageInfo)request.getAttribute("pi");%>
+		<button onclick="send(<%=pi.getCurrentPage()-1%>)"><</button>
+		<%	for(int i=pi.getStartPage();i<=pi.getEndPage();i++){
+				if(i==pi.getCurrentPage()){%>
+		<button onclick="send(<%=i%>)"><b><%=i %></b></button>
+		<%		}else{ %>
+		<button onclick="send(<%=i%>)"><%=i %></button>
+		<%		} %>
+		<%	} %>
+		<button onclick="send(<%=pi.getCurrentPage()+1%>)">></button>
+	</div>
 </div>
 
 <script>

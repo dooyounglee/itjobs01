@@ -6,6 +6,7 @@
 	Board prev = (Board)request.getAttribute("prev");
 	Board next = (Board)request.getAttribute("next");
 	
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -238,17 +239,51 @@
 					
 					$.each(list,function(index, value){
 						var div = $("<div>").css("border-bottom", "1px dashed lightgray ");
+						var a = $("<input type='hidden'>").text(value.re_no).css("width","100px");
 						var writer = $("<span>").text(value.nickname).css("width","100px");
 					 	var str1 = $("<span>").text(" | ");
 						var content = $("<div>").text(value.contents).css("width","400px");
 						var date = $("<span>").text(value.update_date).css("width","200px");
 						
+						if(<%=mem.getM_no()%> == value.m_no){
+						var deleteRe= $("<span>").text("삭제");
+						}			
+					
+						
+						div.append(a);
 						div.append(writer);
 					 	div.append(str1);
 						div.append(date);
 						div.append(content);
+						div.append(deleteRe);
+				
 						
-						replySelect.append(div);
+						replySelect.append(div);	
+						
+						
+						deleteRe.click(function(){
+							var re_no = $(this).parent().children().eq(0).text();
+							
+							$.ajax({
+						        url: "brDelete.bo",
+						        type:"post",
+						        data: {re_no : re_no},
+						        success: function(result){
+						        	
+						            if (result=="success") {
+						                $("#div").remove();
+						                alert("삭제되었습니다.");
+						            } else{
+						                alert("삭제에실패하였습니다");
+						            }
+						        }
+						    })
+
+							console.log(re_no);		
+							console.log($(this).parent().children().eq(0).text());
+							
+						})
+						
 					});
 					
 				},error:function(){

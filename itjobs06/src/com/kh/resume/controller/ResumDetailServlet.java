@@ -36,13 +36,13 @@ public class ResumDetailServlet extends HttpServlet {
 		/*int mno = Integer.parseInt(request.getParameter("mno"));*/
 		//int mno = 1;
 		//여기서도 session에서 가져오는걸로.
-		HttpSession session = request.getSession();
-		Member mem=(Member)session.getAttribute("mem");
-		int mno=mem.getM_no();
+		//HttpSession session = request.getSession();
+		//Member mem=(Member)session.getAttribute("mem");
+		//int mno=mem.getM_no();
 		
 		int resume_no = Integer.parseInt(request.getParameter("resume_no"));
 		
-		Resume re= new ResumeService().selectResumDetail(mno,resume_no);
+		Resume re= new ResumeService().selectResumDetail(resume_no);
 		
 		System.out.println(re);//콘솔창에 찍혔겠네. 아..null
 		

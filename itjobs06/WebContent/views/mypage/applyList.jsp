@@ -64,11 +64,17 @@
 									<span class="btn-full-time"><%=v.getStatus() %></span>
 								</div>
 								<div class="col-lg-2 col-md-12 col-xs-12 text-right">
-									<span class="btn-apply" onclick="return del(0);">삭제</span>
+									<span class="btn-apply" onclick="return del(<%=v.getV_no()%>);">삭제</span>
 								</div>
 							</div>
 						</a>
 <%	} %>
+<script>
+	function del(v_no){
+		location.href="<%=request.getContextPath()%>/applyCancle.vo?v_no="+v_no
+		return false;
+	}
+</script>
 
 						<ul class="pagination">
 							<li class="active"><a href="#" class="btn btn-common"><i

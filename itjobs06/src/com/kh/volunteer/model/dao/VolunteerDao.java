@@ -36,14 +36,19 @@ private Properties prop = new Properties();
 		try {
 			ps=conn.prepareStatement(sql);
 			ps.setInt(1, noti_no);
+			ps.setInt(2, noti_no);
 			rs=ps.executeQuery();
 			while(rs.next()) {
-				list.add(new Volunteer(
-						rs.getInt(1),
-						rs.getInt(2),
-						rs.getInt(3),
-						rs.getDate(4)+" "+rs.getTime(4),
-						rs.getString(5)));
+				Volunteer v=new Volunteer(
+						rs.getInt("v_no"),
+						rs.getInt("noti_no"),
+						rs.getInt("resume_no"),
+						rs.getDate("v_Date")+" "+rs.getTime("v_Date"),
+						rs.getString("status"));
+				v.setP_language(rs.getString("p_language"));
+				v.setSum(rs.getInt("sum"));
+				list.add(v);
+				System.out.println(list);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -90,6 +95,21 @@ private Properties prop = new Properties();
 			ps=conn.prepareStatement(sql);
 			ps.setInt(1, noti_no);
 			ps.setInt(2, resume_no);
+			result=ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	public int applyCancle(Connection conn, int v_no) {
+		int result=0;
+		PreparedStatement ps=null;
+		
+		String sql=prop.getProperty("applyCancle");
+		try {
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, v_no);
 			result=ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -36,7 +36,7 @@ public class VolunteerApplyServlet extends HttpServlet {
 		
 		int result=new VolunteerService().apply(noti_no,resume_no);
 		if(result>0) {
-			request.getRequestDispatcher("views/mypage/resume/list.jsp").forward(request, response);
+			request.getRequestDispatcher("views/mypage/resume/resumeListView.jsp").forward(request, response);
 		}else {
 			
 		}

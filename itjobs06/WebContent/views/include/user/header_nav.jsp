@@ -10,6 +10,9 @@
 		session.setAttribute("head", head);
 }
 %>
+
+
+
 <nav class="navbar navbar-expand-lg fixed-top scrolling-navbar">
 	<div class="container">
 		<div class="theme-header clearfix">

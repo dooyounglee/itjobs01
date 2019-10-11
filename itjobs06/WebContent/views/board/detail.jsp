@@ -111,12 +111,12 @@
          <%} %>              
            
          <%if(prev.getTitle() != null){ %>
-             <div>이전글 - <%=prev.getTitle() %> </div>
+             <div id="prev">이전글 - <%=prev.getTitle() %> </div>
           <%}else { %>
              <div>이전글 - 이전 글이 없습니다.</div>
           <%} %>
           <%if(next.getTitle() != null){ %>
-             <div>다음글 - <%=next.getTitle() %> </div>
+             <div id="next">다음글 - <%=next.getTitle() %> </div>
           <%}else { %>
              <div>다음글 - 다음 글이 없습니다.</div>
           <%} %>
@@ -149,7 +149,32 @@
    
    
       <script>
-   
+   		 $(function(){
+   			$("#prev").mouseenter(function(){
+   				$(this).css({"cursor":"pointer"});
+   			});
+   			$("#prev").click(function(){
+   				<%if(mem != null){%>
+   				location.href="<%= contextPath %>/detail.bo?head=<%=head%>&m_no=<%=mem.getM_no()%>&bId=<%=prev.getB_no() %>";
+   				<%}else{%>
+   				location.href="<%= contextPath %>/detail.bo?head=<%=head%>&bId=<%=prev.getB_no() %>";
+   				<%}%>
+   			});
+   		});
+   		
+   		$(function(){
+   			$("#next").mouseenter(function(){
+   				$(this).css({"cursor":"pointer"});
+   			});
+   			$("#next").click(function(){
+   				<%if(mem != null){%>
+   				location.href="<%= contextPath %>/detail.bo?head=<%=head%>&m_no=<%=mem.getM_no()%>&bId=<%=next.getB_no() %>";
+   				<%}else{%>
+   				location.href="<%= contextPath %>/detail.bo?head=<%=head%>&bId=<%=next.getB_no() %>";
+   				<%}%>
+   			});
+   		}); 
+      
       $(function(){
          $("#deBtn").click(function(){
             <%   if(mem!=null){ %>
@@ -181,106 +206,6 @@
          }
       }
       
-
-<<<<<<< HEAD
-       $(function(){
-            // 화면 로딩 시 댓글 출력
-            selectRlist();
-            
-            setInterval(function(){
-               selectRlist();
-            }, 4000);
-            
-            $("#addReply").click(function(){
-               var reply = $("#replyContent");
-               if(reply.val().trim().length == 0){
-                  alert("댓글 내용을 입력해주세요.");
-                  reply.focus();
-                  return false;
-               } 
-            
-               <%if(mem != null) { %>
-               var content = $("#replyContent").val();
-               var bId = <%= b.getB_no()%>;
-               var m_no = <%= mem.getM_no()%>;
-               
-               $.ajax({
-                  url:"brinsert.bo",
-                  type:"post",
-                  data:{content:content, bId:bId, m_no:m_no},
-                  success:function(status){
-                     if(status == "success"){
-                        selectRlist();
-                        $("#replyContent").val("");
-                     }else{
-                        alert("댓글 작성 실패");
-                     }
-                  },error:function(){
-                     console.log("서버 통신 실패");
-                  }
-               });
-               
-            <% }else{%>
-            alert("로그인해야 댓글작성이 가능합니다.");
-            <%}%>
-            });
-       });
-       
-      function selectRlist(){
-         $.ajax({
-            url:"brlist.bo",
-            data:{bId:<%=b.getB_no() %>},
-            dataType:"json",
-            success:function(list){
-               console.log(list);
-               
-               var replySelect = $("#replySelect");
-               
-               replySelect.html("");
-               
-               $.each(list,function(index, value){
-                  var div = $("<div>").css("border-bottom", "1px dashed lightgray ");
-                  var a = $("<input type='hidden'>").text(value.re_no).css("width","100px");
-                  var writer = $("<span>").text(value.nickname).css("width","100px");
-                   var str1 = $("<span>").text(" | ");
-                  var content = $("<div>").text(value.contents).css("width","400px");
-                  var date = $("<span>").text(value.update_date).css("width","200px");
-                  
-                  <%-- if(<%=mem.getM_no()%> == value.m_no){ --%>
-                  <%   if(mem!=null){ %>
-                  var deleteRe= $("<span>").text("삭제");
-                  <%}%>         
-               
-                  
-                  div.append(a);
-                  div.append(writer);
-                   div.append(str1);
-                  div.append(date);
-                  div.append(content);
-                  div.append(deleteRe);
-            
-                  
-                  replySelect.append(div);   
-                  
-                  
-                  deleteRe.click(function(){
-                     var re_no = $(this).parent().children().eq(0).text();
-                     
-                     $.ajax({
-                          url: "brDelete.bo",
-                          type:"post",
-                          data: {re_no : re_no},
-                          success: function(result){
-                             
-                              if (result=="success") {
-                                  $("#div").remove();
-                                  alert("삭제되었습니다.");
-                              } else{
-                                  alert("삭제에실패하였습니다");
-                              }
-                          }
-                      })
-=======
 		 $(function(){
 				// 화면 로딩 시 댓글 출력
 				selectRlist();
@@ -378,7 +303,6 @@
 						            }
 						        }
 						    })
->>>>>>> branch 'dev' of https://github.com/dooyounglee/itjobs01
 
                      console.log(re_no);      
                      console.log($(this).parent().children().eq(0).text());
@@ -416,7 +340,7 @@
    
    
    <script>
-   $('.inner-header').children('h3').text(page_header_title)
+   $('.inner-header').children('h3').text(page_header_title);
    </script>
    
    

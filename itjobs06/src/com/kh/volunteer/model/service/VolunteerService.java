@@ -39,4 +39,16 @@ public class VolunteerService {
 		return result;
 	}
 
+	public int applyCancle(int v_no) {
+		Connection conn=getConnection();
+		int result=new VolunteerDao().applyCancle(conn,v_no);
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+
 }

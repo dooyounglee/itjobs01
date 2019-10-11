@@ -74,6 +74,14 @@
 								</div> -->
 							</div>
 						</div>
+						<div class="work-experence item">
+							<h3>언어</h3>
+							<%	String[] languages=re.getP_language().split(",");
+								
+								for(int i=0;i<languages.length;i++){%>
+							<h4>-<%= languages[i]%></h4>
+							<%	} %>
+						</div>
 						<div class="school_final item">
 							<h3>최종학력</h3>
 								<%	String[] schools=re.getSchool().split(",");

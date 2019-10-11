@@ -253,10 +253,9 @@ public class BoardDao {
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
-			
 				b.setTitle(rset.getString("title"));
+				b.setB_no(rset.getInt("b_no"));
 			}
-		
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -283,8 +282,8 @@ public class BoardDao {
 			
 			if(rset.next()) {
 				b.setTitle(rset.getString("title"));
+				b.setB_no(rset.getInt("b_no"));
 			}
-					
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -309,8 +308,8 @@ public class BoardDao {
 			
 			if(rset.next()) {
 				b.setTitle(rset.getString("title"));
+				b.setB_no(rset.getInt("b_no"));
 			}
-			System.out.println(rset.getString("title"));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -335,8 +334,8 @@ public class BoardDao {
 			
 			if(rset.next()) {
 				b.setTitle(rset.getString("title"));
+				b.setB_no(rset.getInt("b_no"));
 			}
-					
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {

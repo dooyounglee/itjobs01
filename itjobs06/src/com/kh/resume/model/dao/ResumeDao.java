@@ -201,7 +201,7 @@ public class ResumeDao {
 				rset = pstmt.executeQuery();
 				
 				if(rset.next()) {
-					listCount = rset.getInt(mno);
+					listCount = rset.getInt(1);
 				}
 				
 			} catch (SQLException e) {

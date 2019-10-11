@@ -155,7 +155,7 @@ pw:<input name=pw><button>로그인</button><div id="naver_id_login" ></div>
 //$('input[name=email]').focus();
 </script>
 
-<table border=1>
+<%-- <table border=1>
 	<tr>
 		<th>m_no</th>
 		<th>type</th>
@@ -181,7 +181,7 @@ pw:<input name=pw><button>로그인</button><div id="naver_id_login" ></div>
 		<td><%=m.getD_count() %></td>
 	</tr>
 <%	} %>
-</table>
+</table> --%>
 <%@ include file="/views/include/footer.jsp" %>
 
 <script type="text/javascript">

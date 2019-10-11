@@ -50,6 +50,9 @@ public class NotificationLikeServlet extends HttpServlet {
 			out.print(1);
 		}
 		
+		out.flush();
+		out.close();
+		
 		
 	}
 

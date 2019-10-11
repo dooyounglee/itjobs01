@@ -253,8 +253,8 @@ public class BoardDao {
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
-			
 				b.setTitle(rset.getString("title"));
+				b.setB_no(rset.getInt("b_no"));
 			}
 		
 		} catch (SQLException e) {
@@ -283,6 +283,7 @@ public class BoardDao {
 			
 			if(rset.next()) {
 				b.setTitle(rset.getString("title"));
+				b.setB_no(rset.getInt("b_no"));
 			}
 					
 		} catch (SQLException e) {
@@ -309,8 +310,9 @@ public class BoardDao {
 			
 			if(rset.next()) {
 				b.setTitle(rset.getString("title"));
+				b.setB_no(rset.getInt("b_no"));
 			}
-			System.out.println(rset.getString("title"));
+			System.out.println("디에오이전" + b.getB_no());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -335,8 +337,9 @@ public class BoardDao {
 			
 			if(rset.next()) {
 				b.setTitle(rset.getString("title"));
+				b.setB_no(rset.getInt("b_no"));
 			}
-					
+					System.out.println("디에오넥스트" + b.getB_no());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {

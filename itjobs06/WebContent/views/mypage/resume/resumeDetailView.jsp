@@ -51,8 +51,9 @@
 				<div class="col-lg-8 col-md-12 col-xs-12">
 					<div class="inner-box my-resume">
 					<%	if(mem!=null && mem.getM_no()==re.getM_no()){ %>
-					<button onclick="location.href='<%=request.getContextPath()%>/update.re?resume_no=<%=re.getResume_no()%>'">수정하기</button>
+					<button class="btn btn-common" onclick="location.href='<%=request.getContextPath()%>/update.re?resume_no=<%=re.getResume_no()%>'">수정하기</button>
 					<%	} %>
+						<hr>
 						<div class="author-resume">
 							<div class="thumb">
 								<img src="<%=request.getContextPath() %>/resources/fileupload_resumeImg/<%=re.getPhoto() %>" alt="">
@@ -63,8 +64,8 @@
 								<p>생년월일 : <%= re.getBirth_date()%></p>
 								<p>이메일 : <%= re.getEmail() %><br></p>
 								<p>
-									<span class="address"><i class="lni-map-marker"></i><%=re.getAddress() %></span>
-									<span><i class="ti-phone"></i><%=re.getPhone() %></span>
+									<span class="address"><i class="lni-map-marker"></i> <%=re.getAddress() %></span><br>
+									<span><i class="lni-phone"></i> <%=re.getPhone() %></span>
 								</p>
 								<!-- <div class="social-link">
 									<a href="#" class="Twitter"><i class="lni-twitter-filled"></i></a>
@@ -154,7 +155,7 @@
 	
 	
 <%-- <%@ include file="/views/include/header.jsp" %> --%>
-<h2 align="center">이력서 작성</h2>
+<%-- <h2 align="center">이력서 작성</h2>
 
 	<img src="resources/fileupload_resumeImg/<%=re.getPhoto()%>"><br>
 	제목 : <%= re.getTitle()%><br>
@@ -162,7 +163,7 @@
 	생년월일 : <%= re.getBirth_date()%><br>
 	폰 : <%= re.getPhone()%><br>
 	주소 : <%= re.getAddress() %><br>
-	이메일 : <%= re.getEmail() %><br>
+	이메일 : <%= re.getEmail() %><br> --%>
 <hr>
 <%-- 	<%	String[] schools=re.getSchool().split(",");
 		String[] departments=re.getDepartment().split(",");
@@ -203,10 +204,10 @@
 	<%-- 희망연봉 : <%= re.getHope_salary()%><br>
 	공개 : <%= re.getOpen()%><br>
 	언어 : <%= re.getP_language()%><br> --%>
-	자소서 : <%= re.getCover_letter()%><br>
+<%-- 	자소서 : <%= re.getCover_letter()%><br>
 
 <button onclick="location.href='<%=request.getContextPath()%>/update.re?resume_no=<%=re.getResume_no()%>'">수정하기</button>
-
+ --%>
 
 
 	<!-- footer -->

@@ -106,6 +106,20 @@
 				</div>
 				<div class="col-lg-8 col-md-12 col-xs-12">
 					<div class="content-area">
+						<h4><%=noti.getTitle() %></h4>
+						<%=noti.getOpen().equals("Y")?"공개":"비공개" %> - <span><i class="lni-calendar"></i><%=noti.getEnroll_date() %></span>
+						<h4>기업이름</h4>
+						<ul>
+						<%=noti.getNickname() %>
+						</ul>
+						<h4>마감일</h4>
+						<ul>
+						<%=noti.getEnd_date() %>
+						</ul>
+						<h4>연봉</h4>
+						<ul>
+						<%=noti.getSalary() %>
+						</ul>
 						<h4>필요언어</h4>
 						<ul>
 						<%	String[] arr_lan=noti.getP_language().split(",");
@@ -122,8 +136,11 @@
 						<%	if(mem!=null && mem.getM_no()==noti.getCo_no()){ %>
 						<a href="#" onclick="edit(<%=noti.getNoti_no() %>)" class="btn btn-common">수정</a>
 						<a href="#" onclick="del(<%=noti.getNoti_no() %>)" class="btn btn-common">삭제</a>
+<%-- 						<%	if(noti.getOpen().equals("N")){ %>
 						<a href="#" onclick="open_(<%=noti.getNoti_no() %>)" class="btn btn-common">공개</a>
+						<%	} else if(noti.getOpen().equals("Y")){ %>
 						<a href="#" onclick="openCancle(<%=noti.getNoti_no() %>)" class="btn btn-common">비공개</a>
+						<%	} %> --%>
 						<a href="#" onclick="location.href='<%=request.getContextPath() %>/myNotification.me'" class="btn btn-common">나의 공고목록</a>
 						<a href="#" onclick="showApplier(<%=noti.getNoti_no() %>)" class="btn btn-common">지원자 확인</a>
 						<%	}else if(mem!=null && mem.getType().equals("1")){

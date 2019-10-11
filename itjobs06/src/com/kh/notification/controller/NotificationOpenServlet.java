@@ -34,7 +34,7 @@ public class NotificationOpenServlet extends HttpServlet {
 		
 		int result=new NotificationService().openNotification(noti_no);
 		if(result>0) {
-			response.sendRedirect(request.getContextPath()+"/myNotification.me");
+			response.sendRedirect("get.no?noti_no="+noti_no);
 		}
 	}
 

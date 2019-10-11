@@ -67,7 +67,7 @@
 									<span class="btn-full-time">Full Time</span>
 								</div>
 								<div class="col-lg-3 col-md-12 col-xs-12 text-right">
-									<span class="btn-apply">공개</span>
+									<span class="btn-apply"><%=n.getOpen().equals("Y")?"공개":"비공개" %></span>
 								</div>
 							</div>
 						</a>

@@ -264,7 +264,7 @@
 							</div>
 							<div class="form-group">
 								<div class="row">
-									<div class="col-md-6">
+									<div class="col-md-3">
 										<label class="control-label">희망연봉</label>
 										<label class="styled-select">
 											<select name="hope_salary">
@@ -489,7 +489,7 @@
 
 <script>
 
-function setDisplay(){
+/* function setDisplay(){
     if($('input:radio[id=high]').is(':checked')){
         $('#highInfo').show();
         $('#collegeInfo').hide();
@@ -504,12 +504,12 @@ function setDisplay(){
    	 $('#collegeInfo').hide();
        $('#academyInfo').show();
     }
-}
+} */
 	
 
  
  
-/* 	function add_career(){
+ 	function add_career(){
 	/* 	 var form=$('#careerForm')
 		 var str=form.html();
 		 str=str.replace('</div>','<button onclick="del_career()">삭제</button></div>')
@@ -566,7 +566,7 @@ function setDisplay(){
 	}
 </script>
 
-<!-- footer -->
+	<!-- footer -->
 		<%@ include file="/views/include/user/footer.jsp" %>
 	<!-- End of footer -->
 	

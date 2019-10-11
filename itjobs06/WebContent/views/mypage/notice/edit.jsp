@@ -113,6 +113,17 @@
 									class="form-control" type="text" name="hope" value="<%=noti.getHope()%>"> <span
 									class="material-input"></span>
 							</div>
+							<%	String open=noti.getOpen();
+								String[] checked_open={"",""};
+								if(open.equals("Y")){
+									checked_open[0]="checked";
+								}else{
+									checked_open[1]="checked";
+								}%>
+							<div class="form-group">
+								<input type="radio" name="open" value="Y" <%=checked_open[0] %>>공개
+								<input type="radio" name="open" value="N" <%=checked_open[1] %>>비공개
+							</div>
 							<button id="submit" class="btn btn-common">Save Change</button>
 							<input type=hidden name="noti_no" value="<%=noti.getNoti_no()%>">
 						</form>

@@ -16,6 +16,8 @@ import com.kh.board.model.vo.Board;
 import com.kh.board.model.vo.PageInfo;
 import com.kh.reply.model.vo.Reply;
 
+import oracle.jdbc.proxy.annotation.Pre;
+
 public class BoardDao {
 	
 	private Properties prop = new Properties();
@@ -251,10 +253,9 @@ public class BoardDao {
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
-			
 				b.setTitle(rset.getString("title"));
+				b.setB_no(rset.getInt("b_no"));
 			}
-		
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -281,8 +282,8 @@ public class BoardDao {
 			
 			if(rset.next()) {
 				b.setTitle(rset.getString("title"));
+				b.setB_no(rset.getInt("b_no"));
 			}
-					
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -307,8 +308,8 @@ public class BoardDao {
 			
 			if(rset.next()) {
 				b.setTitle(rset.getString("title"));
+				b.setB_no(rset.getInt("b_no"));
 			}
-			System.out.println(rset.getString("title"));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -333,8 +334,8 @@ public class BoardDao {
 			
 			if(rset.next()) {
 				b.setTitle(rset.getString("title"));
+				b.setB_no(rset.getInt("b_no"));
 			}
-					
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -541,8 +542,7 @@ public class BoardDao {
 								rset.getInt("count"),
 								rset.getString("editfile"),
 								rset.getString("path"),
-								rset.getInt("down_count"),
-								rset.getInt("reply_count"));	
+								rset.getInt("down_count"));	
 			}
 			
 			
@@ -608,4 +608,26 @@ public class BoardDao {
 		}
 		return result;
 	}
-}
+	
+	public int deleteReply(Connection conn, int re_no){
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("deleteReply");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, re_no);
+			
+			result=pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+		
+	}

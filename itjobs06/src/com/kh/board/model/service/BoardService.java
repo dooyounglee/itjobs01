@@ -158,7 +158,6 @@ public class BoardService {
 		Connection conn = getConnection();
 		
 		Board prev = new BoardDao().prevMainBoard(conn, bId);
-		System.out.println("서비스로 왔다" + prev);
 		
 		close(conn);
 		return prev;
@@ -294,6 +293,22 @@ public class BoardService {
 		
 		close(conn);
 		return result;
+	}
+	
+	public int deleteReply(int re_no) {
+		Connection conn = getConnection();
+		
+		int result = new BoardDao().deleteReply(conn, re_no);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		return result;
+		
 	}
 	
 }

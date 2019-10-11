@@ -50,7 +50,9 @@
 				<!-- right  -->
 				<div class="col-lg-8 col-md-12 col-xs-12">
 					<div class="inner-box my-resume">
+					<%	if(mem!=null && mem.getM_no()==re.getM_no()){ %>
 					<button onclick="location.href='<%=request.getContextPath()%>/update.re?resume_no=<%=re.getResume_no()%>'">수정하기</button>
+					<%	} %>
 						<div class="author-resume">
 							<div class="thumb">
 								<img src="<%=request.getContextPath() %>/resources/fileupload_resumeImg/<%=re.getPhoto() %>" alt="">
@@ -71,6 +73,14 @@
 									<a href="#" class="linkedin"><i class="lni-linkedin-fill"></i></a>
 								</div> -->
 							</div>
+						</div>
+						<div class="work-experence item">
+							<h3>언어</h3>
+							<%	String[] languages=re.getP_language().split(",");
+								
+								for(int i=0;i<languages.length;i++){%>
+							<h4>-<%= languages[i]%></h4>
+							<%	} %>
 						</div>
 						<div class="school_final item">
 							<h3>최종학력</h3>

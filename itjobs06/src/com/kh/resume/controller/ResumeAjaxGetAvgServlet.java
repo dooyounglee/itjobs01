@@ -1,29 +1,30 @@
 package com.kh.resume.controller;
 
 import java.io.IOException;
-
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import com.kh.member.model.vo.Member;
-import com.kh.resume.model.service.ResumeService;
-import com.kh.resume.model.vo.Resume;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.kh.volunteer.model.service.VolunteerService;
+import com.kh.volunteer.model.vo.Volunteer;
 
 /**
- * Servlet implementation class resumDetailServlet
- */ 
-@WebServlet("/detail.re")
-public class ResumDetailServlet extends HttpServlet {
+ * Servlet implementation class ResumeAjaxGetAvgServlet
+ */
+@WebServlet("/getAvg.re.ajax")
+public class ResumeAjaxGetAvgServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-     /*  
+       
+    /**
      * @see HttpServlet#HttpServlet()
      */
-    public ResumDetailServlet() {
+    public ResumeAjaxGetAvgServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,25 +33,17 @@ public class ResumDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		int noti_no=Integer.parseInt(request.getParameter("noti_no"));
 		
-		/*int mno = Integer.parseInt(request.getParameter("mno"));*/
-		//int mno = 1;
-		//여기서도 session에서 가져오는걸로.
-		//HttpSession session = request.getSession();
-		//Member mem=(Member)session.getAttribute("mem");
-		//int mno=mem.getM_no();
-		
-		int resume_no = Integer.parseInt(request.getParameter("resume_no"));
-		
-		Resume re= new ResumeService().selectResumDetail(resume_no);
-		
-		System.out.println(re);//콘솔창에 찍혔겠네. 아..null
-		
-		request.setAttribute("re", re);
-	
+		ArrayList<Volunteer> list=new VolunteerService().getList(noti_no);
 		
 		
-		request.getRequestDispatcher("views/mypage/resume/resumeDetailView.jsp").forward(request, response);
+		response.setContentType("application/json; charset=UTF-8");
+		Gson gson = new GsonBuilder().setDateFormat("yy-MM-dd HH:mm:ss").create();
+		
+		gson.toJson(list,response.getWriter());
 	}
 
 	/**

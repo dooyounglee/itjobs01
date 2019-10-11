@@ -1,8 +1,6 @@
 package com.kh.admin.controller.declare;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,16 +11,16 @@ import com.kh.admin.model.service.AdminDeclareService;
 import com.kh.declare.model.vo.Declare;
 
 /**
- * Servlet implementation class DeclareListServlet
+ * Servlet implementation class AdminDeclareReplyViewServlet
  */
-@WebServlet("/list.de")
-public class AdminDeclareListServlet extends HttpServlet {
+@WebServlet("/get.de.re")
+public class AdminDeclareReplyViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminDeclareListServlet() {
+    public AdminDeclareReplyViewServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,18 +31,15 @@ public class AdminDeclareListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		String Dhead = request.getParameter("head");
+		int de_no=Integer.parseInt(request.getParameter("de_no"));
 		
-		ArrayList<Declare> blist=new AdminDeclareService().getBoardList();
-		ArrayList<Declare> rlist=new AdminDeclareService().getReplyList();
-		ArrayList<Declare> nlist=new AdminDeclareService().getNotificationList();
-		
-		request.setAttribute("blist", blist);
-		request.setAttribute("rlist", rlist);
-		request.setAttribute("nlist", nlist);
-		request.setAttribute("Dhead", Dhead);
-		
-		request.getRequestDispatcher("views/admin/declare.jsp").forward(request, response);
+		Declare de=new AdminDeclareService().getReply(de_no);
+		if(de!=null) {
+			request.setAttribute("de", de);
+			request.getRequestDispatcher("views/declare/get.jsp").forward(request, response);
+		} else {
+			
+		}
 	}
 
 	/**

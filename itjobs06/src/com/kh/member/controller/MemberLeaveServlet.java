@@ -1,8 +1,6 @@
-package com.kh.resume.controller;
+package com.kh.member.controller;
 
 import java.io.IOException;
-
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,20 +8,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.kh.member.model.service.MemberService;
 import com.kh.member.model.vo.Member;
-import com.kh.resume.model.service.ResumeService;
-import com.kh.resume.model.vo.Resume;
 
 /**
- * Servlet implementation class resumDetailServlet
- */ 
-@WebServlet("/detail.re")
-public class ResumDetailServlet extends HttpServlet {
+ * Servlet implementation class MemberLeaveServlet
+ */
+@WebServlet("/leave.me")
+public class MemberLeaveServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-     /*  
+       
+    /**
      * @see HttpServlet#HttpServlet()
      */
-    public ResumDetailServlet() {
+    public MemberLeaveServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,25 +30,25 @@ public class ResumDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		String pw=request.getParameter("pw");
 		
-		/*int mno = Integer.parseInt(request.getParameter("mno"));*/
-		//int mno = 1;
-		//여기서도 session에서 가져오는걸로.
-		//HttpSession session = request.getSession();
-		//Member mem=(Member)session.getAttribute("mem");
-		//int mno=mem.getM_no();
+		HttpSession session = request.getSession();
+		Member m=(Member)session.getAttribute("mem");
+		int m_no=m.getM_no();
 		
-		int resume_no = Integer.parseInt(request.getParameter("resume_no"));
-		
-		Resume re= new ResumeService().selectResumDetail(resume_no);
-		
-		System.out.println(re);//콘솔창에 찍혔겠네. 아..null
-		
-		request.setAttribute("re", re);
-	
-		
-		
-		request.getRequestDispatcher("views/mypage/resume/resumeDetailView.jsp").forward(request, response);
+		if(pw.equals(m.getPw())) {
+			int result=new MemberService().leaveMember(m_no);
+			if(result>0) {
+				response.sendRedirect("logout.me");
+			}else {
+				response.sendRedirect("list.re");
+			}
+		}else {
+			//비번이 틀렸습니다. 메세지 정도?
+			response.sendRedirect("list.re");
+		}
 	}
 
 	/**

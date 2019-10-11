@@ -92,14 +92,13 @@ public int insertResum(Resume re){
 	/**
 	 * 4.이력서 상세보기용 서비스
 	 * @param mno
-	 * @param resume_no
 	 * @return
 	 */
-	public Resume selectResumDetail(int mno,int resume_no){
+	public Resume selectResumDetail(int resume_no){
 	
 	 Connection conn = getConnection();
 		
-	 Resume re = new ResumeDao().selectResumDetail(conn, mno, resume_no);
+	 Resume re = new ResumeDao().selectResumDetail(conn, resume_no);
 	 
 	 if(re != null){ 
 		 commit(conn);

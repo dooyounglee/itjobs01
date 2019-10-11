@@ -83,11 +83,11 @@
 <div class="job-alerts-item candidates">
 <h3 class="alerts-title">나의 이력서</h3>
 <a class="btn btn-common btn-sm" id="new" href="<%=contextPath%>/add.re">새 이력서 추가하기</a>
-<% if(list.isEmpty()){ %>
+<% if(list!=null && list.isEmpty()){ %>
 
 <label>조회된 리스트가 없습니다</label>
 				
-<% }else{ %>
+<% }else if(list!=null){ %>
 			<% for(Resume re : list){ %>
 <div class="manager-resumes-item">
 <div class="manager-content">

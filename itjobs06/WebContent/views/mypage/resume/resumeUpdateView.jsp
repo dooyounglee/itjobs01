@@ -341,25 +341,43 @@
 								<input type="text" class="form-control" name="title" placeholder="제목" value="<%=re.getTitle()%>">
 							</div>
 							<%	String[] p_lans=re.getP_language().split(",");
-								String[] arr_p_lan=new String[4];
+								String[] arr_p_lan=new String[10];
 								for(int i=0;i<p_lans.length;i++){
 									switch(p_lans[i]){
-									case "c언어":arr_p_lan[0]="selected";
-									case "자바":arr_p_lan[1]="selected";
+									case "C":arr_p_lan[0]="selected";
+									case "java":arr_p_lan[1]="selected";
 									case "CSS":arr_p_lan[2]="selected";
 									case "javascript":arr_p_lan[3]="selected";
+									case "C++":arr_p_lan[4]="selected";
+									case "C#":arr_p_lan[5]="selected";
+									case "VBA":arr_p_lan[6]="selected";
+									case "python":arr_p_lan[7]="selected";
+									case "php":arr_p_lan[8]="selected";
+									case "asp":arr_p_lan[9]="selected";
 									}
 								}%>
 							<div class="form-group">
 								<label class="control-label">프로그래밍 언어</label><br>
-								<input type="checkbox" class="form-check-input" name="p" value="c언어" <%=arr_p_lan[0] %>>
-								<label class="form-check-label">c언어</label><br>
-								<input type="checkbox" class="form-check-input" name="p" value="자바" <%=arr_p_lan[1] %>>
-								<label class="form-check-label">자바</label><br>
+								<input type="checkbox" class="form-check-input" name="p" value="C" <%=arr_p_lan[0] %>>
+								<label class="form-check-label">C</label><br>
+								<input type="checkbox" class="form-check-input" name="p" value="java" <%=arr_p_lan[1] %>>
+								<label class="form-check-label">java</label><br>
 								<input type="checkbox" class="form-check-input" name="p" value="CSS" <%=arr_p_lan[2] %>>
-								<label class="form-check-label">css</label><br>
+								<label class="form-check-label">CSS</label><br>
 								<input type="checkbox" class="form-check-input" name="p" value="javascript" <%=arr_p_lan[3] %>>
 								<label class="form-check-label">javascript</label><br>
+								<input type="checkbox" class="form-check-input" name="p" value="C++" <%=arr_p_lan[4] %>>
+								<label class="form-check-label">C++</label><br>
+								<input type="checkbox" class="form-check-input" name="p" value="C#" <%=arr_p_lan[5] %>>
+								<label class="form-check-label">C#</label><br>
+								<input type="checkbox" class="form-check-input" name="p" value="VBA" <%=arr_p_lan[6] %>>
+								<label class="form-check-label">VBA</label><br>
+								<input type="checkbox" class="form-check-input" name="p" value="python" <%=arr_p_lan[7] %>>
+								<label class="form-check-label">python</label><br>
+								<input type="checkbox" class="form-check-input" name="p" value="php" <%=arr_p_lan[8] %>>
+								<label class="form-check-label">php</label><br>
+								<input type="checkbox" class="form-check-input" name="p" value="asp" <%=arr_p_lan[9] %>>
+								<label class="form-check-label">asp</label><br>
 							</div>
 							<div class="form-group">
 								<label class="control-label">자소서</label>

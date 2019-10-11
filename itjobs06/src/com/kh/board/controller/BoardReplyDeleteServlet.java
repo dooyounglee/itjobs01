@@ -1,28 +1,25 @@
-package com.kh.admin.controller.declare;
+package com.kh.board.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.admin.model.service.AdminDeclareService;
-import com.kh.declare.model.vo.Declare;
+import com.kh.board.model.service.BoardService;
 
 /**
- * Servlet implementation class DeclareListServlet
+ * Servlet implementation class BoardReplyDeleteServlet
  */
-@WebServlet("/list.de")
-public class AdminDeclareListServlet extends HttpServlet {
+@WebServlet("/brDelete.bo")
+public class BoardReplyDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminDeclareListServlet() {
+    public BoardReplyDeleteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,20 +28,20 @@ public class AdminDeclareListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		String Dhead = request.getParameter("head");
 		
-		ArrayList<Declare> blist=new AdminDeclareService().getBoardList();
-		ArrayList<Declare> rlist=new AdminDeclareService().getReplyList();
-		ArrayList<Declare> nlist=new AdminDeclareService().getNotificationList();
 		
-		request.setAttribute("blist", blist);
-		request.setAttribute("rlist", rlist);
-		request.setAttribute("nlist", nlist);
-		request.setAttribute("Dhead", Dhead);
+		int re_no = Integer.parseInt(request.getParameter("re_no"));
+		System.out.println(re_no);
+		int result = new BoardService().deleteReply(re_no);
+		System.out.println(result);
 		
-		request.getRequestDispatcher("views/admin/declare.jsp").forward(request, response);
+		if(result >  0) {
+			response.getWriter().print("success");
+		}else {
+			response.getWriter().print("fail");
+		}
+	
+	
 	}
 
 	/**

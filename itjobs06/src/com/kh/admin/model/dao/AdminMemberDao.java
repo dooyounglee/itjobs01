@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import com.kh.board.model.dao.BoardDao;
+import com.kh.board.model.vo.PageInfo;
 import com.kh.member.model.vo.Member;
 
 public class AdminMemberDao {
@@ -29,7 +30,7 @@ private Properties prop = new Properties();
 		}
 	}
 	
-	public ArrayList<Member> getAllMemberList(Connection conn) {
+	public ArrayList<Member> getAllMemberList(Connection conn,PageInfo pi) {
 		ArrayList<Member> list=new ArrayList<>();
 		PreparedStatement ps=null;
 		ResultSet rs=null; 
@@ -37,6 +38,8 @@ private Properties prop = new Properties();
 		String sql=prop.getProperty("getAllMemberList");
 		try {
 			ps=conn.prepareStatement(sql);
+			ps.setInt(1, pi.getStartRow());
+			ps.setInt(2, pi.getEndRow());
 			rs=ps.executeQuery();
 			while(rs.next()) {
 				list.add(new Member(
@@ -86,6 +89,26 @@ private Properties prop = new Properties();
 			ps=conn.prepareStatement(sql);
 			ps.setInt(1, mno);
 			result=ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(ps);
+		}
+		return result;
+	}
+
+	public int getMemberListCount(Connection conn) {
+		int result=0;
+		PreparedStatement ps=null;
+		ResultSet rs=null;
+		
+		String sql=prop.getProperty("getMemberListCount");
+		try {
+			ps=conn.prepareStatement(sql);
+			rs=ps.executeQuery();
+			if(rs.next()) {
+				result=rs.getInt(1);
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {

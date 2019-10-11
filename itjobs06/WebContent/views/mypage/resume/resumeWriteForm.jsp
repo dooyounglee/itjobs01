@@ -287,14 +287,26 @@
 							</div>
 							<div class="form-group">
 								<label class="control-label">프로그래밍 언어</label><br>
-								<input type="checkbox" class="form-check-input" name="p" value="c언어" checked>
-								<label class="form-check-label">c언어</label><br>
-								<input type="checkbox" class="form-check-input" name="p" value="자바">
-								<label class="form-check-label">자바</label><br>
+								<input type="checkbox" class="form-check-input" name="p" value="C" checked>
+								<label class="form-check-label">C</label><br>
+								<input type="checkbox" class="form-check-input" name="p" value="java">
+								<label class="form-check-label">java</label><br>
 								<input type="checkbox" class="form-check-input" name="p" value="CSS">
-								<label class="form-check-label">css</label><br>
+								<label class="form-check-label">CSS</label><br>
 								<input type="checkbox" class="form-check-input" name="p" value="javascript">
 								<label class="form-check-label">javascript</label><br>
+								<input type="checkbox" class="form-check-input" name="p" value="C++">
+								<label class="form-check-label">C++</label><br>
+								<input type="checkbox" class="form-check-input" name="p" value="C#">
+								<label class="form-check-label">C#</label><br>
+								<input type="checkbox" class="form-check-input" name="p" value="VBA">
+								<label class="form-check-label">VBA</label><br>
+								<input type="checkbox" class="form-check-input" name="p" value="python">
+								<label class="form-check-label">python</label><br>
+								<input type="checkbox" class="form-check-input" name="p" value="php">
+								<label class="form-check-label">php</label><br>
+								<input type="checkbox" class="form-check-input" name="p" value="asp">
+								<label class="form-check-label">asp</label><br>
 							</div>
 							<div class="form-group">
 								<label class="control-label">자소서</label>

@@ -128,10 +128,9 @@ public class ResumeDao {
 	 * 2. 이력서 상세보기 
 	 * @param conn
 	 * @param mno
-	 * @param resume_no
 	 * @return
 	 */
-	public Resume selectResumDetail(Connection conn,int mno,int resume_no){
+	public Resume selectResumDetail(Connection conn,int resume_no){
 	 
 			Resume re = null;
 			PreparedStatement pstmt =null;
@@ -202,7 +201,7 @@ public class ResumeDao {
 				rset = pstmt.executeQuery();
 				
 				if(rset.next()) {
-					listCount = rset.getInt(mno);
+					listCount = rset.getInt(1);
 				}
 				
 			} catch (SQLException e) {

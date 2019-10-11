@@ -150,6 +150,9 @@
    
       <script>
    		 $(function(){
+   			$("#prev").mouseenter(function(){
+   				$(this).css({"cursor":"pointer"});
+   			});
    			$("#prev").click(function(){
    				<%if(mem != null){%>
    				location.href="<%= contextPath %>/detail.bo?head=<%=head%>&m_no=<%=mem.getM_no()%>&bId=<%=prev.getB_no() %>";
@@ -160,11 +163,14 @@
    		});
    		
    		$(function(){
+   			$("#next").mouseenter(function(){
+   				$(this).css({"cursor":"pointer"});
+   			});
    			$("#next").click(function(){
    				<%if(mem != null){%>
-   				location.href="<%= contextPath %>/detail.bo?head=<%=b.getHead()%>&m_no=<%=mem.getM_no()%>&bId=<%=next.getB_no() %>";
+   				location.href="<%= contextPath %>/detail.bo?head=<%=head%>&m_no=<%=mem.getM_no()%>&bId=<%=next.getB_no() %>";
    				<%}else{%>
-   				location.href="<%= contextPath %>/detail.bo?head=<%=b.getHead()%>&bId=<%=prev.getB_no() %>";
+   				location.href="<%= contextPath %>/detail.bo?head=<%=head%>&bId=<%=next.getB_no() %>";
    				<%}%>
    			});
    		}); 

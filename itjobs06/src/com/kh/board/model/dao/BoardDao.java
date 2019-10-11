@@ -256,7 +256,6 @@ public class BoardDao {
 				b.setTitle(rset.getString("title"));
 				b.setB_no(rset.getInt("b_no"));
 			}
-		
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -285,7 +284,6 @@ public class BoardDao {
 				b.setTitle(rset.getString("title"));
 				b.setB_no(rset.getInt("b_no"));
 			}
-					
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -312,7 +310,6 @@ public class BoardDao {
 				b.setTitle(rset.getString("title"));
 				b.setB_no(rset.getInt("b_no"));
 			}
-			System.out.println("디에오이전" + b.getB_no());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -339,7 +336,6 @@ public class BoardDao {
 				b.setTitle(rset.getString("title"));
 				b.setB_no(rset.getInt("b_no"));
 			}
-					System.out.println("디에오넥스트" + b.getB_no());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {

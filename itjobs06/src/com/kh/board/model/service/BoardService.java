@@ -158,7 +158,6 @@ public class BoardService {
 		Connection conn = getConnection();
 		
 		Board prev = new BoardDao().prevMainBoard(conn, bId);
-		System.out.println("서비스로 왔다" + prev);
 		
 		close(conn);
 		return prev;

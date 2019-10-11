@@ -57,8 +57,7 @@ public class BoardDetailServlet extends HttpServlet {
 			request.setAttribute("msg", "조회실패");
 		}else {
 			
-			if(head.equals("main")) {
-				System.out.println("메인으로 왔다.");
+			if(head.equals("전체보기")) {
 				prev = new BoardService().prevMainBoard(bId);
 				next = new BoardService().nextMainBoard(bId);
 			}else {

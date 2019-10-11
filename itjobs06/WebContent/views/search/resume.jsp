@@ -162,7 +162,7 @@ ArrayList<String> likeResList = (ArrayList<String>)request.getAttribute("likeRes
 
 									<span class="location"><i class="ti-location-pin"></i>
 										<%=n.getAddress() %></span> <span class="rate"><i
-										class="ti-time"></i><%=n.getHope_salary() %></span>
+										class="ti-time"></i>희망연봉 <%=n.getHope_salary() %></span>
 								</div>
 							</div>
 						</div>
@@ -197,7 +197,11 @@ ArrayList<String> likeResList = (ArrayList<String>)request.getAttribute("likeRes
 									<%}else{ %>
 									<span class="heart-icon"> <img src="./resources/img/like-after1.png" class="likeimg"> </span>
 									<%} %>
-									<a class="btn btn-common btn-xs" style="padding: 6px 16px; font-size: 12px;"><%=n.getCareer_year() %></a>
+									<%	if(n.getCareer().equals("N")){ %>
+									<a class="btn btn-common btn-xs" style="padding: 6px 16px; font-size: 12px;">신입</a>
+									<%	}else{ %>
+									<a class="btn btn-common btn-xs" style="padding: 6px 16px; font-size: 12px;">경력 <%=n.getCareer_year() %>년</a>
+									<%	} %>
 								</div>
 							</div>
 						</div>

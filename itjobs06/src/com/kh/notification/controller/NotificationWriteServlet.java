@@ -55,6 +55,7 @@ public class NotificationWriteServlet extends HttpServlet {
 		int salary=Integer.parseInt(request.getParameter("salary"));
 		String contents=request.getParameter("contents");
 		String hope=request.getParameter("hope");
+		String open=request.getParameter("open");
 		
 		Notification n=new Notification();
 		n.setCo_no(co.getM_no());
@@ -65,6 +66,7 @@ public class NotificationWriteServlet extends HttpServlet {
 		n.setP_language(String.join(",",language));
 		n.setSalary(salary);
 		n.setTitle(title);
+		n.setOpen(open);
 		System.out.println(n);
 		
 		int result=new NotificationService().insertNotification(n);

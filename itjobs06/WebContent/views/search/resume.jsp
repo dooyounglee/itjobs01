@@ -2,6 +2,11 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+ArrayList<String> likeResList = (ArrayList<String>)request.getAttribute("likeRes");
+
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,11 +30,32 @@
 	.likeimg:hover{
 	cursor:pointer;
 	}
+	
+	 .heart-icon {
+    color: #fff;
+    line-height: 24px;
+    padding: 3px 10px;
+    font-size: 14px;
+    border-radius: 4px;
+    text-align: center;
+    display: inline-block;
+    margin: 0px 10px;
+    background: #00BCD4;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    transition-property: all;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in-out;
+    transition-delay: 0s;
+}
 
 </style>
 
 <!-- import jobx -->
 <%@ include file="/views/include/user/style.jsp" %>
+<%@ include file="/views/include/user/js.jsp" %>
 <!-- End of import from jobx -->
 
 </head>
@@ -37,6 +63,11 @@
 
 	<header id="home" class="hero-area">
 	<%@ include file="/views/include/user/header_nav.jsp" %>
+
+	<%	if(mem!=null){ %>
+	<input type="hidden" value="<%=mem.getM_no() %>" id="memNo">
+	<%	} %>
+
 	</header>
 
 	<!-- page-header -->
@@ -128,6 +159,7 @@
 									<h5><%=n.getDepartment() %></h5>
 								</div>
 								<div class="manager-meta">
+
 									<span class="location"><i class="ti-location-pin"></i>
 										<%=n.getAddress() %></span> <span class="rate"><i
 										class="ti-time"></i><%=n.getHope_salary() %></span>
@@ -146,7 +178,26 @@
 									<%	} %>
 								</div>
 								<div class="resume-exp float-right">
-									<a href="#" class="btn btn-common btn-xs"><%=n.getCareer_year() %></a>
+									<!-- 좋아요 버튼 -->
+									<%
+										boolean flag = false;  // 좋아요 이미지가 겹치지 않게 하기 위해서
+										if(mem != null){
+									
+										for(int i=0; i<likeResList.size(); i++){ // 서블릿에서 좋아요한 맴버의 게시글번호를 받아
+											
+											if(Integer.parseInt(likeResList.get(i)) == n.getResume_no()){  // 그 게시글번호와 현재 for문으로 작동하는 게시글번호와 일치하면
+												flag = true;	// 	좋아요한 이미지 보이게									
+												}
+											}
+										}
+									%>
+									<input type="hidden" value="<%=n.getResume_no()%>" class="res_no">
+									<%if(!flag){  %>
+									<span class="heart-icon"> <img src="./resources/img/like-before.png" class="likeimg" > </span>
+									<%}else{ %>
+									<span class="heart-icon"> <img src="./resources/img/like-after1.png" class="likeimg"> </span>
+									<%} %>
+									<a class="btn btn-common btn-xs" style="padding: 6px 16px; font-size: 12px;"><%=n.getCareer_year() %></a>
 								</div>
 							</div>
 						</div>
@@ -230,7 +281,7 @@
 						
 							
 							if(result==0){
-							likeimg.attr('src','./resources/img/like-after.png');							
+							likeimg.attr('src','./resources/img/like-after1.png');							
 							}else{
 							likeimg.attr('src','./resources/img/like-before.png');		
 							}

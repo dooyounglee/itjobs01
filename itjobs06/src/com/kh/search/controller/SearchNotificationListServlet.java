@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.kh.board.model.vo.PageInfo;
+import com.kh.like.model.service.LikeService;
 import com.kh.like.model.vo.Like;
 import com.kh.member.model.vo.Member;
 import com.kh.notification.model.service.NotificationService;
@@ -40,6 +41,22 @@ public class SearchNotificationListServlet extends HttpServlet {
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		request.setCharacterEncoding("utf-8");
 		
+		HttpSession session = request.getSession();
+		Member mem=(Member)session.getAttribute("mem");
+		
+		
+		
+		if(mem != null) { // 좋아요 한 맴버의 게시글번호 불러오기 위해 
+			int memNo = ((Member)request.getSession().getAttribute("mem")).getM_no();
+			
+			ArrayList<String> likeMem = new LikeService().LikeBoList(memNo);
+		
+		
+		request.setAttribute("likeMem", likeMem);
+		}
+		
+		//System.out.println(likeBoList);
+		
 		int listCount = 0;
 		int currentPage=1;
 		if(request.getParameter("currentPage")!=null) {
@@ -65,17 +82,11 @@ public class SearchNotificationListServlet extends HttpServlet {
 			list=new NotificationService().getAllNotificationList(pi);
 		}
 		
-//		HttpSession session = request.getSession();
-//		Member mem = (Member) session.getAttribute("mem");
-//		
-//		System.out.println(mem);
-//		
-//		if(mem != null) {
-//			Like likeMem = new NotificationService().NoLikeMem(mem);
-//		}
-//		
+	
 		
 		
+		
+			
 		request.setAttribute("list", list);
 		request.setAttribute("pi", pi);
 		request.setAttribute("sText", sText);

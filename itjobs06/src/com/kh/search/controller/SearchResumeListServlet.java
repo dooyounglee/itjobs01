@@ -8,7 +8,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.kh.like.model.service.LikeService;
+import com.kh.member.model.vo.Member;
 import com.kh.resume.model.service.ResumeService;
 import com.kh.resume.model.vo.Resume;
 import com.kh.search.model.service.SearchService;
@@ -35,6 +38,18 @@ public class SearchResumeListServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		request.setCharacterEncoding("utf-8");
+		
+		HttpSession session = request.getSession();
+		Member mem=(Member)session.getAttribute("mem");
+		
+		if(mem != null) { // 좋아요 한 맴버의 게시글번호 불러오기 위해 
+			int CoNo = ((Member)request.getSession().getAttribute("mem")).getM_no();
+			
+			ArrayList<String> likeRes = new LikeService().LikeResList(CoNo);
+		
+		request.setAttribute("likeRes", likeRes);
+		}
+
 		
 		String sKey=request.getParameter("sKey");
 		String sText=request.getParameter("sText");

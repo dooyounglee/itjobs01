@@ -90,7 +90,7 @@
 
 <script>
 	function send(pno){
-		$('#listBoardTableArea').load("<%=request.getContextPath()%>/boardList.ad?currentPage="+pno)
+		$('#listBoardTableArea').load("<%=request.getContextPath()%>/boardList.ad?currentPage="+pno+" table,#pageArea")
 	}
 </script>
 

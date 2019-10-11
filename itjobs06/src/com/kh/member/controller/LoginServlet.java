@@ -35,10 +35,10 @@ public class LoginServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		ArrayList<Member> list=new AdminMemberService().getAllMemberList();
+		//ArrayList<Member> list=new AdminMemberService().getAllMemberList();
 		
 		
-		request.setAttribute("list", list);
+		//request.setAttribute("list", list);
 		request.getRequestDispatcher("views/login/login.jsp").forward(request, response);
 	
 		

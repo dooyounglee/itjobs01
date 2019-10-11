@@ -56,4 +56,23 @@ public class LikeService {
 	}
 
 	
+	public ArrayList<String> LikeBoList(int memNo) {
+		
+		Connection conn = getConnection();
+		
+		ArrayList<String> likeBoList = new LikeDao().likeBoList(conn,memNo);
+		close(conn);
+		return likeBoList;
+	
+	}
+		
+	public ArrayList<String> LikeResList(int CoNo) {
+		
+		Connection conn = getConnection();
+		
+		ArrayList<String> likeBoList = new LikeDao().likeResList(conn,CoNo);
+		close(conn);
+		return likeBoList;
+	
+	}
 }

@@ -157,5 +157,79 @@ public class LikeDao {
 		}
 		return result;
 	}
+	
+	public ArrayList<String> likeBoList(Connection conn, int memNo) {
+	
+		ArrayList<String> likeBoList = new ArrayList<>();
+		int likeBoNo = 0;
+		
+		
+		
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		String sql = prop.getProperty("likeBoList");
+		
+		try {
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, memNo);
+			rs=ps.executeQuery();
+			
+			/*
+			while(true) {
+			if(rs.next()) {
+				likeBoList.add(rs.getString(1));
+				}
+			}*/
+			while(rs.next()) {
+				likeBoList.add(rs.getString(1));
+			}
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(ps);
+			close(rs);
+		}
+		
+		return likeBoList;
+		
+		
+	}
+	
+
+	public ArrayList<String> likeResList(Connection conn, int CoNo) {
+	
+		ArrayList<String> likeBoList = new ArrayList<>();
+		int likeBoNo = 0;
+		
+		
+		
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		String sql = prop.getProperty("likeResList");
+		
+		try {
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, CoNo);
+			rs=ps.executeQuery();
+			
+			while(rs.next()) {
+				likeBoList.add(rs.getString(1));
+			}
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(ps);
+			close(rs);
+		}
+		
+		return likeBoList;
+		
+		
+	}
+	
 
 }

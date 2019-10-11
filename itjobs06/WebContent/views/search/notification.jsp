@@ -3,6 +3,10 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+ArrayList<String> likeBoList = (ArrayList<String>)request.getAttribute("likeMem");
+
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -130,9 +134,9 @@
 			<%	ArrayList<Notification> list=(ArrayList<Notification>)request.getAttribute("list");
 				for(Notification n:list){%>
 				<div class="col-lg-6 col-md-12 col-xs-12">
-					<a class="job-listings-featured" href="#">
+					<a class="job-listings-featured">
 						<div class="row">
-							<div class="col-lg-6 col-md-6 col-xs-12">
+							<div class="col-lg-6 col-md-6 col-xs-12" style="cursor:pointer;">
 								<div class="job-company-logo">
 									<img src="assets/img/features/img1.png" alt="">
 								</div>
@@ -144,11 +148,29 @@
 											class="lni-user"></i><%=n.getSalary() %> 만원</span>
 									</div>
 								</div>
-							</div>
+							</div>			
 							<div class="col-lg-6 col-md-6 col-xs-12 text-right">
 								<div class="tag-type">
 									<input type="hidden" value="<%=n.getNoti_no()%>" class="no_no">
-									<sapn class="heart-icon"> <img src="./resources/img/like-before.png" class="likeimg"> </sapn>
+									<%
+										boolean flag = false;  // 좋아요 이미지가 겹치지 않게 하기 위해서
+										if(mem != null){
+									
+										for(int i=0; i<likeBoList.size(); i++){ // 서블릿에서 좋아요한 맴버의 게시글번호를 받아
+											
+											if(Integer.parseInt(likeBoList.get(i)) == n.getNoti_no()){  // 그 게시글번호와 현재 for문으로 작동하는 게시글번호와 일치하면
+												flag = true;	// 	좋아요한 이미지 보이게									
+												}
+											}
+										}
+									%>
+									
+									<%if(!flag){  %>
+										<span class="heart-icon"> <img src="./resources/img/like-before.png" class="likeimg"> </span>
+									<%}else{ %>
+										<span class="heart-icon"> <img src="./resources/img/like-after1.png" class="likeimg"> </span>
+									<%} %>
+									
 									<span class="full-time">~<%=n.getEnd_date().split(" ")[0] %></span>
 								</div>
 							</div>
@@ -179,6 +201,7 @@
 				</div>
 			</div>
 		</div>
+
 	</section>
 	<!-- End of list section -->
 	
@@ -203,22 +226,28 @@
 	<div id="result">
 <%	list=(ArrayList<Notification>)request.getAttribute("list");
 	for(Notification n:list){%>
+	<%-- <% System.out.println(n); %>
+	<% System.out.println(list); %> --%>
 	<%=n %>
 	
 
 	<!-- 좋아요 버튼 -->
 	
 	<input type="hidden" value="<%=n.getNoti_no()%>" class="no_no">
+	 
+<%-- 	<%if(likeBoList.indexOf(n) == n.getNoti_no() ){ %>  --%>
 	<span class="like">
 		<img src="./resources/img/like-before.png" class="likeimg">
 	</span>
-	
+	 <%-- <%}else{ %> --%>
+		<img src="./resources/img/like-after1.png" class="likeimg">
+	 
+	<%--  <%} %>	 --%>
 	<button onclick="location.href='<%=request.getContextPath()%>/detail.co?co_no=<%=n.getCo_no()%>'">기업정보</button>
 	<br>	
 <%	} %>
-<script>
 	
-</script>
+	
 
 	</div>
 </div>
@@ -226,6 +255,8 @@
 <!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
 
 <script>
+	
+	
 	
 	
 	function search(){
@@ -247,27 +278,50 @@
 	// 좋아요 ajax
 	 $(function(){
 		
+		 
 		var memNo = $("#memNo").val();
 		
-		var likeNo = $(".likeimg").click(function (){
+		//$(".likeimg").click(function (){
+		$(document).on("click", ".likeimg", function(e){	
 			
-			var noNo =	$(this).parent().prev().val()
 			
-			var likeimg = $(this).parent().children() 
+			console.log(e.target);
+			//var noNo =	$(this).parent().prev().val();
 			
+			var test = e.target;
+			
+			console.log(test.parentNode.previousSibling.previousSibling);
+			
+			var noNo =	test.parentNode.previousSibling.previousSibling.value;
+			console.log(noNo);
+			
+			var span = test.parentNode;
+			
+			console.log(span);
+		
 	 			 $.ajax({
 					url:"like.no",
 					data:{noNo:noNo, memNo:memNo},
 					type:"get",
 					success:function(result){
 						
+						//var likeimg = $(this).parent().children(); 
+						
 						/* console.log("ajax성공");
 						console.log(result); */
 						
+						
+						
 						if(result==0){
-						likeimg.attr('src','./resources/img/like-after1.png');							
+							
+							
+							span.innerHTML = "<img src='./resources/img/like-after1.png' class='likeimg'>"; // 보람쌤꺼
+							
+							//likeimg.attr('src','./resources/img/like-after1.png');	// 내꺼			
 						}else{
-						likeimg.attr('src','./resources/img/like-before.png');		
+							span.innerHTML = "<img src='./resources/img/like-before.png' class='likeimg'>"; // 보람쌤꺼
+							
+							//likeimg.attr('src','./resources/img/like-before.png');	// 내꺼	
 						}
 				
 					
@@ -279,40 +333,12 @@
 			
 				}); 
 			})
-		})
 		
-		function likeMem(){
-		
-			$.ajax({
-				url:"likeMem.no",	
-				data:{},
-				type:"get",
-				success:function(result){
-				
-					
-					
-				},error:function(){
-					
-					
-					
-				}
-			
-			});
-			
+	 
+	 	})
 		
 		
-		
-		}
 	
-	
-	
-		
-		
-		
-		
-		
-		
-		
 			
 
 </script>

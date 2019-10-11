@@ -379,7 +379,6 @@ public class BoardDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String sql = prop.getProperty("selectUpdateBoard");
-		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, bId);
@@ -399,10 +398,8 @@ public class BoardDao {
 								rset.getInt("count"),
 								rset.getString("editfile"),
 								rset.getString("path"),
-								rset.getInt("down_count"),
-								rset.getInt("reply_count"));	
+								rset.getInt("down_count"));	
 			}
-			
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

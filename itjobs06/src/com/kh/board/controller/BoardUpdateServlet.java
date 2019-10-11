@@ -61,16 +61,17 @@ public class BoardUpdateServlet extends HttpServlet {
 			int m_no = Integer.parseInt(multiRequest.getParameter("m_no"));
 			String strB_no = multiRequest.getParameter("b_no");
 			
-			System.out.println(strB_no + "**************************");
-			
 			String head = multiRequest.getParameter("writehead");
 			String title = multiRequest.getParameter("title");
 			String contents = multiRequest.getParameter("content");
 			String time1 = multiRequest.getParameter("time1");
 			String time2 = multiRequest.getParameter("time2");
 			
-			String time = time1 + "~" + time2;
-		
+			String time = "";
+	         if(time1 != null && time2 != null) {
+	            time = time1 + "~" + time2;
+	         }
+	         
 			Board b = new Board();
 			b.setB_no(b_no);
 			b.setM_no(m_no);

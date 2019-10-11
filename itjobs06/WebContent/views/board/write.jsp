@@ -90,11 +90,11 @@
 	</section>
 	<div class="form-group time" >
 	<label class="control-label">모집 시작</label>
-	<input type="date" class="form-control" name="time1" placeholder="yyyy-mm-dd">
+	<input type="date" class="form-control" name="time1" id="time1" placeholder="yyyy-mm-dd">
 	</div>
 	<div class="form-group time" >
 	<label class="control-label">모집 마감</label>
-	<input type="date" class="form-control" name="time2" placeholder="yyyy-mm-dd">
+	<input type="date" class="form-control" name="time2" id="time2" placeholder="yyyy-mm-dd">
 	</div>
 	<div class="custom-file mb-3">
 	<input type="file" class="custom-file-input" name="file1" id="validatedCustomFile" onchange="fileName(this);" required>
@@ -113,30 +113,44 @@
 	</div>
 	
 	<script>
-		function writeAdd(){
-			var title = $("#title");
-			var content = $("#comment");
-			var select = $("#writehead");
-			
-			if(select.val() == "no"){
-				alert("머리말을 선택해주세요.");
-				select.focus();
-				return false;
-			}
-			if(title.val().trim().length == 0){
-				alert("제목을 입력해주세요.");
-				title.focus();
-				return false;
-			} 
-			if(content.val().trim().length == 0){
-				alert("내용을 입력해주세요.") 
-				content.focus();
-				return false; 
-				
-			}else{
-				$("#form").submit();
-			}
-		};
+	function writeAdd(){
+        var title = $("#title");
+        var content = $("#comment");
+        var select = $("#writehead");
+        var time1 = $("#time1");
+        var time2 = $("#time2");
+        
+        if(select.val() == "no"){
+           alert("머리말을 선택해주세요.");
+           select.focus();
+           return false;
+        }
+        if(title.val().trim().length == 0){
+           alert("제목을 입력해주세요.");
+           title.focus();
+           return false;
+        } 
+        if(select.val() == "스터디" || select.val() == "프로젝트"){
+           if(time1.val().trim().length == 0){
+              alert("모집시작일을 입력해주세요.") 
+              time1.focus();
+              return false; 
+           }
+           if(time2.val().trim().length == 0){
+              alert("모집마감일을 입력해주세요.") 
+              time2.focus();
+              return false; 
+           }
+        }
+        if(content.val().trim().length == 0){
+           alert("내용을 입력해주세요.") 
+           content.focus();
+           return false; 
+        
+        }else{
+           $("#form").submit();
+        } 
+     };
 		$(function(){
 			$("#writehead").change(function(){
 				var select = $("select[name=writehead]").val();

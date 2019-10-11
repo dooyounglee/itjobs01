@@ -106,9 +106,9 @@
             <% } %>
             </div>
             <br>
-            <%if(b.getTime() != null && b.getTime() == "~"){ %>
+            <%if(b.getTime() != null){ %>
             <div style="font-size:15px;color:black;">모집기간 - <%=b.getTime() %></div><br>
-         <%} %>              
+         	<%} %>              
            
          <%if(prev.getTitle() != null){ %>
              <div id="prev">이전글 - <%=prev.getTitle() %> </div>
@@ -151,7 +151,9 @@
       <script>
    		 $(function(){
    			$("#prev").mouseenter(function(){
-   				$(this).css({"cursor":"pointer"});
+   				$(this).css({"cursor":"pointer", "color":"red"});
+   			}).mouseleave(function(){
+   				$(this).css({"color":"gray"});
    			});
    			$("#prev").click(function(){
    				<%if(mem != null){%>
@@ -164,8 +166,11 @@
    		
    		$(function(){
    			$("#next").mouseenter(function(){
-   				$(this).css({"cursor":"pointer"});
+   				$(this).css({"cursor":"pointer", "color":"red"});
+   			}).mouseleave(function(){
+   				$(this).css({"color":"gray"});
    			});
+   			
    			$("#next").click(function(){
    				<%if(mem != null){%>
    				location.href="<%= contextPath %>/detail.bo?head=<%=head%>&m_no=<%=mem.getM_no()%>&bId=<%=next.getB_no() %>";

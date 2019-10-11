@@ -1,3 +1,4 @@
+<%@page import="com.kh.board.model.vo.PageInfo"%>
 <%@page import="com.kh.member.model.vo.Member"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -47,37 +48,55 @@
 	          </form>
           </div>
 	
-	
-<table class="table table-hover table-sm">
-	<thead>
-		<tr>
-			<th><input type=checkbox></th>
-			<th>type</th>
-			<th>email</th>
-			<th>nickname</th>
-			<th>status</th>
-			<th width="140px">강퇴</th>
-		</tr>
-	</thead>
-	<tbody>
-		<%	ArrayList<Member> list=(ArrayList<Member>)request.getAttribute("list");
-			for(Member m:list){%>
-		<tr>
-			<td><input type=checkbox data-mno="<%=m.getM_no()%>"></td>
-			<td><%=m.getType() %></td>
-			<td><%=m.getEmail() %></td>
-			<td><%=m.getNickname() %></td>
-			<td><%=m.getStatus() %></td>
-			<%	if(m.getStatus().equals("Y")){ %>
-			<td><!-- <button class="vanish">강퇴</button> --><button type="button" class="btn btn-primary btn-sm vanish">강퇴</button></td>
-			<%	}else if(m.getStatus().equals("N")){ %>
-			<td><!-- <button class="vanishCancle">강퇴취소</button> -->
-			<button type="button" class="btn btn-primary btn-sm vanishCancle">강퇴취소</button></td>
+<div id=listMemberTableArea>
+	<table class="table table-hover table-sm">
+		<thead>
+			<tr>
+				<th><input type=checkbox></th>
+				<th>type</th>
+				<th>email</th>
+				<th>nickname</th>
+				<th>status</th>
+				<th width="140px">강퇴</th>
+			</tr>
+		</thead>
+		<tbody>
+			<%	ArrayList<Member> list=(ArrayList<Member>)request.getAttribute("list");
+				for(Member m:list){%>
+			<tr>
+				<td><input type=checkbox data-mno="<%=m.getM_no()%>"></td>
+				<td><%=m.getType() %></td>
+				<td><%=m.getEmail() %></td>
+				<td><%=m.getNickname() %></td>
+				<td><%=m.getStatus() %></td>
+				<%	if(m.getStatus().equals("Y")){ %>
+				<td><!-- <button class="vanish">강퇴</button> --><button type="button" class="btn btn-primary btn-sm vanish">강퇴</button></td>
+				<%	}else if(m.getStatus().equals("N")){ %>
+				<td><!-- <button class="vanishCancle">강퇴취소</button> -->
+				<button type="button" class="btn btn-primary btn-sm vanishCancle">강퇴취소</button></td>
+				<%	} %>
+			</tr>
 			<%	} %>
-		</tr>
+		</tbody>
+	</table>
+	<div id=pageArea>
+		<%	PageInfo pi=(PageInfo)request.getAttribute("pi");%>
+		<button onclick="send(<%=pi.getCurrentPage()-1%>)"><</button>
+		<%	for(int i=pi.getStartPage();i<=pi.getEndPage();i++){
+				if(i==pi.getCurrentPage()){%>
+		<button onclick="send(<%=i%>)"><b><%=i %></b></button>
+		<%		}else{ %>
+		<button onclick="send(<%=i%>)"><%=i %></button>
+		<%		} %>
 		<%	} %>
-	</tbody>
-</table>
+		<button onclick="send(<%=pi.getCurrentPage()+1%>)">></button>
+	</div>
+</div>
+<script>
+	function send(pno){
+		$('#listMemberTableArea').load("<%=request.getContextPath()%>/memberList.ad?currentPage="+pno+" table,#pageArea")
+	}
+</script>
 
 	</div>
     <!-- End of Page Content -->

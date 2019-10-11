@@ -219,6 +219,18 @@ public class MemberService {
 		
 		
 	}
+
+	public int leaveMember(int m_no) {
+		Connection conn = getConnection();
+		int result = new MemberDao().leaveMember(conn, m_no);
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
 	
 	
 	

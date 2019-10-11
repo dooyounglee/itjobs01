@@ -547,6 +547,22 @@ public class MemberDao {
 		return result;
 		
 	}
+	public int leaveMember(Connection conn, int m_no) {
+		int result=0;
+		PreparedStatement ps=null;
+		
+		String sql=prop.getProperty("leaveMember");
+		try {
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, m_no);
+			result=ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(ps);
+		}
+		return result;
+	}
 	
 	
 	

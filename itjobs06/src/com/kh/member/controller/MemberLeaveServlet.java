@@ -1,30 +1,27 @@
-package com.kh.admin.controller.member;
+package com.kh.member.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import com.kh.admin.model.service.AdminMemberService;
-import com.kh.board.model.service.BoardService;
-import com.kh.board.model.vo.PageInfo;
+import com.kh.member.model.service.MemberService;
 import com.kh.member.model.vo.Member;
 
 /**
- * Servlet implementation class MemberListServlet
+ * Servlet implementation class MemberLeaveServlet
  */
-@WebServlet("/memberList.ad")
-public class AdminMemberListServlet extends HttpServlet {
+@WebServlet("/leave.me")
+public class MemberLeaveServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminMemberListServlet() {
+    public MemberLeaveServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,19 +32,23 @@ public class AdminMemberListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		String pw=request.getParameter("pw");
 		
-		// 페이징처리
-		int currentPage=1;
-		if(request.getParameter("currentPage")!=null) {
-			currentPage=Integer.parseInt(request.getParameter("currentPage"));
+		HttpSession session = request.getSession();
+		Member m=(Member)session.getAttribute("mem");
+		int m_no=m.getM_no();
+		
+		if(pw.equals(m.getPw())) {
+			int result=new MemberService().leaveMember(m_no);
+			if(result>0) {
+				response.sendRedirect("logout.me");
+			}else {
+				response.sendRedirect("list.re");
+			}
+		}else {
+			//비번이 틀렸습니다. 메세지 정도?
+			response.sendRedirect("list.re");
 		}
-		int listCount = new AdminMemberService().getMemberListCount();
-		PageInfo pi = new PageInfo(currentPage, listCount, 10, 10);
-				
-		ArrayList<Member> list=new AdminMemberService().getAllMemberList(pi);
-		request.setAttribute("list", list);
-		request.setAttribute("pi", pi);
-		request.getRequestDispatcher("views/admin/member.jsp").forward(request, response);
 	}
 
 	/**

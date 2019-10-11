@@ -182,7 +182,7 @@
       }
       
 
-<<<<<<< HEAD
+<%-- <<<<<<< HEAD
        $(function(){
             // 화면 로딩 시 댓글 출력
             selectRlist();
@@ -246,7 +246,7 @@
                   var content = $("<div>").text(value.contents).css("width","400px");
                   var date = $("<span>").text(value.update_date).css("width","200px");
                   
-                  <%-- if(<%=mem.getM_no()%> == value.m_no){ --%>
+                  if(<%=mem.getM_no()%> == value.m_no){
                   <%   if(mem!=null){ %>
                   var deleteRe= $("<span>").text("삭제");
                   <%}%>         
@@ -280,7 +280,7 @@
                               }
                           }
                       })
-=======
+======= --%>
 		 $(function(){
 				// 화면 로딩 시 댓글 출력
 				selectRlist();
@@ -378,7 +378,6 @@
 						            }
 						        }
 						    })
->>>>>>> branch 'dev' of https://github.com/dooyounglee/itjobs01
 
                      console.log(re_no);      
                      console.log($(this).parent().children().eq(0).text());

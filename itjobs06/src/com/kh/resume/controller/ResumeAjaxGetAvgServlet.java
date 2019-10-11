@@ -39,6 +39,7 @@ public class ResumeAjaxGetAvgServlet extends HttpServlet {
 		
 		ArrayList<Volunteer> list=new VolunteerService().getList(noti_no);
 		
+		
 		response.setContentType("application/json; charset=UTF-8");
 		Gson gson = new GsonBuilder().setDateFormat("yy-MM-dd HH:mm:ss").create();
 		

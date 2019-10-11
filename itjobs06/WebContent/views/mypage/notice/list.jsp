@@ -44,6 +44,7 @@
 				<div class="col-lg-8 col-md-6 col-xs-12">
 					<div class="job-alerts-item bookmarked">
 						<h3 class="alerts-title">공고 관리</h3>
+						<a class="btn btn-common" onclick="location.href='<%=request.getContextPath()%>/write.no'">공고 만들기</a>
 <%	ArrayList<Notification> list=(ArrayList<Notification>)request.getAttribute("list");
 	for(Notification n:list){%>
 						<a class="job-listings" href="<%=request.getContextPath()%>/get.no?noti_no=<%=n.getNoti_no()%>">

@@ -27,8 +27,10 @@
 <script>
 	$("#modal_open").click(function () {
 		if(confirm("정말 탈퇴하시겠습니까?")){
-			$("#exampleModal").modal('open');
+			alert("ok누름")
+			$("#exampleModal").modal('show');
 		}
+		return false;
 	})
 </script>
 

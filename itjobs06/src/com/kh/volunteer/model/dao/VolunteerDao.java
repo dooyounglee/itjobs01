@@ -48,6 +48,7 @@ private Properties prop = new Properties();
 				v.setP_language(rs.getString("p_language"));
 				v.setSum(rs.getInt("sum"));
 				list.add(v);
+				System.out.println(list);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

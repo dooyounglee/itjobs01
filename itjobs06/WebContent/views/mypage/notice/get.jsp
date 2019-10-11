@@ -137,6 +137,7 @@
 								</select>
 								<a href="#" onclick="apply(<%=noti.getNoti_no() %>)" class="btn btn-common">지원하기</a>
 								<div id="info"></div>
+								<div id="info1"></div>
 							</form>
 						<%	} %>
 					</div>
@@ -178,7 +179,7 @@
 				success:function(result){
 					//내점수
 					//result=resume객체
-
+					console.log("내점수성공")
 					$('#info').html("내 점수는"+score(result.p_language,noti_lan))
 				},
 			})
@@ -193,14 +194,14 @@
 				},
 				dataType:'json',
 				success:function(result){
+					console.log("avg성공")
+					console.log(result)
 					var count=result[0].sum
 					var sum=0;
 					for(k=0;k<result.length;k++){
-						//alert(k+"/"+result[k].p_language+"/"+noti_lan)
 						sum+=score(result[k].p_language,noti_lan)
-						
 					}
-					$('#info').html($('#info').html()+"/지원자평균 "+(sum/count))
+					$('#info1').html("/지원자평균 "+(sum/count))
 				},
 			})
 		}

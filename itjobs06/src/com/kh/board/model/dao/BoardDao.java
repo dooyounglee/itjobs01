@@ -629,5 +629,103 @@ public class BoardDao {
 		return result;
 	}
 	
+	public ArrayList<Board> esearchBoard(Connection conn, String head, String select, String search){
+		ArrayList<Board> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = "";
 		
+		if(select.equals("title")) {
+			sql=prop.getProperty("esearchTitle");
+		}else if(select.equals("contents")) {
+			sql=prop.getProperty("esearchContents");
+		}else if(select.equals("nickname")) {
+			sql=prop.getProperty("esearchNickname");
+		}
+	
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			String search1 = "%"+search+"%";
+			pstmt.setString(1, search1);
+			pstmt.setString(2, head);
+			
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Board(rset.getInt("b_no"),
+									rset.getInt("m_no"),
+									rset.getString("nickname"),
+									rset.getString("head"), 
+									rset.getString("title"),
+									rset.getString("contents"),
+									rset.getString("update_date"),
+									rset.getString("time"),
+									rset.getInt("count"),
+									rset.getString("editfile"),
+									rset.getString("path"),
+									rset.getInt("down_count")));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
 	}
+	
+	
+	public ArrayList<Board> msearchBoard(Connection conn, String select, String search){
+		ArrayList<Board> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = "";
+		
+		if(select.equals("title")) {
+			sql=prop.getProperty("msearchTitle");
+		}else if(select.equals("contents")) {
+			sql=prop.getProperty("msearchContents");
+		}else if(select.equals("nickname")) {
+			sql=prop.getProperty("msearchNickname");
+		}
+	
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			String search1 = "%"+search+"%";
+			pstmt.setString(1, search1);
+			
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Board(rset.getInt("b_no"),
+									rset.getInt("m_no"),
+									rset.getString("nickname"),
+									rset.getString("head"), 
+									rset.getString("title"),
+									rset.getString("contents"),
+									rset.getString("update_date"),
+									rset.getString("time"),
+									rset.getInt("count"),
+									rset.getString("editfile"),
+									rset.getString("path"),
+									rset.getInt("down_count")));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+	
+	
+}

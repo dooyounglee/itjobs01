@@ -240,6 +240,13 @@ public class BoardService {
 		return head;
 	}
 	
+	/**
+	 * 게시판 신고 등록
+	 * @param bId
+	 * @param m_no
+	 * @param content
+	 * @return
+	 */
 	public int insertDeclareBoard(int bId, int m_no, String content) {
 		Connection conn = getConnection();
 		
@@ -254,6 +261,12 @@ public class BoardService {
 		return result;
 	}
 	
+	
+	/**
+	 * 첨부파일 다운로드 카운트 증가 및 조회
+	 * @param bId
+	 * @return
+	 */
 	public Board selectDownCountBoard(int bId) {
 		Connection conn = getConnection();
 		Board b = null;
@@ -271,6 +284,11 @@ public class BoardService {
 		return b;
 	}
 	
+	/**
+	 * 댓글 조회
+	 * @param bId
+	 * @return
+	 */
 	public ArrayList<Reply> selectRlist(int bId) {
 		Connection conn = getConnection();
 		
@@ -280,6 +298,13 @@ public class BoardService {
 		return list;
 	}
 	
+	/**
+	 * 댓글 등록
+	 * @param bId
+	 * @param m_no
+	 * @param content
+	 * @return
+	 */
 	public int insertReplyBoard(int bId, int m_no, String content) {
 		Connection conn = getConnection();
 		
@@ -295,6 +320,11 @@ public class BoardService {
 		return result;
 	}
 	
+	/**
+	 * 댓글 삭제
+	 * @param re_no
+	 * @return
+	 */
 	public int deleteReply(int re_no) {
 		Connection conn = getConnection();
 		
@@ -308,7 +338,36 @@ public class BoardService {
 		
 		close(conn);
 		return result;
+	}
+
+	/**
+	 * head가 main아닌 검색기능
+	 * @param head
+	 * @param select
+	 * @param search
+	 * @return
+	 */
+	public ArrayList<Board> esearchBoard(String head, String select, String search){
+		Connection conn = getConnection();
 		
+		ArrayList<Board> list  = new BoardDao().esearchBoard(conn, head, select, search);
+
+		close(conn);
+		return list;
 	}
 	
+	/**
+	 * head가 main인 검색기능
+	 * @param select
+	 * @param search
+	 * @return
+	 */
+	public ArrayList<Board> msearchBoard(String select, String search){
+		Connection conn = getConnection();
+		
+		ArrayList<Board> list  = new BoardDao().msearchBoard(conn, select, search);
+
+		close(conn);
+		return list;
+	}
 }

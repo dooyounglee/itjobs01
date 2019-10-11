@@ -130,6 +130,25 @@ public class Board {
 		this.path = path;
 		this.down_count = down_count;
 	}
+	
+	
+
+	public Board(int b_no, int m_no, String nickname, String head, String title, String contents, String update_date,
+			String time, int count, String editFile, String path, int down_count) {
+		super();
+		this.b_no = b_no;
+		this.m_no = m_no;
+		this.nickname = nickname;
+		this.head = head;
+		this.title = title;
+		this.contents = contents;
+		this.update_date = update_date;
+		this.time = time;
+		this.count = count;
+		this.editFile = editFile;
+		this.path = path;
+		this.down_count = down_count;
+	}
 
 	public String getNickname() {
 		return nickname;

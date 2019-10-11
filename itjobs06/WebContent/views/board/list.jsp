@@ -105,7 +105,7 @@
 	<% if(list.isEmpty()) { %>
 				등록된 게시글이 없습니다.
 			<% }else { %>
-				<%if(head.equals("전체보기")){%>	
+				<%if(head.equals("전체보기")){%>
 				<%= "["+i.getHead()+"] "+i.getTitle() %>
 				<% }else{ %>
 				<%= i.getTitle() %>
@@ -128,6 +128,19 @@
 	</a>
 	<% } %>
 
+
+	<br>
+	<div align="center">
+	<span><select name="writehead" id="writehead">
+		<option value="title">제목</option>
+		<option value="contents">내용</option>
+		<option value="nickname">닉네임 </option>
+	</select></span>
+	<span><input type="text" name="search" id="search"></span>
+	<span><button onclick="searchBtn()">검색</button></span>
+	</div>
+	<br>
+	
 	
 	<ul class="pagination" >
 	<% if(pi.getCurrentPage() == 1) {%>
@@ -151,6 +164,7 @@
 	<%} %>
 	</ul>
 	
+	
 	</div>
 	</div>
 	</div>
@@ -161,12 +175,17 @@
 	
 	
 	
-	
-	
-		
-		
-		
+
 		<script>
+		
+		function searchBtn(){
+			var select = $("#writehead").val();
+			var search = $("#search").val();
+		
+			location.href="<%=contextPath %>/searchList.bo?head=<%=head%>&select="+select+"&search="+search; 
+		}
+		
+		
 		function writeBtn(){
 			<%if(mem != null) {%>
 				location.href='<%= contextPath %>/insertForm.bo?head=<%=head%>';

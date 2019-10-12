@@ -17,9 +17,9 @@ import com.kh.resume.model.vo.Resume;
 
 public class ResumeService {
 
-	public ArrayList<Resume> getOpenResumeList() {
+	public ArrayList<Resume> getOpenResumeList(PageInfo pi) {
 		Connection conn=getConnection();
-		ArrayList<Resume> list=new ResumeDao().getOpenResumeList(conn);
+		ArrayList<Resume> list=new ResumeDao().getOpenResumeList(conn,pi);
 		close(conn);
 		return list;
 	}
@@ -231,6 +231,14 @@ public int insertResum(Resume re){
 		}
 		close(conn);
 	
+		return result;
+	}
+
+
+	public int getOpenResumeListCount() {
+		Connection conn = getConnection();
+		int result = new ResumeDao().getOpenResumeListCount(conn);
+		close(conn);
 		return result;
 	}
 	

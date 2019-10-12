@@ -93,7 +93,6 @@ public class NotificationDao {
 		PreparedStatement ps=null;
 		
 		String sql=prop.getProperty("deleteCancle");
-		System.out.println(sql);
 		try {
 			ps=conn.prepareStatement(sql);
 			ps.setInt(1, noti_no);

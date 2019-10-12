@@ -62,12 +62,143 @@
 							<button id="submit" class="btn btn-common">Save Change</button>
 						</form>
 						<hr>
-						<form class="form" action="update.me" method="post" autocomplete=off>
+						<%	Co_Info co=null;
+							if(mem.getType().equals("2")){
+								co=(Co_Info)session.getAttribute("co");
+							}%>
+						<%	if(mem.getType().equals("2")){ %>
+						<form class="form-ad" action="update.me" method="post" enctype="multipart/form-data" autocomplete=off>
+						<%	}else if(mem.getType().equals("1")){ %>
+						<form class="form-ad" action="update.me" method="post" autocomplete=off>
+						<%	} %>
+						<h3 class="alerts-title">정보 변경</h3>
 							<div class="form-group is-empty">
 								<label class="control-label">닉네임 변경</label> <input
-									class="form-control" type="text" name="nickname" value="${mem.nickname }"> <span
+									class="form-control" type="text" name="nickname" value="<%=mem.getNickname()%>"> <span
 									class="material-input"></span>
 							</div>
+							<%	if(mem.getType().equals("2")){ %>
+							<div class="form-group is-empty">
+								<label class="control-label">사업자등록번호</label> <input
+									class="form-control" type="text" name="regnum" value="<%=co.getRegNum()%>"> <span
+									class="material-input"></span>
+							</div>
+							<%	String[] address=co.getAddress().split("\\+"); %>
+							<div class="form-group">
+								<div class="row">
+									<div class="col-md-3">
+										<label class="control-label" >우편번호</label>
+										<input type="text" class="form-control" id="sample3_postcode" name="sample3_postcode" value="<%=address[0] %>" placeholder="우편번호">
+									</div>
+									<div class="col-md-3">
+									<label class="control-label">우편번호버튼</label>
+									<input type="button"
+										class="btn btn-common" value="우편번호 찾기" onclick="sample3_execDaumPostcode()">
+									</div>
+									<div id="wrap" style="display:none;border:1px solid;width:500px;height:300px;margin:5px 0;position:relative">
+										<img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnFoldWrap" style="cursor:pointer;position:absolute;right:0px;top:-1px;z-index:1" onclick="foldDaumPostcode()" alt="접기 버튼">
+									</div>
+									<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+									<script src="resources/util/address_api.js"></script>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="row">
+									<div class="col-md-6">
+									<label class="control-label">주소</label> <input type="text"
+										class="form-control" id="sample3_address" name="sample3_address" value="<%=address[1] %>" placeholder="주소">
+									</div>
+									<div class="col-md-6">
+									<label class="control-label">상세주소</label> <input type="text"
+										class="form-control" id="sample3_detailAddress" name="sample3_detailAddress" value="<%=address[2] %>" placeholder="상세주소">
+									<input type="hidden" id="sample3_extraAddress" placeholder="참고항목">
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="button-group">
+									<div class="action-buttons">
+										<div class="upload-button">
+											<button class="btn btn-common">사업자등록증</button>
+											<input id="cover_img_file_1" name="file1" type="file" onchange="loadImg(this,1)">
+											<img id="titleImg1"></img>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="button-group">
+									<div class="action-buttons">
+										<div class="upload-button">
+											<button class="btn btn-common">로고</button>
+											<input id="cover_img_file_2" name="file2"  type="file" onchange="loadImg(this,2)">
+											<img id="titleImg2"></img>
+										</div>
+									</div>
+								</div>
+							</div>
+<script>
+	function loadImg(value,num){
+		if(value.files && value.files[0]){
+			var reader = new FileReader();
+			reader.onload = function(e){
+				 $("#titleImg"+num).attr("src", e.target.result); // data:URL
+			}
+			reader.readAsDataURL(value.files[0]);
+		}
+	}
+</script>
+							<div class="form-group is-empty">
+								<label class="control-label">담당자명</label> <input
+									class="form-control" type="text" name="name" value="<%=co.getName()%>"> <span
+									class="material-input"></span>
+							</div>
+							<div class="form-group is-empty">
+								<label class="control-label">담당자폰</label> <input
+									class="form-control" type="text" name="phone" value="<%=co.getPhone()%>"> <span
+									class="material-input"></span>
+							</div>
+							<div class="form-group is-empty">
+								<label class="control-label">대표자명</label> <input
+									class="form-control" type="text" name="ceo" value="<%=co.getCeo()%>"> <span
+									class="material-input"></span>
+							</div>
+							<div class="form-group is-empty">
+								<label class="control-label">대표자폰</label> <input
+									class="form-control" type="text" name="co_phone" value="<%=co.getCo_phone()%>"> <span
+									class="material-input"></span>
+							</div>
+							<div class="form-group is-empty">
+								<label class="control-label">사업내용</label> <input
+									class="form-control" type="text" name="descript" value="<%=co.getDescript()%>"> <span
+									class="material-input"></span>
+							</div>
+							<div class="form-group is-empty">
+								<label class="control-label">설립일</label> <input
+									class="form-control" type="date" name="birth_date" value="<%=co.getBirth_date().split(" ")[0]%>"> <span
+									class="material-input"></span>
+							</div>
+							<div class="form-group is-empty">
+								<label class="control-label">사원수</label> <input
+									class="form-control" type="text" name="memsum" value="<%=co.getMemsum()%>"> <span
+									class="material-input"></span>
+							</div>
+							<div class="form-group is-empty">
+								<label class="control-label">매출액</label> <input
+									class="form-control" type="text" name="revenue" value="<%=co.getRevenue()%>"> <span
+									class="material-input"></span>
+							</div>
+							<div class="form-group is-empty">
+								<label class="control-label">연혁</label> <input
+									class="form-control" type="text" name="history" value="<%=co.getHistory()%>"> <span
+									class="material-input"></span>
+							</div>
+							<div class="form-group is-empty">
+								<label class="control-label">복지</label> <input
+									class="form-control" type="text" name="welfare" value="<%=co.getWelfare()%>"> <span
+									class="material-input"></span>
+							</div>
+							<%	} %>
 							<button id="submit" class="btn btn-common">Save Change</button>
 						</form>
 					</div>
@@ -97,7 +228,7 @@
 	<button onclick="return leave()">탈퇴(모달창으로 할꺼임)</button>
 	<hr>
 	
-	<%	if(mem.getType().equals("2")){
+	<%-- <%	if(mem.getType().equals("3")){
 		Co_Info co=(Co_Info)session.getAttribute("co");%>
 	${co }<br>
 	사업자등록번호:<input name=regnum value="<%=co.getRegNum()%>"><br>
@@ -203,7 +334,7 @@
 	매출액:<input name=revenue value="<%=co.getRevenue()%>"><br>
 	연혁:<input name=history value="<%=co.getHistory()%>"><br>
 	복지:<input name=welfare value="<%=co.getWelfare()%>"><br>
-	<%	} %>
+	<%	} %> --%>
 	<button>입력완료</button>
 </form>
 <script>

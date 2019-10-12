@@ -59,7 +59,6 @@
 	<h3 class="job-title">새 글쓰기</h3>
 	<form class="form-ad" action="<%=contextPath%>/insert.bo?head=<%=head%>" method="post" enctype="multipart/form-data" id="form" >
 	<input type="hidden" value="<%= clickHead %>" name="clickHead">
-	<input type="hidden" value="<%= mem.getM_no() %>" name="m_no">
 	<div class="form-group">
 	<label class="control-label">Category</label>
 	<div class="search-category-container">

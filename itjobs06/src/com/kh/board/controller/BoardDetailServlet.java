@@ -7,9 +7,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.kh.board.model.service.BoardService;
 import com.kh.board.model.vo.Board;
+import com.kh.member.model.vo.Member;
 
 /**
  * Servlet implementation class BoardDetailServlet
@@ -32,10 +34,15 @@ public class BoardDetailServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int bId = Integer.parseInt(request.getParameter("bId"));
 		String head = request.getParameter("head");
-		int loginM_no = 0;
 		
-		if(request.getParameter("m_no") != null) {	// 로그인 했을 때만 실행되게
-			loginM_no = Integer.parseInt(request.getParameter("m_no"));
+		HttpSession session = request.getSession();
+	    Member mem=(Member)session.getAttribute("mem");
+		int m_no = 0;
+		String type="3";
+		
+		if(mem != null) {	// 로그인 했을 때만 실행되게
+			 m_no = mem.getM_no();
+			 type = mem.getType();
 		}
 		
 		Board prev = new Board();
@@ -49,8 +56,8 @@ public class BoardDetailServlet extends HttpServlet {
 		case "form" : head="서식"; break;
 		default : break;
 		}
-		
-		Board b = new BoardService().selectBoard(bId, loginM_no);
+
+		Board b = new BoardService().selectBoard(bId, m_no, type);
 
 
 		if(b == null) {

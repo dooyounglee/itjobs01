@@ -90,7 +90,7 @@
               <span style="font-size:18px; color:black;" id="img1_1"><%=b.getCount() %></span>&nbsp; &nbsp;
               <span id="img2">댓글수</span>
            <span style="font-size:18px; color:black;" id="img2_1"><%=b.getReply_count() %></span> &nbsp; &nbsp;
-            <%if(b.getTime() != null){ %>
+            <%if(b.getEditFile() != null){ %>
            <span id="img2">다운로드수</span>
            <span style="font-size:18px; color:black;" id="img2_1"><%= b.getDown_count() %></span>
            <%} %>
@@ -160,11 +160,7 @@
    				$(this).css({"color":"gray"});
    			});
    			$("#prev").click(function(){
-   				<%if(mem != null){%>
-   				location.href="<%= contextPath %>/detail.bo?head=<%=head%>&m_no=<%=mem.getM_no()%>&bId=<%=prev.getB_no() %>";
-   				<%}else{%>
    				location.href="<%= contextPath %>/detail.bo?head=<%=head%>&bId=<%=prev.getB_no() %>";
-   				<%}%>
    			});
    		});
    		
@@ -176,11 +172,7 @@
    			});
    			
    			$("#next").click(function(){
-   				<%if(mem != null){%>
-   				location.href="<%= contextPath %>/detail.bo?head=<%=head%>&m_no=<%=mem.getM_no()%>&bId=<%=next.getB_no() %>";
-   				<%}else{%>
    				location.href="<%= contextPath %>/detail.bo?head=<%=head%>&bId=<%=next.getB_no() %>";
-   				<%}%>
    			});
    		}); 
       
@@ -234,12 +226,12 @@
 					<%if(mem != null) { %>
 					var content = $("#replyContent").val();
 					var bId = <%= b.getB_no()%>;
-					var m_no = <%= mem.getM_no()%>;
+					
 					
 					$.ajax({
 						url:"brinsert.bo",
 						type:"post",
-						data:{content:content, bId:bId, m_no:m_no},
+						data:{content:content, bId:bId},
 						success:function(status){
 							if(status == "success"){
 								selectRlist();

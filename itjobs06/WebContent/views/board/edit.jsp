@@ -77,7 +77,6 @@
 	<h3 class="job-title">수정하기</h3>
 	<form class="form-ad" action="<%=contextPath%>/update.bo" method="post" enctype="multipart/form-data" id="form">
 	<input type="hidden" value="<%=b.getB_no() %>" name="b_no">
-	<input type="hidden" value="<%=b.getM_no() %>" name="m_no">
 	<div class="form-group">
 	<label class="control-label">Category</label>
 	<div class="search-category-container">
@@ -174,7 +173,7 @@
            content.focus();
            return false; 
         
-        }else{ss
+        }else{
            $("#form").submit();
         }
      };

@@ -36,9 +36,17 @@ public class AdminNotificationListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		PageInfo pi = new PageInfo(1, 10, 10, 10);
+		int currentPage=1;
+		if(request.getParameter("currentPage")!=null) {
+			currentPage=Integer.parseInt(request.getParameter("currentPage"));
+		}
+		PageInfo pi = null;
+		
+		int listCount = new NotificationService().getListCount();
+		pi = new PageInfo(currentPage, listCount, 10, 10);
 		ArrayList<Notification> list=new NotificationService().getAllNotificationList(pi);
 		request.setAttribute("list", list);
+		request.setAttribute("pi", pi);
 		request.getRequestDispatcher("views/admin/notification.jsp").forward(request, response);
 	}
 

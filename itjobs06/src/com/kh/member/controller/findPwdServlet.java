@@ -54,8 +54,9 @@ public class findPwdServlet extends HttpServlet {
 				
 				new sendEmail().sendPwd(email,userPwd);
 				
-				
-				response.sendRedirect(request.getContextPath());
+				request.setAttribute("findResult", "임시 비밀번호를 발송하였습니다. 로그인을 진행해 주세요");
+				request.setAttribute("MemEmail", email);
+				request.getRequestDispatcher("views/login/login.jsp").forward(request, response);
 			}else {
 				//이메일 발송 실패
 			}
@@ -64,6 +65,8 @@ public class findPwdServlet extends HttpServlet {
 			
 		}else {
 			// 존재하지 않는 회원
+			request.setAttribute("findResult", "존재하지 않는 회원입니다.");
+			request.getRequestDispatcher("views/login/find.jsp").forward(request, response);
 		}
 		
 		

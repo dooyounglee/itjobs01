@@ -106,7 +106,7 @@
 					<li class="nav-item aaa"><div></div>
 					<a class="nav-link" href="<%=request.getContextPath()%>/login.me">로그인</a></li>
 					<%	} %>
-					<%if(mem!=null && mem.getType().equals("2")){ %>
+					<%if(mem!=null && mem.getType().equals("0")){ %>
 					<li class="button-group"><a href="<%=request.getContextPath()%>/main.ad"
 						class="button btn btn-common">관리자</a></li>
 					<%}%>

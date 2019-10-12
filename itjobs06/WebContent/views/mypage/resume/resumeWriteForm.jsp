@@ -57,7 +57,7 @@
 							<div class="form-group">
 								<label class="control-label"></label> <label
 									class="control-label">Email</label> <input type="text"
-									class="form-control" name="email" placeholder="Your@domain.com"  value="1">
+									class="form-control" name="email" placeholder="Your@domain.com"  value="<%=mem.getEmail()%>">
 							</div>
 							<div class="form-group">
 								<label class="control-label">생년월일</label> <input
@@ -160,8 +160,8 @@
 								<h3>경력</h3>
 							</div>
 							<div class="form-group">
-								<input type="radio" name="career" value="N" checked>신입
-								<input type="radio" name="career" value="Y" >경력
+								<input type="radio" id="career_off" name="career" value="N" checked>신입
+								<input type="radio" id="career_on" name="career" value="Y" >경력
 							</div>
 							<div id="careerList">
 								<div class="form-group">
@@ -190,7 +190,7 @@
 								</div>
 							</div>
 							</section>
-							<div class="add-post-btn">
+							<div id="btn_add_career" class="add-post-btn">
 								<div class="float-left">
 									<a href="#" class="btn-added" onclick="return add_career()"><i class="ti-plus"></i> Add
 										New Experience</a>
@@ -201,28 +201,21 @@
 								</div>
 							</div>
 <script>
+	$('#careerList').hide();
+	$('#btn_add_career').hide();
+	$('#career_off').click(function(){
+		$('#careerList').hide();
+		$('#btn_add_career').hide();
+	})
+	$('#career_on').click(function(){
+		$('#careerList').show();
+		$('#btn_add_career').show();
+	})
 	function add_career(){
-		str ='<hr><div class="form-group">';
-		str+='<label class="control-label">회사이름</label>';
-		str+='<input type="text" class="form-control" name="companyName" placeholder="Company name">';
-		str+='</div>';
-		str+='<div class="form-group">';
-		str+='<label class="control-label">한일</label>';
-		str+='<input type="text" class="form-control" name="workList" placeholder="e.g UI/UX Researcher">';
-		str+='</div>';
-		str+='<div class="form-group">';
-		str+='<div class="row">';
-		str+='<div class="col-md-6">';
-		str+='<label class="control-label">Date From</label>';
-		str+='<input type="date" class="form-control" name="workDate1" placeholder="e.g 2014">';
-		str+='</div>';
-		str+='<div class="col-md-6">';
-		str+='<label class="control-label">Date To</label>';
-		str+='<input type="date" class="form-control" name="workDate2" placeholder="e.g 2020">';
-		str+='</div>';
-		str+='</div>';
-		str+='</div>';
-		$('#careerList').append(str);
+		var one_career=$('#careerList').children('div:lt(3)').clone();
+		one_career.find('input').val("")
+		$('#careerList').append('<hr>');
+		$('#careerList').append(one_career);
 		return false;
 	}
 	function del_career(){
@@ -509,12 +502,7 @@
 
  
  
- 	function add_career(){
-	/* 	 var form=$('#careerForm')
-		 var str=form.html();
-		 str=str.replace('</div>','<button onclick="del_career()">삭제</button></div>')
-		 console.log(str)
-		 $('#careerList').append(str) */
+ /* 	function add_career(){
 	 	var str='<div id="careerForm">';
 		str+='<label>근무 회사명</label>';
 		str+='<input type="text" name="companyName" value="1"><br><br>';

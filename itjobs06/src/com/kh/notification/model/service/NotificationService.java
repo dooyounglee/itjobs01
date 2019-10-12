@@ -43,9 +43,9 @@ public class NotificationService {
 		return list;
 	}
 
-	public ArrayList<Notification> getMyNotificationList(Member mem) {
+	public ArrayList<Notification> getMyNotificationList(Member mem, PageInfo pi) {
 		Connection conn=getConnection();
-		ArrayList<Notification> list=new NotificationDao().getMyNotificationList(conn,mem);
+		ArrayList<Notification> list=new NotificationDao().getMyNotificationList(conn,mem,pi);
 		close(conn);
 		return list;
 	}
@@ -133,6 +133,13 @@ public class NotificationService {
 	public int getSuperSearchNotificationListCount(String sText) {
 		Connection conn=getConnection();
 		int result=new NotificationDao().getSuperSearchNotificationListCount(conn,sText);
+		close(conn);
+		return result;
+	}
+
+	public int getMyNotificationListCount(Member mem) {
+		Connection conn=getConnection();
+		int result=new NotificationDao().getMyNotificationListCount(conn,mem);
 		close(conn);
 		return result;
 	}

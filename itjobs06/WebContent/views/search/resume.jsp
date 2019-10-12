@@ -236,22 +236,19 @@ ArrayList<String> likeResList = (ArrayList<String>)request.getAttribute("likeRes
 				</div>
 				<%	} %>
 				
-				<%	System.out.print("1");
-					PageInfo pi=(PageInfo)request.getAttribute("pi");
-					System.out.print("2");
+				<%	PageInfo pi=(PageInfo)request.getAttribute("pi");
 					int currentPage=pi.getCurrentPage();
-					System.out.print("3");
 					//String sText=(String)request.getAttribute("sText")==null?"":(String)request.getAttribute("sText");
 					%>
 				<ul class="pagination" style="display:block;">
-					<%	if(currentPage>1){System.out.print("4"); %>
+					<%	if(currentPage>1){ %>
 					<li class="active"><a href="<%=request.getContextPath()%>/resumeList.se?currentPage=<%=currentPage-1%>" class="btn-prev"><i
 							class="lni-angle-left"></i> prev</a></li>
 					<%	} %>
-					<%	for(int i=pi.getStartPage();i<=pi.getEndPage();i++){System.out.print("5"); %>
+					<%	for(int i=pi.getStartPage();i<=pi.getEndPage();i++){ %>
 					<li><a href="<%=request.getContextPath()%>/resumeList.se?currentPage=<%=i%>"><%=i %></a></li>
 					<%	} %>
-					<%	if(currentPage<pi.getMaxPage()){System.out.print("6"); %>
+					<%	if(currentPage<pi.getMaxPage()){ %>
 					<li class="active"><a href="<%=request.getContextPath()%>/resumeList.se?currentPage=<%=currentPage+1%> class="btn-next">Next <i
 							class="lni-angle-right"></i></a></li>
 					<%	} %>

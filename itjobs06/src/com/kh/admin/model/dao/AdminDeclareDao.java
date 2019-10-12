@@ -208,7 +208,7 @@ public class AdminDeclareDao {
 		int result = 0;
 		PreparedStatement ps=null;
 		
-		String sql=prop.getProperty("completBoard");
+		String sql=prop.getProperty("completeBoard");
 		try {
 			ps=conn.prepareStatement(sql);
 			ps.setInt(1, de_no);

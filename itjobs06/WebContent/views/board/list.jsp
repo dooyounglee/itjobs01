@@ -70,64 +70,84 @@
 	
 	
 	<div class="job-alerts-item">
-	<h3 class="alerts-title" style="display:inline-block"><%=head%></h3> <span class="full-time" onclick="writeBtn();" style="float:right">글쓰기</span>
-	<div class="alerts-list">
-	<div class="row">
-	<div class="col-md-4">
-	<p>제목</p>
-	</div>
-	<div class="col-md-4">
-	<% if(head.equals("스터디") || head.equals("프로젝트")){ %>
-	<p>모집기간</p>
-	<%} %>
-	</div>
-	<div class="col-md-2">
-	<p>등록일자</p>
-	</div>
-	<div class="col-md-2">
-	 <p>조회수</p>
-	</div>
-	</div>
-	</div>
-	
-	
-	<% for(Board i : list) { %>
-		<%if(mem != null){%>
-			<a href="<%= contextPath %>/detail.bo?head=<%=head%>&m_no=<%=mem.getM_no()%>&bId=<%=i.getB_no() %>">
-		<%}else{%>
-			<a href="<%= contextPath %>/detail.bo?head=<%=head%>&bId=<%=i.getB_no() %>">
-		<%}%>
-	<div class="alerts-content">
-	<div class="row">
-	<div class="col-md-4">
-	<span class="full-time"><%= "No." + i.getB_no() %></span>
-	<br>
-	<% if(list.isEmpty()) { %>
-				등록된 게시글이 없습니다.
-			<% }else { %>
-				<%if(head.equals("전체보기")){%>	
-				<%= "["+i.getHead()+"] "+i.getTitle() %>
-				<% }else{ %>
-				<%= i.getTitle() %>
-				<% } %>	
-	<% } %>	
-	</div>
-	<div class="col-md-4">
-	<% if(head.equals("스터디") || head.equals("프로젝트")){ %>
-	<p><%= i.getTime() %></p>
-	<% } %>
-	</div>
-	<div class="col-md-2">
-	<p><span class="location"><%= i.getUpdate_date() %></span></p>
-	</div>
-	<div class="col-md-2">
-	<p><%= i.getCount() %></p>
-	</div>
-	</div>
-	</div>
-	</a>
-	<% } %>
+   <h3 class="alerts-title" style="display:inline-block"><%=head%></h3> <span class="full-time" onclick="writeBtn();" style="float:right">글쓰기</span>
+   <div class="alerts-list">
+   <div class="row">
+   <div class="col-md-3">
+   <p>제목</p>
+   </div>
+   <div class="col-md-2">
+   <p>작성자</p>
+   </div>
+   <div class="col-md-3">
+   <% if(head.equals("스터디") || head.equals("프로젝트")){ %>
+   <p>모집기간</p>
+   <%} %>
+   </div>
+   <div class="col-md-2">
+   <p>등록일자</p>
+   </div>
+   <div class="col-md-2">
+    <p>조회수</p>
+   </div>
+   </div>
+   </div>
+   
+   
+   <% for(Board i : list) { %>
+      <%if(mem != null){%>
+         <a href="<%= contextPath %>/detail.bo?head=<%=head%>&m_no=<%=mem.getM_no()%>&bId=<%=i.getB_no() %>">
+      <%}else{%>
+         <a href="<%= contextPath %>/detail.bo?head=<%=head%>&bId=<%=i.getB_no() %>">
+      <%}%>
+      
+   <div class="alerts-content">
+   <div class="row">
+   <div class="col-md-3">
+   <span class="full-time"><%= "No." + i.getB_no() %></span>
+   <br>
+   <% if(list.isEmpty()) { %>
+            등록된 게시글이 없습니다.
+         <% }else { %>
+            <%if(head.equals("전체보기")){%>
+            <%= "["+i.getHead()+"] "+i.getTitle() %>
+            <% }else{ %>
+            <%= i.getTitle() %>
+            <% } %>   
+   <% } %>   
+   </div>
+   <div class="col-md-2">
+   <p><%= i.getNickname() %></p>
+   </div>
+   <div class="col-md-3">
+   <% if(head.equals("스터디") || head.equals("프로젝트")){ %>
+   <p><%= i.getTime() %></p>
+   <% } %>
+   </div>
+   <div class="col-md-2">
+   <p><span class="location"><%= i.getUpdate_date() %></span></p>
+   </div>
+   <div class="col-md-2">
+   <p><%= i.getCount() %></p>
+   </div>
+   </div>
+   </div>
+   </a>
+   <% } %>
 
+
+	<br>
+	<div align="center">
+	<span><select name="writehead" id="writehead">
+		<option value="title">제목</option>
+		<option value="contents">내용</option>
+		<option value="nickname">닉네임 </option>
+	</select></span>
+	<span><input type="text" name="search" id="search"></span>
+	<span><button onclick="searchBtn()">검색</button></span>
+	</div>
+	<br>
+	
 	
 	<ul class="pagination" >
 	<% if(pi.getCurrentPage() == 1) {%>
@@ -151,6 +171,7 @@
 	<%} %>
 	</ul>
 	
+	
 	</div>
 	</div>
 	</div>
@@ -161,12 +182,17 @@
 	
 	
 	
-	
-	
-		
-		
-		
+
 		<script>
+		
+		function searchBtn(){
+			var select = $("#writehead").val();
+			var search = $("#search").val();
+		
+			location.href="<%=contextPath %>/searchList.bo?head=<%=head%>&select="+select+"&search="+search; 
+		}
+		
+		
 		function writeBtn(){
 			<%if(mem != null) {%>
 				location.href='<%= contextPath %>/insertForm.bo?head=<%=head%>';

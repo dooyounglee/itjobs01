@@ -156,15 +156,15 @@
 	
 	<%if(Dhead=="게시글"){%>
 	function complete(de_no){
-		location.href="<%=request.getContextPath()%>/complete.de.bo?de_no="+de_no
+		location.href="<%=request.getContextPath()%>/complete.de.bo?de_no="+de_no;
 	}
 	<%}else if(Dhead=="공고"){%>
 	function complete(de_no){
-		location.href="<%=request.getContextPath()%>/complete.de.no?de_no="+de_no
+		location.href="<%=request.getContextPath()%>/complete.de.no?de_no="+de_no;
 	}	 
 	<%}else if(Dhead=="댓글"){%>
 	function complete(de_no){
-		location.href="<%=request.getContextPath()%>/complete.de.re?de_no="+de_no
+		location.href="<%=request.getContextPath()%>/complete.de.re?de_no="+de_no;
 	}
 	<%}%>
 </script>

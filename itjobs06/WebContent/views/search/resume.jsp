@@ -1,3 +1,4 @@
+<%@page import="com.kh.board.model.vo.PageInfo"%>
 <%@page import="com.kh.resume.model.vo.Resume"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -154,15 +155,41 @@ ArrayList<String> likeResList = (ArrayList<String>)request.getAttribute("likeRes
 							<div class="manager-info">
 								<div class="manager-name">
 									<h4>
-										<a href="#"><%=n.getName() %></a>
+										<a href="#">
+											<%	if(mem!=null && mem.getType().equals("2")){ %>
+												<%=n.getName() %>
+											<%	}else{ %>
+												<%=n.getName().substring(0,1)+"**" %>
+											<%	} %>
+										</a>
 									</h4>
-									<h5><%=n.getDepartment() %></h5>
+									<h5>
+										<%	if(mem!=null && mem.getType().equals("2")){ %>
+												학과: <%=n.getDepartment() %>
+										<%	}else{ %>
+											학과: ******
+										<%	} %>
+									</h5>
 								</div>
 								<div class="manager-meta">
 
 									<span class="location"><i class="ti-location-pin"></i>
-										<%=n.getAddress() %></span> <span class="rate"><i
-										class="ti-time"></i><%=n.getHope_salary() %></span>
+										<%-- <%	String[] arr_address=n.getAddress().split("\\+");
+											String[] arr_address_middle=arr_address[1].split(" ");
+											if(mem!=null && mem.getType().equals("2")){ %>
+												<%=arr_address_middle[0]+" "+arr_address_middle[1] %>
+										<%	}else{ %>
+												<%=arr_address_middle[0] %>
+										<%	} %> --%>
+										지역: <%=n.getAddress().substring(0,7)+"..." %>
+									</span> <span class="rate"><i
+										class="ti-time"></i>
+											<%	if(mem!=null && mem.getType().equals("2")){ %>
+												희망연봉: <%=n.getHope_salary() %>
+										<%	}else{ %>
+											희망연봉: ******
+										<%	} %>
+										</span>
 								</div>
 							</div>
 						</div>
@@ -197,13 +224,39 @@ ArrayList<String> likeResList = (ArrayList<String>)request.getAttribute("likeRes
 									<%}else{ %>
 									<span class="heart-icon"> <img src="./resources/img/like-after1.png" class="likeimg"> </span>
 									<%} %>
-									<a class="btn btn-common btn-xs" style="padding: 6px 16px; font-size: 12px;"><%=n.getCareer_year() %></a>
+									<%	if(n.getCareer().equals("N")){ %>
+									<a class="btn btn-common btn-xs" style="padding: 6px 16px; font-size: 12px;">신입</a>
+									<%	}else{ %>
+									<a class="btn btn-common btn-xs" style="padding: 6px 16px; font-size: 12px;">경력 <%=n.getCareer_year() %>년</a>
+									<%	} %>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 				<%	} %>
+				
+				<%	System.out.print("1");
+					PageInfo pi=(PageInfo)request.getAttribute("pi");
+					System.out.print("2");
+					int currentPage=pi.getCurrentPage();
+					System.out.print("3");
+					//String sText=(String)request.getAttribute("sText")==null?"":(String)request.getAttribute("sText");
+					%>
+				<ul class="pagination" style="display:block;">
+					<%	if(currentPage>1){System.out.print("4"); %>
+					<li class="active"><a href="<%=request.getContextPath()%>/resumeList.se?currentPage=<%=currentPage-1%>" class="btn-prev"><i
+							class="lni-angle-left"></i> prev</a></li>
+					<%	} %>
+					<%	for(int i=pi.getStartPage();i<=pi.getEndPage();i++){System.out.print("5"); %>
+					<li><a href="<%=request.getContextPath()%>/resumeList.se?currentPage=<%=i%>"><%=i %></a></li>
+					<%	} %>
+					<%	if(currentPage<pi.getMaxPage()){System.out.print("6"); %>
+					<li class="active"><a href="<%=request.getContextPath()%>/resumeList.se?currentPage=<%=currentPage+1%> class="btn-next">Next <i
+							class="lni-angle-right"></i></a></li>
+					<%	} %>
+				</ul>
+				
 				<div class="col-12 text-center mt-4">
 					<a href="job-page.html" class="btn btn-common">Browse All Jobs</a>
 				</div>

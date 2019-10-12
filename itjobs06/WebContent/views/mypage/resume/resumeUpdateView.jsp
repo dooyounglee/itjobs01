@@ -312,7 +312,7 @@
 								%>
 							<div class="form-group">
 								<div class="row">
-									<div class="col-md-6">
+									<div class="col-md-3">
 										<label class="control-label">희망연봉</label>
 										<label class="styled-select">
 											<select name="hope_salary">
@@ -320,6 +320,7 @@
 												<option value="2000" <%=arr_hope_sal[1] %>>2000</option>
 							 					<option value="3000" <%=arr_hope_sal[2] %>>3000</option>
 												<option value="4000" <%=arr_hope_sal[3] %>>4000</option>
+												<option value="4001" <%=arr_hope_sal[3] %>>4000이상</option>
 											</select>
 										</label>
 									</div>
@@ -344,16 +345,16 @@
 								String[] arr_p_lan=new String[10];
 								for(int i=0;i<p_lans.length;i++){
 									switch(p_lans[i]){
-									case "C":arr_p_lan[0]="selected";
-									case "java":arr_p_lan[1]="selected";
-									case "CSS":arr_p_lan[2]="selected";
-									case "javascript":arr_p_lan[3]="selected";
-									case "C++":arr_p_lan[4]="selected";
-									case "C#":arr_p_lan[5]="selected";
-									case "VBA":arr_p_lan[6]="selected";
-									case "python":arr_p_lan[7]="selected";
-									case "php":arr_p_lan[8]="selected";
-									case "asp":arr_p_lan[9]="selected";
+									case "C":arr_p_lan[0]="checked";break;
+									case "java":arr_p_lan[1]="checked";break;
+									case "CSS":arr_p_lan[2]="checked";break;
+									case "javascript":arr_p_lan[3]="checked";break;
+									case "C++":arr_p_lan[4]="checked";break;
+									case "C#":arr_p_lan[5]="checked";break;
+									case "VBA":arr_p_lan[6]="checked";break;
+									case "python":arr_p_lan[7]="checked";break;
+									case "php":arr_p_lan[8]="checked";break;
+									case "asp":arr_p_lan[9]="checked";break;
 									}
 								}%>
 							<div class="form-group">

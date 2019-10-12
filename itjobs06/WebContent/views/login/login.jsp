@@ -146,8 +146,8 @@ Login
  <form action="<%=contextPath%>/login.me" method=post autocomplete=off> 
 <!-- <input type=radio value="일반" name=type checked>일반
 <input type=radio value="기업" name=type>기업<br> -->
-email:<input name=email><br>
-pw:<input name=pw><button>로그인</button><div id="naver_id_login" ></div>
+<!-- email:<input name=email><br>
+pw:<input name=pw><button>로그인</button><div id="naver_id_login" ></div> -->
  </form> 
 <a href="<%=contextPath%>/views/login/join_law.jsp">회원가입</a>
 <a href="<%=contextPath%>/views/login/find.jsp">비번찾기</a>
@@ -184,7 +184,7 @@ pw:<input name=pw><button>로그인</button><div id="naver_id_login" ></div>
 </table> --%>
 <%@ include file="/views/include/footer.jsp" %>
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
   	var naver_id_login = new naver_id_login("ybquUitRdYWWMHEEV389", "http://localhost:8888/itjobs");
   	var state = naver_id_login.getUniqState();
   	naver_id_login.setButton("green", 1,30);
@@ -193,7 +193,7 @@ pw:<input name=pw><button>로그인</button><div id="naver_id_login" ></div>
   	naver_id_login.setPopup();
   	naver_id_login.init_naver_id_login();
   
-  </script>
+  </script> -->
 
 
 

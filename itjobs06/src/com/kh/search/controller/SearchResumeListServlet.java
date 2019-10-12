@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.kh.board.model.vo.PageInfo;
 import com.kh.like.model.service.LikeService;
 import com.kh.member.model.vo.Member;
 import com.kh.resume.model.service.ResumeService;
@@ -50,6 +51,13 @@ public class SearchResumeListServlet extends HttpServlet {
 		request.setAttribute("likeRes", likeRes);
 		}
 
+		int listCount = 0;
+		int currentPage=1;
+		if(request.getParameter("currentPage")!=null) {
+			currentPage=Integer.parseInt(request.getParameter("currentPage"));
+		}
+		PageInfo pi = null;
+		
 		
 		String sKey=request.getParameter("sKey");
 		String sText=request.getParameter("sText");
@@ -58,13 +66,15 @@ public class SearchResumeListServlet extends HttpServlet {
 		if(sKey!=null && sText!=null) {
 			list=new SearchService().searchResumeList(sKey,sText);
 		}else if(sText!=null){
-			System.out.println(sText);
 			list=new SearchService().getSuperSearchResume(sText);
 		}else {
-			list=new ResumeService().getOpenResumeList();
+			listCount=new ResumeService().getOpenResumeListCount();
+			pi = new PageInfo(currentPage, listCount, 10, 10);
+			list=new ResumeService().getOpenResumeList(pi);
 		}
 			
 		request.setAttribute("list", list);
+		request.setAttribute("pi", pi);
 		request.getRequestDispatcher("views/search/resume.jsp").forward(request, response);
 	}
 

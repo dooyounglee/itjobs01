@@ -95,6 +95,10 @@
 									class="form-control" type="text" name="hope"> <span
 									class="material-input"></span>
 							</div>
+							<div class="form-group is-empty">
+								<input type="radio" name="open" value="Y" checked>공개
+								<input type="radio" name="open" value="N" >비공개
+							</div>
 							<button id="submit" class="btn btn-common">Save Change</button>
 						</form>
 					</div>

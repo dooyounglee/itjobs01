@@ -3,16 +3,22 @@
     pageEncoding="UTF-8"%>
 <%
 	Board b = (Board)request.getAttribute("b");
-
-	String[] str = b.getTime().split("~"); 
+	
+	String[] str = new String[2];
+	
+	if(b.getTime() != null){
+		
+	   str  = b.getTime().split("~");  
+	}   
 			
-	String[] ca = new String[4];
+	String[] ca = new String[5];
 	
 	switch(b.getHead()){
 		case "자유" : ca[0]="selected"; break;
 		case "스터디" : ca[1]="selected"; break;
 		case "프로젝트" : ca[2]="selected"; break;
 		case "공지" : ca[3]="selected"; break;
+		case "서식" : ca[4]="selected"; break;
 	}
 %>
 <!DOCTYPE html>
@@ -81,7 +87,10 @@
 		<option value="자유" <%= ca[0] %>>자유</option>
 		<option value="스터디" <%= ca[1] %>>스터디</option>
 		<option value="프로젝트" <%= ca[2] %>>프로젝트</option>
-		<option value="공지" <%= ca[3] %>>공지</option>
+		<%if(mem.getM_no() == 1){ %>
+		<option value="공지사항" <%= ca[3] %>>공지</option>
+		<option value="서식" <%= ca[4] %>>서식</option>
+		<%} %>
 	</select>
 	</label>
 	</div>
@@ -97,21 +106,23 @@
 	<textarea class="form-control" rows="5" id="comment" name="content"><%=b.getContents() %></textarea>
 	</div>
 	</section>
-	<div class="form-group time" >
-	<label class="control-label">모집 시작</label>
-	<input type="date" class="form-control" name="time1" value="<%=str[0] %>" placeholder="yyyy-mm-dd">
-	</div>
-	<div class="form-group time" >
-	<label class="control-label">모집 마감</label>
-	<input type="date" class="form-control" name="time2" value="<%=str[1] %>" placeholder="yyyy-mm-dd">
-	</div>
+	<%if(b.getHead().equals("스터디") || b.getHead().equals("프로젝트")){ %>
+   <div class="form-group time" >
+   <label class="control-label">모집 시작</label>
+   <input type="date" class="form-control" name="time1" id="time1" value="<%=str[0] %>" placeholder="yyyy-mm-dd">
+   </div>
+   <div class="form-group time" >
+   <label class="control-label">모집 마감</label>
+   <input type="date" class="form-control" name="time2" id="time2" value="<%=str[1] %>" placeholder="yyyy-mm-dd">
+   </div>
+   <%} %> 
 	<div class="custom-file mb-3">
 	<input type="file" class="custom-file-input" name="file1" id="validatedCustomFile" onchange="fileName(this);" required>
-	<%-- <%if(b.getEditFile() != null){ %> --%>
+	<%if(b.getEditFile() != null){ %> 
 	<label class="custom-file-label form-control" for="validatedCustomFile" id="fileAddArea"><%=b.getFile()%></label>
-	<%-- <%}else{ %>
+	<%}else{ %>
 	<label class="custom-file-label form-control" for="validatedCustomFile" id="fileAddArea">Choose file...</label>
-	<%} %> --%>
+	<%} %> 
 	<div class="invalid-feedback">Example invalid custom file feedback</div>
 	</div>
 	<div onclick="window.history.back()" class="btn btn-common">취소</div>
@@ -128,36 +139,50 @@
 
 	
 	<script>
-		function writeAdd(){
-			var title = $("#title");
-			var content = $("#comment");
-			var select = $("#writehead");
-			
-			if(select.val() == "no"){
-				alert("머리말을 선택해주세요.");
-				select.focus();
-				return false;
-			}
-
-			if(title.val().trim().length == 0){
-				alert("제목을 입력해주세요.");
-				title.focus();
-				return false;
-			} 
-			if(content.val().trim().length == 0){
-				alert("내용을 입력해주세요.") 
-				content.focus();
-				return false; 
-				
-			}else{
-				$("#form").submit();
-			}
-		};
+	function writeAdd(){
+        var title = $("#title");
+        var content = $("#comment");
+        var select = $("#writehead");
+        var time1 = $("#time1");
+        var time2 = $("#time2");
+        
+        if(select.val() == "no"){
+           alert("머리말을 선택해주세요.");
+           select.focus();
+           return false;
+        }
+        if(select)
+        if(title.val().trim().length == 0){
+           alert("제목을 입력해주세요.");
+           title.focus();
+           return false;
+        } 
+        if(select.val() == "스터디" || select.val() == "프로젝트"){
+           if(time1.val().trim().length == 0){
+              alert("모집시작일을 입력해주세요.") 
+              time1.focus();
+              return false; 
+           }
+           if(time2.val().trim().length == 0){
+              alert("모집마감일을 입력해주세요.") 
+              time2.focus();
+              return false; 
+           }
+        }
+        if(content.val().trim().length == 0){
+           alert("내용을 입력해주세요.") 
+           content.focus();
+           return false; 
+        
+        }else{ss
+           $("#form").submit();
+        }
+     };
 		$(function(){
 			$("#writehead").change(function(){
-				var select = $("select[name=writehead]").val();
-	
-				if(select == "자유" || select == "공지"){
+				var select = $("#writehead");
+				select.removeAttr('selected');
+				if(select.val() == "자유" || select.val() == "공지"){
 					$(".time").hide();
 					
 				}else{

@@ -66,7 +66,6 @@
 									<span class="btn-full-time"><%=n.getDepartment() %></span>
 								</div>
 								<div class="col-lg-3 col-md-12 col-xs-12 text-right">
-									<span class="btn-apply">Apply Now</span>
 									<span class="btn-apply" onclick="return del(<%=n.getResume_no()%>);">삭제</span>
 								</div>
 							</div>

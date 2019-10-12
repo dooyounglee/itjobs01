@@ -45,15 +45,26 @@ public class NotificationViewServlet extends HttpServlet {
 		Notification noti=new NotificationService().getNotification(noti_no);
 		request.setAttribute("noti", noti);
 		
-		if(m==null) {
-			request.getRequestDispatcher("views/mypage/notice/get.jsp").forward(request, response);
-		}else if(m.getType().equals("1")) {
+		if(m!=null && m.getType().equals("1")) {
 			ArrayList<Resume> rlist=new ResumeService().getMyResumeList(m);
 			request.setAttribute("rlist", rlist);
-			request.getRequestDispatcher("views/mypage/notice/get.jsp").forward(request, response);
-		}else if(m.getType().equals("2")) {
-			request.getRequestDispatcher("views/mypage/notice/get.jsp").forward(request, response);
 		}
+		
+		//random 2개 공고
+		ArrayList<Notification> randomList=new ArrayList<>();
+		ArrayList<Notification> tempList=new NotificationService().getOpenNotificationList();
+		int tempListSize=tempList.size();
+		int random1=(int)(Math.random()*tempListSize);
+		int random2=-1;
+		while(true) {
+			random2=(int)(Math.random()*tempListSize);
+			if(random1!=random2)break;
+		}
+		randomList.add(tempList.get(random1));
+		randomList.add(tempList.get(random2));
+		
+		request.setAttribute("random", randomList);
+		request.getRequestDispatcher("views/mypage/notice/get.jsp").forward(request, response);
 		
 		
 	}

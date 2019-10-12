@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.kh.board.model.vo.PageInfo;
 import com.kh.member.model.vo.Member;
 import com.kh.notification.model.service.NotificationService;
 import com.kh.notification.model.vo.Notification;
@@ -38,9 +39,19 @@ public class CoMyNotificationListServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		Member mem=(Member)session.getAttribute("mem");
 		
-		ArrayList<Notification> list=new NotificationService().getMyNotificationList(mem);
+		int currentPage=1;
+		if(request.getParameter("currentPage")!=null) {
+			currentPage=Integer.parseInt(request.getParameter("currentPage"));
+		}
+		PageInfo pi = null;
+		
+		int listCount = new NotificationService().getMyNotificationListCount(mem);
+		pi = new PageInfo(currentPage, listCount, 10, 10);
+		
+		ArrayList<Notification> list=new NotificationService().getMyNotificationList(mem,pi);
 
 		request.setAttribute("list", list);
+		request.setAttribute("pi", pi);
 		request.getRequestDispatcher("views/mypage/notice/list.jsp").forward(request, response);
 	}
 

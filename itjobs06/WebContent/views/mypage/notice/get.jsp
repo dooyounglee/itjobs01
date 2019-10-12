@@ -215,61 +215,57 @@
 		}
 	</script>
 
-
 	<section id="featured" class="section bg-gray pb-45">
 		<div class="container">
 			<h4 class="small-title text-left">Similar Jobs</h4>
 			<div class="row">
+			<%	ArrayList<Notification> list=(ArrayList<Notification>)request.getAttribute("random");
+				for(Notification n:list){%>
 				<div class="col-lg-6 col-md-12 col-xs-12">
-					<a class="job-listings-featured" href="job-details.html">
+					<a class="job-listings-featured">
 						<div class="row">
-							<div class="col-lg-6 col-md-6 col-xs-12">
+							<div class="col-lg-6 col-md-6 col-xs-12" style="cursor:pointer;">
 								<div class="job-company-logo">
 									<img src="assets/img/features/img1.png" alt="">
 								</div>
 								<div class="job-details">
-									<h3>Software Engineer</h3>
-									<span class="company-neme">MizTech</span>
+									<h3 onclick="location.href='<%=request.getContextPath()%>/get.no?noti_no=<%=n.getNoti_no()%>'"><%=n.getTitle() %></h3>
+									<span class="company-neme" onclick="detailCo(<%=n.getCo_no()%>)"><%=n.getNickname()%></span>
 									<div class="tags">
-										<span><i class="lni-map-marker"></i> New York</span> <span><i
-											class="lni-user"></i>John Smith</span>
+										<span><i class="lni-map-marker"></i> 위치</span> <span><i
+											class="lni-user"></i><%=n.getSalary() %> 만원</span>
 									</div>
 								</div>
 							</div>
 							<div class="col-lg-6 col-md-6 col-xs-12 text-right">
 								<div class="tag-type">
-									<sapn class="heart-icon"> <i class="lni-heart"></i> </sapn>
-									<span class="full-time">Full Time</span>
+									<input type="hidden" value="<%=n.getNoti_no()%>" class="no_no">
+<%-- 									<%
+										boolean flag = false;  // 좋아요 이미지가 겹치지 않게 하기 위해서
+										if(mem != null){
+									
+										for(int i=0; i<likeBoList.size(); i++){ // 서블릿에서 좋아요한 맴버의 게시글번호를 받아
+											
+											if(Integer.parseInt(likeBoList.get(i)) == n.getNoti_no()){  // 그 게시글번호와 현재 for문으로 작동하는 게시글번호와 일치하면
+												flag = true;	// 	좋아요한 이미지 보이게									
+												}
+											}
+										}
+									%>
+									
+									<%if(!flag){  %>
+										<span class="heart-icon"> <img src="./resources/img/like-before.png" class="likeimg"> </span>
+									<%}else{ %>
+										<span class="heart-icon"> <img src="./resources/img/like-after1.png" class="likeimg"> </span>
+									<%} %> --%>
+									
+									<span class="full-time">~<%=n.getEnd_date().split(" ")[0] %></span>
 								</div>
 							</div>
 						</div>
 					</a>
 				</div>
-				<div class="col-lg-6 col-md-12 col-xs-12">
-					<a class="job-listings-featured" href="job-details.html">
-						<div class="row">
-							<div class="col-lg-6 col-md-6 col-xs-12">
-								<div class="job-company-logo">
-									<img src="assets/img/features/img2.png" alt="">
-								</div>
-								<div class="job-details">
-									<h3>Graphic Designer</h3>
-									<span class="company-neme">Hunter Inc.</span>
-									<div class="tags">
-										<span><i class="lni-map-marker"></i> New York</span> <span><i
-											class="lni-user"></i>John Smith</span>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-6 col-md-6 col-xs-12 text-right">
-								<div class="tag-type">
-									<sapn class="heart-icon"> <i class="lni-heart"></i> </sapn>
-									<span class="part-time">Part Time</span>
-								</div>
-							</div>
-						</div>
-					</a>
-				</div>
+				<%	} %>
 			</div>
 		</div>
 	</section>

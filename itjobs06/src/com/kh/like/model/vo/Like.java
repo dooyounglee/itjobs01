@@ -6,6 +6,12 @@ public class Like {
 	private int m_no;
 	private int co_no;
 	private int noti_co;
+	
+	//likeCompany
+	private String nickname;
+	private String address;
+	
+	
 	public Like() {
 		super();
 	}
@@ -39,6 +45,18 @@ public class Like {
 	}
 	public void setNoti_co(int noti_co) {
 		this.noti_co = noti_co;
+	}
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
 	}
 	@Override
 	public String toString() {

@@ -37,9 +37,6 @@ public class BoardDownloadServlet extends HttpServlet {
 		int bId = Integer.parseInt(request.getParameter("bId"));
 		
 		Board b = new BoardService().selectDownCountBoard(bId);
-		 
-		System.out.println("***************   다운로드 서블릿 :            " + b);
-		
 		
 		File downFile = new File(request.getSession().getServletContext().getRealPath("/resources")+"/fileupload_board/" + b.getEditFile());
 		String oriName = new String(b.getFile().getBytes("UTF-8"),"ISO-8859-1");
@@ -54,6 +51,8 @@ public class BoardDownloadServlet extends HttpServlet {
 		
 		downOut.close();
 		buf.close();
+		
+		
 		
 	}
 

@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
@@ -15,6 +16,7 @@ import com.kh.board.model.service.BoardService;
 import com.kh.board.model.vo.Attachment;
 import com.kh.board.model.vo.Board;
 import com.kh.common.MyFileRenamePolicy;
+import com.kh.member.model.vo.Member;
 import com.oreilly.servlet.MultipartRequest;
 
 /**
@@ -60,8 +62,10 @@ public class BoardInsertServlet extends HttpServlet {
 				}
 			}
 		
-
-			int m_no = Integer.parseInt(multiRequest.getParameter("m_no"));
+			HttpSession session = request.getSession();
+		    Member mem=(Member)session.getAttribute("mem");
+		    int m_no = mem.getM_no();
+			
 			String head = multiRequest.getParameter("writehead");
 			String title = multiRequest.getParameter("title");
 			String contents = multiRequest.getParameter("content");
@@ -69,6 +73,15 @@ public class BoardInsertServlet extends HttpServlet {
 			String time2 = multiRequest.getParameter("time2");
 			String clickHead = multiRequest.getParameter("clickHead");	// 메뉴바에서 클릭한 헤드(인설트 후 리스트 재조회 시 필요)
 
+			switch(clickHead) {
+			case "전체보기" : clickHead="main"; break;
+			case "자유" : clickHead="free"; break;
+			case "스터디" : clickHead="study"; break;
+			case "프로젝트" : clickHead="project"; break;
+			case "공지사항" : clickHead="qu"; break;
+			case "서식" : clickHead="form"; break;
+			default: break;
+			}
 			
 			String time = "";
 	         if(head.equals("스터디") || head.equals("프로젝트")) {
@@ -89,9 +102,9 @@ public class BoardInsertServlet extends HttpServlet {
 			int result = new BoardService().insertBoard(b);
 			
 			if(result > 0) {
-				
-				request.setAttribute("head", clickHead);
-				request.getRequestDispatcher("list.bo").forward(request, response);
+				response.sendRedirect("list.bo?head="+ clickHead);
+				/*request.setAttribute("head", clickHead);
+				request.getRequestDispatcher("list.bo").forward(request, response);*/
 			}else {
 				request.setAttribute("msg", "게시글 등록 실패");
 				request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);

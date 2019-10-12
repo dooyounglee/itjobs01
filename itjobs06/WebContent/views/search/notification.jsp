@@ -142,7 +142,7 @@ ArrayList<String> likeBoList = (ArrayList<String>)request.getAttribute("likeMem"
 								</div>
 								<div class="job-details">
 									<h3 onclick="location.href='<%=request.getContextPath()%>/get.no?noti_no=<%=n.getNoti_no()%>'"><%=n.getTitle() %></h3>
-									<span class="company-neme" onclick="detailCo(<%=n.getCo_no()%>)"><%=n.getCo_no()%></span>
+									<span class="company-neme" onclick="detailCo(<%=n.getCo_no()%>)"><%=n.getNickname()%></span>
 									<div class="tags">
 										<span><i class="lni-map-marker"></i> 위치</span> <span><i
 											class="lni-user"></i><%=n.getSalary() %> 만원</span>

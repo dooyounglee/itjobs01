@@ -20,40 +20,15 @@
 	<%@ include file="/views/include/user/header_nav.jsp" %>
 	</header>
 
+	<!-- page-header -->
+	<%@ include file="/views/include/user/page_header.jsp" %>
+	<script>
+		var page_header_title='공고 정보'
+	</script>
+	<!-- end of page-header -->
+
+
 	<%	Notification noti=(Notification)request.getAttribute("noti");%>
-	<div class="page-header">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-6 col-md-6 col-xs-12">
-					<div class="breadcrumb-wrapper">
-						<div class="img-wrapper">
-							<img src="assets/img/about/company-logo.png" alt="">
-						</div>
-						<div class="content">
-							<h3 class="product-title"><%=noti.getTitle() %></h3>
-							<p class="brand"><%=noti.getNickname() %></p>
-							<div class="tags">
-								<span><i class="lni-map-marker"></i> <%=noti.getAddress() %></span> <span><i
-									class="lni-calendar"></i><%=noti.getEnroll_date() %></span>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-6 col-md-6 col-xs-12">
-					<div class="month-price">
-						<span class="year">연봉</span>
-						<div class="price"><%=noti.getSalary() %></div>
-					</div>
-					<div class="month-price float-left">
-						<span class="year">마감일</span>
-						<div class="price">~<%=noti.getEnd_date().split(" ")[0] %></div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-
 	<section class="job-detail section">
 		<div class="container">
 			<div class="row justify-content-between">
@@ -108,18 +83,26 @@
 					<div class="content-area">
 						<h4><%=noti.getTitle() %></h4>
 						<%=noti.getOpen().equals("Y")?"공개":"비공개" %> - <span><i class="lni-calendar"></i><%=noti.getEnroll_date() %></span>
+						<hr>
+						
 						<h4>기업이름</h4>
 						<ul>
 						<%=noti.getNickname() %>
 						</ul>
+						<hr>
+						
 						<h4>마감일</h4>
 						<ul>
 						<%=noti.getEnd_date() %>
 						</ul>
+						
+						<hr>
 						<h4>연봉</h4>
 						<ul>
 						<%=noti.getSalary() %>
 						</ul>
+						
+						<hr>
 						<h4>필요언어</h4>
 						<ul>
 						<%	String[] arr_lan=noti.getP_language().split(",");
@@ -127,12 +110,20 @@
 							<li>- <%=arr_lan[i] %></li>
 						<%	} %>
 						</ul>
+						
+						<hr>
 						<h4>우대사항</h4>
 						<p><%=noti.getHope() %></p>
+						
+						<hr>
 						<h4>직군</h4>
 						<p><%=noti.getJobs() %></p>
+						
+						<hr>
 						<h4>세부내용</h4>
 						<p><%=noti.getContents() %></p>
+						<hr>
+						
 						<%	if(mem!=null && mem.getM_no()==noti.getCo_no()){ %>
 						<a href="#" onclick="edit(<%=noti.getNoti_no() %>)" class="btn btn-common">수정</a>
 						<a href="#" onclick="del(<%=noti.getNoti_no() %>)" class="btn btn-common">삭제</a>

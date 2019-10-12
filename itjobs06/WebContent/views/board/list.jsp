@@ -105,6 +105,9 @@
    <div class="row">
    <div class="col-md-3">
    <span class="full-time"><%= "No." + i.getB_no() %></span>
+   <%if(i.getEditFile() != null){ %>
+   <sapn><img style="width:20px; height=20px;"src="<%= contextPath %>/resources/images/fileBoard.png"></sapn>
+   <%} %>
    <br>
    <% if(list.isEmpty()) { %>
             등록된 게시글이 없습니다.

@@ -90,8 +90,10 @@
               <span style="font-size:18px; color:black;" id="img1_1"><%=b.getCount() %></span>&nbsp; &nbsp;
               <span id="img2">댓글수</span>
            <span style="font-size:18px; color:black;" id="img2_1"><%=b.getReply_count() %></span> &nbsp; &nbsp;
+            <%if(b.getTime() != null){ %>
            <span id="img2">다운로드수</span>
            <span style="font-size:18px; color:black;" id="img2_1"><%= b.getDown_count() %></span>
+           <%} %>
            </div>
            
            
@@ -100,8 +102,10 @@
              <p style="font-size:20px;color:black;"><%=b.getContents() %></p><br><br>
 
             <%if(b.getEditFile() != null){ %>
+            	
                <img class='max-small' id="img" src="<%= contextPath %>/resources/fileupload_board/<%= b.getEditFile()%>">
             <br><br>
+            <span><%=b.getFile() %> </span>&nbsp; &nbsp;
             <a href="<%= contextPath %>/download.bo?bId=<%=b.getB_no()%>" class="btn btn-common">다운로드</a> <br><br>
             <% } %>
             </div>

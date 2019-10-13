@@ -20,7 +20,9 @@
 		case "공지" : ca[3]="selected"; break;
 		case "서식" : ca[4]="selected"; break;
 	}
+	
 %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -101,6 +103,7 @@
 	<label class="control-label">제목</label>
 	<!-- <input type="text" class="form-control" name="title" placeholder="제목을 입력하세요."> -->
 	<input type="text" class="form-control" id="title" name="title" value="<%=b.getTitle() %>">
+	
 	</div>
 	<section id="editor">
 	<div class="form-group">

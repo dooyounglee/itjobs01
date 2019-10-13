@@ -73,6 +73,7 @@ public class BoardUpdateServlet extends HttpServlet {
 			String time1 = multiRequest.getParameter("time1");
 			String time2 = multiRequest.getParameter("time2");
 			
+		
 			String time = "";
 	         if(time1 != null && time2 != null) {
 	            time = time1 + "~" + time2;
@@ -95,7 +96,20 @@ public class BoardUpdateServlet extends HttpServlet {
 			if(result > 0) {
 				String[] afterHeadAry = new BoardService().selectHead(b_no);
 				String afterHead = afterHeadAry[0];		// M_no받아오는 디테일 서블릿이랑 sql구문 같이쓰려고 배열로 받음 [0]은 해당 게시글 head, [1]은 해당게시글 m_no
+				System.out.println("업데이트 서블릿  스위치 전  " + afterHead);
+				
 	
+				switch(afterHead) {
+				case "자유" :  afterHead="free"; break;
+				case "스터디" :  afterHead="study"; break;
+				case "프로젝트" :  afterHead="project"; break;
+				case "공지사항" :  afterHead="qu"; break;
+				case "서식" :  afterHead="form"; break;
+				default: break;
+				}
+				
+				System.out.println("업데이트 서블릿  스위치 후  " + afterHead);
+				
 				response.sendRedirect("detail.bo?head="+afterHead+"&bId=" + strB_no);
 			}else {
 				request.setAttribute("msg", "게시글 등록 실패");

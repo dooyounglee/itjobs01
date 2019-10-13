@@ -7,6 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <title>이력서 작성하기</title>
+<script type="text/javascript" src='<%=request.getContextPath()%>/resources/naver-smarteditor2-ca95d21/demo/js/service/HuskyEZCreator.js' charset="utf-8"></script>
 
 <!-- import jobx -->
 <%@ include file="/views/include/user/style.jsp" %>
@@ -303,8 +304,23 @@
 							</div>
 							<div class="form-group">
 								<label class="control-label">자소서</label>
-								<textarea class="form-control" name="self" rows="5" id="자소서">1</textarea>
+								<textarea class="form-control" id="comment" name="self" rows="5" id="자소서">1</textarea>
 							</div>
+<script>
+var oEditors = [];
+	
+nhn.husky.EZCreator.createInIFrame({
+ 	 oAppRef: oEditors,
+ 	 elPlaceHolder: document.getElementById('comment'),
+  	 sSkinURI: "<%=contextPath%>/resources/naver-smarteditor2-ca95d21/demo/SmartEditor2Skin.html",  
+     fCreator: "createSEditor2",
+     htParams:{
+    	 bUseToolbar:false, // 툴바 사용여부
+    	 bUseVerticalResizer:false, // 크기조절바 사용여부
+    	 bUseModeChanger : false,	// 모드 탭(Editor | HTML | TEXT) 사용 여부
+     }
+});
+</script>
 							<input type="submit" class="btn btn-common" value="작성완료">
 						</form>
 <script>

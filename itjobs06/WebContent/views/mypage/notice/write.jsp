@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src='<%=request.getContextPath()%>/resources/naver-smarteditor2-ca95d21/demo/js/service/HuskyEZCreator.js' charset="utf-8"></script>
 
 <!-- import jobx -->
 <%@ include file="/views/include/user/style.jsp" %>
@@ -86,15 +87,45 @@
 									class="material-input"></span>
 							</div>
 							<div class="form-group is-empty">
-								<label class="control-label">내용</label> <input
-									class="form-control" type="text" name="contents"> <span
-									class="material-input"></span>
+								<label class="control-label">내용</label>
+								<textarea class="form-control" rows="5" id="comment1" name="contents"></textarea>
+								<span class="material-input"></span>
 							</div>
+<script>
+var oEditors = [];
+	
+nhn.husky.EZCreator.createInIFrame({
+ 	 oAppRef: oEditors,
+ 	 elPlaceHolder: document.getElementById('comment1'),
+  	 sSkinURI: "<%=contextPath%>/resources/naver-smarteditor2-ca95d21/demo/SmartEditor2Skin.html",  
+     fCreator: "createSEditor2",
+     htParams:{
+    	 bUseToolbar:false, // 툴바 사용여부
+    	 bUseVerticalResizer:false, // 크기조절바 사용여부
+    	 bUseModeChanger : false,	// 모드 탭(Editor | HTML | TEXT) 사용 여부
+     }
+});
+</script>
 							<div class="form-group is-empty">
-								<label class="control-label">우대사항</label> <input
-									class="form-control" type="text" name="hope"> <span
-									class="material-input"></span>
+								<label class="control-label">우대사항</label>
+								<textarea class="form-control" rows="5" id="comment2" name="hope"></textarea>
+								<span class="material-input"></span>
 							</div>
+<script>
+var oEditors = [];
+	
+nhn.husky.EZCreator.createInIFrame({
+ 	 oAppRef: oEditors,
+ 	 elPlaceHolder: document.getElementById('comment2'),
+  	 sSkinURI: "<%=contextPath%>/resources/naver-smarteditor2-ca95d21/demo/SmartEditor2Skin.html",  
+     fCreator: "createSEditor2",
+     htParams:{
+    	 bUseToolbar:true, // 툴바 사용여부
+    	 bUseVerticalResizer:false, // 크기조절바 사용여부
+    	 bUseModeChanger : true,	// 모드 탭(Editor | HTML | TEXT) 사용 여부
+     }
+});
+</script>
 							<div class="form-group is-empty">
 								<input type="radio" name="open" value="Y" checked>공개
 								<input type="radio" name="open" value="N" >비공개
@@ -112,37 +143,6 @@
 		<!-- End of container -->
 	</div>
 	<!-- End of content -->
-	
-	
-	
-	
-	
-	
-<%-- <%@ include file="/views/include/header.jsp" %> --%>
-<h1>공고 등록</h1>
-<form action="write.no" method="post" autocomplete=off>
-제목:<input name="title"><br>
-마감일:<input type=date name="end_date"><input type=time name="end_time"><br>
-모집인원:<input><br>
-직군:<input name="jobs"><br>
-언어:
-<input type=checkbox name="language" value="java">java
-<input type=checkbox name="language" value="javascript">javascript
-<input type=checkbox name="language" value="C">C
-<input type=checkbox name="language" value="C++">C++
-<input type=checkbox name="language" value="C#">C#
-<input type=checkbox name="language" value="VBA">VBA
-<input type=checkbox name="language" value="python">python
-<input type=checkbox name="language" value="php">php
-<input type=checkbox name="language" value="asp">asp
-<br>
-연봉:<input name="salary"><br>
-내용:<textarea name="contents"></textarea><br>
-우대사항:<input name="hope"><br>
-<button>임시등록</button>
-</form>
-<button>공개</button>
-<button onclick="history.back()">뒤로</button>
 
 
 	<!-- footer -->

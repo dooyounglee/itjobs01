@@ -547,6 +547,41 @@ public class MemberDao {
 		return result;
 		
 	}
+	
+	public int NickCheck(Connection conn, String nickName) {
+		
+		int result = 0;
+		
+		PreparedStatement ps = null;
+		
+		ResultSet rs = null;
+		
+		String sql = prop.getProperty("nickOverCheck");
+		
+		try {
+			ps = conn.prepareStatement(sql);
+		
+			ps.setString(1, nickName);
+		
+			rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				result = rs.getInt(1);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(ps);
+		}
+		
+	
+		return result;
+		
+	}
+	
 	public int leaveMember(Connection conn, int m_no) {
 		int result=0;
 		PreparedStatement ps=null;

@@ -101,25 +101,6 @@
 </script>
 
 
-
-
-<form action="<%=contextPath%>/findpwd.me" method="post">
-
-
-
-email:<input name="email">
-
-<button type="submit">비밀번호 발송</button>
-
-
-
-
-</form>
-
-
-
-
-
 <%@ include file="/views/include/user/footer.jsp" %>
 </body>
 </html>

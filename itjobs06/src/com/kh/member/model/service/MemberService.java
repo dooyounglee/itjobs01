@@ -214,12 +214,23 @@ public class MemberService {
 		
 //		System.out.println(result);
 		
-		return result;
-		
-		
+		return result;	
 		
 	}
 
+	public int NickCheck(String nickName) {
+		
+		Connection conn = getConnection();
+		
+		int result = new MemberDao().NickCheck(conn,nickName);
+		
+		close(conn);
+		
+//		System.out.println(result);
+		
+		return result;
+	}
+	
 	public int leaveMember(int m_no) {
 		Connection conn = getConnection();
 		int result = new MemberDao().leaveMember(conn, m_no);

@@ -104,44 +104,52 @@ Login
 <script>
 	function validate(){
 		 $('input[name=email]').focus(); 
-		
-		 if($("#sender-email").val().trim().length==0){
+			
+		 var memEmail = $('#sender-email').val();
+		 
+		 /* 이메일 유효성검사  */
+		 
+		/*  var regExp = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/; 
+		 
+		 if(!regExp.test(memEmail)){
+				alert("맞지 않은 이메일 형식입니다.");
+				return false;
+		 } */
+		 
+		 if(memEamil.trim().length==0){
 			alert("이메일을 입력해주세요");
 			$("#sender-email").focus();
 			return false;
 		}
 	
+		if(memEmail == ""){
+			alert("이메일을 입력해 주세요");
+			return false;		
+		}
+		
+		/* 비밀번호 유효성 검사   */
+		
 		if($("#pw").val().trim().length==0){
 			alert("비밀번호를 입력해주세요");
 			$("#pw").focus();
 			return false;
+		}
+		
+			
+			return true;
+		
 		}		
-	}
+	
 
+	
+	
+	
 
 
 </script>
 
 
 <%@ include file="/views/include/user/footer.jsp" %>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

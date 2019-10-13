@@ -99,7 +99,7 @@
            
            <br><br>
            <div style="border-bottom:1px solid lightgray">
-             <p style="font-size:20px;color:black;"><%=b.getContents() %></p><br><br>
+             <pre style="font-size:20px;color:black;"><%=b.getContents() %></pre><br><br>
 
             <%if(b.getEditFile() != null){ %>
             	

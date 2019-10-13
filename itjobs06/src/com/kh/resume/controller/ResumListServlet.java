@@ -48,7 +48,7 @@ public class ResumListServlet extends HttpServlet {
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}
 		
-		PageInfo pi = new PageInfo(currentPage, listCount,5,10);
+		PageInfo pi = new PageInfo(currentPage, listCount,5,5);
 		ArrayList<Resume> list = new ResumeService().selectResume(pi,mno);
 		request.setAttribute("pi", pi);
 		request.setAttribute("list", list);

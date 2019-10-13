@@ -53,6 +53,8 @@ public class SearchNotificationListServlet extends HttpServlet {
 		
 		
 		request.setAttribute("likeMem", likeMem);
+		}else {
+			request.setAttribute("error", "로그인을 진행해 주세요");
 		}
 		
 		//System.out.println(likeBoList);
@@ -71,9 +73,7 @@ public class SearchNotificationListServlet extends HttpServlet {
 		if(sKey!=null && (sText!=null && !sText.equals("null"))) {
 			//list=new SearchService().searchNotificationList(sKey,sText);
 		}else if(sText!=null && !sText.equals("null")){
-			System.out.println(sText);
 			listCount=new NotificationService().getSuperSearchNotificationListCount(sText);
-			System.out.println(listCount);
 			pi = new PageInfo(currentPage, listCount, 10, 10);
 			list=new SearchService().getSuperSearchNotification(sText,pi);
 		}else {
@@ -82,11 +82,6 @@ public class SearchNotificationListServlet extends HttpServlet {
 			list=new NotificationService().getAllNotificationList(pi);
 		}
 		
-	
-		
-		
-		
-			
 		request.setAttribute("list", list);
 		request.setAttribute("pi", pi);
 		request.setAttribute("sText", sText);

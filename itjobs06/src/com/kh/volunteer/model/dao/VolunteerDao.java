@@ -9,6 +9,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import com.kh.board.model.vo.PageInfo;
+import com.kh.member.model.vo.Member;
 import com.kh.resume.model.dao.ResumeDao;
 import com.kh.volunteer.model.vo.Volunteer;
 
@@ -27,7 +29,7 @@ private Properties prop = new Properties();
 		}
 	}
 	
-	public ArrayList<Volunteer> getList(Connection conn, int noti_no) {
+	public ArrayList<Volunteer> getList(Connection conn, int noti_no, PageInfo pi) {
 		ArrayList<Volunteer> list=new ArrayList<>();
 		PreparedStatement ps=null;
 		ResultSet rs=null;
@@ -36,7 +38,8 @@ private Properties prop = new Properties();
 		try {
 			ps=conn.prepareStatement(sql);
 			ps.setInt(1, noti_no);
-			ps.setInt(2, noti_no);
+			ps.setInt(2, pi.getStartRow());
+			ps.setInt(3, pi.getEndRow());
 			rs=ps.executeQuery();
 			while(rs.next()) {
 				Volunteer v=new Volunteer(
@@ -45,10 +48,9 @@ private Properties prop = new Properties();
 						rs.getInt("resume_no"),
 						rs.getDate("v_Date")+" "+rs.getTime("v_Date"),
 						rs.getString("status"));
-				v.setP_language(rs.getString("p_language"));
-				v.setSum(rs.getInt("sum"));
+				//v.setP_language(rs.getString("p_language"));
+				//v.setSum(rs.getInt("sum"));
 				list.add(v);
-				System.out.println(list);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -56,7 +58,7 @@ private Properties prop = new Properties();
 		return list;
 	}
 
-	public ArrayList<Volunteer> getMyApplyList(Connection conn, int m_no) {
+	public ArrayList<Volunteer> getMyApplyList(Connection conn, int m_no, PageInfo pi) {
 		ArrayList<Volunteer> list=new ArrayList<>();
 		PreparedStatement ps=null;
 		ResultSet rs=null;
@@ -65,6 +67,8 @@ private Properties prop = new Properties();
 		try {
 			ps=conn.prepareStatement(sql);
 			ps.setInt(1, m_no);
+			ps.setInt(2, pi.getStartRow());
+			ps.setInt(3, pi.getEndRow());
 			rs=ps.executeQuery();
 			while(rs.next()) {
 				Volunteer v=new Volunteer(
@@ -111,6 +115,83 @@ private Properties prop = new Properties();
 			ps=conn.prepareStatement(sql);
 			ps.setInt(1, v_no);
 			result=ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	public int getListCount(Connection conn, int noti_no) {
+		int result=0;
+		PreparedStatement ps=null;
+		ResultSet rs=null;
+		
+		String sql=prop.getProperty("getListCount");
+		try {
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, noti_no);
+			rs=ps.executeQuery();
+			if(rs.next()) {
+				result=rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	public Volunteer getVolunteer(Connection conn, int v_no) {
+		Volunteer v=null;
+		PreparedStatement ps=null;
+		ResultSet rs=null;
+		
+		String sql=prop.getProperty("getVolunteer");
+		try {
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, v_no);
+			rs=ps.executeQuery();
+			if(rs.next()) {
+				v=new Volunteer(
+						rs.getInt("v_no"),
+						rs.getInt("noti_no"),
+						rs.getInt("resume_no"),
+						rs.getDate("v_Date")+" "+rs.getTime("v_Date"),
+						rs.getString("status"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return v;
+	}
+
+	public int readResume(Connection conn, int v_no) {
+		int result=0;
+		PreparedStatement ps=null;
+		
+		String sql=prop.getProperty("readResume");
+		try {
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, v_no);
+			result=ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	public int getMyApplyListCount(Connection conn, Member mem) {
+		int result=0;
+		PreparedStatement ps=null;
+		ResultSet rs=null;
+		
+		String sql=prop.getProperty("getMyApplyListCount");
+		try {
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, mem.getM_no());
+			rs=ps.executeQuery();
+			if(rs.next()) {
+				result=rs.getInt(1);
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

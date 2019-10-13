@@ -17,6 +17,8 @@ public class Co_Info {
 	private int revenue;
 	private String history;
 	private String welfare;
+	private String logofile;
+	private String logopath;
 	public Co_Info() {
 		super();
 	}
@@ -45,12 +47,6 @@ public class Co_Info {
 	}
 	public void setM_no(int m_no) {
 		this.m_no = m_no;
-	}
-	public String getRegNum() {
-		return regnum;
-	}
-	public void setRegNum(String regNum) {
-		this.regnum = regNum;
 	}
 	public String getFile() {
 		return file;
@@ -130,12 +126,31 @@ public class Co_Info {
 	public void setWelfare(String welfare) {
 		this.welfare = welfare;
 	}
+	public String getRegNum() {
+		return regnum;
+	}
+	public void setRegNum(String regnum) {
+		this.regnum = regnum;
+	}
+	public String getLogofile() {
+		return logofile;
+	}
+	public void setLogofile(String logofile) {
+		this.logofile = logofile;
+	}
+	public String getLogopath() {
+		return logopath;
+	}
+	public void setLogopath(String logopath) {
+		this.logopath = logopath;
+	}
 	@Override
 	public String toString() {
 		return "Co_Info [m_no=" + m_no + ", regnum=" + regnum + ", file=" + file + ", path=" + path + ", name=" + name
 				+ ", phone=" + phone + ", address=" + address + ", ceo=" + ceo + ", co_phone=" + co_phone
 				+ ", descript=" + descript + ", birth_date=" + birth_date + ", memsum=" + memsum + ", revenue="
-				+ revenue + ", history=" + history + ", welfare=" + welfare + "]";
+				+ revenue + ", history=" + history + ", welfare=" + welfare + ", logofile=" + logofile + ", logopath="
+				+ logopath + "]";
 	}
 	
 }

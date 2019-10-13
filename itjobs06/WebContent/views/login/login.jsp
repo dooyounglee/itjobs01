@@ -2,7 +2,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  <% String alert = (String)session.getAttribute("alert"); 
- 	String error = (String)request.getAttribute("error"); %>
+ 	String error = (String)request.getAttribute("error"); 
+	String findResult = (String)request.getAttribute("findResult");%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,6 +16,7 @@
 	$(function(){
 		var msg = "<%=alert%>";
 		var error = "<%=error%>";
+		var findResult = "<%=findResult%>";
 		
 		if(msg != "null"){
 			alert(msg);
@@ -29,7 +31,10 @@
 			<% session.removeAttribute("error");%>
 		}
 		
-		
+		if(findResult != "null"){
+			alert(findResult);
+			<% session.removeAttribute("findResult");%>
+		}
 		
 	});
 	</script>
@@ -85,10 +90,10 @@ Login
 <input type="checkbox" class="form-check-input" id="exampleCheck1">
 <label class="form-check-label" for="exampleCheck1">Keep Me Signed In</label>
 </div>
-<button class="btn btn-common log-btn">Submit</button>
+<button class="btn btn-common log-btn">로그인</button>
 </form>
 <ul class="form-links">
-<li class="text-center"><a href="<%=contextPath%>/joinlaw.jo">Join</a></li>
+<li class="text-center"><a href="<%=contextPath%>/joinlaw.jo">회원가입</a><a href="<%=contextPath%>/memfindpwd.me">/비밀번호 찾기</a></li>
 </ul>
 </div>
 </div>
@@ -184,7 +189,9 @@ pw:<input name=pw><button>로그인</button><div id="naver_id_login" ></div> -->
 </table> --%>
 <%@ include file="/views/include/footer.jsp" %>
 
-<!-- <script type="text/javascript">
+<!-- 네이버 간편로그인 api 
+
+	<script type="text/javascript">
   	var naver_id_login = new naver_id_login("ybquUitRdYWWMHEEV389", "http://localhost:8888/itjobs");
   	var state = naver_id_login.getUniqState();
   	naver_id_login.setButton("green", 1,30);

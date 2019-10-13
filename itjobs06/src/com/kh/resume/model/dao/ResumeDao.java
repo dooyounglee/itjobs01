@@ -31,7 +31,7 @@ public class ResumeDao {
 		}
 	}
 
-	public ArrayList<Resume> getOpenResumeList(Connection conn) {
+	public ArrayList<Resume> getOpenResumeList(Connection conn, PageInfo pi) {
 		ArrayList<Resume> list=new ArrayList<>();
 		PreparedStatement ps=null;
 		ResultSet rs=null;
@@ -39,6 +39,8 @@ public class ResumeDao {
 		String sql=prop.getProperty("getOpenResumeList");
 		try {
 			ps=conn.prepareStatement(sql);
+			ps.setInt(1, pi.getStartRow());
+			ps.setInt(2, pi.getEndRow());
 			rs=ps.executeQuery();
 			while(rs.next()) {
 				list.add(new Resume(
@@ -242,7 +244,8 @@ public class ResumeDao {
 			pstmt.setInt(2, endRow);*/
 			
 			pstmt.setInt(1,mno);
-			
+			pstmt.setInt(2, pi.getStartRow());
+			pstmt.setInt(3, pi.getEndRow());
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
@@ -584,6 +587,27 @@ public class ResumeDao {
 	}finally {
 		close(ps);
 	}
+		return result;
+	}
+
+	public int getOpenResumeListCount(Connection conn) {
+		int result = 0;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		String sql = prop.getProperty("getOpenResumeListCount");
+		try {
+			ps=conn.prepareStatement(sql);
+			rs=ps.executeQuery();
+			if(rs.next()) {
+				result = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(ps);
+		}
 		return result;
 	}
 	

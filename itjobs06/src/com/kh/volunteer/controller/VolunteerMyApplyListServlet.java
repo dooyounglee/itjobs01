@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.kh.board.model.vo.PageInfo;
 import com.kh.member.model.vo.Member;
+import com.kh.resume.model.service.ResumeService;
 import com.kh.volunteer.model.service.VolunteerService;
 import com.kh.volunteer.model.vo.Volunteer;
 
@@ -38,9 +40,17 @@ public class VolunteerMyApplyListServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		Member mem=(Member)session.getAttribute("mem");
 		
-		ArrayList<Volunteer> list=new VolunteerService().getMyApplyList(mem.getM_no());
+		int listCount = new VolunteerService().getMyApplyListCount(mem);
+		int currentPage = 1;
+		if(request.getParameter("currentPage") != null) { 
+			currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		}
+		
+		PageInfo pi = new PageInfo(currentPage, listCount,5,5);
+		ArrayList<Volunteer> list=new VolunteerService().getMyApplyList(mem.getM_no(),pi);
 		
 		request.setAttribute("list", list);
+		request.setAttribute("pi", pi);
 		request.getRequestDispatcher("views/mypage/applyList.jsp").forward(request, response);
 	}
 

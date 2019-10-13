@@ -87,7 +87,6 @@
 		<button onclick="send(<%=pi.getCurrentPage()+1%>)">></button>
 	</div>
 </div>
-
 <script>
 	function send(pno){
 		$('#listBoardTableArea').load("<%=request.getContextPath()%>/boardList.ad?currentPage="+pno+" table,#pageArea")

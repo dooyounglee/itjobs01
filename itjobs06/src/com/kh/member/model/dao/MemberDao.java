@@ -200,6 +200,8 @@ public class MemberDao {
 			ps.setInt(13, cf.getRevenue());
 			ps.setString(14, cf.getHistory());
 			ps.setString(15, cf.getWelfare());
+			ps.setString(16, cf.getLogofile());
+			ps.setString(17, cf.getLogopath());
 			result=ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -237,6 +239,8 @@ public class MemberDao {
 						rs.getInt(13),
 						rs.getString(14),
 						rs.getString(15));
+				co.setLogofile(rs.getString("logo_file"));
+				co.setLogopath(rs.getString("logo_path"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -271,8 +275,8 @@ public class MemberDao {
 		try {
 			ps=conn.prepareStatement(sql);
 			ps.setString(1, co.getRegNum());
-			ps.setString(2, "kh.pdf");//나중에 수정
-			ps.setString(3, "/upload/");//나중에 수정
+			ps.setString(2, co.getFile());//나중에 수정
+			ps.setString(3, co.getPath());//나중에 수정
 			ps.setString(4, co.getName());
 			ps.setString(5, co.getPhone());
 			ps.setString(6, co.getAddress());
@@ -284,7 +288,9 @@ public class MemberDao {
 			ps.setInt(12, co.getRevenue());
 			ps.setString(13, co.getHistory());
 			ps.setString(14, co.getWelfare());
-			ps.setInt(15, co.getM_no());
+			ps.setString(15, co.getLogofile());
+			ps.setString(16, co.getLogopath());
+			ps.setInt(17, co.getM_no());
 			result=ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

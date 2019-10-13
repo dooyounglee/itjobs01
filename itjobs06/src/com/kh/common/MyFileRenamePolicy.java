@@ -14,6 +14,7 @@ public class MyFileRenamePolicy implements FileRenamePolicy{
 		long currentTime = System.currentTimeMillis();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
 		
+		int random=(int)(Math.random()*100000);
 		
 		String name= originFile.getName();
 		
@@ -25,7 +26,7 @@ public class MyFileRenamePolicy implements FileRenamePolicy{
 			ext = name.substring(dot);
 		}
 		
-		String fileName = sdf.format(new Date(currentTime)) + ext;
+		String fileName = sdf.format(new Date(currentTime)) + random + ext;
 		
 		File newFile = new File(originFile.getParent(), fileName);
 		

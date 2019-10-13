@@ -5,7 +5,7 @@
     pageEncoding="UTF-8"%>
 <%
 ArrayList<String> likeBoList = (ArrayList<String>)request.getAttribute("likeMem");
-
+String error = (String)request.getAttribute("error");
 %>
 <!DOCTYPE html>
 <html>
@@ -39,6 +39,11 @@ ArrayList<String> likeBoList = (ArrayList<String>)request.getAttribute("likeMem"
 	<!-- import of jobx -->
 	<%@ include file="/views/include/user/js.jsp" %>
 	<!-- End of import of jobx -->
+
+
+
+
+
 
 </head>
 <body>
@@ -142,7 +147,7 @@ ArrayList<String> likeBoList = (ArrayList<String>)request.getAttribute("likeMem"
 								</div>
 								<div class="job-details">
 									<h3 onclick="location.href='<%=request.getContextPath()%>/get.no?noti_no=<%=n.getNoti_no()%>'"><%=n.getTitle() %></h3>
-									<span class="company-neme" onclick="detailCo(<%=n.getCo_no()%>)"><%=n.getCo_no()%></span>
+									<span class="company-neme" onclick="detailCo(<%=n.getCo_no()%>)"><%=n.getNickname()%></span>
 									<div class="tags">
 										<span><i class="lni-map-marker"></i> 위치</span> <span><i
 											class="lni-user"></i><%=n.getSalary() %> 만원</span>
@@ -278,7 +283,7 @@ ArrayList<String> likeBoList = (ArrayList<String>)request.getAttribute("likeMem"
 	// 좋아요 ajax
 	 $(function(){
 		
-		 
+		var error = "<%=error%>";
 		var memNo = $("#memNo").val();
 		
 		//$(".likeimg").click(function (){
@@ -293,11 +298,11 @@ ArrayList<String> likeBoList = (ArrayList<String>)request.getAttribute("likeMem"
 			console.log(test.parentNode.previousSibling.previousSibling);
 			
 			var noNo =	test.parentNode.previousSibling.previousSibling.value;
-			console.log(noNo);
+			//console.log(noNo);
 			
 			var span = test.parentNode;
 			
-			console.log(span);
+			//console.log(span);
 		
 	 			 $.ajax({
 					url:"like.no",
@@ -320,14 +325,14 @@ ArrayList<String> likeBoList = (ArrayList<String>)request.getAttribute("likeMem"
 							//likeimg.attr('src','./resources/img/like-after1.png');	// 내꺼			
 						}else{
 							span.innerHTML = "<img src='./resources/img/like-before.png' class='likeimg'>"; // 보람쌤꺼
-							
+										
 							//likeimg.attr('src','./resources/img/like-before.png');	// 내꺼	
 						}
 				
 					
 					
 					},error:function(){
-						
+						alert(error);
 						console.log("ajax실패");
 					}
 			

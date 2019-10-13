@@ -78,18 +78,20 @@ public class BoardService {
 	 * @param bId
 	 * @return
 	 */
-	public Board selectBoard(int bId, int loginM_no) {
+	public Board selectBoard(int bId, int m_no, String type) {
 		Connection conn = getConnection();
 		Board b = null;
 		
 		b = new BoardDao().selectBoard(conn, bId);	
-
-		if(loginM_no == 0 || loginM_no != b.getM_no()) {	
+		
+		if(m_no != b.getM_no() && !type.equals("0")) {	
 			int result = new BoardDao().countBoard(conn, bId);
-			commit(conn);	
-			b = new BoardDao().selectBoard(conn, bId);
-		}else {
+			if(result > 0) {
+				commit(conn);	
+				b = new BoardDao().selectBoard(conn, bId);
+			}else {
 			rollback(conn);	
+			}
 		}
 
 		close(conn);

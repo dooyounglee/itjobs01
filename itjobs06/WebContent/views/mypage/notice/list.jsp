@@ -1,3 +1,4 @@
+<%@page import="com.kh.board.model.vo.PageInfo"%>
 <%@page import="com.kh.notification.model.vo.Notification"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -72,18 +73,20 @@
 							</div>
 						</a>
 <%	} %>
-
-						<ul class="pagination">
-							<li class="active"><a href="#" class="btn btn-common"><i
-									class="ti-angle-left"></i> prev</a></li>
-							<li><a href="#">1</a></li>
-							<li><a href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li><a href="#">4</a></li>
-							<li><a href="#">5</a></li>
-							<li class="active"><a href="#" class="btn btn-common">Next
-									<i class="ti-angle-right"></i>
-							</a></li>
+					<%	PageInfo pi=(PageInfo)request.getAttribute("pi");
+						int currentPage=pi.getCurrentPage();%>
+						<ul class="pagination" style="display:block;">
+							<%	if(currentPage>1){ %>
+							<li class="active"><a href="<%=request.getContextPath()%>/myNotification.me?currentPage=<%=currentPage-1%>" class="btn-prev"><i
+									class="lni-angle-left"></i> prev</a></li>
+							<%	} %>
+							<%	for(int i=pi.getStartPage();i<=pi.getEndPage();i++){ %>
+							<li><a href="<%=request.getContextPath()%>/myNotification.me?currentPage=<%=i%>"><%=i %></a></li>
+							<%	} %>
+							<%	if(currentPage<pi.getMaxPage()){ %>
+							<li class="active"><a href="<%=request.getContextPath()%>/myNotification.me?currentPage=<%=currentPage+1%> class="btn-next">Next <i
+									class="lni-angle-right"></i></a></li>
+							<%	} %>
 						</ul>
 					</div>
 				</div>

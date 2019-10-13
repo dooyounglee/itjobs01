@@ -1,3 +1,4 @@
+<%@page import="com.kh.board.model.vo.PageInfo"%>
 <%@page import="com.kh.notification.model.vo.Notification"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -34,34 +35,52 @@
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h1 mb-0 text-gray-800">공고 관리</h1>
           </div>
-          
-<table class="table table-hover table-sm">
-	<tr>
-		<th><input type=checkbox></th>
-		<th>제목</th>
-		<th>마감일</th>
-		<th>등록일</th>
-		<th>상태</th>
-		<th>신고수</th>
-		<th>삭제</th>
-		<th>삭제취소</th>
-	</tr>
 
-	<%	ArrayList<Notification> list=(ArrayList<Notification>)request.getAttribute("list");
-		for(Notification n:list){%>
-	<tr>
-		<td><input type=checkbox></td>
-		<td><%=n.getTitle() %></td>
-		<td><%=n.getEnd_date() %></td>
-		<td><%=n.getEnroll_date() %></td>
-		<td><%=n.getStatus() %></td>
-		<td><%=n.getD_count() %></td>
-		<td><button onclick="del(<%=n.getNoti_no()%>)">삭제</button></td>
-		<td><button onclick="delCancle(<%=n.getNoti_no()%>)">삭제취소</button></td>
-	</tr>
-	<%	} %>
-</table>
+<div id=listBoardTableArea>   
+	<table id="listBoardTable" class="table table-hover table-sm">
+		<tr>
+			<th><input type=checkbox></th>
+			<th>제목</th>
+			<th>마감일</th>
+			<th>등록일</th>
+			<th>상태</th>
+			<th>신고수</th>
+			<th>삭제</th>
+			<th>삭제취소</th>
+		</tr>
 	
+		<%	ArrayList<Notification> list=(ArrayList<Notification>)request.getAttribute("list");
+			for(Notification n:list){%>
+		<tr>
+			<td><input type=checkbox></td>
+			<td><%=n.getTitle() %></td>
+			<td><%=n.getEnd_date() %></td>
+			<td><%=n.getEnroll_date() %></td>
+			<td><%=n.getStatus() %></td>
+			<td><%=n.getD_count() %></td>
+			<td><button onclick="del(<%=n.getNoti_no()%>)">삭제</button></td>
+			<td><button onclick="delCancle(<%=n.getNoti_no()%>)">삭제취소</button></td>
+		</tr>
+		<%	} %>
+	</table>
+	<div id=pageArea>
+		<%	PageInfo pi=(PageInfo)request.getAttribute("pi");%>
+		<button onclick="send(<%=pi.getCurrentPage()-1%>)"><</button>
+		<%	for(int i=pi.getStartPage();i<=pi.getEndPage();i++){
+				if(i==pi.getCurrentPage()){%>
+		<button onclick="send(<%=i%>)"><b><%=i %></b></button>
+		<%		}else{ %>
+		<button onclick="send(<%=i%>)"><%=i %></button>
+		<%		} %>
+		<%	} %>
+		<button onclick="send(<%=pi.getCurrentPage()+1%>)">></button>
+	</div>
+</div>
+<script>
+	function send(pno){
+		$('#listBoardTableArea').load("<%=request.getContextPath()%>/noticeList.ad?currentPage="+pno+" table,#pageArea")
+	}
+</script>
 	</div>
     <!-- End of Page Content -->
     

@@ -20,40 +20,15 @@
 	<%@ include file="/views/include/user/header_nav.jsp" %>
 	</header>
 
+	<!-- page-header -->
+	<%@ include file="/views/include/user/page_header.jsp" %>
+	<script>
+		var page_header_title='공고 정보'
+	</script>
+	<!-- end of page-header -->
+
+
 	<%	Notification noti=(Notification)request.getAttribute("noti");%>
-	<div class="page-header">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-6 col-md-6 col-xs-12">
-					<div class="breadcrumb-wrapper">
-						<div class="img-wrapper">
-							<img src="assets/img/about/company-logo.png" alt="">
-						</div>
-						<div class="content">
-							<h3 class="product-title"><%=noti.getTitle() %></h3>
-							<p class="brand"><%=noti.getNickname() %></p>
-							<div class="tags">
-								<span><i class="lni-map-marker"></i> <%=noti.getAddress() %></span> <span><i
-									class="lni-calendar"></i><%=noti.getEnroll_date() %></span>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-6 col-md-6 col-xs-12">
-					<div class="month-price">
-						<span class="year">연봉</span>
-						<div class="price"><%=noti.getSalary() %></div>
-					</div>
-					<div class="month-price float-left">
-						<span class="year">마감일</span>
-						<div class="price">~<%=noti.getEnd_date().split(" ")[0] %></div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-
 	<section class="job-detail section">
 		<div class="container">
 			<div class="row justify-content-between">
@@ -108,18 +83,26 @@
 					<div class="content-area">
 						<h4><%=noti.getTitle() %></h4>
 						<%=noti.getOpen().equals("Y")?"공개":"비공개" %> - <span><i class="lni-calendar"></i><%=noti.getEnroll_date() %></span>
+						<hr>
+						
 						<h4>기업이름</h4>
 						<ul>
 						<%=noti.getNickname() %>
 						</ul>
+						<hr>
+						
 						<h4>마감일</h4>
 						<ul>
 						<%=noti.getEnd_date() %>
 						</ul>
+						
+						<hr>
 						<h4>연봉</h4>
 						<ul>
 						<%=noti.getSalary() %>
 						</ul>
+						
+						<hr>
 						<h4>필요언어</h4>
 						<ul>
 						<%	String[] arr_lan=noti.getP_language().split(",");
@@ -127,12 +110,20 @@
 							<li>- <%=arr_lan[i] %></li>
 						<%	} %>
 						</ul>
+						
+						<hr>
 						<h4>우대사항</h4>
 						<p><%=noti.getHope() %></p>
+						
+						<hr>
 						<h4>직군</h4>
 						<p><%=noti.getJobs() %></p>
+						
+						<hr>
 						<h4>세부내용</h4>
 						<p><%=noti.getContents() %></p>
+						<hr>
+						
 						<%	if(mem!=null && mem.getM_no()==noti.getCo_no()){ %>
 						<a href="#" onclick="edit(<%=noti.getNoti_no() %>)" class="btn btn-common">수정</a>
 						<a href="#" onclick="del(<%=noti.getNoti_no() %>)" class="btn btn-common">삭제</a>
@@ -224,61 +215,57 @@
 		}
 	</script>
 
-
 	<section id="featured" class="section bg-gray pb-45">
 		<div class="container">
 			<h4 class="small-title text-left">Similar Jobs</h4>
 			<div class="row">
+			<%	ArrayList<Notification> list=(ArrayList<Notification>)request.getAttribute("random");
+				for(Notification n:list){%>
 				<div class="col-lg-6 col-md-12 col-xs-12">
-					<a class="job-listings-featured" href="job-details.html">
+					<a class="job-listings-featured">
 						<div class="row">
-							<div class="col-lg-6 col-md-6 col-xs-12">
+							<div class="col-lg-6 col-md-6 col-xs-12" style="cursor:pointer;">
 								<div class="job-company-logo">
 									<img src="assets/img/features/img1.png" alt="">
 								</div>
 								<div class="job-details">
-									<h3>Software Engineer</h3>
-									<span class="company-neme">MizTech</span>
+									<h3 onclick="location.href='<%=request.getContextPath()%>/get.no?noti_no=<%=n.getNoti_no()%>'"><%=n.getTitle() %></h3>
+									<span class="company-neme" onclick="detailCo(<%=n.getCo_no()%>)"><%=n.getNickname()%></span>
 									<div class="tags">
-										<span><i class="lni-map-marker"></i> New York</span> <span><i
-											class="lni-user"></i>John Smith</span>
+										<span><i class="lni-map-marker"></i> 위치</span> <span><i
+											class="lni-user"></i><%=n.getSalary() %> 만원</span>
 									</div>
 								</div>
 							</div>
 							<div class="col-lg-6 col-md-6 col-xs-12 text-right">
 								<div class="tag-type">
-									<sapn class="heart-icon"> <i class="lni-heart"></i> </sapn>
-									<span class="full-time">Full Time</span>
+									<input type="hidden" value="<%=n.getNoti_no()%>" class="no_no">
+<%-- 									<%
+										boolean flag = false;  // 좋아요 이미지가 겹치지 않게 하기 위해서
+										if(mem != null){
+									
+										for(int i=0; i<likeBoList.size(); i++){ // 서블릿에서 좋아요한 맴버의 게시글번호를 받아
+											
+											if(Integer.parseInt(likeBoList.get(i)) == n.getNoti_no()){  // 그 게시글번호와 현재 for문으로 작동하는 게시글번호와 일치하면
+												flag = true;	// 	좋아요한 이미지 보이게									
+												}
+											}
+										}
+									%>
+									
+									<%if(!flag){  %>
+										<span class="heart-icon"> <img src="./resources/img/like-before.png" class="likeimg"> </span>
+									<%}else{ %>
+										<span class="heart-icon"> <img src="./resources/img/like-after1.png" class="likeimg"> </span>
+									<%} %> --%>
+									
+									<span class="full-time">~<%=n.getEnd_date().split(" ")[0] %></span>
 								</div>
 							</div>
 						</div>
 					</a>
 				</div>
-				<div class="col-lg-6 col-md-12 col-xs-12">
-					<a class="job-listings-featured" href="job-details.html">
-						<div class="row">
-							<div class="col-lg-6 col-md-6 col-xs-12">
-								<div class="job-company-logo">
-									<img src="assets/img/features/img2.png" alt="">
-								</div>
-								<div class="job-details">
-									<h3>Graphic Designer</h3>
-									<span class="company-neme">Hunter Inc.</span>
-									<div class="tags">
-										<span><i class="lni-map-marker"></i> New York</span> <span><i
-											class="lni-user"></i>John Smith</span>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-6 col-md-6 col-xs-12 text-right">
-								<div class="tag-type">
-									<sapn class="heart-icon"> <i class="lni-heart"></i> </sapn>
-									<span class="part-time">Part Time</span>
-								</div>
-							</div>
-						</div>
-					</a>
-				</div>
+				<%	} %>
 			</div>
 		</div>
 	</section>

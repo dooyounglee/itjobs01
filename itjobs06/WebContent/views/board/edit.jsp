@@ -77,7 +77,6 @@
 	<h3 class="job-title">수정하기</h3>
 	<form class="form-ad" action="<%=contextPath%>/update.bo" method="post" enctype="multipart/form-data" id="form">
 	<input type="hidden" value="<%=b.getB_no() %>" name="b_no">
-	<input type="hidden" value="<%=b.getM_no() %>" name="m_no">
 	<div class="form-group">
 	<label class="control-label">Category</label>
 	<div class="search-category-container">
@@ -87,7 +86,7 @@
 		<option value="자유" <%= ca[0] %>>자유</option>
 		<option value="스터디" <%= ca[1] %>>스터디</option>
 		<option value="프로젝트" <%= ca[2] %>>프로젝트</option>
-		<%if(mem.getM_no() == 1){ %>
+		<%if(mem.getType() == "0"){ %>
 		<option value="공지사항" <%= ca[3] %>>공지</option>
 		<option value="서식" <%= ca[4] %>>서식</option>
 		<%} %>
@@ -174,7 +173,7 @@
            content.focus();
            return false; 
         
-        }else{ss
+        }else{
            $("#form").submit();
         }
      };

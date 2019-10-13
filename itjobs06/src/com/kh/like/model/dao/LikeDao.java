@@ -9,6 +9,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
 import static com.kh.common.JDBCTemplate.*;
+
+import com.kh.board.model.vo.PageInfo;
+import com.kh.like.model.vo.Like;
 import com.kh.member.model.vo.Member;
 import com.kh.notification.model.vo.Notification;
 import com.kh.question.model.dao.QuestionDao;
@@ -29,8 +32,8 @@ public class LikeDao {
 		}
 	}
 	
-	public ArrayList<Member> myCompanyList(Connection conn, int m_no) {
-		ArrayList<Member> list=new ArrayList<>();
+	public ArrayList<Like> myCompanyList(Connection conn, int m_no, PageInfo pi) {
+		ArrayList<Like> list=new ArrayList<>();
 		PreparedStatement ps=null;
 		ResultSet rs=null;
 		
@@ -38,14 +41,18 @@ public class LikeDao {
 		try {
 			ps=conn.prepareStatement(sql);
 			ps.setInt(1, m_no);
+			ps.setInt(2, pi.getStartRow());
+			ps.setInt(3, pi.getEndRow());
 			rs=ps.executeQuery();
 			while(rs.next()) {
-				Member m=new Member();
-				m.setM_no(rs.getInt("co_no"));
-				m.setNickname(rs.getString("nickname"));
-				m.setAddress(rs.getString("address"));
-				m.setNumberOfNotification(rs.getInt("t"));
-				list.add(m);
+				Like like=new Like();
+				like.setLike_no(rs.getInt("like_co_no"));
+				like.setM_no(rs.getInt("m_no"));
+				like.setCo_no(rs.getInt("co_no"));
+				like.setNickname(rs.getString("nickname"));
+				like.setAddress(rs.getString("address"));
+				//m.setNumberOfNotification(rs.getInt("t"));
+				list.add(like);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -56,7 +63,7 @@ public class LikeDao {
 		return list;
 	}
 
-	public ArrayList<Notification> myNotificationList(Connection conn, int m_no) {
+	public ArrayList<Notification> myNotificationList(Connection conn, int m_no, PageInfo pi) {
 		ArrayList<Notification> list=new ArrayList<>();
 		PreparedStatement ps=null;
 		ResultSet rs=null;
@@ -65,14 +72,14 @@ public class LikeDao {
 		try {
 			ps=conn.prepareStatement(sql);
 			ps.setInt(1, m_no);
+			ps.setInt(2, pi.getStartRow());
+			ps.setInt(3, pi.getEndRow());
 			rs=ps.executeQuery();
 			while(rs.next()) {
 				Notification n=new Notification();
 				n.setNoti_no(rs.getInt("noti_no"));
 				n.setTitle(rs.getString("title"));
-				n.setEnroll_date(rs.getDate("enroll_date")+" "+rs.getTime("enroll_date"));
 				n.setEnd_date(rs.getDate("end_date")+" "+rs.getTime("end_date"));
-				n.setAddress(rs.getString("address"));
 				n.setNickname(rs.getString("nickname"));
 				list.add(n);
 			}
@@ -85,7 +92,7 @@ public class LikeDao {
 		return list;
 	}
 
-	public ArrayList<Resume> myResumeList(Connection conn, int m_no) {
+	public ArrayList<Resume> myResumeList(Connection conn, int m_no, PageInfo pi) {
 		ArrayList<Resume> list=new ArrayList<>();
 		PreparedStatement ps=null;
 		ResultSet rs=null;
@@ -94,6 +101,8 @@ public class LikeDao {
 		try {
 			ps=conn.prepareStatement(sql);
 			ps.setInt(1, m_no);
+			ps.setInt(2, pi.getStartRow());
+			ps.setInt(3, pi.getEndRow());
 			rs=ps.executeQuery();
 			while(rs.next()) {
 				Resume r=new Resume();
@@ -229,6 +238,72 @@ public class LikeDao {
 		return likeBoList;
 		
 		
+	}
+
+	public int myCompanyListCount(Connection conn, int m_no) {
+		int result=0;
+		PreparedStatement ps=null;
+		ResultSet rs=null;
+		
+		String sql=prop.getProperty("getMyCompanyListCount");
+		try {
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, m_no);
+			rs=ps.executeQuery();
+			if(rs.next()) {
+				result=rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(ps);
+		}
+		return result;
+	}
+
+	public int myNotificationListCount(Connection conn, int m_no) {
+		int result=0;
+		PreparedStatement ps=null;
+		ResultSet rs=null;
+		
+		String sql=prop.getProperty("myNotificationListCount");
+		try {
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, m_no);
+			rs=ps.executeQuery();
+			if(rs.next()) {
+				result=rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(ps);
+		}
+		return result;
+	}
+
+	public int myResumeListCount(Connection conn, int m_no) {
+		int result=0;
+		PreparedStatement ps=null;
+		ResultSet rs=null;
+		
+		String sql=prop.getProperty("myResumeListCount");
+		try {
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, m_no);
+			rs=ps.executeQuery();
+			if(rs.next()) {
+				result=rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(ps);
+		}
+		return result;
 	}
 	
 

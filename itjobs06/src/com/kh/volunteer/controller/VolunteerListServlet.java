@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.board.model.vo.PageInfo;
+import com.kh.like.model.service.LikeService;
 import com.kh.volunteer.model.service.VolunteerService;
 import com.kh.volunteer.model.vo.Volunteer;
 
@@ -35,9 +37,19 @@ public class VolunteerListServlet extends HttpServlet {
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		int noti_no=Integer.parseInt(request.getParameter("noti_no"));
 		
-		ArrayList<Volunteer> list=new VolunteerService().getList(noti_no);
+		int currentPage=1;
+		if(request.getParameter("currentPage")!=null) {
+			currentPage=Integer.parseInt(request.getParameter("currentPage"));
+		}
+		PageInfo pi = null;
+		
+		int listCount = new VolunteerService().getListCount(noti_no);
+		pi = new PageInfo(currentPage, listCount, 5, 5);
+		
+		ArrayList<Volunteer> list=new VolunteerService().getList(noti_no,pi);
 		if(list!=null) {
 			request.setAttribute("list", list);
+			request.setAttribute("pi", pi);
 			request.getRequestDispatcher("views/mypage/notice/applierList.jsp").forward(request, response);
 		}
 	}

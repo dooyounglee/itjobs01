@@ -7,8 +7,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.kh.board.model.service.BoardService;
+import com.kh.member.model.vo.Member;
 import com.kh.reply.model.vo.Reply;
 
 /**
@@ -30,8 +32,11 @@ public class BoardReplyInsertServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+	    Member mem=(Member)session.getAttribute("mem");
+	    int m_no = mem.getM_no();
+	    
 		int bId = Integer.parseInt(request.getParameter("bId"));
-		int m_no = Integer.parseInt(request.getParameter("m_no"));
 		String content = request.getParameter("content");
 		
 		Reply r = new Reply();

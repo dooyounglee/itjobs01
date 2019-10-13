@@ -20,12 +20,17 @@
 		case "공지" : ca[3]="selected"; break;
 		case "서식" : ca[4]="selected"; break;
 	}
+	
 %>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<!-- 에디터  -->
+<script type="text/javascript" src='<%=request.getContextPath()%>/resources/naver-smarteditor2-ca95d21/demo/js/service/HuskyEZCreator.js' charset="utf-8"></script>
+
 
 <!-- import jobx -->
 <%@ include file="/views/include/user/style.jsp" %>
@@ -98,6 +103,7 @@
 	<label class="control-label">제목</label>
 	<!-- <input type="text" class="form-control" name="title" placeholder="제목을 입력하세요."> -->
 	<input type="text" class="form-control" id="title" name="title" value="<%=b.getTitle() %>">
+	
 	</div>
 	<section id="editor">
 	<div class="form-group">
@@ -138,45 +144,65 @@
 
 	
 	<script>
-	function writeAdd(){
-        var title = $("#title");
-        var content = $("#comment");
-        var select = $("#writehead");
-        var time1 = $("#time1");
-        var time2 = $("#time2");
-        
-        if(select.val() == "no"){
-           alert("머리말을 선택해주세요.");
-           select.focus();
-           return false;
-        }
-        if(select)
-        if(title.val().trim().length == 0){
-           alert("제목을 입력해주세요.");
-           title.focus();
-           return false;
-        } 
-        if(select.val() == "스터디" || select.val() == "프로젝트"){
-           if(time1.val().trim().length == 0){
-              alert("모집시작일을 입력해주세요.") 
-              time1.focus();
-              return false; 
-           }
-           if(time2.val().trim().length == 0){
-              alert("모집마감일을 입력해주세요.") 
-              time2.focus();
-              return false; 
-           }
-        }
-        if(content.val().trim().length == 0){
-           alert("내용을 입력해주세요.") 
-           content.focus();
-           return false; 
-        
-        }else{
-           $("#form").submit();
-        }
-     };
+		var oEditors = [];
+		
+		nhn.husky.EZCreator.createInIFrame({
+	
+		 	 oAppRef: oEditors,
+		 	 elPlaceHolder: document.getElementById('comment'),
+		  	 sSkinURI: "<%=contextPath%>/resources/naver-smarteditor2-ca95d21/demo/SmartEditor2Skin.html",  
+		     fCreator: "createSEditor2",
+		     htParams:{
+		    	 bUseToolbar:true, // 툴바 사용여부
+		    	 bUseVerticalResizer:false, // 크기조절바 사용여부
+		    	 bUseModeChanger : true,	// 모드 탭(Editor | HTML | TEXT) 사용 여부
+		     },
+		     OnAppLoad : function() {
+		    	//기존 저장된 내용의 text 내용을 에디터상에 뿌려주고자 할때 사용
+		    	oEditors.getById["comment"].exec("PASTE_HTML", [ "" ]);
+		    },
+		 });
+		
+		function writeAdd(){
+			oEditors.getById["comment"].exec("UPDATE_CONTENTS_FIELD", []);
+	        var title = $("#title");
+	        var content = $("#comment");
+	        var select = $("#writehead");
+	        var time1 = $("#time1");
+	        var time2 = $("#time2");
+	        
+	        if(select.val() == "no"){
+	           alert("머리말을 선택해주세요.");
+	           select.focus();
+	           return false;
+	        }
+	        if(select)
+	        if(title.val().trim().length == 0){
+	           alert("제목을 입력해주세요.");
+	           title.focus();
+	           return false;
+	        } 
+	        if(select.val() == "스터디" || select.val() == "프로젝트"){
+	           if(time1.val().trim().length == 0){
+	              alert("모집시작일을 입력해주세요.") 
+	              time1.focus();
+	              return false; 
+	           }
+	           if(time2.val().trim().length == 0){
+	              alert("모집마감일을 입력해주세요.") 
+	              time2.focus();
+	              return false; 
+	           }
+	        }
+	        if(content.val().trim().length == 0){
+	           alert("내용을 입력해주세요.") 
+	           content.focus();
+	           return false; 
+	        
+	        }else{
+	           $("#form").submit();
+	        }
+	     };
 		$(function(){
 			$("#writehead").change(function(){
 				var select = $("#writehead");

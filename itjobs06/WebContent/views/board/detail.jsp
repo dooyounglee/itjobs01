@@ -99,11 +99,12 @@
            
            <br><br>
            <div style="border-bottom:1px solid lightgray">
-             <p style="font-size:20px;color:black;"><%=b.getContents() %></p><br><br>
+             <pre style="font-size:20px;color:black;"><%=b.getContents() %></pre><br><br>
 
             <%if(b.getEditFile() != null){ %>
-            	
-               <img class='max-small' id="img" src="<%= contextPath %>/resources/fileupload_board/<%= b.getEditFile()%>">
+            	<%if(b.getFile().contains("jpg") || b.getFile().contains("jpeg") || b.getFile().contains("png")){ %>
+               		<img class='max-small' id="img" src="<%= contextPath %>/resources/fileupload_board/<%= b.getEditFile()%>">
+            	<%} %>
             <br><br>
             <span><%=b.getFile() %> </span>&nbsp; &nbsp;
             <a href="<%= contextPath %>/download.bo?bId=<%=b.getB_no()%>" class="btn btn-common">다운로드</a> <br><br>

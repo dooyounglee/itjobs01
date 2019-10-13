@@ -7,6 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <title>이력서 작성하기</title>
+<script type="text/javascript" src='<%=request.getContextPath()%>/resources/naver-smarteditor2-ca95d21/demo/js/service/HuskyEZCreator.js' charset="utf-8"></script>
 
 <!-- import jobx -->
 <%@ include file="/views/include/user/style.jsp" %>
@@ -233,17 +234,19 @@
 							<div class="divider">
 								<h3>자격증</h3>
 							</div>
-							<div id="cer_form-group" class="form-group">
-								<div id="cer_row" class="row">
-									<div class="col-md-6">
-										<label class="control-label">자격증</label> <input
-											class="form-control" name="cer_name" placeholder="Skill name, e.g. HTML"
-											type="text" value="1">
-									</div>
-									<div class="col-md-6">
-										<label class="control-label">날짜</label> <input
-											class="form-control" name="cer_date" placeholder="Skill proficiency, e.g. 90"
-											type="date" value="2019-01-01">
+							<div id="cerList">
+								<div class="form-group">
+									<div class="row">
+										<div class="col-md-6">
+											<label class="control-label">자격증</label> <input
+												class="form-control" name="cer_name" placeholder="Skill name, e.g. HTML"
+												type="text" value="1">
+										</div>
+										<div class="col-md-6">
+											<label class="control-label">날짜</label> <input
+												class="form-control" name="cer_date" placeholder="Skill proficiency, e.g. 90"
+												type="date" value="2019-01-01">
+										</div>
 									</div>
 								</div>
 							</div>
@@ -255,6 +258,22 @@
 									<a href="#" class="btn-delete" onclick="return del_cer()"><i class="ti-trash"></i>삭제</a>
 								</div>
 							</div>
+<script>
+	function add_cer(){
+		var one_cer=$('#cerList').children('div').eq(0).clone();
+		one_cer.find('input').val("")
+		$('#cerList').append('<hr>');
+		$('#cerList').append(one_cer);
+		return false;
+	}
+	function del_cer(){
+		if($('#cerList').children('div').length>1){
+			$('#cerList').children('div.form-group:last').remove()
+			$('#cerList').children('hr:last').remove()
+		}
+		return false;
+	}
+</script>
 							<div class="form-group">
 								<div class="row">
 									<div class="col-md-3">
@@ -265,6 +284,7 @@
 												<option value="2000">2000</option>
 							 					<option value="3000">3000</option>
 												<option value="4000">4000</option>
+												<option value="4001">4000이상</option>
 											</select>
 										</label>
 									</div>
@@ -303,11 +323,26 @@
 							</div>
 							<div class="form-group">
 								<label class="control-label">자소서</label>
-								<textarea class="form-control" name="self" rows="5" id="자소서">1</textarea>
+								<textarea class="form-control" id="comment" name="self" rows="5" id="자소서">1</textarea>
 							</div>
+<script>
+var oEditors = [];
+	
+nhn.husky.EZCreator.createInIFrame({
+ 	 oAppRef: oEditors,
+ 	 elPlaceHolder: document.getElementById('comment'),
+  	 sSkinURI: "<%=contextPath%>/resources/naver-smarteditor2-ca95d21/demo/SmartEditor2Skin.html",  
+     fCreator: "createSEditor2",
+     htParams:{
+    	 bUseToolbar:false, // 툴바 사용여부
+    	 bUseVerticalResizer:false, // 크기조절바 사용여부
+    	 bUseModeChanger : false,	// 모드 탭(Editor | HTML | TEXT) 사용 여부
+     }
+});
+</script>
 							<input type="submit" class="btn btn-common" value="작성완료">
 						</form>
-<script>
+<!-- <script>
 	function add_cer(){
 		str='<div id="cer_row" class="row">';
 		str+='<div class="col-md-6">';
@@ -328,7 +363,7 @@
 		}
 		return false;
 	}
-</script>
+</script> -->
 					</div>
 				</div>
 				<!-- End of right -->

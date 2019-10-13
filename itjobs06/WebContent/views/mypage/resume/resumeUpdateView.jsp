@@ -235,28 +235,21 @@
 								</div>
 							</div>
 <script>
+	$('#careerList').hide();
+	$('#btn_add_career').hide();
+	$('#career_off').click(function(){
+		$('#careerList').hide();
+		$('#btn_add_career').hide();
+	})
+	$('#career_on').click(function(){
+		$('#careerList').show();
+		$('#btn_add_career').show();
+	})
 	function add_career(){
-		str ='<hr><div class="form-group">';
-		str+='<label class="control-label">회사이름</label>';
-		str+='<input type="text" class="form-control" name="companyName" placeholder="Company name">';
-		str+='</div>';
-		str+='<div class="form-group">';
-		str+='<label class="control-label">한일</label>';
-		str+='<input type="text" class="form-control" name="workList" placeholder="e.g UI/UX Researcher">';
-		str+='</div>';
-		str+='<div class="form-group">';
-		str+='<div class="row">';
-		str+='<div class="col-md-6">';
-		str+='<label class="control-label">Date From</label>';
-		str+='<input type="date" class="form-control" name="workDate1" placeholder="e.g 2014">';
-		str+='</div>';
-		str+='<div class="col-md-6">';
-		str+='<label class="control-label">Date To</label>';
-		str+='<input type="date" class="form-control" name="workDate2" placeholder="e.g 2020">';
-		str+='</div>';
-		str+='</div>';
-		str+='</div>';
-		$('#careerList').append(str);
+		var one_career=$('#careerList').children('div:lt(3)').clone();
+		one_career.find('input').val("")
+		$('#careerList').append('<hr>');
+		$('#careerList').append(one_career);
 		return false;
 	}
 	function del_career(){
@@ -300,13 +293,30 @@
 									<a href="#" class="btn-delete" onclick="return del_cer()"><i class="ti-trash"></i>삭제</a>
 								</div>
 							</div>
+<script>
+	function add_cer(){
+		var one_cer=$('#cerList').children('div').eq(0).clone();
+		one_cer.find('input').val("")
+		$('#cerList').append('<hr>');
+		$('#cerList').append(one_cer);
+		return false;
+	}
+	function del_cer(){
+		if($('#cerList').children('div').length>1){
+			$('#cerList').children('div.form-group:last').remove()
+			$('#cerList').children('hr:last').remove()
+		}
+		return false;
+	}
+</script>
 							<%	String hope_sal=re.getHope_salary();
-								String[] arr_hope_sal=new String[4];
+								String[] arr_hope_sal=new String[5];
 								switch(hope_sal){
 								case "0":arr_hope_sal[0]="selected";
 								case "2000":arr_hope_sal[1]="selected";
 								case "3000":arr_hope_sal[2]="selected";
 								case "4000":arr_hope_sal[3]="selected";
+								case "4001":arr_hope_sal[4]="selected";
 								}
 								
 								%>
@@ -320,7 +330,7 @@
 												<option value="2000" <%=arr_hope_sal[1] %>>2000</option>
 							 					<option value="3000" <%=arr_hope_sal[2] %>>3000</option>
 												<option value="4000" <%=arr_hope_sal[3] %>>4000</option>
-												<option value="4001" <%=arr_hope_sal[3] %>>4000이상</option>
+												<option value="4001" <%=arr_hope_sal[4] %>>4000이상</option>
 											</select>
 										</label>
 									</div>
@@ -387,28 +397,6 @@
 							<input type="submit" class="btn btn-common" value="작성완료">
 						</form>
 					</div>
-<script>
-	function add_cer(){
-		str='<div id="cer_row" class="row">';
-		str+='<div class="col-md-6">';
-		str+='<label class="control-label">자격증</label>';
-		str+='<input class="form-control" name="cer_name" placeholder="Skill name, e.g. HTML" type="text">';
-		str+='</div>';
-		str+='<div class="col-md-6">';
-		str+='<label class="control-label">날짜</label>';
-		str+='<input class="form-control" name="cer_date" placeholder="Skill proficiency, e.g. 90" type="date">';
-		str+='</div>';
-		str+='</div>';
-		$('#cer_form-group').append(str)
-		return false;
-	}
-	function del_cer(){
-		if($('#cer_form-group').children('div#cer_row').length>1){
-			$('#cer_form-group').children('div#cer_row:last').remove()
-		}
-		return false;
-	}
-</script>
 					</div>
 				</div>
 				<!-- End of right -->
@@ -578,49 +566,6 @@ function setDisplay(){
        $('#academyInfo').show();
     }
 }
-	
-
- 
- 
-/* 	function add_career(){
-	/* 	 var form=$('#careerForm')
-		 var str=form.html();
-		 str=str.replace('</div>','<button onclick="del_career()">삭제</button></div>')
-		 console.log(str)
-		 $('#careerList').append(str) */
-	 	var str='<div id="careerForm">';
-		str+='<label>근무 회사명</label>';
-		str+='<input type="text" name="companyName" value="1"><br><br>';
-		str+='<label>업무 내용 </label>';
-		str+='<input type="text" name="workList" value="1"><br><br>';
-		str+='<label>근무 일자</label>';
-		str+='<input type="date" name="workDate1" value="2010-01-01"> ~';
-		str+='<input type="date" name="workDate2" value="2010-01-01">';
-		str+='<br><br>';
-		str+='<span class="del_career" style="cursor:pointer;">삭제</span></div>';
-		str+='</div>';
-		$('#careerList').append(str)
-	}
-	$(document).on('click','.del_career',function(){
-		$(this).closest('div #careerForm').remove();
-	}) */
-
-/* 	function add_cer(){
-		
-		var str='<div id="cerForm">';
-		str+='<label>자격증명</label>';
-		str+='<input type="text" name="cer_name" value="1"><br><br>';
-		str+='<label>취득날짜</label>';
-		str+='<input type="date" name="cer_date"  value="2010-01-01">';
-		str+='<br>';
-		str+='<span class="del_cer" style="cursor:pointer;">삭제</span></div>';
-		str+='</div>';
-		$('#cerList').append(str)
-	}
-	$(document).on('click','.del_cer',function(){
-		$(this).closest('div #cerForm').remove();
-	}) */
-
 	
 	function math(){
 		var inputDate1 = $("#workDate1").val();

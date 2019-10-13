@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src='<%=request.getContextPath()%>/resources/naver-smarteditor2-ca95d21/demo/js/service/HuskyEZCreator.js' charset="utf-8"></script>
 
 <!-- import jobx -->
 <%@ include file="/views/include/user/style.jsp" %>
@@ -170,9 +171,24 @@
 							</div>
 							<div class="form-group is-empty">
 								<label class="control-label">사업내용</label> <input
-									class="form-control" type="text" name="descript" value="<%=co.getDescript()%>"> <span
+									class="form-control" type="text" id="comment1" name="descript" value="<%=co.getDescript()%>"> <span
 									class="material-input"></span>
 							</div>
+<script>
+var oEditors = [];
+	
+nhn.husky.EZCreator.createInIFrame({
+ 	 oAppRef: oEditors,
+ 	 elPlaceHolder: document.getElementById('comment1'),
+  	 sSkinURI: "<%=contextPath%>/resources/naver-smarteditor2-ca95d21/demo/SmartEditor2Skin.html",  
+     fCreator: "createSEditor2",
+     htParams:{
+    	 bUseToolbar:false, // 툴바 사용여부
+    	 bUseVerticalResizer:false, // 크기조절바 사용여부
+    	 bUseModeChanger : false,	// 모드 탭(Editor | HTML | TEXT) 사용 여부
+     }
+});
+</script>	
 							<div class="form-group is-empty">
 								<label class="control-label">설립일</label> <input
 									class="form-control" type="date" name="birth_date" value="<%=co.getBirth_date().split(" ")[0]%>"> <span
@@ -190,14 +206,44 @@
 							</div>
 							<div class="form-group is-empty">
 								<label class="control-label">연혁</label> <input
-									class="form-control" type="text" name="history" value="<%=co.getHistory()%>"> <span
+									class="form-control" type="text" id="comment2" name="history" value="<%=co.getHistory()%>"> <span
 									class="material-input"></span>
 							</div>
+<script>
+var oEditors = [];
+	
+nhn.husky.EZCreator.createInIFrame({
+ 	 oAppRef: oEditors,
+ 	 elPlaceHolder: document.getElementById('comment2'),
+  	 sSkinURI: "<%=contextPath%>/resources/naver-smarteditor2-ca95d21/demo/SmartEditor2Skin.html",  
+     fCreator: "createSEditor2",
+     htParams:{
+    	 bUseToolbar:false, // 툴바 사용여부
+    	 bUseVerticalResizer:false, // 크기조절바 사용여부
+    	 bUseModeChanger : false,	// 모드 탭(Editor | HTML | TEXT) 사용 여부
+     }
+});
+</script>
 							<div class="form-group is-empty">
 								<label class="control-label">복지</label> <input
-									class="form-control" type="text" name="welfare" value="<%=co.getWelfare()%>"> <span
+									class="form-control" type="text" id="comment3" name="welfare" value="<%=co.getWelfare()%>"> <span
 									class="material-input"></span>
 							</div>
+<script>
+var oEditors = [];
+	
+nhn.husky.EZCreator.createInIFrame({
+ 	 oAppRef: oEditors,
+ 	 elPlaceHolder: document.getElementById('comment3'),
+  	 sSkinURI: "<%=contextPath%>/resources/naver-smarteditor2-ca95d21/demo/SmartEditor2Skin.html",  
+     fCreator: "createSEditor2",
+     htParams:{
+    	 bUseToolbar:false, // 툴바 사용여부
+    	 bUseVerticalResizer:false, // 크기조절바 사용여부
+    	 bUseModeChanger : false,	// 모드 탭(Editor | HTML | TEXT) 사용 여부
+     }
+});
+</script>
 							<%	} %>
 							<button id="submit" class="btn btn-common">Save Change</button>
 						</form>

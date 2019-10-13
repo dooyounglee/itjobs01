@@ -137,4 +137,43 @@ private Properties prop = new Properties();
 		return result;
 	}
 
+	public Volunteer getVolunteer(Connection conn, int v_no) {
+		Volunteer v=null;
+		PreparedStatement ps=null;
+		ResultSet rs=null;
+		
+		String sql=prop.getProperty("getVolunteer");
+		try {
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, v_no);
+			rs=ps.executeQuery();
+			if(rs.next()) {
+				v=new Volunteer(
+						rs.getInt("v_no"),
+						rs.getInt("noti_no"),
+						rs.getInt("resume_no"),
+						rs.getDate("v_Date")+" "+rs.getTime("v_Date"),
+						rs.getString("status"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return v;
+	}
+
+	public int readResume(Connection conn, int v_no) {
+		int result=0;
+		PreparedStatement ps=null;
+		
+		String sql=prop.getProperty("readResume");
+		try {
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, v_no);
+			result=ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
 }

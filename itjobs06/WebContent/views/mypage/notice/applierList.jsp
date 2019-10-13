@@ -93,7 +93,7 @@
 								<div class="col-md-2">
 									<p>
 										<a class="btn btn-common btn-sm" style="width: 85px" id="new"
-											href="detail.re?resume_no=<%=v.getResume_no()%>">보기</a>
+											href="detail.re?resume_no=<%=v.getResume_no()%>&v_no=<%=v.getV_no()%>">보기</a>
 									</p>
 								</div>
 							</div>

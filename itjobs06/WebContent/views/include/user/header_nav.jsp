@@ -29,7 +29,35 @@
 				<a href="<%=request.getContextPath() %>" class="navbar-brand"><img
 					src="resources/images/logo12.png"
 					style="width: 80px; height: 32px;" alt=""></a>
+				<a style="color:black;">현재접속자수: <span id=userCounting></span>명</a>
 			</div>
+<script type="text/javascript">
+ 	var webSocket = new WebSocket('ws://<%=request.getServerName()%>:<%=request.getServerPort()%>/itjobs/userCounting');
+	webSocket.onerror = function(event) {
+		onError(event)
+	};
+	webSocket.onopen = function(event) {
+		onOpen(event)
+	};
+	webSocket.onmessage = function(event) {
+		onMessage(event)
+	};
+	webSocket.onclose = function(event) {
+		onClose(event)
+	}
+	function onMessage(event) {//다른사람 동작->나한테 발생
+		$('#userCounting').text(event.data);
+	}
+	function onOpen(event) {
+		webSocket.send("어차피 안나올 값");
+	}
+	function onError(event) {
+		alert(event.data);
+	}
+	function onClose(event) {
+		webSocket.send("어차피 안나올 값");
+	}
+</script>
 			<div class="collapse navbar-collapse" id="main-navbar">
 				<ul class="navbar-nav mr-auto w-100 justify-content-end">
 					<%	if(mem!=null){ %>

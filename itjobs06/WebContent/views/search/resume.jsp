@@ -61,12 +61,12 @@ ArrayList<String> likeResList = (ArrayList<String>)request.getAttribute("likeRes
 
 </head>
 <body>
-
 	<header id="home" class="hero-area">
 	<%@ include file="/views/include/user/header_nav.jsp" %>
 
 	<%	if(mem!=null){ %>
 	<input type="hidden" value="<%=mem.getM_no() %>" id="memNo">
+	<input type="hidden" value="<%=mem.getType()%>" id="memType">
 	<%	} %>
 
 	</header>
@@ -313,9 +313,11 @@ ArrayList<String> likeResList = (ArrayList<String>)request.getAttribute("likeRes
 		$(function(){
 		
 			var memNo = $("#memNo").val();
-			
-			
+			var memType = $("#memType").val();
 			$(".likeimg").click(function(){
+						
+	
+			if(memNo!=null && memType != 1){ // 회원이 존재하면
 				
 				var resNo =	$(this).parent().prev().val()
 				
@@ -342,8 +344,13 @@ ArrayList<String> likeResList = (ArrayList<String>)request.getAttribute("likeRes
 						}
 				
 					}); 
-			})
+				}else if(memType=="1"){ // 일반회원끼리 좋아요 방지
+				alert("일반회원끼리는 좋아요 불가능 합니다.");
+				}else{
+				alert("로그인을 진행해 주세요");
+				}	
 		})
+	})
 				
 	
 </script>

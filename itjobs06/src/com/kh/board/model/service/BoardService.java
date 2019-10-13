@@ -349,10 +349,10 @@ public class BoardService {
 	 * @param search
 	 * @return
 	 */
-	public ArrayList<Board> esearchBoard(String head, String select, String search){
+	public ArrayList<Board> esearchBoard(String head, String select, String search, PageInfo pi){
 		Connection conn = getConnection();
 		
-		ArrayList<Board> list  = new BoardDao().esearchBoard(conn, head, select, search);
+		ArrayList<Board> list  = new BoardDao().esearchBoard(conn, head, select, search, pi);
 
 		close(conn);
 		return list;
@@ -364,12 +364,43 @@ public class BoardService {
 	 * @param search
 	 * @return
 	 */
-	public ArrayList<Board> msearchBoard(String select, String search){
+	public ArrayList<Board> msearchBoard(String select, String search, PageInfo pi){
 		Connection conn = getConnection();
 		
-		ArrayList<Board> list  = new BoardDao().msearchBoard(conn, select, search);
+		ArrayList<Board> list  = new BoardDao().msearchBoard(conn, select, search, pi);
 
 		close(conn);
 		return list;
 	}
+	
+	/**
+	 * 검색기능 시 메인 리스트 카운트
+	 * @param search
+	 * @return
+	 */
+	public int getMainSearchListCount(String search, String select) {
+		Connection conn = getConnection();
+		
+		int result = new BoardDao().getMainSearchListCount(conn, search, select);
+				
+		close(conn);
+		return result;
+	}
+	
+	
+	/**
+	 * 검색 기능 시 메인 제외한 리스트 카운트
+	 * @param head
+	 * @param search
+	 * @return
+	 */
+	public int getEtcSearchListCount(String head, String search, String select) {
+		Connection conn = getConnection();
+		
+		int result = new BoardDao().getEtcSearchListCount(conn, head, search, select);
+				
+		close(conn);
+		return result;
+	}
+	
 }

@@ -36,17 +36,23 @@ public class BoardSearchListServlet extends HttpServlet {
 		String search = request.getParameter("search");
 		String head = request.getParameter("head");
 		
-		ArrayList<Board> list = new ArrayList<>();
 		int listCount = 0;
 		
-		if(head.equals("전체보기")) {
-			list = new BoardService().msearchBoard(select, search);
-			listCount = list.size();
+		if(head.equals("main")||head.equals("전체보기")) {
+			listCount = new BoardService().getMainSearchListCount(search, select);
 		}else {
-			list = new BoardService().esearchBoard(head, select, search);
-			listCount = list.size();
+			switch(head) {
+			case "free" : head="자유"; break;
+			case "study" : head="스터디"; break;
+			case "project" : head="프로젝트"; break;
+			case "qu" : head="공지사항"; break;
+			case "form" : head="서식"; break;
+			default: break;
+			}
+			listCount =  new BoardService().getEtcSearchListCount(head, search, select);
 		}
 		
+		// 페이징 처리
 		int currentPage=1;
 		if(request.getParameter("currentPage")!=null) {
 			currentPage=Integer.parseInt(request.getParameter("currentPage"));
@@ -55,13 +61,14 @@ public class BoardSearchListServlet extends HttpServlet {
 		
 		PageInfo pi = new PageInfo(currentPage, listCount, 5, 5);
 		
-	
-		if(head.equals("main")||head.equals("전체보기")) {
-			list = new BoardService().selectMainList(pi);
-			
+		ArrayList<Board> list = new ArrayList<>();
+		
+		if(head.equals("전체보기")||head.equals("main")) {
+			list = new BoardService().msearchBoard(select, search, pi);
 		}else {
-			list = new BoardService().selectEtcList(head, pi);
+			list = new BoardService().esearchBoard(head, select, search, pi);
 		}
+		
 	
 		request.setAttribute("pi",pi);
 		request.setAttribute("list", list);

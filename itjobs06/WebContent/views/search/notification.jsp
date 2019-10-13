@@ -5,7 +5,7 @@
     pageEncoding="UTF-8"%>
 <%
 ArrayList<String> likeBoList = (ArrayList<String>)request.getAttribute("likeMem");
-String error = (String)request.getAttribute("error");
+
 %>
 <!DOCTYPE html>
 <html>
@@ -54,6 +54,7 @@ String error = (String)request.getAttribute("error");
 	
 	<%	if(mem!=null){ %>
 	<input type="hidden" value="<%=mem.getM_no() %>" id="memNo">
+	<input type="hidden" value="<%=mem.getType()%>" id="memType">
 	<%	} %>
 	
 	
@@ -283,19 +284,20 @@ String error = (String)request.getAttribute("error");
 	// 좋아요 ajax
 	 $(function(){
 		
-		var error = "<%=error%>";
+		
 		var memNo = $("#memNo").val();
+		var memType = $("#memType").val();
 		
 		//$(".likeimg").click(function (){
-		$(document).on("click", ".likeimg", function(e){	
+		
+			$(document).on("click", ".likeimg", function(e){	
 			
-			
-			console.log(e.target);
+			if(memNo!=null && memType != 2){
 			//var noNo =	$(this).parent().prev().val();
 			
 			var test = e.target;
 			
-			console.log(test.parentNode.previousSibling.previousSibling);
+			
 			
 			var noNo =	test.parentNode.previousSibling.previousSibling.value;
 			//console.log(noNo);
@@ -332,15 +334,17 @@ String error = (String)request.getAttribute("error");
 					
 					
 					},error:function(){
-						alert(error);
 						console.log("ajax실패");
 					}
 			
 				}); 
-			})
-		
-	 
-	 	})
+			}else if(memType=="2"){
+			alert("기업회원끼리는 좋아요 불가능 합니다");	
+			}else{
+			alert("로그인을 진행해 주세요");
+			}
+	})
+})
 		
 		
 	

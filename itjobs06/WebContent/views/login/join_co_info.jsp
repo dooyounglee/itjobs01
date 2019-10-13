@@ -17,7 +17,7 @@
 	}
 
 
-	 #file{
+	 #file,#address{
 		font-size: 19.5px;
 		position: absolute;
 		right: 0px;
@@ -41,8 +41,16 @@
 	border:0px;
 	}
 
-	
-
+	#address{
+	font-size: 23px;
+	width: 380px;
+	}
+	#address:hover{
+		cursor:pointer;
+	}
+	.adr{
+	border : 1px solid rgb(236,236,236);
+	}
 </style>
 
 
@@ -106,16 +114,20 @@
 		<!-- 우선 주석처리 -->
 		<img id ="titleImg2" width="380" height="100" >
 		
-		<h3>본사 주소지</h3>
-		<input type="text" id="sample3_postcode" name="sample3_postcode"  placeholder="우편번호" required>
-		<input type="button" onclick="sample3_execDaumPostcode()" value="우편번호 찾기" required><br>
-		<input type="text" id="sample3_address" name="sample3_address" placeholder="주소" required>
-		<input type="text" id="sample3_detailAddress" name="sample3_detailAddress" placeholder="상세주소">
+		<div class="btn btn-common log-btn mt-3" id="filediv" >
+		본사 주소지
+		<input type="text" id="address" onclick="sample3_execDaumPostcode()" value="우편번호 찾기" required >
+		</div>  
+		
+		<input type="text" id="sample3_postcode" name="sample3_postcode" class="adr" placeholder="우편번호*" required style="width:100px;">
+		<input type="text" id="sample3_address" name="sample3_address" class="adr" placeholder="주소*" required style="width:275px;">
+		<input type="text" id="sample3_detailAddress" name="sample3_detailAddress" class="adr" placeholder="상세주소" style="width:379px;">
 		<input type="hidden" id="sample3_extraAddress" placeholder="참고항목">
 	
 		<div id="wrap" style="display:none;border:1px solid;width:500px;height:300px;margin:5px 0;position:relative">
 		<img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnFoldWrap" style="cursor:pointer;position:absolute;right:0px;top:-1px;z-index:1" onclick="foldDaumPostcode()" alt="접기 버튼">
 		</div>
+		<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 		
 		<div class="form-group"style="margin-top:15px;">
 		<div class="input-icon">
@@ -190,7 +202,7 @@
 		</section>
 		
 		<script>
-		
+		/* 사업자등록파일  */
 		/* $(function(){
 				
 			var fileInsert = $(document.getElementsByName("fileInsert"));
@@ -208,6 +220,7 @@
 			})
 		}) */
 		
+		/* 사업자등록파일 */
 		$(function(){
 			
 			$("#file").change(function(){
@@ -222,7 +235,6 @@
 				})
 			})
 				
-			
 		
 		
 		
@@ -254,20 +266,10 @@
 
 <!-- 주소api -->
 
-	<h3>본사 주소</h2>
-	<input type="text" id="sample3_postcode" name="sample3_postcode"  placeholder="우편번호">
-	<input type="button" onclick="sample3_execDaumPostcode()" value="우편번호 찾기"><br>
-	<input type="text" id="sample3_address" name="sample3_address" placeholder="주소">
-	<input type="text" id="sample3_detailAddress" name="sample3_detailAddress" placeholder="상세주소">
-	<input type="hidden" id="sample3_extraAddress" placeholder="참고항목">
-	
-	<div id="wrap" style="display:none;border:1px solid;width:500px;height:300px;margin:5px 0;position:relative">
-		<img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnFoldWrap" style="cursor:pointer;position:absolute;right:0px;top:-1px;z-index:1" onclick="foldDaumPostcode()" alt="접기 버튼">
-	</div>
-	<br>
 
-<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
+    
+    
     // 우편번호 찾기 찾기 화면을 넣을 element
     var element_wrap = document.getElementById('wrap');
 
@@ -318,8 +320,8 @@
                 }
 
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                document.getElementById('sample3_postcode').value = data.zonecode;
-                document.getElementById("sample3_address").value = addr;
+            	document.getElementById('sample3_postcode').value = data.zonecode;
+             	 document.getElementById("sample3_address").value = addr;
                 // 커서를 상세주소 필드로 이동한다.
                 document.getElementById("sample3_detailAddress").focus();
 
@@ -340,6 +342,9 @@
 
         // iframe을 넣은 element를 보이게 한다.
         element_wrap.style.display = 'block';
+  
+    	
+    
     }
     
     function loadImg(value,num){

@@ -178,25 +178,18 @@
       
       $(function(){
          $("#deBtn").click(function(){
-            <%   if(mem!=null){ %>
-            window.open("<%=contextPath %>/insertForm.de?bId=<%=b.getB_no()%>&title=<%=b.getTitle()%>&boardNick=<%=b.getNickname()%>&head=<%=b.getHead()%>", "ITJOBS_게시글 신고", "width=500, height=600, toolbar=no, menubar=no, scrollbars=no, resizable=no"); 
+        	 
+            <%if(mem!=null && !mem.getType().equals("0")){ %>
+           		window.open("<%=contextPath %>/insertForm.de?bId=<%=b.getB_no()%>&title=<%=b.getTitle()%>&boardNick=<%=b.getNickname()%>&head=<%=b.getHead()%>", "ITJOBS_게시글 신고", "width=500, height=600, toolbar=no, menubar=no, scrollbars=no, resizable=no"); 
+            <%} else if(mem != null && mem.getType().equals("0")){%>
+            	alert("관리자는 신고 불가!");
             <%} else{%>
-            alert("로그인해주세요");
+            	alert("로그인해주세요");
             <%}%>
          });
       });
       
       
-<%--    function deBtn(){
-      
-      if(<%= mem %> != null){
-         window.open("<%=contextPath %>/insertForm.de?bId=<%=b.getB_no()%>&title=<%=b.getTitle()%>&boardNick=<%=b.getNickname()%>&head=<%=b.getHead()%>", "ITJOBS_게시글 신고", "width=500, height=600, toolbar=no, menubar=no, scrollbars=no, resizable=no");
-      }else{
-         alert("로그인해주세요");
-      } 
-   }  --%>
-    
-   
       function deleteBtn(){
 
          if(confirm("정말 삭제하시겠습니까?") == true){

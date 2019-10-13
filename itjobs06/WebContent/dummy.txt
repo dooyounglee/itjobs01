@@ -59,7 +59,9 @@ CREATE TABLE "CO_INFO" (
    "MEMSUM"   NUMBER      NULL,
    "REVENUE"   NUMBER      NULL,
    "HISTORY"   VARCHAR2(4000)      NULL,
-   "WELFAIR"   VARCHAR2(4000)      NULL
+   "WELFAIR"   VARCHAR2(4000)      NULL,
+   "LOGO_FILE"   VARCHAR2(1000)      NOT NULL,
+   "LOGO_PATH"   VARCHAR2(1000)      NOT NULL
 );
 
 CREATE TABLE "BOARD" (
@@ -240,8 +242,6 @@ CREATE SEQUENCE SEQ_RE_DECLARE;
 CREATE SEQUENCE SEQ_REPLY;
 CREATE SEQUENCE SEQ_RESUME;
 CREATE SEQUENCE SEQ_VOLUNTEER;
-
-
 
 
 
@@ -438,26 +438,26 @@ insert into board values(seq_board.nextval,1,'프로젝트','제목141','내용1
 
 
 
-insert into co_info values(21,'사업등록번호1','file1','path1','name1','phone1','06234+서울 강남구 테헤란로14길 6+kh정보교육원','ceo1','cophone1','설명1',sysdate,1,2,'연혁1','복지1');
-insert into co_info values(22,'사업등록번호2','file2','path2','name2','phone2','06234+서울 강남구 테헤란로14길 6+kh정보교육원','ceo2','cophone2','설명2',sysdate,1,2,'연혁2','복지2');
-insert into co_info values(23,'사업등록번호3','file3','path3','name3','phone3','06234+서울 강남구 테헤란로14길 6+kh정보교육원','ceo3','cophone3','설명3',sysdate,1,2,'연혁3','복지3');
-insert into co_info values(24,'사업등록번호4','file4','path4','name4','phone4','06234+서울 강남구 테헤란로14길 6+kh정보교육원','ceo4','cophone4','설명4',sysdate,1,2,'연혁4','복지4');
-insert into co_info values(25,'사업등록번호5','file5','path5','name5','phone5','06234+서울 강남구 테헤란로14길 6+kh정보교육원','ceo5','cophone5','설명5',sysdate,1,2,'연혁5','복지5');
-insert into co_info values(26,'사업등록번호6','file6','path6','name6','phone6','06234+서울 강남구 테헤란로14길 6+kh정보교육원','ceo6','cophone6','설명6',sysdate,1,2,'연혁6','복지6');
-insert into co_info values(27,'사업등록번호7','file7','path7','name7','phone7','06234+서울 강남구 테헤란로14길 6+kh정보교육원','ceo7','cophone7','설명7',sysdate,1,2,'연혁7','복지7');
-insert into co_info values(28,'사업등록번호8','file8','path8','name8','phone8','06234+서울 강남구 테헤란로14길 6+kh정보교육원','ceo8','cophone8','설명8',sysdate,1,2,'연혁8','복지8');
-insert into co_info values(29,'사업등록번호9','file9','path9','name9','phone9','06234+서울 강남구 테헤란로14길 6+kh정보교육원','ceo9','cophone9','설명9',sysdate,1,2,'연혁9','복지9');
-insert into co_info values(30,'사업등록번호10','file10','path10','name10','phone10','06234+서울 강남구 테헤란로14길 6+kh정보교육원','ceo10','cophone10','설명10',sysdate,1,2,'연혁10','복지10');
-insert into co_info values(31,'사업등록번호11','file11','path11','name11','phone11','06234+서울 강남구 테헤란로14길 6+kh정보교육원','ceo11','cophone11','설명11',sysdate,1,2,'연혁11','복지11');
-insert into co_info values(32,'사업등록번호12','file12','path12','name12','phone12','06234+서울 강남구 테헤란로14길 6+kh정보교육원','ceo12','cophone12','설명12',sysdate,1,2,'연혁12','복지12');
-insert into co_info values(33,'사업등록번호13','file13','path13','name13','phone13','06234+서울 강남구 테헤란로14길 6+kh정보교육원','ceo13','cophone13','설명13',sysdate,1,2,'연혁13','복지13');
-insert into co_info values(34,'사업등록번호14','file14','path14','name14','phone14','06234+서울 강남구 테헤란로14길 6+kh정보교육원','ceo14','cophone14','설명14',sysdate,1,2,'연혁14','복지14');
-insert into co_info values(35,'사업등록번호15','file15','path15','name15','phone15','06234+서울 강남구 테헤란로14길 6+kh정보교육원','ceo15','cophone15','설명15',sysdate,1,2,'연혁15','복지15');
-insert into co_info values(36,'사업등록번호16','file16','path16','name16','phone16','06234+서울 강남구 테헤란로14길 6+kh정보교육원','ceo16','cophone16','설명16',sysdate,1,2,'연혁16','복지16');
-insert into co_info values(37,'사업등록번호17','file17','path17','name17','phone17','06234+서울 강남구 테헤란로14길 6+kh정보교육원','ceo17','cophone17','설명17',sysdate,1,2,'연혁17','복지17');
-insert into co_info values(38,'사업등록번호18','file18','path18','name18','phone18','06234+서울 강남구 테헤란로14길 6+kh정보교육원','ceo18','cophone18','설명18',sysdate,1,2,'연혁18','복지18');
-insert into co_info values(39,'사업등록번호19','file19','path19','name19','phone19','06234+서울 강남구 테헤란로14길 6+kh정보교육원','ceo19','cophone19','설명19',sysdate,1,2,'연혁19','복지19');
-insert into co_info values(40,'사업등록번호20','file20','path20','name20','phone20','06234+서울 강남구 테헤란로14길 6+kh정보교육원','ceo20','cophone20','설명20',sysdate,1,2,'연혁20','복지20');
+insert into co_info values(21,'사업등록번호1','file1','path1','name1','phone1','06234+서울 강남구 테헤란로14길 6+kh정보교육원','ceo1','cophone1','설명1',sysdate,1,2,'연혁1','복지1','logofile1','logopath1');
+insert into co_info values(22,'사업등록번호2','file2','path2','name2','phone2','06234+서울 강남구 테헤란로14길 6+kh정보교육원','ceo2','cophone2','설명2',sysdate,1,2,'연혁2','복지2','logofile2','logopath2');
+insert into co_info values(23,'사업등록번호3','file3','path3','name3','phone3','06234+서울 강남구 테헤란로14길 6+kh정보교육원','ceo3','cophone3','설명3',sysdate,1,2,'연혁3','복지3','logofile3','logopath3');
+insert into co_info values(24,'사업등록번호4','file4','path4','name4','phone4','06234+서울 강남구 테헤란로14길 6+kh정보교육원','ceo4','cophone4','설명4',sysdate,1,2,'연혁4','복지4','logofile4','logopath4');
+insert into co_info values(25,'사업등록번호5','file5','path5','name5','phone5','06234+서울 강남구 테헤란로14길 6+kh정보교육원','ceo5','cophone5','설명5',sysdate,1,2,'연혁5','복지5','logofile5','logopath5');
+insert into co_info values(26,'사업등록번호6','file6','path6','name6','phone6','06234+서울 강남구 테헤란로14길 6+kh정보교육원','ceo6','cophone6','설명6',sysdate,1,2,'연혁6','복지6','logofile6','logopath6');
+insert into co_info values(27,'사업등록번호7','file7','path7','name7','phone7','06234+서울 강남구 테헤란로14길 6+kh정보교육원','ceo7','cophone7','설명7',sysdate,1,2,'연혁7','복지7','logofile7','logopath7');
+insert into co_info values(28,'사업등록번호8','file8','path8','name8','phone8','06234+서울 강남구 테헤란로14길 6+kh정보교육원','ceo8','cophone8','설명8',sysdate,1,2,'연혁8','복지8','logofile8','logopath8');
+insert into co_info values(29,'사업등록번호9','file9','path9','name9','phone9','06234+서울 강남구 테헤란로14길 6+kh정보교육원','ceo9','cophone9','설명9',sysdate,1,2,'연혁9','복지9','logofile9','logopath9');
+insert into co_info values(30,'사업등록번호10','file10','path10','name10','phone10','06234+서울 강남구 테헤란로14길 6+kh정보교육원','ceo10','cophone10','설명10',sysdate,1,2,'연혁10','복지10','logofile10','logopath10');
+insert into co_info values(31,'사업등록번호11','file11','path11','name11','phone11','06234+서울 강남구 테헤란로14길 6+kh정보교육원','ceo11','cophone11','설명11',sysdate,1,2,'연혁11','복지11','logofile11','logopath11');
+insert into co_info values(32,'사업등록번호12','file12','path12','name12','phone12','06234+서울 강남구 테헤란로14길 6+kh정보교육원','ceo12','cophone12','설명12',sysdate,1,2,'연혁12','복지12','logofile12','logopath12');
+insert into co_info values(33,'사업등록번호13','file13','path13','name13','phone13','06234+서울 강남구 테헤란로14길 6+kh정보교육원','ceo13','cophone13','설명13',sysdate,1,2,'연혁13','복지13','logofile13','logopath13');
+insert into co_info values(34,'사업등록번호14','file14','path14','name14','phone14','06234+서울 강남구 테헤란로14길 6+kh정보교육원','ceo14','cophone14','설명14',sysdate,1,2,'연혁14','복지14','logofile14','logopath14');
+insert into co_info values(35,'사업등록번호15','file15','path15','name15','phone15','06234+서울 강남구 테헤란로14길 6+kh정보교육원','ceo15','cophone15','설명15',sysdate,1,2,'연혁15','복지15','logofile15','logopath15');
+insert into co_info values(36,'사업등록번호16','file16','path16','name16','phone16','06234+서울 강남구 테헤란로14길 6+kh정보교육원','ceo16','cophone16','설명16',sysdate,1,2,'연혁16','복지16','logofile16','logopath16');
+insert into co_info values(37,'사업등록번호17','file17','path17','name17','phone17','06234+서울 강남구 테헤란로14길 6+kh정보교육원','ceo17','cophone17','설명17',sysdate,1,2,'연혁17','복지17','logofile17','logopath17');
+insert into co_info values(38,'사업등록번호18','file18','path18','name18','phone18','06234+서울 강남구 테헤란로14길 6+kh정보교육원','ceo18','cophone18','설명18',sysdate,1,2,'연혁18','복지18','logofile18','logopath18');
+insert into co_info values(39,'사업등록번호19','file19','path19','name19','phone19','06234+서울 강남구 테헤란로14길 6+kh정보교육원','ceo19','cophone19','설명19',sysdate,1,2,'연혁19','복지19','logofile19','logopath19');
+insert into co_info values(40,'사업등록번호20','file20','path20','name20','phone20','06234+서울 강남구 테헤란로14길 6+kh정보교육원','ceo20','cophone20','설명20',sysdate,1,2,'연혁20','복지20','logofile20','logopath20');
 
 
 
@@ -1483,6 +1483,7 @@ insert into volunteer values(seq_volunteer.nextval,3,33,sysdate,default);
 insert into volunteer values(seq_volunteer.nextval,4,34,sysdate,default);
 insert into volunteer values(seq_volunteer.nextval,5,35,sysdate,default);
 insert into volunteer values(seq_volunteer.nextval,1,36,sysdate,default);
+
 
 
 

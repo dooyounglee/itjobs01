@@ -113,7 +113,8 @@
 				<h2 class="section-title">최신공고</h2>
 			</div>
 			<div class="row">
-				<!-- 최신공고리스트 -->
+			
+		<!-- 최신공고리스트 -->
 				<%
 					ArrayList<Notification> nlist = (ArrayList<Notification>) request.getAttribute("nlist");
 					for (Notification n : nlist) {
@@ -143,10 +144,11 @@
 				<%
 					}
 				%>
+				<button class="btn btn-common" style="margin-left:89%" onclick="location.href='<%= contextPath %>/notificationList.se';" >더보기</button>
 				<!--  최신공고리스트 끝 -->
 
 				<!-- 마감입박 공고 리스트 -->
-				<section id="job-listings" class="section">
+	
 					<div class="container">
 						<div class="section-header">
 							<h2 class="section-title">마감 임박 공고</h2>
@@ -183,7 +185,9 @@
 							<%
 								}
 							%>
-
+							</div>
+	
+							<button class="btn btn-common" style="margin-left:89%" onclick="location.href='<%= contextPath %>/notificationList.se';">더보기</button>
 							<!--  마감임박공고리스트 끝 -->
 
 						<!-- 공지사항  -->
@@ -250,7 +254,8 @@
 								</div>
 								</div>
 								</div>
-								
+								<br>
+								<button class="btn btn-common" style="margin-left:89%" onclick="location.href='<%= contextPath %>/list.bo?head=qu';">더보기</button>
 								<!-- 공지사항 끝 -->
 
 	
@@ -318,6 +323,8 @@
 								</div>
 								</div>
 								</div>
+								<br>
+								<button class="btn btn-common" style="margin-left:89%" onclick="location.href='<%= contextPath %>/list.bo?head=free';" >더보기</button>
 								<!-- 자유게시판 끝 -->
 								
 								<!-- 프로젝트 -->
@@ -384,6 +391,8 @@
 								</div>
 								</div>
 								</div>
+								<br>
+								<button class="btn btn-common" style="margin-left:89%" onclick="location.href='<%= contextPath %>/list.bo?head=project';" >더보기</button>
 								<!-- 프로젝트 끝 -->
 								
 						<!-- 스터디 -->
@@ -450,7 +459,10 @@
 								</div>
 								</div>
 								</div>
+								<br>
+								<button class="btn btn-common" style="margin-left:89%" onclick="location.href='<%= contextPath %>/list.bo?head=study';" >더보기</button>
 								<!-- 스터디 끝 -->
+								
 
 						</div>
 						</div>

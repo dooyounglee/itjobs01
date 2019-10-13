@@ -42,43 +42,45 @@ public class MemberUpdateServlet extends HttpServlet {
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		request.setCharacterEncoding("utf-8");
 		
+		int result=0;
+		
 		HttpSession session = request.getSession();
 		Member m=(Member)session.getAttribute("mem");
 		
 		if(m.getType().equals("1")) {
 			String nickname=request.getParameter("nickname");
 			m.setNickname(nickname);
-			int result=new MemberService().update(m);
+			result=new MemberService().update(m);
 		} else if(m.getType().equals("2")) {
 			if(ServletFileUpload.isMultipartContent(request)) {
 				int maxSize=10*1024*1024;
 				String root = request.getSession().getServletContext().getRealPath("/resources");
-				String savePath = root + "/fileupload_company/";
+				String savePath = root + "/cofileupload/";
 		
 				MultipartRequest multiRequest = new MultipartRequest(request, savePath, maxSize, "UTF-8", new MyFileRenamePolicy());
 		
-				ArrayList<String> changeName = new ArrayList<>();
-				ArrayList<String> pathName=new ArrayList<>();
-/*				changeName[0]=multiRequest.getParameter("file1");
+				String[] changeName = new String[2];
+				String[] pathName=new String[2];
+				changeName[0]=multiRequest.getParameter("file1");
 				pathName[0]=multiRequest.getParameter("path1");
 				changeName[1]=multiRequest.getParameter("file2");
-				pathName[1]=multiRequest.getParameter("path2");*/
+				pathName[1]=multiRequest.getParameter("path2");
 				
-				Enumeration<String> files = multiRequest.getFileNames();
+				//Enumeration<String> files = multiRequest.getFileNames();
 				
-				while(files.hasMoreElements()) {
-					String nameF = files.nextElement();
-					if(multiRequest.getFilesystemName(nameF) != null) {
-						changeName.add(multiRequest.getFilesystemName(nameF));
-					}
+				if(multiRequest.getFilesystemName("file1") != null) {
+					changeName[0]=multiRequest.getFilesystemName("file1");
+				}
+				if(multiRequest.getFilesystemName("file2") != null) {
+					changeName[1]=multiRequest.getFilesystemName("file2");
 				}
 				
-				System.out.println(changeName);
-				
+				//닉네임부터 수정
 				String nickname=multiRequest.getParameter("nickname");
 				m.setNickname(nickname);
-				int result=new MemberService().update(m);
+				//result=new MemberService().update(m);
 				
+				//나머지 수정
 				String regNum=multiRequest.getParameter("regnum");
 				String ceo=multiRequest.getParameter("ceo");
 				String name=multiRequest.getParameter("name");
@@ -100,8 +102,8 @@ public class MemberUpdateServlet extends HttpServlet {
 				Co_Info co=new Co_Info();
 				co.setM_no(m.getM_no());
 				co.setRegNum(regNum);
-				//co.setFile(changeName[0]);
-				//co.setPath(pathName[0]);
+				co.setFile(changeName[0]);
+				co.setPath(savePath);
 				co.setName(name);
 				co.setPhone(phone);
 				co.setDescript(descript);
@@ -114,20 +116,20 @@ public class MemberUpdateServlet extends HttpServlet {
 				co.setAddress(address);
 				co.setHistory(history);
 				co.setWelfare(welfare);
-				//co.setLogofile(changeName[1]);
-				//co.setLogofile(pathName[1]);
+				co.setLogofile(changeName[1]);
+				co.setLogopath(savePath);
 				System.out.println(co);
-				//result=new MemberService().update(m,co);
+				result=new MemberService().update(m,co);
 			}
 		}
-/*		
-		if(result>2) {
+		
+		if(result>0) {
 			Member newm=new MemberService().getMemberByEmail(m.getEmail());
 			session.setAttribute("mem", newm);
+			Co_Info co=new MemberService().getCoInfo(newm);
+			session.setAttribute("co", co);
 			response.sendRedirect(request.getContextPath()+"/myInfo.me");
-		}else {
-			
-		}*/
+		}
 	}
 
 	/**

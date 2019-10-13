@@ -56,11 +56,13 @@ public class JoinCoInfoServlet extends HttpServlet {
 			
 			MultipartRequest multiRequest = new MultipartRequest(request,savePath,maxSize,"UTF-8", new MyFileRenamePolicy());
 			
-			String fileName = new String();
+			//String fileName = new String();
+			String[] changeName = new String[2];
+			String[] pathName=new String[2];
 			
-			Enumeration<String>files = multiRequest.getFileNames();
+//			Enumeration<String> files = multiRequest.getFileNames();
 			
-			while(files.hasMoreElements()) {
+/*			while(files.hasMoreElements()) {
 				
 				String name = files.nextElement();
 				
@@ -70,13 +72,19 @@ public class JoinCoInfoServlet extends HttpServlet {
 					
 					fileName = fileName1;
 				}
+			}*/
+			if(multiRequest.getFilesystemName("file1") != null) {
+				changeName[0]=multiRequest.getFilesystemName("file1");
+			}
+			if(multiRequest.getFilesystemName("file2") != null) {
+				changeName[1]=multiRequest.getFilesystemName("file2");
 			}
 		
 			
 		
 		String email = multiRequest.getParameter("email");
 		String regnum = multiRequest.getParameter("regnum");
-		String file = fileName;
+		String file = changeName[0];
 //		String path = multiRequest.getParameter("path");
 		String name = multiRequest.getParameter("name");
 		String phone = multiRequest.getParameter("phone");
@@ -116,6 +124,8 @@ public class JoinCoInfoServlet extends HttpServlet {
 		cf.setRevenue(revenue);
 		cf.setHistory(history);
 		cf.setWelfare(welfair);
+		cf.setLogofile(changeName[1]);
+		cf.setLogopath(savePath);
 		
 		
 		int result = new MemberService().JoinCoInfo(cf,email);
@@ -130,7 +140,7 @@ public class JoinCoInfoServlet extends HttpServlet {
 			response.sendRedirect(request.getContextPath());
 		}else {
 			
-			File faildFile = new File(savePath+fileName);
+			File faildFile = new File(savePath+changeName[0]);
 			faildFile.delete();
 			request.setAttribute("msg", "회운가입 실패(기업2)");
 			

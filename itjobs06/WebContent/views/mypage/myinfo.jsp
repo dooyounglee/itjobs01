@@ -121,8 +121,8 @@
 										<div class="upload-button">
 											<button class="btn btn-common">사업자등록증</button>
 											<input id="cover_img_file_1" name="file1" type="file" onchange="loadImg(this,1)">
-											<img id="titleImg1"></img>
 										</div>
+										<div><%=co.getFile() %></div>
 									</div>
 								</div>
 							</div>
@@ -132,7 +132,7 @@
 										<div class="upload-button">
 											<button class="btn btn-common">로고</button>
 											<input id="cover_img_file_2" name="file2"  type="file" onchange="loadImg(this,2)">
-											<img id="titleImg2"></img>
+											<img id="titleImg2" src="resources/fileupload_company/<%=co.getLogofile()%>" style="width:200px;"></img>
 										</div>
 									</div>
 								</div>

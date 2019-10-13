@@ -198,4 +198,34 @@ private Properties prop = new Properties();
 		return result;
 	}
 
+	public int passResume(Connection conn, int v_no) {
+		int result=0;
+		PreparedStatement ps=null;
+		
+		String sql=prop.getProperty("passResume");
+		try {
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, v_no);
+			result=ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	public int failResume(Connection conn, int v_no) {
+		int result=0;
+		PreparedStatement ps=null;
+		
+		String sql=prop.getProperty("failResume");
+		try {
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, v_no);
+			result=ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
 }

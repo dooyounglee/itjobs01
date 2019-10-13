@@ -1,3 +1,5 @@
+<%@page import="com.kh.notification.model.vo.Notification"%>
+<%@page import="com.kh.volunteer.model.vo.Volunteer"%>
 <%@page import="com.kh.resume.model.vo.Resume"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -50,8 +52,13 @@
 				<!-- right  -->
 				<div class="col-lg-8 col-md-12 col-xs-12">
 					<div class="inner-box my-resume">
-					<%	if(mem!=null && mem.getM_no()==re.getM_no()){ %>
+					<%	Volunteer v=(Volunteer)request.getAttribute("v");
+						Notification n=(Notification)request.getAttribute("n");
+						if(mem!=null && mem.getM_no()==re.getM_no()){ %>
 					<button class="btn btn-common" onclick="location.href='<%=request.getContextPath()%>/update.re?resume_no=<%=re.getResume_no()%>'">수정하기</button>
+					<%	}else if(mem!=null && mem.getType().equals("2") && mem.getM_no()==n.getCo_no() && v.getNoti_no()==n.getNoti_no()){ %>
+					<button class="btn btn-common" onclick="location.href='<%=request.getContextPath()%>/pass.vo?v_no=<%=v.getV_no()%>'">서류합격</button>
+					<button class="btn btn-common" onclick="location.href='<%=request.getContextPath()%>/fail.vo?v_no=<%=v.getV_no()%>'">서류탈락</button>
 					<%	} %>
 						<hr>
 						<h3>이력서 제목</h3>

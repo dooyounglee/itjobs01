@@ -12,7 +12,7 @@
 <title>Insert title here</title>
 
 <style>
-	h3{
+	h3,#regnum,#filediv,#formDiv{
 		margin:0px;
 	}
 
@@ -41,6 +41,7 @@
 	border:0px;
 	}
 
+	
 
 </style>
 
@@ -84,27 +85,26 @@
 		
 		
 		
-		<div class="form-group">
+		<div class="form-group" id="formDiv">
 		<div class="input-icon">
 		<i class="lni-lock"></i>
 		<input type="text" class="form-control" id="regnum" name="regnum" placeholder="사업자등록번호*" required>
 		</div>
 		</div>
 		
-		<div class="btn btn-common log-btn mt-3" id="filediv" >
+		<div class="btn btn-common log-btn mt-3" id="filediv" name="fileInsert">
 		사업자등록파일 첨부
-		<input type="file" id="file" name="file1" value="" onchange="loadImg(this,1);" required>
+		<input type="file" id="file" name="file1"  required>
 		</div>  
-		<input type="text" id="check" value="선택된 파일이 없습니다." style="color:red;" readonly>
+		 <input type="text" id="check" value="선택된 파일이 없습니다." style="color:red;" readonly> 
 		
 		<div class="btn btn-common log-btn mt-3" id="filediv" >
 		로고 첨부
 		<input type="file" id="file" name="file2" value="" onchange="loadImg(this,2);" required>
 		</div>  
-		<input type="text" id="check" value="선택된 파일이 없습니다." style="color:red;" readonly>
 		
 		<!-- 우선 주석처리 -->
-		<img id ="titleImg2" width="380" height="100" style="margin-bottom:13px;">
+		<img id ="titleImg2" width="380" height="100" >
 		
 		<h3>본사 주소지</h3>
 		<input type="text" id="sample3_postcode" name="sample3_postcode"  placeholder="우편번호" required>
@@ -191,20 +191,40 @@
 		
 		<script>
 		
-		$(function(){
+		/* $(function(){
 				
+			var fileInsert = $(document.getElementsByName("fileInsert"));
+			
 		$("#file").change(function(){
 			
 			var file = $("#file").val();
 
 				if(file != null || file != ""){
-					$("#check").attr('value',file).attr('style','color:green');
+					fileInsert.html(file).attr('style','color:green');
 				}
 				if(file == null || file ==""){
 					$("#check").attr('value','선택된 파일이 없습니다.').attr('style','color:red');
 				}
 			})
-		})
+		}) */
+		
+		$(function(){
+			
+			$("#file").change(function(){
+				
+				var file = $("#file").val();
+					if(file != null || file != ""){
+						$("#check").attr('value',file).attr('style','color:green');
+					}
+					if(file == null || file ==""){
+						$("#check").attr('value','선택된 파일이 없습니다.').attr('style','color:red');
+					}
+				})
+			})
+				
+			
+		
+		
 		
 		</script>
 		
@@ -229,16 +249,7 @@
 
 
 
-<form action="<%= request.getContextPath() %>/coinfo.me" method="post" enctype="multipart/form-data" autocomplete="off">
-	<h2>기업가입2</h2><br><br>
 
-<input type="hidden" value="<%=m.getEmail()%>" name="email">
-사업자등록번호*<input type="text" name="regnum"><br>
-사업자등록파일첨부*<input type="file" name="file" onchange="loadImg(this,1);">
-<span><img id ="titleImg" width="150" height="100"></span><br>
-<!-- 첨부경로명*<input type="text" name="path"><br> -->
-담당자명*<input type="text" name="name"><br>
-담당자폰*<input type="text" name="phone"><br>
 <!-- 주소*<input type="text" name="address"><br> -->
 
 <!-- 주소api -->
@@ -331,7 +342,19 @@
         element_wrap.style.display = 'block';
     }
     
-    
+    function loadImg(value,num){
+
+		 if(value.files && value.files[0]){
+			var reader = new FileReader();
+			
+			reader.onload = function(e){
+				
+				$("#titleImg"+num).attr("src",e.target.result); //date:URL
+				
+			}
+			reader.readAsDataURL(value.files[0]);
+		 }
+	 	}
     
     
     
@@ -340,19 +363,7 @@
 
 
 
-대표자명*<input type="text" name="ceo"><br>
-대표폰*<input type="text" name="co_phone"><br>
-사업내용<input type="text" name="descript"><br>
-설립일<input type="text" name="birth_date"><br>
-사원수<input type="text" name="memsum"><br>
-매출액<input type="text" name="revenue"><br>
-연혁<input type="text" name="history"><br>
-복지<input type="text" name="welfair"><br>
-
-<input type="submit" value="가입신청하기">
-</form>
-
-<script>
+<!-- <script>
 	 function loadImg(value,num){
 
 		 if(value.files && value.files[0]){
@@ -372,7 +383,7 @@
 	 
 	 
 	 
-</script>
+</script> -->
 
 
 </body>

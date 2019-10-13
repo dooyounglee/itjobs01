@@ -16,8 +16,7 @@
 <%@ include file="/views/include/user/js.jsp"%>
 <script>
 	$(function(){
-		var msg = "<%=alert%>
-	";
+		var msg = "<%=alert%>";
 
 		if (msg != "null") {
 			alert(msg);

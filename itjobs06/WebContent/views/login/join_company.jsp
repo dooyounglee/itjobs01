@@ -9,7 +9,14 @@
 	#check{
 	border:0px;
 	}
+	#checkDiv{
+	margin-bottom:0px;
+	}
 
+	.checkDiv2{
+	width:200px;height:20px
+	
+	}
 </style>
 
 </head>
@@ -46,33 +53,38 @@
 		</h3>
 		<form class="login-form" id="joinForm"action="<%=request.getContextPath() %>/join.me" method="post" autocomplete=off onsubmit="return validate();">
 		<input type="hidden"value=2 name=type readonly>
-		<div class="form-group">
+		<input type="hidden"value=1 name=type readonly>
+		<div class="form-group" id="checkDiv">
 		<div class="input-icon">
 		<i class="lni-user"></i>
-		<input type="text" class="form-control" name="nickname" placeholder="기업명(닉네임)"required>
+		<input type="text" class="form-control" id="nickName" name="nickName" placeholder="기업명(특수문자불가능)" oninput="nickOverlapCheck()" required>
+		<div id="nickCheck" class = "checkDiv2"></div>
 		</div>
 		</div>
-		<div class="form-group">
+		<div class="form-group" id="checkDiv">
 		<div class="input-icon">
 		<i class="lni-envelope"></i>
-		<input type="text" class="form-control" id="email" name="email" placeholder="이메일" oninput="emailOverlapCheckCo()" required >
-		<input type="text" id="check" readonly>
+		<input type="text" class="form-control" id="email" name="email" placeholder="이메일" oninput="emailOverlapCheck()" required>
+		<div id="emailCheck" class = "checkDiv2"></div>
 		</div>
 		</div>
 		<div class="form-group">
 		<div class="input-icon">
 		<i class="lni-lock"></i>
-		<input type="password" class="form-control" name="pw" placeholder="비밀번호"required>
+		<input type="password" class="form-control" name="pw" placeholder="비밀번호" required>
 		</div>
 		</div>
 		<div class="form-group">
 		<div class="input-icon">
 		<i class="lni-unlock"></i>
-		<input type="password" class="form-control" name="pw1" placeholder="비밀번호 확인"required>
+		<input type="password" class="form-control" name="pw1" placeholder="비밀번호 확인" oninput="pwdOverlapCheck()" required>
+		<div id="pwdCheck" class = "checkDiv2"></div>
 		</div>
 		</div>
-		<input type="submit" id="submit" class="btn btn-common log-btn mt-3" value="다음" disabled>
+		<input type="submit" id="submit" class="btn btn-common log-btn mt-3" value="가입" disabled>
 		<p class="text-center">Already have an account?<a href="login.html"> Sign In</a></p>
+		
+		
 		</form>
 		</div>
 		</div>
@@ -82,38 +94,47 @@
 		
 		<script>
 	
-		function validate(){
-			
-		var pw = $("#joinForm input[name=pw]");
-		var pw1 = $("#joinForm input[name=pw1]");
+		var allCheck1 = null;
+	 	var allCheck2 = null;
+	 	var allCheck3 = null;
 		
 		
-		if(pw.val() != pw1.val()){
-			alert("비밀번호가 일치하지 않습니다.");
-			pw1.val("").focus();
-			return false;
-			}
-		
-		}
-		
-		function emailOverlapCheckCo(){
-			
-			var email = $("#email").val();
+		/*  닉네임 중복체크 */
+		function nickOverlapCheck(){
+
+			var nickName = $("#nickName").val();
 			
 			
+			var nickDiv = $(document.getElementById("nickCheck"));
 			
+			var regExp = /^[가-힣a-zA-Z0-9]{1,}$/;
+			
+			if(!regExp.test(nickName)){
+				nickDiv.html('닉네임 양식에 맞지 않습니다').attr('style','color:green');
+				$("#submit").attr('disabled',true).attr('style','background:gray').attr('value','닉네임 양식에 맞지 않습니다');
+			}else{
+				
 			$.ajax({
-					url:"<%=request.getContextPath() %>/emoverlap.me",
-					data:{email:email},
+					url:"<%=request.getContextPath() %>/nickoverlap.me",
+					data:{nickName:nickName},
 					type:"get",
-					success:function(result){
-			
-						if(result==0){	
-							$("#check").attr('value','사용가능').attr('style','color:green');
-							$("#submit").attr('disabled',false).attr('style','background:#00bcd4').attr('value','다음');
+					success:function(result1){
+					
+						
+						if(result1==1){	
+							 nickDiv.html('중복되는 닉네임이 있습니다').attr('style','color:red'); 
+				allCheck1 =	$("#submit").attr('disabled',true).attr('style','background:gray').attr('value','닉네임을 확인해 주세요');
+							
 						}else{	
-							$("#check").attr('value','사용불가능').attr('style','color:red');
-							$("#submit").attr('disabled',true).attr('style','background:gray').attr('value','이메일을 확인해주세요');
+							nickDiv.html('사용가능').attr('style','color:green');
+							$("#submit").attr('disabled',false).attr('style','background:#00bcd4').attr('value','가입');
+							
+							if(!regExp.test(nickName)){
+								nickDiv.html('닉네임 양식에 맞지 않습니다').attr('style','color:green');
+								$("#submit").attr('disabled',true).attr('style','background:gray').attr('value','닉네임 양식에 맞지 않습니다');
+							}
+						
+						
 						}
 						
 						
@@ -122,11 +143,78 @@
 						console.log("ajax실패");
 					
 					}
-					
-			 
-			 
 					 });
-				}
+					}
+				
+				
+				
+			}
+				
+		
+		
+		
+		
+		/* 이메일 중복체크 */
+		function emailOverlapCheck(){
+			
+			
+			var email = $("#email").val();
+			
+			var emailDiv = $(document.getElementById("emailCheck"));
+			/* 이메일 유효성검사  */
+			 
+			 var regExp = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/; 
+			 
+			 if(!regExp.test(email)){
+				 emailDiv.html('이메일 형식에 맞지 않습니다').attr('style','color:red');
+				$("#submit").attr('disabled',true).attr('style','background:gray').attr('value','이메일을 형식을 확인해주세요');
+			 }else{
+			
+					$.ajax({
+							url:"<%=request.getContextPath() %>/emoverlap.me",
+							data:{email:email},
+							type:"get",
+							success:function(result){
+								if(result==0){	
+									emailDiv.html('사용가능').attr('style','color:green');
+									$("#submit").attr('disabled',false).attr('style','background:#00bcd4').attr('value','가입');
+								}else{	
+									emailDiv.html('사용불가능').attr('style','color:red');
+						allCheck1 = $("#submit").attr('disabled',true).attr('style','background:gray').attr('value','이메일을 확인해주세요');
+								}
+						
+							},error:function(){
+								console.log("ajax실패");
+							
+							}
+						});
+			 		}	
+			 	}
+			/* 비밀번호 유효성검사 */
+			
+			
+			function pwdOverlapCheck(result){
+		
+				var pwdDiv = $(document.getElementById("pwdCheck"));
+				
+				var pw1 = $("#joinForm input[name=pw]");
+				var pw2 = $("#joinForm input[name=pw1]");
+				
+					if(pw1.val() == pw2.val()){	
+						pwdDiv.html('비밀번호와 일치 합니다').attr('style','color:green');
+						$("#submit").attr('disabled',false).attr('style','background:#00bcd4').attr('value','가입');
+					}else{	
+						pwdDiv.html('비밀번호와 일치하지 않습니다').attr('style','color:red');
+				allCheck1 = $("#submit").attr('disabled',true).attr('style','background:gray').attr('value','비밀번호를 확인해 주세요');
+					}
+				
+			}			
+				
+			if(allCheck1 !=null  ){
+				$("#submit").attr('disabled',true).attr('style','background:gray').attr('value','놉');
+			}
+			
+			
 		
 		</script>
 

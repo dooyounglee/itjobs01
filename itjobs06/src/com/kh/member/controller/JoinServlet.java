@@ -36,24 +36,27 @@ public class JoinServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		
 		String type=request.getParameter("type");
-		String email=request.getParameter("email");
+		String email=request.getParameter("email");			
 		String pw=request.getParameter("pw");
-		String nickname=request.getParameter("nickname");
+		String nickname=request.getParameter("nickName");
+		if(type.equals("2")) {
+			nickname = request.getParameter("nickName")+"(기업)";
+		}
+		
 		
 		Member m=new Member();
 		m.setType(type);
 		m.setEmail(email);
 		m.setPw(pw);
 		m.setNickname(nickname);
-//		System.out.println(m);
-
+		
 		int result=new MemberService().insertMember(m);
 		
 		if(result>0) {
 //			System.out.println(type);
+			HttpSession session = request.getSession();
 			if(type.equals("1")) {
 				
-				HttpSession session = request.getSession();
 				session.setAttribute("alert", "회원가입을 환영합니다.로그인을 진행해 주세요");
 				request.setAttribute("nickname", nickname);
 				
@@ -67,6 +70,7 @@ public class JoinServlet extends HttpServlet {
 			
 			
 			if(type.equals("2")) {
+				
 				
 				request.setAttribute("m", m);
 				request.getRequestDispatcher("views/login/join_co_info.jsp").forward(request, response);

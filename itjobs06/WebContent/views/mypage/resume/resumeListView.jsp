@@ -125,6 +125,21 @@
 <%} %>
 <%} %>
 
+					<%	PageInfo pi=(PageInfo)request.getAttribute("pi");
+						int currentPage=pi.getCurrentPage();%>
+						<ul class="pagination" style="display:block;">
+							<%	if(currentPage>1){ %>
+							<li class="active"><a href="<%=request.getContextPath()%>/list.re?currentPage=<%=currentPage-1%>" class="btn-prev"><i
+									class="lni-angle-left"></i> prev</a></li>
+							<%	} %>
+							<%	for(int i=pi.getStartPage();i<=pi.getEndPage();i++){ %>
+							<li><a href="<%=request.getContextPath()%>/list.re?currentPage=<%=i%>"><%=i %></a></li>
+							<%	} %>
+							<%	if(currentPage<pi.getMaxPage()){ %>
+							<li class="active"><a href="<%=request.getContextPath()%>/list.re?currentPage=<%=currentPage+1%> class="btn-next">Next <i
+									class="lni-angle-right"></i></a></li>
+							<%	} %>
+						</ul>
 
 </div>
 </div>

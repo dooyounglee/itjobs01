@@ -95,16 +95,15 @@
    
    
    <% for(Board i : list) { %>
-      <%if(mem != null){%>
-         <a href="<%= contextPath %>/detail.bo?head=<%=head%>&m_no=<%=mem.getM_no()%>&bId=<%=i.getB_no() %>">
-      <%}else{%>
-         <a href="<%= contextPath %>/detail.bo?head=<%=head%>&bId=<%=i.getB_no() %>">
-      <%}%>
-      
+    <a href="<%= contextPath %>/detail.bo?head=<%=head%>&bId=<%=i.getB_no() %>">
+   
    <div class="alerts-content">
    <div class="row">
    <div class="col-md-3">
    <span class="full-time"><%= "No." + i.getB_no() %></span>
+   <%if(i.getEditFile() != null){ %>
+   <sapn><img style="width:20px; height=20px;"src="<%= contextPath %>/resources/images/fileBoard.png"></sapn>
+   <%} %>
    <br>
    <% if(list.isEmpty()) { %>
             등록된 게시글이 없습니다.

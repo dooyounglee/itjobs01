@@ -93,12 +93,18 @@
 		
 		<div class="btn btn-common log-btn mt-3" id="filediv" >
 		사업자등록파일 첨부
-		<input type="file" id="file" name="file" value="" onchange="loadImg(this,1);" required>
+		<input type="file" id="file" name="file1" value="" onchange="loadImg(this,1);" required>
+		</div>  
+		<input type="text" id="check" value="선택된 파일이 없습니다." style="color:red;" readonly>
+		
+		<div class="btn btn-common log-btn mt-3" id="filediv" >
+		로고 첨부
+		<input type="file" id="file" name="file2" value="" onchange="loadImg(this,2);" required>
 		</div>  
 		<input type="text" id="check" value="선택된 파일이 없습니다." style="color:red;" readonly>
 		
 		<!-- 우선 주석처리 -->
-		<!-- <img id ="titleImg" width="380" height="100" style="margin-bottom:13px;"> -->
+		<img id ="titleImg2" width="380" height="100" style="margin-bottom:13px;">
 		
 		<h3>본사 주소지</h3>
 		<input type="text" id="sample3_postcode" name="sample3_postcode"  placeholder="우편번호" required>
@@ -348,15 +354,14 @@
 
 <script>
 	 function loadImg(value,num){
- 		
+
 		 if(value.files && value.files[0]){
 			var reader = new FileReader();
 			
 			reader.onload = function(e){
-				switch(num){
-				case 1 : $("#titleImg").attr("src",e.target.result); //date:URL
-				 break;
-				}
+				
+				$("#titleImg"+num).attr("src",e.target.result); //date:URL
+				
 			}
 			reader.readAsDataURL(value.files[0]);
 		 }

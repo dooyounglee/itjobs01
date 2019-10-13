@@ -11,8 +11,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.kh.member.model.vo.Member;
+import com.kh.notification.model.service.NotificationService;
+import com.kh.notification.model.vo.Notification;
 import com.kh.resume.model.service.ResumeService;
 import com.kh.resume.model.vo.Resume;
+import com.kh.volunteer.model.service.VolunteerService;
+import com.kh.volunteer.model.vo.Volunteer;
 
 /**
  * Servlet implementation class resumDetailServlet
@@ -36,20 +40,24 @@ public class ResumDetailServlet extends HttpServlet {
 		/*int mno = Integer.parseInt(request.getParameter("mno"));*/
 		//int mno = 1;
 		//여기서도 session에서 가져오는걸로.
-		//HttpSession session = request.getSession();
-		//Member mem=(Member)session.getAttribute("mem");
-		//int mno=mem.getM_no();
+		HttpSession session = request.getSession();
+		Member mem=(Member)session.getAttribute("mem");
 		
+		int v_no=Integer.parseInt(request.getParameter("v_no"));
+		Volunteer v=new VolunteerService().getVolunteer(v_no);
+		Notification n=new NotificationService().getNotification(v.getNoti_no());
+		System.out.println(v+"잘 가져와졌니?");
+		
+		//기업이 이력서를 읽었으면 읽음으로 수정
+		if(mem!=null && mem.getType().equals("2") && mem.getM_no()==n.getCo_no()) {
+			int result=new VolunteerService().readResume(v_no);
+			System.out.println("읽었니?"+result);
+		}
+
 		int resume_no = Integer.parseInt(request.getParameter("resume_no"));
-		
 		Resume re= new ResumeService().selectResumDetail(resume_no);
 		
-		System.out.println(re);//콘솔창에 찍혔겠네. 아..null
-		
 		request.setAttribute("re", re);
-	
-		
-		
 		request.getRequestDispatcher("views/mypage/resume/resumeDetailView.jsp").forward(request, response);
 	}
 

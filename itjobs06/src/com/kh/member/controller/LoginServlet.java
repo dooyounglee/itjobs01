@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import com.kh.admin.model.service.AdminMemberService;
 import com.kh.member.model.service.MemberService;
+import com.kh.member.model.vo.Co_Info;
 import com.kh.member.model.vo.Member;
 
 /**
@@ -64,11 +65,13 @@ public class LoginServlet extends HttpServlet {
 //		m.setType(type);
 		
 		Member mem=new MemberService().login(m);
+		Co_Info co=new MemberService().getCoInfo(mem);
 		System.out.println(mem);
 		
 		if(mem.getEmail()!=null && mem.getPw() != null && mem.getStatus().equals("Y")) {
 			HttpSession session = request.getSession();
 			session.setAttribute("mem", mem);
+			session.setAttribute("co", co);
 			//request.getRequestDispatcher("views/mypage/myInfo.jsp").forward(request, response);			
 			response.sendRedirect(request.getContextPath());
 //			System.out.println("로그인성공");

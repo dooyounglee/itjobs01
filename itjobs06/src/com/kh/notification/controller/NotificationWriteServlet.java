@@ -74,7 +74,8 @@ public class NotificationWriteServlet extends HttpServlet {
 			Notification newn=new NotificationService().getLastestNotification();
 			
 			request.setAttribute("noti", newn);
-			request.getRequestDispatcher("views/mypage/notice/get.jsp").forward(request, response);
+			//request.getRequestDispatcher("views/mypage/notice/get.jsp").forward(request, response);
+			response.sendRedirect("get.no?noti_no="+newn.getNoti_no());
 		}
 	}
 

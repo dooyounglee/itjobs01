@@ -1,3 +1,4 @@
+<%@page import="com.kh.board.model.vo.PageInfo"%>
 <%@page import="com.kh.notification.model.vo.Notification"%>
 <%@page import="com.kh.volunteer.model.vo.Volunteer"%>
 <%@page import="java.util.ArrayList"%>
@@ -75,18 +76,21 @@
 		return false;
 	}
 </script>
-
-						<ul class="pagination">
-							<li class="active"><a href="#" class="btn btn-common"><i
-									class="ti-angle-left"></i> prev</a></li>
-							<li><a href="#">1</a></li>
-							<li><a href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li><a href="#">4</a></li>
-							<li><a href="#">5</a></li>
-							<li class="active"><a href="#" class="btn btn-common">Next
-									<i class="ti-angle-right"></i>
-							</a></li>
+					<%	PageInfo pi=(PageInfo)request.getAttribute("pi");
+						System.out.println(pi);
+						int currentPage=pi.getCurrentPage();%>
+						<ul class="pagination" style="display:block;">
+							<%	if(currentPage>1){ %>
+							<li class="active"><a href="<%=request.getContextPath()%>/myApplyList.vo?currentPage=<%=currentPage-1%>" class="btn-prev"><i
+									class="lni-angle-left"></i> prev</a></li>
+							<%	} %>
+							<%	for(int i=pi.getStartPage();i<=pi.getEndPage();i++){ %>
+							<li><a href="<%=request.getContextPath()%>/myApplyList.vo?currentPage=<%=i%>"><%=i %></a></li>
+							<%	} %>
+							<%	if(currentPage<pi.getMaxPage()){ %>
+							<li class="active"><a href="<%=request.getContextPath()%>/myApplyList.vo?currentPage=<%=currentPage+1%> class="btn-next">Next <i
+									class="lni-angle-right"></i></a></li>
+							<%	} %>
 						</ul>
 
 					</div>

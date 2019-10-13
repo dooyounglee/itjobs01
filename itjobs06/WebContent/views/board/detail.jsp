@@ -90,8 +90,10 @@
               <span style="font-size:18px; color:black;" id="img1_1"><%=b.getCount() %></span>&nbsp; &nbsp;
               <span id="img2">댓글수</span>
            <span style="font-size:18px; color:black;" id="img2_1"><%=b.getReply_count() %></span> &nbsp; &nbsp;
+            <%if(b.getEditFile() != null){ %>
            <span id="img2">다운로드수</span>
            <span style="font-size:18px; color:black;" id="img2_1"><%= b.getDown_count() %></span>
+           <%} %>
            </div>
            
            
@@ -100,8 +102,10 @@
              <p style="font-size:20px;color:black;"><%=b.getContents() %></p><br><br>
 
             <%if(b.getEditFile() != null){ %>
+            	
                <img class='max-small' id="img" src="<%= contextPath %>/resources/fileupload_board/<%= b.getEditFile()%>">
             <br><br>
+            <span><%=b.getFile() %> </span>&nbsp; &nbsp;
             <a href="<%= contextPath %>/download.bo?bId=<%=b.getB_no()%>" class="btn btn-common">다운로드</a> <br><br>
             <% } %>
             </div>
@@ -156,11 +160,7 @@
    				$(this).css({"color":"gray"});
    			});
    			$("#prev").click(function(){
-   				<%if(mem != null){%>
-   				location.href="<%= contextPath %>/detail.bo?head=<%=head%>&m_no=<%=mem.getM_no()%>&bId=<%=prev.getB_no() %>";
-   				<%}else{%>
    				location.href="<%= contextPath %>/detail.bo?head=<%=head%>&bId=<%=prev.getB_no() %>";
-   				<%}%>
    			});
    		});
    		
@@ -172,35 +172,24 @@
    			});
    			
    			$("#next").click(function(){
-   				<%if(mem != null){%>
-   				location.href="<%= contextPath %>/detail.bo?head=<%=head%>&m_no=<%=mem.getM_no()%>&bId=<%=next.getB_no() %>";
-   				<%}else{%>
    				location.href="<%= contextPath %>/detail.bo?head=<%=head%>&bId=<%=next.getB_no() %>";
-   				<%}%>
    			});
    		}); 
       
       $(function(){
          $("#deBtn").click(function(){
-            <%   if(mem!=null){ %>
-            window.open("<%=contextPath %>/insertForm.de?bId=<%=b.getB_no()%>&title=<%=b.getTitle()%>&boardNick=<%=b.getNickname()%>&head=<%=b.getHead()%>", "ITJOBS_게시글 신고", "width=500, height=600, toolbar=no, menubar=no, scrollbars=no, resizable=no"); 
+        	 
+            <%if(mem!=null && !mem.getType().equals("0")){ %>
+           		window.open("<%=contextPath %>/insertForm.de?bId=<%=b.getB_no()%>&title=<%=b.getTitle()%>&boardNick=<%=b.getNickname()%>&head=<%=b.getHead()%>", "ITJOBS_게시글 신고", "width=500, height=600, toolbar=no, menubar=no, scrollbars=no, resizable=no"); 
+            <%} else if(mem != null && mem.getType().equals("0")){%>
+            	alert("관리자는 신고 불가!");
             <%} else{%>
-            alert("로그인해주세요");
+            	alert("로그인해주세요");
             <%}%>
          });
       });
       
       
-<%--    function deBtn(){
-      
-      if(<%= mem %> != null){
-         window.open("<%=contextPath %>/insertForm.de?bId=<%=b.getB_no()%>&title=<%=b.getTitle()%>&boardNick=<%=b.getNickname()%>&head=<%=b.getHead()%>", "ITJOBS_게시글 신고", "width=500, height=600, toolbar=no, menubar=no, scrollbars=no, resizable=no");
-      }else{
-         alert("로그인해주세요");
-      } 
-   }  --%>
-    
-   
       function deleteBtn(){
 
          if(confirm("정말 삭제하시겠습니까?") == true){
@@ -230,12 +219,12 @@
 					<%if(mem != null) { %>
 					var content = $("#replyContent").val();
 					var bId = <%= b.getB_no()%>;
-					var m_no = <%= mem.getM_no()%>;
+					
 					
 					$.ajax({
 						url:"brinsert.bo",
 						type:"post",
-						data:{content:content, bId:bId, m_no:m_no},
+						data:{content:content, bId:bId},
 						success:function(status){
 							if(status == "success"){
 								selectRlist();

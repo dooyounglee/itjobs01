@@ -1,3 +1,5 @@
+<%@page import="com.kh.board.model.vo.PageInfo"%>
+<%@page import="com.kh.like.model.vo.Like"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -43,8 +45,9 @@
 				<div class="col-lg-8 col-md-6 col-xs-12">
 					<div class="job-alerts-item bookmarked">
 						<h3 class="alerts-title">좋아요 한 기업</h3>
-<%	ArrayList<Member> list=(ArrayList<Member>)request.getAttribute("list");
-	for(Member m:list){%>
+<%	ArrayList<Like> list=(ArrayList<Like>)request.getAttribute("list");
+	System.out.println(list);
+	for(Like m:list){%>
 						<a class="job-listings" href="job-details.html">
 							<div class="row">
 								<div class="col-lg-4 col-md-12 col-xs-12">
@@ -62,7 +65,7 @@
 									</div>
 								</div>
 								<div class="col-lg-2 col-md-12 col-xs-12 text-right">
-									<span class="btn-full-time"><%=m.getNumberOfNotification() %>개 공고<br>모집중</span>
+									<span class="btn-full-time">개 공고<br>모집중</span>
 								</div>
 								<div class="col-lg-3 col-md-12 col-xs-12 text-right">
 									<span class="btn-apply">Apply Now</span>
@@ -71,20 +74,22 @@
 							</div>
 						</a>
 <%	} %>
-
-						<ul class="pagination">
-							<li class="active"><a href="#" class="btn btn-common"><i
-									class="ti-angle-left"></i> prev</a></li>
-							<li><a href="#">1</a></li>
-							<li><a href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li><a href="#">4</a></li>
-							<li><a href="#">5</a></li>
-							<li class="active"><a href="#" class="btn btn-common">Next
-									<i class="ti-angle-right"></i>
-							</a></li>
+					<%	PageInfo pi=(PageInfo)request.getAttribute("pi");
+						System.out.println(pi);
+						int currentPage=pi.getCurrentPage();%>
+						<ul class="pagination" style="display:block;">
+							<%	if(currentPage>1){ %>
+							<li class="active"><a href="<%=request.getContextPath()%>/myCompanyList.like?currentPage=<%=currentPage-1%>" class="btn-prev"><i
+									class="lni-angle-left"></i> prev</a></li>
+							<%	} %>
+							<%	for(int i=pi.getStartPage();i<=pi.getEndPage();i++){ %>
+							<li><a href="<%=request.getContextPath()%>/myCompanyList.like?currentPage=<%=i%>"><%=i %></a></li>
+							<%	} %>
+							<%	if(currentPage<pi.getMaxPage()){ %>
+							<li class="active"><a href="<%=request.getContextPath()%>/myCompanyList.like?currentPage=<%=currentPage+1%> class="btn-next">Next <i
+									class="lni-angle-right"></i></a></li>
+							<%	} %>
 						</ul>
-
 					</div>
 				</div>
 				<!-- End of right -->
@@ -101,7 +106,7 @@
 
 
 
-<h1>기업 좋아요</h1>
+<%-- <h1>기업 좋아요</h1>
 <table border=1>
 	<thead>
 		<tr>
@@ -150,7 +155,7 @@
 		<td>공고수1</td>
 		<td><button>삭제</button></td>
 	</tr>
-</table>
+</table> --%>
 
 
 

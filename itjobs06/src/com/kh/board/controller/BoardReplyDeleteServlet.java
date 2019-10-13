@@ -6,8 +6,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.kh.board.model.service.BoardService;
+import com.kh.member.model.vo.Member;
 
 /**
  * Servlet implementation class BoardReplyDeleteServlet
@@ -29,11 +31,8 @@ public class BoardReplyDeleteServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		
 		int re_no = Integer.parseInt(request.getParameter("re_no"));
-		System.out.println(re_no);
 		int result = new BoardService().deleteReply(re_no);
-		System.out.println(result);
 		
 		if(result >  0) {
 			response.getWriter().print("success");

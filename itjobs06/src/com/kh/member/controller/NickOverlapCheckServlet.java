@@ -31,8 +31,9 @@ public class NickOverlapCheckServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String nickName = request.getParameter("nickName");
+		String nickName = request.getParameter("nickName")+"(기업)";
 		
+	
 		int result1 = new MemberService().NickCheck(nickName);
 		
 		PrintWriter out = response.getWriter();

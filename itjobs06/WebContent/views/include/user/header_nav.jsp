@@ -29,7 +29,7 @@
 				<a href="<%=request.getContextPath() %>" class="navbar-brand"><img
 					src="resources/images/logo12.png"
 					style="width: 80px; height: 32px;" alt=""></a>
-				<a style="color:black">현재접속자: <span id=userCounting></span>명</a>
+				<a style="color:black;">현재접속자수: <span id=userCounting></span>명</a>
 			</div>
 <script type="text/javascript">
  	var webSocket = new WebSocket('ws://<%=request.getServerName()%>:<%=request.getServerPort()%>/itjobs/userCounting');

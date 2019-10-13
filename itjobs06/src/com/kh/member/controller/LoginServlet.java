@@ -79,13 +79,13 @@ public class LoginServlet extends HttpServlet {
 		}
 
 	
-		if(mem.getEmail()!=null && mem.getPw() != null && mem.getType().equals("1") && mem.getStatus().equals("N")) {
+		if(mem.getEmail()!=null && mem.getPw() != null && mem.getStatus().equals("N")) {
 			request.setAttribute("error", "활동정지 회원 입니다. 문의사항은 고객센터에 전화주세요.");
 			request.getRequestDispatcher("views/login/login.jsp").forward(request, response);
 //			System.out.println("활동정지");
 		}
 	
-		if(mem.getEmail()!=null && mem.getPw() != null && mem.getType().equals("2") && mem.getStatus().equals("N")) {
+		if(mem.getEmail()!=null && mem.getPw() != null && mem.getType().equals("2") && mem.getStatus().equals("D")) {
 			request.setAttribute("error", "아직 승인절차 진행중 입니다(1~2일정도 소요됩니다).");
 			request.getRequestDispatcher("views/login/login.jsp").forward(request, response);
 //			System.out.println("승인절차");

@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import com.kh.board.model.vo.PageInfo;
+import com.kh.member.model.vo.Member;
 import com.kh.resume.model.dao.ResumeDao;
 import com.kh.volunteer.model.vo.Volunteer;
 
@@ -57,7 +58,7 @@ private Properties prop = new Properties();
 		return list;
 	}
 
-	public ArrayList<Volunteer> getMyApplyList(Connection conn, int m_no) {
+	public ArrayList<Volunteer> getMyApplyList(Connection conn, int m_no, PageInfo pi) {
 		ArrayList<Volunteer> list=new ArrayList<>();
 		PreparedStatement ps=null;
 		ResultSet rs=null;
@@ -66,6 +67,8 @@ private Properties prop = new Properties();
 		try {
 			ps=conn.prepareStatement(sql);
 			ps.setInt(1, m_no);
+			ps.setInt(2, pi.getStartRow());
+			ps.setInt(3, pi.getEndRow());
 			rs=ps.executeQuery();
 			while(rs.next()) {
 				Volunteer v=new Volunteer(
@@ -170,6 +173,25 @@ private Properties prop = new Properties();
 			ps=conn.prepareStatement(sql);
 			ps.setInt(1, v_no);
 			result=ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	public int getMyApplyListCount(Connection conn, Member mem) {
+		int result=0;
+		PreparedStatement ps=null;
+		ResultSet rs=null;
+		
+		String sql=prop.getProperty("getMyApplyListCount");
+		try {
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, mem.getM_no());
+			rs=ps.executeQuery();
+			if(rs.next()) {
+				result=rs.getInt(1);
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

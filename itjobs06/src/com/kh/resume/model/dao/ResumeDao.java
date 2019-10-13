@@ -244,7 +244,8 @@ public class ResumeDao {
 			pstmt.setInt(2, endRow);*/
 			
 			pstmt.setInt(1,mno);
-			
+			pstmt.setInt(2, pi.getStartRow());
+			pstmt.setInt(3, pi.getEndRow());
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {

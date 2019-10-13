@@ -60,6 +60,7 @@
 </script>
 			<div class="collapse navbar-collapse" id="main-navbar">
 				<ul class="navbar-nav mr-auto w-100 justify-content-end">
+					<li class="nav-item"><a class="nav-link"><%=session.getAttribute("todayVisitCount") %>/<%=session.getAttribute("totalVisitCount") %></a></li>
 					<%	if(mem!=null){ %>
 					<li class="nav-item"><a class="nav-link"> ${mem.nickname }님 안녕하세요.</a></li>
 					<%	} %>

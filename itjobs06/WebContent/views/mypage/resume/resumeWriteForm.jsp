@@ -50,6 +50,10 @@
 							</p>
 						</div>
 						<form class="form-ad" action="<%=contextPath%>/addResum.re" method="post" enctype="multipart/form-data">
+							<div class="form-group">
+								<label class="control-label">이력서 제목</label>
+								<input type="text" class="form-control" name="title" placeholder="제목" value="1">
+							</div>
 							<h3>기본정보</h3>
 							<div class="form-group">
 								<label class="control-label">이름</label>
@@ -69,15 +73,15 @@
 								<div class="row">
 									<div class="col-md-3">
 									<label class="control-label">Phone</label> <input type="text"
-										class="form-control" name="phone1" placeholder="010"  value="1">
+										class="form-control" name="phone1" placeholder="010" pattern="\d{3}" value="010">
 									</div>
 									<div class="col-md-3">
 									<label class="control-label" style="color:white;">phone</label> <input type="text"
-										class="form-control" name="phone2" placeholder="0000"  value="1">
+										class="form-control" name="phone2" placeholder="0000" pattern="[0-9]{3,4}" title="숫자 3 또는 4 자리" value="0000">
 									</div>
 									<div class="col-md-3">
 									<label class="control-label" style="color:white;">phone</label> <input type="text"
-										class="form-control" name="phone3" placeholder="0000"  value="1">
+										class="form-control" name="phone3" placeholder="0000" pattern="[0-9]{4}" title="숫자 4자리" value="0000">
 									</div>
 								</div>
 							</div>
@@ -85,7 +89,7 @@
 								<div class="row">
 									<div class="col-md-3">
 										<label class="control-label" >우편번호</label>
-										<input type="text" class="form-control" id="sample3_postcode" name="sample3_postcode" placeholder="우편번호">
+										<input type="text" class="form-control" id="sample3_postcode" name="sample3_postcode" placeholder="우편번호" readonly>
 									</div>
 									<div class="col-md-3">
 									<label class="control-label">우편번호버튼</label>
@@ -103,11 +107,11 @@
 								<div class="row">
 									<div class="col-md-6">
 									<label class="control-label">주소</label> <input type="text"
-										class="form-control" id="sample3_address" name="sample3_address" placeholder="주소">
+										class="form-control" id="sample3_address" name="sample3_address" placeholder="주소" readonly>
 									</div>
 									<div class="col-md-6">
 									<label class="control-label">상세주소</label> <input type="text"
-										class="form-control" id="sample3_detailAddress" name="sample3_detailAddress" placeholder="상세주소">
+										class="form-control" id="sample3_detailAddress" name="sample3_detailAddress" placeholder="상세주소" required>
 									<input type="hidden" id="sample3_extraAddress" placeholder="참고항목">
 									</div>
 								</div>
@@ -234,6 +238,10 @@
 							<div class="divider">
 								<h3>자격증</h3>
 							</div>
+							<div class="form-group">
+								<input type="radio" id="cer_off" name="cerYN" value="N" checked>없음
+								<input type="radio" id="cer_on" name="cerYN" value="Y" >있음
+							</div>
 							<div id="cerList">
 								<div class="form-group">
 									<div class="row">
@@ -250,7 +258,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="add-post-btn">
+							<div id="btn_add_cer" class="add-post-btn">
 								<div class="float-left">
 									<a href="#" class="btn-added" onclick="return add_cer()"><i class="ti-plus"></i>추가</a>
 								</div>
@@ -259,6 +267,16 @@
 								</div>
 							</div>
 <script>
+	$('#cerList').hide();
+	$('#btn_add_cer').hide();
+	$('#cer_off').click(function(){
+		$('#cerList').hide();
+		$('#btn_add_cer').hide();
+	})
+	$('#cer_on').click(function(){
+		$('#cerList').show();
+		$('#btn_add_cer').show();
+	})
 	function add_cer(){
 		var one_cer=$('#cerList').children('div').eq(0).clone();
 		one_cer.find('input').val("")
@@ -293,10 +311,6 @@
 							<div class="form-group">
 								<input type="radio" name="open" value="Y" checked>공개
 								<input type="radio" name="open" value="N" >비공개
-							</div>
-							<div class="form-group">
-								<label class="control-label">이력서 제목</label>
-								<input type="text" class="form-control" name="title" placeholder="제목" value="1">
 							</div>
 							<div class="form-group">
 								<label class="control-label">프로그래밍 언어</label><br>

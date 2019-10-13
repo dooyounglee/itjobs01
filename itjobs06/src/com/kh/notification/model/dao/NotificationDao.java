@@ -206,6 +206,7 @@ public class NotificationDao {
 						rs.getInt(12),
 						rs.getString("open"));
 				noti.setNickname(rs.getString("nickname"));
+				noti.setAddress(rs.getString("address"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

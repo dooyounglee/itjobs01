@@ -77,7 +77,7 @@
 							<li><a class="dropdown-item" href="<%=request.getContextPath()%>/list.bo?head=free">자유</a></li>
 							<li><a class="dropdown-item" href="<%=request.getContextPath()%>/list.bo?head=study">스터디</a></li>
 							<li><a class="dropdown-item" href="<%=request.getContextPath()%>/list.bo?head=project">프로젝트</a></li>
-							<li><a class="dropdown-item" href="<%=request.getContextPath()%>/list.bo?head=qna">공지사항</a></li>
+							<li><a class="dropdown-item" href="<%=request.getContextPath()%>/list.bo?head=qu">공지사항</a></li>
 							<li><a class="dropdown-item" href="<%=request.getContextPath()%>/list.bo?head=form">서식</a></li>
 							
 						</ul></li>

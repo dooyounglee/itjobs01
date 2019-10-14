@@ -49,8 +49,9 @@ public class NotificationViewServlet extends HttpServlet {
 		if(m!=null) {
 			int isApply=new VolunteerService().isApply(m,noti);
 			if(m.getType().equals("1") && isApply==0) {
-			ArrayList<Resume> rlist=new ResumeService().getMyResumeListforApply(m);
-			request.setAttribute("rlist", rlist);
+				ArrayList<Resume> rlist=new ResumeService().getMyResumeListforApply(m);
+				request.setAttribute("rlist", rlist);
+			}
 		}
 		
 		//random 2개 공고

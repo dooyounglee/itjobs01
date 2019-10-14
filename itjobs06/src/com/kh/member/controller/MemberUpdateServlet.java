@@ -77,7 +77,7 @@ public class MemberUpdateServlet extends HttpServlet {
 				
 				//닉네임부터 수정
 				String nickname=multiRequest.getParameter("nickname");
-				m.setNickname(nickname);
+				m.setNickname(nickname+"(기업)");
 				//result=new MemberService().update(m);
 				
 				//나머지 수정

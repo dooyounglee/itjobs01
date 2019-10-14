@@ -97,9 +97,13 @@
 	<label class="control-label">모집 마감</label>
 	<input type="date" class="form-control" name="time2" id="time2" placeholder="yyyy-mm-dd">
 	</div>
+	<div class="form-group" >
+	<label class="control-label">영상첨부(url) * 유튜브 영상만 첨부 가능</label>
+	<input type="text" class="form-control" name="video" id="video">
+	</div>
 	<div class="custom-file mb-3">
 	<input type="file" class="custom-file-input" name="file1" id="validatedCustomFile" onchange="fileName(this);" required>
-	<label class="custom-file-label form-control" for="validatedCustomFile" id="fileAddArea">Choose file...</label>
+	<label class="custom-file-label form-control" for="validatedCustomFile" id="fileAddArea">choose file...</label>
 	<div class="invalid-feedback">Example invalid custom file feedback</div>
 	</div>
 	<div onclick="window.history.back()" class="btn btn-common">취소</div>

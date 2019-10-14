@@ -51,7 +51,10 @@
 	<section class="category section bg-gray">
 		<div class="container">
 			<div class="section-header">
-				<h2 class="section-title"><%=co.getNickname() %></h2>
+				<h2 class="section-title">
+					<%=co.getNickname() %>
+					<span class="like"><img src="./resources/img/like-before.png" class="likeimg"></span>
+				</h2>
 			</div>
 			<div class="row">
 				<div class="col-lg-3 col-md-6 col-xs-12 f-category  border-bottom-0">
@@ -73,7 +76,7 @@
 						<i class="lni-book"></i>
 					</div>
 					<h3>설립일</h3>
-					<p><%=co_info.getBirth_date() %></p>
+					<p><%=co_info.getBirth_date().split(" ")[0] %></p>
 				</div>
 				<div class="col-lg-3 col-md-6 col-xs-12 f-category border-right-0  border-bottom-0">
 					<div class="icon bg-color-4">
@@ -97,13 +100,7 @@
 						<h4>설명</h4>
 						<p><%= co_info.getDescript()%></p>
 						<h4>연혁</h4>
-						<ul>
-							<li>- Objective-C</li>
-							<li>- iOS SDK</li>
-							<li>- XCode</li>
-							<li>- Cocoa</li>
-							<li>- ClojureScript</li>
-						</ul>
+						<p><%=co_info.getHistory() %></p>
 						<h4>복지</h4>
 						<p><%=co_info.getWelfare() %></p>
 						<a href="#" class="btn btn-common">Apply job</a>
@@ -116,7 +113,9 @@
 							<div class="maps">
 								<div id="map" class="map-full"></div>
 							</div>
+							<h3><%=co_info.getAddress().split("\\+")[1]+ " " +co_info.getAddress().split("\\+")[2] %></h3>
 						</div>
+						<hr>
 						<div class="widghet">
 							<h3>Share This Job</h3>
 							<div class="share-job">

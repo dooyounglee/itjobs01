@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src='<%=request.getContextPath()%>/resources/naver-smarteditor2-ca95d21/demo/js/service/HuskyEZCreator.js' charset="utf-8"></script>
 
 <!-- import jobx -->
 <%@ include file="/views/include/user/style.jsp" %>
@@ -104,15 +105,43 @@
 									class="material-input"></span>
 							</div>
 							<div class="form-group is-empty">
-								<label class="control-label">내용</label> <input
-									class="form-control" type="text" name="contents" value="<%=noti.getContents()%>"> <span
-									class="material-input"></span>
+								<label class="control-label">내용</label>
+								<textarea class="form-control" rows="5" id="comment1" name="contents"><%=noti.getContents()%></textarea>
+								<span class="material-input"></span>
 							</div>
+<script>
+var oEditors = [];
+	
+nhn.husky.EZCreator.createInIFrame({
+ 	 oAppRef: oEditors,
+ 	 elPlaceHolder: document.getElementById('comment1'),
+  	 sSkinURI: "<%=contextPath%>/resources/naver-smarteditor2-ca95d21/demo/SmartEditor2Skin.html",  
+     fCreator: "createSEditor2",
+     htParams:{
+    	 bUseToolbar:false, // 툴바 사용여부
+    	 bUseVerticalResizer:false, // 크기조절바 사용여부
+    	 bUseModeChanger : false,	// 모드 탭(Editor | HTML | TEXT) 사용 여부
+     }
+});
+</script>
 							<div class="form-group is-empty">
-								<label class="control-label">우대사항</label> <input
-									class="form-control" type="text" name="hope" value="<%=noti.getHope()%>"> <span
-									class="material-input"></span>
+								<label class="control-label">우대사항</label>
+								<textarea class="form-control" rows="5" id="comment2" name="hope"><%=noti.getHope()%></textarea>
+								<span class="material-input"></span>
 							</div>
+<script>
+nhn.husky.EZCreator.createInIFrame({
+ 	 oAppRef: oEditors,
+ 	 elPlaceHolder: document.getElementById('comment2'),
+  	 sSkinURI: "<%=contextPath%>/resources/naver-smarteditor2-ca95d21/demo/SmartEditor2Skin.html",  
+     fCreator: "createSEditor2",
+     htParams:{
+    	 bUseToolbar:true, // 툴바 사용여부
+    	 bUseVerticalResizer:false, // 크기조절바 사용여부
+    	 bUseModeChanger : true,	// 모드 탭(Editor | HTML | TEXT) 사용 여부
+     }
+});
+</script>
 							<%	String open=noti.getOpen();
 								String[] checked_open={"",""};
 								if(open.equals("Y")){
@@ -124,12 +153,18 @@
 								<input type="radio" name="open" value="Y" <%=checked_open[0] %>>공개
 								<input type="radio" name="open" value="N" <%=checked_open[1] %>>비공개
 							</div>
-							<button id="submit" class="btn btn-common">Save Change</button>
+							<button id="submit" onclick="edit_ok()" class="btn btn-common">Save Change</button>
 							<input type=hidden name="noti_no" value="<%=noti.getNoti_no()%>">
 						</form>
 					</div>
 				</div>
 				<!-- End of right -->
+<script>
+	function edit_ok(){
+		oEditors.getById["comment1"].exec("UPDATE_CONTENTS_FIELD", []);
+		oEditors.getById["comment2"].exec("UPDATE_CONTENTS_FIELD", []);
+	}
+</script>
 				
 			</div>
 			<!-- End of row -->
@@ -143,7 +178,7 @@
 	
 	
 	
-<h1>공고 수정</h1>
+<%-- <h1>공고 수정</h1>
 
 <form action="edit.no" method="post" autocomplete=off>
 제목:<input name="title" value="<%=noti.getTitle()%>"><br>
@@ -172,7 +207,7 @@
 	function back(noti_no){
 		location.href="<%=request.getContextPath()%>/get.no?noti_no="+noti_no
 	}
-</script>
+</script> --%>
 
 
 

@@ -19,6 +19,9 @@ public class Volunteer {
 	//Member
 	private String nickname;	//기업명
 	
+	//CoInfo
+	private String logofile;
+	
 	private int sum;//총지원자수
 	
 	public Volunteer() {
@@ -98,6 +101,12 @@ public class Volunteer {
 	}
 	public void setSum(int sum) {
 		this.sum = sum;
+	}
+	public String getLogofile() {
+		return logofile;
+	}
+	public void setLogofile(String logofile) {
+		this.logofile = logofile;
 	}
 	@Override
 	public String toString() {

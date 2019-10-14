@@ -46,11 +46,12 @@ public class NotificationViewServlet extends HttpServlet {
 		Notification noti=new NotificationService().getNotification(noti_no);
 		request.setAttribute("noti", noti);
 		
-		int isApply=new VolunteerService().isApply(m,noti);
-		
-		if(m!=null && m.getType().equals("1") && isApply==0) {
-			ArrayList<Resume> rlist=new ResumeService().getMyResumeListforApply(m);
-			request.setAttribute("rlist", rlist);
+		if(m!=null) {
+			int isApply=new VolunteerService().isApply(m,noti);
+			if(m.getType().equals("1") && isApply==0) {
+				ArrayList<Resume> rlist=new ResumeService().getMyResumeListforApply(m);
+				request.setAttribute("rlist", rlist);
+			}
 		}
 		
 		//random 2개 공고

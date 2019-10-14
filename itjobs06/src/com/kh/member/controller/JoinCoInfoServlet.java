@@ -134,6 +134,7 @@ public class JoinCoInfoServlet extends HttpServlet {
 		cf.setWelfare(welfair);
 		cf.setLogofile(changeName[1]);
 		cf.setLogopath(savePath);
+		System.out.println("컨트롤"+cf);
 		
 		Member m=new Member();
 		m.setType(type);

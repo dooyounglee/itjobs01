@@ -59,6 +59,7 @@ public class BoardDetailServlet extends HttpServlet {
 
 		Board b = new BoardService().selectBoard(bId, m_no, type);
 
+		System.out.println(b);
 
 		if(b == null) {
 			request.setAttribute("msg", "조회실패");

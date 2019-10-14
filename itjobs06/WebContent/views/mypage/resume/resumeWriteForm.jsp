@@ -188,8 +188,8 @@
 												type="date" class="form-control" name="workDate2" placeholder="e.g 2020" value="2019-01-01">
 										</div>
 										<div class="col-md-4">
-											<label class="control-label">경력년수</label> <input
-												type="text" class="form-control" name="career_year" placeholder="e.g 2020" value="2">
+											<label class="control-label">경력년수</label>
+											<input type="text" class="form-control" name="career_year" placeholder="e.g 2020" value="2">
 										</div>
 									</div>
 								</div>

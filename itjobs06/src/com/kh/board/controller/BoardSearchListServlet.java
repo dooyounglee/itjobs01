@@ -8,10 +8,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.kh.board.model.service.BoardService;
 import com.kh.board.model.vo.Board;
 import com.kh.board.model.vo.PageInfo;
+import com.kh.member.model.vo.Member;
 
 /**
  * Servlet implementation class BoardSearchListServlet
@@ -35,6 +37,12 @@ public class BoardSearchListServlet extends HttpServlet {
 		String select = request.getParameter("select");
 		String search = request.getParameter("search");
 		String head = request.getParameter("head");
+		
+
+		HttpSession session = request.getSession();
+	    session.setAttribute("sessionHead", head);
+	    session.setAttribute("sessionSearch", search);
+	    session.setAttribute("sessionSelect", select);
 		
 		int listCount = 0;
 		

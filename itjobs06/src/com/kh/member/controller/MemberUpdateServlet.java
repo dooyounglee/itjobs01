@@ -61,10 +61,10 @@ public class MemberUpdateServlet extends HttpServlet {
 		
 				String[] changeName = new String[2];
 				String[] pathName=new String[2];
-				changeName[0]=multiRequest.getParameter("file1");
-				pathName[0]=multiRequest.getParameter("path1");
-				changeName[1]=multiRequest.getParameter("file2");
-				pathName[1]=multiRequest.getParameter("path2");
+				changeName[0]=multiRequest.getParameter("file1_file");
+				pathName[0]=multiRequest.getParameter("path1_path");
+				changeName[1]=multiRequest.getParameter("file2_file");
+				pathName[1]=multiRequest.getParameter("path2_path");
 				
 				//Enumeration<String> files = multiRequest.getFileNames();
 				
@@ -77,7 +77,7 @@ public class MemberUpdateServlet extends HttpServlet {
 				
 				//닉네임부터 수정
 				String nickname=multiRequest.getParameter("nickname");
-				m.setNickname(nickname);
+				m.setNickname(nickname+"(기업)");
 				//result=new MemberService().update(m);
 				
 				//나머지 수정

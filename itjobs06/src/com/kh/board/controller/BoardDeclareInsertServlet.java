@@ -39,15 +39,24 @@ public class BoardDeclareInsertServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 	    Member mem=(Member)session.getAttribute("mem");
 	    int m_no = mem.getM_no();
+	    
+	    System.out.println("회원번호 : " + m_no);
 	
 	    int result = new BoardService().insertDeclareBoard(bId, m_no, content);
+	    
+	    System.out.println("result : " +result);
+	    
+	    response.getWriter().print(String.valueOf(result));
 	
+	    /*
 	    if(result > 0) {
 	    	response.sendRedirect("detail.bo?head="+head+"&bId="+bId);
 	    }else {
 	    	request.setAttribute("msg", "신고 실패");
 	    	request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
 	    }
+	    
+	    */
 		
 	}
 

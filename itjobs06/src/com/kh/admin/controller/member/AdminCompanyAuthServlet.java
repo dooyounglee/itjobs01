@@ -1,4 +1,4 @@
-package com.kh.volunteer.controller;
+package com.kh.admin.controller.member;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,20 +7,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.volunteer.model.service.VolunteerService;
-import com.kh.volunteer.model.vo.Volunteer;
+import com.kh.admin.model.service.AdminMemberService;
 
 /**
- * Servlet implementation class VolunteerPassServlet
+ * Servlet implementation class AdminCompanyAuthServlet
  */
-@WebServlet("/pass.vo")
-public class VolunteerPassServlet extends HttpServlet {
+@WebServlet("/auth.co.ad")
+public class AdminCompanyAuthServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public VolunteerPassServlet() {
+    public AdminCompanyAuthServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,14 +30,15 @@ public class VolunteerPassServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		int v_no=Integer.parseInt(request.getParameter("v_no"));
-		Volunteer v=new VolunteerService().getVolunteer(v_no);
-		
-		int result=new VolunteerService().passResume(v_no);
-		System.out.println("컨트롤"+result);
+		int mno=Integer.parseInt(request.getParameter("mno"));
+		int result=new AdminMemberService().vanishCancleMember(mno);
 		if(result>0) {
-			response.sendRedirect("list.vo?noti_no="+v.getNoti_no());
+			request.setAttribute("msg", "성공");
+		}else {
+			request.setAttribute("msg", "실패");
 		}
+		response.sendRedirect(request.getContextPath()+"/memberList.ad");
+		
 	}
 
 	/**

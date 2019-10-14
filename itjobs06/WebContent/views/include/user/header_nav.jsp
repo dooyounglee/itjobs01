@@ -28,7 +28,7 @@
 				</button>
 				<a href="<%=request.getContextPath() %>" class="navbar-brand"><img
 					src="resources/images/logo12.png"
-					style="width: 135px; height: 45px;" alt=""></a>
+					style="width: 100px; height: 35px;" alt=""></a>
 				<a style="color:black;">현재접속자수: <span id=userCounting>1</span>명</a>
 			</div>
 <script type="text/javascript">
@@ -77,7 +77,7 @@
 							<li><a class="dropdown-item" href="<%=request.getContextPath()%>/list.bo?head=free">자유</a></li>
 							<li><a class="dropdown-item" href="<%=request.getContextPath()%>/list.bo?head=study">스터디</a></li>
 							<li><a class="dropdown-item" href="<%=request.getContextPath()%>/list.bo?head=project">프로젝트</a></li>
-							<li><a class="dropdown-item" href="<%=request.getContextPath()%>/list.bo?head=qna">공지사항</a></li>
+							<li><a class="dropdown-item" href="<%=request.getContextPath()%>/list.bo?head=qu">공지사항</a></li>
 							<li><a class="dropdown-item" href="<%=request.getContextPath()%>/list.bo?head=form">서식</a></li>
 							
 						</ul></li>

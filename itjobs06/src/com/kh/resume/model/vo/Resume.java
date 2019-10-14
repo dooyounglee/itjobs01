@@ -26,7 +26,7 @@ public class Resume {
 	private String p_language;
 	private String hope_salary;
 	private int m_no;
-	private int career_year;
+	private String career_year;
 	private String school_final;
 	
 	public Resume() {
@@ -95,7 +95,7 @@ public class Resume {
 			String address, String email, String school, String department, String school_period, String career,
 			String work_place, String work_date, String work, String certification, String cer_date, String title,
 			String cover_letter, String open, String update_date, String p_language, String hope_salary, int m_no,
-			int career_year, String school_final) {
+			String career_year, String school_final) {
 		super();
 		this.resume_no = resume_no;
 		this.photo = photo;
@@ -269,10 +269,10 @@ public class Resume {
 		this.m_no = m_no;
 	}
 	
-	public int getCareer_year() {
+	public String getCareer_year() {
 		return career_year;
 	}
-	public void setCareer_year(int career_year) {
+	public void setCareer_year(String career_year) {
 		this.career_year = career_year;
 	}
 	public String getSchool_final() {

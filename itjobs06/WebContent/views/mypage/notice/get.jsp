@@ -135,7 +135,8 @@
 						<a href="#" onclick="location.href='<%=request.getContextPath() %>/myNotification.me'" class="btn btn-common">나의 공고목록</a>
 						<a href="#" onclick="showApplier(<%=noti.getNoti_no() %>)" class="btn btn-common">지원자 확인</a>
 						<%	}else if(mem!=null && mem.getType().equals("1")){
-								ArrayList<Resume> rlist=(ArrayList<Resume>)request.getAttribute("rlist"); %>
+								ArrayList<Resume> rlist=(ArrayList<Resume>)request.getAttribute("rlist");
+								if(rlist!=null){%>
 							<form action="apply.vo" method="post">
 								<input type=hidden name="noti_no" value="<%=noti.getNoti_no() %>">
 								<select name="resume_no" id="resume_no" onchange="test(this)">
@@ -147,6 +148,9 @@
 								<div id="info"></div>
 								<div id="info1"></div>
 							</form>
+						<%		}else{%>
+								<h3>이미 지원한 공고입니다.</h3>
+							<%	} %>
 						<%	} %>
 					</div>
 				</div>

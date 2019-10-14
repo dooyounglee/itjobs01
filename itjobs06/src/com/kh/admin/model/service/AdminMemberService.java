@@ -1,7 +1,6 @@
 package com.kh.admin.model.service;
 
-import static com.kh.common.JDBCTemplate.close;
-import static com.kh.common.JDBCTemplate.getConnection;
+import static com.kh.common.JDBCTemplate.*;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -22,6 +21,11 @@ public class AdminMemberService {
 	public int vanishMember(int mno) {
 		Connection conn = getConnection();
 		int result = new AdminMemberDao().vanishMember(conn, mno);
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
 		close(conn);
 		return result;
 	}
@@ -29,6 +33,11 @@ public class AdminMemberService {
 	public int vanishCancleMember(int mno) {
 		Connection conn = getConnection();
 		int result = new AdminMemberDao().vanishCancleMember(conn, mno);
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
 		close(conn);
 		return result;
 	}
@@ -39,4 +48,5 @@ public class AdminMemberService {
 		close(conn);
 		return result;
 	}
+
 }

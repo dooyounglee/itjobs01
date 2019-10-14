@@ -73,9 +73,16 @@
 						<form class="form-ad" action="update.me" method="post" autocomplete=off>
 						<%	} %>
 						<h3 class="alerts-title">정보 변경</h3>
+							<%	String nickname="";
+								if(mem.getType().equals("2")){
+									nickname=mem.getNickname().substring(0,mem.getNickname().indexOf("("));
+								}else if(mem.getType().equals("1")){
+									nickname=mem.getNickname();
+								}
+								%>
 							<div class="form-group is-empty">
 								<label class="control-label">닉네임 변경</label> <input
-									class="form-control" type="text" name="nickname" value="<%=mem.getNickname()%>"> <span
+									class="form-control" type="text" name="nickname" value="<%=nickname%>"> <span
 									class="material-input"></span>
 							</div>
 							<%	if(mem.getType().equals("2")){ %>
@@ -122,6 +129,8 @@
 										<div class="upload-button">
 											<button class="btn btn-common">사업자등록증</button>
 											<input id="cover_img_file_1" name="file1" type="file" onchange="loadImg(this,1)">
+											<input type="hidden" name="file1_file" value="<%=co.getFile()%>">
+											<input type="hidden" name="file1_path" value="<%=co.getPath()%>">
 										</div>
 										<div><%=co.getFile() %></div>
 									</div>
@@ -133,7 +142,9 @@
 										<div class="upload-button">
 											<button class="btn btn-common">로고</button>
 											<input id="cover_img_file_2" name="file2"  type="file" onchange="loadImg(this,2)">
-											<img id="titleImg2" src="resources/fileupload_company/<%=co.getLogofile()%>" style="width:200px;"></img>
+											<img id="titleImg2" src="resources/cofileupload/<%=co.getLogofile()%>" style="width:200px;"></img>
+											<input type="hidden" name="file2_file" value="<%=co.getLogofile()%>">
+											<input type="hidden" name="file2_path" value="<%=co.getLogopath()%>">
 										</div>
 									</div>
 								</div>

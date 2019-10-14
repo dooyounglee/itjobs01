@@ -6,7 +6,7 @@
    Board prev = (Board)request.getAttribute("prev");
    Board next = (Board)request.getAttribute("next");
    
-   
+   String[] videoName = b.getVideo().split("=");
 %>
 <!DOCTYPE html>
 <html>
@@ -101,10 +101,14 @@
            <div style="border-bottom:1px solid lightgray">
              <pre style="font-size:20px;color:black;"><%=b.getContents() %></pre><br><br>
 
+            <%if(b.getVideo() != null){%>
+            	<iframe width="640" height="360" src="https://www.youtube.com/embed/<%=videoName[1] %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <%} %>
+		
             <%if(b.getEditFile() != null){ %>
             	<%if(b.getFile().contains("jpg") || b.getFile().contains("jpeg") || b.getFile().contains("png")){ %>
                		<img class='max-small' id="img" src="<%= contextPath %>/resources/fileupload_board/<%= b.getEditFile()%>">
-            	<%} %>
+            	<%}%>
             <br><br>
             <span><%=b.getFile() %> </span>&nbsp; &nbsp;
             <a href="<%= contextPath %>/download.bo?bId=<%=b.getB_no()%>" class="btn btn-common">다운로드</a> <br><br>
@@ -184,7 +188,7 @@
            		window.open("<%=contextPath %>/insertForm.de?bId=<%=b.getB_no()%>&title=<%=b.getTitle()%>&boardNick=<%=b.getNickname()%>&head=<%=b.getHead()%>", "ITJOBS_게시글 신고", "width=500, height=600, toolbar=no, menubar=no, scrollbars=no, resizable=no"); 
             <%} else if(mem != null && mem.getType().equals("0")){%>
             	alert("관리자는 신고 불가!");
-            <%} else if(mem == null){%>
+            <%} else{%>
             	alert("로그인해주세요");
             <%}%>
          });
@@ -264,19 +268,19 @@
 						var content = $("<div>").text(value.contents).css("width","400px");
 						var date = $("<span>").text(value.update_date).css("width","200px");
 						
-						<%-- if(<%=mem.getM_no()%> == value.m_no){ --%>
-						var m_no=0; 
-						<%if(mem!= null){%>
-						 m_no=<%=mem.getM_no()%>;
-						<%}%>
-						var deleteRe=$("<span>");
-						<%-- <%	if(mem!=null){ %>
-						//var deleteRe= $("<span>").text("삭제");
-						<%}%> --%>
-						if(m_no==value.m_no){
-							deleteRe= $("<span>").text("삭제");
-						}
-					
+					    <%-- if(<%=mem.getM_no()%> == value.m_no){ --%>
+		                var m_no=0; 
+		                <%if(mem!= null){%>
+		                m_no=<%=mem.getM_no()%>;
+		                <%}%>
+		                var deleteRe=$("<span>");
+		                <%-- <%   if(mem!=null){ %>
+		                //var deleteRe= $("<span>").text("삭제");
+		                <%}%> --%>
+		                if(m_no==value.m_no){
+		                   deleteRe= $("<span>").text("삭제");
+		                }
+					 		
 						
 						div.append(a);
 						div.append(writer);

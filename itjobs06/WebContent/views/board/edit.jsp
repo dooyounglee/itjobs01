@@ -121,6 +121,14 @@
    <input type="date" class="form-control" name="time2" id="time2" value="<%=str[1] %>" placeholder="yyyy-mm-dd">
    </div>
    <%} %> 
+   	<div class="form-group" >
+	<label class="control-label">영상첨부(url) * 유튜브 영상만 첨부 가능</label>
+	<%if(b.getVideo() != null){ %>
+	<input type="text" class="form-control" name="video" id="video" value="<%=b.getVideo()%>">
+	<%}else{ %>
+	<input type="text" class="form-control" name="video" id="video" >
+	<%} %>
+	</div>
 	<div class="custom-file mb-3">
 	<input type="file" class="custom-file-input" name="file1" id="validatedCustomFile" onchange="fileName(this);" required>
 	<%if(b.getEditFile() != null){ %> 

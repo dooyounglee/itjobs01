@@ -19,6 +19,8 @@ public class Board {
 	private String path;
 	private int down_count;
 	private int reply_count;
+	private String video;
+	
 	
 	public Board() {
 		super();
@@ -66,7 +68,7 @@ public class Board {
 	}
 	
 	public Board(int b_no, int m_no, String nickname, String head, String title, String contents, String update_date,
-			String file, String time, int count, String editFile, String path, int down_count, int reply_count) {
+			String file, String time, int count, String editFile, String path, int down_count, int reply_count, String video) {
 		super();
 		this.b_no = b_no;
 		this.m_no = m_no;
@@ -82,6 +84,7 @@ public class Board {
 		this.path = path;
 		this.down_count = down_count;
 		this.reply_count = reply_count;
+		this.video = video;
 	}
 	public Board(int b_no, int m_no, String head, String title, String contents, String update_date, String time,
 			int count) {
@@ -154,6 +157,14 @@ public class Board {
 		return nickname;
 	}
 	
+	public String getVideo() {
+		return video;
+	}
+
+	public void setVideo(String video) {
+		this.video = video;
+	}
+
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
 	}
@@ -264,7 +275,7 @@ public class Board {
 				+ title + ", contents=" + contents + ", enroll_date=" + enroll_date + ", update_date=" + update_date
 				+ ", file=" + file + ", time=" + time + ", count=" + count + ", status=" + status + ", d_count="
 				+ d_count + ", editFile=" + editFile + ", path=" + path + ", down_count=" + down_count
-				+ ", reply_count=" + reply_count + "]";
+				+ ", reply_count=" + reply_count + ", video=" + video + "]";
 	}
 	
 	

@@ -6,6 +6,7 @@
    Board prev = (Board)request.getAttribute("prev");
    Board next = (Board)request.getAttribute("next");
    
+   String[] videoName = b.getVideo().split("=");
    
 %>
 <!DOCTYPE html>
@@ -101,10 +102,15 @@
            <div style="border-bottom:1px solid lightgray">
              <pre style="font-size:20px;color:black;"><%=b.getContents() %></pre><br><br>
 
-            <%if(b.getEditFile() != null){ %>
+
+			 <%if(b.getVideo() != null){%>
+            	<iframe width="640" height="360" src="https://www.youtube.com/embed/<%=videoName[1] %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <%} %>
+		
+            <%if(b.getEditFile() != null || b.getVideo() != null){ %>
             	<%if(b.getFile().contains("jpg") || b.getFile().contains("jpeg") || b.getFile().contains("png")){ %>
                		<img class='max-small' id="img" src="<%= contextPath %>/resources/fileupload_board/<%= b.getEditFile()%>">
-            	<%} %>
+            	<%}%>
             <br><br>
             <span><%=b.getFile() %> </span>&nbsp; &nbsp;
             <a href="<%= contextPath %>/download.bo?bId=<%=b.getB_no()%>" class="btn btn-common">다운로드</a> <br><br>

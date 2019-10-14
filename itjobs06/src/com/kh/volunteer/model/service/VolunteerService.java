@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 import com.kh.board.model.vo.PageInfo;
 import com.kh.member.model.vo.Member;
+import com.kh.notification.model.vo.Notification;
 import com.kh.volunteer.model.dao.VolunteerDao;
 import com.kh.volunteer.model.vo.Volunteer;
 
@@ -89,6 +90,7 @@ public class VolunteerService {
 	public int passResume(int v_no) {
 		Connection conn=getConnection();
 		int result=new VolunteerDao().passResume(conn,v_no);
+		System.out.println("서비스"+result);
 		if(result>0) {
 			commit(conn);
 		}else {
@@ -106,6 +108,13 @@ public class VolunteerService {
 		}else {
 			rollback(conn);
 		}
+		close(conn);
+		return result;
+	}
+
+	public int isApply(Member m, Notification noti) {
+		Connection conn=getConnection();
+		int result=new VolunteerDao().isApply(conn,m,noti);
 		close(conn);
 		return result;
 	}

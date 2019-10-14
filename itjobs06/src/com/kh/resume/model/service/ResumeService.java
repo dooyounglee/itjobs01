@@ -241,6 +241,14 @@ public int insertResum(Resume re){
 		close(conn);
 		return result;
 	}
+
+
+	public ArrayList<Resume> getMyResumeListforApply(Member m) {
+		Connection conn = getConnection();
+		ArrayList<Resume> list = new ResumeDao().getMyResumeListforApply(conn, m);
+		close(conn);
+		return list;
+	}
 	
 	
 	

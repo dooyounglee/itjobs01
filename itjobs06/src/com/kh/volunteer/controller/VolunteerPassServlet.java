@@ -35,6 +35,7 @@ public class VolunteerPassServlet extends HttpServlet {
 		Volunteer v=new VolunteerService().getVolunteer(v_no);
 		
 		int result=new VolunteerService().passResume(v_no);
+		System.out.println("컨트롤"+result);
 		if(result>0) {
 			response.sendRedirect("list.vo?noti_no="+v.getNoti_no());
 		}

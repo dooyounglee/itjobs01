@@ -15,6 +15,7 @@ import com.kh.notification.model.service.NotificationService;
 import com.kh.notification.model.vo.Notification;
 import com.kh.resume.model.service.ResumeService;
 import com.kh.resume.model.vo.Resume;
+import com.kh.volunteer.model.service.VolunteerService;
 
 /**
  * Servlet implementation class NotificationViewServlet
@@ -45,8 +46,10 @@ public class NotificationViewServlet extends HttpServlet {
 		Notification noti=new NotificationService().getNotification(noti_no);
 		request.setAttribute("noti", noti);
 		
-		if(m!=null && m.getType().equals("1")) {
-			ArrayList<Resume> rlist=new ResumeService().getMyResumeList(m);
+		int isApply=new VolunteerService().isApply(m,noti);
+		
+		if(m!=null && m.getType().equals("1") && isApply==0) {
+			ArrayList<Resume> rlist=new ResumeService().getMyResumeListforApply(m);
 			request.setAttribute("rlist", rlist);
 		}
 		
@@ -65,6 +68,7 @@ public class NotificationViewServlet extends HttpServlet {
 		
 		request.setAttribute("random", randomList);
 		request.getRequestDispatcher("views/mypage/notice/get.jsp").forward(request, response);
+		//response.sendRedirect("get.no?noti_no="+noti.getNoti_no());
 		
 		
 	}

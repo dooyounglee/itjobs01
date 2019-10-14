@@ -37,13 +37,11 @@
 						<div class="widghet">
 							<h3>Job Location</h3>
 							<div class="maps">
-								<div id="map" class="map-full">
-									<iframe
-										src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d405691.57240383344!2d-122.3212843181106!3d37.40247298383319!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808fb68ad0cfc739%3A0x7eb356b66bd4b50e!2sSilicon+Valley%2C+CA%2C+USA!5e0!3m2!1sen!2sbd!4v1538319316724"
-										allowfullscreen=""></iframe>
-								</div>
+								<div id="map" class="map-full"></div>
 							</div>
+							<h3><%=noti.getAddress().split("\\+")[1]+ " " +noti.getAddress().split("\\+")[2] %></h3>
 						</div>
+						<hr>
 						<div class="widghet">
 							<h3>Share This Job</h3>
 							<div class="share-job">
@@ -127,11 +125,6 @@
 						<%	if(mem!=null && mem.getM_no()==noti.getCo_no()){ %>
 						<a href="#" onclick="edit(<%=noti.getNoti_no() %>)" class="btn btn-common">수정</a>
 						<a href="#" onclick="del(<%=noti.getNoti_no() %>)" class="btn btn-common">삭제</a>
-<%-- 						<%	if(noti.getOpen().equals("N")){ %>
-						<a href="#" onclick="open_(<%=noti.getNoti_no() %>)" class="btn btn-common">공개</a>
-						<%	} else if(noti.getOpen().equals("Y")){ %>
-						<a href="#" onclick="openCancle(<%=noti.getNoti_no() %>)" class="btn btn-common">비공개</a>
-						<%	} %> --%>
 						<a href="#" onclick="location.href='<%=request.getContextPath() %>/myNotification.me'" class="btn btn-common">나의 공고목록</a>
 						<a href="#" onclick="showApplier(<%=noti.getNoti_no() %>)" class="btn btn-common">지원자 확인</a>
 						<%	}else if(mem!=null && mem.getType().equals("1")){
@@ -275,25 +268,6 @@
 	</section>
 
 
-
-
-
-
-<%-- 기업
-<button onclick="edit(<%=noti.getNoti_no() %>)">수정</button>
-<button onclick="del(<%=noti.getNoti_no() %>)">삭제</button>
-<button onclick="open_(<%=noti.getNoti_no() %>)">공개</button>
-<button onclick="openCancle(<%=noti.getNoti_no() %>)">비공개</button>
-<button onclick="location.href='<%=request.getContextPath()%>/myNotification.me'">나의 공고목록으로</button>
-<button onclick="showApplier(<%=noti.getNoti_no() %>)">지원자 확인</button>
-<br>
-일반
-<button onclick="apply(<%=noti.getNoti_no() %>)">지원하기</button>
-<select>
-
-</select> --%>
-
-
 <script>
 	function edit(noti_no){
 		location.href="edit.no?noti_no="+noti_no;
@@ -340,7 +314,7 @@
 	$('.inner-header').children('h3').text(page_header_title)
 </script>
 <!-- 지도api -->
-<div id="map" style="width:100%;height:350px;"></div>
+
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3f8e5a5f11c657a1034900d7a303bc56&libraries=services"></script>
 <script>

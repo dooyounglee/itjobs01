@@ -83,6 +83,7 @@ private Properties prop = new Properties();
 				v.setEnd_date(rs.getString("end_date"));
 				v.setP_language(rs.getString("p_language"));
 				v.setNickname(rs.getString("nickname"));
+				v.setLogofile(rs.getString("logo_file"));
 				list.add(v);
 			}
 		} catch (SQLException e) {

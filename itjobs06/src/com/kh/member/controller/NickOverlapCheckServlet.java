@@ -31,14 +31,20 @@ public class NickOverlapCheckServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String nickName = request.getParameter("nickName")+"(기업)";
+		String nickName = request.getParameter("nickName");
 		
-	
-		int result1 = new MemberService().NickCheck(nickName);
+		String nickNameCo = request.getParameter("nickNameCo")+"(기업)";
 		
+		int result = 0;
+		
+		if(nickName != null) {
+		 result = new MemberService().NickCheck(nickName);
+		}else {
+		 result = new MemberService().NickCheck(nickNameCo);		
+		}	
 		PrintWriter out = response.getWriter();
 		
-		out.print(result1);
+		out.print(result);
 		
 		
 		

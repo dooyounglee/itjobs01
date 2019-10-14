@@ -85,10 +85,12 @@ public class AddResumServlet extends HttpServlet {
 			String work_place="";
 			String work="";
 			String work_date="";
+			String career_year="";
 			if(career.equals("Y")) {
 				work_place = String.join(",", multiRequest.getParameterValues("companyName"));
 				work = String.join(",", multiRequest.getParameterValues("workList"));
 				work_date = String.join(",",multiRequest.getParameterValues("workDate1"))+"~"+String.join(",",multiRequest.getParameterValues("workDate2"));
+				career_year = String.join(",", multiRequest.getParameterValues("career_year"));
 			}
 			
 			String cerYN=multiRequest.getParameter("cerYN");
@@ -143,7 +145,7 @@ public class AddResumServlet extends HttpServlet {
 			re.setP_language(p_language);
 			re.setHope_salary(hope_salary);
 			re.setM_no(m_no);
-			//re.setCareer_year(career_year); //input만들면 열어둘께
+			re.setCareer_year(career_year);
 			re.setSchool_final(school_final);
 			
 			System.out.println(re);

@@ -10,6 +10,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <title>이력서 작성하기</title>
+<script type="text/javascript" src='<%=request.getContextPath()%>/resources/naver-smarteditor2-ca95d21/demo/js/service/HuskyEZCreator.js' charset="utf-8"></script>
 
 <!-- import jobx -->
 <%@ include file="/views/include/user/style.jsp" %>
@@ -246,11 +247,11 @@
 											<label class="control-label">Date To</label> <input
 												type="date" class="form-control" name="workDate2" placeholder="e.g 2020" value="1">
 										</div>
+										<div class="col-md-4">
+											<label class="control-label">경력년수</label>
+											<input type="text" class="form-control" name="career_year" placeholder="2" value="1">
+										</div>
 									</div>
-								</div>
-								<div class="form-group">
-									<label class="control-label">경력년수</label>
-									<input type="text" class="form-control" name="career_year" placeholder="e.g 2020" value="1">
 								</div>
 							</div>
 							<%	} %>
@@ -455,10 +456,30 @@
 							</div>
 							<div class="form-group">
 								<label class="control-label">자소서</label>
-								<textarea class="form-control" name="self" rows="5" id="자소서"><%=re.getCover_letter()%></textarea>
+								<textarea class="form-control" id="comment" name="self" rows="5"><%=re.getCover_letter()%></textarea>
 							</div>
-							<input type="submit" class="btn btn-common" value="작성완료">
+<script>
+var oEditors = [];
+	
+nhn.husky.EZCreator.createInIFrame({
+ 	 oAppRef: oEditors,
+ 	 elPlaceHolder: document.getElementById('comment'),
+  	 sSkinURI: "<%=contextPath%>/resources/naver-smarteditor2-ca95d21/demo/SmartEditor2Skin.html",  
+     fCreator: "createSEditor2",
+     htParams:{
+    	 bUseToolbar:false, // 툴바 사용여부
+    	 bUseVerticalResizer:false, // 크기조절바 사용여부
+    	 bUseModeChanger : false,	// 모드 탭(Editor | HTML | TEXT) 사용 여부
+     }
+});
+</script>
+							<input type="submit" onclick="edit_ok()" class="btn btn-common" value="작성완료">
 						</form>
+<script>
+	function edit_ok(){
+		oEditors.getById["comment"].exec("UPDATE_CONTENTS_FIELD", []);
+	}
+</script>
 					</div>
 					</div>
 				</div>

@@ -73,9 +73,16 @@
 						<form class="form-ad" action="update.me" method="post" autocomplete=off>
 						<%	} %>
 						<h3 class="alerts-title">정보 변경</h3>
+							<%	String nickname="";
+								if(mem.getType().equals("2")){
+									nickname=mem.getNickname().substring(0,mem.getNickname().indexOf("("));
+								}else if(mem.getType().equals("1")){
+									nickname=mem.getNickname();
+								}
+								%>
 							<div class="form-group is-empty">
 								<label class="control-label">닉네임 변경</label> <input
-									class="form-control" type="text" name="nickname" value="<%=mem.getNickname()%>"> <span
+									class="form-control" type="text" name="nickname" value="<%=nickname%>"> <span
 									class="material-input"></span>
 							</div>
 							<%	if(mem.getType().equals("2")){ %>

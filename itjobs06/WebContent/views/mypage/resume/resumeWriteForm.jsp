@@ -188,8 +188,8 @@
 												type="date" class="form-control" name="workDate2" placeholder="e.g 2020" value="2019-01-01">
 										</div>
 										<div class="col-md-4">
-											<label class="control-label">경력년수</label> <input
-												type="text" class="form-control" name="career_year" placeholder="e.g 2020" value="2">
+											<label class="control-label">경력년수</label>
+											<input type="text" class="form-control" name="career_year" placeholder="e.g 2020" value="2">
 										</div>
 									</div>
 								</div>
@@ -217,14 +217,16 @@
 		$('#btn_add_career').show();
 	})
 	function add_career(){
-		var one_career=$('#careerList').children('div:lt(3)').clone();
+		var one_career=$('#careerList').children('div:lt(4)').clone();
 		one_career.find('input').val("")
 		$('#careerList').append('<hr>');
 		$('#careerList').append(one_career);
 		return false;
 	}
 	function del_career(){
-		if($('#careerList').children('div.form-group').length>3){
+		if($('#careerList').children('div.form-group').length>4){
+			$('#careerList').children('div.form-group:last').remove()
+			$('#careerList').children('hr:last').remove()
 			$('#careerList').children('div.form-group:last').remove()
 			$('#careerList').children('hr:last').remove()
 			$('#careerList').children('div.form-group:last').remove()
@@ -354,8 +356,13 @@ nhn.husky.EZCreator.createInIFrame({
      }
 });
 </script>
-							<input type="submit" class="btn btn-common" value="작성완료">
+							<input type="submit" onclick="write_ok()" class="btn btn-common" value="작성완료">
 						</form>
+<script>
+	function write_ok(){
+		oEditors.getById["comment"].exec("UPDATE_CONTENTS_FIELD", []);
+	}
+</script>
 <!-- <script>
 	function add_cer(){
 		str='<div id="cer_row" class="row">';

@@ -156,16 +156,17 @@
 		<input type="text" class="form-control" id="co_phone"name="co_phone" placeholder="대표자폰*" required>
 		</div>
 		</div>
-		<div class="form-group">
+		<div class="form-group" style="margin-bottom: 0px;">
 		<div class="input-icon">
 		<i class="lni-lock"></i>
 		<input type="text" class="form-control" name="descript" placeholder="사업내용">
 		</div>
 		</div>
 		<div class="form-group">
-		<div class="input-icon">
-		<i class="lni-lock"></i>
-		<input type="text" class="form-control" name="birth_date" placeholder="설립일">
+		<div class="input-icon" >
+		<label class="control-label" style="margin-left: 45%;">성립일</label>
+		<input class="form-control" type="date" name="birth_date">
+		<span class="material-input"></span>
 		</div>
 		</div>
 		<div class="form-group">
@@ -182,8 +183,8 @@
 		</div>
 		<div class="form-group">
 		<div class="input-icon">
-		<i class="lni-lock"></i>
-		<input type="text" class="form-control" name="history" placeholder="연혁">
+		<i class="lni-lock" style="margin-top: 10%;"></i>
+		<textarea class="form-control" rows="5" id="history" name="history" placeholder="연혁"></textarea>
 		</div>
 		</div>
 		<div class="form-group">

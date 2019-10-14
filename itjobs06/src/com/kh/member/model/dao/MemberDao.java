@@ -196,7 +196,7 @@ public class MemberDao {
 			ps.setString(8, cf.getCeo());
 			ps.setString(9, cf.getCo_phone());
 			ps.setString(10, cf.getDescript());
-			ps.setString(11, "2000-01-01");
+			ps.setString(11, cf.getBirth_date());
 			ps.setInt(12, cf.getMemsum());
 			ps.setInt(13, cf.getRevenue());
 			ps.setString(14, cf.getHistory());

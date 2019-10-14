@@ -102,21 +102,21 @@
 		/*  닉네임 중복체크 */
 		function nickOverlapCheck(){
 
-			var nickName = $("#nickName").val();
+			var nickNameCo = $("#nickName").val();
 			
 			
 			var nickDiv = $(document.getElementById("nickCheck"));
 			
 			var regExp = /^[가-힣a-zA-Z0-9]{1,}$/;
 			
-			if(!regExp.test(nickName)){
+			if(!regExp.test(nickNameCo)){
 				nickDiv.html('닉네임 양식에 맞지 않습니다').attr('style','color:green');
 				$("#submit").attr('disabled',true).attr('style','background:gray').attr('value','닉네임 양식에 맞지 않습니다');
 			}else{
 				
 			$.ajax({
 					url:"<%=request.getContextPath() %>/nickoverlap.me",
-					data:{nickName:nickName},
+					data:{nickNameCo:nickNameCo},
 					type:"get",
 					success:function(result1){
 					
@@ -128,13 +128,6 @@
 						}else{	
 							nickDiv.html('사용가능').attr('style','color:green');
 							$("#submit").attr('disabled',false).attr('style','background:#00bcd4').attr('value','가입');
-							
-							if(!regExp.test(nickName)){
-								nickDiv.html('닉네임 양식에 맞지 않습니다').attr('style','color:green');
-								$("#submit").attr('disabled',true).attr('style','background:gray').attr('value','닉네임 양식에 맞지 않습니다');
-							}
-						
-						
 						}
 						
 						

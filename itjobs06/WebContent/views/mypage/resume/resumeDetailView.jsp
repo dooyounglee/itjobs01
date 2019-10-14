@@ -116,11 +116,13 @@
 									String[] st_work_date=work_date[0].split(",");
 									String[] ed_work_date=work_date[1].split(",");
 									String[] work=re.getWork().split(",");
+									String[] career_year=re.getCareer_year().split(",");
 									
 									for(int i=0;i<work_place.length;i++){%>
-							<h4><%=work_place[i]%></h4>
-							<p><%=work[i]%></p>
-							<span class="date"><%=st_work_date[i]%>~<%=ed_work_date[i]%></span> <br>
+							<h4>일한곳: <%=work_place[i]%></h4>
+							<p>한일: <%=work[i]%></p>
+							<span class="date">일한 날짜: <%=st_work_date[i]%>~<%=ed_work_date[i]%></span> <br>
+							<p>경력: <%=career_year[i] %></p>
 							<%		}
 								}%>
 						</div>

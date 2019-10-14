@@ -106,7 +106,7 @@
 <%} %>
 </span>
 <span class="rate"><i class="lni-alarm-clock"></i>
-<% if(re.getCareer_year() == 0){ %>
+<% if(re.getCareer_year()==null){ %>
 신입
 <%}else{ %>
 경력<%=re.getCareer_year() %>년차

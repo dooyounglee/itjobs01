@@ -109,6 +109,7 @@ public class ResumeUpdateServlet extends HttpServlet {
 				work = String.join(",", multiRequest.getParameterValues("workList"));
 				work_date = String.join(",",multiRequest.getParameterValues("workDate1"))+"~"+String.join(",",multiRequest.getParameterValues("workDate2"));
 				career_year = String.join(",", multiRequest.getParameterValues("career_year"));
+				System.out.println(career_year);
 			}
 			
 			String cerYN=multiRequest.getParameter("cerYN");

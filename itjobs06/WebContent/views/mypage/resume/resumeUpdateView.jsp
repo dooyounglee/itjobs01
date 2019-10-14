@@ -190,7 +190,8 @@
 									String[] work_date=re.getWork_date().split("~");
 									String[] st_work_date=work_date[0].split(",");
 									String[] ed_work_date=work_date[1].split(",");
-									String[] work=re.getWork().split(",");%>
+									String[] work=re.getWork().split(",");
+									String[] career_year=re.getCareer_year().split(",");%>
 							<div class="form-group">
 								<input type="radio" id="career_off" name="career" value="N" <%=checked_career[0] %>>신입
 								<input type="radio" id="career_on" name="career" value="Y" <%=checked_career[1] %>>경력
@@ -215,13 +216,13 @@
 											<label class="control-label">Date To</label> <input
 												type="date" class="form-control" name="workDate2" placeholder="e.g 2020" value="<%=ed_work_date[i]%>">
 										</div>
+										<div class="col-md-4">
+											<label class="control-label">경력년수</label>
+											<input type="text" class="form-control" name="career_year" placeholder="e.g 2020" value="<%=career_year[i]%>">
+										</div>
 									</div>
 								</div>
 								<%	}%>
-								<div class="form-group">
-									<label class="control-label">경력년수</label>
-									<input type="text" class="form-control" name="career_year" placeholder="e.g 2020" value="<%=re.getCareer_year()%>">
-								</div>
 							</div>
 							<%	}else{ %>
 							<div class="form-group">
@@ -341,7 +342,7 @@
 								</div>
 							</div>							
 							<%	} %>
-							<div class="add-post-btn" style="display:none;">
+							<div id="btn_add_cer" class="add-post-btn" style="display:none;">
 								<div class="float-left">
 									<a href="#" class="btn-added" onclick="return add_cer()"><i class="ti-plus"></i>추가</a>
 								</div>

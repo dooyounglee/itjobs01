@@ -50,12 +50,14 @@ public class JoinServlet extends HttpServlet {
 		m.setPw(pw);
 		m.setNickname(nickname);
 		
-		int result=new MemberService().insertMember(m);
 		
-		if(result>0) {
+		if(type.equals("1")) {
+			
+			int result=new MemberService().insertMember(m);
+			
+			if(result>0) {
 //			System.out.println(type);
-			HttpSession session = request.getSession();
-			if(type.equals("1")) {
+				HttpSession session = request.getSession();
 				
 				session.setAttribute("alert", "회원가입을 환영합니다.로그인을 진행해 주세요");
 				request.setAttribute("nickname", nickname);
@@ -66,20 +68,17 @@ public class JoinServlet extends HttpServlet {
 			}else {
 				request.setAttribute("msg", "회운가입 실패(일반)");
 			
+				}
 			}
-			
 			
 			if(type.equals("2")) {
 				
-				
 				request.setAttribute("m", m);
 				request.getRequestDispatcher("views/login/join_co_info.jsp").forward(request, response);
-			}else {
-				request.setAttribute("msg", "회운가입 실패(기업)");
 			}
-		}else {
-			request.setAttribute("msg", "회운가입 실패(공통)");
-		}
+			
+			
+		
 	}
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

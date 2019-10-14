@@ -102,13 +102,16 @@ public class MemberService {
 		return mem;
 	}
 
-	public int JoinCoInfo(Co_Info cf, String email) {
+	public int JoinCoInfo(Co_Info cf, String email, Member m) {
 
 		Connection conn = getConnection();
 
-		int result = new MemberDao().JoinCoInfo(conn, email ,cf);
+		
+		
+		int result1 = new MemberDao().joinMember(conn, m);
+		int result2 = new MemberDao().JoinCoInfo(conn, email ,cf);
 	
-		if (result > 0) {
+		if (result1 > 0 && result2 >0) {
 			commit(conn);
 		} else {
 			rollback(conn);
@@ -116,7 +119,7 @@ public class MemberService {
 
 		close(conn);
 
-		return result;
+		return result2;
 
 	}
 

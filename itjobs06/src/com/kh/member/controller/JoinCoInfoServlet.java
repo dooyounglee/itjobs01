@@ -17,6 +17,7 @@ import com.kh.common.MyFileRenamePolicy;
 import com.kh.member.model.dao.MemberDao;
 import com.kh.member.model.service.MemberService;
 import com.kh.member.model.vo.Co_Info;
+import com.kh.member.model.vo.Member;
 import com.oreilly.servlet.MultipartRequest;
 
 /**
@@ -80,8 +81,15 @@ public class JoinCoInfoServlet extends HttpServlet {
 				changeName[1]=multiRequest.getFilesystemName("file2");
 			}
 		
+//			------------- 기업 1차정보-----------------
+		String pw = multiRequest.getParameter("pw");
+		String nickName = multiRequest.getParameter("nickName");
+		String type = multiRequest.getParameter("type");
 			
-		
+			
+			
+	
+//		  	  -------------기업 상세정보  --------------------
 		String email = multiRequest.getParameter("email");
 		String regnum = multiRequest.getParameter("regnum");
 		String file = changeName[0];
@@ -127,8 +135,16 @@ public class JoinCoInfoServlet extends HttpServlet {
 		cf.setLogofile(changeName[1]);
 		cf.setLogopath(savePath);
 		
+		Member m=new Member();
+		m.setType(type);
+		m.setEmail(email);
+		m.setPw(pw);
+		m.setNickname(nickName);
 		
-		int result = new MemberService().JoinCoInfo(cf,email);
+		
+		
+		
+		int result = new MemberService().JoinCoInfo(cf,email,m);
 		
 		
 		
@@ -136,7 +152,9 @@ public class JoinCoInfoServlet extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.setAttribute("alert", "회원가입을 환영합니다. 승인절차는 1~2일정도 소요되며 결과는 문자,이메일로 발송해 드립니다.");
 			
-			request.setAttribute("cf",cf);
+			
+			
+				/* request.setAttribute("cf",cf); */
 			response.sendRedirect(request.getContextPath());
 		}else {
 			

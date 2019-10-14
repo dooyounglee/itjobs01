@@ -88,7 +88,10 @@
 		</h3>
 		<form class="login-form" action="<%=request.getContextPath() %>/coinfo.me" method="post" autocomplete=off enctype="multipart/form-data" onsubmit="return validate();">
 		
-		<input type="hidden"value=2 name="type" readonly>
+		<!---------------------- 1차 기업정보 ------------------------->
+		<input type="hidden" value=<%=m.getPw()%> name="pw">
+		<input type="hidden" value=<%=m.getNickname()%> name="nickName">		
+		<input type="hidden"value=<%=m.getType()%> name="type">
 		<input type="hidden" value="<%=m.getEmail()%>" name="email" id="eamil">
 		
 		

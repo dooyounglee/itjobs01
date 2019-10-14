@@ -184,7 +184,7 @@
            		window.open("<%=contextPath %>/insertForm.de?bId=<%=b.getB_no()%>&title=<%=b.getTitle()%>&boardNick=<%=b.getNickname()%>&head=<%=b.getHead()%>", "ITJOBS_게시글 신고", "width=500, height=600, toolbar=no, menubar=no, scrollbars=no, resizable=no"); 
             <%} else if(mem != null && mem.getType().equals("0")){%>
             	alert("관리자는 신고 불가!");
-            <%} else{%>
+            <%} else if(mem == null){%>
             	alert("로그인해주세요");
             <%}%>
          });
@@ -265,7 +265,10 @@
 						var date = $("<span>").text(value.update_date).css("width","200px");
 						
 						<%-- if(<%=mem.getM_no()%> == value.m_no){ --%>
-						var m_no=<%=mem.getM_no()%>;
+						var m_no=0; 
+						<%if(mem!= null){%>
+						 m_no=<%=mem.getM_no()%>;
+						<%}%>
 						var deleteRe=$("<span>");
 						<%-- <%	if(mem!=null){ %>
 						//var deleteRe= $("<span>").text("삭제");

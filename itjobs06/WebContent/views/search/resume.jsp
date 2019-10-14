@@ -156,7 +156,7 @@ ArrayList<String> likeResList = (ArrayList<String>)request.getAttribute("likeRes
 								<div class="manager-name">
 									<h4>
 										<a href="#">
-											<%	if(mem!=null && mem.getType().equals("2")){ %>
+											<%	if(mem!=null && (mem.getType().equals("2") || mem.getM_no()==n.getM_no())){ %>
 												<%=n.getName() %>
 											<%	}else{ %>
 												<%=n.getName().substring(0,1)+"**" %>
@@ -164,7 +164,7 @@ ArrayList<String> likeResList = (ArrayList<String>)request.getAttribute("likeRes
 										</a>
 									</h4>
 									<h5>
-										<%	if(mem!=null && mem.getType().equals("2")){ %>
+										<%	if(mem!=null && (mem.getType().equals("2") || mem.getM_no()==n.getM_no())){ %>
 												학과: <%=n.getDepartment() %>
 										<%	}else{ %>
 											학과: ******
@@ -184,7 +184,7 @@ ArrayList<String> likeResList = (ArrayList<String>)request.getAttribute("likeRes
 										지역: <%=n.getAddress().substring(0,Math.min(7,n.getAddress().length()))+"..." %>
 									</span> <span class="rate"><i
 										class="ti-time"></i>
-											<%	if(mem!=null && mem.getType().equals("2")){ %>
+											<%	if(mem!=null && (mem.getType().equals("2") || mem.getM_no()==n.getM_no())){ %>
 												희망연봉: <%=n.getHope_salary() %>
 										<%	}else{ %>
 											희망연봉: ******
@@ -226,8 +226,13 @@ ArrayList<String> likeResList = (ArrayList<String>)request.getAttribute("likeRes
 									<%} %>
 									<%	if(n.getCareer().equals("N")){ %>
 									<a class="btn btn-common btn-xs" style="padding: 6px 16px; font-size: 12px;">신입</a>
-									<%	}else{ %>
-									<a class="btn btn-common btn-xs" style="padding: 6px 16px; font-size: 12px;">경력 <%=n.getCareer_year() %>년</a>
+									<%	}else{ 
+											String[] arr_year_string="1,2".split(",");//n.getCareer_year().split(",");
+											int career_year=0;
+											for(int i=0;i<arr_year_string.length;i++){
+												career_year+=Integer.parseInt(arr_year_string[i]);
+											}%>
+									<a class="btn btn-common btn-xs" style="padding: 6px 16px; font-size: 12px;">경력 <%=career_year %>년</a>
 									<%	} %>
 								</div>
 							</div>
@@ -253,10 +258,6 @@ ArrayList<String> likeResList = (ArrayList<String>)request.getAttribute("likeRes
 							class="lni-angle-right"></i></a></li>
 					<%	} %>
 				</ul>
-				
-				<div class="col-12 text-center mt-4">
-					<a href="job-page.html" class="btn btn-common">Browse All Jobs</a>
-				</div>
 			</div>
 		</div>
 	</div>

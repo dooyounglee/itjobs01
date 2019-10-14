@@ -1,3 +1,4 @@
+<%@page import="java.util.Enumeration"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="com.kh.board.model.vo.*, java.util.ArrayList"%>
@@ -5,6 +6,22 @@
 	Board b = (Board)request.getAttribute("b");
 	PageInfo pi = (PageInfo)request.getAttribute("pi");  
 	ArrayList<Board> list = (ArrayList<Board>)request.getAttribute("list");
+
+
+	  Enumeration param = request.getParameterNames();
+	   String strParam = "";
+	   while(param.hasMoreElements()) {
+	       String name = (String)param.nextElement();
+	       String value = request.getParameter(name);
+	       strParam += name + "=" + value + "&";
+	   }
+	   String URL = request.getRequestURL() + "?" + strParam;
+	
+	   boolean boo = URL.contains("searchList.bo");
+	   
+	String sessionSelect = (String)session.getAttribute("sessionSelect");
+	String sessionSearch =  (String)session.getAttribute("sessionSearch");
+	String sessionHead =  (String)session.getAttribute("sessionHead");
 
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -148,27 +165,40 @@
 	<br>
 	
 	
-	<ul class="pagination" >
-	<% if(pi.getCurrentPage() == 1) {%>
-	<li class="active"><a href="#" onclick="return false;"><i class="ti-angle-left"></i> prev</a></li>
-	<%}else{ %>
-	<li class="active"><a href="<%=contextPath%>/list.bo?head=<%=head%>&currentPage=<%=pi.getCurrentPage()-1%>" class="btn btn-common"><i class="ti-angle-left"></i> prev</a></li>
-	<%} %>
-	
-	<%for(int i=pi.getStartPage(); i<=pi.getEndPage(); i++){%>
-	<%if(i == pi.getCurrentPage()){%>
-	<li><a href="#" onclick="return false;"><%=i %></a></li>
-	<%}else{ %>
-	<li><a href="<%=contextPath%>/list.bo?head=<%=head%>&currentPage=<%=i%>"><%=i %></a></li>
-	<%} %>
-	<%} %>
-	
-	<% if(pi.getCurrentPage() == pi.getMaxPage()){ %>
-	<li class="active"><a href="#" onclick="return false;">Next<i class="ti-angle-right"></i></a></li>
-	<%}else{ %>
-	<li class="active"><a href="<%=contextPath%>/list.bo?head=<%=head%>&currentPage=<%=pi.getCurrentPage()+1%>" class="btn btn-common">Next <i class="ti-angle-right"></i></a></li>
-	<%} %>
-	</ul>
+	   <ul class="pagination" >
+   <% if(pi.getCurrentPage() == 1) {%>
+   <li class="active"><a href="#" onclick="return false;"><i class="ti-angle-left"></i> prev</a></li>
+   <%}else{ %>
+      <%if(URL.contains("search")){ %>
+      <li class="active"><a href="<%=contextPath%>/searchList.bo?head=<%=sessionHead%>&select=<%=sessionSelect%>&search=<%=sessionSearch%>currentPage=<%=pi.getCurrentPage()-1%>" class="btn btn-common"><i class="ti-angle-left"></i> prev</a></li>
+      <%}else{ %>
+      <li class="active"><a href="<%=contextPath%>/list.bo?head=<%=head%>&currentPage=<%=pi.getCurrentPage()-1%>" class="btn btn-common"><i class="ti-angle-left"></i> prev</a></li>
+      <%} %>
+   <%} %>
+   
+   <%for(int i=pi.getStartPage(); i<=pi.getEndPage(); i++){%>
+   <%if(i == pi.getCurrentPage()){%>
+   <li><a href="#" onclick="return false;"><%=i %></a></li>
+   <%}else{ %>
+      <%if(URL.contains("search")){ %>
+      <li><a href="<%=contextPath%>/searchList.bo?head=<%=sessionHead%>&select=<%=sessionSelect%>&search=<%=sessionSearch%>&currentPage=<%=i%>"><%=i %></a></li>
+      <%}else{ %>
+      <li><a href="<%=contextPath%>/list.bo?head=<%=head%>&currentPage=<%=i%>"><%=i %></a></li>
+      <%} %>
+   <%} %>
+   <%} %>
+   
+   <% if(pi.getCurrentPage() == pi.getMaxPage()){ %>
+   <li class="active"><a href="#" onclick="return false;">Next<i class="ti-angle-right"></i></a></li>
+   <%}else{ %>
+      <%if(URL.contains("search")){ %>
+      <li class="active"><a href="<%=contextPath%>/searchList.bo?head=<%=sessionHead%>&select=<%=sessionSelect%>&search=<%=sessionSearch%>&currentPage=<%=pi.getCurrentPage()+1%>" class="btn btn-common">Next <i class="ti-angle-right"></i></a></li>
+      <%}else{ %>
+      <li class="active"><a href="<%=contextPath%>/list.bo?head=<%=head%>&currentPage=<%=pi.getCurrentPage()+1%>" class="btn btn-common">Next <i class="ti-angle-right"></i></a></li>
+      <%} %>
+   <%} %>
+   </ul>
+   
 	
 	
 	</div>

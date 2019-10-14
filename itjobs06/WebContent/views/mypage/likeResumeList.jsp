@@ -44,7 +44,7 @@
 				<!-- right  -->
 				<div class="col-lg-8 col-md-6 col-xs-12">
 					<div class="job-alerts-item bookmarked">
-						<h3 class="alerts-title">좋아요 한 공고</h3>
+						<h3 class="alerts-title">좋아요 한 인재</h3>
 <%	ArrayList<Resume>  list=(ArrayList<Resume>)request.getAttribute("list");
 	for(Resume n:list){%>
 						<a class="job-listings" href="job-details.html">

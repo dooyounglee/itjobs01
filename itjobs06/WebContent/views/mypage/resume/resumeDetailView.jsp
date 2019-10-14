@@ -65,12 +65,13 @@
 						<p><%= re.getTitle()%></p>
 						<hr>
 						<div class="author-resume">
+<%	if(mem!=null && (mem.getType().equals("2") || mem.getM_no()==re.getM_no())){ %>
 							<div class="thumb">
 								<img src="<%=request.getContextPath() %>/resources/fileupload_resumeImg/<%=re.getPhoto() %>" alt="">
 							</div>
 							<div class="author-info">
 								<h3><%=re.getName() %></h3>
-								<p class="sub-title">UI/UX Designer</p>
+								<!-- <p class="sub-title">UI/UX Designer</p> -->
 								<p>생년월일 : <%= re.getBirth_date()%></p>
 								<p>이메일 : <%= re.getEmail() %><br></p>
 								<p>
@@ -84,7 +85,26 @@
 									<a href="#" class="linkedin"><i class="lni-linkedin-fill"></i></a>
 								</div> -->
 							</div>
+<%	}else{ %>
+							<div class="author-info">
+								<h3>****</h3>
+								<!-- <p class="sub-title">UI/UX Designer</p> -->
+								<p>생년월일 : ****</p>
+								<p>이메일 : ****<br></p>
+								<p>
+									<span class="address"><i class="lni-map-marker"></i> ****</span><br>
+									<span><i class="lni-phone"></i> ****</span>
+								</p>
+								<!-- <div class="social-link">
+									<a href="#" class="Twitter"><i class="lni-twitter-filled"></i></a>
+									<a href="#" class="facebook"><i class="lni-facebook-filled"></i></a>
+									<a href="#" class="google"><i class="lni-google-plus"></i></a>
+									<a href="#" class="linkedin"><i class="lni-linkedin-fill"></i></a>
+								</div> -->
+							</div>
+<%	} %>
 						</div>
+<%	if(mem!=null && (mem.getType().equals("2") || mem.getM_no()==re.getM_no())){ %>
 						<div class="work-experence item">
 							<h3>언어</h3>
 							<%	String[] languages=re.getP_language().split(",");
@@ -116,11 +136,13 @@
 									String[] st_work_date=work_date[0].split(",");
 									String[] ed_work_date=work_date[1].split(",");
 									String[] work=re.getWork().split(",");
+									String[] career_year=re.getCareer_year().split(",");
 									
 									for(int i=0;i<work_place.length;i++){%>
-							<h4><%=work_place[i]%></h4>
-							<p><%=work[i]%></p>
-							<span class="date"><%=st_work_date[i]%>~<%=ed_work_date[i]%></span> <br>
+							<h4>일한곳: <%=work_place[i]%></h4>
+							<p>한일: <%=work[i]%></p>
+							<span class="date">일한 날짜: <%=st_work_date[i]%>~<%=ed_work_date[i]%></span> <br>
+							<p>경력: <%=career_year[i] %></p>
 							<%		}
 								}%>
 						</div>
@@ -148,6 +170,11 @@
 							<h3>희망연봉</h3>
 							<p><%= re.getHope_salary()%></p>
 						</div>
+<%	}else{ %>
+						<div class="other item">
+							<h3>기업로그인 하면 전체 조회 가능합니다.</h3>
+						</div>
+<%	} %>
 					</div>
 				</div>
 				<!-- End of right -->

@@ -181,7 +181,7 @@ ArrayList<String> likeResList = (ArrayList<String>)request.getAttribute("likeRes
 										<%	}else{ %>
 												<%=arr_address_middle[0] %>
 										<%	} %> --%>
-										지역: <%=n.getAddress().substring(0,7)+"..." %>
+										지역: <%=n.getAddress().substring(0,Math.min(7,n.getAddress().length()))+"..." %>
 									</span> <span class="rate"><i
 										class="ti-time"></i>
 											<%	if(mem!=null && mem.getType().equals("2")){ %>

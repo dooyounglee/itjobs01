@@ -236,4 +236,62 @@ public class MainDao {
 		}
 		return list;
 	}
+
+	public int visit(Connection conn) {
+		int result=0;
+		PreparedStatement ps=null;
+		
+		String sql="insert into visit values(sysdate)";
+		try {
+			ps=conn.prepareStatement(sql);
+			result=ps.executeUpdate(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(ps);
+		}
+		return result;
+	}
+
+	public int getTotal(Connection conn) {
+		int result=0;
+		PreparedStatement ps=null;
+		ResultSet rs=null;
+		
+		String sql="select count(*) from visit";
+		try {
+			ps=conn.prepareStatement(sql);
+			rs=ps.executeQuery(sql);
+			if(rs.next()) {
+				result=rs.getInt(1);
+				System.out.println(result);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+		}
+		return result;
+	}
+
+	public int getToday(Connection conn) {
+		int result=0;
+		PreparedStatement ps=null;
+		ResultSet rs=null;
+		
+		String sql="SELECT count(*) FROM visit WHERE to_char(vdate,'yyyy-mm-dd')=to_char(SYSDATE,'yyyy-mm-dd')";	
+		try {
+			ps=conn.prepareStatement(sql);
+			rs=ps.executeQuery(sql);
+			if(rs.next()) {
+				result=rs.getInt(1);
+				System.out.println(result);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+		}
+		return result;
+	}
 }

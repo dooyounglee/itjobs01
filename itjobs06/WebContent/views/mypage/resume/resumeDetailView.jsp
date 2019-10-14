@@ -1,3 +1,5 @@
+<%@page import="com.kh.notification.model.vo.Notification"%>
+<%@page import="com.kh.volunteer.model.vo.Volunteer"%>
 <%@page import="com.kh.resume.model.vo.Resume"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -50,9 +52,17 @@
 				<!-- right  -->
 				<div class="col-lg-8 col-md-12 col-xs-12">
 					<div class="inner-box my-resume">
-					<%	if(mem!=null && mem.getM_no()==re.getM_no()){ %>
+					<%	Volunteer v=(Volunteer)request.getAttribute("v");
+						Notification n=(Notification)request.getAttribute("n");
+						if(mem!=null && mem.getM_no()==re.getM_no()){ %>
 					<button class="btn btn-common" onclick="location.href='<%=request.getContextPath()%>/update.re?resume_no=<%=re.getResume_no()%>'">수정하기</button>
+					<%	}else if(mem!=null && mem.getType().equals("2") && mem.getM_no()==n.getCo_no() && v.getNoti_no()==n.getNoti_no()){ %>
+					<button class="btn btn-common" onclick="location.href='<%=request.getContextPath()%>/pass.vo?v_no=<%=v.getV_no()%>'">서류합격</button>
+					<button class="btn btn-common" onclick="location.href='<%=request.getContextPath()%>/fail.vo?v_no=<%=v.getV_no()%>'">서류탈락</button>
 					<%	} %>
+						<hr>
+						<h3>이력서 제목</h3>
+						<p><%= re.getTitle()%></p>
 						<hr>
 						<div class="author-resume">
 							<div class="thumb">
@@ -64,7 +74,7 @@
 								<p>생년월일 : <%= re.getBirth_date()%></p>
 								<p>이메일 : <%= re.getEmail() %><br></p>
 								<p>
-									<span class="address"><i class="lni-map-marker"></i> <%=re.getAddress() %></span><br>
+									<span class="address"><i class="lni-map-marker"></i> <%=re.getAddress().split("\\+")[1] %></span><br>
 									<span><i class="lni-phone"></i> <%=re.getPhone() %></span>
 								</p>
 								<!-- <div class="social-link">
@@ -116,12 +126,16 @@
 						</div>
 						<div class="work-experence item">
 							<h3>자격증</h3>
-							<%	String[] certifications=re.getCertification().split(",");
-								String[] cer_dates=re.getCer_date().split(",");
+							<%	if(re.getCertification()!=null && re.getCer_date()!=null){
+									String[] certifications=re.getCertification().split(",");
+									String[] cer_dates=re.getCer_date().split(",");
 								
-								for(int i=0;i<certifications.length;i++){%>
+									for(int i=0;i<certifications.length;i++){%>
 							<h4><%= certifications[i]%></h4>
 							<span class="date"><%= cer_dates[i]%></span> <br>
+							<%		}
+								}else{%>
+								N<br>
 							<%	} %>
 						</div>
 						<div class="education item">
@@ -131,8 +145,6 @@
 						<div class="other item">
 							<h3>공개비공개</h3>
 							<p><%= re.getOpen()%></p>
-							<h3>이력서 제목</h3>
-							<p><%= re.getTitle()%></p>
 							<h3>희망연봉</h3>
 							<p><%= re.getHope_salary()%></p>
 						</div>

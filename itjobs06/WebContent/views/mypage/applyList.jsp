@@ -47,7 +47,7 @@
 						<h3 class="alerts-title">나의 지원 리스트</h3>
 <%	ArrayList<Volunteer> list=(ArrayList<Volunteer>)request.getAttribute("list");
 	for(Volunteer v:list){%>
-						<a class="job-listings" href="job-details.html">
+						<a class="job-listings" href="<%=request.getContextPath()%>/get.no?noti_no=<%=v.getNoti_no()%>">
 							<div class="row">
 								<div class="col-lg-4 col-md-12 col-xs-12">
 									<div class="job-company-logo">

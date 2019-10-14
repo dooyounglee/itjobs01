@@ -52,4 +52,29 @@ public class MainService {
 		return list;
 	}
 
+	public void visit() {
+		Connection conn=getConnection();
+		int result=new MainDao().visit(conn);
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+	}
+	
+	public int getTotal() {
+		Connection conn=getConnection();
+		int result=new MainDao().getTotal(conn);
+		close(conn);
+		return result;
+	}
+	
+	public int getToday() {
+		Connection conn=getConnection();
+		int result=new MainDao().getToday(conn);
+		close(conn);
+		return result;
+	}
+
 }

@@ -28,8 +28,8 @@
 				</button>
 				<a href="<%=request.getContextPath() %>" class="navbar-brand"><img
 					src="resources/images/logo12.png"
-					style="width: 80px; height: 32px;" alt=""></a>
-				<a style="color:black;">현재접속자수: <span id=userCounting></span>명</a>
+					style="width: 135px; height: 45px;" alt=""></a>
+				<a style="color:black;">현재접속자수: <span id=userCounting>1</span>명</a>
 			</div>
 <script type="text/javascript">
  	var webSocket = new WebSocket('ws://<%=request.getServerName()%>:<%=request.getServerPort()%>/itjobs/userCounting');
@@ -60,6 +60,7 @@
 </script>
 			<div class="collapse navbar-collapse" id="main-navbar">
 				<ul class="navbar-nav mr-auto w-100 justify-content-end">
+					<li class="nav-item"><a class="nav-link"><%=session.getAttribute("todayVisitCount") %>/<%=session.getAttribute("totalVisitCount") %></a></li>
 					<%	if(mem!=null){ %>
 					<li class="nav-item"><a class="nav-link"> ${mem.nickname }님 안녕하세요.</a></li>
 					<%	} %>
@@ -103,8 +104,6 @@
 							<li><a class="dropdown-item"
 								href="<%=request.getContextPath()%>/list.re">이력서관리</a></li>
 							<li><a class="dropdown-item" href="mylist.qu">나의문의
-									</a></li>
-							<li><a class="dropdown-item" href="job-alerts.html">지원하기
 									</a></li>
 						</ul></li>
 					<%	}else if(mem!=null && mem.getType().equals("2")){ %>

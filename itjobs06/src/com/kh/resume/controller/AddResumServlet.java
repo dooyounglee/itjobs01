@@ -91,11 +91,13 @@ public class AddResumServlet extends HttpServlet {
 				work_date = String.join(",",multiRequest.getParameterValues("workDate1"))+"~"+String.join(",",multiRequest.getParameterValues("workDate2"));
 			}
 			
+			String cerYN=multiRequest.getParameter("cerYN");
 			String certification ="";
-			certification = String.join(",", multiRequest.getParameterValues("cer_name"));
-			
 			String cer_date="";
-			cer_date = String.join(",", multiRequest.getParameterValues("cer_date"));
+			if(cerYN.equals("Y")) {
+				certification = String.join(",", multiRequest.getParameterValues("cer_name"));
+				cer_date = String.join(",", multiRequest.getParameterValues("cer_date"));
+			}
 			
 			String title = multiRequest.getParameter("title");
 			String cover_letter= multiRequest.getParameter("self");

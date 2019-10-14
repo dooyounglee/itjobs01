@@ -86,4 +86,28 @@ public class VolunteerService {
 		return result;
 	}
 
+	public int passResume(int v_no) {
+		Connection conn=getConnection();
+		int result=new VolunteerDao().passResume(conn,v_no);
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+
+	public int failResume(int v_no) {
+		Connection conn=getConnection();
+		int result=new VolunteerDao().failResume(conn,v_no);
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+
 }

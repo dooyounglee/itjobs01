@@ -8,6 +8,7 @@
 						<div class="footer-logo">
 							<img src="assets/img/logo-footer.png" alt="">
 						</div>
+						<h1 class="block-title">IT JOBS</h1>
 						<div class="textwidget">
 							<p>Sed consequat sapien faus quam bibendum convallis quis in
 								nulla. Pellentesque volutpat odio eget diam cursus semper.</p>
@@ -16,7 +17,8 @@
 				</div>
 				<div class="col-lg-6 col-md-4 col-xs-12">
 					<div class="widget">
-						<h3 class="block-title">Quick Links</h3>
+						
+						<h5 class="block-title">CHANG JJOCK</h5>
 						<ul class="menu">
 							<li><a href="#">About Us</a></li>
 							<li><a href="#">Support</a></li>
@@ -70,8 +72,9 @@
 				<div class="col-md-12">
 					<div class="site-info text-center">
 						<p>
-							Designed and Developed by <a href="https://uideck.com"
-								rel="nofollow">UIdeck</a>
+							
+							By itjobs chang jjock.
+							
 						</p>
 					</div>
 				</div>

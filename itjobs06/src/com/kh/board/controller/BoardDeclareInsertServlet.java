@@ -31,6 +31,7 @@ public class BoardDeclareInsertServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
 		int bId = Integer.parseInt(request.getParameter("bId"));
 		String content = request.getParameter("declare_content");
 		String head= request.getParameter("head");

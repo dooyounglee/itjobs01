@@ -626,7 +626,7 @@ public class BoardDao {
 		return result;
 	}
 	
-	public ArrayList<Board> esearchBoard(Connection conn, String head, String select, String search){
+	public ArrayList<Board> esearchBoard(Connection conn, String head, String select, String search, PageInfo pi){
 		ArrayList<Board> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -646,6 +646,8 @@ public class BoardDao {
 			String search1 = "%"+search+"%";
 			pstmt.setString(1, search1);
 			pstmt.setString(2, head);
+			pstmt.setInt(3, pi.getStartRow());
+			pstmt.setInt(4, pi.getEndRow());
 			
 			
 			rset = pstmt.executeQuery();
@@ -676,7 +678,7 @@ public class BoardDao {
 	}
 	
 	
-	public ArrayList<Board> msearchBoard(Connection conn, String select, String search){
+	public ArrayList<Board> msearchBoard(Connection conn, String select, String search, PageInfo pi){
 		ArrayList<Board> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -695,7 +697,8 @@ public class BoardDao {
 			
 			String search1 = "%"+search+"%";
 			pstmt.setString(1, search1);
-			
+			pstmt.setInt(2, pi.getStartRow());
+			pstmt.setInt(3, pi.getEndRow());
 			
 			rset = pstmt.executeQuery();
 			
@@ -724,5 +727,82 @@ public class BoardDao {
 		return list;
 	}
 	
+	
+	public int getMainSearchListCount(Connection conn, String search, String select) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = null;
+		
+		if(select.equals("title")) {
+			sql = prop.getProperty("msearchTitleCount");
+		}else if(select.equals("contents")) {
+			sql = prop.getProperty("msearchContentsCount");
+		}else if(select.equals("nickname")) {
+			sql = prop.getProperty("msearchNicknameCount");
+		}
+		
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			String search1 = "%"+search+"%";
+			
+			pstmt.setString(1, search1);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				result = rset.getInt("count");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	
+	
+	
+	public int getEtcSearchListCount(Connection conn, String head, String search, String select) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = null;
+		
+		if(select.equals("title")) {
+			sql = prop.getProperty("eserarchTitleCount");
+		}else if(select.equals("contents")) {
+			sql = prop.getProperty("eserarchContentsCount");
+		}else if(select.equals("nickname")) {
+			sql = prop.getProperty("eserarchNicknameCount");
+		}
+		
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			String search1 = "%"+search+"%";
+			
+			pstmt.setString(1, search1);
+			pstmt.setString(2, head);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				result = rset.getInt("count");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return result;
+	}
 	
 }

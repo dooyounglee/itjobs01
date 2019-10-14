@@ -112,8 +112,6 @@ nhn.husky.EZCreator.createInIFrame({
 								<span class="material-input"></span>
 							</div>
 <script>
-var oEditors = [];
-	
 nhn.husky.EZCreator.createInIFrame({
  	 oAppRef: oEditors,
  	 elPlaceHolder: document.getElementById('comment2'),
@@ -130,11 +128,17 @@ nhn.husky.EZCreator.createInIFrame({
 								<input type="radio" name="open" value="Y" checked>공개
 								<input type="radio" name="open" value="N" >비공개
 							</div>
-							<button id="submit" class="btn btn-common">Save Change</button>
+							<button onclick="write_ok()" class="btn btn-common">Save Change</button>
 						</form>
 					</div>
 				</div>
 				<!-- End of right -->
+<script>
+	function write_ok(){
+		oEditors.getById["comment1"].exec("UPDATE_CONTENTS_FIELD", []);
+		oEditors.getById["comment2"].exec("UPDATE_CONTENTS_FIELD", []);
+	}
+</script>
 				
 			</div>
 			<!-- End of row -->

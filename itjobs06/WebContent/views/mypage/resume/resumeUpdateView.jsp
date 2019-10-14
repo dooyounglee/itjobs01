@@ -10,6 +10,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <title>이력서 작성하기</title>
+<script type="text/javascript" src='<%=request.getContextPath()%>/resources/naver-smarteditor2-ca95d21/demo/js/service/HuskyEZCreator.js' charset="utf-8"></script>
 
 <!-- import jobx -->
 <%@ include file="/views/include/user/style.jsp" %>
@@ -183,20 +184,19 @@
 								}else{
 									checked_career[0]="checked";
 								}%>
-							<div class="form-group">
-								<input type="radio" name="career" value="N" <%=checked_career[0] %>>신입
-								<input type="radio" name="career" value="Y" <%=checked_career[1] %>>경력
-							</div>
-								
 							<%	if(re.getCareer().equals("Y")){
+								//if(re.getWork()!=null && re.getWork_place()!=null && re.getWork_date()!=null){
 									String[] work_place=re.getWork_place().split(",");
 									String[] work_date=re.getWork_date().split("~");
 									String[] st_work_date=work_date[0].split(",");
 									String[] ed_work_date=work_date[1].split(",");
 									String[] work=re.getWork().split(",");%>
-									
+							<div class="form-group">
+								<input type="radio" id="career_off" name="career" value="N" <%=checked_career[0] %>>신입
+								<input type="radio" id="career_on" name="career" value="Y" <%=checked_career[1] %>>경력
+							</div>
 							<div id="careerList">
-							<%	for(int i=0;i<work_place.length;i++){%>
+							<%		for(int i=0;i<work_place.length;i++){%>
 								<div class="form-group">
 									<label class="control-label">회사이름</label> <input
 										type="text" class="form-control" name="companyName" placeholder="Company name" value="<%=work_place[i]%>">
@@ -222,21 +222,48 @@
 									<label class="control-label">경력년수</label>
 									<input type="text" class="form-control" name="career_year" placeholder="e.g 2020" value="<%=re.getCareer_year()%>">
 								</div>
+							</div>
+							<%	}else{ %>
+							<div class="form-group">
+								<input type="radio" id="career_off" name="career" value="N" checked>신입
+								<input type="radio" id="career_on" name="career" value="Y">경력
+							</div>
+							<div id="careerList" style="display:none;">
+								<div class="form-group">
+									<label class="control-label">회사이름</label> <input
+										type="text" class="form-control" name="companyName" placeholder="Company name" value="1">
+								</div>
+								<div class="form-group">
+									<label class="control-label">한일</label> <input type="text"
+										class="form-control" name="workList" placeholder="e.g UI/UX Researcher" value="1">
+								</div>
+								<div class="form-group">
+									<div class="row">
+										<div class="col-md-4">
+											<label class="control-label">Date From</label> <input
+												type="date" class="form-control" name="workDate1" placeholder="e.g 2014" value="1">
+										</div>
+										<div class="col-md-4">
+											<label class="control-label">Date To</label> <input
+												type="date" class="form-control" name="workDate2" placeholder="e.g 2020" value="1">
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label">경력년수</label>
+									<input type="text" class="form-control" name="career_year" placeholder="e.g 2020" value="1">
+								</div>
+							</div>
 							<%	} %>
-							
-							<div class="add-post-btn">
+							<div id="btn_add_career" class="add-post-btn" style="display:none;">
 								<div class="float-left">
-									<a href="#" class="btn-added" onclick="return add_career()"><i class="ti-plus"></i> Add
-										New Experience</a>
+									<a href="#" class="btn-added" onclick="return add_career()"><i class="ti-plus"></i>추가</a>
 								</div>
 								<div class="float-right">
-									<a href="#" class="btn-delete" onclick="return del_career()"><i class="ti-trash"></i>
-										Delete This</a>
+									<a href="#" class="btn-delete" onclick="return del_career()"><i class="ti-trash"></i>삭제</a>
 								</div>
 							</div>
 <script>
-	$('#careerList').hide();
-	$('#btn_add_career').hide();
 	$('#career_off').click(function(){
 		$('#careerList').hide();
 		$('#btn_add_career').hide();
@@ -267,25 +294,54 @@
 							<div class="divider">
 								<h3>자격증</h3>
 							</div>
-							<%	String[] certifications=re.getCertification().split(",");
-								String[] cer_dates=re.getCer_date().split(",");%>
-							<div id="cer_form-group" class="form-group">
-							<%	for(int i=0;i<certifications.length;i++){%>
-								<div id="cer_row" class="row">
-									<div class="col-md-6">
-										<label class="control-label">자격증</label> <input
-											class="form-control" name="cer_name" placeholder="Skill name, e.g. HTML"
-											type="text" value="<%= certifications[i]%>">
-									</div>
-									<div class="col-md-6">
-										<label class="control-label">날짜</label> <input
-											class="form-control" name="cer_date" placeholder="Skill proficiency, e.g. 90"
-											type="date" value="<%= cer_dates[i]%>">
+							<%	if(re.getCertification()!=null && re.getCer_date()!=null){
+									String[] certifications=re.getCertification().split(",");System.out.println(certifications.length);System.out.println(certifications[0]);
+									String[] cer_dates=re.getCer_date().split(",");System.out.println(cer_dates[0]);%>
+							<div class="form-group">
+								<input type="radio" id="cer_off" name="cerYN" value="N">없음
+								<input type="radio" id="cer_on" name="cerYN" value="Y" checked>있음
+							</div>
+							<div id="cerList">
+							<%		for(int i=0;i<certifications.length;i++){%>
+								<div class="form-group" style>
+									<div class="row">
+										<div class="col-md-6">
+											<label class="control-label">자격증</label> <input
+												class="form-control" name="cer_name" placeholder="Skill name, e.g. HTML"
+												type="text" value="<%= certifications[i]%>">
+										</div>
+										<div class="col-md-6">
+											<label class="control-label">날짜</label> <input
+												class="form-control" name="cer_date" placeholder="Skill proficiency, e.g. 90"
+												type="date" value="<%= cer_dates[i]%>">
+										</div>
 									</div>
 								</div>
-							<%	} %>
 							</div>
-							<div class="add-post-btn">
+							<%		}
+								}else{%>
+							<div class="form-group">
+								<input type="radio" id="cer_off" name="cerYN" value="N" checked>없음
+								<input type="radio" id="cer_on" name="cerYN" value="Y" >있음
+							</div>
+							<div id="cerList" style="display:none;">
+								<div class="form-group">
+									<div class="row">
+										<div class="col-md-6">
+											<label class="control-label">자격증</label> <input
+												class="form-control" name="cer_name" placeholder="Skill name, e.g. HTML"
+												type="text" value="1">
+										</div>
+										<div class="col-md-6">
+											<label class="control-label">날짜</label> <input
+												class="form-control" name="cer_date" placeholder="Skill proficiency, e.g. 90"
+												type="date" value="2019-01-01">
+										</div>
+									</div>
+								</div>
+							</div>							
+							<%	} %>
+							<div class="add-post-btn" style="display:none;">
 								<div class="float-left">
 									<a href="#" class="btn-added" onclick="return add_cer()"><i class="ti-plus"></i>추가</a>
 								</div>
@@ -294,6 +350,14 @@
 								</div>
 							</div>
 <script>
+	$('#cer_off').click(function(){
+		$('#cerList').hide();
+		$('#btn_add_cer').hide();
+	})
+	$('#cer_on').click(function(){
+		$('#cerList').show();
+		$('#btn_add_cer').show();
+	})
 	function add_cer(){
 		var one_cer=$('#cerList').children('div').eq(0).clone();
 		one_cer.find('input').val("")
@@ -392,10 +456,30 @@
 							</div>
 							<div class="form-group">
 								<label class="control-label">자소서</label>
-								<textarea class="form-control" name="self" rows="5" id="자소서"><%=re.getCover_letter()%></textarea>
+								<textarea class="form-control" id="comment" name="self" rows="5"><%=re.getCover_letter()%></textarea>
 							</div>
-							<input type="submit" class="btn btn-common" value="작성완료">
+<script>
+var oEditors = [];
+	
+nhn.husky.EZCreator.createInIFrame({
+ 	 oAppRef: oEditors,
+ 	 elPlaceHolder: document.getElementById('comment'),
+  	 sSkinURI: "<%=contextPath%>/resources/naver-smarteditor2-ca95d21/demo/SmartEditor2Skin.html",  
+     fCreator: "createSEditor2",
+     htParams:{
+    	 bUseToolbar:false, // 툴바 사용여부
+    	 bUseVerticalResizer:false, // 크기조절바 사용여부
+    	 bUseModeChanger : false,	// 모드 탭(Editor | HTML | TEXT) 사용 여부
+     }
+});
+</script>
+							<input type="submit" onclick="edit_ok()" class="btn btn-common" value="작성완료">
 						</form>
+<script>
+	function edit_ok(){
+		oEditors.getById["comment"].exec("UPDATE_CONTENTS_FIELD", []);
+	}
+</script>
 					</div>
 					</div>
 				</div>
@@ -548,7 +632,7 @@
 	<input type="submit" value="작성완료">
 </form> --%>
 
-<script>
+<!-- <script>
 
 function setDisplay(){
     if($('input:radio[id=high]').is(':checked')){
@@ -582,7 +666,7 @@ function setDisplay(){
 			alert("경력"+lastDate+"년차입니다.");
 		}
 	}
-</script>
+</script> -->
 
 <!-- footer -->
 		<%@ include file="/views/include/user/footer.jsp" %>

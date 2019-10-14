@@ -251,4 +251,31 @@ private Properties prop = new Properties();
 		return result;
 	}
 
+	public ArrayList<Volunteer> getListWithoutPage(Connection conn, int noti_no) {
+		ArrayList<Volunteer> list=new ArrayList<>();
+		PreparedStatement ps=null;
+		ResultSet rs=null;
+		
+		String sql=prop.getProperty("getListWithoutPage");
+		try {
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, noti_no);
+			rs=ps.executeQuery();
+			while(rs.next()) {
+				Volunteer v=new Volunteer(
+						rs.getInt("v_no"),
+						rs.getInt("noti_no"),
+						rs.getInt("resume_no"),
+						rs.getDate("v_Date")+" "+rs.getTime("v_Date"),
+						rs.getString("status"));
+				v.setP_language(rs.getString("p_language"));
+				//v.setSum(rs.getInt("sum"));
+				list.add(v);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
 }

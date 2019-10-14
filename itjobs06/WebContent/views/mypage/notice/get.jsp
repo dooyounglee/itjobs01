@@ -130,17 +130,22 @@
 						<%	}else if(mem!=null && mem.getType().equals("1")){
 								ArrayList<Resume> rlist=(ArrayList<Resume>)request.getAttribute("rlist");
 								if(rlist!=null){%>
+						<div class="search-category-container">
 							<form action="apply.vo" method="post">
 								<input type=hidden name="noti_no" value="<%=noti.getNoti_no() %>">
-								<select name="resume_no" id="resume_no" onchange="test(this)">
-									<% for(Resume r:rlist){%>
-									<option value="<%=r.getResume_no()%>"><%=r.getTitle() %></option>
-									<%	} %>
-								</select>
+								<label class="styled-select">
+									<select name="resume_no" id="resume_no" onchange="test(this)">
+										<option value="0">지원할 이력서를 선택해주세요.</option>d
+										<% for(Resume r:rlist){%>
+										<option value="<%=r.getResume_no()%>"><%=r.getTitle() %></option>
+										<%	} %>
+									</select>
+								</label>
 								<a href="#" onclick="apply(<%=noti.getNoti_no() %>)" class="btn btn-common">지원하기</a>
 								<div id="info"></div>
 								<div id="info1"></div>
 							</form>
+						</div>
 						<%		}else{%>
 								<h3>이미 지원한 공고입니다.</h3>
 							<%	} %>
@@ -162,7 +167,7 @@
 			for(i=0;i<arr_re.length;i++){
 				for(j=0;j<arr_noti.length;j++){
 					if(arr_re[i]==arr_noti[j]){
-						score++;
+						score+=10;
 						break;
 					}
 				}
@@ -172,6 +177,7 @@
 		
 		function test(val){
 			var resume_no=val.value;
+			if(resume_no==0)return;
 
 			//내점수
 			$.ajax({
@@ -182,15 +188,13 @@
 				},
 				dataType:'json',
 				success:function(result){
-					//내점수
-					//result=resume객체
+					//내점수//result=resume객체
 					console.log("내점수성공")
 					$('#info').html("내 점수는"+score(result.p_language,noti_lan))
 				},
 			})
 
 			//총지원자 평균
-			
 			$.ajax({
 				url:'getAvg.re.ajax',
 				type:'post',
@@ -201,10 +205,13 @@
 				success:function(result){
 					console.log("avg성공")
 					console.log(result)
-					var count=result[0].sum
+					var count=result.length
+					console.log("count="+count)
 					var sum=0;
+					console.log("공고"+noti_lan)
 					for(k=0;k<result.length;k++){
 						sum+=score(result[k].p_language,noti_lan)
+						console.log(result[k].p_language)
 					}
 					$('#info1').html("/지원자평균 "+(sum/count))
 				},

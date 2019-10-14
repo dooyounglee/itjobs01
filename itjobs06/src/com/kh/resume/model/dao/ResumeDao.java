@@ -169,7 +169,7 @@ public class ResumeDao {
 							   rset.getString("P_LANGUAGE"),
 							   rset.getString("HOPE_SALARY"),
 							   rset.getInt("M_NO"),
-							   rset.getInt("CAREER_YEAR"),
+							   rset.getString("CAREER_YEAR"),
 							   rset.getString("SCHOOL_FINAL")
 							   );
 				}
@@ -273,7 +273,7 @@ public class ResumeDao {
 								   rset.getString("P_LANGUAGE"),
 								   rset.getString("HOPE_SALARY"),
 								   rset.getInt("M_NO"),
-								   rset.getInt("CAREER_YEAR"),
+								   rset.getString("CAREER_YEAR"),
 								   rset.getString("SCHOOL_FINAL")
 								   
 								   ));
@@ -333,7 +333,7 @@ public class ResumeDao {
 						   rset.getString("P_LANGUAGE"),
 						   rset.getString("HOPE_SALARY"),
 						   rset.getInt("M_NO"),
-						   rset.getInt("CAREER_YEAR"),
+						   rset.getString("CAREER_YEAR"),
 						   rset.getString("SCHOOL_FINAL")
 						   );
 			}
@@ -417,7 +417,7 @@ public class ResumeDao {
 								   rset.getString("P_LANGUAGE"),
 								   rset.getString("HOPE_SALARY"),
 								   rset.getInt("M_NO"),
-								   rset.getInt("CAREER_YEAR"),
+								   rset.getString("CAREER_YEAR"),
 								   rset.getString("SCHOOL_FINAL")
 								   
 								   ));

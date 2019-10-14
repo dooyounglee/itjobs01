@@ -247,11 +247,11 @@
 											<label class="control-label">Date To</label> <input
 												type="date" class="form-control" name="workDate2" placeholder="e.g 2020" value="1">
 										</div>
+										<div class="col-md-4">
+											<label class="control-label">경력년수</label>
+											<input type="text" class="form-control" name="career_year" placeholder="2" value="1">
+										</div>
 									</div>
-								</div>
-								<div class="form-group">
-									<label class="control-label">경력년수</label>
-									<input type="text" class="form-control" name="career_year" placeholder="e.g 2020" value="1">
 								</div>
 							</div>
 							<%	} %>

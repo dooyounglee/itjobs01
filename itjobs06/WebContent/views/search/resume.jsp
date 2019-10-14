@@ -226,8 +226,13 @@ ArrayList<String> likeResList = (ArrayList<String>)request.getAttribute("likeRes
 									<%} %>
 									<%	if(n.getCareer().equals("N")){ %>
 									<a class="btn btn-common btn-xs" style="padding: 6px 16px; font-size: 12px;">신입</a>
-									<%	}else{ %>
-									<a class="btn btn-common btn-xs" style="padding: 6px 16px; font-size: 12px;">경력 <%=n.getCareer_year() %>년</a>
+									<%	}else{ 
+											String[] arr_year_string="1,2".split(",");//n.getCareer_year().split(",");
+											int career_year=0;
+											for(int i=0;i<arr_year_string.length;i++){
+												career_year+=Integer.parseInt(arr_year_string[i]);
+											}%>
+									<a class="btn btn-common btn-xs" style="padding: 6px 16px; font-size: 12px;">경력 <%=career_year %>년</a>
 									<%	} %>
 								</div>
 							</div>
@@ -253,10 +258,6 @@ ArrayList<String> likeResList = (ArrayList<String>)request.getAttribute("likeRes
 							class="lni-angle-right"></i></a></li>
 					<%	} %>
 				</ul>
-				
-				<div class="col-12 text-center mt-4">
-					<a href="job-page.html" class="btn btn-common">Browse All Jobs</a>
-				</div>
 			</div>
 		</div>
 	</div>

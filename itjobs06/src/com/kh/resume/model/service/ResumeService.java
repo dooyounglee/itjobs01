@@ -68,7 +68,7 @@ public int insertResum(Resume re){
 		Connection conn = getConnection();
 		
 		int listCount = new ResumeDao().getListCount(conn,mno);
-		
+		System.out.println(listCount);
 		close(conn);
 		
 		return listCount;

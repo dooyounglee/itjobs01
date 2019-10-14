@@ -116,8 +116,8 @@ public class ResumeDao {
 			pstmt.setString(19, re.getOpen());
 			pstmt.setString(20, re.getP_language());
 			pstmt.setString(21, re.getHope_salary());
-			pstmt.setInt(23, re.getM_no());
-			pstmt.setString(22, re.getCareer_year());
+			pstmt.setInt(22, re.getM_no());
+			pstmt.setString(23, re.getCareer_year());
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -206,7 +206,8 @@ public class BoardDao {
 								rset.getString("editfile"),
 								rset.getString("path"),
 								rset.getInt("down_count"),
-								rset.getInt("reply_count"));	
+								rset.getInt("reply_count"),
+								rset.getString("video"));	
 			}
 			
 	
@@ -361,7 +362,7 @@ public class BoardDao {
 			pstmt.setString(6, b.getTime());
 			pstmt.setString(7, b.getEditFile());
 			pstmt.setString(8, b.getPath());
-			
+			pstmt.setString(9, b.getVideo());
 			result = pstmt.executeUpdate();
 			
 			

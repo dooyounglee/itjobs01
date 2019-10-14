@@ -47,7 +47,7 @@
 						<h3 class="alerts-title">나의 지원 리스트</h3>
 <%	ArrayList<Volunteer> list=(ArrayList<Volunteer>)request.getAttribute("list");
 	for(Volunteer v:list){%>
-						<a class="job-listings" href="job-details.html">
+						<a class="job-listings" style="color:#00bcd4">
 							<div class="row">
 								<div class="col-lg-4 col-md-12 col-xs-12">
 									<div class="job-company-logo">
@@ -65,7 +65,7 @@
 									<span class="btn-full-time"><%=v.getStatus() %></span>
 								</div>
 								<div class="col-lg-2 col-md-12 col-xs-12 text-right">
-									<span class="btn-apply" onclick="return del(<%=v.getV_no()%>);">삭제</span>
+									<span class="btn-apply" style="cursor:pointer" onclick="return del(<%=v.getV_no()%>);">삭제</span>
 								</div>
 							</div>
 						</a>

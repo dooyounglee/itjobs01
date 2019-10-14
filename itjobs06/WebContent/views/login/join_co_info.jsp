@@ -10,7 +10,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
+<script type="text/javascript" src='<%=request.getContextPath()%>/resources/naver-smarteditor2-ca95d21/demo/js/service/HuskyEZCreator.js' charset="utf-8"></script>
 <style>
 	h3,#regnum,#filediv,#formDiv{
 		margin:0px;
@@ -104,10 +104,9 @@
 		</div>
 		
 		<div class="btn btn-common log-btn mt-3" id="filediv" name="fileInsert">
-		사업자등록파일 첨부
+		<label id="ttt">사업자등록파일 첨부</label>
 		<input type="file" id="file" name="file1"  required>
 		</div>  
-		 <input type="text" id="check" value="선택된 파일이 없습니다." style="color:red;" readonly> 
 		
 		<div class="btn btn-common log-btn mt-3" id="filediv" >
 		로고 첨부
@@ -124,7 +123,7 @@
 		
 		<input type="text" id="sample3_postcode" name="sample3_postcode" class="adr" placeholder="우편번호*" required style="width:100px;">
 		<input type="text" id="sample3_address" name="sample3_address" class="adr" placeholder="주소*" required style="width:275px;">
-		<input type="text" id="sample3_detailAddress" name="sample3_detailAddress" class="adr" placeholder="상세주소" style="width:379px;">
+		<input type="text" id="sample3_detailAddress" name="sample3_detailAddress" class="adr" required placeholder="상세주소" style="width:379px;">
 		<input type="hidden" id="sample3_extraAddress" placeholder="참고항목">
 	
 		<div id="wrap" style="display:none;border:1px solid;width:500px;height:300px;margin:5px 0;position:relative">
@@ -178,22 +177,24 @@
 		<input type="text" class="form-control" id="memsum" name="memsum" placeholder="사원수*" required> <!-- 우선 필수로 받자 오류는 다음에  -->
 		</div>
 		</div>
-		<div class="form-group">
+		<div class="form-group"style="margin-bottom: 0px;">
 		<div class="input-icon">
 		<i class="lni-lock"></i>
 		<input type="text" class="form-control" name="revenue" placeholder="매출액*" required> <!-- 이놈도 필수로 받자   -->
 		</div>
 		</div>
-		<div class="form-group">
+		<div class="form-group"style="margin-bottom: 0px;">
 		<div class="input-icon">
 		<i class="lni-lock" style="margin-top: 10%;"></i>
-		<textarea class="form-control" rows="5" id="history" name="history" placeholder="연혁"></textarea>
+		<label class="control-label" style="margin-left: 45%;">연혁</label>
+		<textarea class="form-control" rows="5" id="history" name="history" ></textarea>
 		</div>
 		</div>
 		<div class="form-group">
 		<div class="input-icon">
 		<i class="lni-lock"></i>
-		<input type="text" class="form-control" name="welfair" placeholder="복지">
+		<label class="control-label" style="margin-left: 45%;">복지</label>
+		<input type="text" class="form-control" id="welfair" name="welfair" >
 		</div>
 		</div>
 		<input type="submit" class="btn btn-common log-btn mt-3" value="가입신청"  >
@@ -207,7 +208,7 @@
 		
 		<script>
 		/* 사업자등록파일  */
-		/* $(function(){
+		 $(function(){
 				
 			var fileInsert = $(document.getElementsByName("fileInsert"));
 			
@@ -216,13 +217,13 @@
 			var file = $("#file").val();
 
 				if(file != null || file != ""){
-					fileInsert.html(file).attr('style','color:green');
+					$("#ttt").html(file).attr('style','color:green');
 				}
 				if(file == null || file ==""){
 					$("#check").attr('value','선택된 파일이 없습니다.').attr('style','color:red');
 				}
 			})
-		}) */
+		}) 
 		
 		/* 사업자등록파일 */
 		$(function(){
@@ -239,8 +240,41 @@
 				})
 			})
 				
+		var oEditors = [];
+	
+		nhn.husky.EZCreator.createInIFrame({
+	 	 oAppRef: oEditors,
+ 		 elPlaceHolder: document.getElementById('history'),
+  		 sSkinURI: "<%=contextPath%>/resources/naver-smarteditor2-ca95d21/demo/SmartEditor2Skin.html",  
+    	 fCreator: "createSEditor2",
+    	 htParams:{
+    	 bUseToolbar:true, // 툴바 사용여부
+    	 bUseVerticalResizer:false, // 크기조절바 사용여부
+    	 bUseModeChanger : false,	// 모드 탭(Editor | HTML | TEXT) 사용 여부
+    	 }
+	});
 		
 		
+		nhn.husky.EZCreator.createInIFrame({
+	 	 oAppRef: oEditors,
+ 		 elPlaceHolder: document.getElementById('welfair'),
+  		 sSkinURI: "<%=contextPath%>/resources/naver-smarteditor2-ca95d21/demo/SmartEditor2Skin.html",  
+    	 fCreator: "createSEditor2",
+    	 htParams:{
+    	 bUseToolbar:true , // 툴바 사용여부
+    	 bUseVerticalResizer:false, // 크기조절바 사용여부
+    	 bUseModeChanger : false,	// 모드 탭(Editor | HTML | TEXT) 사용 여부
+    	 }
+	});
+			
+			
+			
+
+		
+		function write_ok(){
+			oEditors.getById["history"].exec("UPDATE_CONTENTS_FIELD", []);
+			oEditors.getById["welfair"].exec("UPDATE_CONTENTS_FIELD", []);
+		}
 		
 		</script>
 		

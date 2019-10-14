@@ -44,7 +44,7 @@ public class sendEmail  {
 
 				// 받는 사람 이메일주소 세팅
 				InternetAddress[] toAddr = new InternetAddress[1];
-				toAddr[0] = new InternetAddress (email);
+				toAddr[0] = new InternetAddress (email); // 보낼 사람의 이메일
 				
 
 				mimeMessage.setRecipients(Message.RecipientType.TO, toAddr ); //수신자 셋팅

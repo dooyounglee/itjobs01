@@ -197,7 +197,7 @@
 		<input type="text" class="form-control" id="welfair" name="welfair" >
 		</div>
 		</div>
-		<input type="submit" class="btn btn-common log-btn mt-3" value="가입신청"  >
+		<input type="submit" class="btn btn-common log-btn mt-3" value="가입신청"  onclick="write_ok()">
 		<p class="text-center">Already have an account?<a href="login.html"> Sign In</a></p>
 		</form>
 		</div>
@@ -272,6 +272,7 @@
 
 		
 		function write_ok(){
+			confirm("회");
 			oEditors.getById["history"].exec("UPDATE_CONTENTS_FIELD", []);
 			oEditors.getById["welfair"].exec("UPDATE_CONTENTS_FIELD", []);
 		}

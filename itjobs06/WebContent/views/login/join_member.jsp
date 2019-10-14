@@ -53,7 +53,7 @@
 		<div class="form-group" id="checkDiv">
 		<div class="input-icon">
 		<i class="lni-user"></i>
-		<input type="text" class="form-control" id="nickName" name="nickName" placeholder="닉네임(특수문자불가능)" onkeyup="nickOverlapCheck()"  required>
+		<input type="text" class="form-control" id="nickName" name="nickName" placeholder="닉네임(8자리이상,특수문자불가능)" onkeyup="nickOverlapCheck()"  required>
 		<div id="nickCheck" class = "checkDiv2"></div>
 		</div>
 		</div>
@@ -100,7 +100,7 @@
 			
 			var nickDiv = $(document.getElementById("nickCheck"));
 			
-			var regExp = /^[가-힣a-zA-Z][가-힣a-zA-Z0-9]{1,}$/;
+			var regExp = /^[가-힣a-zA-Z][가-힣a-zA-Z0-9]{7,}$/;
 			$.ajax({
 					url:"<%=request.getContextPath() %>/nickoverlap.me",
 					data:{nickName:nickName},
@@ -218,41 +218,6 @@
 		
 <%@ include file="/views/include/user/footer.jsp" %>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<form action="<%=request.getContextPath() %>/join.me" method="post" autocomplete=off>
-<input value=1 name=type readonly><br>
-이메일:<input name="email" class="email"> 
-<input type="button" value="인증번호 받기" class="cerBtn"><br>
-<!-- 인증번호 : <input type="text" placeholder="인증번호를 입력해주세요"><br> -->
-비번:<input name=pw><br>
-비번확인:<input name=pw1><br>
-닉네임:<input name=nickname><br>
-<button>회원가입</button>
-</form>
-<%@ include file="/views/include/footer.jsp" %>
 
 <!-- 회원가입 이메일인증 ajax  -->
 

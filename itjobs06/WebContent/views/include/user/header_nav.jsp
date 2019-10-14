@@ -28,7 +28,7 @@
 				</button>
 				<a href="<%=request.getContextPath() %>" class="navbar-brand"><img
 					src="resources/images/logo12.png"
-					style="width: 80px; height: 32px;" alt=""></a>
+					style="width: 135px; height: 45px;" alt=""></a>
 				<a style="color:black;">현재접속자수: <span id=userCounting>1</span>명</a>
 			</div>
 <script type="text/javascript">
@@ -104,8 +104,6 @@
 							<li><a class="dropdown-item"
 								href="<%=request.getContextPath()%>/list.re">이력서관리</a></li>
 							<li><a class="dropdown-item" href="mylist.qu">나의문의
-									</a></li>
-							<li><a class="dropdown-item" href="job-alerts.html">지원하기
 									</a></li>
 						</ul></li>
 					<%	}else if(mem!=null && mem.getType().equals("2")){ %>

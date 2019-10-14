@@ -134,7 +134,7 @@
 							<div class="col-lg-6 col-md-6 col-xs-12 text-right">
 								<div class="tag-type">
 									<!-- 	<sapn class="heart-icon"> <i class="lni-heart"></i> </sapn> -->
-									<span class="full-time">~<%=n.getEnd_date()%></span>
+									<span class="full-time">~<%=n.getEnd_date().substring(0,10)%></span>
 								</div>
 							</div>
 						</div>
@@ -174,7 +174,7 @@
 										<div class="col-lg-6 col-md-6 col-xs-12 text-right">
 											<div class="tag-type">
 												<!-- 	<sapn class="heart-icon"> <i class="lni-heart"></i> </sapn> -->
-												<span class="full-time">~<%=ne.getEnd_date()%></span>
+												<span class="full-time">~<%=ne.getEnd_date().substring(0,10)%></span>
 											</div>
 										</div>
 									</div>
@@ -205,7 +205,7 @@
 											<div class="col-lg-2 col-md-2 col-xs-12">
 												<p>글번호</p>
 											</div>
-											<div class="col-lg-2 col-md-2 col-xs-12" >
+											<div class="col-lg-3 col-md-2 col-xs-12" >
 												<p>제목</p>
 											</div>
 											<div class="col-lg-2 col-md-2 col-xs-12">
@@ -230,7 +230,7 @@
 											<div class="col-lg-2 col-md-2 col-xs-12">
 												<p><%=no.getB_no() %></p>
 											</div>
-											<div class="col-lg-2 col-md-2 col-xs-12" >
+											<div class="col-lg-3 col-md-2 col-xs-12" >
 												<a href="detail.bo?head=공지사항&bId=<%=no.getB_no()%>"><%=no.getTitle() %></a>
 											</div>
 											<div class="col-lg-2 col-md-2 col-xs-12">
@@ -274,7 +274,7 @@
 											<div class="col-lg-2 col-md-2 col-xs-12">
 												<p>글번호</p>
 											</div>
-											<div class="col-lg-2 col-md-2 col-xs-12">
+											<div class="col-lg-3 col-md-2 col-xs-12">
 												<p>제목</p>
 											</div>
 											<div class="col-lg-2 col-md-2 col-xs-12">
@@ -299,7 +299,7 @@
 											<div class="col-lg-2 col-md-2 col-xs-12">
 												<p><%=s.getB_no() %></p>
 											</div>
-											<div class="col-lg-2 col-md-2 col-xs-12">
+											<div class="col-lg-3 col-md-2 col-xs-12">
 												<a href="detail.bo?head=자유&bId=<%=s.getB_no()%>"><%= s.getTitle()%></a>
 											</div>
 											<div class="col-lg-2 col-md-2 col-xs-12">
@@ -342,7 +342,7 @@
 											<div class="col-lg-2 col-md-2 col-xs-12">
 												<p>글번호</p>
 											</div>
-											<div class="col-lg-2 col-md-2 col-xs-12">
+											<div class="col-lg-3 col-md-2 col-xs-12">
 												<p>제목</p>
 											</div>
 											<div class="col-lg-2 col-md-2 col-xs-12">
@@ -367,7 +367,7 @@
 											<div class="col-lg-2 col-md-2 col-xs-12">
 												<p><%=p.getB_no() %></p>
 											</div>
-											<div class="col-lg-2 col-md-2 col-xs-12">
+											<div class="col-lg-3 col-md-2 col-xs-12">
 												<a href="detail.bo?head=프로젝트&bId=<%=p.getB_no()%>"><%= p.getTitle()%></a>
 											</div>
 											<div class="col-lg-2 col-md-2 col-xs-12">
@@ -410,7 +410,7 @@
 											<div class="col-lg-2 col-md-2 col-xs-12">
 												<p>글번호</p>
 											</div>
-											<div class="col-lg-2 col-md-2 col-xs-12">
+											<div class="col-lg-3 col-md-2 col-xs-12">
 												<p>제목</p>
 											</div>
 											<div class="col-lg-2 col-md-2 col-xs-12">
@@ -435,7 +435,7 @@
 											<div class="col-lg-2 col-md-2 col-xs-12">
 												<p><%=s.getB_no() %></p>
 											</div>
-											<div class="col-lg-2 col-md-2 col-xs-12">
+											<div class="col-lg-3 col-md-2 col-xs-12">
 												<a href="detail.bo?head=스터디&bId=<%=s.getB_no()%>"><%= s.getTitle()%></a>
 											</div>
 											<div class="col-lg-2 col-md-2 col-xs-12">

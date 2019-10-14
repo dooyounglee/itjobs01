@@ -130,22 +130,28 @@
 						<%	}else if(mem!=null && mem.getType().equals("1")){
 								ArrayList<Resume> rlist=(ArrayList<Resume>)request.getAttribute("rlist");
 								if(rlist!=null){%>
-						<div class="search-category-container">
-							<form action="apply.vo" method="post">
-								<input type=hidden name="noti_no" value="<%=noti.getNoti_no() %>">
-								<label class="styled-select">
-									<select name="resume_no" id="resume_no" onchange="test(this)">
-										<option value="0">지원할 이력서를 선택해주세요.</option>d
-										<% for(Resume r:rlist){%>
-										<option value="<%=r.getResume_no()%>"><%=r.getTitle() %></option>
-										<%	} %>
-									</select>
-								</label>
-								<a href="#" onclick="apply(<%=noti.getNoti_no() %>)" class="btn btn-common">지원하기</a>
-								<div id="info"></div>
-								<div id="info1"></div>
-							</form>
-						</div>
+								<form action="apply.vo" method="post">
+									<input type=hidden name="noti_no" value="<%=noti.getNoti_no() %>">
+									<div class="row">
+									<div class="col-md-6">
+										<label class="styled-select">내 이력서
+											<select name="resume_no" id="resume_no" onchange="test(this)">
+												<option value="0">지원할 이력서를 선택해주세요.</option>d
+												<% for(Resume r:rlist){%>
+												<option value="<%=r.getResume_no()%>"><%=r.getTitle() %></option>
+												<%	} %>
+											</select>
+										</label>
+									</div>
+									<div class="col-md-4">
+										<label class="control-label">내 점수 / 지원자 평균</label>
+										<input type="text" class="form-control" id="score" readonly>
+									</div>
+									</div>
+									<a href="#" onclick="apply(<%=noti.getNoti_no() %>)" class="btn btn-common">지원하기</a>
+									<div id="info"></div>
+									<div id="info1"></div>
+								</form>
 						<%		}else{%>
 								<h3>이미 지원한 공고입니다.</h3>
 							<%	} %>
@@ -158,6 +164,7 @@
 	<script>
 		var noti_no=<%=noti.getNoti_no()%>;
 		var noti_lan="<%=noti.getP_language()%>";
+		var str;
 		
 		function score(resume_lan,noti_lan){
 			var arr_re=resume_lan.split(",");
@@ -190,7 +197,7 @@
 				success:function(result){
 					//내점수//result=resume객체
 					console.log("내점수성공")
-					$('#info').html("내 점수는"+score(result.p_language,noti_lan))
+					str=score(result.p_language,noti_lan)
 				},
 			})
 
@@ -204,16 +211,13 @@
 				dataType:'json',
 				success:function(result){
 					console.log("avg성공")
-					console.log(result)
 					var count=result.length
-					console.log("count="+count)
 					var sum=0;
-					console.log("공고"+noti_lan)
 					for(k=0;k<result.length;k++){
 						sum+=score(result[k].p_language,noti_lan)
-						console.log(result[k].p_language)
 					}
-					$('#info1').html("/지원자평균 "+(sum/count))
+					str+=" / "+(sum/count)
+					$('#score').val(str)
 				},
 			})
 		}

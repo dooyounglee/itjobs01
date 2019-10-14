@@ -156,7 +156,7 @@ ArrayList<String> likeResList = (ArrayList<String>)request.getAttribute("likeRes
 								<div class="manager-name">
 									<h4>
 										<a href="#">
-											<%	if(mem!=null && mem.getType().equals("2")){ %>
+											<%	if(mem!=null && (mem.getType().equals("2") || mem.getM_no()==n.getM_no())){ %>
 												<%=n.getName() %>
 											<%	}else{ %>
 												<%=n.getName().substring(0,1)+"**" %>
@@ -164,7 +164,7 @@ ArrayList<String> likeResList = (ArrayList<String>)request.getAttribute("likeRes
 										</a>
 									</h4>
 									<h5>
-										<%	if(mem!=null && mem.getType().equals("2")){ %>
+										<%	if(mem!=null && (mem.getType().equals("2") || mem.getM_no()==n.getM_no())){ %>
 												학과: <%=n.getDepartment() %>
 										<%	}else{ %>
 											학과: ******
@@ -184,7 +184,7 @@ ArrayList<String> likeResList = (ArrayList<String>)request.getAttribute("likeRes
 										지역: <%=n.getAddress().substring(0,Math.min(7,n.getAddress().length()))+"..." %>
 									</span> <span class="rate"><i
 										class="ti-time"></i>
-											<%	if(mem!=null && mem.getType().equals("2")){ %>
+											<%	if(mem!=null && (mem.getType().equals("2") || mem.getM_no()==n.getM_no())){ %>
 												희망연봉: <%=n.getHope_salary() %>
 										<%	}else{ %>
 											희망연봉: ******

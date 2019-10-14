@@ -53,14 +53,14 @@
 		<div class="form-group" id="checkDiv">
 		<div class="input-icon">
 		<i class="lni-user"></i>
-		<input type="text" class="form-control" id="nickName" name="nickName" placeholder="닉네임(8자리이상,특수문자불가능)" onkeyup="nickOverlapCheck()"  required>
+		<input type="text" class="form-control" id="nickName" name="nickName" placeholder="닉네임(8자리이하  ,특수문자불가능)" oninput="nickOverlapCheck()" maxlength="7" required>
 		<div id="nickCheck" class = "checkDiv2"></div>
 		</div>
 		</div>
 		<div class="form-group" id="checkDiv">
 		<div class="input-icon">
 		<i class="lni-envelope"></i>
-		<input type="text" class="form-control" id="email" name="email" placeholder="이메일" onkeyup="emailOverlapCheck()" required>
+		<input type="text" class="form-control" id="email" name="email" placeholder="이메일" oninput="emailOverlapCheck()" required>
 		<div id="emailCheck" class = "checkDiv2"></div>
 		</div>
 		</div>
@@ -73,7 +73,7 @@
 		<div class="form-group">
 		<div class="input-icon">
 		<i class="lni-unlock"></i>
-		<input type="password" class="form-control" name="pw1" placeholder="비밀번호 확인" onkeyup="pwdOverlapCheck()" required>
+		<input type="password" class="form-control" name="pw1" placeholder="비밀번호 확인" oninput="pwdOverlapCheck()" required>
 		<div id="pwdCheck" class = "checkDiv2"></div>
 		</div>
 		</div>
@@ -100,7 +100,7 @@
 			
 			var nickDiv = $(document.getElementById("nickCheck"));
 			
-			var regExp = /^[가-힣a-zA-Z][가-힣a-zA-Z0-9]{7,}$/;
+			var regExp = /[가-힣a-zA-Z0-9]{0,}$/;
 			$.ajax({
 					url:"<%=request.getContextPath() %>/nickoverlap.me",
 					data:{nickName:nickName},
@@ -113,17 +113,17 @@
 							$("#submit").attr('disabled',true).attr('style','background:gray').attr('value','닉네임을 확인해 주세요');
 							flag1=false;
 							
-						}else{	
-							nickDiv.html('사용가능').attr('style','color:green');
-							flag1 = true;
-							if(!regExp.test(nickName)){
+						}else if(!regExp.test(nickName)){	
 								nickDiv.html('닉네임 양식에 맞지 않습니다').attr('style','color:red');
 								$("#submit").attr('disabled',true).attr('style','background:gray').attr('value','닉네임 양식에 맞지 않습니다');
 								flag1=false;
+							}else{
+								nickDiv.html('사용가능').attr('style','color:green');
+								flag1 = true;
 							}
 						
 						
-						}
+						
 						
 						
 						

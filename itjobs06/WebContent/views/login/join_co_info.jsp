@@ -272,7 +272,7 @@
 
 		
 		function write_ok(){
-			confirm("회");
+			confirm("회원가입을 진행 하시겠습니까?");
 			oEditors.getById["history"].exec("UPDATE_CONTENTS_FIELD", []);
 			oEditors.getById["welfair"].exec("UPDATE_CONTENTS_FIELD", []);
 		}

@@ -108,20 +108,22 @@ public class MainDao {
 			rs=ps.executeQuery();
 			while(rs.next()) {
 				list.add(new Board(
-						rs.getInt(1),
-						rs.getInt(2),
-						rs.getString(3),
-						rs.getString(4),
-						rs.getString(5),
-						rs.getDate(6)+" "+rs.getTime(6),
-						rs.getDate(7)+" "+rs.getTime(7),
-						rs.getString(8),
-						rs.getString(9),
-						rs.getInt(10),
-						rs.getString(11),
-						rs.getInt(12),
-						rs.getString(13),
-						rs.getString(14)));
+						rs.getInt("b_no"),
+						rs.getInt("m_no"),
+						rs.getString("nickname"),
+						rs.getString("head"),
+						rs.getString("title"),
+						rs.getString("contents"),
+						rs.getDate("enroll_date")+" "+rs.getTime("enroll_date"),
+						rs.getDate("update_date")+" "+rs.getTime("update_date"),
+						rs.getString("FILE_ORINAME"),
+						rs.getString("time"),
+						rs.getInt("count"),
+						rs.getString("status"),
+						rs.getInt("d_count"),
+						rs.getString("editFile"),
+						rs.getString("path"),
+						rs.getInt("down_count")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -143,20 +145,22 @@ public class MainDao {
 			rs=ps.executeQuery();
 			while(rs.next()) {
 				list.add(new Board(
-						rs.getInt(1),
-						rs.getInt(2),
-						rs.getString(3),
-						rs.getString(4),
-						rs.getString(5),
-						rs.getDate(6)+" "+rs.getTime(6),
-						rs.getDate(7)+" "+rs.getTime(7),
-						rs.getString(8),
-						rs.getString(9),
-						rs.getInt(10),
-						rs.getString(11),
-						rs.getInt(12),
-						rs.getString(13),
-						rs.getString(14)));
+						rs.getInt("b_no"),
+						rs.getInt("m_no"),
+						rs.getString("nickname"),
+						rs.getString("head"),
+						rs.getString("title"),
+						rs.getString("contents"),
+						rs.getDate("enroll_date")+" "+rs.getTime("enroll_date"),
+						rs.getDate("update_date")+" "+rs.getTime("update_date"),
+						rs.getString("FILE_ORINAME"),
+						rs.getString("time"),
+						rs.getInt("count"),
+						rs.getString("status"),
+						rs.getInt("d_count"),
+						rs.getString("editFile"),
+						rs.getString("path"),
+						rs.getInt("down_count")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -178,20 +182,22 @@ public class MainDao {
 			rs=ps.executeQuery();
 			while(rs.next()) {
 				list.add(new Board(
-						rs.getInt(1),
-						rs.getInt(2),
-						rs.getString(3),
-						rs.getString(4),
-						rs.getString(5),
-						rs.getDate(6)+" "+rs.getTime(6),
-						rs.getDate(7)+" "+rs.getTime(7),
-						rs.getString(8),
-						rs.getString(9),
-						rs.getInt(10),
-						rs.getString(11),
-						rs.getInt(12),
-						rs.getString(13),
-						rs.getString(14)));
+						rs.getInt("b_no"),
+						rs.getInt("m_no"),
+						rs.getString("nickname"),
+						rs.getString("head"),
+						rs.getString("title"),
+						rs.getString("contents"),
+						rs.getDate("enroll_date")+" "+rs.getTime("enroll_date"),
+						rs.getDate("update_date")+" "+rs.getTime("update_date"),
+						rs.getString("FILE_ORINAME"),
+						rs.getString("time"),
+						rs.getInt("count"),
+						rs.getString("status"),
+						rs.getInt("d_count"),
+						rs.getString("editFile"),
+						rs.getString("path"),
+						rs.getInt("down_count")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -213,20 +219,22 @@ public class MainDao {
 			rs=ps.executeQuery();
 			while(rs.next()) {
 				list.add(new Board(
-						rs.getInt(1),
-						rs.getInt(2),
-						rs.getString(3),
-						rs.getString(4),
-						rs.getString(5),
-						rs.getDate(6)+" "+rs.getTime(6),
-						rs.getDate(7)+" "+rs.getTime(7),
-						rs.getString(8),
-						rs.getString(9),
-						rs.getInt(10),
-						rs.getString(11),
-						rs.getInt(12),
-						rs.getString(13),
-						rs.getString(14)));
+						rs.getInt("b_no"),
+						rs.getInt("m_no"),
+						rs.getString("nickname"),
+						rs.getString("head"),
+						rs.getString("title"),
+						rs.getString("contents"),
+						rs.getDate("enroll_date")+" "+rs.getTime("enroll_date"),
+						rs.getDate("update_date")+" "+rs.getTime("update_date"),
+						rs.getString("FILE_ORINAME"),
+						rs.getString("time"),
+						rs.getInt("count"),
+						rs.getString("status"),
+						rs.getInt("d_count"),
+						rs.getString("editFile"),
+						rs.getString("path"),
+						rs.getInt("down_count")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

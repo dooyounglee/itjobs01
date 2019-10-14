@@ -70,10 +70,11 @@
 				<td><%=m.getNickname() %></td>
 				<td><%=m.getStatus() %></td>
 				<%	if(m.getStatus().equals("Y")){ %>
-				<td><!-- <button class="vanish">강퇴</button> --><button type="button" class="btn btn-primary btn-sm vanish">강퇴</button></td>
+				<td><button type="button" class="btn btn-primary btn-sm vanish">강퇴</button></td>
 				<%	}else if(m.getStatus().equals("N")){ %>
-				<td><!-- <button class="vanishCancle">강퇴취소</button> -->
-				<button type="button" class="btn btn-primary btn-sm vanishCancle">강퇴취소</button></td>
+				<td><button type="button" class="btn btn-primary btn-sm vanishCancle">강퇴취소</button></td>
+				<%	}else if(m.getStatus().equals("D")){ %>
+				<td><button type="button" class="btn btn-primary btn-sm auth">승인</button></td>
 				<%	} %>
 			</tr>
 			<%	} %>
@@ -122,6 +123,10 @@
 	$(".vanishCancle").on("click",function(){
 		var mno=$(this).parent().parent().children().eq(0).children('input').eq(0).data('mno')
 		location.href="<%=request.getContextPath()%>/vanishCancle.ad?mno="+mno
+	})
+	$(".auth").on("click",function(){
+		var mno=$(this).parent().parent().children().eq(0).children('input').eq(0).data('mno')
+		location.href="<%=request.getContextPath()%>/auth.co.ad?mno="+mno
 	})
 </script>
 <script>

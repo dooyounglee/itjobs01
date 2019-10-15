@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Insert title here1</title>
 
 <!-- import jobx -->
 <%@ include file="/views/include/user/style.jsp" %>
@@ -43,37 +43,7 @@
 						</div>
 						<hr>
 						<div class="widghet">
-							<h3>Share This Job</h3>
-							<div class="share-job">
-								<form method="post" class="subscribe-form">
-									<div class="form-group">
-										<input type="email" name="Email" class="form-control"
-											placeholder="https://joburl.com" required="">
-										<button type="submit" name="subscribe"
-											class="btn btn-common sub-btn">
-											<i class="lni-files"></i>
-										</button>
-										<div class="clearfix"></div>
-									</div>
-								</form>
-								<ul class="mt-4 footer-social">
-									<li><a class="facebook" href="#"><i
-											class="lni-facebook-filled"></i></a></li>
-									<li><a class="twitter" href="#"><i
-											class="lni-twitter-filled"></i></a></li>
-									<li><a class="linkedin" href="#"><i
-											class="lni-linkedin-fill"></i></a></li>
-									<li><a class="google-plus" href="#"><i
-											class="lni-google-plus"></i></a></li>
-								</ul>
-								<div class="meta-tag">
-									<span class="meta-part"><a href="#"><i
-											class="lni-star"></i> Write a Review</a></span> <span class="meta-part"><a
-										href="#"><i class="lni-warning"></i> Reports</a></span> <span
-										class="meta-part"><a href="#"><i class="lni-share"></i>
-											Share</a></span>
-								</div>
-							</div>
+							
 						</div>
 					</div>
 				</div>

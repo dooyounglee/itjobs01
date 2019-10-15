@@ -155,7 +155,7 @@ ArrayList<String> likeResList = (ArrayList<String>)request.getAttribute("likeRes
 							<div class="manager-info">
 								<div class="manager-name">
 									<h4>
-										<a href="#">
+										<a style="color:#00bcd4;">
 											<%	if(mem!=null && (mem.getType().equals("2") || mem.getM_no()==n.getM_no())){ %>
 												<%=n.getName() %>
 											<%	}else{ %>

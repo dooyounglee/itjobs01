@@ -12,14 +12,29 @@
 %>
 <%
 	String alert = (String) session.getAttribute("alert");
+	String pwChange = (String) session.getAttribute("pwChange");
+	String nickChange = (String) session.getAttribute("nickChange");
 %>
 <script>
 	var msg = "<%=alert%>";
 	if (msg != "null") {
 		alert(msg);// 세션에 담긴 메세지 한번만 출력하고 삭제하기
-	}
-</script>
 <%	session.removeAttribute("alert");%>
+	}
+	
+	var pwChange = "<%=pwChange%>"
+	if(pwChange != "null"){
+		alert(pwChange);
+<%	session.removeAttribute("pwChange");%>
+	}
+	
+	var nickChange = "<%=nickChange%>"
+		if(nickChange != "null"){
+			alert(nickChange);
+	<%	session.removeAttribute("nickChange");%>
+		}
+	
+	</script>
 
 
 <nav class="navbar navbar-expand-lg fixed-top scrolling-navbar">

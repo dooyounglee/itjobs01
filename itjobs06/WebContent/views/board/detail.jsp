@@ -78,7 +78,7 @@
         <div class="row justify-content-between">
           <div class="col-lg-12 col-md-12 col-xs-12">
            <%if(mem != null && mem.getM_no() == b.getM_no()) { %>
-          <span class="btn btn-common float-right" onclick="deleteBtn()" >삭제</span>&nbsp;&nbsp;&nbsp;
+          <span class="btn btn-common float-right" onclick="deleteBtn()" style="margin-left: 10px;">삭제</span>&nbsp;&nbsp;&nbsp;
           <span class="btn btn-common float-right" onclick="location.href='<%=contextPath %>/updateForm.bo?bId=<%=b.getB_no()%>';" >수정</span>&nbsp;&nbsp;
           <%}else{ %>
            <span class="btn btn-common float-right" id="deBtn">신고</span>
@@ -143,7 +143,7 @@
    <div class="job-alerts-item">
       <div id="replyWrite" style="height:50px;">
          <span><textarea rows="2" cols="60" id="replyContent" style="resize: none; overflow:auto;"></textarea></span>
-         <span><a class="btn btn-common" id="addReply">등록</a></span>            
+         <span><a class="btn btn-common" id="addReply"style="margin-bottom: 40px;">등록</a></span>            
          </div>
          
             <div id="replySelect">

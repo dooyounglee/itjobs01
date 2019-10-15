@@ -82,10 +82,12 @@
 						<form class="form-ad" action="update.me" method="post" autocomplete=off>
 						<%	} %>
 						<h3 class="alerts-title">정보 변경</h3>
-							<%	String nickname="";
+							<%	String nickname="";System.out.println("dddd");
 								if(mem.getType().equals("2")){
+									System.out.println("dddd2");
 									nickname=mem.getNickname().substring(0,mem.getNickname().indexOf("("));
 								}else if(mem.getType().equals("1")){
+									System.out.println("dddd1");
 									nickname=mem.getNickname();
 								}
 								%>
@@ -192,8 +194,8 @@
 									class="material-input"></span>
 							</div>
 							<div class="form-group is-empty">
-								<label class="control-label">사업내용</label> <input
-									class="form-control" type="text" id="comment1" name="descript" value="<%=co.getDescript()%>"> <span
+								<label class="control-label">사업내용</label> <textarea
+									class="form-control" type="text" id="comment1" name="descript"><%=co.getDescript()%></textarea> <span
 									class="material-input"></span>
 							</div>
 <script>
@@ -227,13 +229,11 @@ nhn.husky.EZCreator.createInIFrame({
 									class="material-input"></span>
 							</div>
 							<div class="form-group is-empty">
-								<label class="control-label">연혁</label> <input
-									class="form-control" type="text" id="comment2" name="history" value="<%=co.getHistory()%>"> <span
+								<label class="control-label">연혁</label> <textarea
+									class="form-control" type="text" id="comment2" name="history"><%=co.getHistory()%></textarea> <span
 									class="material-input"></span>
 							</div>
 <script>
-var oEditors = [];
-	
 nhn.husky.EZCreator.createInIFrame({
  	 oAppRef: oEditors,
  	 elPlaceHolder: document.getElementById('comment2'),
@@ -247,13 +247,11 @@ nhn.husky.EZCreator.createInIFrame({
 });
 </script>
 							<div class="form-group is-empty">
-								<label class="control-label">복지</label> <input
-									class="form-control" type="text" id="comment3" name="welfare" value="<%=co.getWelfare()%>"> <span
+								<label class="control-label">복지</label> <textarea
+									class="form-control" type="text" id="comment3" name="welfare"><%=co.getWelfare()%></textarea> <span
 									class="material-input"></span>
 							</div>
 <script>
-var oEditors = [];
-	
 nhn.husky.EZCreator.createInIFrame({
  	 oAppRef: oEditors,
  	 elPlaceHolder: document.getElementById('comment3'),
@@ -267,11 +265,18 @@ nhn.husky.EZCreator.createInIFrame({
 });
 </script>
 							<%	} %>
-							<button id="submit" class="btn btn-common">Save Change</button>
+							<button id="submit" class="btn btn-common" onclick="write_ok()">Save Change</button>
 						</form>
 					</div>
 				</div>
 				<!-- End of right -->
+<script>
+	function write_ok(){
+		oEditors.getById["comment1"].exec("UPDATE_CONTENTS_FIELD", []);
+		oEditors.getById["comment2"].exec("UPDATE_CONTENTS_FIELD", []);
+		oEditors.getById["comment3"].exec("UPDATE_CONTENTS_FIELD", []);
+	}
+</script>
 				
 			</div>
 			<!-- End of row -->

@@ -37,7 +37,7 @@ public class ResumeAjaxGetAvgServlet extends HttpServlet {
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		int noti_no=Integer.parseInt(request.getParameter("noti_no"));
 		
-		ArrayList<Volunteer> list=new VolunteerService().getList(noti_no);
+		ArrayList<Volunteer> list=new VolunteerService().getListWithoutPage(noti_no);
 		
 		
 		response.setContentType("application/json; charset=UTF-8");

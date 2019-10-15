@@ -46,8 +46,10 @@
 					<div class="job-alerts-item bookmarked">
 						<h3 class="alerts-title">좋아요 한 기업</h3>
 <%	ArrayList<Like> list=(ArrayList<Like>)request.getAttribute("list");
-	System.out.println(list);
-	for(Like m:list){%>
+	if(list==null || list.size()==0){%>
+		좋아요 한 목록이 없어요.
+<%	}else{
+		for(Like m:list){%>
 						<a class="job-listings" href="job-details.html">
 							<div class="row">
 								<div class="col-lg-4 col-md-12 col-xs-12">
@@ -73,7 +75,8 @@
 								</div>
 							</div>
 						</a>
-<%	} %>
+<%		}
+	} %>
 					<%	PageInfo pi=(PageInfo)request.getAttribute("pi");
 						System.out.println(pi);
 						int currentPage=pi.getCurrentPage();%>

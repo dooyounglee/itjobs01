@@ -6,7 +6,11 @@
    Board prev = (Board)request.getAttribute("prev");
    Board next = (Board)request.getAttribute("next");
    
-   String[] videoName = b.getVideo().split("=");
+   String[] videoName = new String[4];
+   
+   if(b .getVideo() != null){
+    	videoName = b.getVideo().split("=");
+   }
 %>
 <!DOCTYPE html>
 <html>

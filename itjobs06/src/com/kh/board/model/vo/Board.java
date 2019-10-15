@@ -12,29 +12,6 @@ public class Board {
 	private String update_date;
 	private String file;
 	private String time; //모집기간
-	
-	public Board(int b_no, int m_no, String nickname, String head, String title, String contents, String enroll_date,
-			String update_date, String file, String time, int count, String status, int d_count, String editFile,
-			String path, int down_count) {
-		super();
-		this.b_no = b_no;
-		this.m_no = m_no;
-		this.nickname = nickname;
-		this.head = head;
-		this.title = title;
-		this.contents = contents;
-		this.enroll_date = enroll_date;
-		this.update_date = update_date;
-		this.file = file;
-		this.time = time;
-		this.count = count;
-		this.status = status;
-		this.d_count = d_count;
-		this.editFile = editFile;
-		this.path = path;
-		this.down_count = down_count;
-	}
-
 	private int count;
 	private String status;
 	private int d_count;
@@ -43,6 +20,7 @@ public class Board {
 	private int down_count;
 	private int reply_count;
 	private String video;
+	
 	
 	public Board() {
 		super();
@@ -70,6 +48,31 @@ public class Board {
 		this.down_count = down_count;
 		this.reply_count = reply_count;
 	}
+	
+	
+	public Board(int b_no, int m_no, String nickname, String head, String title, String contents, String enroll_date,
+			String update_date, String file, String time, int count, String status, int d_count, String editFile,
+			String path, int down_count) {
+		super();
+		this.b_no = b_no;
+		this.m_no = m_no;
+		this.nickname = nickname;
+		this.head = head;
+		this.title = title;
+		this.contents = contents;
+		this.enroll_date = enroll_date;
+		this.update_date = update_date;
+		this.file = file;
+		this.time = time;
+		this.count = count;
+		this.status = status;
+		this.d_count = d_count;
+		this.editFile = editFile;
+		this.path = path;
+		this.down_count = down_count;
+	}
+
+
 	public Board(int b_no, int m_no, String head, String title, String contents, String enroll_date, String update_date,
 			String file, String time, int count, String status, int d_count, String editFile, String path) {
 		super();
@@ -122,7 +125,7 @@ public class Board {
 	}
 	
 	public Board(int b_no, int m_no, String nickname, String head, String title, String contents, String update_date,
-			String editFile, String time, int count) {
+			String editFile, String time, int count, String video) {
 		super();
 		this.b_no = b_no;
 		this.m_no = m_no;
@@ -134,6 +137,7 @@ public class Board {
 		this.editFile = editFile;
 		this.time = time;
 		this.count = count;
+		this.video = video;
 	}
 	
 	

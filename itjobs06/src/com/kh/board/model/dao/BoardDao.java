@@ -106,7 +106,8 @@ public class BoardDao {
 									rset.getString("update_date"),
 									rset.getString("editfile"),
 									rset.getString("time"),
-									rset.getInt("count")));
+									rset.getInt("count"),
+									rset.getString("video")));
 			}
 			
 		} catch (SQLException e) {
@@ -145,7 +146,8 @@ public class BoardDao {
 									rset.getString("update_date"),
 									rset.getString("editfile"),
 									rset.getString("time"),
-									rset.getInt("count")));
+									rset.getInt("count"),
+									rset.getString("video")));
 			}
 			
 		} catch (SQLException e) {

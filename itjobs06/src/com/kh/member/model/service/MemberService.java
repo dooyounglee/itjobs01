@@ -106,18 +106,32 @@ public class MemberService {
 
 		Connection conn = getConnection();
 
-		
+		int result2 = 0;
 		
 		int result1 = new MemberDao().joinMember(conn, m);
-		int result2 = new MemberDao().JoinCoInfo(conn, email ,cf);
-	
-		if (result1 > 0 && result2 >0) {
+		
+		if(result1>0) {
 			commit(conn);
-		} else {
+			
+			 result2 = new MemberDao().JoinCoInfo(conn, email ,cf);
+			
+			if (result2 > 0) {
+				commit(conn);
+				} else {
+				rollback(conn);
+				}
+		
+		}else {
 			rollback(conn);
 		}
-
-		close(conn);
+		
+		/*
+		 * int result2 = new MemberDao().JoinCoInfo(conn, email ,cf);
+		 * 
+		 * if (result1 > 0 && result2 >0) { commit(conn); } else { rollback(conn); }
+		 * 
+		 * close(conn);
+		 */
 
 		return result2;
 

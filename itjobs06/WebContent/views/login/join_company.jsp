@@ -178,6 +178,7 @@
 							
 							}
 						});
+						flag4=true;
 			 		}	
 			 
 			 btnChange();

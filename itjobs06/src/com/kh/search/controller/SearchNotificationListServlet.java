@@ -53,9 +53,8 @@ public class SearchNotificationListServlet extends HttpServlet {
 		
 		
 		request.setAttribute("likeMem", likeMem);
-		}else {
-			request.setAttribute("error", "로그인을 진행해 주세요");
 		}
+		
 		
 		//System.out.println(likeBoList);
 		

@@ -115,7 +115,7 @@ public class MemberService {
 			
 			 result2 = new MemberDao().JoinCoInfo(conn, email ,cf);
 			
-			if (result1 > 0) {
+			if (result2 > 0) {
 				commit(conn);
 				} else {
 				rollback(conn);

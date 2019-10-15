@@ -1,12 +1,18 @@
 <%@page import="com.kh.member.model.vo.Co_Info, com.kh.member.model.vo.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="java.util.ArrayList"%>
+<%
+ArrayList<String> likeCoList = (ArrayList<String>)request.getAttribute("likeCo");
+
+%>
+
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-
 <style>
 
 	.like{
@@ -29,10 +35,14 @@
 
 <!-- import jobx -->
 <%@ include file="/views/include/user/style.jsp" %>
+
 <!-- End of import from jobx -->
 
 </head>
 <body>
+	
+	
+
 
 	<header id="home" class="hero-area">
 	<%@ include file="/views/include/user/header_nav.jsp" %>
@@ -40,20 +50,28 @@
 
 	<!-- page-header -->
 	<%@ include file="/views/include/user/page_header.jsp" %>
+	<%@ include file="/views/include/user/js.jsp" %>
 	<script>
 		var page_header_title='기업정보'
 	</script>
 	<!-- end of page-header -->
 
+
+	<%	if(mem!=null){ %>
+	<input type="hidden" value="<%=mem.getM_no()%>" id="memNo">	
+	<input type="hidden" value="<%=mem.getType()%>" id="memType">	
+	<%	} %>
+
 	<!-- CoInfo -->
 	<%	Member co = (Member) request.getAttribute("co");
 		Co_Info co_info=(Co_Info)request.getAttribute("co_Info");%>
+	<input type="hidden" value="<%=co.getM_no()%>" id="coNo">
+	
 	<section class="category section bg-gray">
 		<div class="container">
 			<div class="section-header">
 				<h2 class="section-title">
 					<%=co.getNickname() %>
-					<span class="like"><img src="./resources/img/like-before.png" class="likeimg"></span>
 				</h2>
 			</div>
 			<div class="row">
@@ -117,37 +135,21 @@
 						</div>
 						<hr>
 						<div class="widghet">
-							<h3>Share This Job</h3>
-							<div class="share-job">
-								<form method="post" class="subscribe-form">
-									<div class="form-group">
-										<input type="email" name="Email" class="form-control"
-											placeholder="https://joburl.com" required="">
-										<button type="submit" name="subscribe"
-											class="btn btn-common sub-btn">
-											<i class="lni-files"></i>
-										</button>
-										<div class="clearfix"></div>
-									</div>
-								</form>
-								<ul class="mt-4 footer-social">
-									<li><a class="facebook" href="#"><i
-											class="lni-facebook-filled"></i></a></li>
-									<li><a class="twitter" href="#"><i
-											class="lni-twitter-filled"></i></a></li>
-									<li><a class="linkedin" href="#"><i
-											class="lni-linkedin-fill"></i></a></li>
-									<li><a class="google-plus" href="#"><i
-											class="lni-google-plus"></i></a></li>
-								</ul>
-								<div class="meta-tag">
-									<span class="meta-part"><a href="#"><i
-											class="lni-star"></i> Write a Review</a></span> <span class="meta-part"><a
-										href="#"><i class="lni-warning"></i> Reports</a></span> <span
-										class="meta-part"><a href="#"><i class="lni-share"></i>
-											Share</a></span>
-								</div>
-							</div>
+								
+							
+								<!-- 좋아요 버튼 -->
+									<%
+										boolean flag = false;  // 좋아요 이미지가 겹치지 않게 하기 위해서
+										if(mem != null){
+									
+										for(int i=0; i<likeCoList.size(); i++){ // 서블릿에서 좋아요한 맴버의 게시글번호를 받아
+											
+											if(Integer.parseInt(likeCoList.get(i)) == co.getM_no()){  // 그 게시글번호와 현재 for문으로 작동하는 게시글번호와 일치하면
+												flag = true;	// 	좋아요한 이미지 보이게									
+												}
+											}
+										}
+									%>
 						</div>
 					</div>
 				</div>
@@ -158,7 +160,7 @@
 
 
 
-<%	co = (Member) request.getAttribute("co");%>
+
 
 <%	if(mem!=null){ %>
 <input type="hidden" value="<%=mem.getM_no()%>" id="memNo">
@@ -233,15 +235,13 @@ geocoder.addressSearch('<%=addresss[1]+" "+addresss[2]%>', function(result, stat
 	$(function(){
 	
 		var memNo = $("#memNo").val();
+		var coNo = $("#coNo").val();	
+		var memType = $("#memType").val();
 		
 		
 		$(".likeimg").click(function(){
 			
-			var coNo =	$(this).parent().prev().val()
-			
-			var likeimg = $(this).parent().children() 
-			
-		
+			if(memNo!=null && memType != 2){ // 회원이 존재하면
 			
 	 			 $.ajax({
 					url:"like.co",
@@ -251,9 +251,9 @@ geocoder.addressSearch('<%=addresss[1]+" "+addresss[2]%>', function(result, stat
 					
 						
 						if(result==0){
-						likeimg.attr('src','./resources/img/like-after.png');							
+						$(".likeimg").attr('src','./resources/img/like-after1.png');							
 						}else{
-						likeimg.attr('src','./resources/img/like-before.png');		
+						$(".likeimg").attr('src','./resources/img/like-before.png');		
 						}
 				
 					
@@ -263,7 +263,12 @@ geocoder.addressSearch('<%=addresss[1]+" "+addresss[2]%>', function(result, stat
 						console.log("ajax실패");
 					}
 			
-				}); 
+					}); 
+				}else if(memType=="2"){ // 일반회원끼리 좋아요 방지
+				alert("기업회원끼리는 좋아요 불가능 합니다.");
+				}else{
+				alert("로그인을 진행해 주세요");
+				}	
 		})
 	})
 		

@@ -240,6 +240,40 @@ public class LikeDao {
 		
 	}
 
+	public ArrayList<String> likeCoList(Connection conn, int memNo) {
+		
+		ArrayList<String> likeCoList = new ArrayList<>();
+		int likeCoNo = 0;
+		
+		
+		
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		String sql = prop.getProperty("likeCoList");
+		
+		try {
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, memNo);
+			rs=ps.executeQuery();
+			
+			while(rs.next()) {
+				likeCoList.add(rs.getString(1));
+			}
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(ps);
+			close(rs);
+		}
+		
+		return likeCoList;
+		
+		
+	}
+	
+	
 	public int myCompanyListCount(Connection conn, int m_no) {
 		int result=0;
 		PreparedStatement ps=null;

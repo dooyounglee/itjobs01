@@ -123,10 +123,7 @@
 							}
 						
 						btnChange();
-						
-						
-						
-						
+			
 					},error:function(){
 						console.log("ajax실패");
 					
@@ -154,7 +151,7 @@
 				
 				flag4=false;
 			 }else{
-				flag4=true;
+				
 					$.ajax({
 							url:"<%=request.getContextPath() %>/emoverlap.me",
 							data:{email:email},
@@ -174,8 +171,8 @@
 							
 							}
 						});
+									flag4=true;
 			 		}	
-			 
 			 btnChange();
 			 	}
 			/* 비밀번호 유효성검사 */
@@ -197,7 +194,6 @@
 						
 						flag3=false;
 					}
-					
 					btnChange();
 				
 			}	

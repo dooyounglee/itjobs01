@@ -76,6 +76,18 @@ public class LikeService {
 		return likeBoList;
 	
 	}
+	
+	public ArrayList<String> LikeCoList(int memNo) {
+		
+		Connection conn = getConnection();
+		
+		ArrayList<String> likeCoList = new LikeDao().likeCoList(conn,memNo);
+		close(conn);
+		
+		return likeCoList;
+	
+	}
+	
 
 	public int myCompanyListCount(int m_no) {
 		Connection conn=getConnection();

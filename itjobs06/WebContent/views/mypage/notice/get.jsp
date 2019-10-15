@@ -54,6 +54,7 @@
 						<hr>
 						
 						<h4>기업이름</h4>
+						<img src="<%=contextPath %>/resources/cofileupload/<%=noti.getLogoFile() %>" style="height:70px;" alt="">
 						<ul>
 						<%=noti.getNickname() %>
 						</ul>

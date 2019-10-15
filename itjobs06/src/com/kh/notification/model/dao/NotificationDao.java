@@ -210,6 +210,7 @@ public class NotificationDao {
 				noti.setOpen(rs.getString("open"));
 				noti.setNickname(rs.getString("nickname"));
 				noti.setAddress(rs.getString("address"));
+				noti.setLogoFile(rs.getString("logo_file"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

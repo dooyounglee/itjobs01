@@ -50,7 +50,7 @@
 		좋아요 한 목록이 없어요.
 <%	}else{
 		for(Resume n:list){%>
-						<a class="job-listings" href="job-details.html">
+						<a class="job-listings" href="detail.re?resume_no=<%=n.getResume_no()%>">
 							<div class="row">
 								<div class="col-lg-4 col-md-12 col-xs-12">
 									<div class="job-company-logo">

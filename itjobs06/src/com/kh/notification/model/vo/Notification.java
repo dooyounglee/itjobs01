@@ -35,7 +35,30 @@ public class Notification {
    public Notification() {
       super();
    }
-   public Notification(int noti_no, int co_no, String title, String end_date, String enroll_date, String p_language,
+   
+   
+ 
+public Notification(int noti_no, int co_no, String title, String end_date, String enroll_date, String p_language,
+		int salary, String contents, String jobs, String hope, String status, int d_count, String open, String nickname,
+		String logofile) {
+	super();
+	this.noti_no = noti_no;
+	this.co_no = co_no;
+	this.title = title;
+	this.end_date = end_date;
+	this.enroll_date = enroll_date;
+	this.p_language = p_language;
+	this.salary = salary;
+	this.contents = contents;
+	this.jobs = jobs;
+	this.hope = hope;
+	this.status = status;
+	this.d_count = d_count;
+	this.open = open;
+	this.nickname = nickname;
+	this.logofile = logofile;
+}
+public Notification(int noti_no, int co_no, String title, String end_date, String enroll_date, String p_language,
          int salary, String contents, String jobs, String hope, String status, int d_count) {
       super();
       this.noti_no = noti_no;

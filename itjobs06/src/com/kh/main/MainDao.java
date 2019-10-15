@@ -53,7 +53,8 @@ public class MainDao {
                   rs.getString(11),
                   rs.getInt(12),
                   rs.getString(13),
-                  rs.getString(14)));
+                  rs.getString(14),
+                  rs.getString(15)));
          }
       } catch (SQLException e) {
          e.printStackTrace();
@@ -89,7 +90,8 @@ public class MainDao {
                   rs.getString(11),
                   rs.getInt(12),
                   rs.getString(13),
-                  rs.getString(14)));
+                  rs.getString(14),
+                  rs.getString(15)));
          }
       } catch (SQLException e) {
          e.printStackTrace();

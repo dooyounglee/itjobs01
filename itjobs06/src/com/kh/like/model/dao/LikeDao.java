@@ -278,6 +278,42 @@ public class LikeDao {
 		
 	}
 	
+	public int likeNoList1(Connection conn, int noNo, int memNo) {
+
+		int result = 0;
+		
+		PreparedStatement ps = null;
+		
+		ResultSet rs = null;
+	
+		System.out.println(noNo + "+" + memNo);
+		
+		String sql = prop.getProperty("likeNoList");
+		
+		try {
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, noNo);
+			ps.setInt(2, memNo);
+			
+			rs = ps.executeQuery();
+			
+			if(rs.next()) {
+			result = rs.getInt(1);
+			}
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(ps);
+			close(rs);
+		}
+		System.out.println(result);
+		return result;
+		
+		
+	}
+	
 	public int deleteCoLike(Connection conn, int coNo, int memNo) {
 		
 		int result = 0;

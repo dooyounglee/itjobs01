@@ -124,6 +124,19 @@ public class LikeService {
 		return result;
 		
 	}
+	
+
+	public int likeNoCheck(int noNo, int memNo) {
+		
+		Connection conn = getConnection();
+		
+		int result = new LikeDao().likeCoList1(conn,noNo,memNo);
+		
+		close(conn);
+		
+		return result;
+		
+	}
 
 	public int myCompanyListCount(int m_no) {
 		Connection conn=getConnection();

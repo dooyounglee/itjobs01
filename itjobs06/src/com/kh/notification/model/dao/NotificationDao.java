@@ -41,8 +41,8 @@ public class NotificationDao {
 		String sql=prop.getProperty("getAllNotificationList");
 		try {
 			ps=conn.prepareStatement(sql);
-			ps.setInt(1, pi.getEndRow());
-			ps.setInt(2, pi.getStartRow());
+			ps.setInt(1, pi.getStartRow());
+			ps.setInt(2, pi.getEndRow());
 			rs=ps.executeQuery();
 			while(rs.next()) {
 				Notification n=new Notification(
@@ -59,6 +59,7 @@ public class NotificationDao {
 						rs.getString(11),
 						rs.getInt(12));
 				n.setNickname(rs.getString("nickname"));
+				n.setAddress(rs.getString("address"));
 				list.add(n);
 			}
 		} catch (SQLException e) {
@@ -129,6 +130,8 @@ public class NotificationDao {
 						rs.getString(11),
 						rs.getInt(12));
 				n.setNickname(rs.getString("nickname"));
+				n.setAddress(rs.getString("address"));
+				n.setLogoFile(rs.getString("logo_file"));
 				list.add(n);
 			}
 		} catch (SQLException e) {

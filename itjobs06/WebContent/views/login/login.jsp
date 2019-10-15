@@ -14,16 +14,8 @@
   <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 	<script>
 	$(function(){
-		var msg = "<%=alert%>";
 		var error = "<%=error%>";
 		var findResult = "<%=findResult%>";
-		
-		if(msg != "null"){
-			alert(msg);
-			
-			// 세션에 담긴 메세지 한번만 출력하고 삭제하기
-			<% session.removeAttribute("alert"); %>
-		}
 		
 		if(error != "null"){
 			alert(error);

@@ -82,10 +82,10 @@
 						<hr>
 						<div class="author-resume">
 							<div class="thumb">
-							<%if(mem== null || mem.getM_no() != re.getM_no()){ %> 
-								<img src="<%= contextPath %>/resources/fileupload_resumeImg/<%= re.getPhoto()%>" id="blur">
-								<%}else{ %>
+							<%if(mem!=null && (mem.getType().equals("2") || mem.getM_no()==re.getM_no())){ %> 
 								<img src="<%= contextPath %>/resources/fileupload_resumeImg/<%= re.getPhoto()%>" >
+								<%}else{ %>
+								<img src="<%= contextPath %>/resources/fileupload_resumeImg/<%= re.getPhoto()%>" id="blur">
 								<%} %>
 							</div>
 <%	if(mem!=null && (mem.getType().equals("2") || mem.getM_no()==re.getM_no())){ %>

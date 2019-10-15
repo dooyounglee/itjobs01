@@ -119,7 +119,7 @@
             <% } %>
             </div>
             <br>
-            <%if(b.getTime() != null){ %>
+             <% if((b.getHead().equals("스터디") || b.getHead().equals("study"))|| (b.getHead().equals("프로젝트") || b.getHead().equals("project"))){ %>
             <div style="font-size:15px;color:black;">모집기간 - <%=b.getTime() %></div><br>
          	<%} %>              
            

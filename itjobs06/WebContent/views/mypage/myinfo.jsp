@@ -219,13 +219,13 @@ nhn.husky.EZCreator.createInIFrame({
 									class="material-input"></span>
 							</div>
 							<div class="form-group is-empty">
-								<label class="control-label">사원수</label> <input
-									class="form-control" type="text" name="memsum" value="<%=co.getMemsum()%>"> <span
+								<label class="control-label">사원수(숫자만)</label> <input
+									class="form-control" type="text" name="memsum" value="<%=co.getMemsum()%>" pattern="[0-9]{0,10}" title="숫자만 입력해 주세요" maxlength="9"> <span
 									class="material-input"></span>
 							</div>
 							<div class="form-group is-empty">
-								<label class="control-label">매출액</label> <input
-									class="form-control" type="text" name="revenue" value="<%=co.getRevenue()%>"> <span
+								<label class="control-label">매출액(원)</label> <input
+									class="form-control" type="text" name="revenue" value="<%=co.getRevenue()%>" pattern="[0-9]{0,10}" title="원 단위로 숫자만 입력해 주세요" maxlength="9"> <span
 									class="material-input"></span>
 							</div>
 							<div class="form-group is-empty">

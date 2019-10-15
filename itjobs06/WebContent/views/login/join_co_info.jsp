@@ -155,7 +155,7 @@
 		<div class="form-group" >
 		<div class="input-icon">
 		<i class="lni-lock"></i>
-		<input type="text" class="form-control" id="co_phone"name="co_phone" placeholder="대표자폰*" required>
+		<input type="text" class="form-control" id="co_phone"name="co_phone" placeholder="대표자폰(-없이)*" pattern="[0-9]{3,12}" title="- 없이 숫자만  입력해주세요" required>
 		</div>
 		</div>
 		<div class="form-group" style="margin-bottom: 0px;">
@@ -174,13 +174,13 @@
 		<div class="form-group">
 		<div class="input-icon">
 		<i class="lni-lock"></i>
-		<input type="number" class="form-control" id="memsum" name="memsum" placeholder="사원수*(숫자만)" required> <!-- 우선 필수로 받자 오류는 다음에  -->
+		<input type="text" class="form-control" id="memsum" name="memsum" placeholder="사원수*(숫자만)" pattern="[0-9]{0,10}" title="숫자만 입력해 주세요" maxlength="9" required> <!-- 우선 필수로 받자 오류는 다음에  -->
 		</div>
 		</div>
 		<div class="form-group"style="margin-bottom: 0px;">
 		<div class="input-icon">
 		<i class="lni-lock"></i>
-		<input type="number" class="form-control" name="revenue" placeholder="매출액*(숫자만)" required> <!-- 이놈도 필수로 받자   -->
+		<input type="text" class="form-control" name="revenue" placeholder="매출액*(원)" pattern="[0-9]{0,10}" title="원 단위로 숫자만 입력해 주세요" maxlength="9" required> <!-- 이놈도 필수로 받자   -->
 		</div>
 		</div>
 		<div class="form-group"style="margin-bottom: 0px;">
@@ -197,8 +197,8 @@
 		<input type="text" class="form-control" id="welfair" name="welfair" >
 		</div>
 		</div>
-		<input type="submit" class="btn btn-common log-btn mt-3" value="가입신청"  onclick="write_ok()">
-		<p class="text-center">Already have an account?<a href="login.html"> Sign In</a></p>
+		<input type="submit" class="btn btn-common log-btn mt-3" value="가입신청"  onsubmit="write_ok()">
+		
 		</form>
 		</div>
 		</div>

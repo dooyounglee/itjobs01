@@ -148,9 +148,9 @@ public class JoinCoInfoServlet extends HttpServlet {
 		int result = new MemberService().JoinCoInfo(cf,email,m);
 		
 		
+		HttpSession session = request.getSession();
 		
 		if(result>0) {
-			HttpSession session = request.getSession();
 			session.setAttribute("alert", "회원가입을 환영합니다. 승인절차는 1~2일정도 소요되며 결과는 문자,이메일로 발송해 드립니다.");
 			
 			
@@ -161,7 +161,9 @@ public class JoinCoInfoServlet extends HttpServlet {
 			
 			File faildFile = new File(savePath+changeName[0]);
 			faildFile.delete();
-			request.setAttribute("msg", "회운가입 실패(기업2)");
+			
+			session.setAttribute("alert", "동시 가입자가 많아 잠시 후 다시 시도해 주시길 바랍니다.");
+			response.sendRedirect(request.getContextPath());
 			
 		
 		}

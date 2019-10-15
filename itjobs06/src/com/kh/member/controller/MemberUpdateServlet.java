@@ -128,6 +128,10 @@ public class MemberUpdateServlet extends HttpServlet {
 			session.setAttribute("mem", newm);
 			Co_Info co=new MemberService().getCoInfo(newm);
 			session.setAttribute("co", co);
+			session.setAttribute("nickChange", "정상적으로 수정 되었습니다");
+			response.sendRedirect(request.getContextPath()+"/myInfo.me");
+		}else{
+			session.setAttribute("nickChange", "다시 수정 부탁드립니다.");
 			response.sendRedirect(request.getContextPath()+"/myInfo.me");
 		}
 	}

@@ -117,7 +117,8 @@
                            <h3><%=n.getTitle()%></h3>
                            <span class="company-neme"><%=n.getP_language()%></span>
                            <div class="tags">
-                              <span><i class="lni-map-marker"></i><%=n.getAddress()%></span>
+                         
+                              <span><i class="lni-map-marker"></i><%=n.getNickname()%></span>
                               <span><i class="lni-user"></i><%=n.getSalary()%>만원</span>
                            </div>
                         </div>
@@ -161,7 +162,7 @@
                                     <h3><%=ne.getTitle() %></h3>
                                     <span class="company-neme"><%=ne.getP_language()%></span>
                                     <div class="tags">
-                                       <span><i class="lni-map-marker"></i><%=ne.getAddress()%></span>
+                                       <span><i class="lni-map-marker"></i><%=ne.getNickname()%></span>
                                        <span><i class="lni-user"></i><%=ne.getSalary()%>만원</span>
                                     </div>
                                  </div>
@@ -228,6 +229,7 @@
                                  <div class="col-lg-5 col-md-2 col-xs-12" >
                                     <a href="detail.bo?head=공지사항&bId=<%=no.getB_no()%>"><%=no.getTitle() %></a>
                                  </div>
+							
                                  <div class="col-lg-2 col-md-2 col-xs-12">
                                     <p><%=no.getNickname() %></p>
                                  </div>

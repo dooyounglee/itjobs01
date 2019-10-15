@@ -135,9 +135,8 @@ public class SearchDao {
 		try {
 			ps=conn.prepareStatement(sql);
 			ps.setString(1, sText.replace(" ", "|"));
-			System.out.println(sText.replace(" ", "|")+"Dao에서");
-			ps.setInt(2, pi.getEndRow());
-			ps.setInt(3, pi.getStartRow());
+			ps.setInt(2, pi.getStartRow());
+			ps.setInt(3, pi.getEndRow());
 			rs=ps.executeQuery();
 			while(rs.next()) {
 				Notification n=new Notification(
@@ -154,6 +153,7 @@ public class SearchDao {
 						rs.getString(11),
 						rs.getInt(12));
 				n.setNickname(rs.getString("nickname"));
+				n.setAddress(rs.getString("address"));
 				list.add(n);
 			}
 		} catch (SQLException e) {

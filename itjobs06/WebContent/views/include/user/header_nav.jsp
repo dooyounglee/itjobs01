@@ -10,7 +10,31 @@
 		session.setAttribute("head", head);
 }
 %>
-
+<%
+	String alert = (String) session.getAttribute("alert");
+	String pwChange = (String) session.getAttribute("pwChange");
+	String nickChange = (String) session.getAttribute("nickChange");
+%>
+<script>
+	var msg = "<%=alert%>";
+	if (msg != "null") {
+		alert(msg);// 세션에 담긴 메세지 한번만 출력하고 삭제하기
+<%	session.removeAttribute("alert");%>
+	}
+	
+	var pwChange = "<%=pwChange%>"
+	if(pwChange != "null"){
+		alert(pwChange);
+<%	session.removeAttribute("pwChange");%>
+	}
+	
+	var nickChange = "<%=nickChange%>"
+		if(nickChange != "null"){
+			alert(nickChange);
+	<%	session.removeAttribute("nickChange");%>
+		}
+	
+	</script>
 
 
 <nav class="navbar navbar-expand-lg fixed-top scrolling-navbar">
@@ -78,7 +102,7 @@
 							Home </a></li>
 					<li class="nav-item aaa dropdown">
 						<div></div><a
-						class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"
+						class="nav-link dropdown-toggle" href="<%=request.getContextPath()%>/list.bo?head=main" data-toggle="dropdown"
 						aria-haspopup="true" aria-expanded="false"> 게시판 </a>
 						<ul class="dropdown-menu">
 							<li><a class="dropdown-item" href="<%=request.getContextPath()%>/list.bo?head=main">전체</a></li>
@@ -98,7 +122,7 @@
 					<%	if(mem!=null && mem.getType().equals("1")){ %>
 					<li class="nav-item dropdown aaa"><div></div>
 					<a
-						class="nav-link dropdown-toggle" href="<%=request.getContextPath()%>/list.re" data-toggle="dropdown"
+						class="nav-link dropdown-toggle" href="<%=request.getContextPath()%>/myInfo.me" data-toggle="dropdown"
 						aria-haspopup="true" aria-expanded="false"> 마이페이지 </a>
 						<ul class="dropdown-menu">
 							<li><a class="dropdown-item" href="<%=request.getContextPath()%>/myInfo.me">내 정보수정
@@ -153,4 +177,3 @@
 	</div>
 	<div class="mobile-menu" data-logo="assets/img/logo-mobile.png"></div>
 </nav>
-

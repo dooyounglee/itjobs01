@@ -78,7 +78,7 @@
 		</div>
 		</div>
 		<input type="submit" id="submit" class="btn btn-common log-btn mt-3" value="가입" disabled>
-		<p class="text-center">Already have an account?<a href="login.html"> Sign In</a></p>
+		
 		</form>
 		</div>
 		</div>

@@ -10,6 +10,7 @@
 
 <!-- import jobx -->
 <%@ include file="/views/include/user/style.jsp" %>
+<%@ include file="/views/include/user/js.jsp" %>
 <!-- End of import from jobx -->
 
 </head>
@@ -47,17 +48,17 @@
 						<form class="form" action="changePw.me" method="post" autocomplete=off>
 							<div class="form-group is-empty">
 								<label class="control-label">현재 비밀번호*</label> <input
-									class="form-control" type="text" name="pw"> <span
+									class="form-control" type="password" name="pw"> <span
 									class="material-input"></span>
 							</div>
 							<div class="form-group is-empty">
 								<label class="control-label">새로운 비밀번호*</label> <input
-									class="form-control" type="text" name="newPw"> <span
+									class="form-control" type="password" name="newPw"> <span
 									class="material-input"></span>
 							</div>
 							<div class="form-group is-empty">
 								<label class="control-label">새로운 비밀번호 확인*</label> <input
-									class="form-control" type="text" name="checkPw"> <span
+									class="form-control" type="password" name="checkPw"> <span
 									class="material-input"></span>
 							</div>
 							<button id="submit" class="btn btn-common">Save Change</button>
@@ -159,6 +160,8 @@
 			reader.readAsDataURL(value.files[0]);
 		}
 	}
+	
+	
 </script>
 							<div class="form-group is-empty">
 								<label class="control-label">담당자명</label> <input
@@ -277,13 +280,7 @@ nhn.husky.EZCreator.createInIFrame({
 	
 	
 
-<form action="update.me" method="post" autocomplete="off">
-	${mem }<br>
-	닉네임수정:<input name=nickname value="<%=mem.getNickname()%>"><br>
-	<button>입력완료</button>
-	<button onclick="return changePw()">비번수정</button>
-	<button onclick="return leave()">탈퇴(모달창으로 할꺼임)</button>
-	<hr>
+
 	
 	<%-- <%	if(mem.getType().equals("3")){
 		Co_Info co=(Co_Info)session.getAttribute("co");%>
@@ -392,8 +389,7 @@ nhn.husky.EZCreator.createInIFrame({
 	연혁:<input name=history value="<%=co.getHistory()%>"><br>
 	복지:<input name=welfare value="<%=co.getWelfare()%>"><br>
 	<%	} %> --%>
-	<button>입력완료</button>
-</form>
+
 <script>
 	function changePw(){
 		window.open("views/mypage/changePw.jsp","비밀번호 변경창","width=500,height=300");
@@ -421,7 +417,7 @@ nhn.husky.EZCreator.createInIFrame({
 
 
 	<!-- import of jobx -->
-	<%@ include file="/views/include/user/js.jsp" %>
+	
 	<!-- End of import of jobx -->
 
 <script>

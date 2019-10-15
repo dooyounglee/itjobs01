@@ -10,7 +10,16 @@
 		session.setAttribute("head", head);
 }
 %>
-
+<%
+	String alert = (String) session.getAttribute("alert");
+%>
+<script>
+	var msg = "<%=alert%>";
+	if (msg != "null") {
+		alert(msg);// 세션에 담긴 메세지 한번만 출력하고 삭제하기
+	}
+</script>
+<%	session.removeAttribute("alert");%>
 
 
 <nav class="navbar navbar-expand-lg fixed-top scrolling-navbar">

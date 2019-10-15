@@ -97,17 +97,19 @@ public class BoardDao {
 			rset = pstmt.executeQuery(); 
 			
 			while(rset.next()) {
-				list.add(new Board(rset.getInt("b_no"),
-									rset.getInt("m_no"),
-									rset.getString("nickname"), 
-									rset.getString("head"),
-									rset.getString("title"),
-									rset.getString("contents"),
-									rset.getString("update_date"),
-									rset.getString("editfile"),
-									rset.getString("time"),
-									rset.getInt("count"),
-									rset.getString("video")));
+				Board b = new Board(rset.getInt("b_no"),
+						rset.getInt("m_no"),
+						rset.getString("nickname"), 
+						rset.getString("head"),
+						rset.getString("title"),
+						rset.getString("contents"),
+						rset.getString("update_date"),
+						rset.getString("editfile"),
+						rset.getString("time"),
+						rset.getInt("count"),
+						rset.getString("video"));
+						b.setDown_count(rset.getInt("down_count"));
+				list.add(b);
 			}
 			
 		} catch (SQLException e) {
@@ -137,17 +139,21 @@ public class BoardDao {
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
-				list.add(new Board(rset.getInt("b_no"),
-									rset.getInt("m_no"),
-									rset.getString("nickname"), 
-									rset.getString("head"),
-									rset.getString("title"),
-									rset.getString("contents"),
-									rset.getString("update_date"),
-									rset.getString("editfile"),
-									rset.getString("time"),
-									rset.getInt("count"),
-									rset.getString("video")));
+				Board b = new Board(rset.getInt("b_no"),
+						rset.getInt("m_no"),
+						rset.getString("nickname"), 
+						rset.getString("head"),
+						rset.getString("title"),
+						rset.getString("contents"),
+						rset.getString("update_date"),
+						rset.getString("editfile"),
+						rset.getString("time"),
+						rset.getInt("count"),
+						rset.getString("video"));
+						b.setDown_count(rset.getInt("down_count"));
+				list.add(b);
+				
+								
 			}
 			
 		} catch (SQLException e) {

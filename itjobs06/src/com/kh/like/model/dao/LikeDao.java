@@ -12,7 +12,6 @@ import static com.kh.common.JDBCTemplate.*;
 
 import com.kh.board.model.vo.PageInfo;
 import com.kh.like.model.vo.Like;
-import com.kh.member.model.vo.Member;
 import com.kh.notification.model.vo.Notification;
 import com.kh.question.model.dao.QuestionDao;
 import com.kh.resume.model.vo.Resume;
@@ -170,7 +169,7 @@ public class LikeDao {
 	public ArrayList<String> likeBoList(Connection conn, int memNo) {
 	
 		ArrayList<String> likeBoList = new ArrayList<>();
-		int likeBoNo = 0;
+		
 		
 		
 		
@@ -210,7 +209,7 @@ public class LikeDao {
 	public ArrayList<String> likeResList(Connection conn, int CoNo) {
 	
 		ArrayList<String> likeBoList = new ArrayList<>();
-		int likeBoNo = 0;
+		
 		
 		
 		
@@ -240,24 +239,27 @@ public class LikeDao {
 		
 	}
 
-	public ArrayList<String> likeCoList(Connection conn, int memNo) {
-		
-		ArrayList<String> likeCoList = new ArrayList<>();
-		int likeCoNo = 0;
-		
-		
+	public int likeCoList1(Connection conn, int coNo, int memNo) {
+
+		int result = 0;
 		
 		PreparedStatement ps = null;
+		
 		ResultSet rs = null;
+	
+		System.out.println(coNo + "+" + memNo);
+		
 		String sql = prop.getProperty("likeCoList");
 		
 		try {
 			ps=conn.prepareStatement(sql);
-			ps.setInt(1, memNo);
-			rs=ps.executeQuery();
+			ps.setInt(1, coNo);
+			ps.setInt(2, memNo);
 			
-			while(rs.next()) {
-				likeCoList.add(rs.getString(1));
+			rs = ps.executeQuery();
+			
+			if(rs.next()) {
+			result = rs.getInt(1);
 			}
 		
 		} catch (SQLException e) {
@@ -267,11 +269,60 @@ public class LikeDao {
 			close(ps);
 			close(rs);
 		}
-		
-		return likeCoList;
+		System.out.println(result);
+		return result;
 		
 		
 	}
+	
+	public int deleteCoLike(Connection conn, int coNo, int memNo) {
+		
+		int result = 0;
+		
+		PreparedStatement ps = null;
+		
+		String sql = prop.getProperty("deleteCoLike");
+		
+		try {
+			ps = conn.prepareStatement(sql);
+
+			ps.setInt(1, coNo);
+			ps.setInt(2, memNo);
+		
+			result = ps.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(ps);
+		}
+		
+		return result;
+	}
+	
+	public int insertCoLike(Connection conn, int coNo, int memNo) {
+		
+		int result = 0;
+		
+		PreparedStatement ps = null;
+		
+		String sql = prop.getProperty("insertCoLike");
+		
+		try {
+			ps = conn.prepareStatement(sql);
+		
+			ps.setInt(1, memNo);
+			ps.setInt(2, coNo);
+		
+			result = ps.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(ps);
+		}
+			return result;
+		}
 	
 	
 	public int myCompanyListCount(Connection conn, int m_no) {

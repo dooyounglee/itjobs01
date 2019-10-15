@@ -47,11 +47,11 @@ public class CompanyDetailServlet extends HttpServlet {
 		if(mem != null) { // 좋아요 한 맴버의 게시글번호 불러오기 위해 
 			int memNo = ((Member)request.getSession().getAttribute("mem")).getM_no();
 			
-			ArrayList<String> likeCo = new LikeService().LikeCoList(memNo);
+			int likeCoCheck = new LikeService().likeCoCheck(co_no,memNo);
 		
-		System.out.println(likeCo);
 		
-		request.setAttribute("likeCo", likeCo);
+		
+		request.setAttribute("likeCoCheck", likeCoCheck);
 		}
 		
 		

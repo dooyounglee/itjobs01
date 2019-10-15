@@ -3,7 +3,7 @@
     pageEncoding="UTF-8"%>
 <%@page import="java.util.ArrayList"%>
 <%
-ArrayList<String> likeCoList = (ArrayList<String>)request.getAttribute("likeCo");
+int likeCoCheck = (int)request.getAttribute("likeCoCheck");
 
 %>
 
@@ -65,7 +65,7 @@ ArrayList<String> likeCoList = (ArrayList<String>)request.getAttribute("likeCo")
 	<!-- CoInfo -->
 	<%	Member co = (Member) request.getAttribute("co");
 		Co_Info co_info=(Co_Info)request.getAttribute("co_Info");%>
-	<input type="hidden" value="<%=co.getM_no()%>" id="coNo">
+	<input type="hidden" value="<%=co.getM_no()%>" id="coNo1">
 	
 	<section class="category section bg-gray">
 		<div class="container">
@@ -134,22 +134,19 @@ ArrayList<String> likeCoList = (ArrayList<String>)request.getAttribute("likeCo")
 							<h3><%=co_info.getAddress().split("\\+")[1]+ " " +co_info.getAddress().split("\\+")[2] %></h3>
 						</div>
 						<hr>
-						<div class="widghet">
+						<div class="widghet" style="height:200px;">
 								
 							
-								<!-- 좋아요 버튼 -->
-									<%
-										boolean flag = false;  // 좋아요 이미지가 겹치지 않게 하기 위해서
-										if(mem != null){
+								
 									
-										for(int i=0; i<likeCoList.size(); i++){ // 서블릿에서 좋아요한 맴버의 게시글번호를 받아
+											<% if(likeCoCheck == 1){ %>  
+												<span class="heart-icon"> <img src="./resources/img/button-after.png" class="likeimg" style="height:200px; width:320px;"> </span>
+											<% 	}else{ %>
+												<span class="heart-icon"> <img src="./resources/img/button-before.png" class="likeimg" style="height:200px; width:320px;"> </span>									
+											<% 	} %>
 											
-											if(Integer.parseInt(likeCoList.get(i)) == co.getM_no()){  // 그 게시글번호와 현재 for문으로 작동하는 게시글번호와 일치하면
-												flag = true;	// 	좋아요한 이미지 보이게									
-												}
-											}
-										}
-									%>
+										
+									
 						</div>
 					</div>
 				</div>
@@ -235,7 +232,7 @@ geocoder.addressSearch('<%=addresss[1]+" "+addresss[2]%>', function(result, stat
 	$(function(){
 	
 		var memNo = $("#memNo").val();
-		var coNo = $("#coNo").val();	
+		var coNo = $("#coNo1").val();	
 		var memType = $("#memType").val();
 		
 		
@@ -244,16 +241,16 @@ geocoder.addressSearch('<%=addresss[1]+" "+addresss[2]%>', function(result, stat
 			if(memNo!=null && memType != 2){ // 회원이 존재하면
 			
 	 			 $.ajax({
-					url:"like.co",
+					url:"like.com",
 					data:{coNo:coNo, memNo:memNo},
 					type:"get",
 					success:function(result){
 					
 						
 						if(result==0){
-						$(".likeimg").attr('src','./resources/img/like-after1.png');							
+						$(".likeimg").attr('src','./resources/img/button-after.png');							
 						}else{
-						$(".likeimg").attr('src','./resources/img/like-before.png');		
+						$(".likeimg").attr('src','./resources/img/button-before.png');		
 						}
 				
 					

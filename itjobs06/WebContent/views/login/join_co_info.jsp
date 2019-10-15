@@ -11,6 +11,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript" src='<%=request.getContextPath()%>/resources/naver-smarteditor2-ca95d21/demo/js/service/HuskyEZCreator.js' charset="utf-8"></script>
+<script type="text/javascript" src='<%=request.getContextPath()%>/resources/naver-smarteditor2-ca95d21/demo/css/ko_KR/smart_editor2.css' charset="utf-8"></script>
 <style>
 	h3,#regnum,#filediv,#formDiv{
 		margin:0px;
@@ -51,12 +52,18 @@
 	.adr{
 	border : 1px solid rgb(236,236,236);
 	}
+	iframe{
+	width:300px;
+	}
+	
 </style>
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
+
+
 
 <%@ include file="/views/include/user/js.jsp" %>  
 	
@@ -183,21 +190,24 @@
 		<input type="text" class="form-control" name="revenue" placeholder="매출액*(원)" pattern="[0-9]{0,10}" title="원 단위로 숫자만 입력해 주세요" maxlength="9" required> <!-- 이놈도 필수로 받자   -->
 		</div>
 		</div>
-		<div class="form-group"style="margin-bottom: 0px;">
-		<div class="input-icon">
-		<i class="lni-lock" style="margin-top: 10%;"></i>
+		
+		<section id="editor" style="margin-bottom:0px;">
+		<div class="form-group" style="margin-bottom:0px;">
 		<label class="control-label" style="margin-left: 45%;">연혁</label>
-		<textarea class="form-control" rows="5" id="history" name="history" ></textarea>
+		<textarea class="form-control" rows="5"  id="history" name="content" ></textarea>
+		
 		</div>
-		</div>
-		<div class="form-group">
-		<div class="input-icon">
-		<i class="lni-lock"></i>
+		</section>
+		
+		<section id="editor" style="margin-bottom:0px;">
+		<div class="form-group" >
 		<label class="control-label" style="margin-left: 45%;">복지</label>
-		<input type="text" class="form-control" id="welfair" name="welfair" >
+		<textarea class="form-control" rows="5" id="welfair" name="content"></textarea>
 		</div>
-		</div>
-		<input type="submit" class="btn btn-common log-btn mt-3" value="가입신청"  onsubmit="write_ok()">
+		</section>
+		
+		
+		<input type="submit" class="btn btn-common log-btn mt-3" value="가입신청" id="submit" >
 		
 		</form>
 		</div>
@@ -241,7 +251,6 @@
 			})
 				
 		var oEditors = [];
-	
 		nhn.husky.EZCreator.createInIFrame({
 	 	 oAppRef: oEditors,
  		 elPlaceHolder: document.getElementById('history'),
@@ -250,7 +259,7 @@
     	 htParams:{
     	 bUseToolbar:true, // 툴바 사용여부
     	 bUseVerticalResizer:false, // 크기조절바 사용여부
-    	 bUseModeChanger : false,	// 모드 탭(Editor | HTML | TEXT) 사용 여부
+    	 bUseModeChanger : true,	// 모드 탭(Editor | HTML | TEXT) 사용 여부
     	 }
 	});
 		
@@ -263,19 +272,17 @@
     	 htParams:{
     	 bUseToolbar:true , // 툴바 사용여부
     	 bUseVerticalResizer:false, // 크기조절바 사용여부
-    	 bUseModeChanger : false,	// 모드 탭(Editor | HTML | TEXT) 사용 여부
+    	 bUseModeChanger : true,	// 모드 탭(Editor | HTML | TEXT) 사용 여부
     	 }
 	});
 			
 			
-			
-
-		
-		function write_ok(){
+		$("#submit").click(function(){
 			confirm("회원가입을 진행 하시겠습니까?");
 			oEditors.getById["history"].exec("UPDATE_CONTENTS_FIELD", []);
 			oEditors.getById["welfair"].exec("UPDATE_CONTENTS_FIELD", []);
-		}
+		});	
+
 		
 		</script>
 		

@@ -61,7 +61,7 @@ public class NotificationViewServlet extends HttpServlet {
 		int tempListSize=tempList.size();
 		int random1=(int)(Math.random()*tempListSize);
 		int random2=-1;
-		System.out.println(random1);
+	
 		while(true) {
 			random2=(int)(Math.random()*tempListSize);
 			if(random1!=random2)break;

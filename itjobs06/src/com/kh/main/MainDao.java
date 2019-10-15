@@ -272,7 +272,6 @@ public class MainDao {
 			rs=ps.executeQuery(sql);
 			if(rs.next()) {
 				result=rs.getInt(1);
-				System.out.println(result);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -293,7 +292,7 @@ public class MainDao {
 			rs=ps.executeQuery(sql);
 			if(rs.next()) {
 				result=rs.getInt(1);
-				System.out.println(result);
+			
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

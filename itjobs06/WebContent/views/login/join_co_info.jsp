@@ -174,13 +174,13 @@
 		<div class="form-group">
 		<div class="input-icon">
 		<i class="lni-lock"></i>
-		<input type="text" class="form-control" id="memsum" name="memsum" placeholder="사원수*" required> <!-- 우선 필수로 받자 오류는 다음에  -->
+		<input type="number" class="form-control" id="memsum" name="memsum" placeholder="사원수*(숫자만)" required> <!-- 우선 필수로 받자 오류는 다음에  -->
 		</div>
 		</div>
 		<div class="form-group"style="margin-bottom: 0px;">
 		<div class="input-icon">
 		<i class="lni-lock"></i>
-		<input type="text" class="form-control" name="revenue" placeholder="매출액*" required> <!-- 이놈도 필수로 받자   -->
+		<input type="number" class="form-control" name="revenue" placeholder="매출액*(숫자만)" required> <!-- 이놈도 필수로 받자   -->
 		</div>
 		</div>
 		<div class="form-group"style="margin-bottom: 0px;">

@@ -11,7 +11,6 @@
 			<%	if(mem!=null && mem.getType().equals("1")){ %>
 			<li><a href="<%=request.getContextPath()%>/list.re">이력서 관리</a></li>
 			<li><a href="<%=request.getContextPath()%>/myApplyList.vo">내가 지원한 기업</a></li>
-			<li><a href="<%=request.getContextPath()%>/myCompanyList.like">관심기업</a></li>
 			<li><a href="<%=request.getContextPath()%>/myNotificationList.like">관심공고</a></li>
 			<%	}else if(mem!=null){ %>
 			<li><a href="<%=request.getContextPath()%>/myNotification.me">공고 관리</a></li>

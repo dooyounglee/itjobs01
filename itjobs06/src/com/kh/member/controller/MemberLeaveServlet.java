@@ -41,13 +41,16 @@ public class MemberLeaveServlet extends HttpServlet {
 		if(pw.equals(m.getPw())) {
 			int result=new MemberService().leaveMember(m_no);
 			if(result>0) {
+				
 				response.sendRedirect("logout.me");
 			}else {
-				response.sendRedirect("list.re");
+				response.sendRedirect("list.re");// 회원탈퇴 실패
 			}
 		}else {
 			//비번이 틀렸습니다. 메세지 정도?
+			
 			response.sendRedirect("list.re");
+		
 		}
 	}
 

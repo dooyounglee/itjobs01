@@ -47,12 +47,16 @@ public class MemberChangePwServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		Member m=(Member)session.getAttribute("mem");
 		
-		Member newm=new MemberService().changePw(m,newPw);
+		Member newm=null;
+		if(pw.equals(m.getPw())) {
+			newm=new MemberService().changePw(m,newPw);
+		}
 		if(newm!=null) {
 			session.setAttribute("mem", newm);
 			response.sendRedirect(request.getContextPath()+"/myInfo.me");
 		}else {
-			
+			//실패메시지 어떻게 보내지?
+			response.sendRedirect(request.getContextPath()+"/myInfo.me");
 		}
 	}
 

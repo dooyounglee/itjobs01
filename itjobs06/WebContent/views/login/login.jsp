@@ -1,7 +1,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- <% String alert = (String)session.getAttribute("alert"); 
+ <% 
  	String error = (String)request.getAttribute("error"); 
 	String findResult = (String)request.getAttribute("findResult");%>
 <!DOCTYPE html>
@@ -14,16 +14,8 @@
   <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 	<script>
 	$(function(){
-		var msg = "<%=alert%>";
 		var error = "<%=error%>";
 		var findResult = "<%=findResult%>";
-		
-		if(msg != "null"){
-			alert(msg);
-			
-			// 세션에 담긴 메세지 한번만 출력하고 삭제하기
-			<% session.removeAttribute("alert"); %>
-		}
 		
 		if(error != "null"){
 			alert(error);
@@ -88,7 +80,7 @@ Login
 </div>
 <div class="form-group form-check">
 <input type="checkbox" class="form-check-input" id="exampleCheck1">
-<label class="form-check-label" for="exampleCheck1">Keep Me Signed In</label>
+
 </div>
 <button class="btn btn-common log-btn">로그인</button>
 </form>
@@ -153,21 +145,6 @@ Login
 
 
 
-
-
-
- <form action="<%=contextPath%>/login.me" method=post autocomplete=off> 
-<!-- <input type=radio value="일반" name=type checked>일반
-<input type=radio value="기업" name=type>기업<br> -->
-<!-- email:<input name=email><br>
-pw:<input name=pw><button>로그인</button><div id="naver_id_login" ></div> -->
- </form> 
-<a href="<%=contextPath%>/views/login/join_law.jsp">회원가입</a>
-<a href="<%=contextPath%>/views/login/find.jsp">비번찾기</a>
-<script>
-//$('input[name=email]').focus();
-</script>
-
 <%-- <table border=1>
 	<tr>
 		<th>m_no</th>
@@ -195,7 +172,7 @@ pw:<input name=pw><button>로그인</button><div id="naver_id_login" ></div> -->
 	</tr>
 <%	} %>
 </table> --%>
-<%@ include file="/views/include/footer.jsp" %>
+
 
 <!-- 네이버 간편로그인 api 
 

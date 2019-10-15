@@ -98,16 +98,29 @@
    <p><%=q.getContents()%></p>
    </div>
    <div class="col-md-2">
-   <p><%=q.getM_no() %></p>
+   <p><%=q.getNickname() %></p>
    </div>
    <div class="col-md-2">
    <p><%=q.getEnroll_date() %></p>
    </div>
    <div class="col-md-2">
-   <p><%=q.getEnd_date() %></p>
+   <p>
+   <% if(q.getEnd_date().equals("null null")){ %>
+    미처리
+  <%}else{ %>
+  <%=q.getEnd_date() %>
+  <%} %>
+   </p>
    </div>
    <div class="col-md-2">
-   <p><%=q.getStatus() %></p>
+   <p>
+   
+   <% if(q.getStatus().equals("Y")){ %>
+   		처리완료
+   <%}else{ %>
+   		미처리
+		<% }   %>
+   </p>
    </div>
    </div>
    </div>
@@ -158,38 +171,9 @@
 <!-- -------------------------------------------- -->
 
 
-<h1>문의 게시판</h1>
-<button onclick="location.href='<%=request.getContextPath()%>/views/question/write.jsp'">문의하기</button>
-<select>
-   <option>제목</option>
-   <option>작성자</option>
-   <option>내용</option>
-</select>
-<input>
-<button>검색</button>
-<table border=1>
 
-   <tr>
-      <th><input type=checkbox></th>
-      <th>내용</th>
-      <th>작성자</th>
-      <th>등록일</th>
-      <th>처리일</th>
-      <th>상태</th>
-   </tr>
-   <%   ArrayList<Question> list1 =(ArrayList<Question>)request.getAttribute("list");
-      for(Question q:list1){%>
-   <tr>
-      <td><input type=checkbox></td>
-      <td><a href="get.qu?qno=<%=q.getQ_no()%>"><%=q.getContents() %></a></td>
-      <td><%=q.getM_no() %></td>
-      <td><%=q.getEnroll_date() %></td>
-      <td><%=q.getEnd_date() %></td>
-      <td><%=q.getStatus() %></td>
-   </tr>
-   <%   } %> 
 
-</table>
-<%@ include file="/views/include/footer.jsp" %>
+
+ 
 </body>
 </html>

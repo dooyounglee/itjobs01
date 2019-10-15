@@ -166,8 +166,7 @@ public class NotificationDao {
 						rs.getString(9),
 						rs.getString(10),
 						rs.getString(11),
-						rs.getInt(12),
-						rs.getString(13));
+						rs.getInt(12));
 				n.setNickname(rs.getString("nickname"));
 				list.add(n);
 			}
@@ -203,8 +202,8 @@ public class NotificationDao {
 						rs.getString(9),
 						rs.getString(10),
 						rs.getString(11),
-						rs.getInt(12),
-						rs.getString("open"));
+						rs.getInt(12));
+				noti.setOpen(rs.getString("open"));
 				noti.setNickname(rs.getString("nickname"));
 				noti.setAddress(rs.getString("address"));
 			}
@@ -263,8 +262,7 @@ public class NotificationDao {
 						rs.getString(9),
 						rs.getString(10),
 						rs.getString(11),
-						rs.getInt(12),
-						rs.getString(13));
+						rs.getInt(12));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

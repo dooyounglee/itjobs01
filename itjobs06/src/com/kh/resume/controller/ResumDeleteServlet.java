@@ -38,6 +38,7 @@ public class ResumDeleteServlet extends HttpServlet {
 	
 	int result = new ResumeService().deleteResume(resume_no);
 	
+	HttpSession session = request.getSession();
 	//지원중인 지원서인지? 0이면 좋아요삭제,이력서삭제
 	//				1이면 지원취소하고 삭제하라고 해
 	// select * from volunteer where resume_no =? 값이 있으면 1, 없으면 0 
@@ -46,21 +47,26 @@ public class ResumDeleteServlet extends HttpServlet {
 	//int result = new ResumeService().deleteResume(resume_no);
 	
 	if(result > 0) {
+		session.setAttribute("alert", "이력서 삭제 성공");
 		response.sendRedirect("list.re");
 	} else { 
 		System.out.println("이력서 삭제에 실패하였습니다.");
 		// 이력서 삭제 실패하였을때 지원중인 이력서 인지 확인 
+		session.setAttribute("alert", "현재이력서가 지원중이니 삭제하시려면 지원취소하고 삭제해주세요");
+		//response.sendRedirect("list.re");
 		int su_result = new ResumeService().supportResume(resume_no);
 		
 		if(su_result > 0){
 			System.out.println("현재이력서가 지원중이니 삭제하시려면 지원취소하고 삭제해주세요");
 			//msg("현재이력서가 지원중이니 삭제하시려면 지원취소하고 삭제해주세요");
+			response.sendRedirect("list.re");
 		}else{
 			System.out.println("좋아요삭제하고 이력서삭제");
 			// 좋아요삭제하고 
-			response.sendRedirect("deleteResum.re");
+			//response.sendRedirect("deleteResum.re");
+			response.sendRedirect("list.re");
 		}
-		
+		//response.sendRedirect("list.re");
 	}
 }
 

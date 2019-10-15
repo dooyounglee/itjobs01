@@ -87,7 +87,10 @@
 	
 	
 	<div class="job-alerts-item">
-   <h3 class="alerts-title" style="display:inline-block"><%=head%></h3> <span class="full-time" onclick="writeBtn();" style="float:right">글쓰기</span>
+   <h3 class="alerts-title" style="display:inline-block"><%=head%></h3>
+    <% if(!(head.equals("공지사항") || head.equals("qu"))){ %>
+   <span class="full-time" onclick="writeBtn();" style="float:right">글쓰기</span>
+   <%} %>
    <div class="alerts-list">
    <div class="row">
    <div class="col-md-3">

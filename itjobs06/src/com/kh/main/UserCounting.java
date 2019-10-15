@@ -26,7 +26,7 @@ public class UserCounting {
 			for (Session client : clients) {
 				//if (!client.equals(session)) {
 					//client.getBasicRemote().sendText(message);
-					client.getBasicRemote().sendText(clients.size()+",4821921,921"/*+","+new MainService().getTotal()+","+new MainService().getToday()*/);
+					client.getBasicRemote().sendText(clients.size()+","+new MainService().getTotal()+","+new MainService().getToday());
 				//}
 			}
 		}

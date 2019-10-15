@@ -39,12 +39,13 @@ public class NotificationViewServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		int noti_no=Integer.parseInt(request.getParameter("noti_no"));
-		
 		HttpSession session = request.getSession();
 		Member m=(Member)session.getAttribute("mem");
 		
 		Notification noti=new NotificationService().getNotification(noti_no);
 		request.setAttribute("noti", noti);
+		
+	
 		
 		if(m!=null) {
 			int isApply=new VolunteerService().isApply(m,noti);
@@ -60,9 +61,11 @@ public class NotificationViewServlet extends HttpServlet {
 		int tempListSize=tempList.size();
 		int random1=(int)(Math.random()*tempListSize);
 		int random2=-1;
+	
 		while(true) {
 			random2=(int)(Math.random()*tempListSize);
 			if(random1!=random2)break;
+	
 		}
 		randomList.add(tempList.get(random1));
 		randomList.add(tempList.get(random2));

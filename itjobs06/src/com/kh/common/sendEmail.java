@@ -22,7 +22,7 @@ public class sendEmail  {
 				props.put("mail.smtp.auth", "true");
 
 				final String userId = "show10033";
-				final String userPw = "********";
+				final String userPw = "@show759153";
 
 				try {
 				String sender = "show10033@naver.com"; //보내는사람 메일주소. ex) mailSender@naver.com

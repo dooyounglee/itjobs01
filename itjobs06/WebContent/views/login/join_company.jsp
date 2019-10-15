@@ -82,7 +82,7 @@
 		</div>
 		</div>
 		<input type="submit" id="submit" class="btn btn-common log-btn mt-3" value="가입" disabled>
-		<p class="text-center">Already have an account?<a href="login.html"> Sign In</a></p>
+		
 		
 		
 		</form>
@@ -157,9 +157,7 @@
 			
 			 if(!regExp.test(email)){
 				 emailDiv.html('이메일 형식에 맞지 않습니다').attr('style','color:red');
-				flag4=false;
 			 }else{
-				flag4=true;
 					$.ajax({
 							url:"<%=request.getContextPath() %>/emoverlap.me",
 							data:{email:email},
@@ -168,9 +166,12 @@
 								if(result==0){	
 									emailDiv.html('사용가능').attr('style','color:green');
 									flag2 = true;
+									flag4=true;
 								}else{	
-									emailDiv.html('사용불가능').attr('style','color:red');
+									emailDiv.html('중복되는 이메일이 있습니다.').attr('style','color:red');
 									 flag2 = false;
+									flag4=false;
+									btnChange();
 								}
 						
 							},error:function(){
@@ -178,10 +179,11 @@
 							
 							}
 						});
-						flag4=true;
+
+						
 			 		}	
 			 
-			 btnChange();
+		
 			 	}
 			/* 비밀번호 유효성검사 */
 			
@@ -223,15 +225,5 @@
 
 
 
-
-
-
-
-
-
-
-
-
-<%@ include file="/views/include/footer.jsp" %>
 </body>
 </html>

@@ -155,7 +155,7 @@ ArrayList<String> likeResList = (ArrayList<String>)request.getAttribute("likeRes
 							<div class="manager-info">
 								<div class="manager-name">
 									<h4>
-										<a href="#">
+										<a style="color:#00bcd4;">
 											<%	if(mem!=null && (mem.getType().equals("2") || mem.getM_no()==n.getM_no())){ %>
 												<%=n.getName() %>
 											<%	}else{ %>
@@ -265,40 +265,7 @@ ArrayList<String> likeResList = (ArrayList<String>)request.getAttribute("likeRes
 	
 	
 	
-<h1>인재 검색창</h1>
-<select id="sKey">
-	<option value="address">지역</option>
-	<option value="p_language">언어</option>
-	<option value="certificate">자격증</option>
-	<option value="department">학과</option>
-	<option value="title">제목</option>
-	<option value="hope_salary">희망연봉</option>
-</select>
-<input id="sText" autocomplete=off><button onclick="search()">검색</button><br>
-<input id="sTextA" name="sText" autocomplete=off><button onclick="searchA()">검색</button>
-<button>상세검색</button>
-<hr>
 
-<div id="resultArea">
-
-	<%	if(mem!=null){ %>
-	<input type="hidden" value="<%=mem.getM_no() %>" id="memNo">
-	<%	} %>
-	
-	<div id="result">
-<%	list=(ArrayList<Resume>)request.getAttribute("list");
-	for(Resume r:list){%>
-	<%=r %>
-	
-	<input type="hidden" value="<%=r.getResume_no()%>" class="res_no">
-<span class="like">
-		<img src="./resources/img/like-before.png" class="likeimg">
-</span>
-	
-	<br>
-<%	} %>
-	</div>
-</div>
 <script>
 	function search(){
 		var sKey=$('#sKey').val();

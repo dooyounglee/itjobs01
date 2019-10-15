@@ -144,7 +144,8 @@ ArrayList<String> likeBoList = (ArrayList<String>)request.getAttribute("likeMem"
 						<div class="row">
 							<div class="col-lg-6 col-md-6 col-xs-12" style="cursor:pointer;">
 								<div class="job-company-logo">
-									<img src="assets/img/features/img1.png" alt="">
+									<img src="<%=contextPath %>/resources/cofileupload/<%=n.getLogoFile() %>" style="width:70px;height:70px;" alt="">
+								&nbsp;&nbsp;&nbsp;
 								</div>
 								<div class="job-details">
 									<h3 onclick="location.href='<%=request.getContextPath()%>/get.no?noti_no=<%=n.getNoti_no()%>'"><%=n.getTitle() %></h3>

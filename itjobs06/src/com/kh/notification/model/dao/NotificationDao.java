@@ -60,6 +60,7 @@ public class NotificationDao {
 						rs.getInt(12));
 				n.setNickname(rs.getString("nickname"));
 				n.setAddress(rs.getString("address"));
+				n.setLogoFile(rs.getString("logo_file"));
 				list.add(n);
 			}
 		} catch (SQLException e) {

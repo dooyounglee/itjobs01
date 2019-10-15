@@ -221,8 +221,8 @@
 				//console.log("ttt");
 				if((flag1&&flag2&&flag3&&flag4)){
 					
-					$("#submit").attr('disabled',false).attr('style','background:#00bcd4').attr('value','가입');
 					
+					$("#submit").attr('disabled',false).attr('style','background:#00bcd4').attr('value','가입');
 				}else{
 					$("#submit").attr('disabled',true).attr('style','background:gray').attr('value','양식을 확인해 주세요');
 				}

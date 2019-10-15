@@ -492,9 +492,9 @@
 
 
 
-				<%-- <%@ include file="/views/include/header.jsp" %> --%>
+				<%-- <%@ include file="/views/include/header.jsp" %> 
 
-				<h1>메인</h1>
+				 <h1>메인</h1>
 				<form id="searchForm" action="main.se" method="get" autocomplete=off>
 					<input name="sText">
 					<button onclick="return searchA()">검색</button>
@@ -550,7 +550,7 @@
 
 						return false;
 					}
-				</script>
+				</script> 
 
 				<fieldset>
 					<legend style="text-align: center">최신공고</legend>
@@ -585,8 +585,8 @@
 							<th>공고제목</th>
 							<th>마감날짜</th>
 							<th>언어</th>
-						</tr>
-						<%-- <%	ArrayList<Notification> endlist=(ArrayList<Notification>)request.getAttribute("endlist");
+						</tr> 
+						 <%	ArrayList<Notification> endlist=(ArrayList<Notification>)request.getAttribute("endlist");
 		for(Notification n:endlist){%>
 	<tr>
 		<td><%=n.getCo_no() %></td>
@@ -594,7 +594,7 @@
 		<td><%=n.getEnd_date() %></td>
 		<td><%=n.getP_language() %></td>
 	</tr>
-	<%	} %> --%>
+	<%	} %> 
 					</table>
 				</fieldset>
 
@@ -612,7 +612,7 @@
 									<th>등록날짜</th>
 									<th>조회수</th>
 								</tr>
-								<%-- <%	ArrayList<Board> nolist=(ArrayList<Board>)request.getAttribute("nolist");
+								 <%	ArrayList<Board> nolist=(ArrayList<Board>)request.getAttribute("nolist");
 				for(Board no:nolist){%>
 			<tr>
 				<td><%=no.getB_no() %></td>
@@ -621,7 +621,7 @@
 				<td><%=no.getEnroll_date() %></td>
 				<td><%=no.getCount() %></td>
 			</tr>
-			<%	} %> --%>
+			<%	} %> 
 							</table>
 						</fieldset>
 					</div>
@@ -637,7 +637,7 @@
 									<th>등록날짜</th>
 									<th>조회수</th>
 								</tr>
-								<%-- <%	ArrayList<Board> freelist=(ArrayList<Board>)request.getAttribute("freelist");
+								 <%	ArrayList<Board> freelist=(ArrayList<Board>)request.getAttribute("freelist");
 				for(Board s:freelist){%>
 			<tr>
 				<td><%=s.getB_no() %></td>
@@ -646,7 +646,7 @@
 				<td><%=s.getEnroll_date() %></td>
 				<td><%=s.getCount() %></td>
 			</tr>
-			<%	} %> --%>
+			<%	} %> 
 							</table>
 						</fieldset>
 					</div>
@@ -666,7 +666,7 @@
 									<th>등록날짜</th>
 									<th>조회수</th>
 								</tr>
-								<%-- <%	ArrayList<Board> plist=(ArrayList<Board>)request.getAttribute("plist");
+								 <%	ArrayList<Board> plist=(ArrayList<Board>)request.getAttribute("plist");
 				for(Board p:plist){%>
 			<tr>
 				<td><%=p.getB_no() %></td>
@@ -676,7 +676,7 @@
 				<td><%=p.getEnroll_date() %></td>
 				<td><%=p.getCount() %></td>
 			</tr>
-			<%	} %> --%>
+			<%	} %> 
 							</table>
 						</fieldset>
 					</div>
@@ -692,7 +692,7 @@
 									<th>등록날짜</th>
 									<th>조회수</th>
 								</tr>
-								<%-- <%	ArrayList<Board> slist=(ArrayList<Board>)request.getAttribute("slist");
+								 <%	ArrayList<Board> slist=(ArrayList<Board>)request.getAttribute("slist");
 				for(Board s:slist){%>
 			<tr>
 				<td><%=s.getB_no() %></td>
@@ -702,12 +702,12 @@
 				<td><%=s.getEnroll_date() %></td>
 				<td><%=s.getCount() %></td>
 			</tr>
-			<%	} %> --%>
+			<%	} %> 
 							</table>
 						</fieldset>
 					</div>
 				</div>
 				<br clear="both">
-				<%@ include file="/views/include/footer.jsp"%>
+				<%@ include file="/views/include/footer.jsp"%> --%>
 </body>
 </html>

@@ -103,7 +103,7 @@
 
 
 <%-- <%@ include file="/views/include/header.jsp" %> --%>
-<h1>공고 관리</h1>
+<%-- <h1>공고 관리</h1>
 <button onclick="location.href='<%=request.getContextPath()%>/write.no'">공고 만들기</button>
 <select>
 	<option>제목</option>
@@ -135,7 +135,7 @@
 	</tr>
 	<%	} %>
 </table>
-
+ --%>
 
 
 	<!-- footer -->

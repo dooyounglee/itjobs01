@@ -82,7 +82,7 @@
 		</div>
 		</div>
 		<input type="submit" id="submit" class="btn btn-common log-btn mt-3" value="가입" disabled>
-		<p class="text-center">Already have an account?<a href="login.html"> Sign In</a></p>
+		
 		
 		
 		</form>
@@ -159,7 +159,6 @@
 				 emailDiv.html('이메일 형식에 맞지 않습니다').attr('style','color:red');
 				flag4=false;
 			 }else{
-				flag4=true;
 					$.ajax({
 							url:"<%=request.getContextPath() %>/emoverlap.me",
 							data:{email:email},
@@ -178,6 +177,7 @@
 							
 							}
 						});
+
 						flag4=true;
 			 		}	
 			 
@@ -223,15 +223,5 @@
 
 
 
-
-
-
-
-
-
-
-
-
-<%@ include file="/views/include/footer.jsp" %>
 </body>
 </html>

@@ -26,7 +26,7 @@
 	<!-- page-header -->
 	<%@ include file="/views/include/user/page_header.jsp" %>
 	<script>
-		var page_header_title='내 정보 수정'
+		var page_header_title='이력서'
 	</script>
 	<!-- end of page-header -->
 	
@@ -207,8 +207,8 @@
 	폰 : <%= re.getPhone()%><br>
 	주소 : <%= re.getAddress() %><br>
 	이메일 : <%= re.getEmail() %><br> --%>
-<hr>
-<%-- 	<%	String[] schools=re.getSchool().split(",");
+
+	<%-- 	<%	String[] schools=re.getSchool().split(",");
 		String[] departments=re.getDepartment().split(",");
 		String[] school_period=re.getSchool_period().split("~");
 		String[] st_school_period=school_period[0].split(",");
@@ -220,7 +220,7 @@
 	기간 : <%= st_school_period[i]%>~<%= ed_school_period[i]%><br>
 	<br>
 	<%	} %> --%>
-<hr>
+
 	<%-- 경력 : <%= re.getCareer()%><br>
 	<%	if(re.getCareer().equals("Y")){
 			String[] work_place=re.getWork_place().split(",");
@@ -235,7 +235,7 @@
 	일한날짜 : <%=st_work_date[i]%>~<%=ed_work_date[i]%><br><br>
 	<%		}
 		}%> --%>
-<hr>
+
 	<%-- <%	String[] certifications=re.getCertification().split(",");
 		String[] cer_dates=re.getCer_date().split(",");
 		
@@ -243,7 +243,7 @@
 	자격증 : <%= certifications[i]%><br>
 	자격날짜 : <%= cer_dates[i]%><br>
 	<%	} %> --%>
-<hr>
+
 	<%-- 희망연봉 : <%= re.getHope_salary()%><br>
 	공개 : <%= re.getOpen()%><br>
 	언어 : <%= re.getP_language()%><br> --%>

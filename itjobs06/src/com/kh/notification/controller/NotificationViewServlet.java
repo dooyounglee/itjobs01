@@ -39,7 +39,6 @@ public class NotificationViewServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		int noti_no=Integer.parseInt(request.getParameter("noti_no"));
-		
 		HttpSession session = request.getSession();
 		Member m=(Member)session.getAttribute("mem");
 		

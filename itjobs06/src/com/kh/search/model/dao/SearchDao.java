@@ -140,7 +140,7 @@ public class SearchDao {
 			ps.setInt(3, pi.getStartRow());
 			rs=ps.executeQuery();
 			while(rs.next()) {
-				list.add(new Notification(
+				Notification n=new Notification(
 						rs.getInt(1),
 						rs.getInt(2),
 						rs.getString(3),
@@ -152,7 +152,9 @@ public class SearchDao {
 						rs.getString(9),
 						rs.getString(10),
 						rs.getString(11),
-						rs.getInt(12)));
+						rs.getInt(12));
+				n.setNickname(rs.getString("nickname"));
+				list.add(n);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

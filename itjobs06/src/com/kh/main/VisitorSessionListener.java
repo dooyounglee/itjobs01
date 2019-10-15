@@ -12,7 +12,7 @@ public class VisitorSessionListener implements HttpSessionListener {
 		HttpSession session = sessionEvent.getSession();
 		System.out.println("sessionCreated : "+session.isNew());
 		if(session.isNew()) {
-			//new MainService().visit();
+			new MainService().visit();
 		}
 		//session.setAttribute("totalVisitCount", new MainService().getTotal());
 		//session.setAttribute("todayVisitCount", new MainService().getToday());

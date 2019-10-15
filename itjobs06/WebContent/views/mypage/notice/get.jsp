@@ -114,7 +114,7 @@
 											</select>
 										</label>
 									</div>
-									<div class="col-md-4">
+									<div class="col-md-6">
 										<label class="control-label">내 점수 / 지원자 평균</label>
 										<input type="text" class="form-control" id="score" readonly>
 									</div>
@@ -135,7 +135,6 @@
 	<script>
 		var noti_no=<%=noti.getNoti_no()%>;
 		var noti_lan="<%=noti.getP_language()%>";
-		var str;
 		
 		function score(resume_lan,noti_lan){
 			var arr_re=resume_lan.split(",");
@@ -154,8 +153,12 @@
 		}
 		
 		function test(val){
+			var str="0";
 			var resume_no=val.value;
-			if(resume_no==0)return;
+			if(resume_no==0){
+				$('#score').val("이력서를 선택하시면 점수가 떠요")
+				return;
+			}
 
 			//내점수
 			$.ajax({
@@ -183,12 +186,17 @@
 				success:function(result){
 					console.log("avg성공")
 					var count=result.length
-					var sum=0;
-					for(k=0;k<result.length;k++){
-						sum+=score(result[k].p_language,noti_lan)
+					if(count==0){
+						str+=" / 현재 지원자가 없습니다."
+					}else{
+						var sum=0;
+						for(k=0;k<result.length;k++){
+							sum+=score(result[k].p_language,noti_lan)
+						}
+						str+=" / "+(sum/count)
 					}
-					str+=" / "+(sum/count)
-					$('#score').val(str)
+						$('#score').val(str)
+					
 				},
 			})
 		}

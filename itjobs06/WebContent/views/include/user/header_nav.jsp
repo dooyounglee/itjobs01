@@ -46,7 +46,7 @@
 		onClose(event)
 	}
 	function onMessage(event) {//다른사람 동작->나한테 발생
-		$('#userCounting').text(event.data);
+		callback(event.data)
 	}
 	function onOpen(event) {
 		webSocket.send("어차피 안나올 값");
@@ -57,10 +57,18 @@
 	function onClose(event) {
 		webSocket.send("어차피 안나올 값");
 	}
+	function callback(str){
+		var arr=str.split(',');
+		$('#userCounting').text(arr[0]);
+		$('#todayCount').text(arr[2]);
+		$('#totalCount').text(arr[1]);
+	}
 </script>
 			<div class="collapse navbar-collapse" id="main-navbar">
 				<ul class="navbar-nav mr-auto w-100 justify-content-end">
-					<li class="nav-item"><a class="nav-link"><%=session.getAttribute("todayVisitCount") %>/<%=session.getAttribute("totalVisitCount") %></a></li>
+					<li class="nav-item"><a class="nav-link">
+						오늘 <span id="todayCount">&nbsp;</span> · 전체 <span id="totalCount">&nbsp;</span>
+					</a></li>
 					<%	if(mem!=null){ %>
 					<li class="nav-item"><a class="nav-link"> ${mem.nickname }님 안녕하세요.</a></li>
 					<%	} %>

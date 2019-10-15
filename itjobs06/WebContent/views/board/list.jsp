@@ -121,6 +121,9 @@
    <%if(i.getEditFile() != null){ %>
    <sapn><img style="width:20px; height=20px;"src="<%= contextPath %>/resources/images/fileBoard.png"></sapn>
    <%} %>
+    <%if(i.getVideo() != null){ %>
+   <sapn><img style="width:20px; height=20px;"src="<%= contextPath %>/resources/images/video.png"></sapn>
+   <%} %>
    <br>
    <% if(list.isEmpty()) { %>
             등록된 게시글이 없습니다.

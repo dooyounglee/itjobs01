@@ -119,4 +119,11 @@ public class VolunteerService {
 		return result;
 	}
 
+	public ArrayList<Volunteer> getListWithoutPage(int noti_no) {
+		Connection conn=getConnection();
+		ArrayList<Volunteer> list=new VolunteerDao().getListWithoutPage(conn,noti_no);
+		close(conn);
+		return list;
+	}
+
 }

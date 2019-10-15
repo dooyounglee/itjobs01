@@ -108,6 +108,8 @@ public class MemberService {
 
 		int result2 = 0;
 		
+		int result3 = 0;
+		
 		int result1 = new MemberDao().joinMember(conn, m);
 		
 		if(result1>0) {
@@ -115,7 +117,7 @@ public class MemberService {
 			
 			 result2 = new MemberDao().JoinCoInfo(conn, email ,cf);
 			
-			if (result1 > 0) {
+			if (result2 > 0) {
 				commit(conn);
 				} else {
 				rollback(conn);
@@ -125,6 +127,13 @@ public class MemberService {
 			rollback(conn);
 		}
 		
+		if(result1>0 && result2>0) {
+			result3 = 1;
+		}else {
+			result3 = 0;
+		}
+		
+		System.out.println(result3);
 		/*
 		 * int result2 = new MemberDao().JoinCoInfo(conn, email ,cf);
 		 * 
@@ -133,7 +142,7 @@ public class MemberService {
 		 * close(conn);
 		 */
 
-		return result2;
+		return result3;
 
 	}
 

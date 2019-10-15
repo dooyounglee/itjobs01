@@ -86,7 +86,7 @@
 	<section id="editor">
 	<div class="form-group">
 	<label for="comment">내용</label>
-	<textarea class="form-control" rows="5" id="comment" name="content"></textarea>
+	<textarea class="form-control" rows="5" style="width:100px;" id="comment" name="content"></textarea>
 	</div>
 	</section>
 	<div class="form-group time" >

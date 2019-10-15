@@ -50,7 +50,7 @@
 		좋아요 한 목록이 없어요.
 <%	}else{
 	for(Notification n:list){%>
-						<a class="job-listings" href="job-details.html">
+						<a class="job-listings" href="get.no?noti_no=<%=n.getNoti_no()%>">
 							<div class="row">
 								<div class="col-lg-4 col-md-12 col-xs-12">
 									<div class="job-company-logo">

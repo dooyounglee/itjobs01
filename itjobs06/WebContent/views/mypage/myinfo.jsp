@@ -10,6 +10,7 @@
 
 <!-- import jobx -->
 <%@ include file="/views/include/user/style.jsp" %>
+<%@ include file="/views/include/user/js.jsp" %>
 <!-- End of import from jobx -->
 
 </head>
@@ -47,21 +48,29 @@
 						<form class="form" action="changePw.me" method="post" autocomplete=off>
 							<div class="form-group is-empty">
 								<label class="control-label">현재 비밀번호*</label> <input
-									class="form-control" type="text" name="pw"> <span
+									class="form-control" type="password" name="pw"> <span
 									class="material-input"></span>
 							</div>
 							<div class="form-group is-empty">
 								<label class="control-label">새로운 비밀번호*</label> <input
-									class="form-control" type="text" name="newPw"> <span
+									class="form-control" type="password" id=newPw name="newPw"> <span
 									class="material-input"></span>
 							</div>
 							<div class="form-group is-empty">
 								<label class="control-label">새로운 비밀번호 확인*</label> <input
-									class="form-control" type="text" name="checkPw"> <span
+									class="form-control" type="password" id=checkPw name="checkPw"> <span
 									class="material-input"></span>
 							</div>
-							<button id="submit" class="btn btn-common">Save Change</button>
+							<button id="submit" class="btn btn-common" onclick="return aaa()">Save Change</button>
 						</form>
+<script>
+	function aaa(){
+		if($('#newPw').val()!=$('#checkPw').val()){
+			alert("비번이 일치하지 않아요.")
+			return false;
+		}
+	}
+</script>
 						<hr>
 						<%	Co_Info co=null;
 							if(mem.getType().equals("2")){
@@ -73,10 +82,12 @@
 						<form class="form-ad" action="update.me" method="post" autocomplete=off>
 						<%	} %>
 						<h3 class="alerts-title">정보 변경</h3>
-							<%	String nickname="";
+							<%	String nickname="";System.out.println("dddd");
 								if(mem.getType().equals("2")){
+									System.out.println("dddd2");
 									nickname=mem.getNickname().substring(0,mem.getNickname().indexOf("("));
 								}else if(mem.getType().equals("1")){
+									System.out.println("dddd1");
 									nickname=mem.getNickname();
 								}
 								%>
@@ -159,6 +170,8 @@
 			reader.readAsDataURL(value.files[0]);
 		}
 	}
+	
+	
 </script>
 							<div class="form-group is-empty">
 								<label class="control-label">담당자명</label> <input
@@ -181,8 +194,8 @@
 									class="material-input"></span>
 							</div>
 							<div class="form-group is-empty">
-								<label class="control-label">사업내용</label> <input
-									class="form-control" type="text" id="comment1" name="descript" value="<%=co.getDescript()%>"> <span
+								<label class="control-label">사업내용</label> <textarea
+									class="form-control" type="text" id="comment1" name="descript"><%=co.getDescript()%></textarea> <span
 									class="material-input"></span>
 							</div>
 <script>
@@ -206,23 +219,21 @@ nhn.husky.EZCreator.createInIFrame({
 									class="material-input"></span>
 							</div>
 							<div class="form-group is-empty">
-								<label class="control-label">사원수</label> <input
-									class="form-control" type="text" name="memsum" value="<%=co.getMemsum()%>"> <span
+								<label class="control-label">사원수(숫자만)</label> <input
+									class="form-control" type="text" name="memsum" value="<%=co.getMemsum()%>" pattern="[0-9]{0,10}" title="숫자만 입력해 주세요" maxlength="9"> <span
 									class="material-input"></span>
 							</div>
 							<div class="form-group is-empty">
-								<label class="control-label">매출액</label> <input
-									class="form-control" type="text" name="revenue" value="<%=co.getRevenue()%>"> <span
+								<label class="control-label">매출액(원)</label> <input
+									class="form-control" type="text" name="revenue" value="<%=co.getRevenue()%>" pattern="[0-9]{0,10}" title="원 단위로 숫자만 입력해 주세요" maxlength="9"> <span
 									class="material-input"></span>
 							</div>
 							<div class="form-group is-empty">
-								<label class="control-label">연혁</label> <input
-									class="form-control" type="text" id="comment2" name="history" value="<%=co.getHistory()%>"> <span
+								<label class="control-label">연혁</label> <textarea
+									class="form-control" type="text" id="comment2" name="history"><%=co.getHistory()%></textarea> <span
 									class="material-input"></span>
 							</div>
 <script>
-var oEditors = [];
-	
 nhn.husky.EZCreator.createInIFrame({
  	 oAppRef: oEditors,
  	 elPlaceHolder: document.getElementById('comment2'),
@@ -236,13 +247,11 @@ nhn.husky.EZCreator.createInIFrame({
 });
 </script>
 							<div class="form-group is-empty">
-								<label class="control-label">복지</label> <input
-									class="form-control" type="text" id="comment3" name="welfare" value="<%=co.getWelfare()%>"> <span
+								<label class="control-label">복지</label> <textarea
+									class="form-control" type="text" id="comment3" name="welfare"><%=co.getWelfare()%></textarea> <span
 									class="material-input"></span>
 							</div>
 <script>
-var oEditors = [];
-	
 nhn.husky.EZCreator.createInIFrame({
  	 oAppRef: oEditors,
  	 elPlaceHolder: document.getElementById('comment3'),
@@ -256,11 +265,18 @@ nhn.husky.EZCreator.createInIFrame({
 });
 </script>
 							<%	} %>
-							<button id="submit" class="btn btn-common">Save Change</button>
+							<button id="submit" class="btn btn-common" onclick="write_ok()">Save Change</button>
 						</form>
 					</div>
 				</div>
 				<!-- End of right -->
+<script>
+	function write_ok(){
+		oEditors.getById["comment1"].exec("UPDATE_CONTENTS_FIELD", []);
+		oEditors.getById["comment2"].exec("UPDATE_CONTENTS_FIELD", []);
+		oEditors.getById["comment3"].exec("UPDATE_CONTENTS_FIELD", []);
+	}
+</script>
 				
 			</div>
 			<!-- End of row -->
@@ -277,13 +293,7 @@ nhn.husky.EZCreator.createInIFrame({
 	
 	
 
-<form action="update.me" method="post" autocomplete="off">
-	${mem }<br>
-	닉네임수정:<input name=nickname value="<%=mem.getNickname()%>"><br>
-	<button>입력완료</button>
-	<button onclick="return changePw()">비번수정</button>
-	<button onclick="return leave()">탈퇴(모달창으로 할꺼임)</button>
-	<hr>
+
 	
 	<%-- <%	if(mem.getType().equals("3")){
 		Co_Info co=(Co_Info)session.getAttribute("co");%>
@@ -392,8 +402,7 @@ nhn.husky.EZCreator.createInIFrame({
 	연혁:<input name=history value="<%=co.getHistory()%>"><br>
 	복지:<input name=welfare value="<%=co.getWelfare()%>"><br>
 	<%	} %> --%>
-	<button>입력완료</button>
-</form>
+
 <script>
 	function changePw(){
 		window.open("views/mypage/changePw.jsp","비밀번호 변경창","width=500,height=300");
@@ -421,7 +430,7 @@ nhn.husky.EZCreator.createInIFrame({
 
 
 	<!-- import of jobx -->
-	<%@ include file="/views/include/user/js.jsp" %>
+	
 	<!-- End of import of jobx -->
 
 <script>

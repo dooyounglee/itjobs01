@@ -50,7 +50,7 @@
 		좋아요 한 목록이 없어요.
 <%	}else{
 		for(Resume n:list){%>
-						<a class="job-listings" href="job-details.html">
+						<a class="job-listings" href="detail.re?resume_no=<%=n.getResume_no()%>">
 							<div class="row">
 								<div class="col-lg-4 col-md-12 col-xs-12">
 									<div class="job-company-logo">
@@ -107,7 +107,7 @@
 
 
 
-<h1>인재 좋아요</h1>
+<%-- <h1>인재 좋아요</h1>
 <button>삭제</button>
 <table border=1>
 	<tr>
@@ -133,7 +133,7 @@
 		<td><button onclick="del(<%=r.getResume_no()%>,<%=mem.getM_no()%>)">삭제</button></td>
 	</tr>
 	<%	} %>
-</table>
+</table> --%>
 <script>
 	function del(resume_no){
 		location.href="<%=request.getContextPath()%>/delResume.like?resume_no="+resume_no;

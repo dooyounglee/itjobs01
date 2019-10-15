@@ -52,10 +52,14 @@
 									to login</a>
 							</p>
 						</div>
-						<form class="form-ad" action="<%=request.getContextPath()%>/update.re" method="post" enctype="multipart/form-data">
+						<form class="form-ad" action="<%=request.getContextPath()%>/update.re" method="post" enctype="multipart/form-data" autocomplete=off>
 							<input type=hidden name="resume_no" value="<%=re.getResume_no()%>">
 							<input type=hidden name="path" value="<%=re.getPath()%>">
 							<input type=hidden name="photo" value="<%=re.getPhoto()%>">
+							<div class="form-group">
+								<label class="control-label">이력서 제목</label>
+								<input type="text" class="form-control" name="title" placeholder="제목" value="<%=re.getTitle()%>">
+							</div>
 							<h3>기본정보</h3>
 							<div class="form-group">
 								<label class="control-label">이름</label>
@@ -63,7 +67,7 @@
 							</div>
 							<div class="form-group">
 								<label class="control-label"></label> <label
-									class="control-label">Email</label> <input type="text"
+									class="control-label">Email</label> <input type="email"
 									class="form-control" name="email" placeholder="Your@domain.com"  value="<%=re.getEmail()%>">
 							</div>
 							<div class="form-group">
@@ -80,15 +84,15 @@
 								<div class="row">
 									<div class="col-md-3">
 									<label class="control-label">Phone</label>
-									<input type="text" class="form-control" name="phone1" placeholder="010"  value="<%=phone[0]%>">
+									<input type="text" class="form-control" name="phone1" placeholder="010" pattern="\d{3}" value="<%=phone[0]%>">
 									</div>
 									<div class="col-md-3">
 									<label class="control-label" style="color:white;">phone</label>
-									<input type="text" class="form-control" name="phone2" placeholder="0000"  value="<%=phone[1]%>">
+									<input type="text" class="form-control" name="phone2" placeholder="0000" pattern="[0-9]{3,4}" title="숫자 3 또는 4 자리" value="<%=phone[1]%>">
 									</div>
 									<div class="col-md-3">
 									<label class="control-label" style="color:white;">phone</label>
-									<input type="text" class="form-control" name="phone3" placeholder="0000"  value="<%=phone[2]%>">
+									<input type="text" class="form-control" name="phone3" placeholder="0000" pattern="[0-9]{4}" title="숫자 4자리" value="<%=phone[2]%>">
 									</div>
 								</div>
 							</div>
@@ -114,13 +118,13 @@
 							<div class="form-group">
 								<div class="row">
 									<div class="col-md-6">
-									<label class="control-label">주소</label> <input type="text"
-										class="form-control" id="sample3_address" name="sample3_address" placeholder="주소" value="<%=arr_address[1] %>">
+										<label class="control-label">주소</label> <input type="text"
+											class="form-control" id="sample3_address" name="sample3_address" placeholder="주소" value="<%=arr_address[1] %>" readonly>
 									</div>
 									<div class="col-md-6">
-									<label class="control-label">상세주소</label> <input type="text"
-										class="form-control" id="sample3_detailAddress" name="sample3_detailAddress" placeholder="상세주소" value="<%=arr_address[2] %>">
-									<input type="hidden" id="sample3_extraAddress" placeholder="참고항목">
+										<label class="control-label">상세주소</label> <input type="text"
+											class="form-control" id="sample3_detailAddress" name="sample3_detailAddress" placeholder="상세주소" value="<%=arr_address[2] %>" required>
+										<input type="hidden" id="sample3_extraAddress" placeholder="참고항목">
 									</div>
 								</div>
 							</div>
@@ -154,22 +158,22 @@
 							<h3>최종학력</h3>
 							<div class="form-group">
 								<label class="control-label">학교</label> <input type="text"
-									class="form-control" name="school" placeholder="Degree, e.g. Bachelor"  value="<%=re.getSchool()%>">
+									class="form-control" name="school" placeholder="kh대학교"  value="<%=re.getSchool()%>">
 							</div>
 							<div class="form-group">
 								<label class="control-label">학과</label> <input
 									type="text" class="form-control" name="Department"
-									placeholder="Major, e.g Computer Science"  value="<%=re.getDepartment()%>">
+									placeholder="수학과"  value="<%=re.getDepartment()%>">
 							</div>
 							<div class="form-group">
 								<div class="row">
 									<div class="col-md-6">
 										<label class="control-label">From</label> <input type="date"
-											class="form-control" name="school_Date1" placeholder="e.g 2014"  value="<%=arr_school_period[0]%>">
+											class="form-control" name="school_Date1" placeholder="2000-01-01"  value="<%=arr_school_period[0]%>">
 									</div>
 									<div class="col-md-6">
 										<label class="control-label">To</label> <input type="date"
-											class="form-control" name="school_Date2" placeholder="e.g 2020" value="<%=arr_school_period[1]%>">
+											class="form-control" name="school_Date2" placeholder="2000-01-01" value="<%=arr_school_period[1]%>">
 									</div>
 								</div>
 							</div>
@@ -184,6 +188,10 @@
 								}else{
 									checked_career[0]="checked";
 								}%>
+							<div class="form-group">
+								<input type="radio" id="career_off" name="career" value="N" <%=checked_career[0] %>>신입
+								<input type="radio" id="career_on" name="career" value="Y" <%=checked_career[1] %>>경력
+							</div>
 							<%	if(re.getCareer().equals("Y")){
 								//if(re.getWork()!=null && re.getWork_place()!=null && re.getWork_date()!=null){
 									String[] work_place=re.getWork_place().split(",");
@@ -192,10 +200,6 @@
 									String[] ed_work_date=work_date[1].split(",");
 									String[] work=re.getWork().split(",");
 									String[] career_year=re.getCareer_year().split(",");%>
-							<div class="form-group">
-								<input type="radio" id="career_off" name="career" value="N" <%=checked_career[0] %>>신입
-								<input type="radio" id="career_on" name="career" value="Y" <%=checked_career[1] %>>경력
-							</div>
 							<div id="careerList">
 							<%		for(int i=0;i<work_place.length;i++){%>
 								<div class="form-group">
@@ -224,38 +228,41 @@
 								</div>
 								<%	}%>
 							</div>
-							<%	}else{ %>
-							<div class="form-group">
-								<input type="radio" id="career_off" name="career" value="N" checked>신입
-								<input type="radio" id="career_on" name="career" value="Y">경력
+							<div id="btn_add_career" class="add-post-btn">
+								<div class="float-left">
+									<a href="#" class="btn-added" onclick="return add_career()"><i class="ti-plus"></i>추가</a>
+								</div>
+								<div class="float-right">
+									<a href="#" class="btn-delete" onclick="return del_career()"><i class="ti-trash"></i>삭제</a>
+								</div>
 							</div>
+							<%	}else{ %>
 							<div id="careerList" style="display:none;">
 								<div class="form-group">
 									<label class="control-label">회사이름</label> <input
-										type="text" class="form-control" name="companyName" placeholder="Company name" value="1">
+										type="text" class="form-control" name="companyName" placeholder="Company name">
 								</div>
 								<div class="form-group">
 									<label class="control-label">한일</label> <input type="text"
-										class="form-control" name="workList" placeholder="e.g UI/UX Researcher" value="1">
+										class="form-control" name="workList" placeholder="e.g UI/UX Researcher">
 								</div>
 								<div class="form-group">
 									<div class="row">
 										<div class="col-md-4">
 											<label class="control-label">Date From</label> <input
-												type="date" class="form-control" name="workDate1" placeholder="e.g 2014" value="1">
+												type="date" class="form-control" name="workDate1" placeholder="2019-01-01">
 										</div>
 										<div class="col-md-4">
 											<label class="control-label">Date To</label> <input
-												type="date" class="form-control" name="workDate2" placeholder="e.g 2020" value="1">
+												type="date" class="form-control" name="workDate2" placeholder="2019-01-01">
 										</div>
 										<div class="col-md-4">
 											<label class="control-label">경력년수</label>
-											<input type="text" class="form-control" name="career_year" placeholder="2" value="1">
+											<input type="text" class="form-control" name="career_year" placeholder="2">
 										</div>
 									</div>
 								</div>
 							</div>
-							<%	} %>
 							<div id="btn_add_career" class="add-post-btn" style="display:none;">
 								<div class="float-left">
 									<a href="#" class="btn-added" onclick="return add_career()"><i class="ti-plus"></i>추가</a>
@@ -264,6 +271,7 @@
 									<a href="#" class="btn-delete" onclick="return del_career()"><i class="ti-trash"></i>삭제</a>
 								</div>
 							</div>
+							<%	} %>
 <script>
 	$('#career_off').click(function(){
 		$('#careerList').hide();
@@ -295,7 +303,7 @@
 							<div class="divider">
 								<h3>자격증</h3>
 							</div>
-							<%	if(re.getCertification()!=null && re.getCer_date()!=null){
+							<%	if(re.getCertification()!=null && re.getCer_date()!=null){//자격증 있을때
 									String[] certifications=re.getCertification().split(",");System.out.println(certifications.length);System.out.println(certifications[0]);
 									String[] cer_dates=re.getCer_date().split(",");System.out.println(cer_dates[0]);%>
 							<div class="form-group">
@@ -304,23 +312,32 @@
 							</div>
 							<div id="cerList">
 							<%		for(int i=0;i<certifications.length;i++){%>
-								<div class="form-group" style>
+								<hr>
+								<div class="form-group">
 									<div class="row">
 										<div class="col-md-6">
 											<label class="control-label">자격증</label> <input
-												class="form-control" name="cer_name" placeholder="Skill name, e.g. HTML"
+												class="form-control" name="cer_name" placeholder="워드프로세서"
 												type="text" value="<%= certifications[i]%>">
 										</div>
 										<div class="col-md-6">
 											<label class="control-label">날짜</label> <input
-												class="form-control" name="cer_date" placeholder="Skill proficiency, e.g. 90"
+												class="form-control" name="cer_date" placeholder="2019-01-01"
 												type="date" value="<%= cer_dates[i]%>">
 										</div>
 									</div>
 								</div>
+							<%		}%>
 							</div>
-							<%		}
-								}else{%>
+							<div id="btn_add_cer" class="add-post-btn">
+								<div class="float-left">
+									<a href="#" class="btn-added" onclick="return add_cer()"><i class="ti-plus"></i>추가</a>
+								</div>
+								<div class="float-right">
+									<a href="#" class="btn-delete" onclick="return del_cer()"><i class="ti-trash"></i>삭제</a>
+								</div>
+							</div>
+							<%	}else{%>
 							<div class="form-group">
 								<input type="radio" id="cer_off" name="cerYN" value="N" checked>없음
 								<input type="radio" id="cer_on" name="cerYN" value="Y" >있음
@@ -330,18 +347,17 @@
 									<div class="row">
 										<div class="col-md-6">
 											<label class="control-label">자격증</label> <input
-												class="form-control" name="cer_name" placeholder="Skill name, e.g. HTML"
-												type="text" value="1">
+												class="form-control" name="cer_name" placeholder="워드프로세서"
+												type="text">
 										</div>
 										<div class="col-md-6">
 											<label class="control-label">날짜</label> <input
-												class="form-control" name="cer_date" placeholder="Skill proficiency, e.g. 90"
-												type="date" value="2019-01-01">
+												class="form-control" name="cer_date" placeholder="2019-01-01"
+												type="date">
 										</div>
 									</div>
 								</div>
-							</div>							
-							<%	} %>
+							</div>
 							<div id="btn_add_cer" class="add-post-btn" style="display:none;">
 								<div class="float-left">
 									<a href="#" class="btn-added" onclick="return add_cer()"><i class="ti-plus"></i>추가</a>
@@ -350,6 +366,7 @@
 									<a href="#" class="btn-delete" onclick="return del_cer()"><i class="ti-trash"></i>삭제</a>
 								</div>
 							</div>
+							<%	} %>
 <script>
 	$('#cer_off').click(function(){
 		$('#cerList').hide();
@@ -383,7 +400,6 @@
 								case "4000":arr_hope_sal[3]="selected";
 								case "4001":arr_hope_sal[4]="selected";
 								}
-								
 								%>
 							<div class="form-group">
 								<div class="row">
@@ -411,10 +427,6 @@
 							<div class="form-group">
 								<input type="radio" name="open" value="Y" <%=checked_open[0] %>>공개
 								<input type="radio" name="open" value="N" <%=checked_open[1] %>>비공개
-							</div>
-							<div class="form-group">
-								<label class="control-label">이력서 제목</label>
-								<input type="text" class="form-control" name="title" placeholder="제목" value="<%=re.getTitle()%>">
 							</div>
 							<%	String[] p_lans=re.getP_language().split(",");
 								String[] arr_p_lan=new String[10];
@@ -468,9 +480,9 @@ nhn.husky.EZCreator.createInIFrame({
   	 sSkinURI: "<%=contextPath%>/resources/naver-smarteditor2-ca95d21/demo/SmartEditor2Skin.html",  
      fCreator: "createSEditor2",
      htParams:{
-    	 bUseToolbar:false, // 툴바 사용여부
+    	 bUseToolbar:true, // 툴바 사용여부
     	 bUseVerticalResizer:false, // 크기조절바 사용여부
-    	 bUseModeChanger : false,	// 모드 탭(Editor | HTML | TEXT) 사용 여부
+    	 bUseModeChanger : true,	// 모드 탭(Editor | HTML | TEXT) 사용 여부
      }
 });
 </script>
@@ -481,7 +493,6 @@ nhn.husky.EZCreator.createInIFrame({
 		oEditors.getById["comment"].exec("UPDATE_CONTENTS_FIELD", []);
 	}
 </script>
-					</div>
 					</div>
 				</div>
 				<!-- End of right -->

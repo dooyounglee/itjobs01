@@ -51,6 +51,7 @@ public class BoardFormListServlet extends HttpServlet {
 		
 		ArrayList<Board> list = new BoardService().selectEtcList(head, pi);
 		
+		System.out.println(list);
 		request.setAttribute("pi",pi);
 		request.setAttribute("list", list);
 		

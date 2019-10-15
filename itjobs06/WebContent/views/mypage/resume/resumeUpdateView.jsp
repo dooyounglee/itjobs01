@@ -114,13 +114,13 @@
 							<div class="form-group">
 								<div class="row">
 									<div class="col-md-6">
-									<label class="control-label">주소</label> <input type="text"
-										class="form-control" id="sample3_address" name="sample3_address" placeholder="주소" value="<%=arr_address[1] %>">
+										<label class="control-label">주소</label> <input type="text"
+											class="form-control" id="sample3_address" name="sample3_address" placeholder="주소" value="<%=arr_address[1] %>">
 									</div>
 									<div class="col-md-6">
-									<label class="control-label">상세주소</label> <input type="text"
-										class="form-control" id="sample3_detailAddress" name="sample3_detailAddress" placeholder="상세주소" value="<%=arr_address[2] %>">
-									<input type="hidden" id="sample3_extraAddress" placeholder="참고항목">
+										<label class="control-label">상세주소</label> <input type="text"
+											class="form-control" id="sample3_detailAddress" name="sample3_detailAddress" placeholder="상세주소" value="<%=arr_address[2] %>">
+										<input type="hidden" id="sample3_extraAddress" placeholder="참고항목">
 									</div>
 								</div>
 							</div>
@@ -184,6 +184,10 @@
 								}else{
 									checked_career[0]="checked";
 								}%>
+							<div class="form-group">
+								<input type="radio" id="career_off" name="career" value="N" <%=checked_career[0] %>>신입
+								<input type="radio" id="career_on" name="career" value="Y" <%=checked_career[1] %>>경력
+							</div>
 							<%	if(re.getCareer().equals("Y")){
 								//if(re.getWork()!=null && re.getWork_place()!=null && re.getWork_date()!=null){
 									String[] work_place=re.getWork_place().split(",");
@@ -192,10 +196,6 @@
 									String[] ed_work_date=work_date[1].split(",");
 									String[] work=re.getWork().split(",");
 									String[] career_year=re.getCareer_year().split(",");%>
-							<div class="form-group">
-								<input type="radio" id="career_off" name="career" value="N" <%=checked_career[0] %>>신입
-								<input type="radio" id="career_on" name="career" value="Y" <%=checked_career[1] %>>경력
-							</div>
 							<div id="careerList">
 							<%		for(int i=0;i<work_place.length;i++){%>
 								<div class="form-group">
@@ -224,11 +224,15 @@
 								</div>
 								<%	}%>
 							</div>
-							<%	}else{ %>
-							<div class="form-group">
-								<input type="radio" id="career_off" name="career" value="N" checked>신입
-								<input type="radio" id="career_on" name="career" value="Y">경력
+							<div id="btn_add_career" class="add-post-btn">
+								<div class="float-left">
+									<a href="#" class="btn-added" onclick="return add_career()"><i class="ti-plus"></i>추가</a>
+								</div>
+								<div class="float-right">
+									<a href="#" class="btn-delete" onclick="return del_career()"><i class="ti-trash"></i>삭제</a>
+								</div>
 							</div>
+							<%	}else{ %>
 							<div id="careerList" style="display:none;">
 								<div class="form-group">
 									<label class="control-label">회사이름</label> <input
@@ -255,7 +259,6 @@
 									</div>
 								</div>
 							</div>
-							<%	} %>
 							<div id="btn_add_career" class="add-post-btn" style="display:none;">
 								<div class="float-left">
 									<a href="#" class="btn-added" onclick="return add_career()"><i class="ti-plus"></i>추가</a>
@@ -264,6 +267,7 @@
 									<a href="#" class="btn-delete" onclick="return del_career()"><i class="ti-trash"></i>삭제</a>
 								</div>
 							</div>
+							<%	} %>
 <script>
 	$('#career_off').click(function(){
 		$('#careerList').hide();
@@ -295,7 +299,7 @@
 							<div class="divider">
 								<h3>자격증</h3>
 							</div>
-							<%	if(re.getCertification()!=null && re.getCer_date()!=null){
+							<%	if(re.getCertification()!=null && re.getCer_date()!=null){//자격증 있을때
 									String[] certifications=re.getCertification().split(",");System.out.println(certifications.length);System.out.println(certifications[0]);
 									String[] cer_dates=re.getCer_date().split(",");System.out.println(cer_dates[0]);%>
 							<div class="form-group">
@@ -304,7 +308,8 @@
 							</div>
 							<div id="cerList">
 							<%		for(int i=0;i<certifications.length;i++){%>
-								<div class="form-group" style>
+								<hr>
+								<div class="form-group">
 									<div class="row">
 										<div class="col-md-6">
 											<label class="control-label">자격증</label> <input
@@ -318,9 +323,17 @@
 										</div>
 									</div>
 								</div>
+							<%		}%>
 							</div>
-							<%		}
-								}else{%>
+							<div id="btn_add_cer" class="add-post-btn">
+								<div class="float-left">
+									<a href="#" class="btn-added" onclick="return add_cer()"><i class="ti-plus"></i>추가</a>
+								</div>
+								<div class="float-right">
+									<a href="#" class="btn-delete" onclick="return del_cer()"><i class="ti-trash"></i>삭제</a>
+								</div>
+							</div>
+							<%	}else{%>
 							<div class="form-group">
 								<input type="radio" id="cer_off" name="cerYN" value="N" checked>없음
 								<input type="radio" id="cer_on" name="cerYN" value="Y" >있음
@@ -340,8 +353,7 @@
 										</div>
 									</div>
 								</div>
-							</div>							
-							<%	} %>
+							</div>
 							<div id="btn_add_cer" class="add-post-btn" style="display:none;">
 								<div class="float-left">
 									<a href="#" class="btn-added" onclick="return add_cer()"><i class="ti-plus"></i>추가</a>
@@ -350,6 +362,7 @@
 									<a href="#" class="btn-delete" onclick="return del_cer()"><i class="ti-trash"></i>삭제</a>
 								</div>
 							</div>
+							<%	} %>
 <script>
 	$('#cer_off').click(function(){
 		$('#cerList').hide();
@@ -383,7 +396,6 @@
 								case "4000":arr_hope_sal[3]="selected";
 								case "4001":arr_hope_sal[4]="selected";
 								}
-								
 								%>
 							<div class="form-group">
 								<div class="row">
@@ -481,7 +493,6 @@ nhn.husky.EZCreator.createInIFrame({
 		oEditors.getById["comment"].exec("UPDATE_CONTENTS_FIELD", []);
 	}
 </script>
-					</div>
 					</div>
 				</div>
 				<!-- End of right -->

@@ -17,7 +17,7 @@
 	   }
 	   String URL = request.getRequestURL() + "?" + strParam;
 	
-	   boolean boo = URL.contains("searchList.bo");
+	   boolean boo  = URL.contains("searchList.bo");
 	   
 	String sessionSelect = (String)session.getAttribute("sessionSelect");
 	String sessionSearch =  (String)session.getAttribute("sessionSearch");

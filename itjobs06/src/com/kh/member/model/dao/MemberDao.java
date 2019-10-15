@@ -173,36 +173,36 @@ public class MemberDao {
 				
 		ResultSet rs = null;
 		 
-		String sql = prop.getProperty("checkemail"); // 기업회원가입1에서 저장된 Member의 m_no을 가져오기 위한 과정
+		String sql = prop.getProperty("joinCompany"); // 기업회원가입1에서 저장된 Member의 m_no을 가져오기 위한 과정
 		try {
 			
 			ps = conn.prepareStatement(sql);
-			ps.setString(1, email);
-			rs=ps.executeQuery();
-			if(rs.next()) {
-			m=new Member(rs.getInt(1));
-			}
+//			ps.setString(1, email);
+//			rs=ps.executeQuery();
+//			if(rs.next()) {
+//			m=new Member(rs.getInt(1));
+//			}
 			
-			sql=prop.getProperty("joinCompany");
+//			sql=prop.getProperty("joinCompany");
 						
 			ps=conn.prepareStatement(sql);
-			ps.setInt(1, m.getM_no());
-			ps.setString(2, cf.getRegNum());
-			ps.setString(3, cf.getFile());
-			ps.setString(4, cf.getPath());
-			ps.setString(5, cf.getName());
-			ps.setString(6, cf.getPhone());
-			ps.setString(7, cf.getAddress());
-			ps.setString(8, cf.getCeo());
-			ps.setString(9, cf.getCo_phone());
-			ps.setString(10, cf.getDescript());
-			ps.setString(11, cf.getBirth_date());
-			ps.setInt(12, cf.getMemsum());
-			ps.setInt(13, cf.getRevenue());
-			ps.setString(14, cf.getHistory());
-			ps.setString(15, cf.getWelfare());
-			ps.setString(16, cf.getLogofile());
-			ps.setString(17, cf.getLogopath());
+			//ps.setInt(1, m.getM_no());
+			ps.setString(1, cf.getRegNum());
+			ps.setString(2, cf.getFile());
+			ps.setString(3, cf.getPath());
+			ps.setString(4, cf.getName());
+			ps.setString(5, cf.getPhone());
+			ps.setString(6, cf.getAddress());
+			ps.setString(7, cf.getCeo());
+			ps.setString(8, cf.getCo_phone());
+			ps.setString(9, cf.getDescript());
+			ps.setString(10, cf.getBirth_date());
+			ps.setInt(11, cf.getMemsum());
+			ps.setInt(12, cf.getRevenue());
+			ps.setString(13, cf.getHistory());
+			ps.setString(14, cf.getWelfare());
+			ps.setString(15, cf.getLogofile());
+			ps.setString(16, cf.getLogopath());
 			result=ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

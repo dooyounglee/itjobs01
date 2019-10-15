@@ -42,7 +42,7 @@ public class ResumListServlet extends HttpServlet {
 		Member mem=(Member)session.getAttribute("mem");
 		int mno=mem.getM_no();
 		
-		int listCount = new ResumeService().getListCount(mno);System.out.println(listCount);
+		int listCount = new ResumeService().getListCount(mno);
 		int currentPage = 1;
 		if(request.getParameter("currentPage") != null) { 
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));

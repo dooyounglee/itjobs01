@@ -54,7 +54,7 @@ public class ResumDetailServlet extends HttpServlet {
 			//기업이 이력서를 읽었으면 읽음으로 수정
 			if(mem!=null && mem.getType().equals("2") && mem.getM_no()==n.getCo_no()) {
 				int result=new VolunteerService().readResume(v_no);
-				System.out.println("읽었니?"+result);
+			
 			}
 		}
 

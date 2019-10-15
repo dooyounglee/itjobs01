@@ -101,7 +101,7 @@
 							</div>
 							<div class="form-group is-empty">
 								<label class="control-label">연봉</label> <input
-									class="form-control" type="text" name="salary" value="<%=noti.getSalary()%>"> <span
+									class="form-control" type="text" name="salary" value="<%=noti.getSalary()%>"pattern="[0-9]{0,9}" title="원 단위로 숫자만 입력해 주세요" maxlength="9"> <span
 									class="material-input"></span>
 							</div>
 							<div class="form-group is-empty">
@@ -118,9 +118,9 @@ nhn.husky.EZCreator.createInIFrame({
   	 sSkinURI: "<%=contextPath%>/resources/naver-smarteditor2-ca95d21/demo/SmartEditor2Skin.html",  
      fCreator: "createSEditor2",
      htParams:{
-    	 bUseToolbar:false, // 툴바 사용여부
+    	 bUseToolbar:true, // 툴바 사용여부
     	 bUseVerticalResizer:false, // 크기조절바 사용여부
-    	 bUseModeChanger : false,	// 모드 탭(Editor | HTML | TEXT) 사용 여부
+    	 bUseModeChanger : true,	// 모드 탭(Editor | HTML | TEXT) 사용 여부
      }
 });
 </script>

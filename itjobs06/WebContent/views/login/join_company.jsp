@@ -157,7 +157,6 @@
 			
 			 if(!regExp.test(email)){
 				 emailDiv.html('이메일 형식에 맞지 않습니다').attr('style','color:red');
-				flag4=false;
 			 }else{
 					$.ajax({
 							url:"<%=request.getContextPath() %>/emoverlap.me",
@@ -167,9 +166,12 @@
 								if(result==0){	
 									emailDiv.html('사용가능').attr('style','color:green');
 									flag2 = true;
+									flag4=true;
 								}else{	
 									emailDiv.html('중복되는 이메일이 있습니다.').attr('style','color:red');
 									 flag2 = false;
+									flag4=false;
+									btnChange();
 								}
 						
 							},error:function(){
@@ -178,10 +180,10 @@
 							}
 						});
 
-						flag4=true;
+						
 			 		}	
 			 
-			 btnChange();
+		
 			 	}
 			/* 비밀번호 유효성검사 */
 			

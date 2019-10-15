@@ -104,7 +104,12 @@
    <p><%=q.getEnroll_date() %></p>
    </div>
    <div class="col-md-2">
-   <p><%= q.getEnd_date() %>
+   <p>
+   <% if(q.getEnd_date().equals("null null")){ %>
+    미처리
+  <%}else{ %>
+  <%=q.getEnd_date() %>
+  <%} %>
    </p>
    </div>
    <div class="col-md-2">

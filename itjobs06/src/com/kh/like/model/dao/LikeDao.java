@@ -81,6 +81,8 @@ public class LikeDao {
 				n.setTitle(rs.getString("title"));
 				n.setEnd_date(rs.getDate("end_date")+" "+rs.getTime("end_date"));
 				n.setNickname(rs.getString("nickname"));
+				n.setAddress(rs.getString("address"));
+				n.setLogoFile(rs.getString("logo_file"));
 				list.add(n);
 			}
 		} catch (SQLException e) {
@@ -111,6 +113,7 @@ public class LikeDao {
 				r.setTitle(rs.getString("title"));
 				r.setDepartment(rs.getString("department"));
 				r.setCareer(rs.getString("career"));
+				r.setPhoto(rs.getString("photo"));
 				list.add(r);
 			}
 		} catch (SQLException e) {

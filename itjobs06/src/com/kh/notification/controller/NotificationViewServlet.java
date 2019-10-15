@@ -49,7 +49,7 @@ public class NotificationViewServlet extends HttpServlet {
 		if(m != null) { // 좋아요 한 맴버의 게시글번호 불러오기 위해 
 			int memNo = ((Member)request.getSession().getAttribute("mem")).getM_no();
 			
-			int likeNoCheck = new LikeService().likeNoCheck(noti_no,memNo);
+			String likeNoCheck = new LikeService().likeNoCheck(noti_no,memNo);
 			request.setAttribute("likeNoCheck", likeNoCheck);
 		}
 		

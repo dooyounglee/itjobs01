@@ -74,7 +74,7 @@ String likeNoCheck = (String)request.getAttribute("likeNoCheck");
 						<div class="widghet" style="height:200px;">
 						
 							<% if(mem != null ){ %>
-								<% if(likeNoCheck == "1"){ %>  
+								<% if(likeNoCheck.equals("1")){ %>  
 								<span class="heart-icon"> <img src="./resources/img/button-after.png" class="likeimg1" style="height:200px; width:320px;"> </span>
 								<% 	}else{ %>
 								<span class="heart-icon"> <img src="./resources/img/button-before.png" class="likeimg1" style="height:200px; width:320px;"> </span>									

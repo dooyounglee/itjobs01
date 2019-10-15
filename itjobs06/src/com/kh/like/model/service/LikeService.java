@@ -113,11 +113,11 @@ public class LikeService {
 	}
 	
 	
-	public int likeCoCheck(int co_no, int memNo) {
+	public String likeCoCheck(int co_no, int memNo) {
 		
 		Connection conn = getConnection();
 		
-		int result = new LikeDao().likeCoList1(conn,co_no,memNo);
+		String result = new LikeDao().likeCoCheck(conn,co_no,memNo);
 		
 		close(conn);
 		
@@ -126,11 +126,11 @@ public class LikeService {
 	}
 	
 
-	public int likeNoCheck(int noNo, int memNo) {
+	public String likeNoCheck(int noNo, int memNo) {
 		
 		Connection conn = getConnection();
 		
-		int result = new LikeDao().likeCoList1(conn,noNo,memNo);
+		String result = new LikeDao().likeNoCheck(conn,noNo,memNo);
 		
 		close(conn);
 		

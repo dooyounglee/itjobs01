@@ -30,6 +30,9 @@
 <%@ include file="/views/include/user/style.jsp" %>
 <!-- End of import from jobx -->
 
+	
+
+
 
 <style>
 
@@ -126,6 +129,7 @@
 <%} %>
 
 					<%	PageInfo pi=(PageInfo)request.getAttribute("pi");
+				
 						int currentPage=pi.getCurrentPage();%>
 						<ul class="pagination" style="display:block;">
 							<%	if(currentPage>1){ %>

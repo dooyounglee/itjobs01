@@ -161,7 +161,7 @@
 									emailDiv.html('사용가능').attr('style','color:green');
 									flag2 = true;
 								}else{	
-									emailDiv.html('사용불가능').attr('style','color:red');
+									emailDiv.html('중복되는 이메일이 있습니다').attr('style','color:red');
 									
 									 flag2 = false;
 								}

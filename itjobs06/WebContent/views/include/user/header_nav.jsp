@@ -78,7 +78,7 @@
 							Home </a></li>
 					<li class="nav-item aaa dropdown">
 						<div></div><a
-						class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"
+						class="nav-link dropdown-toggle" href="<%=request.getContextPath()%>/list.bo?head=main" data-toggle="dropdown"
 						aria-haspopup="true" aria-expanded="false"> 게시판 </a>
 						<ul class="dropdown-menu">
 							<li><a class="dropdown-item" href="<%=request.getContextPath()%>/list.bo?head=main">전체</a></li>
@@ -98,7 +98,7 @@
 					<%	if(mem!=null && mem.getType().equals("1")){ %>
 					<li class="nav-item dropdown aaa"><div></div>
 					<a
-						class="nav-link dropdown-toggle" href="<%=request.getContextPath()%>/list.re" data-toggle="dropdown"
+						class="nav-link dropdown-toggle" href="<%=request.getContextPath()%>/myInfo.me" data-toggle="dropdown"
 						aria-haspopup="true" aria-expanded="false"> 마이페이지 </a>
 						<ul class="dropdown-menu">
 							<li><a class="dropdown-item" href="<%=request.getContextPath()%>/myInfo.me">내 정보수정

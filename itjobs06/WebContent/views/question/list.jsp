@@ -98,16 +98,24 @@
    <p><%=q.getContents()%></p>
    </div>
    <div class="col-md-2">
-   <p><%=q.getM_no() %></p>
+   <p><%=q.getNickname() %></p>
    </div>
    <div class="col-md-2">
    <p><%=q.getEnroll_date() %></p>
    </div>
    <div class="col-md-2">
-   <p><%=q.getEnd_date() %></p>
+   <p><%= q.getEnd_date() %>
+   </p>
    </div>
    <div class="col-md-2">
-   <p><%=q.getStatus() %></p>
+   <p>
+   
+   <% if(q.getStatus().equals("Y")){ %>
+   		처리완료
+   <%}else{ %>
+   		미처리
+		<% }   %>
+   </p>
    </div>
    </div>
    </div>

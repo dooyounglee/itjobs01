@@ -64,7 +64,7 @@
 	</tr>
 	<%	} %>
 </table>
-	<div id="showAreaa" style="float:right;width:40%;">77878</div>
+	<div id="showAreaa" style="float:right;width:40%;"></div>
 	</div>
 	<script>
 		function answer(){

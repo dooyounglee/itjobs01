@@ -39,6 +39,7 @@ public class MyListServlet extends HttpServlet {
 		int m_no=((Member)session.getAttribute("mem")).getM_no();
 		
 		ArrayList<Question> list = new QuestionService().getMyQuestionList(m_no);
+		System.out.print("서블릿에서"+list);
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("views/question/list.jsp").forward(request, response);
 	}

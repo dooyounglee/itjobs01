@@ -10,6 +10,8 @@ public class Question {
 	private String enroll_date;
 	private String end_date;
 	private String status;
+	private String nickname;
+	
 	
 	public Question() {
 		super();
@@ -25,6 +27,20 @@ public class Question {
 		this.enroll_date = enroll_date;
 		this.end_date = end_date;
 		this.status = status;
+		
+	}
+	public Question(int q_no, int m_no,String title, String contents, String answer, String enroll_date, String end_date,
+			String status,String nickname) {
+		super();
+		this.q_no = q_no;
+		this.m_no = m_no;
+		this.title=title;
+		this.contents = contents;
+		this.answer = answer;
+		this.enroll_date = enroll_date;
+		this.end_date = end_date;
+		this.status = status;
+		this.nickname=nickname;
 		
 	}
 	public int getQ_no() {
@@ -75,6 +91,12 @@ public class Question {
 	}
 	public void setStatus(String status) {
 		this.status = status;
+	}
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
 
 	

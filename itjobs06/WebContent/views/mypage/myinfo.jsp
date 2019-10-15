@@ -53,16 +53,24 @@
 							</div>
 							<div class="form-group is-empty">
 								<label class="control-label">새로운 비밀번호*</label> <input
-									class="form-control" type="password" name="newPw"> <span
+									class="form-control" type="password" id=newPw name="newPw"> <span
 									class="material-input"></span>
 							</div>
 							<div class="form-group is-empty">
 								<label class="control-label">새로운 비밀번호 확인*</label> <input
-									class="form-control" type="password" name="checkPw"> <span
+									class="form-control" type="password" id=checkPw name="checkPw"> <span
 									class="material-input"></span>
 							</div>
-							<button id="submit" class="btn btn-common">Save Change</button>
+							<button id="submit" class="btn btn-common" onclick="return aaa()">Save Change</button>
 						</form>
+<script>
+	function aaa(){
+		if($('#newPw').val()!=$('#checkPw').val()){
+			alert("비번이 일치하지 않아요.")
+			return false;
+		}
+	}
+</script>
 						<hr>
 						<%	Co_Info co=null;
 							if(mem.getType().equals("2")){

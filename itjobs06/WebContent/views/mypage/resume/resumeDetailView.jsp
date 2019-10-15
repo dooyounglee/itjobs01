@@ -56,6 +56,7 @@
 						Notification n=(Notification)request.getAttribute("n");
 						if(mem!=null && mem.getM_no()==re.getM_no()){ %>
 					<button class="btn btn-common" onclick="location.href='<%=request.getContextPath()%>/update.re?resume_no=<%=re.getResume_no()%>'">수정하기</button>
+					<button class="btn btn-common" onclick="location.href='<%=request.getContextPath()%>/deleteResum.re?resume_no=<%=re.getResume_no()%>'">삭제하기</button>
 					<%	}else if(mem!=null && mem.getType().equals("2") && n!=null && mem.getM_no()==n.getCo_no() && v.getNoti_no()==n.getNoti_no()){
 							 if(!v.getStatus().equals("pass") && !v.getStatus().equals("fail")){%>
 					<button class="btn btn-common" onclick="location.href='<%=request.getContextPath()%>/pass.vo?v_no=<%=v.getV_no()%>'">서류합격</button>

@@ -47,22 +47,22 @@
 						<form class="form-ad" action="<%=contextPath%>/addResum.re" method="post" enctype="multipart/form-data" autocomplete=off>
 							<div class="form-group">
 								<label class="control-label">이력서 제목</label>
-								<input type="text" class="form-control" name="title" placeholder="제목">
+								<input type="text" class="form-control" name="title" placeholder="제목" required>
 							</div>
 							<h3>기본정보</h3>
 							<div class="form-group">
 								<label class="control-label">이름</label>
-								<input type="text" class="form-control" name="name" placeholder="이름">
+								<input type="text" class="form-control" name="name" placeholder="이름" required>
 							</div>
 							<div class="form-group">
 								<label class="control-label"></label> <label
 									class="control-label">Email</label> <input type="email"
-									class="form-control" name="email" placeholder="Your@domain.com"  value="<%=mem.getEmail()%>">
+									class="form-control" name="email" placeholder="Your@domain.com"  value="<%=mem.getEmail()%>" required>
 							</div>
 							<div class="form-group">
 								<label class="control-label">생년월일</label> <input
 									type="date" class="form-control" id="birth" name="birth"
-									placeholder="2000-01-01">
+									placeholder="2000-01-01" required>
 							</div>
 <script>
 	$('#birth').attr('max',date_toString(new Date)) //오늘날짜를 '1999-01-01'형태로 바꿔
@@ -71,15 +71,15 @@
 								<div class="row">
 									<div class="col-md-3">
 									<label class="control-label">Phone</label> <input type="text"
-										class="form-control" name="phone1" placeholder="010" pattern="\d{3}">
+										class="form-control" name="phone1" placeholder="010" pattern="\d{3}" required>
 									</div>
 									<div class="col-md-3">
 									<label class="control-label" style="color:white;">phone</label> <input type="text"
-										class="form-control" name="phone2" placeholder="0000" pattern="[0-9]{3,4}" title="숫자 3 또는 4 자리">
+										class="form-control" name="phone2" placeholder="0000" pattern="[0-9]{3,4}" title="숫자 3 또는 4 자리" required>
 									</div>
 									<div class="col-md-3">
 									<label class="control-label" style="color:white;">phone</label> <input type="text"
-										class="form-control" name="phone3" placeholder="0000" pattern="[0-9]{4}" title="숫자 4자리">
+										class="form-control" name="phone3" placeholder="0000" pattern="[0-9]{4}" title="숫자 4자리" required>
 									</div>
 								</div>
 							</div>
@@ -105,7 +105,7 @@
 								<div class="row">
 									<div class="col-md-6">
 									<label class="control-label">주소</label> <input type="text"
-										class="form-control" id="sample3_address" name="sample3_address" placeholder="주소" readonly>
+										class="form-control" id="sample3_address" name="sample3_address" placeholder="주소" readonly required>
 									</div>
 									<div class="col-md-6">
 									<label class="control-label">상세주소</label> <input type="text"
@@ -119,7 +119,7 @@
 									<div class="action-buttons">
 										<div class="upload-button">
 											<button class="btn btn-common">증명사진</button>
-											<input id="cover_img_file_2" name="file" type="file" onchange="loadImg(this)">
+											<input id="cover_img_file_2" name="file" type="file" onchange="loadImg(this)" required>
 											<img id="titleImg" style="width:100px;"></img>
 										</div>
 									</div>
@@ -161,12 +161,11 @@
 <script>
 	$('input[name=school_Date1]').attr('max',date_toString(new Date))
 	$('input[name=school_Date2]').attr('max',date_toString(new Date))
-/* 	$('input[name=school_Date1]').on('change',function(){
+ 	$(document).on('change','input[name=school_Date1]',function(){
 		var this_date=$(this).val()
-		console.log(this_date)
 		var ago=$(this).parent().next().children('input')
 		$(this).parent().next().children('input').attr('min',this_date)
-	}) */
+	})
 </script>
 							<div class="divider">
 								<h3>경력</h3>
@@ -205,11 +204,17 @@
 <script>
 	$('input[name=workDate1]').attr('max',date_toString(new Date))
 	$('input[name=workDate2]').attr('max',date_toString(new Date))
-/* 	$('input[name=workDate1]').on('change',function(){
+ 	$(document).on('change','input[name=workDate1]',function(){
 		var this_date=$(this).val()
 		var ago=$(this).parent().next().children('input')
 		$(this).parent().next().children('input').attr('min',this_date)
-	}) */
+	})
+	$(document).on('change','input[name=workDate2]',function(){
+		var date2=new Date($(this).val())
+		var date1=new Date($(this).parent().prev().children('input').val())
+		var year=Math.floor((date2-date1)/1000/60/60/24/365)
+		$(this).parent().next().children('input').val(year)
+	})
 </script>
 							<div id="btn_add_career" class="add-post-btn">
 								<div class="float-left">

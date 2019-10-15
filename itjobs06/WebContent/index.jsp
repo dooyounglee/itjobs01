@@ -108,7 +108,7 @@
             <div class="col-lg-6 col-md-12 col-xs-12">
                <a class="job-listings-featured" href="get.no?noti_no=<%=n.getNoti_no() %>">
                   <div class="row">
-                     <div class="col-lg-6 col-md-6 col-xs-12">
+                     <div class="col-lg-8 col-md-6 col-xs-12">
                      <div class="job-company-logo">
                               <img src="<%=contextPath %>/resources/cofileupload/<%=n.getLogoFile() %>" style="width:70px;height:70px;" alt="">
                         &nbsp;&nbsp;&nbsp;
@@ -123,7 +123,7 @@
                            </div>
                         </div>
                      </div>
-                     <div class="col-lg-6 col-md-6 col-xs-12 text-right">
+                     <div class="col-lg-4 col-md-6 col-xs-12 text-right">
                         <div class="tag-type">
                            <!--    <sapn class="heart-icon"> <i class="lni-heart"></i> </sapn> -->
                            <span class="full-time">~<%=n.getEnd_date().substring(0,10)%></span>
@@ -153,7 +153,7 @@
                      <div class="col-lg-6 col-md-12 col-xs-12">
                         <a class="job-listings-featured" href="get.no?noti_no=<%=ne.getNoti_no() %>">
                            <div class="row">
-                              <div class="col-lg-6 col-md-6 col-xs-12">
+                              <div class="col-lg-8 col-md-6 col-xs-12">
                               <div class="job-company-logo">
                               <img src="<%=contextPath %>/resources/cofileupload/<%=ne.getLogoFile() %>" style="width:70px;height:70px;" alt="">
                               &nbsp;&nbsp;&nbsp;
@@ -167,7 +167,7 @@
                                     </div>
                                  </div>
                               </div>
-                              <div class="col-lg-6 col-md-6 col-xs-12 text-right">
+                              <div class="col-lg-4 col-md-6 col-xs-12 text-right">
                                  <div class="tag-type">
                                     <!--    <sapn class="heart-icon"> <i class="lni-heart"></i> </sapn> -->
                                     <span class="full-time">~<%=ne.getEnd_date().substring(0,10)%></span>

@@ -54,6 +54,7 @@
 						<hr>
 						
 						<h4>기업이름</h4>
+						<img src="<%=contextPath %>/resources/cofileupload/<%=noti.getLogoFile() %>" style="height:70px;" alt="">
 						<ul>
 						<%=noti.getNickname() %>
 						</ul>
@@ -113,7 +114,7 @@
 											</select>
 										</label>
 									</div>
-									<div class="col-md-4">
+									<div class="col-md-6">
 										<label class="control-label">내 점수 / 지원자 평균</label>
 										<input type="text" class="form-control" id="score" readonly>
 									</div>
@@ -134,7 +135,6 @@
 	<script>
 		var noti_no=<%=noti.getNoti_no()%>;
 		var noti_lan="<%=noti.getP_language()%>";
-		var str;
 		
 		function score(resume_lan,noti_lan){
 			var arr_re=resume_lan.split(",");
@@ -153,8 +153,12 @@
 		}
 		
 		function test(val){
+			var str="0";
 			var resume_no=val.value;
-			if(resume_no==0)return;
+			if(resume_no==0){
+				$('#score').val("이력서를 선택하시면 점수가 떠요")
+				return;
+			}
 
 			//내점수
 			$.ajax({
@@ -182,12 +186,17 @@
 				success:function(result){
 					console.log("avg성공")
 					var count=result.length
-					var sum=0;
-					for(k=0;k<result.length;k++){
-						sum+=score(result[k].p_language,noti_lan)
+					if(count==0){
+						str+=" / 현재 지원자가 없습니다."
+					}else{
+						var sum=0;
+						for(k=0;k<result.length;k++){
+							sum+=score(result[k].p_language,noti_lan)
+						}
+						str+=" / "+(sum/count)
 					}
-					str+=" / "+(sum/count)
-					$('#score').val(str)
+						$('#score').val(str)
+					
 				},
 			})
 		}
@@ -204,13 +213,14 @@
 						<div class="row">
 							<div class="col-lg-6 col-md-6 col-xs-12" style="cursor:pointer;">
 								<div class="job-company-logo">
-									<img src="assets/img/features/img1.png" alt="">
+									<img src="<%=contextPath %>/resources/cofileupload/<%=n.getLogoFile() %>" style="width:70px;height:70px;" alt="">
+								&nbsp;&nbsp;&nbsp;
 								</div>
 								<div class="job-details">
 									<h3 onclick="location.href='<%=request.getContextPath()%>/get.no?noti_no=<%=n.getNoti_no()%>'"><%=n.getTitle() %></h3>
 									<span class="company-neme" onclick="detailCo(<%=n.getCo_no()%>)"><%=n.getNickname()%></span>
 									<div class="tags">
-										<span><i class="lni-map-marker"></i> 위치</span> <span><i
+										<span><i class="lni-map-marker"></i> <%=n.getAddress().split(" ")[0].split("\\+")[1] %></span> <span><i
 											class="lni-user"></i><%=n.getSalary() %> 만원</span>
 									</div>
 								</div>

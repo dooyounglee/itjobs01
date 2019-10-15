@@ -67,15 +67,15 @@ ArrayList<String> likeBoList = (ArrayList<String>)request.getAttribute("likeMem"
 						<h3>Find Job</h3>
 					</div>
 					<div class="job-search-form">
-						<form>
-							<div class="row">
+						<form action="notificationList.se" method="get" autocomplete=off>
+							<div class="row justify-content-md-center">
 								<div class="col-lg-5 col-md-5 col-xs-12">
 									<div class="form-group">
 										<input class="form-control" type="text"
-											placeholder="Job Title or Company Name">
+											placeholder="Job Title or Company Name" name="sText">
 									</div>
 								</div>
-								<div class="col-lg-3 col-md-5 col-xs-12">
+								<!-- <div class="col-lg-3 col-md-5 col-xs-12">
 									<div class="form-group">
 										<div class="search-category-container">
 											<label class="styled-select"> <select>
@@ -91,8 +91,8 @@ ArrayList<String> likeBoList = (ArrayList<String>)request.getAttribute("likeMem"
 										</div>
 										<i class="lni-map-marker"></i>
 									</div>
-								</div>
-								<div class="col-lg-3 col-md-5 col-xs-12">
+								</div> -->
+								<!-- <div class="col-lg-3 col-md-5 col-xs-12">
 									<div class="form-group">
 										<div class="search-category-container">
 											<label class="styled-select"> <select>
@@ -110,7 +110,7 @@ ArrayList<String> likeBoList = (ArrayList<String>)request.getAttribute("likeMem"
 										</div>
 										<i class="lni-layers"></i>
 									</div>
-								</div>
+								</div> -->
 								<div class="col-lg-1 col-md-2 col-xs-12">
 									<button type="submit" class="button">
 										<i class="lni-search"></i>
@@ -144,13 +144,14 @@ ArrayList<String> likeBoList = (ArrayList<String>)request.getAttribute("likeMem"
 						<div class="row">
 							<div class="col-lg-6 col-md-6 col-xs-12" style="cursor:pointer;">
 								<div class="job-company-logo">
-									<img src="assets/img/features/img1.png" alt="">
+									<img src="<%=contextPath %>/resources/cofileupload/<%=n.getLogoFile() %>" style="width:70px;height:70px;" alt="">
+								&nbsp;&nbsp;&nbsp;
 								</div>
 								<div class="job-details">
 									<h3 onclick="location.href='<%=request.getContextPath()%>/get.no?noti_no=<%=n.getNoti_no()%>'"><%=n.getTitle() %></h3>
 									<span class="company-neme" onclick="detailCo(<%=n.getCo_no()%>)"><%=n.getNickname()%></span>
 									<div class="tags">
-										<span><i class="lni-map-marker"></i> 위치</span> <span><i
+										<span><i class="lni-map-marker"></i> <%=n.getAddress().split(" ")[0].split("\\+")[1] %></span> <span><i
 											class="lni-user"></i><%=n.getSalary() %> 만원</span>
 									</div>
 								</div>

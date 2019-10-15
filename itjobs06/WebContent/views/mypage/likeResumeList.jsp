@@ -50,11 +50,12 @@
 		좋아요 한 목록이 없어요.
 <%	}else{
 		for(Resume n:list){%>
-						<a class="job-listings" href="job-details.html">
+						<a class="job-listings" href="detail.re?resume_no=<%=n.getResume_no()%>">
 							<div class="row">
 								<div class="col-lg-4 col-md-12 col-xs-12">
 									<div class="job-company-logo">
-										<img src="assets/img/features/img1.png" alt="">
+										<img src="<%=contextPath %>/resources/fileupload_resumeImg/<%=n.getPhoto() %>" style="width:70px;height:70px;" alt="">
+								&nbsp;&nbsp;&nbsp;
 									</div>
 									<div class="job-details">
 										<h3><%=n.getTitle() %></h3>

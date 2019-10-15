@@ -54,7 +54,8 @@
 							<div class="row">
 								<div class="col-lg-4 col-md-12 col-xs-12">
 									<div class="job-company-logo">
-										<img src="assets/img/features/img1.png" alt="">
+										<img src="<%=contextPath %>/resources/cofileupload/<%=n.getLogoFile() %>" style="width:70px;height:70px;" alt="">
+								&nbsp;&nbsp;&nbsp;
 									</div>
 									<div class="job-details">
 										<h3><%=n.getTitle() %></h3>

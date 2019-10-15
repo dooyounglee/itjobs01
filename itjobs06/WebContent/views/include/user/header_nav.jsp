@@ -129,8 +129,6 @@
 									</a></li>
 							<li><a class="dropdown-item" href="<%=request.getContextPath()%>/myApplyList.vo">지원리스트
 									</a></li>
-							<li><a class="dropdown-item" href="<%=request.getContextPath()%>/myCompanyList.like">관심기업
-									</a></li>
 							<li><a class="dropdown-item" href="<%=request.getContextPath()%>/myNotificationList.like">관심공고
 									</a></li>
 							<li><a class="dropdown-item"
@@ -177,4 +175,3 @@
 	</div>
 	<div class="mobile-menu" data-logo="assets/img/logo-mobile.png"></div>
 </nav>
-

@@ -52,6 +52,16 @@ ArrayList<String> likeResList = (ArrayList<String>)request.getAttribute("likeRes
     transition-delay: 0s;
 }
 
+	#blur{
+		
+		-webkit-filter: blur(5px); 
+		-moz-filter: blur(5px); 
+		-o-filter: blur(5px); 
+		-ms-filter: blur(5px); 
+		filter: blur(5px);
+
+	}
+
 </style>
 
 <!-- import jobx -->
@@ -150,8 +160,13 @@ ArrayList<String> likeResList = (ArrayList<String>)request.getAttribute("likeRes
 				<div class="col-lg-6 col-md-6 col-xs-12">
 					<div class="manager-resumes-item">
 						<div class="manager-content">
+						<%if(mem== null || mem.getM_no() != n.getM_no() && !(mem.getType().equals("2"))){ %> 
 							<a href="detail.re?resume_no=<%=n.getResume_no()%>"><img class="resume-thumb"
-								src="resources/jobx/assets/img/jobs/avatar-1.png" alt=""></a>
+								src="<%= contextPath %>/resources/fileupload_resumeImg/<%= n.getPhoto()%>" id="blur"  ></a>
+								<%}else{ %>
+								<a href="detail.re?resume_no=<%=n.getResume_no()%>"><img class="resume-thumb"
+								src="<%= contextPath %>/resources/fileupload_resumeImg/<%= n.getPhoto()%>"  ></a>
+								<%} %>
 							<div class="manager-info">
 								<div class="manager-name">
 									<h4>

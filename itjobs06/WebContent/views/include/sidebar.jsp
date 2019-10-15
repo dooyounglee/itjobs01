@@ -59,14 +59,14 @@
           <span>게시글관리</span></a>
       </li>
       
-      <!-- Nav Item - Charts -->
+   <%--    <!-- Nav Item - Charts -->
       <li class="nav-item">
         <a class="nav-link" href="<%=request.getContextPath()%>/replyList.ad">
           <i class="fas fa-fw fa-chart-area"></i>
           <span>리플관리</span></a>
-      </li>
-      
-      <!-- Nav Item - Pages Collapse Menu -->
+      </li> --%>
+<!--       
+   Nav Item - Pages Collapse Menu
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
           <i class="fas fa-fw fa-folder"></i>
@@ -74,11 +74,16 @@
         </a>
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="list.de?head=noti">공고 신고</a>
             <a class="collapse-item" href="list.de?head=board">게시글 신고</a>
-            <a class="collapse-item" href="list.de?head=reply">댓글 신고</a>
           </div>
         </div>
+      </li>  
+       -->
+          <!-- Nav Item - Charts -->
+      <li class="nav-item">
+        <a class="nav-link" href="list.de?head=board">
+          <i class="fas fa-fw fa-chart-area"></i>
+          <span>게시글 신고 관리</span></a>
       </li>
 
       <!-- Nav Item - Tables -->
@@ -88,7 +93,7 @@
           <span>문의관리</span></a>
       </li>
       
-      <!-- Divider -->
+    <%--   <!-- Divider -->
       <hr class="sidebar-divider">
       
       <!-- Heading -->
@@ -169,7 +174,7 @@
             <a class="collapse-item" href="blank.html">Blank Page</a>
           </div>
         </div>
-      </li>
+      </li> --%>
       
       
       <!-- Divider -->

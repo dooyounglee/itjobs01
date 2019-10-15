@@ -15,7 +15,18 @@
 <!-- import jobx -->
 <%@ include file="/views/include/user/style.jsp" %>
 <!-- End of import from jobx -->
+<style>
+	#blur{
+		
+		-webkit-filter: blur(5px); 
+		-moz-filter: blur(5px); 
+		-o-filter: blur(5px); 
+		-ms-filter: blur(5px); 
+		filter: blur(5px);
 
+	}
+
+</style>
 </head>
 <body>
 
@@ -70,10 +81,14 @@
 						<p><%= re.getTitle()%></p>
 						<hr>
 						<div class="author-resume">
-<%	if(mem!=null && (mem.getType().equals("2") || mem.getM_no()==re.getM_no())){ %>
 							<div class="thumb">
-								<img src="<%=request.getContextPath() %>/resources/fileupload_resumeImg/<%=re.getPhoto() %>" alt="">
+							<%if(mem== null || mem.getM_no() != re.getM_no()){ %> 
+								<img src="<%= contextPath %>/resources/fileupload_resumeImg/<%= re.getPhoto()%>" id="blur">
+								<%}else{ %>
+								<img src="<%= contextPath %>/resources/fileupload_resumeImg/<%= re.getPhoto()%>" >
+								<%} %>
 							</div>
+<%	if(mem!=null && (mem.getType().equals("2") || mem.getM_no()==re.getM_no())){ %>
 							<div class="author-info">
 								<h3><%=re.getName() %></h3>
 								<!-- <p class="sub-title">UI/UX Designer</p> -->

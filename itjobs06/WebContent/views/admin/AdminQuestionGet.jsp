@@ -73,7 +73,7 @@
 <%	} %>
 
 <%	if(q.getStatus().equals("N")){%>
-<a class="btn btn-common btn-sm" onclick="answer()">답변하기</a>
+<a class="btn btn-common btn-sm" onclick="answer()" >답변하기</a>
 
 
 
@@ -92,21 +92,22 @@ function answer(){
 </script>
 <a class="btn btn-common btn-sm" id="new" href="<%=contextPath%>/list.qu.ad">목록으로</a>
 
-<%-- <%	} %> --%>
+ <%	} %> 
 </div>
 </div>
 </div>
 </div>
+</div>
+
+
 </div>
 </div>  
 
 
   </div>
   
-</div>
-   
-   
-   
+
+
    
    
    
@@ -162,7 +163,8 @@ ${q }<br>
 	}
 
 </script>
- <%	} %> 
+<%--  <%	} %>  --%>
+
    <!-- footer -->
       <%@ include file="/views/include/user/footer.jsp" %>
    <!-- End of footer -->
@@ -184,7 +186,7 @@ ${q }<br>
    
    <%@ include file="/views/include/footer.jsp" %> 
 
-</body>
+ </body>
 
 
 </html>

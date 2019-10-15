@@ -98,7 +98,7 @@
    <p><%=q.getContents()%></p>
    </div>
    <div class="col-md-2">
-   <p><%=q.getM_no() %></p>
+   <p><%=q.getNickname() %></p>
    </div>
    <div class="col-md-2">
    <p><%=q.getEnroll_date() %></p>

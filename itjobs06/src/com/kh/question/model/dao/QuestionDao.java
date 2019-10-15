@@ -52,7 +52,6 @@ public class QuestionDao {
 			close(rs);
 			close(ps);
 		}
-	
 		return list;
 	}
 
@@ -124,7 +123,8 @@ public class QuestionDao {
 					rs.getString(5),
 					rs.getDate(6)+" "+rs.getTime(6),
 					rs.getDate(7)+" "+rs.getTime(7),
-					rs.getString(8)));
+					rs.getString(8),
+					rs.getString(9)));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

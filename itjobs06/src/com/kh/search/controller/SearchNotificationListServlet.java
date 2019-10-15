@@ -55,7 +55,9 @@ public class SearchNotificationListServlet extends HttpServlet {
 		request.setAttribute("likeMem", likeMem);
 		}
 		
-		
+		/*
+		 * int likeSum = new LikeSerivce().LikeSum()
+		 */
 		//System.out.println(likeBoList);
 		
 		int listCount = 0;

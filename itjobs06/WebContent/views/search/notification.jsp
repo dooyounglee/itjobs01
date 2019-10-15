@@ -158,7 +158,16 @@ ArrayList<String> likeBoList = (ArrayList<String>)request.getAttribute("likeMem"
 							</div>			
 							<div class="col-lg-6 col-md-6 col-xs-12 text-right">
 								<div class="tag-type">
+								<div class="tag-type">
+									<span class="heart-icon" style="background:white; color:blue; text-align:center; padding-right: 132px;">111
+									<input type="hidden" value="<%=n.getNoti_no()%>" id="noNo5" onchange="likeSum();">
+									
+									
+									
+									</span>
+								</div>
 									<input type="hidden" value="<%=n.getNoti_no()%>" class="no_no">
+									
 									<%
 										boolean flag = false;  // 좋아요 이미지가 겹치지 않게 하기 위해서
 										if(mem != null){
@@ -219,6 +228,18 @@ ArrayList<String> likeBoList = (ArrayList<String>)request.getAttribute("likeMem"
 <!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
 
 <script>
+	
+	function likeSum(){
+		
+		var noNo = $('#noNo5').val();
+		
+		console.log(noNo);
+		
+	}
+	
+	
+	
+	
 	
 	
 	

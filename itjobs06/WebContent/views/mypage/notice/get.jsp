@@ -4,7 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-int likeNoCheck = (int)request.getAttribute("likeNoCheck");
+String likeNoCheck = (String)request.getAttribute("likeNoCheck");
 %>
 
 <!DOCTYPE html>
@@ -51,10 +51,10 @@ int likeNoCheck = (int)request.getAttribute("likeNoCheck");
 		var page_header_title='공고 정보'
 	</script>
 	<!-- end of page-header -->
-
+	<% if(mem != null){ %>
 	<input type="hidden" value="<%=mem.getM_no() %>" id="memNo">
 	<input type="hidden" value="<%=mem.getType() %>" id="memType">
-
+	<%} %>
 
 	<%	Notification noti=(Notification)request.getAttribute("noti");%>
 	<input type ="hidden" value=<%=noti.getNoti_no()%> id="noNo">
@@ -72,12 +72,16 @@ int likeNoCheck = (int)request.getAttribute("likeNoCheck");
 						</div>
 						<hr>
 						<div class="widghet" style="height:200px;">
-											
-							<% if(likeNoCheck == 1){ %>  
+						
+							<% if(mem != null ){ %>
+								<% if(likeNoCheck == "1"){ %>  
 								<span class="heart-icon"> <img src="./resources/img/button-after.png" class="likeimg1" style="height:200px; width:320px;"> </span>
-							<% 	}else{ %>
+								<% 	}else{ %>
 								<span class="heart-icon"> <img src="./resources/img/button-before.png" class="likeimg1" style="height:200px; width:320px;"> </span>									
-							<% 	} %>
+								<% 	} %>
+								<%}else{ %>
+								<span class="heart-icon"> <img src="./resources/img/button-before.png" class="likeimg1" style="height:200px; width:320px;"> </span>
+								<%} %>	
 						
 						</div>
 					</div>

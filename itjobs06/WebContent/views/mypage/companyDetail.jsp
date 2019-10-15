@@ -3,8 +3,7 @@
     pageEncoding="UTF-8"%>
 <%@page import="java.util.ArrayList"%>
 <%
-int likeCoCheck = (int)request.getAttribute("likeCoCheck");
-
+String likeCoCheck = (String)request.getAttribute(("likeCoCheck"));
 %>
 
 
@@ -57,7 +56,7 @@ int likeCoCheck = (int)request.getAttribute("likeCoCheck");
 	<!-- end of page-header -->
 
 
-	<%	if(mem!=null){ %>
+	<%	if(mem!=null ){ %>
 	<input type="hidden" value="<%=mem.getM_no()%>" id="memNo">	
 	<input type="hidden" value="<%=mem.getType()%>" id="memType">	
 	<%	} %>
@@ -138,14 +137,15 @@ int likeCoCheck = (int)request.getAttribute("likeCoCheck");
 								
 							
 								
-									
-											<% if(likeCoCheck == 1){ %>  
+										<% if(mem != null ){ %>
+											<% if(likeCoCheck == "1" ){ %>  
 												<span class="heart-icon"> <img src="./resources/img/button-after.png" class="likeimg" style="height:200px; width:320px;"> </span>
 											<% 	}else{ %>
 												<span class="heart-icon"> <img src="./resources/img/button-before.png" class="likeimg" style="height:200px; width:320px;"> </span>									
 											<% 	} %>
-											
-										
+											<%}else{ %>
+												<span class="heart-icon"> <img src="./resources/img/button-before.png" class="likeimg" style="height:200px; width:320px;"> </span>
+											<%} %>										
 									
 						</div>
 					</div>

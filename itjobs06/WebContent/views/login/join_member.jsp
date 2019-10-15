@@ -53,7 +53,7 @@
 		<div class="form-group" id="checkDiv">
 		<div class="input-icon">
 		<i class="lni-user"></i>
-		<input type="text" class="form-control" id="nickName" name="nickName" placeholder="닉네임(8자리이하  ,특수문자불가능)" oninput="nickOverlapCheck()" maxlength="7" required>
+		<input type="text" class="form-control" id="nickName" name="nickName" placeholder="닉네임(8자리이하  ,특수문자불가능)" oninput="nickOverlapCheck()" maxlength="8" required>
 		<div id="nickCheck" class = "checkDiv2"></div>
 		</div>
 		</div>
@@ -67,7 +67,7 @@
 		<div class="form-group">
 		<div class="input-icon">
 		<i class="lni-lock"></i>
-		<input type="password" class="form-control" name="pw" placeholder="비밀번호" required>
+		<input type="password" class="form-control" name="pw" placeholder="비밀번호" oninput="pwdOverlapCheck()" required>
 		</div>
 		</div>
 		<div class="form-group">
@@ -100,7 +100,7 @@
 			
 			var nickDiv = $(document.getElementById("nickCheck"));
 			
-			var regExp = /[가-힣a-zA-Z0-9]{0,}$/;
+			var regExp = /^[가-힣a-zA-Z0-9]{0,}$/;
 			$.ajax({
 					url:"<%=request.getContextPath() %>/nickoverlap.me",
 					data:{nickName:nickName},
@@ -110,19 +110,19 @@
 						
 						if(result1==1){	
 							 nickDiv.html('중복되는 닉네임이 있습니다').attr('style','color:red'); 
-							$("#submit").attr('disabled',true).attr('style','background:gray').attr('value','닉네임을 확인해 주세요');
+							
 							flag1=false;
 							
 						}else if(!regExp.test(nickName)){	
 								nickDiv.html('닉네임 양식에 맞지 않습니다').attr('style','color:red');
-								$("#submit").attr('disabled',true).attr('style','background:gray').attr('value','닉네임 양식에 맞지 않습니다');
+								
 								flag1=false;
 							}else{
 								nickDiv.html('사용가능').attr('style','color:green');
 								flag1 = true;
 							}
 						
-						
+						btnChange();
 						
 						
 						
@@ -132,7 +132,7 @@
 					
 					}
 			 });
-			btnChange();
+			
 		}
 		
 		
@@ -147,11 +147,11 @@
 			var emailDiv = $(document.getElementById("emailCheck"));
 			/* 이메일 유효성검사  */
 			 
-			 var regExp = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/; 
+			 var regExp = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+)([a-zA-Z]{2,4}))$/; 
 			 
 			 if(!regExp.test(email)){
 				 emailDiv.html('이메일 형식에 맞지 않습니다').attr('style','color:red');
-				$("#submit").attr('disabled',true).attr('style','background:gray').attr('value','이메일을 형식을 확인해주세요');
+				
 				flag4=false;
 			 }else{
 				flag4=true;
@@ -165,7 +165,7 @@
 									flag2 = true;
 								}else{	
 									emailDiv.html('사용불가능').attr('style','color:red');
-									 $("#submit").attr('disabled',true).attr('style','background:gray').attr('value','이메일을 확인해주세요');
+									
 									 flag2 = false;
 								}
 						
@@ -194,7 +194,7 @@
 						flag3 = true;
 					}else{	
 						pwdDiv.html('비밀번호와 일치하지 않습니다').attr('style','color:red');
-						$("#submit").attr('disabled',true).attr('style','background:gray').attr('value','비밀번호를 확인해 주세요');
+						
 						flag3=false;
 					}
 					
@@ -207,6 +207,8 @@
 					
 					$("#submit").attr('disabled',false).attr('style','background:#00bcd4').attr('value','가입');
 					
+				}else{
+					$("#submit").attr('disabled',true).attr('style','background:gray').attr('value','양식을 확인해 주세요');
 				}
 			}
 			

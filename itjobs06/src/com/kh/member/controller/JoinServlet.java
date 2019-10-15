@@ -66,7 +66,12 @@ public class JoinServlet extends HttpServlet {
 			
 				
 			}else {
-				request.setAttribute("msg", "회운가입 실패(일반)");
+				
+				HttpSession session = request.getSession();
+				
+				response.sendRedirect(request.getContextPath());
+				session.setAttribute("alert", "동시 가입자가 많아 잠시 후 다시 시도해 주시길 바랍니다.");
+				
 			
 				}
 			}

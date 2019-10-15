@@ -22,7 +22,7 @@
 			alert(msg);
 
 			// 세션에 담긴 메세지 한번만 출력하고 삭제하기
-<%session.removeAttribute("alert");%>
+	<%session.removeAttribute("alert");%>
 	}
 
 	});

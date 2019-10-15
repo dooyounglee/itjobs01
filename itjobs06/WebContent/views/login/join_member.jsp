@@ -150,6 +150,8 @@
 				 emailDiv.html('이메일 형식에 맞지 않습니다').attr('style','color:red');
 				
 				flag4=false;
+				btnChange();
+				
 			 }else{
 				
 					$.ajax({
@@ -157,13 +159,25 @@
 							data:{email:email},
 							type:"get",
 							success:function(result){
+								// flag2 = false;
+								// flag4=false;			
+								
+								
+								console.log(result);
+								
 								if(result==0){	
-									emailDiv.html('사용가능').attr('style','color:green');
 									flag2 = true;
+									flag4=true;
+									emailDiv.html('사용가능').attr('style','color:green');
+									
+									btnChange();
 								}else{	
 									emailDiv.html('중복되는 이메일이 있습니다').attr('style','color:red');
 									
 									 flag2 = false;
+									 flag4=false;
+									 
+									 btnChange();
 								}
 						
 							},error:function(){
@@ -171,9 +185,13 @@
 							
 							}
 						});
-									flag4=true;
+									
 			 		}	
-			 btnChange();
+			 
+			 
+			 
+			 
+			 
 			 	}
 			/* 비밀번호 유효성검사 */
 			
@@ -199,6 +217,8 @@
 			}	
 			
 			function btnChange(){	// 전체적으로 체크 하기위해서 
+				
+				//console.log("ttt");
 				if((flag1&&flag2&&flag3&&flag4)){
 					
 					$("#submit").attr('disabled',false).attr('style','background:#00bcd4').attr('value','가입');

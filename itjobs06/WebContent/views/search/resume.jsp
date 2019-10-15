@@ -160,7 +160,7 @@ ArrayList<String> likeResList = (ArrayList<String>)request.getAttribute("likeRes
 				<div class="col-lg-6 col-md-6 col-xs-12">
 					<div class="manager-resumes-item">
 						<div class="manager-content">
-						<%if(mem== null || mem.getM_no() != n.getM_no()){ %> 
+						<%if(mem== null || mem.getM_no() != n.getM_no() && !(mem.getType().equals("2"))){ %> 
 							<a href="detail.re?resume_no=<%=n.getResume_no()%>"><img class="resume-thumb"
 								src="<%= contextPath %>/resources/fileupload_resumeImg/<%= n.getPhoto()%>" id="blur"  ></a>
 								<%}else{ %>

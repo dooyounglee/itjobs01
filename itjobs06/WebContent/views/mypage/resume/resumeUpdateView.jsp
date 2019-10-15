@@ -131,9 +131,9 @@
 											<button class="btn btn-common">증명사진</button>
 											<input id="cover_img_file_2" name="file"  type="file" onchange="loadImg(this)">
 											<%	if(re.getPath()==null|| re.getPhoto()==null || re.getPath().equals("null") || re.getPhoto().equals("null")){ %>
-												<img id="titleImg"></img>
+												<img id="titleImg" style="width:100px;"></img>
 											<%	} else { %>
-												<img id="titleImg" src="resources/fileupload_resumeImg/<%=re.getPhoto()%>"><br>
+												<img id="titleImg" src="resources/fileupload_resumeImg/<%=re.getPhoto()%>" style="width:100px;"><br>
 											<%	} %>
 										</div>
 									</div>

@@ -122,7 +122,7 @@
 										<div class="upload-button">
 											<button class="btn btn-common">증명사진</button>
 											<input id="cover_img_file_2" name="file"  type="file" onchange="loadImg(this)">
-											<img id="titleImg"></img>
+											<img id="titleImg"  style="width:100px;"></img>
 										</div>
 									</div>
 								</div>

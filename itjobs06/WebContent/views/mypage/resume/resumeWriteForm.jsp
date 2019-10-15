@@ -10,6 +10,7 @@
 <script type="text/javascript" src='<%=request.getContextPath()%>/resources/naver-smarteditor2-ca95d21/demo/js/service/HuskyEZCreator.js' charset="utf-8"></script>
 
 <!-- import jobx -->
+<script src="resources/util/date.js"></script>
 <%@ include file="/views/include/user/style.jsp" %>
 <!-- End of import from jobx -->
 
@@ -43,45 +44,42 @@
 				<!-- right  -->
 				<div class="col-lg-8 col-md-12 col-xs-12">
 					<div class="add-resume box">
-						<div class="post-header">
-							<p>
-								Already have an account? <a href="register.html">Click here
-									to login</a>
-							</p>
-						</div>
-						<form class="form-ad" action="<%=contextPath%>/addResum.re" method="post" enctype="multipart/form-data">
+						<form class="form-ad" action="<%=contextPath%>/addResum.re" method="post" enctype="multipart/form-data" autocomplete=off>
 							<div class="form-group">
 								<label class="control-label">이력서 제목</label>
-								<input type="text" class="form-control" name="title" placeholder="제목" value="1">
+								<input type="text" class="form-control" name="title" placeholder="제목">
 							</div>
 							<h3>기본정보</h3>
 							<div class="form-group">
 								<label class="control-label">이름</label>
-								<input type="text" class="form-control" name="name" placeholder="이름" value="1">
+								<input type="text" class="form-control" name="name" placeholder="이름">
 							</div>
 							<div class="form-group">
 								<label class="control-label"></label> <label
-									class="control-label">Email</label> <input type="text"
+									class="control-label">Email</label> <input type="email"
 									class="form-control" name="email" placeholder="Your@domain.com"  value="<%=mem.getEmail()%>">
 							</div>
 							<div class="form-group">
 								<label class="control-label">생년월일</label> <input
-									type="date" class="form-control" name="birth"
-									placeholder="Headline (e.g. Front-end developer)"  value="2019-02-01">
+									type="date" class="form-control" id="birth" name="birth"
+									placeholder="2000-01-01">
 							</div>
+<script>
+	$('#birth').attr('max',date_toString(new Date)) //오늘날짜를 '1999-01-01'형태로 바꿔
+</script>
 							<div class="form-group">
 								<div class="row">
 									<div class="col-md-3">
 									<label class="control-label">Phone</label> <input type="text"
-										class="form-control" name="phone1" placeholder="010" pattern="\d{3}" value="010">
+										class="form-control" name="phone1" placeholder="010" pattern="\d{3}">
 									</div>
 									<div class="col-md-3">
 									<label class="control-label" style="color:white;">phone</label> <input type="text"
-										class="form-control" name="phone2" placeholder="0000" pattern="[0-9]{3,4}" title="숫자 3 또는 4 자리" value="0000">
+										class="form-control" name="phone2" placeholder="0000" pattern="[0-9]{3,4}" title="숫자 3 또는 4 자리">
 									</div>
 									<div class="col-md-3">
 									<label class="control-label" style="color:white;">phone</label> <input type="text"
-										class="form-control" name="phone3" placeholder="0000" pattern="[0-9]{4}" title="숫자 4자리" value="0000">
+										class="form-control" name="phone3" placeholder="0000" pattern="[0-9]{4}" title="숫자 4자리">
 									</div>
 								</div>
 							</div>
@@ -121,8 +119,8 @@
 									<div class="action-buttons">
 										<div class="upload-button">
 											<button class="btn btn-common">증명사진</button>
-											<input id="cover_img_file_2" name="file"  type="file" onchange="loadImg(this)">
-											<img id="titleImg"  style="width:100px;"></img>
+											<input id="cover_img_file_2" name="file" type="file" onchange="loadImg(this)">
+											<img id="titleImg" style="width:100px;"></img>
 										</div>
 									</div>
 								</div>
@@ -141,26 +139,35 @@
 							<h3>최종학력</h3>
 							<div class="form-group">
 								<label class="control-label">학교</label> <input type="text"
-									class="form-control" name="school" placeholder="Degree, e.g. Bachelor"  value="1">
+									class="form-control" name="school" placeholder="kh대학교">
 							</div>
 							<div class="form-group">
 								<label class="control-label">학과</label> <input
 									type="text" class="form-control" name="Department"
-									placeholder="Major, e.g Computer Science"  value="1">
+									placeholder="수학과">
 							</div>
 							<div class="form-group">
 								<div class="row">
 									<div class="col-md-6">
 										<label class="control-label">From</label> <input type="date"
-											class="form-control" name="school_Date1" placeholder="e.g 2014"  value="2019-01-01">
+											class="form-control" name="school_Date1" placeholder="2000-01-01">
 									</div>
 									<div class="col-md-6">
 										<label class="control-label">To</label> <input type="date"
-											class="form-control" name="school_Date2" placeholder="e.g 2020" value="2019-01-01">
+											class="form-control" name="school_Date2" placeholder="2000-01-01">
 									</div>
 								</div>
 							</div>
-
+<script>
+	$('input[name=school_Date1]').attr('max',date_toString(new Date))
+	$('input[name=school_Date2]').attr('max',date_toString(new Date))
+/* 	$('input[name=school_Date1]').on('change',function(){
+		var this_date=$(this).val()
+		console.log(this_date)
+		var ago=$(this).parent().next().children('input')
+		$(this).parent().next().children('input').attr('min',this_date)
+	}) */
+</script>
 							<div class="divider">
 								<h3>경력</h3>
 							</div>
@@ -171,30 +178,39 @@
 							<div id="careerList">
 								<div class="form-group">
 									<label class="control-label">회사이름</label> <input
-										type="text" class="form-control" name="companyName" placeholder="Company name" value="1">
+										type="text" class="form-control" name="companyName" placeholder="Company name">
 								</div>
 								<div class="form-group">
 									<label class="control-label">한일</label> <input type="text"
-										class="form-control" name="workList" placeholder="e.g UI/UX Researcher" value="1">
+										class="form-control" name="workList" placeholder="e.g UI/UX Researcher">
 								</div>
 								<div class="form-group">
 									<div class="row">
 										<div class="col-md-4">
 											<label class="control-label">Date From</label> <input
-												type="date" class="form-control" name="workDate1" placeholder="e.g 2014" value="2019-01-01">
+												type="date" class="form-control" name="workDate1" placeholder="2019-01-01">
 										</div>
 										<div class="col-md-4">
 											<label class="control-label">Date To</label> <input
-												type="date" class="form-control" name="workDate2" placeholder="e.g 2020" value="2019-01-01">
+												type="date" class="form-control" name="workDate2" placeholder="2019-01-01">
 										</div>
 										<div class="col-md-4">
 											<label class="control-label">경력년수</label>
-											<input type="text" class="form-control" name="career_year" placeholder="e.g 2020" value="2">
+											<input type="text" class="form-control" name="career_year" placeholder="2">
 										</div>
 									</div>
 								</div>
 							</div>
 							</section>
+<script>
+	$('input[name=workDate1]').attr('max',date_toString(new Date))
+	$('input[name=workDate2]').attr('max',date_toString(new Date))
+/* 	$('input[name=workDate1]').on('change',function(){
+		var this_date=$(this).val()
+		var ago=$(this).parent().next().children('input')
+		$(this).parent().next().children('input').attr('min',this_date)
+	}) */
+</script>
 							<div id="btn_add_career" class="add-post-btn">
 								<div class="float-left">
 									<a href="#" class="btn-added" onclick="return add_career()"><i class="ti-plus"></i> Add
@@ -217,20 +233,16 @@
 		$('#btn_add_career').show();
 	})
 	function add_career(){
-		var one_career=$('#careerList').children('div:lt(4)').clone();
+		var one_career=$('#careerList').children('div:lt(3)').clone();
 		one_career.find('input').val("")
 		$('#careerList').append('<hr>');
 		$('#careerList').append(one_career);
 		return false;
 	}
 	function del_career(){
-		if($('#careerList').children('div.form-group').length>4){
+		if($('#careerList').children('div.form-group').length>3){
 			$('#careerList').children('div.form-group:last').remove()
-			$('#careerList').children('hr:last').remove()
 			$('#careerList').children('div.form-group:last').remove()
-			$('#careerList').children('hr:last').remove()
-			$('#careerList').children('div.form-group:last').remove()
-			$('#careerList').children('hr:last').remove()
 			$('#careerList').children('div.form-group:last').remove()
 			$('#careerList').children('hr:last').remove()
 		}
@@ -249,17 +261,20 @@
 									<div class="row">
 										<div class="col-md-6">
 											<label class="control-label">자격증</label> <input
-												class="form-control" name="cer_name" placeholder="Skill name, e.g. HTML"
-												type="text" value="1">
+												class="form-control" name="cer_name" placeholder="워드프로세서"
+												type="text">
 										</div>
 										<div class="col-md-6">
 											<label class="control-label">날짜</label> <input
-												class="form-control" name="cer_date" placeholder="Skill proficiency, e.g. 90"
-												type="date" value="2019-01-01">
+												class="form-control" name="cer_date" placeholder="2019-01-01"
+												type="date">
 										</div>
 									</div>
 								</div>
 							</div>
+<script>
+	$('input[name=cer_date]').attr('max',date_toString(new Date))
+</script>
 							<div id="btn_add_cer" class="add-post-btn">
 								<div class="float-left">
 									<a href="#" class="btn-added" onclick="return add_cer()"><i class="ti-plus"></i>추가</a>
@@ -339,7 +354,7 @@
 							</div>
 							<div class="form-group">
 								<label class="control-label">자소서</label>
-								<textarea class="form-control" id="comment" name="self" rows="5" id="자소서">1</textarea>
+								<textarea class="form-control" id="comment" name="self" rows="5" id="자소서"></textarea>
 							</div>
 <script>
 var oEditors = [];
@@ -350,9 +365,9 @@ nhn.husky.EZCreator.createInIFrame({
   	 sSkinURI: "<%=contextPath%>/resources/naver-smarteditor2-ca95d21/demo/SmartEditor2Skin.html",  
      fCreator: "createSEditor2",
      htParams:{
-    	 bUseToolbar:false, // 툴바 사용여부
+    	 bUseToolbar:true, // 툴바 사용여부
     	 bUseVerticalResizer:false, // 크기조절바 사용여부
-    	 bUseModeChanger : false,	// 모드 탭(Editor | HTML | TEXT) 사용 여부
+    	 bUseModeChanger : true,	// 모드 탭(Editor | HTML | TEXT) 사용 여부
      }
 });
 </script>
@@ -363,28 +378,6 @@ nhn.husky.EZCreator.createInIFrame({
 		oEditors.getById["comment"].exec("UPDATE_CONTENTS_FIELD", []);
 	}
 </script>
-<!-- <script>
-	function add_cer(){
-		str='<div id="cer_row" class="row">';
-		str+='<div class="col-md-6">';
-		str+='<label class="control-label">자격증</label>';
-		str+='<input class="form-control" name="cer_name" placeholder="Skill name, e.g. HTML" type="text">';
-		str+='</div>';
-		str+='<div class="col-md-6">';
-		str+='<label class="control-label">날짜</label>';
-		str+='<input class="form-control" name="cer_date" placeholder="Skill proficiency, e.g. 90" type="date">';
-		str+='</div>';
-		str+='</div>';
-		$('#cer_form-group').append(str)
-		return false;
-	}
-	function del_cer(){
-		if($('#cer_form-group').children('div#cer_row').length>1){
-			$('#cer_form-group').children('div#cer_row:last').remove()
-		}
-		return false;
-	}
-</script> -->
 					</div>
 				</div>
 				<!-- End of right -->
@@ -537,62 +530,6 @@ nhn.husky.EZCreator.createInIFrame({
 </form> --%>
 
 <script>
-
-/* function setDisplay(){
-    if($('input:radio[id=high]').is(':checked')){
-        $('#highInfo').show();
-        $('#collegeInfo').hide();
-        $('#academyInfo').hide();
-        
-    }else if($('input:radio[id=college]').is(':checked')){ 
-    	$('#highInfo').hide();
-    	 $('#collegeInfo').show();
-        $('#academyInfo').hide();
-    }else{
-    	$('#highInfo').hide();
-   	 $('#collegeInfo').hide();
-       $('#academyInfo').show();
-    }
-} */
-	
-
- 
- 
- /* 	function add_career(){
-	 	var str='<div id="careerForm">';
-		str+='<label>근무 회사명</label>';
-		str+='<input type="text" name="companyName" value="1"><br><br>';
-		str+='<label>업무 내용 </label>';
-		str+='<input type="text" name="workList" value="1"><br><br>';
-		str+='<label>근무 일자</label>';
-		str+='<input type="date" name="workDate1" value="2010-01-01"> ~';
-		str+='<input type="date" name="workDate2" value="2010-01-01">';
-		str+='<br><br>';
-		str+='<span class="del_career" style="cursor:pointer;">삭제</span></div>';
-		str+='</div>';
-		$('#careerList').append(str)
-	}
-	$(document).on('click','.del_career',function(){
-		$(this).closest('div #careerForm').remove();
-	}) */
-
-/* 	function add_cer(){
-		
-		var str='<div id="cerForm">';
-		str+='<label>자격증명</label>';
-		str+='<input type="text" name="cer_name" value="1"><br><br>';
-		str+='<label>취득날짜</label>';
-		str+='<input type="date" name="cer_date"  value="2010-01-01">';
-		str+='<br>';
-		str+='<span class="del_cer" style="cursor:pointer;">삭제</span></div>';
-		str+='</div>';
-		$('#cerList').append(str)
-	}
-	$(document).on('click','.del_cer',function(){
-		$(this).closest('div #cerForm').remove();
-	}) */
-
-	
 	function math(){
 		var inputDate1 = $("#workDate1").val();
 		var inputDate2 = $("#workDate2").val(); 

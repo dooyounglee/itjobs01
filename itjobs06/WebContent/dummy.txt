@@ -30,9 +30,9 @@ INSERT INTO MEMBER_TYPE VALUES(2,'기업');
 CREATE TABLE "MEMBER" (
    "M_NO"   NUMBER      PRIMARY KEY,
    "TYPE"   NUMBER      REFERENCES "MEMBER_TYPE",
-   "EMAIL"   VARCHAR2(50)      NOT NULL		UNIQUE,
+   "EMAIL"   VARCHAR2(50)      NOT NULL      UNIQUE,
    "PW"   VARCHAR2(1000)      NOT NULL,
-   "NICKNAME"   VARCHAR2(30)      NOT NULL	UNIQUE,
+   "NICKNAME"   VARCHAR2(30)      NOT NULL   UNIQUE,
    "UPDATE_DATE"   DATE   DEFAULT SYSDATE   NOT NULL,
    "ENROLL_DATE"   DATE   DEFAULT SYSDATE   NOT NULL,
    "STATUS"   VARCHAR2(2)   DEFAULT 'Y'   NOT NULL,
@@ -79,7 +79,8 @@ CREATE TABLE "BOARD" (
    "D_COUNT"   NUMBER   DEFAULT 0   NOT NULL,
    "EDITFILE"   VARCHAR2(1000)      NULL,
    "PATH"   VARCHAR2(1000)      NULL,
-   "DOWN_COUNT" NUMBER DEFAULT 0 NOT NULL
+   "DOWN_COUNT" NUMBER DEFAULT 0 NOT NULL,
+   "VIDEO"  VARCHAR2(2000)
 );
 
 CREATE TABLE "REPLY" (
@@ -142,7 +143,7 @@ CREATE TABLE "RESUME" (
    "P_LANGUAGE"   VARCHAR2(500)      NOT NULL,
    "HOPE_SALARY"   VARCHAR2(100)      NOT NULL,
     "M_NO"   NUMBER      REFERENCES "MEMBER",
-    "CAREER_YEAR" VARCHAR2(1000) NULL,
+    "CAREER_YEAR" NUMBER NULL,
     "SCHOOL_FINAL" NUMBER REFERENCES SCHOOL_FINAL
 );
 
@@ -167,7 +168,8 @@ CREATE TABLE "LIKE_CO" (
 CREATE TABLE "VOLUNTEER" (
    "V_NO"   NUMBER      PRIMARY KEY,
    "NOTI_NO"   NUMBER      REFERENCES NOTIFICATION,
-   "RESUME_NO"   NUMBER      REFERENCES RESUME,
+   "RESUME_NO"   NUMBER      REFERENCES
+   RESUME,
    "V_DATE"   DATE   DEFAULT SYSDATE   NOT NULL,
    "STATUS"   VARCHAR2(100)   DEFAULT 'NOREAD'   NOT NULL
 );
@@ -215,6 +217,9 @@ CREATE TABLE "NOTI_DECLARE" (
    "STATUS"   VARCHAR2(2)   DEFAULT 'N'   NOT NULL
 );
 
+CREATE TABLE VISIT(VDATE DATE);
+
+
 DROP SEQUENCE SEQ_B_DECLARE;
 DROP SEQUENCE SEQ_BOARD;
 DROP SEQUENCE SEQ_NOTIFICATION;
@@ -244,1249 +249,160 @@ CREATE SEQUENCE SEQ_RESUME;
 CREATE SEQUENCE SEQ_VOLUNTEER;
 
 
-
-
-
-
-
-
-
-insert into member values(seq_member.nextval,1,'user1','pass1','nick1',sysdate,sysdate,'Y',0);
-insert into member values(seq_member.nextval,1,'user2','pass2','nick2',sysdate,sysdate,'Y',1);
-insert into member values(seq_member.nextval,1,'user3','pass3','nick3',sysdate,sysdate,'Y',2);
-insert into member values(seq_member.nextval,1,'user4','pass4','nick4',sysdate,sysdate,'Y',3);
-insert into member values(seq_member.nextval,1,'user5','pass5','nick5',sysdate,sysdate,'Y',4);
-insert into member values(seq_member.nextval,1,'user6','pass6','nick6',sysdate,sysdate,'Y',5);
-insert into member values(seq_member.nextval,1,'user7','pass7','nick7',sysdate,sysdate,'Y',6);
-insert into member values(seq_member.nextval,1,'user8','pass8','nick8',sysdate,sysdate,'Y',7);
-insert into member values(seq_member.nextval,1,'user9','pass9','nick9',sysdate,sysdate,'Y',8);
-insert into member values(seq_member.nextval,1,'user10','pass10','nick10',sysdate,sysdate,'Y',9);
-insert into member values(seq_member.nextval,1,'user11','pass11','nick11',sysdate,sysdate,'Y',10);
-insert into member values(seq_member.nextval,1,'user12','pass12','nick12',sysdate,sysdate,'Y',11);
-insert into member values(seq_member.nextval,1,'user13','pass13','nick13',sysdate,sysdate,'Y',12);
-insert into member values(seq_member.nextval,1,'user14','pass14','nick14',sysdate,sysdate,'Y',13);
-insert into member values(seq_member.nextval,1,'user15','pass15','nick15',sysdate,sysdate,'Y',14);
-insert into member values(seq_member.nextval,1,'user16','pass16','nick16',sysdate,sysdate,'Y',15);
-insert into member values(seq_member.nextval,1,'user17','pass17','nick17',sysdate,sysdate,'Y',16);
-insert into member values(seq_member.nextval,1,'user18','pass18','nick18',sysdate,sysdate,'Y',17);
-insert into member values(seq_member.nextval,1,'user19','pass19','nick19',sysdate,sysdate,'Y',18);
-insert into member values(seq_member.nextval,1,'user20','pass20','nick20',sysdate,sysdate,'Y',19);
-insert into member values(seq_member.nextval,2,'user21','pass21','nick21',sysdate,sysdate,'Y',21);
-insert into member values(seq_member.nextval,2,'user22','pass22','nick22',sysdate,sysdate,'Y',22);
-insert into member values(seq_member.nextval,2,'user23','pass23','nick23',sysdate,sysdate,'Y',23);
-insert into member values(seq_member.nextval,2,'user24','pass24','nick24',sysdate,sysdate,'Y',24);
-insert into member values(seq_member.nextval,2,'user25','pass25','nick25',sysdate,sysdate,'Y',25);
-insert into member values(seq_member.nextval,2,'user26','pass26','nick26',sysdate,sysdate,'Y',26);
-insert into member values(seq_member.nextval,2,'user27','pass27','nick27',sysdate,sysdate,'Y',27);
-insert into member values(seq_member.nextval,2,'user28','pass28','nick28',sysdate,sysdate,'Y',28);
-insert into member values(seq_member.nextval,2,'user29','pass29','nick29',sysdate,sysdate,'Y',29);
-insert into member values(seq_member.nextval,2,'user30','pass30','nick30',sysdate,sysdate,'Y',30);
-insert into member values(seq_member.nextval,2,'user31','pass31','nick31',sysdate,sysdate,'Y',31);
-insert into member values(seq_member.nextval,2,'user32','pass32','nick32',sysdate,sysdate,'Y',32);
-insert into member values(seq_member.nextval,2,'user33','pass33','nick33',sysdate,sysdate,'Y',33);
-insert into member values(seq_member.nextval,2,'user34','pass34','nick34',sysdate,sysdate,'Y',34);
-insert into member values(seq_member.nextval,2,'user35','pass35','nick35',sysdate,sysdate,'Y',35);
-insert into member values(seq_member.nextval,2,'user36','pass36','nick36',sysdate,sysdate,'Y',36);
-insert into member values(seq_member.nextval,2,'user37','pass37','nick37',sysdate,sysdate,'Y',37);
-insert into member values(seq_member.nextval,2,'user38','pass38','nick38',sysdate,sysdate,'Y',38);
-insert into member values(seq_member.nextval,2,'user39','pass39','nick39',sysdate,sysdate,'Y',39);
-insert into member values(seq_member.nextval,2,'user40','pass40','nick40',sysdate,sysdate,'Y',40);
-
-
-
-insert into board values(seq_board.nextval,1,'자유','제목1','내용1',sysdate,sysdate,'file1','날짜1~날짜2',0,'Y',0,'editfile1','path1',default);
-insert into board values(seq_board.nextval,2,'스터디','제목2','내용2',sysdate,sysdate,'file2','날짜1~날짜2',0,'Y',0,'editfile2','path2',default);
-insert into board values(seq_board.nextval,3,'프로젝트','제목3','내용3',sysdate,sysdate,'file3','날짜1~날짜2',0,'Y',0,'editfile3','path3',default);
-insert into board values(seq_board.nextval,4,'공지','제목4','내용4',sysdate,sysdate,'file4','날짜1~날짜2',0,'Y',0,'editfile4','path4',default);
-insert into board values(seq_board.nextval,5,'자유','제목5','내용5',sysdate,sysdate,'file5','날짜1~날짜2',0,'Y',0,'editfile5','path5',default);
-insert into board values(seq_board.nextval,1,'스터디','제목6','내용6',sysdate,sysdate,'file6','날짜1~날짜2',0,'Y',0,'editfile6','path6',default);
-insert into board values(seq_board.nextval,2,'프로젝트','제목7','내용7',sysdate,sysdate,'file7','날짜1~날짜2',0,'Y',0,'editfile7','path7',default);
-insert into board values(seq_board.nextval,3,'공지','제목8','내용8',sysdate,sysdate,'file8','날짜1~날짜2',0,'Y',0,'editfile8','path8',default);
-insert into board values(seq_board.nextval,4,'자유','제목9','내용9',sysdate,sysdate,'file9','날짜1~날짜2',0,'Y',0,'editfile9','path9',default);
-insert into board values(seq_board.nextval,5,'스터디','제목10','내용10',sysdate,sysdate,'file10','날짜1~날짜2',0,'Y',0,'editfile10','path10',default);
-insert into board values(seq_board.nextval,1,'프로젝트','제목11','내용11',sysdate,sysdate,'file11','날짜1~날짜2',0,'Y',0,'editfile11','path11',default);
-insert into board values(seq_board.nextval,2,'공지','제목12','내용12',sysdate,sysdate,'file12','날짜1~날짜2',0,'Y',0,'editfile12','path12',default);
-insert into board values(seq_board.nextval,3,'자유','제목13','내용13',sysdate,sysdate,'file13','날짜1~날짜2',0,'Y',0,'editfile13','path13',default);
-insert into board values(seq_board.nextval,4,'스터디','제목14','내용14',sysdate,sysdate,'file14','날짜1~날짜2',0,'Y',0,'editfile14','path14',default);
-insert into board values(seq_board.nextval,5,'프로젝트','제목15','내용15',sysdate,sysdate,'file15','날짜1~날짜2',0,'Y',0,'editfile15','path15',default);
-insert into board values(seq_board.nextval,1,'공지','제목16','내용16',sysdate,sysdate,'file16','날짜1~날짜2',0,'Y',0,'editfile16','path16',default);
-insert into board values(seq_board.nextval,2,'자유','제목17','내용17',sysdate,sysdate,'file17','날짜1~날짜2',0,'Y',0,'editfile17','path17',default);
-insert into board values(seq_board.nextval,3,'스터디','제목18','내용18',sysdate,sysdate,'file18','날짜1~날짜2',0,'Y',0,'editfile18','path18',default);
-insert into board values(seq_board.nextval,4,'프로젝트','제목19','내용19',sysdate,sysdate,'file19','날짜1~날짜2',0,'Y',0,'editfile19','path19',default);
-insert into board values(seq_board.nextval,5,'공지','제목20','내용20',sysdate,sysdate,'file20','날짜1~날짜2',0,'Y',0,'editfile20','path20',default);
-insert into board values(seq_board.nextval,1,'자유','제목21','내용21',sysdate,sysdate,'file21','날짜1~날짜2',0,'Y',0,'editfile21','path21',default);
-insert into board values(seq_board.nextval,2,'스터디','제목22','내용22',sysdate,sysdate,'file22','날짜1~날짜2',0,'Y',0,'editfile22','path22',default);
-insert into board values(seq_board.nextval,3,'프로젝트','제목23','내용23',sysdate,sysdate,'file23','날짜1~날짜2',0,'Y',0,'editfile23','path23',default);
-insert into board values(seq_board.nextval,4,'공지','제목24','내용24',sysdate,sysdate,'file24','날짜1~날짜2',0,'Y',0,'editfile24','path24',default);
-insert into board values(seq_board.nextval,5,'자유','제목25','내용25',sysdate,sysdate,'file25','날짜1~날짜2',0,'Y',0,'editfile25','path25',default);
-insert into board values(seq_board.nextval,1,'스터디','제목26','내용26',sysdate,sysdate,'file26','날짜1~날짜2',0,'Y',0,'editfile26','path26',default);
-insert into board values(seq_board.nextval,2,'프로젝트','제목27','내용27',sysdate,sysdate,'file27','날짜1~날짜2',0,'Y',0,'editfile27','path27',default);
-insert into board values(seq_board.nextval,3,'공지','제목28','내용28',sysdate,sysdate,'file28','날짜1~날짜2',0,'Y',0,'editfile28','path28',default);
-insert into board values(seq_board.nextval,4,'자유','제목29','내용29',sysdate,sysdate,'file29','날짜1~날짜2',0,'Y',0,'editfile29','path29',default);
-insert into board values(seq_board.nextval,5,'스터디','제목30','내용30',sysdate,sysdate,'file30','날짜1~날짜2',0,'Y',0,'editfile30','path30',default);
-insert into board values(seq_board.nextval,1,'프로젝트','제목31','내용31',sysdate,sysdate,'file31','날짜1~날짜2',0,'Y',0,'editfile31','path31',default);
-insert into board values(seq_board.nextval,2,'공지','제목32','내용32',sysdate,sysdate,'file32','날짜1~날짜2',0,'Y',0,'editfile32','path32',default);
-insert into board values(seq_board.nextval,3,'자유','제목33','내용33',sysdate,sysdate,'file33','날짜1~날짜2',0,'Y',0,'editfile33','path33',default);
-insert into board values(seq_board.nextval,4,'스터디','제목34','내용34',sysdate,sysdate,'file34','날짜1~날짜2',0,'Y',0,'editfile34','path34',default);
-insert into board values(seq_board.nextval,5,'프로젝트','제목35','내용35',sysdate,sysdate,'file35','날짜1~날짜2',0,'Y',0,'editfile35','path35',default);
-insert into board values(seq_board.nextval,1,'공지','제목36','내용36',sysdate,sysdate,'file36','날짜1~날짜2',0,'Y',0,'editfile36','path36',default);
-insert into board values(seq_board.nextval,2,'자유','제목37','내용37',sysdate,sysdate,'file37','날짜1~날짜2',0,'Y',0,'editfile37','path37',default);
-insert into board values(seq_board.nextval,3,'스터디','제목38','내용38',sysdate,sysdate,'file38','날짜1~날짜2',0,'Y',0,'editfile38','path38',default);
-insert into board values(seq_board.nextval,4,'프로젝트','제목39','내용39',sysdate,sysdate,'file39','날짜1~날짜2',0,'Y',0,'editfile39','path39',default);
-insert into board values(seq_board.nextval,5,'공지','제목40','내용40',sysdate,sysdate,'file40','날짜1~날짜2',0,'Y',0,'editfile40','path40',default);
-insert into board values(seq_board.nextval,1,'자유','제목41','내용41',sysdate,sysdate,'file41','날짜1~날짜2',0,'Y',0,'editfile41','path41',default);
-insert into board values(seq_board.nextval,2,'스터디','제목42','내용42',sysdate,sysdate,'file42','날짜1~날짜2',0,'Y',0,'editfile42','path42',default);
-insert into board values(seq_board.nextval,3,'프로젝트','제목43','내용43',sysdate,sysdate,'file43','날짜1~날짜2',0,'Y',0,'editfile43','path43',default);
-insert into board values(seq_board.nextval,4,'공지','제목44','내용44',sysdate,sysdate,'file44','날짜1~날짜2',0,'Y',0,'editfile44','path44',default);
-insert into board values(seq_board.nextval,5,'자유','제목45','내용45',sysdate,sysdate,'file45','날짜1~날짜2',0,'Y',0,'editfile45','path45',default);
-insert into board values(seq_board.nextval,1,'스터디','제목46','내용46',sysdate,sysdate,'file46','날짜1~날짜2',0,'Y',0,'editfile46','path46',default);
-insert into board values(seq_board.nextval,2,'프로젝트','제목47','내용47',sysdate,sysdate,'file47','날짜1~날짜2',0,'Y',0,'editfile47','path47',default);
-insert into board values(seq_board.nextval,3,'공지','제목48','내용48',sysdate,sysdate,'file48','날짜1~날짜2',0,'Y',0,'editfile48','path48',default);
-insert into board values(seq_board.nextval,4,'자유','제목49','내용49',sysdate,sysdate,'file49','날짜1~날짜2',0,'Y',0,'editfile49','path49',default);
-insert into board values(seq_board.nextval,5,'스터디','제목50','내용50',sysdate,sysdate,'file50','날짜1~날짜2',0,'Y',0,'editfile50','path50',default);
-insert into board values(seq_board.nextval,1,'프로젝트','제목51','내용51',sysdate,sysdate,'file51','날짜1~날짜2',0,'Y',0,'editfile51','path51',default);
-insert into board values(seq_board.nextval,2,'공지','제목52','내용52',sysdate,sysdate,'file52','날짜1~날짜2',0,'Y',0,'editfile52','path52',default);
-insert into board values(seq_board.nextval,3,'자유','제목53','내용53',sysdate,sysdate,'file53','날짜1~날짜2',0,'Y',0,'editfile53','path53',default);
-insert into board values(seq_board.nextval,4,'스터디','제목54','내용54',sysdate,sysdate,'file54','날짜1~날짜2',0,'Y',0,'editfile54','path54',default);
-insert into board values(seq_board.nextval,5,'프로젝트','제목55','내용55',sysdate,sysdate,'file55','날짜1~날짜2',0,'Y',0,'editfile55','path55',default);
-insert into board values(seq_board.nextval,1,'공지','제목56','내용56',sysdate,sysdate,'file56','날짜1~날짜2',0,'Y',0,'editfile56','path56',default);
-insert into board values(seq_board.nextval,2,'자유','제목57','내용57',sysdate,sysdate,'file57','날짜1~날짜2',0,'Y',0,'editfile57','path57',default);
-insert into board values(seq_board.nextval,3,'자유','제목58','내용58',sysdate,sysdate,'file58','날짜1~날짜2',0,'Y',0,'editfile58','path58',default);
-insert into board values(seq_board.nextval,4,'스터디','제목59','내용59',sysdate,sysdate,'file59','날짜1~날짜2',0,'Y',0,'editfile59','path59',default);
-insert into board values(seq_board.nextval,5,'프로젝트','제목60','내용60',sysdate,sysdate,'file60','날짜1~날짜2',0,'Y',0,'editfile60','path60',default);
-insert into board values(seq_board.nextval,1,'공지','제목61','내용61',sysdate,sysdate,'file61','날짜1~날짜2',0,'Y',0,'editfile61','path61',default);
-insert into board values(seq_board.nextval,2,'자유','제목62','내용62',sysdate,sysdate,'file62','날짜1~날짜2',0,'Y',0,'editfile62','path62',default);
-insert into board values(seq_board.nextval,3,'스터디','제목63','내용63',sysdate,sysdate,'file63','날짜1~날짜2',0,'Y',0,'editfile63','path63',default);
-insert into board values(seq_board.nextval,4,'프로젝트','제목64','내용64',sysdate,sysdate,'file64','날짜1~날짜2',0,'Y',0,'editfile64','path64',default);
-insert into board values(seq_board.nextval,5,'공지','제목65','내용65',sysdate,sysdate,'file65','날짜1~날짜2',0,'Y',0,'editfile65','path65',default);
-insert into board values(seq_board.nextval,1,'자유','제목66','내용66',sysdate,sysdate,'file66','날짜1~날짜2',0,'Y',0,'editfile66','path66',default);
-insert into board values(seq_board.nextval,2,'스터디','제목67','내용67',sysdate,sysdate,'file67','날짜1~날짜2',0,'Y',0,'editfile67','path67',default);
-insert into board values(seq_board.nextval,3,'프로젝트','제목68','내용68',sysdate,sysdate,'file68','날짜1~날짜2',0,'Y',0,'editfile68','path68',default);
-insert into board values(seq_board.nextval,4,'공지','제목69','내용69',sysdate,sysdate,'file69','날짜1~날짜2',0,'Y',0,'editfile69','path69',default);
-insert into board values(seq_board.nextval,5,'자유','제목70','내용70',sysdate,sysdate,'file70','날짜1~날짜2',0,'Y',0,'editfile70','path70',default);
-insert into board values(seq_board.nextval,1,'스터디','제목71','내용71',sysdate,sysdate,'file71','날짜1~날짜2',0,'Y',0,'editfile71','path71',default);
-insert into board values(seq_board.nextval,2,'프로젝트','제목72','내용72',sysdate,sysdate,'file72','날짜1~날짜2',0,'Y',0,'editfile72','path72',default);
-insert into board values(seq_board.nextval,3,'공지','제목73','내용73',sysdate,sysdate,'file73','날짜1~날짜2',0,'Y',0,'editfile73','path73',default);
-insert into board values(seq_board.nextval,4,'자유','제목74','내용74',sysdate,sysdate,'file74','날짜1~날짜2',0,'Y',0,'editfile74','path74',default);
-insert into board values(seq_board.nextval,5,'스터디','제목75','내용75',sysdate,sysdate,'file75','날짜1~날짜2',0,'Y',0,'editfile75','path75',default);
-insert into board values(seq_board.nextval,1,'프로젝트','제목76','내용76',sysdate,sysdate,'file76','날짜1~날짜2',0,'Y',0,'editfile76','path76',default);
-insert into board values(seq_board.nextval,2,'공지','제목77','내용77',sysdate,sysdate,'file77','날짜1~날짜2',0,'Y',0,'editfile77','path77',default);
-insert into board values(seq_board.nextval,3,'자유','제목78','내용78',sysdate,sysdate,'file78','날짜1~날짜2',0,'Y',0,'editfile78','path78',default);
-insert into board values(seq_board.nextval,4,'스터디','제목79','내용79',sysdate,sysdate,'file79','날짜1~날짜2',0,'Y',0,'editfile79','path79',default);
-insert into board values(seq_board.nextval,5,'프로젝트','제목80','내용80',sysdate,sysdate,'file80','날짜1~날짜2',0,'Y',0,'editfile80','path80',default);
-insert into board values(seq_board.nextval,1,'공지','제목81','내용81',sysdate,sysdate,'file81','날짜1~날짜2',0,'Y',0,'editfile81','path81',default);
-insert into board values(seq_board.nextval,2,'자유','제목82','내용82',sysdate,sysdate,'file82','날짜1~날짜2',0,'Y',0,'editfile82','path82',default);
-insert into board values(seq_board.nextval,3,'스터디','제목83','내용83',sysdate,sysdate,'file83','날짜1~날짜2',0,'Y',0,'editfile83','path83',default);
-insert into board values(seq_board.nextval,4,'프로젝트','제목84','내용84',sysdate,sysdate,'file84','날짜1~날짜2',0,'Y',0,'editfile84','path84',default);
-insert into board values(seq_board.nextval,5,'공지','제목85','내용85',sysdate,sysdate,'file85','날짜1~날짜2',0,'Y',0,'editfile85','path85',default);
-insert into board values(seq_board.nextval,1,'자유','제목86','내용86',sysdate,sysdate,'file86','날짜1~날짜2',0,'Y',0,'editfile86','path86',default);
-insert into board values(seq_board.nextval,2,'스터디','제목87','내용87',sysdate,sysdate,'file87','날짜1~날짜2',0,'Y',0,'editfile87','path87',default);
-insert into board values(seq_board.nextval,3,'프로젝트','제목88','내용88',sysdate,sysdate,'file88','날짜1~날짜2',0,'Y',0,'editfile88','path88',default);
-insert into board values(seq_board.nextval,4,'공지','제목89','내용89',sysdate,sysdate,'file89','날짜1~날짜2',0,'Y',0,'editfile89','path89',default);
-insert into board values(seq_board.nextval,5,'자유','제목90','내용90',sysdate,sysdate,'file90','날짜1~날짜2',0,'Y',0,'editfile90','path90',default);
-insert into board values(seq_board.nextval,1,'스터디','제목91','내용91',sysdate,sysdate,'file91','날짜1~날짜2',0,'Y',0,'editfile91','path91',default);
-insert into board values(seq_board.nextval,2,'프로젝트','제목92','내용92',sysdate,sysdate,'file92','날짜1~날짜2',0,'Y',0,'editfile92','path92',default);
-insert into board values(seq_board.nextval,3,'공지','제목93','내용93',sysdate,sysdate,'file93','날짜1~날짜2',0,'Y',0,'editfile93','path93',default);
-insert into board values(seq_board.nextval,4,'자유','제목94','내용94',sysdate,sysdate,'file94','날짜1~날짜2',0,'Y',0,'editfile94','path94',default);
-insert into board values(seq_board.nextval,5,'스터디','제목95','내용95',sysdate,sysdate,'file95','날짜1~날짜2',0,'Y',0,'editfile95','path95',default);
-insert into board values(seq_board.nextval,1,'프로젝트','제목96','내용96',sysdate,sysdate,'file96','날짜1~날짜2',0,'Y',0,'editfile96','path96',default);
-insert into board values(seq_board.nextval,2,'공지','제목97','내용97',sysdate,sysdate,'file97','날짜1~날짜2',0,'Y',0,'editfile97','path97',default);
-insert into board values(seq_board.nextval,3,'자유','제목98','내용98',sysdate,sysdate,'file98','날짜1~날짜2',0,'Y',0,'editfile98','path98',default);
-insert into board values(seq_board.nextval,4,'스터디','제목99','내용99',sysdate,sysdate,'file99','날짜1~날짜2',0,'Y',0,'editfile99','path99',default);
-insert into board values(seq_board.nextval,5,'프로젝트','제목100','내용100',sysdate,sysdate,'file100','날짜1~날짜2',0,'Y',0,'editfile100','path100',default);
-insert into board values(seq_board.nextval,1,'공지','제목101','내용101',sysdate,sysdate,'file101','날짜1~날짜2',0,'Y',0,'editfile101','path101',default);
-insert into board values(seq_board.nextval,2,'자유','제목102','내용102',sysdate,sysdate,'file102','날짜1~날짜2',0,'Y',0,'editfile102','path102',default);
-insert into board values(seq_board.nextval,3,'스터디','제목103','내용103',sysdate,sysdate,'file103','날짜1~날짜2',0,'Y',0,'editfile103','path103',default);
-insert into board values(seq_board.nextval,4,'프로젝트','제목104','내용104',sysdate,sysdate,'file104','날짜1~날짜2',0,'Y',0,'editfile104','path104',default);
-insert into board values(seq_board.nextval,5,'공지','제목105','내용105',sysdate,sysdate,'file105','날짜1~날짜2',0,'Y',0,'editfile105','path105',default);
-insert into board values(seq_board.nextval,1,'자유','제목106','내용106',sysdate,sysdate,'file106','날짜1~날짜2',0,'Y',0,'editfile106','path106',default);
-insert into board values(seq_board.nextval,2,'스터디','제목107','내용107',sysdate,sysdate,'file107','날짜1~날짜2',0,'Y',0,'editfile107','path107',default);
-insert into board values(seq_board.nextval,3,'프로젝트','제목108','내용108',sysdate,sysdate,'file108','날짜1~날짜2',0,'Y',0,'editfile108','path108',default);
-insert into board values(seq_board.nextval,4,'공지','제목109','내용109',sysdate,sysdate,'file109','날짜1~날짜2',0,'Y',0,'editfile109','path109',default);
-insert into board values(seq_board.nextval,5,'자유','제목110','내용110',sysdate,sysdate,'file110','날짜1~날짜2',0,'Y',0,'editfile110','path110',default);
-insert into board values(seq_board.nextval,1,'스터디','제목111','내용111',sysdate,sysdate,'file111','날짜1~날짜2',0,'Y',0,'editfile111','path111',default);
-insert into board values(seq_board.nextval,2,'프로젝트','제목112','내용112',sysdate,sysdate,'file112','날짜1~날짜2',0,'Y',0,'editfile112','path112',default);
-insert into board values(seq_board.nextval,3,'공지','제목113','내용113',sysdate,sysdate,'file113','날짜1~날짜2',0,'Y',0,'editfile113','path113',default);
-insert into board values(seq_board.nextval,4,'자유','제목114','내용114',sysdate,sysdate,'file114','날짜1~날짜2',0,'Y',0,'editfile114','path114',default);
-insert into board values(seq_board.nextval,5,'자유','제목115','내용115',sysdate,sysdate,'file115','날짜1~날짜2',0,'Y',0,'editfile115','path115',default);
-insert into board values(seq_board.nextval,1,'스터디','제목116','내용116',sysdate,sysdate,'file116','날짜1~날짜2',0,'Y',0,'editfile116','path116',default);
-insert into board values(seq_board.nextval,2,'프로젝트','제목117','내용117',sysdate,sysdate,'file117','날짜1~날짜2',0,'Y',0,'editfile117','path117',default);
-insert into board values(seq_board.nextval,3,'공지','제목118','내용118',sysdate,sysdate,'file118','날짜1~날짜2',0,'Y',0,'editfile118','path118',default);
-insert into board values(seq_board.nextval,4,'자유','제목119','내용119',sysdate,sysdate,'file119','날짜1~날짜2',0,'Y',0,'editfile119','path119',default);
-insert into board values(seq_board.nextval,5,'스터디','제목120','내용120',sysdate,sysdate,'file120','날짜1~날짜2',0,'Y',0,'editfile120','path120',default);
-insert into board values(seq_board.nextval,1,'프로젝트','제목121','내용121',sysdate,sysdate,'file121','날짜1~날짜2',0,'Y',0,'editfile121','path121',default);
-insert into board values(seq_board.nextval,2,'공지','제목122','내용122',sysdate,sysdate,'file122','날짜1~날짜2',0,'Y',0,'editfile122','path122',default);
-insert into board values(seq_board.nextval,3,'자유','제목123','내용123',sysdate,sysdate,'file123','날짜1~날짜2',0,'Y',0,'editfile123','path123',default);
-insert into board values(seq_board.nextval,4,'스터디','제목124','내용124',sysdate,sysdate,'file124','날짜1~날짜2',0,'Y',0,'editfile124','path124',default);
-insert into board values(seq_board.nextval,5,'프로젝트','제목125','내용125',sysdate,sysdate,'file125','날짜1~날짜2',0,'Y',0,'editfile125','path125',default);
-insert into board values(seq_board.nextval,1,'공지','제목126','내용126',sysdate,sysdate,'file126','날짜1~날짜2',0,'Y',0,'editfile126','path126',default);
-insert into board values(seq_board.nextval,2,'자유','제목127','내용127',sysdate,sysdate,'file127','날짜1~날짜2',0,'Y',0,'editfile127','path127',default);
-insert into board values(seq_board.nextval,3,'스터디','제목128','내용128',sysdate,sysdate,'file128','날짜1~날짜2',0,'Y',0,'editfile128','path128',default);
-insert into board values(seq_board.nextval,4,'프로젝트','제목129','내용129',sysdate,sysdate,'file129','날짜1~날짜2',0,'Y',0,'editfile129','path129',default);
-insert into board values(seq_board.nextval,5,'공지','제목130','내용130',sysdate,sysdate,'file130','날짜1~날짜2',0,'Y',0,'editfile130','path130',default);
-insert into board values(seq_board.nextval,1,'자유','제목131','내용131',sysdate,sysdate,'file131','날짜1~날짜2',0,'Y',0,'editfile131','path131',default);
-insert into board values(seq_board.nextval,2,'스터디','제목132','내용132',sysdate,sysdate,'file132','날짜1~날짜2',0,'Y',0,'editfile132','path132',default);
-insert into board values(seq_board.nextval,3,'프로젝트','제목133','내용133',sysdate,sysdate,'file133','날짜1~날짜2',0,'Y',0,'editfile133','path133',default);
-insert into board values(seq_board.nextval,4,'공지','제목134','내용134',sysdate,sysdate,'file134','날짜1~날짜2',0,'Y',0,'editfile134','path134',default);
-insert into board values(seq_board.nextval,5,'자유','제목135','내용135',sysdate,sysdate,'file135','날짜1~날짜2',0,'Y',0,'editfile135','path135',default);
-insert into board values(seq_board.nextval,1,'스터디','제목136','내용136',sysdate,sysdate,'file136','날짜1~날짜2',0,'Y',0,'editfile136','path136',default);
-insert into board values(seq_board.nextval,2,'프로젝트','제목137','내용137',sysdate,sysdate,'file137','날짜1~날짜2',0,'Y',0,'editfile137','path137',default);
-insert into board values(seq_board.nextval,3,'공지','제목138','내용138',sysdate,sysdate,'file138','날짜1~날짜2',0,'Y',0,'editfile138','path138',default);
-insert into board values(seq_board.nextval,4,'자유','제목139','내용139',sysdate,sysdate,'file139','날짜1~날짜2',0,'Y',0,'editfile139','path139',default);
-insert into board values(seq_board.nextval,5,'스터디','제목140','내용140',sysdate,sysdate,'file140','날짜1~날짜2',0,'Y',0,'editfile140','path140',default);
-insert into board values(seq_board.nextval,1,'프로젝트','제목141','내용141',sysdate,sysdate,'file141','날짜1~날짜2',0,'Y',0,'editfile141','path141',default);
-
-
-
-insert into co_info values(21,'사업등록번호1','file1','path1','name1','phone1','06234+서울 강남구 테헤란로14길 6+kh정보교육원','ceo1','cophone1','설명1',sysdate,1,2,'연혁1','복지1','logofile1','logopath1');
-insert into co_info values(22,'사업등록번호2','file2','path2','name2','phone2','06234+서울 강남구 테헤란로14길 6+kh정보교육원','ceo2','cophone2','설명2',sysdate,1,2,'연혁2','복지2','logofile2','logopath2');
-insert into co_info values(23,'사업등록번호3','file3','path3','name3','phone3','06234+서울 강남구 테헤란로14길 6+kh정보교육원','ceo3','cophone3','설명3',sysdate,1,2,'연혁3','복지3','logofile3','logopath3');
-insert into co_info values(24,'사업등록번호4','file4','path4','name4','phone4','06234+서울 강남구 테헤란로14길 6+kh정보교육원','ceo4','cophone4','설명4',sysdate,1,2,'연혁4','복지4','logofile4','logopath4');
-insert into co_info values(25,'사업등록번호5','file5','path5','name5','phone5','06234+서울 강남구 테헤란로14길 6+kh정보교육원','ceo5','cophone5','설명5',sysdate,1,2,'연혁5','복지5','logofile5','logopath5');
-insert into co_info values(26,'사업등록번호6','file6','path6','name6','phone6','06234+서울 강남구 테헤란로14길 6+kh정보교육원','ceo6','cophone6','설명6',sysdate,1,2,'연혁6','복지6','logofile6','logopath6');
-insert into co_info values(27,'사업등록번호7','file7','path7','name7','phone7','06234+서울 강남구 테헤란로14길 6+kh정보교육원','ceo7','cophone7','설명7',sysdate,1,2,'연혁7','복지7','logofile7','logopath7');
-insert into co_info values(28,'사업등록번호8','file8','path8','name8','phone8','06234+서울 강남구 테헤란로14길 6+kh정보교육원','ceo8','cophone8','설명8',sysdate,1,2,'연혁8','복지8','logofile8','logopath8');
-insert into co_info values(29,'사업등록번호9','file9','path9','name9','phone9','06234+서울 강남구 테헤란로14길 6+kh정보교육원','ceo9','cophone9','설명9',sysdate,1,2,'연혁9','복지9','logofile9','logopath9');
-insert into co_info values(30,'사업등록번호10','file10','path10','name10','phone10','06234+서울 강남구 테헤란로14길 6+kh정보교육원','ceo10','cophone10','설명10',sysdate,1,2,'연혁10','복지10','logofile10','logopath10');
-insert into co_info values(31,'사업등록번호11','file11','path11','name11','phone11','06234+서울 강남구 테헤란로14길 6+kh정보교육원','ceo11','cophone11','설명11',sysdate,1,2,'연혁11','복지11','logofile11','logopath11');
-insert into co_info values(32,'사업등록번호12','file12','path12','name12','phone12','06234+서울 강남구 테헤란로14길 6+kh정보교육원','ceo12','cophone12','설명12',sysdate,1,2,'연혁12','복지12','logofile12','logopath12');
-insert into co_info values(33,'사업등록번호13','file13','path13','name13','phone13','06234+서울 강남구 테헤란로14길 6+kh정보교육원','ceo13','cophone13','설명13',sysdate,1,2,'연혁13','복지13','logofile13','logopath13');
-insert into co_info values(34,'사업등록번호14','file14','path14','name14','phone14','06234+서울 강남구 테헤란로14길 6+kh정보교육원','ceo14','cophone14','설명14',sysdate,1,2,'연혁14','복지14','logofile14','logopath14');
-insert into co_info values(35,'사업등록번호15','file15','path15','name15','phone15','06234+서울 강남구 테헤란로14길 6+kh정보교육원','ceo15','cophone15','설명15',sysdate,1,2,'연혁15','복지15','logofile15','logopath15');
-insert into co_info values(36,'사업등록번호16','file16','path16','name16','phone16','06234+서울 강남구 테헤란로14길 6+kh정보교육원','ceo16','cophone16','설명16',sysdate,1,2,'연혁16','복지16','logofile16','logopath16');
-insert into co_info values(37,'사업등록번호17','file17','path17','name17','phone17','06234+서울 강남구 테헤란로14길 6+kh정보교육원','ceo17','cophone17','설명17',sysdate,1,2,'연혁17','복지17','logofile17','logopath17');
-insert into co_info values(38,'사업등록번호18','file18','path18','name18','phone18','06234+서울 강남구 테헤란로14길 6+kh정보교육원','ceo18','cophone18','설명18',sysdate,1,2,'연혁18','복지18','logofile18','logopath18');
-insert into co_info values(39,'사업등록번호19','file19','path19','name19','phone19','06234+서울 강남구 테헤란로14길 6+kh정보교육원','ceo19','cophone19','설명19',sysdate,1,2,'연혁19','복지19','logofile19','logopath19');
-insert into co_info values(40,'사업등록번호20','file20','path20','name20','phone20','06234+서울 강남구 테헤란로14길 6+kh정보교육원','ceo20','cophone20','설명20',sysdate,1,2,'연혁20','복지20','logofile20','logopath20');
-
-
-
-insert into notification values(seq_notification.nextval,21,'제목1',sysdate,sysdate,'언어1',1000,'내용1','직군1','우대1','Y',0,default);
-insert into notification values(seq_notification.nextval,22,'제목2',sysdate,sysdate,'언어2',1001,'내용2','직군2','우대2','Y',1,default);
-insert into notification values(seq_notification.nextval,23,'제목3',sysdate,sysdate,'언어3',1002,'내용3','직군3','우대3','Y',2,default);
-insert into notification values(seq_notification.nextval,24,'제목4',sysdate,sysdate,'언어4',1003,'내용4','직군4','우대4','Y',3,default);
-insert into notification values(seq_notification.nextval,25,'제목5',sysdate,sysdate,'언어5',1004,'내용5','직군5','우대5','Y',4,default);
-insert into notification values(seq_notification.nextval,26,'제목6',sysdate,sysdate,'언어6',1005,'내용6','직군6','우대6','Y',5,default);
-insert into notification values(seq_notification.nextval,27,'제목7',sysdate,sysdate,'언어7',1006,'내용7','직군7','우대7','Y',6,default);
-insert into notification values(seq_notification.nextval,28,'제목8',sysdate,sysdate,'언어8',1007,'내용8','직군8','우대8','Y',7,default);
-insert into notification values(seq_notification.nextval,29,'제목9',sysdate,sysdate,'언어9',1008,'내용9','직군9','우대9','Y',8,default);
-insert into notification values(seq_notification.nextval,30,'제목10',sysdate,sysdate,'언어10',1009,'내용10','직군10','우대10','Y',9,default);
-insert into notification values(seq_notification.nextval,31,'제목11',sysdate,sysdate,'언어11',1010,'내용11','직군11','우대11','Y',10,default);
-insert into notification values(seq_notification.nextval,32,'제목12',sysdate,sysdate,'언어12',1011,'내용12','직군12','우대12','Y',11,default);
-insert into notification values(seq_notification.nextval,33,'제목13',sysdate,sysdate,'언어13',1012,'내용13','직군13','우대13','Y',12,default);
-insert into notification values(seq_notification.nextval,34,'제목14',sysdate,sysdate,'언어14',1013,'내용14','직군14','우대14','Y',13,default);
-insert into notification values(seq_notification.nextval,35,'제목15',sysdate,sysdate,'언어15',1014,'내용15','직군15','우대15','Y',14,default);
-insert into notification values(seq_notification.nextval,36,'제목16',sysdate,sysdate,'언어16',1015,'내용16','직군16','우대16','Y',15,default);
-insert into notification values(seq_notification.nextval,37,'제목17',sysdate,sysdate,'언어17',1016,'내용17','직군17','우대17','Y',16,default);
-insert into notification values(seq_notification.nextval,38,'제목18',sysdate,sysdate,'언어18',1017,'내용18','직군18','우대18','Y',17,default);
-insert into notification values(seq_notification.nextval,39,'제목19',sysdate,sysdate,'언어19',1018,'내용19','직군19','우대19','Y',18,default);
-insert into notification values(seq_notification.nextval,40,'제목20',sysdate,sysdate,'언어20',1019,'내용20','직군20','우대20','Y',19,default);
-insert into notification values(seq_notification.nextval,21,'제목21',sysdate,sysdate,'언어21',1020,'내용21','직군21','우대21','Y',20,default);
-insert into notification values(seq_notification.nextval,22,'제목22',sysdate,sysdate,'언어22',1021,'내용22','직군22','우대22','Y',21,default);
-insert into notification values(seq_notification.nextval,23,'제목23',sysdate,sysdate,'언어23',1022,'내용23','직군23','우대23','Y',22,default);
-insert into notification values(seq_notification.nextval,24,'제목24',sysdate,sysdate,'언어24',1023,'내용24','직군24','우대24','Y',23,default);
-insert into notification values(seq_notification.nextval,25,'제목25',sysdate,sysdate,'언어25',1024,'내용25','직군25','우대25','Y',24,default);
-insert into notification values(seq_notification.nextval,26,'제목26',sysdate,sysdate,'언어26',1025,'내용26','직군26','우대26','Y',25,default);
-insert into notification values(seq_notification.nextval,27,'제목27',sysdate,sysdate,'언어27',1026,'내용27','직군27','우대27','Y',26,default);
-insert into notification values(seq_notification.nextval,28,'제목28',sysdate,sysdate,'언어28',1027,'내용28','직군28','우대28','Y',27,default);
-insert into notification values(seq_notification.nextval,29,'제목29',sysdate,sysdate,'언어29',1028,'내용29','직군29','우대29','Y',28,default);
-insert into notification values(seq_notification.nextval,30,'제목30',sysdate,sysdate,'언어30',1029,'내용30','직군30','우대30','Y',29,default);
-insert into notification values(seq_notification.nextval,31,'제목31',sysdate,sysdate,'언어31',1030,'내용31','직군31','우대31','Y',30,default);
-insert into notification values(seq_notification.nextval,32,'제목32',sysdate,sysdate,'언어32',1031,'내용32','직군32','우대32','Y',31,default);
-insert into notification values(seq_notification.nextval,33,'제목33',sysdate,sysdate,'언어33',1032,'내용33','직군33','우대33','Y',32,default);
-insert into notification values(seq_notification.nextval,34,'제목34',sysdate,sysdate,'언어34',1033,'내용34','직군34','우대34','Y',33,default);
-insert into notification values(seq_notification.nextval,35,'제목35',sysdate,sysdate,'언어35',1034,'내용35','직군35','우대35','Y',34,default);
-insert into notification values(seq_notification.nextval,36,'제목36',sysdate,sysdate,'언어36',1035,'내용36','직군36','우대36','Y',35,default);
-insert into notification values(seq_notification.nextval,37,'제목37',sysdate,sysdate,'언어37',1036,'내용37','직군37','우대37','Y',36,default);
-insert into notification values(seq_notification.nextval,38,'제목38',sysdate,sysdate,'언어38',1037,'내용38','직군38','우대38','Y',37,default);
-insert into notification values(seq_notification.nextval,39,'제목39',sysdate,sysdate,'언어39',1038,'내용39','직군39','우대39','Y',38,default);
-insert into notification values(seq_notification.nextval,40,'제목40',sysdate,sysdate,'언어40',1039,'내용40','직군40','우대40','Y',39,default);
-
-
-
-
-
-insert into resume values(seq_resume.nextval,'photo1','path1','name1',sysdate,'phone1','address1','email1','school1','학과1','재학기간1','N','일한곳1','일한기간1','업무1','자격증','자격증날짜','title1','문구1',default,sysdate,'언어1','sal1',1,1,1);
-insert into resume values(seq_resume.nextval,'photo2','path2','name2',sysdate,'phone2','address2','email2','school2','학과2','재학기간2','N','일한곳2','일한기간2','업무2','자격증','자격증날짜','title2','문구2',default,sysdate,'언어2','sal2',2,2,1);
-insert into resume values(seq_resume.nextval,'photo3','path3','name3',sysdate,'phone3','address3','email3','school3','학과3','재학기간3','N','일한곳3','일한기간1','업무3','자격증','자격증날짜','title3','문구3',default,sysdate,'언어3','sal3',3,3,1);
-insert into resume values(seq_resume.nextval,'photo4','path4','name4',sysdate,'phone4','address4','email4','school4','학과4','재학기간4','N','일한곳4','일한기간2','업무4','자격증','자격증날짜','title4','문구4',default,sysdate,'언어4','sal4',4,4,1);
-insert into resume values(seq_resume.nextval,'photo5','path5','name5',sysdate,'phone5','address5','email5','school5','학과5','재학기간5','N','일한곳5','일한기간1','업무5','자격증','자격증날짜','title5','문구5',default,sysdate,'언어5','sal5',5,5,1);
-insert into resume values(seq_resume.nextval,'photo6','path6','name6',sysdate,'phone6','address6','email6','school6','학과6','재학기간6','N','일한곳6','일한기간2','업무6','자격증','자격증날짜','title6','문구6',default,sysdate,'언어6','sal6',6,6,1);
-insert into resume values(seq_resume.nextval,'photo7','path7','name7',sysdate,'phone7','address7','email7','school7','학과7','재학기간7','N','일한곳7','일한기간1','업무7','자격증','자격증날짜','title7','문구7',default,sysdate,'언어7','sal7',7,7,1);
-insert into resume values(seq_resume.nextval,'photo8','path8','name8',sysdate,'phone8','address8','email8','school8','학과8','재학기간8','N','일한곳8','일한기간2','업무8','자격증','자격증날짜','title8','문구8',default,sysdate,'언어8','sal8',8,8,1);
-insert into resume values(seq_resume.nextval,'photo9','path9','name9',sysdate,'phone9','address9','email9','school9','학과9','재학기간9','N','일한곳9','일한기간1','업무9','자격증','자격증날짜','title9','문구9',default,sysdate,'언어9','sal9',9,9,1);
-insert into resume values(seq_resume.nextval,'photo10','path10','name10',sysdate,'phone10','address10','email10','school10','학과10','재학기간10','N','일한곳10','일한기간2','업무10','자격증','자격증날짜','title10','문구10',default,sysdate,'언어10','sal10',10,10,1);
-insert into resume values(seq_resume.nextval,'photo11','path11','name11',sysdate,'phone11','address11','email11','school11','학과11','재학기간11','N','일한곳11','일한기간1','업무11','자격증','자격증날짜','title11','문구11',default,sysdate,'언어11','sal11',11,11,1);
-insert into resume values(seq_resume.nextval,'photo12','path12','name12',sysdate,'phone12','address12','email12','school12','학과12','재학기간12','N','일한곳12','일한기간2','업무12','자격증','자격증날짜','title12','문구12',default,sysdate,'언어12','sal12',12,12,1);
-insert into resume values(seq_resume.nextval,'photo13','path13','name13',sysdate,'phone13','address13','email13','school13','학과13','재학기간13','N','일한곳13','일한기간1','업무13','자격증','자격증날짜','title13','문구13',default,sysdate,'언어13','sal13',13,13,1);
-insert into resume values(seq_resume.nextval,'photo14','path14','name14',sysdate,'phone14','address14','email14','school14','학과14','재학기간14','N','일한곳14','일한기간2','업무14','자격증','자격증날짜','title14','문구14',default,sysdate,'언어14','sal14',14,14,1);
-insert into resume values(seq_resume.nextval,'photo15','path15','name15',sysdate,'phone15','address15','email15','school15','학과15','재학기간15','N','일한곳15','일한기간1','업무15','자격증','자격증날짜','title15','문구15',default,sysdate,'언어15','sal15',15,15,1);
-insert into resume values(seq_resume.nextval,'photo16','path16','name16',sysdate,'phone16','address16','email16','school16','학과16','재학기간16','N','일한곳16','일한기간2','업무16','자격증','자격증날짜','title16','문구16',default,sysdate,'언어16','sal16',16,16,2);
-insert into resume values(seq_resume.nextval,'photo17','path17','name17',sysdate,'phone17','address17','email17','school17','학과17','재학기간17','N','일한곳17','일한기간1','업무17','자격증','자격증날짜','title17','문구17',default,sysdate,'언어17','sal17',17,17,2);
-insert into resume values(seq_resume.nextval,'photo18','path18','name18',sysdate,'phone18','address18','email18','school18','학과18','재학기간18','N','일한곳18','일한기간2','업무18','자격증','자격증날짜','title18','문구18',default,sysdate,'언어18','sal18',18,18,2);
-insert into resume values(seq_resume.nextval,'photo19','path19','name19',sysdate,'phone19','address19','email19','school19','학과19','재학기간19','N','일한곳19','일한기간1','업무19','자격증','자격증날짜','title19','문구19',default,sysdate,'언어19','sal19',19,19,2);
-insert into resume values(seq_resume.nextval,'photo20','path20','name20',sysdate,'phone20','address20','email20','school20','학과20','재학기간20','N','일한곳20','일한기간2','업무20','자격증','자격증날짜','title20','문구20',default,sysdate,'언어20','sal20',20,20,2);
-insert into resume values(seq_resume.nextval,'photo21','path21','name21',sysdate,'phone21','address21','email21','school21','학과21','재학기간21','N','일한곳21','일한기간1','업무21','자격증','자격증날짜','title21','문구21',default,sysdate,'언어21','sal21',1,21,2);
-insert into resume values(seq_resume.nextval,'photo22','path22','name22',sysdate,'phone22','address22','email22','school22','학과22','재학기간22','N','일한곳22','일한기간2','업무22','자격증','자격증날짜','title22','문구22',default,sysdate,'언어22','sal22',2,22,2);
-insert into resume values(seq_resume.nextval,'photo23','path23','name23',sysdate,'phone23','address23','email23','school23','학과23','재학기간23','N','일한곳23','일한기간1','업무23','자격증','자격증날짜','title23','문구23',default,sysdate,'언어23','sal23',3,23,2);
-insert into resume values(seq_resume.nextval,'photo24','path24','name24',sysdate,'phone24','address24','email24','school24','학과24','재학기간24','N','일한곳24','일한기간2','업무24','자격증','자격증날짜','title24','문구24',default,sysdate,'언어24','sal24',4,24,2);
-insert into resume values(seq_resume.nextval,'photo25','path25','name25',sysdate,'phone25','address25','email25','school25','학과25','재학기간25','N','일한곳25','일한기간1','업무25','자격증','자격증날짜','title25','문구25',default,sysdate,'언어25','sal25',5,25,2);
-insert into resume values(seq_resume.nextval,'photo26','path26','name26',sysdate,'phone26','address26','email26','school26','학과26','재학기간26','N','일한곳26','일한기간2','업무26','자격증','자격증날짜','title26','문구26',default,sysdate,'언어26','sal26',6,26,2);
-insert into resume values(seq_resume.nextval,'photo27','path27','name27',sysdate,'phone27','address27','email27','school27','학과27','재학기간27','N','일한곳27','일한기간1','업무27','자격증','자격증날짜','title27','문구27',default,sysdate,'언어27','sal27',7,27,2);
-insert into resume values(seq_resume.nextval,'photo28','path28','name28',sysdate,'phone28','address28','email28','school28','학과28','재학기간28','N','일한곳28','일한기간2','업무28','자격증','자격증날짜','title28','문구28',default,sysdate,'언어28','sal28',8,28,2);
-insert into resume values(seq_resume.nextval,'photo29','path29','name29',sysdate,'phone29','address29','email29','school29','학과29','재학기간29','N','일한곳29','일한기간1','업무29','자격증','자격증날짜','title29','문구29',default,sysdate,'언어29','sal29',9,29,2);
-insert into resume values(seq_resume.nextval,'photo30','path30','name30',sysdate,'phone30','address30','email30','school30','학과30','재학기간30','N','일한곳30','일한기간2','업무30','자격증','자격증날짜','title30','문구30',default,sysdate,'언어30','sal30',10,30,2);
-insert into resume values(seq_resume.nextval,'photo31','path31','name31',sysdate,'phone31','address31','email31','school31','학과31','재학기간31','N','일한곳31','일한기간1','업무31','자격증','자격증날짜','title31','문구31',default,sysdate,'언어31','sal31',11,31,2);
-insert into resume values(seq_resume.nextval,'photo32','path32','name32',sysdate,'phone32','address32','email32','school32','학과32','재학기간32','N','일한곳32','일한기간2','업무32','자격증','자격증날짜','title32','문구32',default,sysdate,'언어32','sal32',12,32,2);
-insert into resume values(seq_resume.nextval,'photo33','path33','name33',sysdate,'phone33','address33','email33','school33','학과33','재학기간33','N','일한곳33','일한기간1','업무33','자격증','자격증날짜','title33','문구33',default,sysdate,'언어33','sal33',13,33,2);
-insert into resume values(seq_resume.nextval,'photo34','path34','name34',sysdate,'phone34','address34','email34','school34','학과34','재학기간34','N','일한곳34','일한기간2','업무34','자격증','자격증날짜','title34','문구34',default,sysdate,'언어34','sal34',14,34,3);
-insert into resume values(seq_resume.nextval,'photo35','path35','name35',sysdate,'phone35','address35','email35','school35','학과35','재학기간35','N','일한곳35','일한기간1','업무35','자격증','자격증날짜','title35','문구35',default,sysdate,'언어35','sal35',15,35,3);
-insert into resume values(seq_resume.nextval,'photo36','path36','name36',sysdate,'phone36','address36','email36','school36','학과36','재학기간36','N','일한곳36','일한기간2','업무36','자격증','자격증날짜','title36','문구36',default,sysdate,'언어36','sal36',16,36,3);
-insert into resume values(seq_resume.nextval,'photo37','path37','name37',sysdate,'phone37','address37','email37','school37','학과37','재학기간37','N','일한곳37','일한기간1','업무37','자격증','자격증날짜','title37','문구37',default,sysdate,'언어37','sal37',17,37,3);
-insert into resume values(seq_resume.nextval,'photo38','path38','name38',sysdate,'phone38','address38','email38','school38','학과38','재학기간38','N','일한곳38','일한기간2','업무38','자격증','자격증날짜','title38','문구38',default,sysdate,'언어38','sal38',18,38,3);
-insert into resume values(seq_resume.nextval,'photo39','path39','name39',sysdate,'phone39','address39','email39','school39','학과39','재학기간39','N','일한곳39','일한기간1','업무39','자격증','자격증날짜','title39','문구39',default,sysdate,'언어39','sal39',19,39,3);
-insert into resume values(seq_resume.nextval,'photo40','path40','name40',sysdate,'phone40','address40','email40','school40','학과40','재학기간40','N','일한곳40','일한기간2','업무40','자격증','자격증날짜','title40','문구40',default,sysdate,'언어40','sal40',20,40,3);
-insert into resume values(seq_resume.nextval,'photo41','path41','name41',sysdate,'phone41','address41','email41','school41','학과41','재학기간41','N','일한곳41','일한기간1','업무41','자격증','자격증날짜','title41','문구41',default,sysdate,'언어41','sal41',1,41,3);
-insert into resume values(seq_resume.nextval,'photo42','path42','name42',sysdate,'phone42','address42','email42','school42','학과42','재학기간42','N','일한곳42','일한기간2','업무42','자격증','자격증날짜','title42','문구42',default,sysdate,'언어42','sal42',2,42,3);
-insert into resume values(seq_resume.nextval,'photo43','path43','name43',sysdate,'phone43','address43','email43','school43','학과43','재학기간43','N','일한곳43','일한기간1','업무43','자격증','자격증날짜','title43','문구43',default,sysdate,'언어43','sal43',3,43,3);
-insert into resume values(seq_resume.nextval,'photo44','path44','name44',sysdate,'phone44','address44','email44','school44','학과44','재학기간44','N','일한곳44','일한기간2','업무44','자격증','자격증날짜','title44','문구44',default,sysdate,'언어44','sal44',4,44,3);
-insert into resume values(seq_resume.nextval,'photo45','path45','name45',sysdate,'phone45','address45','email45','school45','학과45','재학기간45','N','일한곳45','일한기간1','업무45','자격증','자격증날짜','title45','문구45',default,sysdate,'언어45','sal45',5,45,3);
-insert into resume values(seq_resume.nextval,'photo46','path46','name46',sysdate,'phone46','address46','email46','school46','학과46','재학기간46','N','일한곳46','일한기간2','업무46','자격증','자격증날짜','title46','문구46',default,sysdate,'언어46','sal46',6,46,3);
-insert into resume values(seq_resume.nextval,'photo47','path47','name47',sysdate,'phone47','address47','email47','school47','학과47','재학기간47','N','일한곳47','일한기간1','업무47','자격증','자격증날짜','title47','문구47',default,sysdate,'언어47','sal47',7,47,3);
-insert into resume values(seq_resume.nextval,'photo48','path48','name48',sysdate,'phone48','address48','email48','school48','학과48','재학기간48','N','일한곳48','일한기간2','업무48','자격증','자격증날짜','title48','문구48',default,sysdate,'언어48','sal48',8,48,3);
-insert into resume values(seq_resume.nextval,'photo49','path49','name49',sysdate,'phone49','address49','email49','school49','학과49','재학기간49','N','일한곳49','일한기간1','업무49','자격증','자격증날짜','title49','문구49',default,sysdate,'언어49','sal49',9,49,3);
-insert into resume values(seq_resume.nextval,'photo50','path50','name50',sysdate,'phone50','address50','email50','school50','학과50','재학기간50','N','일한곳50','일한기간2','업무50','자격증','자격증날짜','title50','문구50',default,sysdate,'언어50','sal50',10,50,3);
-insert into resume values(seq_resume.nextval,'photo51','path51','name51',sysdate,'phone51','address51','email51','school51','학과51','재학기간51','N','일한곳51','일한기간1','업무51','자격증','자격증날짜','title51','문구51',default,sysdate,'언어51','sal51',11,51,3);
-insert into resume values(seq_resume.nextval,'photo52','path52','name52',sysdate,'phone52','address52','email52','school52','학과52','재학기간52','N','일한곳52','일한기간2','업무52','자격증','자격증날짜','title52','문구52',default,sysdate,'언어52','sal52',12,52,3);
-insert into resume values(seq_resume.nextval,'photo53','path53','name53',sysdate,'phone53','address53','email53','school53','학과53','재학기간53','N','일한곳53','일한기간1','업무53','자격증','자격증날짜','title53','문구53',default,sysdate,'언어53','sal53',13,53,3);
-insert into resume values(seq_resume.nextval,'photo54','path54','name54',sysdate,'phone54','address54','email54','school54','학과54','재학기간54','N','일한곳54','일한기간2','업무54','자격증','자격증날짜','title54','문구54',default,sysdate,'언어54','sal54',14,54,3);
-insert into resume values(seq_resume.nextval,'photo55','path55','name55',sysdate,'phone55','address55','email55','school55','학과55','재학기간55','N','일한곳55','일한기간1','업무55','자격증','자격증날짜','title55','문구55',default,sysdate,'언어55','sal55',15,55,3);
-insert into resume values(seq_resume.nextval,'photo56','path56','name56',sysdate,'phone56','address56','email56','school56','학과56','재학기간56','N','일한곳56','일한기간2','업무56','자격증','자격증날짜','title56','문구56',default,sysdate,'언어56','sal56',16,56,3);
-insert into resume values(seq_resume.nextval,'photo57','path57','name57',sysdate,'phone57','address57','email57','school57','학과57','재학기간57','N','일한곳57','일한기간1','업무57','자격증','자격증날짜','title57','문구57',default,sysdate,'언어57','sal57',17,57,3);
-insert into resume values(seq_resume.nextval,'photo58','path58','name58',sysdate,'phone58','address58','email58','school58','학과58','재학기간58','N','일한곳58','일한기간2','업무58','자격증','자격증날짜','title58','문구58',default,sysdate,'언어58','sal58',18,58,3);
-insert into resume values(seq_resume.nextval,'photo59','path59','name59',sysdate,'phone59','address59','email59','school59','학과59','재학기간59','N','일한곳59','일한기간1','업무59','자격증','자격증날짜','title59','문구59',default,sysdate,'언어59','sal59',19,59,3);
-insert into resume values(seq_resume.nextval,'photo60','path60','name60',sysdate,'phone60','address60','email60','school60','학과60','재학기간60','N','일한곳60','일한기간2','업무60','자격증','자격증날짜','title60','문구60',default,sysdate,'언어60','sal60',20,60,3);
-
-
-
-
-
-
-insert into like_co values(seq_like_co.nextval,2,21);
-insert into like_co values(seq_like_co.nextval,2,22);
-insert into like_co values(seq_like_co.nextval,3,23);
-insert into like_co values(seq_like_co.nextval,4,24);
-insert into like_co values(seq_like_co.nextval,5,25);
-insert into like_co values(seq_like_co.nextval,6,26);
-insert into like_co values(seq_like_co.nextval,7,27);
-insert into like_co values(seq_like_co.nextval,1,28);
-insert into like_co values(seq_like_co.nextval,2,29);
-insert into like_co values(seq_like_co.nextval,3,21);
-insert into like_co values(seq_like_co.nextval,4,22);
-insert into like_co values(seq_like_co.nextval,5,23);
-insert into like_co values(seq_like_co.nextval,6,24);
-insert into like_co values(seq_like_co.nextval,7,25);
-insert into like_co values(seq_like_co.nextval,1,26);
-insert into like_co values(seq_like_co.nextval,2,27);
-insert into like_co values(seq_like_co.nextval,3,28);
-insert into like_co values(seq_like_co.nextval,4,29);
-insert into like_co values(seq_like_co.nextval,5,21);
-insert into like_co values(seq_like_co.nextval,6,22);
-insert into like_co values(seq_like_co.nextval,7,23);
-insert into like_co values(seq_like_co.nextval,1,24);
-insert into like_co values(seq_like_co.nextval,2,25);
-insert into like_co values(seq_like_co.nextval,3,26);
-insert into like_co values(seq_like_co.nextval,4,27);
-insert into like_co values(seq_like_co.nextval,5,28);
-insert into like_co values(seq_like_co.nextval,6,29);
-insert into like_co values(seq_like_co.nextval,7,21);
-insert into like_co values(seq_like_co.nextval,1,22);
-insert into like_co values(seq_like_co.nextval,2,23);
-insert into like_co values(seq_like_co.nextval,3,24);
-insert into like_co values(seq_like_co.nextval,4,25);
-insert into like_co values(seq_like_co.nextval,5,26);
-insert into like_co values(seq_like_co.nextval,6,27);
-insert into like_co values(seq_like_co.nextval,7,28);
-insert into like_co values(seq_like_co.nextval,1,29);
-insert into like_co values(seq_like_co.nextval,2,21);
-insert into like_co values(seq_like_co.nextval,3,22);
-insert into like_co values(seq_like_co.nextval,4,23);
-insert into like_co values(seq_like_co.nextval,5,24);
-insert into like_co values(seq_like_co.nextval,6,25);
-insert into like_co values(seq_like_co.nextval,7,26);
-insert into like_co values(seq_like_co.nextval,1,27);
-insert into like_co values(seq_like_co.nextval,2,28);
-insert into like_co values(seq_like_co.nextval,3,29);
-insert into like_co values(seq_like_co.nextval,4,21);
-insert into like_co values(seq_like_co.nextval,5,22);
-insert into like_co values(seq_like_co.nextval,6,23);
-insert into like_co values(seq_like_co.nextval,7,24);
-insert into like_co values(seq_like_co.nextval,1,25);
-insert into like_co values(seq_like_co.nextval,2,26);
-insert into like_co values(seq_like_co.nextval,3,27);
-insert into like_co values(seq_like_co.nextval,4,28);
-insert into like_co values(seq_like_co.nextval,5,29);
-insert into like_co values(seq_like_co.nextval,6,21);
-insert into like_co values(seq_like_co.nextval,7,22);
-insert into like_co values(seq_like_co.nextval,1,23);
-insert into like_co values(seq_like_co.nextval,2,24);
-insert into like_co values(seq_like_co.nextval,3,25);
-insert into like_co values(seq_like_co.nextval,4,26);
-insert into like_co values(seq_like_co.nextval,5,27);
-insert into like_co values(seq_like_co.nextval,6,28);
-insert into like_co values(seq_like_co.nextval,7,29);
-insert into like_co values(seq_like_co.nextval,1,21);
-insert into like_co values(seq_like_co.nextval,2,22);
-insert into like_co values(seq_like_co.nextval,3,23);
-insert into like_co values(seq_like_co.nextval,4,24);
-insert into like_co values(seq_like_co.nextval,5,25);
-insert into like_co values(seq_like_co.nextval,6,26);
-insert into like_co values(seq_like_co.nextval,7,27);
-insert into like_co values(seq_like_co.nextval,1,28);
-insert into like_co values(seq_like_co.nextval,2,29);
-insert into like_co values(seq_like_co.nextval,3,21);
-insert into like_co values(seq_like_co.nextval,4,22);
-insert into like_co values(seq_like_co.nextval,5,23);
-insert into like_co values(seq_like_co.nextval,6,24);
-insert into like_co values(seq_like_co.nextval,7,25);
-
-
-
-
-
-
-
-insert into like_mem values(seq_like_mem.nextval,21,21);
-insert into like_mem values(seq_like_mem.nextval,22,22);
-insert into like_mem values(seq_like_mem.nextval,3,23);
-insert into like_mem values(seq_like_mem.nextval,4,24);
-insert into like_mem values(seq_like_mem.nextval,5,25);
-insert into like_mem values(seq_like_mem.nextval,6,26);
-insert into like_mem values(seq_like_mem.nextval,7,27);
-insert into like_mem values(seq_like_mem.nextval,8,28);
-insert into like_mem values(seq_like_mem.nextval,9,21);
-insert into like_mem values(seq_like_mem.nextval,10,22);
-insert into like_mem values(seq_like_mem.nextval,11,23);
-insert into like_mem values(seq_like_mem.nextval,12,24);
-insert into like_mem values(seq_like_mem.nextval,13,25);
-insert into like_mem values(seq_like_mem.nextval,21,26);
-insert into like_mem values(seq_like_mem.nextval,22,27);
-insert into like_mem values(seq_like_mem.nextval,3,28);
-insert into like_mem values(seq_like_mem.nextval,4,21);
-insert into like_mem values(seq_like_mem.nextval,5,22);
-insert into like_mem values(seq_like_mem.nextval,6,23);
-insert into like_mem values(seq_like_mem.nextval,7,24);
-insert into like_mem values(seq_like_mem.nextval,8,25);
-insert into like_mem values(seq_like_mem.nextval,9,26);
-insert into like_mem values(seq_like_mem.nextval,10,27);
-insert into like_mem values(seq_like_mem.nextval,11,28);
-insert into like_mem values(seq_like_mem.nextval,12,21);
-insert into like_mem values(seq_like_mem.nextval,13,22);
-insert into like_mem values(seq_like_mem.nextval,21,23);
-insert into like_mem values(seq_like_mem.nextval,22,24);
-insert into like_mem values(seq_like_mem.nextval,3,25);
-insert into like_mem values(seq_like_mem.nextval,4,26);
-insert into like_mem values(seq_like_mem.nextval,5,27);
-insert into like_mem values(seq_like_mem.nextval,6,28);
-insert into like_mem values(seq_like_mem.nextval,7,21);
-insert into like_mem values(seq_like_mem.nextval,8,22);
-insert into like_mem values(seq_like_mem.nextval,9,23);
-insert into like_mem values(seq_like_mem.nextval,10,24);
-insert into like_mem values(seq_like_mem.nextval,11,25);
-insert into like_mem values(seq_like_mem.nextval,12,26);
-insert into like_mem values(seq_like_mem.nextval,13,27);
-insert into like_mem values(seq_like_mem.nextval,21,28);
-insert into like_mem values(seq_like_mem.nextval,22,21);
-insert into like_mem values(seq_like_mem.nextval,3,22);
-insert into like_mem values(seq_like_mem.nextval,4,23);
-insert into like_mem values(seq_like_mem.nextval,5,24);
-insert into like_mem values(seq_like_mem.nextval,6,25);
-insert into like_mem values(seq_like_mem.nextval,7,26);
-insert into like_mem values(seq_like_mem.nextval,8,27);
-insert into like_mem values(seq_like_mem.nextval,9,28);
-insert into like_mem values(seq_like_mem.nextval,10,21);
-insert into like_mem values(seq_like_mem.nextval,11,22);
-insert into like_mem values(seq_like_mem.nextval,12,23);
-insert into like_mem values(seq_like_mem.nextval,13,24);
-insert into like_mem values(seq_like_mem.nextval,21,25);
-insert into like_mem values(seq_like_mem.nextval,22,26);
-insert into like_mem values(seq_like_mem.nextval,3,27);
-insert into like_mem values(seq_like_mem.nextval,4,28);
-insert into like_mem values(seq_like_mem.nextval,5,21);
-insert into like_mem values(seq_like_mem.nextval,6,22);
-insert into like_mem values(seq_like_mem.nextval,7,23);
-insert into like_mem values(seq_like_mem.nextval,8,24);
-insert into like_mem values(seq_like_mem.nextval,9,25);
-insert into like_mem values(seq_like_mem.nextval,10,26);
-insert into like_mem values(seq_like_mem.nextval,11,27);
-insert into like_mem values(seq_like_mem.nextval,12,28);
-insert into like_mem values(seq_like_mem.nextval,13,21);
-insert into like_mem values(seq_like_mem.nextval,21,22);
-insert into like_mem values(seq_like_mem.nextval,22,23);
-insert into like_mem values(seq_like_mem.nextval,3,24);
-insert into like_mem values(seq_like_mem.nextval,4,25);
-insert into like_mem values(seq_like_mem.nextval,5,26);
-insert into like_mem values(seq_like_mem.nextval,6,27);
-insert into like_mem values(seq_like_mem.nextval,7,28);
-insert into like_mem values(seq_like_mem.nextval,8,21);
-insert into like_mem values(seq_like_mem.nextval,9,22);
-insert into like_mem values(seq_like_mem.nextval,10,23);
-insert into like_mem values(seq_like_mem.nextval,11,24);
-insert into like_mem values(seq_like_mem.nextval,12,25);
-insert into like_mem values(seq_like_mem.nextval,13,26);
-insert into like_mem values(seq_like_mem.nextval,21,27);
-insert into like_mem values(seq_like_mem.nextval,22,28);
-insert into like_mem values(seq_like_mem.nextval,3,21);
-insert into like_mem values(seq_like_mem.nextval,4,22);
-insert into like_mem values(seq_like_mem.nextval,5,23);
-insert into like_mem values(seq_like_mem.nextval,6,24);
-insert into like_mem values(seq_like_mem.nextval,7,25);
-insert into like_mem values(seq_like_mem.nextval,8,26);
-insert into like_mem values(seq_like_mem.nextval,9,27);
-insert into like_mem values(seq_like_mem.nextval,10,28);
-insert into like_mem values(seq_like_mem.nextval,11,21);
-insert into like_mem values(seq_like_mem.nextval,12,22);
-insert into like_mem values(seq_like_mem.nextval,13,23);
-insert into like_mem values(seq_like_mem.nextval,21,24);
-insert into like_mem values(seq_like_mem.nextval,22,25);
-insert into like_mem values(seq_like_mem.nextval,3,26);
-insert into like_mem values(seq_like_mem.nextval,4,27);
-insert into like_mem values(seq_like_mem.nextval,5,28);
-insert into like_mem values(seq_like_mem.nextval,6,21);
-insert into like_mem values(seq_like_mem.nextval,7,22);
-insert into like_mem values(seq_like_mem.nextval,8,23);
-insert into like_mem values(seq_like_mem.nextval,9,24);
-insert into like_mem values(seq_like_mem.nextval,10,25);
-insert into like_mem values(seq_like_mem.nextval,11,26);
-insert into like_mem values(seq_like_mem.nextval,12,27);
-insert into like_mem values(seq_like_mem.nextval,13,28);
-insert into like_mem values(seq_like_mem.nextval,21,21);
-insert into like_mem values(seq_like_mem.nextval,22,22);
-insert into like_mem values(seq_like_mem.nextval,3,23);
-insert into like_mem values(seq_like_mem.nextval,4,24);
-insert into like_mem values(seq_like_mem.nextval,5,25);
-insert into like_mem values(seq_like_mem.nextval,6,26);
-insert into like_mem values(seq_like_mem.nextval,7,27);
-insert into like_mem values(seq_like_mem.nextval,8,28);
-insert into like_mem values(seq_like_mem.nextval,9,21);
-insert into like_mem values(seq_like_mem.nextval,10,22);
-insert into like_mem values(seq_like_mem.nextval,11,23);
-insert into like_mem values(seq_like_mem.nextval,12,24);
-insert into like_mem values(seq_like_mem.nextval,13,25);
-insert into like_mem values(seq_like_mem.nextval,21,26);
-insert into like_mem values(seq_like_mem.nextval,22,27);
-insert into like_mem values(seq_like_mem.nextval,3,28);
-insert into like_mem values(seq_like_mem.nextval,4,21);
-insert into like_mem values(seq_like_mem.nextval,5,22);
-insert into like_mem values(seq_like_mem.nextval,6,23);
-insert into like_mem values(seq_like_mem.nextval,7,24);
-insert into like_mem values(seq_like_mem.nextval,8,25);
-insert into like_mem values(seq_like_mem.nextval,9,26);
-
-
-
-
-
-
-insert into like_noti values(seq_like_noti.nextval,11,1);
-insert into like_noti values(seq_like_noti.nextval,12,2);
-insert into like_noti values(seq_like_noti.nextval,3,3);
-insert into like_noti values(seq_like_noti.nextval,4,4);
-insert into like_noti values(seq_like_noti.nextval,5,5);
-insert into like_noti values(seq_like_noti.nextval,6,1);
-insert into like_noti values(seq_like_noti.nextval,7,2);
-insert into like_noti values(seq_like_noti.nextval,11,3);
-insert into like_noti values(seq_like_noti.nextval,12,4);
-insert into like_noti values(seq_like_noti.nextval,3,5);
-insert into like_noti values(seq_like_noti.nextval,4,1);
-insert into like_noti values(seq_like_noti.nextval,5,2);
-insert into like_noti values(seq_like_noti.nextval,6,3);
-insert into like_noti values(seq_like_noti.nextval,7,4);
-insert into like_noti values(seq_like_noti.nextval,11,5);
-insert into like_noti values(seq_like_noti.nextval,12,1);
-insert into like_noti values(seq_like_noti.nextval,3,2);
-insert into like_noti values(seq_like_noti.nextval,4,3);
-insert into like_noti values(seq_like_noti.nextval,5,4);
-insert into like_noti values(seq_like_noti.nextval,6,5);
-insert into like_noti values(seq_like_noti.nextval,7,1);
-insert into like_noti values(seq_like_noti.nextval,11,2);
-insert into like_noti values(seq_like_noti.nextval,12,3);
-insert into like_noti values(seq_like_noti.nextval,3,4);
-insert into like_noti values(seq_like_noti.nextval,4,5);
-insert into like_noti values(seq_like_noti.nextval,5,1);
-insert into like_noti values(seq_like_noti.nextval,6,2);
-insert into like_noti values(seq_like_noti.nextval,7,3);
-insert into like_noti values(seq_like_noti.nextval,11,4);
-insert into like_noti values(seq_like_noti.nextval,12,5);
-insert into like_noti values(seq_like_noti.nextval,3,1);
-insert into like_noti values(seq_like_noti.nextval,4,2);
-insert into like_noti values(seq_like_noti.nextval,5,3);
-insert into like_noti values(seq_like_noti.nextval,6,4);
-insert into like_noti values(seq_like_noti.nextval,7,5);
-insert into like_noti values(seq_like_noti.nextval,11,1);
-insert into like_noti values(seq_like_noti.nextval,12,2);
-insert into like_noti values(seq_like_noti.nextval,3,3);
-insert into like_noti values(seq_like_noti.nextval,4,4);
-insert into like_noti values(seq_like_noti.nextval,5,5);
-insert into like_noti values(seq_like_noti.nextval,6,1);
-insert into like_noti values(seq_like_noti.nextval,7,2);
-insert into like_noti values(seq_like_noti.nextval,11,3);
-insert into like_noti values(seq_like_noti.nextval,12,4);
-insert into like_noti values(seq_like_noti.nextval,3,5);
-insert into like_noti values(seq_like_noti.nextval,4,1);
-insert into like_noti values(seq_like_noti.nextval,5,2);
-insert into like_noti values(seq_like_noti.nextval,6,3);
-insert into like_noti values(seq_like_noti.nextval,7,4);
-insert into like_noti values(seq_like_noti.nextval,11,5);
-insert into like_noti values(seq_like_noti.nextval,12,1);
-insert into like_noti values(seq_like_noti.nextval,3,2);
-insert into like_noti values(seq_like_noti.nextval,4,3);
-insert into like_noti values(seq_like_noti.nextval,5,4);
-insert into like_noti values(seq_like_noti.nextval,6,5);
-insert into like_noti values(seq_like_noti.nextval,7,1);
-insert into like_noti values(seq_like_noti.nextval,11,2);
-insert into like_noti values(seq_like_noti.nextval,12,3);
-insert into like_noti values(seq_like_noti.nextval,3,4);
-insert into like_noti values(seq_like_noti.nextval,4,5);
-insert into like_noti values(seq_like_noti.nextval,5,1);
-insert into like_noti values(seq_like_noti.nextval,6,2);
-insert into like_noti values(seq_like_noti.nextval,7,3);
-insert into like_noti values(seq_like_noti.nextval,11,4);
-insert into like_noti values(seq_like_noti.nextval,12,5);
-insert into like_noti values(seq_like_noti.nextval,3,1);
-insert into like_noti values(seq_like_noti.nextval,4,2);
-insert into like_noti values(seq_like_noti.nextval,5,3);
-insert into like_noti values(seq_like_noti.nextval,6,4);
-insert into like_noti values(seq_like_noti.nextval,7,5);
-insert into like_noti values(seq_like_noti.nextval,11,1);
-insert into like_noti values(seq_like_noti.nextval,12,2);
-insert into like_noti values(seq_like_noti.nextval,3,3);
-insert into like_noti values(seq_like_noti.nextval,4,4);
-insert into like_noti values(seq_like_noti.nextval,5,5);
-insert into like_noti values(seq_like_noti.nextval,6,1);
-insert into like_noti values(seq_like_noti.nextval,7,2);
-insert into like_noti values(seq_like_noti.nextval,11,3);
-insert into like_noti values(seq_like_noti.nextval,12,4);
-insert into like_noti values(seq_like_noti.nextval,3,5);
-insert into like_noti values(seq_like_noti.nextval,4,1);
-insert into like_noti values(seq_like_noti.nextval,5,2);
-insert into like_noti values(seq_like_noti.nextval,6,3);
-insert into like_noti values(seq_like_noti.nextval,7,4);
-insert into like_noti values(seq_like_noti.nextval,11,5);
-insert into like_noti values(seq_like_noti.nextval,12,1);
-insert into like_noti values(seq_like_noti.nextval,3,2);
-insert into like_noti values(seq_like_noti.nextval,4,3);
-insert into like_noti values(seq_like_noti.nextval,5,4);
-insert into like_noti values(seq_like_noti.nextval,6,5);
-insert into like_noti values(seq_like_noti.nextval,7,1);
-insert into like_noti values(seq_like_noti.nextval,11,2);
-insert into like_noti values(seq_like_noti.nextval,12,3);
-insert into like_noti values(seq_like_noti.nextval,3,4);
-insert into like_noti values(seq_like_noti.nextval,4,5);
-insert into like_noti values(seq_like_noti.nextval,5,1);
-insert into like_noti values(seq_like_noti.nextval,6,2);
-insert into like_noti values(seq_like_noti.nextval,7,3);
-insert into like_noti values(seq_like_noti.nextval,11,4);
-insert into like_noti values(seq_like_noti.nextval,12,5);
-insert into like_noti values(seq_like_noti.nextval,3,1);
-insert into like_noti values(seq_like_noti.nextval,4,2);
-insert into like_noti values(seq_like_noti.nextval,5,3);
-insert into like_noti values(seq_like_noti.nextval,6,4);
-insert into like_noti values(seq_like_noti.nextval,7,5);
-insert into like_noti values(seq_like_noti.nextval,11,1);
-insert into like_noti values(seq_like_noti.nextval,12,2);
-insert into like_noti values(seq_like_noti.nextval,3,3);
-insert into like_noti values(seq_like_noti.nextval,4,4);
-insert into like_noti values(seq_like_noti.nextval,5,5);
-insert into like_noti values(seq_like_noti.nextval,6,1);
-insert into like_noti values(seq_like_noti.nextval,7,2);
-insert into like_noti values(seq_like_noti.nextval,11,3);
-insert into like_noti values(seq_like_noti.nextval,12,4);
-insert into like_noti values(seq_like_noti.nextval,3,5);
-
-
-
-
-
-
-insert into b_declare values(seq_b_declare.nextval,1,1,'내용1',sysdate,sysdate,'Y');
-insert into b_declare values(seq_b_declare.nextval,2,2,'내용2',sysdate,sysdate,'Y');
-insert into b_declare values(seq_b_declare.nextval,3,3,'내용3',sysdate,sysdate,'Y');
-insert into b_declare values(seq_b_declare.nextval,4,4,'내용4',sysdate,sysdate,'Y');
-insert into b_declare values(seq_b_declare.nextval,5,5,'내용5',sysdate,sysdate,'Y');
-insert into b_declare values(seq_b_declare.nextval,6,6,'내용6',sysdate,sysdate,'Y');
-insert into b_declare values(seq_b_declare.nextval,7,7,'내용7',sysdate,sysdate,'Y');
-insert into b_declare values(seq_b_declare.nextval,8,8,'내용8',sysdate,sysdate,'Y');
-insert into b_declare values(seq_b_declare.nextval,9,9,'내용9',sysdate,sysdate,'Y');
-insert into b_declare values(seq_b_declare.nextval,10,10,'내용10',sysdate,sysdate,'Y');
-insert into b_declare values(seq_b_declare.nextval,11,11,'내용11',sysdate,sysdate,'Y');
-insert into b_declare values(seq_b_declare.nextval,12,12,'내용12',sysdate,sysdate,'Y');
-insert into b_declare values(seq_b_declare.nextval,13,13,'내용13',sysdate,sysdate,'Y');
-insert into b_declare values(seq_b_declare.nextval,14,14,'내용14',sysdate,sysdate,'Y');
-insert into b_declare values(seq_b_declare.nextval,15,15,'내용15',sysdate,sysdate,'Y');
-insert into b_declare values(seq_b_declare.nextval,16,16,'내용16',sysdate,sysdate,'Y');
-insert into b_declare values(seq_b_declare.nextval,17,17,'내용17',sysdate,sysdate,'Y');
-insert into b_declare values(seq_b_declare.nextval,18,18,'내용18',sysdate,sysdate,'Y');
-insert into b_declare values(seq_b_declare.nextval,19,19,'내용19',sysdate,sysdate,'Y');
-insert into b_declare values(seq_b_declare.nextval,20,20,'내용20',sysdate,sysdate,'Y');
-insert into b_declare values(seq_b_declare.nextval,21,21,'내용21',sysdate,null,'N');
-insert into b_declare values(seq_b_declare.nextval,22,22,'내용22',sysdate,null,'N');
-insert into b_declare values(seq_b_declare.nextval,23,23,'내용23',sysdate,null,'N');
-insert into b_declare values(seq_b_declare.nextval,24,24,'내용24',sysdate,null,'N');
-insert into b_declare values(seq_b_declare.nextval,25,25,'내용25',sysdate,null,'N');
-insert into b_declare values(seq_b_declare.nextval,26,26,'내용26',sysdate,null,'N');
-insert into b_declare values(seq_b_declare.nextval,27,27,'내용27',sysdate,null,'N');
-insert into b_declare values(seq_b_declare.nextval,28,28,'내용28',sysdate,null,'N');
-insert into b_declare values(seq_b_declare.nextval,29,29,'내용29',sysdate,null,'N');
-insert into b_declare values(seq_b_declare.nextval,30,30,'내용30',sysdate,null,'N');
-insert into b_declare values(seq_b_declare.nextval,31,31,'내용31',sysdate,null,'N');
-insert into b_declare values(seq_b_declare.nextval,32,32,'내용32',sysdate,null,'N');
-insert into b_declare values(seq_b_declare.nextval,33,33,'내용33',sysdate,null,'N');
-insert into b_declare values(seq_b_declare.nextval,34,34,'내용34',sysdate,null,'N');
-insert into b_declare values(seq_b_declare.nextval,35,35,'내용35',sysdate,null,'N');
-insert into b_declare values(seq_b_declare.nextval,36,36,'내용36',sysdate,null,'N');
-insert into b_declare values(seq_b_declare.nextval,37,37,'내용37',sysdate,null,'N');
-insert into b_declare values(seq_b_declare.nextval,38,38,'내용38',sysdate,null,'N');
-insert into b_declare values(seq_b_declare.nextval,39,39,'내용39',sysdate,null,'N');
-insert into b_declare values(seq_b_declare.nextval,40,40,'내용40',sysdate,null,'N');
-
-
-
-
-
-
-insert into noti_declare values(seq_noti_declare.nextval,1,1,'내용1',sysdate,null,'N');
-insert into noti_declare values(seq_noti_declare.nextval,2,3,'내용2',sysdate,null,'N');
-insert into noti_declare values(seq_noti_declare.nextval,3,5,'내용3',sysdate,null,'N');
-insert into noti_declare values(seq_noti_declare.nextval,4,7,'내용4',sysdate,null,'N');
-insert into noti_declare values(seq_noti_declare.nextval,5,9,'내용5',sysdate,null,'N');
-insert into noti_declare values(seq_noti_declare.nextval,6,1,'내용6',sysdate,null,'N');
-insert into noti_declare values(seq_noti_declare.nextval,7,3,'내용7',sysdate,null,'N');
-insert into noti_declare values(seq_noti_declare.nextval,8,2,'내용8',sysdate,null,'N');
-insert into noti_declare values(seq_noti_declare.nextval,9,3,'내용9',sysdate,null,'N');
-insert into noti_declare values(seq_noti_declare.nextval,1,4,'내용10',sysdate,null,'N');
-insert into noti_declare values(seq_noti_declare.nextval,2,2,'내용11',sysdate,null,'N');
-insert into noti_declare values(seq_noti_declare.nextval,3,11,'내용12',sysdate,null,'N');
-insert into noti_declare values(seq_noti_declare.nextval,4,23,'내용13',sysdate,null,'N');
-insert into noti_declare values(seq_noti_declare.nextval,5,22,'내용14',sysdate,null,'N');
-insert into noti_declare values(seq_noti_declare.nextval,6,38,'내용15',sysdate,null,'N');
-insert into noti_declare values(seq_noti_declare.nextval,7,27,'내용16',sysdate,null,'N');
-insert into noti_declare values(seq_noti_declare.nextval,8,1,'내용17',sysdate,null,'N');
-insert into noti_declare values(seq_noti_declare.nextval,9,3,'내용18',sysdate,null,'N');
-insert into noti_declare values(seq_noti_declare.nextval,1,5,'내용19',sysdate,null,'N');
-insert into noti_declare values(seq_noti_declare.nextval,2,7,'내용20',sysdate,null,'N');
-insert into noti_declare values(seq_noti_declare.nextval,3,9,'내용21',sysdate,null,'N');
-insert into noti_declare values(seq_noti_declare.nextval,4,1,'내용22',sysdate,sysdate,'N');
-insert into noti_declare values(seq_noti_declare.nextval,5,3,'내용23',sysdate,sysdate,'N');
-insert into noti_declare values(seq_noti_declare.nextval,6,2,'내용24',sysdate,sysdate,'N');
-insert into noti_declare values(seq_noti_declare.nextval,7,3,'내용25',sysdate,sysdate,'N');
-insert into noti_declare values(seq_noti_declare.nextval,8,4,'내용26',sysdate,sysdate,'N');
-insert into noti_declare values(seq_noti_declare.nextval,9,2,'내용27',sysdate,sysdate,'N');
-insert into noti_declare values(seq_noti_declare.nextval,1,11,'내용28',sysdate,sysdate,'N');
-insert into noti_declare values(seq_noti_declare.nextval,2,23,'내용29',sysdate,sysdate,'N');
-insert into noti_declare values(seq_noti_declare.nextval,3,22,'내용30',sysdate,sysdate,'N');
-insert into noti_declare values(seq_noti_declare.nextval,4,38,'내용31',sysdate,sysdate,'N');
-insert into noti_declare values(seq_noti_declare.nextval,5,27,'내용32',sysdate,sysdate,'N');
-insert into noti_declare values(seq_noti_declare.nextval,6,1,'내용33',sysdate,sysdate,'N');
-insert into noti_declare values(seq_noti_declare.nextval,7,3,'내용34',sysdate,sysdate,'N');
-insert into noti_declare values(seq_noti_declare.nextval,8,5,'내용35',sysdate,sysdate,'N');
-insert into noti_declare values(seq_noti_declare.nextval,9,7,'내용36',sysdate,sysdate,'N');
-
-
-
-
-
-
-insert into reply values(seq_reply.nextval,1,1,sysdate,sysdate,'내용1','Y',default);
-insert into reply values(seq_reply.nextval,2,2,sysdate,sysdate,'내용2','Y',default);
-insert into reply values(seq_reply.nextval,3,3,sysdate,sysdate,'내용3','Y',default);
-insert into reply values(seq_reply.nextval,4,4,sysdate,sysdate,'내용4','Y',default);
-insert into reply values(seq_reply.nextval,5,5,sysdate,sysdate,'내용5','Y',default);
-insert into reply values(seq_reply.nextval,6,6,sysdate,sysdate,'내용6','Y',default);
-insert into reply values(seq_reply.nextval,7,7,sysdate,sysdate,'내용7','Y',default);
-insert into reply values(seq_reply.nextval,8,8,sysdate,sysdate,'내용8','Y',default);
-insert into reply values(seq_reply.nextval,9,9,sysdate,sysdate,'내용9','Y',default);
-insert into reply values(seq_reply.nextval,10,10,sysdate,sysdate,'내용10','Y',default);
-insert into reply values(seq_reply.nextval,1,11,sysdate,sysdate,'내용11','Y',default);
-insert into reply values(seq_reply.nextval,2,12,sysdate,sysdate,'내용12','Y',default);
-insert into reply values(seq_reply.nextval,3,13,sysdate,sysdate,'내용13','Y',default);
-insert into reply values(seq_reply.nextval,4,14,sysdate,sysdate,'내용14','Y',default);
-insert into reply values(seq_reply.nextval,5,15,sysdate,sysdate,'내용15','Y',default);
-insert into reply values(seq_reply.nextval,6,16,sysdate,sysdate,'내용16','Y',default);
-insert into reply values(seq_reply.nextval,7,17,sysdate,sysdate,'내용17','Y',default);
-insert into reply values(seq_reply.nextval,8,18,sysdate,sysdate,'내용18','Y',default);
-insert into reply values(seq_reply.nextval,9,19,sysdate,sysdate,'내용19','Y',default);
-insert into reply values(seq_reply.nextval,10,20,sysdate,sysdate,'내용20','Y',default);
-insert into reply values(seq_reply.nextval,1,21,sysdate,sysdate,'내용21','Y',default);
-insert into reply values(seq_reply.nextval,2,22,sysdate,sysdate,'내용22','Y',default);
-insert into reply values(seq_reply.nextval,3,23,sysdate,sysdate,'내용23','Y',default);
-insert into reply values(seq_reply.nextval,4,24,sysdate,sysdate,'내용24','Y',default);
-insert into reply values(seq_reply.nextval,5,25,sysdate,sysdate,'내용25','Y',default);
-insert into reply values(seq_reply.nextval,6,26,sysdate,sysdate,'내용26','Y',default);
-insert into reply values(seq_reply.nextval,7,27,sysdate,sysdate,'내용27','Y',default);
-insert into reply values(seq_reply.nextval,8,28,sysdate,sysdate,'내용28','Y',default);
-insert into reply values(seq_reply.nextval,9,29,sysdate,sysdate,'내용29','Y',default);
-insert into reply values(seq_reply.nextval,10,30,sysdate,sysdate,'내용30','Y',default);
-insert into reply values(seq_reply.nextval,1,31,sysdate,sysdate,'내용31','Y',default);
-insert into reply values(seq_reply.nextval,2,32,sysdate,sysdate,'내용32','Y',default);
-insert into reply values(seq_reply.nextval,3,33,sysdate,sysdate,'내용33','Y',default);
-insert into reply values(seq_reply.nextval,4,34,sysdate,sysdate,'내용34','Y',default);
-insert into reply values(seq_reply.nextval,5,35,sysdate,sysdate,'내용35','Y',default);
-insert into reply values(seq_reply.nextval,6,36,sysdate,sysdate,'내용36','Y',default);
-insert into reply values(seq_reply.nextval,7,37,sysdate,sysdate,'내용37','Y',default);
-insert into reply values(seq_reply.nextval,8,38,sysdate,sysdate,'내용38','Y',default);
-insert into reply values(seq_reply.nextval,9,39,sysdate,sysdate,'내용39','Y',default);
-insert into reply values(seq_reply.nextval,10,40,sysdate,sysdate,'내용40','Y',default);
-insert into reply values(seq_reply.nextval,1,41,sysdate,sysdate,'내용41','Y',default);
-insert into reply values(seq_reply.nextval,2,42,sysdate,sysdate,'내용42','Y',default);
-insert into reply values(seq_reply.nextval,3,43,sysdate,sysdate,'내용43','Y',default);
-insert into reply values(seq_reply.nextval,4,44,sysdate,sysdate,'내용44','Y',default);
-insert into reply values(seq_reply.nextval,5,45,sysdate,sysdate,'내용45','Y',default);
-insert into reply values(seq_reply.nextval,6,46,sysdate,sysdate,'내용46','Y',default);
-insert into reply values(seq_reply.nextval,7,47,sysdate,sysdate,'내용47','Y',default);
-insert into reply values(seq_reply.nextval,8,48,sysdate,sysdate,'내용48','Y',default);
-insert into reply values(seq_reply.nextval,9,49,sysdate,sysdate,'내용49','Y',default);
-insert into reply values(seq_reply.nextval,10,50,sysdate,sysdate,'내용50','Y',default);
-insert into reply values(seq_reply.nextval,1,51,sysdate,sysdate,'내용51','Y',default);
-insert into reply values(seq_reply.nextval,2,52,sysdate,sysdate,'내용52','Y',default);
-insert into reply values(seq_reply.nextval,3,53,sysdate,sysdate,'내용53','Y',default);
-insert into reply values(seq_reply.nextval,4,54,sysdate,sysdate,'내용54','Y',default);
-insert into reply values(seq_reply.nextval,5,55,sysdate,sysdate,'내용55','Y',default);
-insert into reply values(seq_reply.nextval,6,56,sysdate,sysdate,'내용56','Y',default);
-insert into reply values(seq_reply.nextval,7,57,sysdate,sysdate,'내용57','Y',default);
-insert into reply values(seq_reply.nextval,8,58,sysdate,sysdate,'내용58','Y',default);
-insert into reply values(seq_reply.nextval,9,59,sysdate,sysdate,'내용59','Y',default);
-insert into reply values(seq_reply.nextval,10,60,sysdate,sysdate,'내용60','Y',default);
-insert into reply values(seq_reply.nextval,1,61,sysdate,sysdate,'내용61','Y',default);
-insert into reply values(seq_reply.nextval,2,62,sysdate,sysdate,'내용62','Y',default);
-insert into reply values(seq_reply.nextval,3,63,sysdate,sysdate,'내용63','Y',default);
-insert into reply values(seq_reply.nextval,4,64,sysdate,sysdate,'내용64','Y',default);
-insert into reply values(seq_reply.nextval,5,65,sysdate,sysdate,'내용65','Y',default);
-insert into reply values(seq_reply.nextval,6,66,sysdate,sysdate,'내용66','Y',default);
-insert into reply values(seq_reply.nextval,7,67,sysdate,sysdate,'내용67','Y',default);
-insert into reply values(seq_reply.nextval,8,68,sysdate,sysdate,'내용68','Y',default);
-insert into reply values(seq_reply.nextval,9,69,sysdate,sysdate,'내용69','Y',default);
-insert into reply values(seq_reply.nextval,10,70,sysdate,sysdate,'내용70','Y',default);
-insert into reply values(seq_reply.nextval,1,71,sysdate,sysdate,'내용71','Y',default);
-insert into reply values(seq_reply.nextval,2,72,sysdate,sysdate,'내용72','Y',default);
-insert into reply values(seq_reply.nextval,3,73,sysdate,sysdate,'내용73','Y',default);
-insert into reply values(seq_reply.nextval,4,74,sysdate,sysdate,'내용74','Y',default);
-insert into reply values(seq_reply.nextval,5,75,sysdate,sysdate,'내용75','Y',default);
-insert into reply values(seq_reply.nextval,6,76,sysdate,sysdate,'내용76','Y',default);
-insert into reply values(seq_reply.nextval,7,77,sysdate,sysdate,'내용77','Y',default);
-insert into reply values(seq_reply.nextval,8,78,sysdate,sysdate,'내용78','Y',default);
-insert into reply values(seq_reply.nextval,9,79,sysdate,sysdate,'내용79','Y',default);
-
-
-
-
-
-
-insert into re_declare values(seq_re_declare.nextval,1,1,'내용36',sysdate,null,'N');
-insert into re_declare values(seq_re_declare.nextval,2,2,'내용37',sysdate,null,'N');
-insert into re_declare values(seq_re_declare.nextval,3,3,'내용38',sysdate,null,'N');
-insert into re_declare values(seq_re_declare.nextval,4,4,'내용39',sysdate,null,'N');
-insert into re_declare values(seq_re_declare.nextval,5,5,'내용40',sysdate,null,'N');
-insert into re_declare values(seq_re_declare.nextval,6,6,'내용41',sysdate,null,'N');
-insert into re_declare values(seq_re_declare.nextval,7,7,'내용42',sysdate,null,'N');
-insert into re_declare values(seq_re_declare.nextval,8,8,'내용43',sysdate,null,'N');
-insert into re_declare values(seq_re_declare.nextval,9,9,'내용44',sysdate,null,'N');
-insert into re_declare values(seq_re_declare.nextval,1,10,'내용45',sysdate,null,'N');
-insert into re_declare values(seq_re_declare.nextval,2,11,'내용46',sysdate,null,'N');
-insert into re_declare values(seq_re_declare.nextval,3,12,'내용47',sysdate,null,'N');
-insert into re_declare values(seq_re_declare.nextval,4,13,'내용48',sysdate,null,'N');
-insert into re_declare values(seq_re_declare.nextval,5,14,'내용49',sysdate,null,'N');
-insert into re_declare values(seq_re_declare.nextval,6,15,'내용50',sysdate,null,'N');
-insert into re_declare values(seq_re_declare.nextval,7,16,'내용51',sysdate,null,'N');
-insert into re_declare values(seq_re_declare.nextval,8,17,'내용52',sysdate,null,'N');
-insert into re_declare values(seq_re_declare.nextval,9,1,'내용53',sysdate,null,'N');
-insert into re_declare values(seq_re_declare.nextval,1,2,'내용54',sysdate,null,'N');
-insert into re_declare values(seq_re_declare.nextval,2,3,'내용55',sysdate,null,'N');
-insert into re_declare values(seq_re_declare.nextval,3,4,'내용56',sysdate,null,'N');
-insert into re_declare values(seq_re_declare.nextval,4,5,'내용57',sysdate,null,'N');
-insert into re_declare values(seq_re_declare.nextval,5,6,'내용58',sysdate,null,'N');
-insert into re_declare values(seq_re_declare.nextval,6,7,'내용59',sysdate,null,'N');
-insert into re_declare values(seq_re_declare.nextval,7,8,'내용60',sysdate,null,'N');
-insert into re_declare values(seq_re_declare.nextval,8,9,'내용61',sysdate,null,'N');
-insert into re_declare values(seq_re_declare.nextval,9,10,'내용62',sysdate,null,'N');
-insert into re_declare values(seq_re_declare.nextval,1,11,'내용63',sysdate,null,'N');
-insert into re_declare values(seq_re_declare.nextval,2,12,'내용64',sysdate,null,'N');
-insert into re_declare values(seq_re_declare.nextval,3,13,'내용65',sysdate,null,'N');
-insert into re_declare values(seq_re_declare.nextval,4,14,'내용66',sysdate,null,'N');
-insert into re_declare values(seq_re_declare.nextval,5,15,'내용67',sysdate,null,'N');
-insert into re_declare values(seq_re_declare.nextval,6,16,'내용68',sysdate,null,'N');
-insert into re_declare values(seq_re_declare.nextval,7,17,'내용69',sysdate,null,'N');
-insert into re_declare values(seq_re_declare.nextval,8,1,'내용70',sysdate,null,'N');
-insert into re_declare values(seq_re_declare.nextval,9,2,'내용71',sysdate,null,'N');
-insert into re_declare values(seq_re_declare.nextval,1,3,'내용72',sysdate,null,'N');
-insert into re_declare values(seq_re_declare.nextval,2,4,'내용73',sysdate,null,'N');
-insert into re_declare values(seq_re_declare.nextval,3,5,'내용74',sysdate,null,'N');
-insert into re_declare values(seq_re_declare.nextval,4,6,'내용75',sysdate,sysdate,'N');
-insert into re_declare values(seq_re_declare.nextval,5,7,'내용76',sysdate,sysdate,'N');
-insert into re_declare values(seq_re_declare.nextval,6,8,'내용77',sysdate,sysdate,'N');
-insert into re_declare values(seq_re_declare.nextval,7,9,'내용78',sysdate,sysdate,'N');
-insert into re_declare values(seq_re_declare.nextval,8,10,'내용79',sysdate,sysdate,'N');
-insert into re_declare values(seq_re_declare.nextval,9,11,'내용80',sysdate,sysdate,'N');
-insert into re_declare values(seq_re_declare.nextval,1,12,'내용81',sysdate,sysdate,'N');
-insert into re_declare values(seq_re_declare.nextval,2,13,'내용82',sysdate,sysdate,'N');
-insert into re_declare values(seq_re_declare.nextval,3,14,'내용83',sysdate,sysdate,'N');
-insert into re_declare values(seq_re_declare.nextval,4,15,'내용84',sysdate,sysdate,'N');
-
-
-
-
-
-
-insert into question values(seq_question.nextval,1,'제목1','내용1',null,sysdate,null,'N');
-insert into question values(seq_question.nextval,2,'제목2','내용2',null,sysdate,null,'N');
-insert into question values(seq_question.nextval,3,'제목1','내용3',null,sysdate,null,'N');
-insert into question values(seq_question.nextval,4,'제목2','내용4',null,sysdate,null,'N');
-insert into question values(seq_question.nextval,5,'제목1','내용5',null,sysdate,null,'N');
-insert into question values(seq_question.nextval,6,'제목2','내용6',null,sysdate,null,'N');
-insert into question values(seq_question.nextval,7,'제목1','내용7',null,sysdate,null,'N');
-insert into question values(seq_question.nextval,8,'제목2','내용8',null,sysdate,null,'N');
-insert into question values(seq_question.nextval,9,'제목1','내용9',null,sysdate,null,'N');
-insert into question values(seq_question.nextval,10,'제목2','내용10',null,sysdate,null,'N');
-insert into question values(seq_question.nextval,11,'제목1','내용11',null,sysdate,null,'N');
-insert into question values(seq_question.nextval,12,'제목2','내용12',null,sysdate,null,'N');
-insert into question values(seq_question.nextval,13,'제목1','내용13',null,sysdate,null,'N');
-insert into question values(seq_question.nextval,14,'제목1','내용14',null,sysdate,null,'N');
-insert into question values(seq_question.nextval,15,'제목2','내용15',null,sysdate,null,'N');
-insert into question values(seq_question.nextval,16,'제목1','내용16',null,sysdate,null,'N');
-insert into question values(seq_question.nextval,17,'제목2','내용17',null,sysdate,null,'N');
-insert into question values(seq_question.nextval,1,'제목1','내용1','답변1',sysdate,sysdate,'N');
-insert into question values(seq_question.nextval,2,'제목2','내용2','답변2',sysdate,sysdate,'N');
-insert into question values(seq_question.nextval,3,'제목1','내용3','답변3',sysdate,sysdate,'N');
-insert into question values(seq_question.nextval,4,'제목2','내용4','답변4',sysdate,sysdate,'N');
-insert into question values(seq_question.nextval,5,'제목1','내용5','답변5',sysdate,sysdate,'N');
-insert into question values(seq_question.nextval,6,'제목2','내용6','답변6',sysdate,sysdate,'N');
-insert into question values(seq_question.nextval,7,'제목1','내용7','답변7',sysdate,sysdate,'N');
-insert into question values(seq_question.nextval,8,'제목2','내용8','답변8',sysdate,sysdate,'N');
-insert into question values(seq_question.nextval,9,'제목1','내용9','답변9',sysdate,sysdate,'N');
-insert into question values(seq_question.nextval,10,'제목2','내용10','답변10',sysdate,sysdate,'N');
-insert into question values(seq_question.nextval,11,'제목1','내용11','답변11',sysdate,sysdate,'N');
-insert into question values(seq_question.nextval,12,'제목2','내용12','답변12',sysdate,sysdate,'N');
-insert into question values(seq_question.nextval,13,'제목1','내용13','답변13',sysdate,sysdate,'N');
-insert into question values(seq_question.nextval,14,'제목2','내용14','답변14',sysdate,sysdate,'N');
-insert into question values(seq_question.nextval,15,'제목1','내용15','답변15',sysdate,sysdate,'N');
-insert into question values(seq_question.nextval,16,'제목2','내용16','답변16',sysdate,sysdate,'N');
-insert into question values(seq_question.nextval,17,'제목1','내용17','답변17',sysdate,sysdate,'N');
-insert into question values(seq_question.nextval,18,'제목2','내용18','답변18',sysdate,sysdate,'N');
-insert into question values(seq_question.nextval,19,'제목1','내용19','답변19',sysdate,sysdate,'N');
-insert into question values(seq_question.nextval,20,'제목2','내용20','답변20',sysdate,sysdate,'N');
-insert into question values(seq_question.nextval,1,'제목1','내용1',null,sysdate,null,'N');
-insert into question values(seq_question.nextval,2,'제목2','내용2',null,sysdate,null,'N');
-insert into question values(seq_question.nextval,3,'제목1','내용3',null,sysdate,null,'N');
-insert into question values(seq_question.nextval,4,'제목2','내용4',null,sysdate,null,'N');
-insert into question values(seq_question.nextval,5,'제목1','내용5',null,sysdate,null,'N');
-insert into question values(seq_question.nextval,6,'제목2','내용6',null,sysdate,null,'N');
-insert into question values(seq_question.nextval,7,'제목1','내용7',null,sysdate,null,'N');
-insert into question values(seq_question.nextval,8,'제목2','내용8',null,sysdate,null,'N');
-insert into question values(seq_question.nextval,9,'제목1','내용9',null,sysdate,null,'N');
-insert into question values(seq_question.nextval,10,'제목2','내용10',null,sysdate,null,'N');
-insert into question values(seq_question.nextval,11,'제목1','내용11',null,sysdate,null,'N');
-insert into question values(seq_question.nextval,12,'제목1','내용12',null,sysdate,null,'N');
-insert into question values(seq_question.nextval,13,'제목1','내용13',null,sysdate,null,'N');
-insert into question values(seq_question.nextval,14,'제목2','내용14',null,sysdate,null,'N');
-insert into question values(seq_question.nextval,15,'제목1','내용15',null,sysdate,null,'N');
-insert into question values(seq_question.nextval,16,'제목2','내용16',null,sysdate,null,'N');
-insert into question values(seq_question.nextval,17,'제목1','내용17',null,sysdate,null,'N');
-insert into question values(seq_question.nextval,1,'제목2','내용1','답변1',sysdate,sysdate,'N');
-insert into question values(seq_question.nextval,2,'제목1','내용2','답변2',sysdate,sysdate,'N');
-insert into question values(seq_question.nextval,3,'제목2','내용3','답변3',sysdate,sysdate,'N');
-insert into question values(seq_question.nextval,4,'제목1','내용4','답변4',sysdate,sysdate,'N');
-insert into question values(seq_question.nextval,5,'제목2','내용5','답변5',sysdate,sysdate,'N');
-insert into question values(seq_question.nextval,6,'제목1','내용6','답변6',sysdate,sysdate,'N');
-insert into question values(seq_question.nextval,7,'제목1','내용7','답변7',sysdate,sysdate,'N');
-insert into question values(seq_question.nextval,8,'제목2','내용8','답변8',sysdate,sysdate,'N');
-insert into question values(seq_question.nextval,9,'제목1','내용9','답변9',sysdate,sysdate,'N');
-insert into question values(seq_question.nextval,10,'제목2','내용10','답변10',sysdate,sysdate,'N');
-insert into question values(seq_question.nextval,11,'제목1','내용11','답변11',sysdate,sysdate,'N');
-insert into question values(seq_question.nextval,12,'제목2','내용12','답변12',sysdate,sysdate,'N');
-insert into question values(seq_question.nextval,13,'제목1','내용13','답변13',sysdate,sysdate,'N');
-insert into question values(seq_question.nextval,14,'제목2','내용14','답변14',sysdate,sysdate,'N');
-insert into question values(seq_question.nextval,15,'제목1','내용15','답변15',sysdate,sysdate,'N');
-insert into question values(seq_question.nextval,16,'제목2','내용16','답변16',sysdate,sysdate,'N');
-insert into question values(seq_question.nextval,17,'제목1','내용17','답변17',sysdate,sysdate,'N');
-insert into question values(seq_question.nextval,18,'제목2','내용18','답변18',sysdate,sysdate,'N');
-insert into question values(seq_question.nextval,19,'제목1','내용19','답변19',sysdate,sysdate,'N');
-insert into question values(seq_question.nextval,20,'제목1','내용20','답변20',sysdate,sysdate,'N');
-
-
-
-
-
-
-insert into volunteer values(seq_volunteer.nextval,1,1,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,2,2,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,3,3,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,4,4,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,5,5,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,1,6,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,2,7,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,3,8,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,4,9,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,5,10,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,1,11,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,2,12,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,3,13,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,4,14,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,5,15,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,1,16,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,2,17,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,3,18,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,4,19,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,5,20,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,1,21,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,2,22,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,3,23,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,4,24,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,5,25,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,1,26,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,2,27,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,3,28,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,4,29,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,5,30,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,1,31,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,2,32,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,3,33,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,4,34,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,5,35,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,1,36,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,2,37,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,3,38,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,4,39,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,5,40,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,1,41,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,2,42,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,3,43,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,4,44,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,5,45,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,1,46,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,2,1,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,3,2,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,4,3,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,5,4,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,1,5,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,2,6,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,3,7,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,4,8,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,5,9,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,1,10,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,2,11,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,3,12,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,4,13,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,5,14,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,1,15,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,2,16,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,3,17,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,4,18,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,5,19,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,1,20,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,2,21,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,3,22,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,4,23,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,5,24,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,1,25,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,2,26,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,3,27,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,4,28,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,5,29,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,1,30,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,2,31,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,3,32,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,4,33,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,5,34,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,1,35,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,2,36,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,3,37,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,4,38,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,5,39,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,1,40,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,2,41,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,3,42,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,4,43,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,5,44,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,1,45,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,2,46,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,3,1,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,4,2,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,5,3,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,1,4,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,2,5,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,3,6,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,4,7,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,5,8,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,1,9,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,2,10,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,3,11,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,4,12,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,5,13,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,1,14,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,2,15,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,3,16,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,4,17,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,5,18,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,1,19,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,2,20,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,3,21,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,4,22,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,5,23,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,1,24,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,2,25,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,3,26,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,4,27,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,5,28,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,1,29,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,2,30,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,3,31,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,4,32,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,5,33,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,1,34,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,2,35,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,3,36,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,4,37,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,5,38,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,1,39,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,2,40,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,3,41,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,4,42,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,5,43,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,1,44,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,2,45,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,3,46,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,4,1,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,5,2,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,1,3,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,2,4,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,3,5,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,4,6,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,5,7,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,1,8,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,2,9,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,3,10,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,4,11,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,5,12,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,1,13,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,2,14,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,3,15,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,4,16,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,5,17,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,1,18,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,2,19,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,3,20,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,4,21,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,5,22,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,1,23,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,2,24,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,3,25,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,4,26,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,5,27,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,1,28,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,2,29,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,3,30,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,4,31,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,5,32,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,1,33,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,2,34,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,3,35,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,4,36,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,5,37,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,1,38,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,2,39,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,3,40,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,4,41,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,5,42,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,1,43,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,2,44,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,3,45,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,4,46,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,5,1,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,1,2,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,2,3,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,3,4,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,4,5,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,5,6,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,1,7,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,2,8,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,3,9,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,4,10,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,5,11,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,1,12,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,2,13,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,3,14,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,4,15,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,5,16,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,1,17,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,2,18,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,3,19,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,4,20,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,5,21,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,1,22,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,2,23,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,3,24,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,4,25,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,5,26,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,1,27,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,2,28,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,3,29,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,4,30,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,5,31,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,1,32,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,2,33,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,3,34,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,4,35,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,5,36,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,1,37,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,2,38,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,3,39,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,4,40,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,5,41,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,1,42,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,2,43,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,3,44,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,4,45,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,5,46,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,1,1,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,2,2,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,3,3,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,4,4,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,5,5,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,1,6,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,2,7,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,3,8,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,4,9,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,5,10,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,1,11,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,2,12,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,3,13,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,4,14,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,5,15,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,1,16,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,2,17,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,3,18,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,4,19,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,5,20,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,1,21,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,2,22,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,3,23,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,4,24,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,5,25,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,1,26,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,2,27,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,3,28,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,4,29,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,5,30,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,1,31,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,2,32,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,3,33,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,4,34,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,5,35,sysdate,default);
-insert into volunteer values(seq_volunteer.nextval,1,36,sysdate,default);
-
-
-
-
+-- MEMBER
+insert into member_type values(0,'관리자');
+insert into member values(seq_member.nextval,0,'admin','admin','★관리자★',sysdate,sysdate,'Y',0);
+
+Insert into MEMBER (M_NO,TYPE,EMAIL,PW,NICKNAME,UPDATE_DATE,ENROLL_DATE,STATUS,D_COUNT) values (1,0,'admin','admin','★관리자★',to_date('19/10/15','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),'Y',0);
+Insert into MEMBER (M_NO,TYPE,EMAIL,PW,NICKNAME,UPDATE_DATE,ENROLL_DATE,STATUS,D_COUNT) values (2,1,'kk@naver.com','itjobs11..','신입개발자',to_date('19/10/14','RR/MM/DD'),to_date('19/10/14','RR/MM/DD'),'Y',0);
+Insert into MEMBER (M_NO,TYPE,EMAIL,PW,NICKNAME,UPDATE_DATE,ENROLL_DATE,STATUS,D_COUNT) values (3,1,'hh@naver.com','ITJOBS11..','IT전문가',to_date('19/10/14','RR/MM/DD'),to_date('19/10/14','RR/MM/DD'),'Y',0);
+Insert into MEMBER (M_NO,TYPE,EMAIL,PW,NICKNAME,UPDATE_DATE,ENROLL_DATE,STATUS,D_COUNT) values (4,1,'jj@naver.com','itjobs11..','개발천재',to_date('19/10/14','RR/MM/DD'),to_date('19/10/14','RR/MM/DD'),'Y',0);
+Insert into MEMBER (M_NO,TYPE,EMAIL,PW,NICKNAME,UPDATE_DATE,ENROLL_DATE,STATUS,D_COUNT) values (5,1,'gg@naver.com','itjobs11..','김팀장',to_date('19/10/14','RR/MM/DD'),to_date('19/10/14','RR/MM/DD'),'Y',0);
+Insert into MEMBER (M_NO,TYPE,EMAIL,PW,NICKNAME,UPDATE_DATE,ENROLL_DATE,STATUS,D_COUNT) values (6,1,'ll@naver.com','itjobs11..','닉네임어려워',to_date('19/10/14','RR/MM/DD'),to_date('19/10/14','RR/MM/DD'),'Y',0);
+Insert into MEMBER (M_NO,TYPE,EMAIL,PW,NICKNAME,UPDATE_DATE,ENROLL_DATE,STATUS,D_COUNT) values (7,1,'ff@naver.com','itjobs11..','지나가는홍길동',to_date('19/10/14','RR/MM/DD'),to_date('19/10/14','RR/MM/DD'),'Y',0);
+Insert into MEMBER (M_NO,TYPE,EMAIL,PW,NICKNAME,UPDATE_DATE,ENROLL_DATE,STATUS,D_COUNT) values (8,1,'dd@naver.com','itjobs11..','나비',to_date('19/10/14','RR/MM/DD'),to_date('19/10/14','RR/MM/DD'),'Y',0);
+Insert into MEMBER (M_NO,TYPE,EMAIL,PW,NICKNAME,UPDATE_DATE,ENROLL_DATE,STATUS,D_COUNT) values (9,1,'aa@naver.com','itjobs11..','개발왕자',to_date('19/10/14','RR/MM/DD'),to_date('19/10/14','RR/MM/DD'),'Y',0);
+Insert into MEMBER (M_NO,TYPE,EMAIL,PW,NICKNAME,UPDATE_DATE,ENROLL_DATE,STATUS,D_COUNT) values (10,2,'zz@naver.com','itjobs11..','공주네회사(기업)',to_date('19/10/15','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),'Y',0);
+Insert into MEMBER (M_NO,TYPE,EMAIL,PW,NICKNAME,UPDATE_DATE,ENROLL_DATE,STATUS,D_COUNT) values (11,2,'xx@naver.com','itjobs11..','왕자개발(기업)',to_date('19/10/15','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),'Y',0);
+Insert into MEMBER (M_NO,TYPE,EMAIL,PW,NICKNAME,UPDATE_DATE,ENROLL_DATE,STATUS,D_COUNT) values (12,2,'cc@naver.com','itjobs11..','시크릿개발(기업)',to_date('19/10/15','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),'Y',0);
+Insert into MEMBER (M_NO,TYPE,EMAIL,PW,NICKNAME,UPDATE_DATE,ENROLL_DATE,STATUS,D_COUNT) values (13,1,'gostbaducking1@nate.com','220','수학소년',to_date('19/10/15','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),'Y',0);
+Insert into MEMBER (M_NO,TYPE,EMAIL,PW,NICKNAME,UPDATE_DATE,ENROLL_DATE,STATUS,D_COUNT) values (14,1,'gostbaducking2@nate.com','220','수학소녀',to_date('19/10/15','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),'Y',0);
+Insert into MEMBER (M_NO,TYPE,EMAIL,PW,NICKNAME,UPDATE_DATE,ENROLL_DATE,STATUS,D_COUNT) values (15,1,'gostbaducking3@nate.com','220','국어소녀',to_date('19/10/15','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),'Y',0);
+Insert into MEMBER (M_NO,TYPE,EMAIL,PW,NICKNAME,UPDATE_DATE,ENROLL_DATE,STATUS,D_COUNT) values (16,2,'vv@naver.com','itjobs11..','창쪽개발(기업)',to_date('19/10/15','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),'Y',0);
+Insert into MEMBER (M_NO,TYPE,EMAIL,PW,NICKNAME,UPDATE_DATE,ENROLL_DATE,STATUS,D_COUNT) values (17,1,'ss@naver.com','itjobs11..','조피자',to_date('19/10/15','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),'Y',0);
+Insert into MEMBER (M_NO,TYPE,EMAIL,PW,NICKNAME,UPDATE_DATE,ENROLL_DATE,STATUS,D_COUNT) values (18,1,'user1@co.kr','pass1','김유저1',to_date('19/10/15','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),'Y',0);
+Insert into MEMBER (M_NO,TYPE,EMAIL,PW,NICKNAME,UPDATE_DATE,ENROLL_DATE,STATUS,D_COUNT) values (19,1,'ae@naver.com','itjobs11..','일반회사원',to_date('19/10/15','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),'Y',0);
+Insert into MEMBER (M_NO,TYPE,EMAIL,PW,NICKNAME,UPDATE_DATE,ENROLL_DATE,STATUS,D_COUNT) values (20,1,'aq@naver.com','itjobs11.','알바생',to_date('19/10/15','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),'Y',0);
+Insert into MEMBER (M_NO,TYPE,EMAIL,PW,NICKNAME,UPDATE_DATE,ENROLL_DATE,STATUS,D_COUNT) values (21,2,'qz@naver.com','itjobs11.','퀸즈(기업)',to_date('19/10/15','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),'Y',0);
+Insert into MEMBER (M_NO,TYPE,EMAIL,PW,NICKNAME,UPDATE_DATE,ENROLL_DATE,STATUS,D_COUNT) values (22,2,'goo@google.com','itjobs11..','구글(기업)',to_date('19/10/15','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),'Y',0);
+Insert into MEMBER (M_NO,TYPE,EMAIL,PW,NICKNAME,UPDATE_DATE,ENROLL_DATE,STATUS,D_COUNT) values (23,2,'star@naver.com','itjobs11..','스타컴(기업)',to_date('19/10/15','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),'Y',0);
+Insert into MEMBER (M_NO,TYPE,EMAIL,PW,NICKNAME,UPDATE_DATE,ENROLL_DATE,STATUS,D_COUNT) values (24,2,'fly@naver.com','itjobs11..','플라이(기업)',to_date('19/10/15','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),'Y',0);
+Insert into MEMBER (M_NO,TYPE,EMAIL,PW,NICKNAME,UPDATE_DATE,ENROLL_DATE,STATUS,D_COUNT) values (26,2,'ace@naver.com','itjobs11..','ace(기업)',to_date('19/10/15','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),'Y',0);
+Insert into MEMBER (M_NO,TYPE,EMAIL,PW,NICKNAME,UPDATE_DATE,ENROLL_DATE,STATUS,D_COUNT) values (27,2,'egg@naver.com','itjobs11..','에그(기업)',to_date('19/10/15','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),'Y',0);
+Insert into MEMBER (M_NO,TYPE,EMAIL,PW,NICKNAME,UPDATE_DATE,ENROLL_DATE,STATUS,D_COUNT) values (28,1,'asd@asdd.asd','456456','asdasd',to_date('19/10/15','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),'Y',0);
+Insert into MEMBER (M_NO,TYPE,EMAIL,PW,NICKNAME,UPDATE_DATE,ENROLL_DATE,STATUS,D_COUNT) values (29,2,'com@naver.com','itjobs11..','IT컴퍼니(기업)',to_date('19/10/15','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),'Y',0);
+Insert into MEMBER (M_NO,TYPE,EMAIL,PW,NICKNAME,UPDATE_DATE,ENROLL_DATE,STATUS,D_COUNT) values (30,2,'nn@naver.com','itjobs11..','정석개발(기업)',to_date('19/10/15','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),'Y',0);
+
+
+-- CO_INFO
+Insert into CO_INFO (M_NO,REGNUM,"FILE",PATH,NAME,PHONE,ADDRESS,CEO,CO_PHONE,DESCRIPT,BIRTH_DATE,MEMSUM,REVENUE,HISTORY,WELFAIR,LOGO_FILE,LOGO_PATH) values (10,'123-456-15657','2019101516013539131.png','C:\Users\user2\git\itjobs01_!\itjobs06\WebContent\resources/cofileupload/','한혜경','010-7894-4653','08105+서울 양천구 목동남로 24+1층','김공주','010-5555-6666','공주개발',to_date('19/10/01','RR/MM/DD'),3,465,'<div class="history_sec etc his_2017" style="width: 1121px; position: absolute; left: 0px; top: 320px; color: rgb(102, 102, 102); font-family: NanumBarunGothic, sans-serif; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial;"><div class="h_box left h2017" style="float: left; margin: 0px 0px 0px 22px;"></div></div><div class="history_sec etc his_2018" style="width: 1121px; color: rgb(102, 102, 102); font-family: NanumBarunGothic, sans-serif; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial;"><div class="h_box right h2018" style="float: left; margin: 0px 0px 0px 36px;"><p class="h_year" style="margin: 0px 0px 25px; padding: 0px 0px 0px 32px; color: rgb(51, 51, 51); font-size: 40px; background: url(&quot;../images/company/bg_line2.gif&quot;) 0px center no-repeat;">2018</p><dl class="h_cont hiw460" style="margin: 0px; padding: 0px 0px 0px 32px; width: 480px; overflow: hidden; font-size: 16px;"><dt style="margin: 0px 0px 23px; padding: 0px; float: left; width: 60px; color: rgb(128, 128, 128);">08월</dt><dd style="margin: -3px 0px 23px; padding: 0px; float: left; width: 420px; color: rgb(51, 51, 51); line-height: 23px;">통합 ''한화시스템 주식회사'' 출범</dd><dt style="margin: 0px 0px 23px; padding: 0px; float: left; width: 60px; color: rgb(128, 128, 128);">08월</dt><dd style="margin: -3px 0px 23px; padding: 0px; float: left; width: 420px; color: rgb(51, 51, 51); line-height: 23px;">베이커휴즈GE와 제조분야 디지털 트랜스포메이션 기술개발<br>및 사업추진 협약</dd><dt style="margin: 0px 0px 23px; padding: 0px; float: left; width: 60px; color: rgb(128, 128, 128);">07월</dt><dd style="margin: -3px 0px 23px; padding: 0px; float: left; width: 420px; color: rgb(51, 51, 51); line-height: 23px;">고려대학교 데이터마이닝연구실 AI 분야 공동연구 산학협력</dd><dt style="margin: 0px 0px 23px; padding: 0px; float: left; width: 60px; color: rgb(128, 128, 128);">04월</dt><dd style="margin: -3px 0px 23px; padding: 0px; float: left; width: 420px; color: rgb(51, 51, 51); line-height: 23px;">미래에셋생명 IT 시스템 통합 완료</dd></dl></div></div>','<p><br></p><table width="100%" border="0px" align="center" cellspacing="0px" style="border-collapse: collapse; border-spacing: 0px; font-family: &quot;Malgun Gothic&quot;, dotum, gulim, sans-serif; font-size: 13px; line-height: normal; color: rgb(68, 68, 68); letter-spacing: -1px; background-color: rgb(255, 255, 255); max-width: 860px !important;"><tbody><tr><td width="650" style="font-family: &quot;malgun gothic&quot;, &quot;맑은 고딕&quot;; font-size: 14px; line-height: 24px;"><table width="100%" align="center" cellpadding="10px" style="border-collapse: collapse; border-spacing: 0px; font-family: &quot;Malgun Gothic&quot;, dotum, gulim, sans-serif; font-size: 12px; line-height: 20px; max-width: 860px !important;"><tbody><tr><td width="122" align="left" bgcolor="#FFFFFF" style="border-width: 1px; border-style: solid; border-color: rgb(215, 215, 215); font-family: &quot;malgun gothic&quot;, &quot;맑은 고딕&quot;; font-size: 14px; line-height: 24px;"><span style="border-width: 1px; border-color: rgb(0, 0, 0);"><b>[특전]</b><br>&nbsp; - 명품판매사 교육 무료 혜택(6개월 코스)<br>&nbsp; - 국내 최고의 명품 전문가가 직접 교육<br>&nbsp; - 당사가 운영하는 명품백화점 및 전국 직영매장 점장, 매니져 채용 보장<br>&nbsp; - 판매사 교육 브랜드 : 에르메스, 샤넬, 로렉스, 까르띠에, 루이비통, 구찌, 프라다, 지방시, 끌로에</span></td></tr></tbody></table></td></tr></tbody></table>','201910151601353415.png','C:\Users\user2\git\itjobs01_!\itjobs06\WebContent\resources/cofileupload/');
+Insert into CO_INFO (M_NO,REGNUM,"FILE",PATH,NAME,PHONE,ADDRESS,CEO,CO_PHONE,DESCRIPT,BIRTH_DATE,MEMSUM,REVENUE,HISTORY,WELFAIR,LOGO_FILE,LOGO_PATH) values (11,'156-567-89645','201910151605015790.png','C:\Users\user2\git\itjobs01_!\itjobs06\WebContent\resources/cofileupload/','소지섭','01065689768','07324+서울 영등포구 여의동로3길 10+1층','장동건','01065679865','개발',to_date('01/01/05','RR/MM/DD'),56,564689,'<ul class="list_history" style="margin: 0px; padding: 0px 0px 0px 317px; font-family: &quot;Malgun Gothic&quot;, dotum, gulim, sans-serif; list-style: none; overflow: hidden; font-size: medium; letter-spacing: -1px; background-color: rgb(255, 255, 255);"><li style="margin: 0px; padding: 0px 0px 10px; list-style: none; font-size: 15px; line-height: 22px; color: rgb(68, 68, 68); word-break: break-all;">2013. 10. 01 한국지점의 주요자산과 부채를 현물출자 받음</li><li style="margin: 0px; padding: 0px 0px 10px; list-style: none; font-size: 15px; line-height: 22px; color: rgb(68, 68, 68); word-break: break-all;">2013. 10. 01 지배회사인 포워드벤처스엘엘씨(Forward Ventures, LLC)로부터 포워드벤처스엘엘씨(Forward Ventures, LLC)</li><li style="margin: 0px; padding: 0px 0px 10px; list-style: none; font-size: 15px; line-height: 22px; color: rgb(68, 68, 68); word-break: break-all;">2013. 02. 15 회사 설립</li></ul>','<span style="font-size: 14pt; color: rgb(255, 0, 0);"><b>왕자개발은 직원들을 위해 복지를아끼지 않습니다.</b></span>','2019101516050167637.png','C:\Users\user2\git\itjobs01_!\itjobs06\WebContent\resources/cofileupload/');
+Insert into CO_INFO (M_NO,REGNUM,"FILE",PATH,NAME,PHONE,ADDRESS,CEO,CO_PHONE,DESCRIPT,BIRTH_DATE,MEMSUM,REVENUE,HISTORY,WELFAIR,LOGO_FILE,LOGO_PATH) values (12,'165-897-789465','20191015161214505.png','C:\Users\user2\git\itjobs01_!\itjobs06\WebContent\resources/cofileupload/','송혜교','010-5689-4959','06267+서울 강남구 강남대로 238+1','이병헌','010-7894-4568','개발',to_date('85/05/05','RR/MM/DD'),567,46577,'<p><span style="color: rgb(68, 68, 68); font-family: &quot;Malgun Gothic&quot;, dotum, gulim, sans-serif; font-size: 15px; letter-spacing: -1px; background-color: rgb(255, 255, 255);">2019. 06 국내최초 및 세계 3번째 직접방식 맘모(여성유방촬영용) 제품 출시</span>&nbsp;</p>','<p><strong class="tit" style="display: block; margin-top: -2px; font-size: 20px; color: rgb(68, 68, 68); word-break: break-all; font-family: &quot;Malgun Gothic&quot;, dotum, gulim, sans-serif; letter-spacing: -1px; background-color: rgb(248, 249, 252);">직원들의 자기계발을 존중합니다!</strong></p><p class="desc" style="margin-top: 8px; font-family: &quot;Malgun Gothic&quot;, dotum, gulim, sans-serif; min-height: 52px; font-size: 15px; line-height: 27px; color: rgb(68, 68, 68); word-break: break-all; letter-spacing: -1px; background-color: rgb(248, 249, 252);">창립일행사, 우수사원시상식, 워크샵, 신입사원교육(OJT), 직무능력향상교육, 리더쉽강화교육, 도서구입비지원, 점심식사 제공, 사내동호회 운영, 식비 지원, 음료제공(차, 커피), 해외주재원 제도, 우리사주제도</p>','2019101516121440172.png','C:\Users\user2\git\itjobs01_!\itjobs06\WebContent\resources/cofileupload/');
+Insert into CO_INFO (M_NO,REGNUM,"FILE",PATH,NAME,PHONE,ADDRESS,CEO,CO_PHONE,DESCRIPT,BIRTH_DATE,MEMSUM,REVENUE,HISTORY,WELFAIR,LOGO_FILE,LOGO_PATH) values (16,'156-789-456789','2019101516344882453.png','C:\Users\user2\git\itjobs01_!\itjobs06\WebContent\resources/cofileupload/','조정석','010-5679-8649','07041+서울 동작구 대방동 408-6+1','조규현','010-5679-7976','개발, 웹디자인, 개발의 모든것',to_date('19/10/22','RR/MM/DD'),56,2465,'<ul class="list_history" style="margin: 0px; padding: 0px 0px 0px 317px; font-family: " malgun="" gothic",="" dotum,="" gulim,="" sans-serif;="" list-style:="" none;="" overflow:="" hidden;="" font-size:="" medium;="" letter-spacing:="" -1px;="" background-color:="" rgb(255,="" 255,="" 255);"=""><li style="margin: 0px; padding: 0px 0px 10px; list-style: none; font-size: 15px; line-height: 22px; color: rgb(68, 68, 68); word-break: break-all;">2019. 06 얇은피꽉찬속 만두, 출시 한달 만에 120만 봉지 판매(냉동만두 카테고리 시장점유율 2위)</li><li style="margin: 0px; padding: 0px 0px 10px; list-style: none; font-size: 15px; line-height: 22px; color: rgb(68, 68, 68); word-break: break-all;">2019. 06 풀무원 김치, 미국 최대 유통매장 월마트(Walmart), 미국 동부 유통강자 퍼블릭스(Publix) 전점 입점</li><li style="margin: 0px; padding: 0px 0px 10px; list-style: none; font-size: 15px; line-height: 22px; color: rgb(68, 68, 68); word-break: break-all;">2019. 05 풀무원식품(주), 글로벌 김치공장 신축</li></ul>','<p><strong class="tit" style="display: block; margin-top: -2px; font-size: 20px; color: rgb(68, 68, 68); word-break: break-all; font-family: " malgun="" gothic",="" dotum,="" gulim,="" sans-serif;="" letter-spacing:="" -1px;="" background-color:="" rgb(248,="" 249,="" 252);"="">직원들의 열정에 보답하고 싶습니다.</strong></p><p class="desc" style="margin-top: 8px; font-family: " malgun="" gothic",="" dotum,="" gulim,="" sans-serif;="" min-height:="" 52px;="" font-size:="" 15px;="" line-height:="" 27px;="" color:="" rgb(68,="" 68,="" 68);="" word-break:="" break-all;="" letter-spacing:="" -1px;="" background-color:="" rgb(248,="" 249,="" 252);"="">퇴직금, 4대 보험</p>','2019101516344820722.png','C:\Users\user2\git\itjobs01_!\itjobs06\WebContent\resources/cofileupload/');
+Insert into CO_INFO (M_NO,REGNUM,"FILE",PATH,NAME,PHONE,ADDRESS,CEO,CO_PHONE,DESCRIPT,BIRTH_DATE,MEMSUM,REVENUE,HISTORY,WELFAIR,LOGO_FILE,LOGO_PATH) values (21,'644529825','2019101517024719687.png','C:\Users\user2\git\itjobs01_!\itjobs06\WebContent\resources/cofileupload/','김동욱','01025468569','05089+서울 광진구 강변북로 36+152','김재준','01025584635','it ',to_date('99/10/05','RR/MM/DD'),50,50000,'<p>1999년 10월에 설립하여 현재 직원수 50명</p>','점심식사비 지급','2019101517024762693.png','C:\Users\user2\git\itjobs01_!\itjobs06\WebContent\resources/cofileupload/');
+Insert into CO_INFO (M_NO,REGNUM,"FILE",PATH,NAME,PHONE,ADDRESS,CEO,CO_PHONE,DESCRIPT,BIRTH_DATE,MEMSUM,REVENUE,HISTORY,WELFAIR,LOGO_FILE,LOGO_PATH) values (22,'1542695245','2019101517055126388.png','C:\Users\user2\git\itjobs01_!\itjobs06\WebContent\resources/cofileupload/','김담당','01053259009','13550+경기 성남시 분당구 궁내로 22+google','김국을','01025468565','포털사이트',to_date('96/10/18','RR/MM/DD'),300,8500,'구글','사내카페무료이용','2019101517055113529.png','C:\Users\user2\git\itjobs01_!\itjobs06\WebContent\resources/cofileupload/');
+Insert into CO_INFO (M_NO,REGNUM,"FILE",PATH,NAME,PHONE,ADDRESS,CEO,CO_PHONE,DESCRIPT,BIRTH_DATE,MEMSUM,REVENUE,HISTORY,WELFAIR,LOGO_FILE,LOGO_PATH) values (23,'23645841','201910151709563496.jpg','C:\Users\user2\git\itjobs01_!\itjobs06\WebContent\resources/cofileupload/','김서대','01025864569','03661+서울 서대문구 가좌로 16-6+452','김가좌','01024564125','개발자',to_date('04/02/05','RR/MM/DD'),35,8500,'스타컴&nbsp;','<p>월급</p>','2019101517095647090.jpg','C:\Users\user2\git\itjobs01_!\itjobs06\WebContent\resources/cofileupload/');
+Insert into CO_INFO (M_NO,REGNUM,"FILE",PATH,NAME,PHONE,ADDRESS,CEO,CO_PHONE,DESCRIPT,BIRTH_DATE,MEMSUM,REVENUE,HISTORY,WELFAIR,LOGO_FILE,LOGO_PATH) values (24,'523645211','201910151714046271.jpg','C:\Users\user2\git\itjobs01_!\itjobs06\WebContent\resources/cofileupload/','김용문','01025842365','12521+경기 양평군 용문면 갈월길 1+513','김양문','01075817412','it',to_date('12/06/12','RR/MM/DD'),250,168520,'<p>연혁&nbsp;</p>','<p>월급지급, 결혼장려금지급, 출산시 2천만원 지급&nbsp;</p>','201910151714042230.png','C:\Users\user2\git\itjobs01_!\itjobs06\WebContent\resources/cofileupload/');
+Insert into CO_INFO (M_NO,REGNUM,"FILE",PATH,NAME,PHONE,ADDRESS,CEO,CO_PHONE,DESCRIPT,BIRTH_DATE,MEMSUM,REVENUE,HISTORY,WELFAIR,LOGO_FILE,LOGO_PATH) values (26,'65214852','2019101517374336977.png','C:\Users\user2\git\itjobs01_!\itjobs06\WebContent\resources/cofileupload/','김당당','01025486256','06325+서울 강남구 선릉로10길 4+12','최대표','01085423694','컴퓨터',to_date('10/06/15','RR/MM/DD'),5233,960000,'<p>연혁</p>','<p>복지</p>','2019101517374375237.png','C:\Users\user2\git\itjobs01_!\itjobs06\WebContent\resources/cofileupload/');
+Insert into CO_INFO (M_NO,REGNUM,"FILE",PATH,NAME,PHONE,ADDRESS,CEO,CO_PHONE,DESCRIPT,BIRTH_DATE,MEMSUM,REVENUE,HISTORY,WELFAIR,LOGO_FILE,LOGO_PATH) values (27,'75862512','2019101517471185346.png','C:\Users\user2\git\itjobs01_!\itjobs06\WebContent\resources/cofileupload/','이지은','01045681265','18000+경기 평택시 팽성읍 두리1길 1+15-65','이병성','01042562158','it',to_date('96/10/01','RR/MM/DD'),13,569310,'egg&nbsp;','<p>월급지급</p>','2019101517471120718.jpg','C:\Users\user2\git\itjobs01_!\itjobs06\WebContent\resources/cofileupload/');
+Insert into CO_INFO (M_NO,REGNUM,"FILE",PATH,NAME,PHONE,ADDRESS,CEO,CO_PHONE,DESCRIPT,BIRTH_DATE,MEMSUM,REVENUE,HISTORY,WELFAIR,LOGO_FILE,LOGO_PATH) values (29,'5123568522','2019101517550668716.png','C:\Users\user2\git\itjobs01_!\itjobs06\WebContent\resources/cofileupload/','박가영','01025893354','12427+경기 가평군 가평읍 가랫골길 5+456','홍진영','0102365845','컴퍼니',to_date('16/02/09','RR/MM/DD'),10,10000,'it중심의 컴퍼니입니다','<p>월급지급</p>','2019101517550661655.png','C:\Users\user2\git\itjobs01_!\itjobs06\WebContent\resources/cofileupload/');
+Insert into CO_INFO (M_NO,REGNUM,"FILE",PATH,NAME,PHONE,ADDRESS,CEO,CO_PHONE,DESCRIPT,BIRTH_DATE,MEMSUM,REVENUE,HISTORY,WELFAIR,LOGO_FILE,LOGO_PATH) values (30,'123123123','2019101517584762909.png','C:\Users\user2\git\itjobs01_!\itjobs06\WebContent\resources/cofileupload/','거미','01056565656','08218+서울 구로구 목동남로 6+1','조정석','01001010101','개발',to_date('19/10/01','RR/MM/DD'),12,123123,'<p>20191001 오픈!</p>','<p><span style="color: rgb(255, 170, 0); font-size: 18pt;">영어교육</span></p>','2019101517584797491.png','C:\Users\user2\git\itjobs01_!\itjobs06\WebContent\resources/cofileupload/');
+
+
+
+-- NOTIFICATION
+Insert into NOTIFICATION (NOTI_NO,CO_NO,TITLE,END_DATE,ENROLL_DATE,P_LANGUAGE,SALARY,CONTENTS,JOBS,HOPE,STATUS,D_COUNT,OPEN) values (1,10,'공주네 회사 공주 모집',to_date('19/10/22','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),'java,javascript,C,C++,C#',5000,'<p>직원 복지 최고의 공주네회사 공주사원 모집합니다.</p><p>전국 공주들 많은 지원 해주세요~!</p><p><br></p><p><br></p>','개발공주','<p>정보처리기사 자격증 우대</p><p><br></p><p><br></p><p><span style="font-family: 굴림, Gulim; font-size: 18pt; color: rgb(255, 0, 0);">*코딩테스트 실시합니다.</span></p>','N',0,'Y');
+Insert into NOTIFICATION (NOTI_NO,CO_NO,TITLE,END_DATE,ENROLL_DATE,P_LANGUAGE,SALARY,CONTENTS,JOBS,HOPE,STATUS,D_COUNT,OPEN) values (2,11,'왕자개발 대리급 모집',to_date('19/10/20','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),'java,javascript,C,C++',4000,'<p>대리급 개발자 모집합니다.</p><p>프론트앤드 직원이 따로 없으므로 할 줄 아셨으면 좋겠네요</p><p><br></p>','대리급 개발자','<p><span style="font-size: 18pt; background-color: rgb(255, 167, 0); color: rgb(255, 255, 255);"><b>프론트앤드 가능한 자</b></span></p>','N',0,'Y');
+Insert into NOTIFICATION (NOTI_NO,CO_NO,TITLE,END_DATE,ENROLL_DATE,P_LANGUAGE,SALARY,CONTENTS,JOBS,HOPE,STATUS,D_COUNT,OPEN) values (3,12,'시크릿개발에서 비밀스럽게 팀장님 급구합니다.',to_date('19/10/23','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),'java,javascript,C,php,asp',6000,'<p>유능한 팀장님 모십니다.</p><p>많은 지원 부탁드립니다.</p>','개발, 웹디자인','<p>우대조건 없습니다.</p><p><br></p>','N',0,'Y');
+Insert into NOTIFICATION (NOTI_NO,CO_NO,TITLE,END_DATE,ENROLL_DATE,P_LANGUAGE,SALARY,CONTENTS,JOBS,HOPE,STATUS,D_COUNT,OPEN) values (4,22,'구글 본사에서 일할 개발자 모집합니다',to_date('19/11/07','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),'java,javascript,C,C++,C#,VBA',50000000,'<p>구글에서 개발자 모집합니다&nbsp;</p><p><br></p>','개발자','<p>월급많이지급, 2년에 한번 해외여행</p>','N',0,'Y');
+Insert into NOTIFICATION (NOTI_NO,CO_NO,TITLE,END_DATE,ENROLL_DATE,P_LANGUAGE,SALARY,CONTENTS,JOBS,HOPE,STATUS,D_COUNT,OPEN) values (5,16,'창쪽자리에서 근무할 개발자모집',to_date('19/10/31','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),'java,php,asp',2000,'<p>창쪽 자리 명당입니다.</p><p>전망 좋은 자리에서 근무하실 개발자 모집합니다.</p>','명당자리 개발자 모집','<span style="color: rgb(233, 125, 129); font-size: 18pt; font-family: 궁서, Gungsuh, GungSeo;"><b>전망 좋은 자리 제공</b></span>','N',0,'Y');
+Insert into NOTIFICATION (NOTI_NO,CO_NO,TITLE,END_DATE,ENROLL_DATE,P_LANGUAGE,SALARY,CONTENTS,JOBS,HOPE,STATUS,D_COUNT,OPEN) values (6,16,'신입 개발자 모집',to_date('19/10/25','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),'javascript',2000,'<p>착한 개발자 모집합니다.</p>','마음좋은 신입개발자 모집','착한사람','N',0,'Y');
+Insert into NOTIFICATION (NOTI_NO,CO_NO,TITLE,END_DATE,ENROLL_DATE,P_LANGUAGE,SALARY,CONTENTS,JOBS,HOPE,STATUS,D_COUNT,OPEN) values (7,24,'플라이에서 함께일할 인재찾습니다',to_date('19/10/29','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),'java,C++,C#,python,php,asp',4500000,'<p>플라이를 함께 이끌어나갈 인재를 찾고있습니다</p>','개발자','<p><span style="color: rgb(0, 117, 200);">칼퇴근, 주말</span> 보장 해드립니다</p><p><span style="color: rgb(255, 0, 0);">단, 월급인상은 보장못함</span></p>','N',0,'Y');
+Insert into NOTIFICATION (NOTI_NO,CO_NO,TITLE,END_DATE,ENROLL_DATE,P_LANGUAGE,SALARY,CONTENTS,JOBS,HOPE,STATUS,D_COUNT,OPEN) values (8,23,'스타컴에서 개발직 2명 충원합니다 ',to_date('19/11/05','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),'C,C++,C#,VBA,python',2500000,'<p>스타트업회사입니다.</p><p>2명 퇴사로인해 추가인원 구하고있습니다.</p>','개발직','<p>월급지급</p>','N',0,'Y');
+Insert into NOTIFICATION (NOTI_NO,CO_NO,TITLE,END_DATE,ENROLL_DATE,P_LANGUAGE,SALARY,CONTENTS,JOBS,HOPE,STATUS,D_COUNT,OPEN) values (9,23,'스타컴에서 개발직인턴 모집해요',to_date('19/10/28','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),'javascript,C#,VBA,php,asp',2000000,'<p>계약직 인턴입니다.</p><p>개발자옆에서 보조하면서 일배우시면 됩니다&nbsp;</p>','개발직 인턴','교통비 지급, 소정의 월급','N',0,'Y');
+Insert into NOTIFICATION (NOTI_NO,CO_NO,TITLE,END_DATE,ENROLL_DATE,P_LANGUAGE,SALARY,CONTENTS,JOBS,HOPE,STATUS,D_COUNT,OPEN) values (12,27,'애그 하반기 직원모집합니다',to_date('19/12/01','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),'java,javascript,C++,C#',500000,'<p>가족같이 모두 화목한 회사입니다.</p><p>저희는 실력보다 좋은 성격을 지닌 사원을 모집하고싶습니다&nbsp;</p><p><br></p><p><br></p><p>많은 지원부탁드립니다</p>','프론트엔드','<p><b><span style="color: rgb(255, 0, 0);">매일 하루에 하나씩 계란 지원</span></b></p>','N',0,'Y');
+Insert into NOTIFICATION (NOTI_NO,CO_NO,TITLE,END_DATE,ENROLL_DATE,P_LANGUAGE,SALARY,CONTENTS,JOBS,HOPE,STATUS,D_COUNT,OPEN) values (13,29,'화목한 컴퍼니에서 함께 일해보아요',to_date('19/11/05','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),'java,javascript,C++,C#',800000,'<p>아주아주 사이좋은 회사입니다</p>','개발직','월급을 지급합니다','N',0,'Y');
+
+
+-- RESUME
+Insert into RESUME (RESUME_NO,PHOTO,PATH,NAME,BIRTH_DATE,PHONE,ADDRESS,EMAIL,SCHOOL,DEPARTMENT,SCHOOL_PERIOD,CAREER,WORK_PLACE,WORK_DATE,WORK,CERTIFICATE,CER_DATE,TITLE,COVER_LETTER,OPEN,UPDATE_DATE,P_LANGUAGE,HOPE_SALARY,M_NO,CAREER_YEAR,SCHOOL_FINAL) values (1,'2019101500345174814.png','C:\Users\user\git\itjobs01\itjobs06\WebContent\resources/fileupload_resumeImg/','김선영',to_date('91/05/26','RR/MM/DD'),'010-7568-4656','10083+경기 김포시 김포한강4로 131+506호','dd@naver.com','이화여자대학교','개발과','2013-03-01~2018-02-15','N',null,null,null,null,null,'자바 개발자 열심히 하겠습니다.','<span style="color: rgb(102, 102, 102); font-family: 1;맑은 고딕1;, 1;Malgun Gothic1;, 돋움, Dotum, sans-serif; font-size: 15px; letter-spacing: -0.5px; background-color: rgb(255, 255, 255);">"설문조사 결과를 바탕으로 한 동아리 홍보 방식의 변경"</span><br style="color: rgb(102, 102, 102); font-family: 1;맑은 고딕1;, 1;Malgun Gothic1;, 돋움, Dotum, sans-serif; font-size: 15px; letter-spacing: -0.5px; background-color: rgb(255, 255, 255);"><br style="color: rgb(102, 102, 102); font-family: 1;맑은 고딕1;, 1;Malgun Gothic1;, 돋움, Dotum, sans-serif; font-size: 15px; letter-spacing: -0.5px; background-color: rgb(255, 255, 255);"><b class="good" style="color: rgb(51, 51, 51); font-family: 1;맑은 고딕1;, 1;Malgun Gothic1;, 돋움, Dotum, sans-serif; font-size: 15px; letter-spacing: -0.5px; background-color: rgb(255, 255, 255);">동아리 연합회 일원으로서 신입생 홍보와 관련하여 의사결정을 내렸던 적이 있습니다. 주어진 예산으로 어떻게 홍보를 해야 효율적으로 신입생 홍보를 할 수 있는지를 회의하던 중, 다수는 지난해와 동일하게 진행하는 것이 어떻겠냐는 의견을 냈습니다. 여태까지 그렇게 해왔으니 올해에도 그렇게 하면 되지 않겠느냐는 것이었습니다.<br><br>그러나 저는 방식의 변화가 필요하다고 느꼈습니다. 이미 신입생 홍보부스를 세워봤던 입장에서, 논술 시험 기간과 수시 OT 기간에 했던 홍보는 많은 학생을 대상으로 하여 예산은 많이 들었으나 거의 아무런 효과가 없음을 이미 경험적으로 알고 있었기 때문입니다. 따라서 다른 연합회원들에게 동아리 원들에게 동아리 가입 경로를 설문조사로 받고, 그에 따라 홍보를 서너 차례만 진행하는 것이 좋겠다고 의견을 개진하였고, 이가 받아들여져 설문조사를 하게 되었습니다</b>','Y',to_date('19/10/15','RR/MM/DD'),'C,java,CSS,javascript,C++,C#,VBA,python','0',7,null,1);
+Insert into RESUME (RESUME_NO,PHOTO,PATH,NAME,BIRTH_DATE,PHONE,ADDRESS,EMAIL,SCHOOL,DEPARTMENT,SCHOOL_PERIOD,CAREER,WORK_PLACE,WORK_DATE,WORK,CERTIFICATE,CER_DATE,TITLE,COVER_LETTER,OPEN,UPDATE_DATE,P_LANGUAGE,HOPE_SALARY,M_NO,CAREER_YEAR,SCHOOL_FINAL) values (2,'2019101500484125567.png','C:\Users\user\git\itjobs01\itjobs06\WebContent\resources/fileupload_resumeImg/','정영훈',to_date('88/02/01','RR/MM/DD'),'010-0560-4626','07324+서울 영등포구 여의동로3길 10+101동 201호','aa@naver.com','연세대학교','컴퓨터공학과','2005-05-01~2010-02-01','Y','컴퓨터회사','2010-05-03~2018-05-04','개발','정보처리기사','2005-04-01','열정과 끈기로 열심히 하겠습니다','<span style="color: rgb(102, 102, 102); font-family: 1;맑은 고딕1;, 1;Malgun Gothic1;, 돋움, Dotum, sans-serif; font-size: 15px; letter-spacing: -0.5px; background-color: rgb(255, 255, 255);">"발전을 위한 의사소통 능력”</span><br style="color: rgb(102, 102, 102); font-family: 1;맑은 고딕1;, 1;Malgun Gothic1;, 돋움, Dotum, sans-serif; font-size: 15px; letter-spacing: -0.5px; background-color: rgb(255, 255, 255);"><br style="color: rgb(102, 102, 102); font-family: 1;맑은 고딕1;, 1;Malgun Gothic1;, 돋움, Dotum, sans-serif; font-size: 15px; letter-spacing: -0.5px; background-color: rgb(255, 255, 255);"><b class="bad" style="color: rgb(51, 51, 51); font-family: 1;맑은 고딕1;, 1;Malgun Gothic1;, 돋움, Dotum, sans-serif; font-size: 15px; letter-spacing: -0.5px; background-color: rgb(255, 255, 255);">항상 주변의 소리에 열린 자세를 가진 사람이 되기 위해 노력했습니다. 대학 시절 학생회 총무부장을 맡으며 학과의 소통창구를 만든 경험이 있습니다. 당시 학생회와 학우들이 서로 신뢰하며 학교생활을 하도록 방법을 고민했습니다. 학우들의 의견 파악을 위해 SNS 건의함을 개설했습니다. 많은 게시글을 통해, 학생회비 불투명성에 대한 불만을 확인했습니다. 학생회비 사용내역을 월별로 공개할 것을 새로운 학칙으로 제안 하였습니다. 이후 총무부의 의무로써 자리잡게 되었습니다. 학우들이 원하는 것을 파악하고 실행하<br>며, 신규시장 개척에 영업사원이 갖춰야할 의사소통 능력을 배웠습니다.</b>','Y',to_date('19/10/15','RR/MM/DD'),'C,java,CSS,javascript,C++,C#,VBA','4001',8,8,1);
+Insert into RESUME (RESUME_NO,PHOTO,PATH,NAME,BIRTH_DATE,PHONE,ADDRESS,EMAIL,SCHOOL,DEPARTMENT,SCHOOL_PERIOD,CAREER,WORK_PLACE,WORK_DATE,WORK,CERTIFICATE,CER_DATE,TITLE,COVER_LETTER,OPEN,UPDATE_DATE,P_LANGUAGE,HOPE_SALARY,M_NO,CAREER_YEAR,SCHOOL_FINAL) values (3,'2019101501102299495.png','C:\Users\user\git\itjobs01\itjobs06\WebContent\resources/fileupload_resumeImg/','김지석',to_date('86/04/05','RR/MM/DD'),'010-4538-6531','08101+서울 양천구 목동남로 64-3+402호','ff@naver.com','목동대학교','개발전문학과','2001-02-01~2010-05-06','N',null,null,null,null,null,'열정가득한 사원!','<b class="good" style="color: rgb(51, 51, 51); font-family: 1;맑은 고딕1;, 1;Malgun Gothic1;, 돋움, Dotum, sans-serif; font-size: 15px; letter-spacing: -0.5px; background-color: rgb(255, 255, 255);">첫째, 직무와 관련된 지식입니다. 15년 대기환경기사, 16년 수질환경기사와 폐기물처리기사를 취득하였습니다. 환경공학을 공부하면서 ‘대기, 수질, 폐기물, 토양, 소음 등이 모두 연계되어있다.’ 는 점을 느꼈기 때문에 전공 자격증 취득을 통해 환경을 아우르는 지식을 깊이 하고자 노력했습니다. 현재는 토양환경기사 필기 합격 후에 실기 시험을 준비하면서 그 노력을 이어가고 있습니다.</b>','Y',to_date('19/10/15','RR/MM/DD'),'C,javascript,VBA,python,php,asp','0',6,null,1);
+Insert into RESUME (RESUME_NO,PHOTO,PATH,NAME,BIRTH_DATE,PHONE,ADDRESS,EMAIL,SCHOOL,DEPARTMENT,SCHOOL_PERIOD,CAREER,WORK_PLACE,WORK_DATE,WORK,CERTIFICATE,CER_DATE,TITLE,COVER_LETTER,OPEN,UPDATE_DATE,P_LANGUAGE,HOPE_SALARY,M_NO,CAREER_YEAR,SCHOOL_FINAL) values (4,'2019101501232250315.png','C:\Users\user\git\itjobs01\itjobs06\WebContent\resources/fileupload_resumeImg/','권영현',to_date('95/06/08','RR/MM/DD'),'010-2645-9835','13007+경기 하남시 감이남로 72+1층','jj@naver.com','대학교','정말어려운과','2013-05-06~2016-05-04','N',null,null,null,null,null,'도전하는 사람 권영현','<span style="color: rgb(102, 102, 102); font-family: 1;맑은 고딕1;, 1;Malgun Gothic1;, 돋움, Dotum, sans-serif; font-size: 15px; letter-spacing: -0.5px; background-color: rgb(255, 255, 255);">"국익과 경제성장에 기여하는 산업은행"</span><br style="color: rgb(102, 102, 102); font-family: 1;맑은 고딕1;, 1;Malgun Gothic1;, 돋움, Dotum, sans-serif; font-size: 15px; letter-spacing: -0.5px; background-color: rgb(255, 255, 255);"><br style="color: rgb(102, 102, 102); font-family: 1;맑은 고딕1;, 1;Malgun Gothic1;, 돋움, Dotum, sans-serif; font-size: 15px; letter-spacing: -0.5px; background-color: rgb(255, 255, 255);"><b class="bad" style="color: rgb(51, 51, 51); font-family: 1;맑은 고딕1;, 1;Malgun Gothic1;, 돋움, Dotum, sans-serif; font-size: 15px; letter-spacing: -0.5px; background-color: rgb(255, 255, 255);">KDB산업은행은 사회적 문제 해결을 통해 ‘시장 안전판’ 역할은 물론, 4차 산업혁명의 신성장동력을 확보하며 경제재건을 주도하고 있습니다. 이러한 산업은행의 모습이 저와 교점이 있다고 판단해 지원했습니다. 저 또한 OOOOO 서포터즈 활동을 하며 국익에 기여하는 일을 하겠다는 결심을 했습니다. 당시 중소기업의 수출을 돕고 4차 산업혁명 육성을 지원하며 자부심과 사명감을 느꼈기 때문입니다. 이에 산업은행에서도 국가 경제 성장을 지원해주는 업무를 잘할 수 있다는 확신에 지원했습니다.</b>','Y',to_date('19/10/15','RR/MM/DD'),'C,java,CSS','3000',3,null,1);
+Insert into RESUME (RESUME_NO,PHOTO,PATH,NAME,BIRTH_DATE,PHONE,ADDRESS,EMAIL,SCHOOL,DEPARTMENT,SCHOOL_PERIOD,CAREER,WORK_PLACE,WORK_DATE,WORK,CERTIFICATE,CER_DATE,TITLE,COVER_LETTER,OPEN,UPDATE_DATE,P_LANGUAGE,HOPE_SALARY,M_NO,CAREER_YEAR,SCHOOL_FINAL) values (5,'2019101501274472008.png','C:\Users\user\git\itjobs01\itjobs06\WebContent\resources/fileupload_resumeImg/','권진아',to_date('93/05/01','RR/MM/DD'),'010-1245-5643','05503+서울 송파구 잠실로 15+101동 201호','ll@naver.com','잠실대학교','잠실학과','2012-01-01~2016-01-01','Y','복지좋은회사','2016-05-01~2019-01-01','웹디자인','정보처리기사','2016-03-02','열심히하겠습니다.','<b class="bad" style="color: rgb(51, 51, 51); font-family: " 맑은="" 고딕",="" "malgun="" gothic",="" 돋움,="" dotum,="" sans-serif;="" font-size:="" 15px;="" letter-spacing:="" -0.5px;="" background-color:="" rgb(255,="" 255,="" 255);"="">입행 후 첫째, 철저한 시장분석을 통해 KDB산업은행의 자금이 적재적소에 투자될 수 있도록 하겠습니다. OOOOO 서포터즈를 하며 습득한 시장 분석력을 발휘해 산업은행의 거시적 의사결정을 지원하겠습니다. 미래 육성 사업 및 투자에 대한 올바른 방향을 제시하여, 상사분들에게 신뢰받는 사원이 되겠습니다.</b>','Y',to_date('19/10/15','RR/MM/DD'),'C,java,CSS,javascript','4001',5,3,1);
+Insert into RESUME (RESUME_NO,PHOTO,PATH,NAME,BIRTH_DATE,PHONE,ADDRESS,EMAIL,SCHOOL,DEPARTMENT,SCHOOL_PERIOD,CAREER,WORK_PLACE,WORK_DATE,WORK,CERTIFICATE,CER_DATE,TITLE,COVER_LETTER,OPEN,UPDATE_DATE,P_LANGUAGE,HOPE_SALARY,M_NO,CAREER_YEAR,SCHOOL_FINAL) values (6,'2019101516351243959.png','C:\Users\user2\git\itjobs01_!\itjobs06\WebContent\resources/fileupload_resumeImg/','김개발자',to_date('99/09/09','RR/MM/DD'),'010-0000-0000','06120+서울 강남구 강남대로 476+우리집','gostbaducking1@nate.com','kh대학교','컴퓨터학과','2015-03-01~2018-08-26','N',null,null,null,null,null,'it개발자가 되고 싶어요','열심히 하겠뜹니다.','Y',to_date('19/10/15','RR/MM/DD'),'C,java,CSS,VBA,python,php','4000',13,null,1);
+Insert into RESUME (RESUME_NO,PHOTO,PATH,NAME,BIRTH_DATE,PHONE,ADDRESS,EMAIL,SCHOOL,DEPARTMENT,SCHOOL_PERIOD,CAREER,WORK_PLACE,WORK_DATE,WORK,CERTIFICATE,CER_DATE,TITLE,COVER_LETTER,OPEN,UPDATE_DATE,P_LANGUAGE,HOPE_SALARY,M_NO,CAREER_YEAR,SCHOOL_FINAL) values (7,null,'C:\Users\user2\git\itjobs01_!\itjobs06\WebContent\resources/fileupload_resumeImg/','김자바',to_date('84/02/03','RR/MM/DD'),'010-7535-1475','07506+서울 강서구 방화대로 2+롯데캐슬 203동 1105호','gostbaducking1@nate.com','최종대학교','it학부','2014-01-08~2016-12-07','Y','kh정보교육원','2016-12-31~2017-11-22','java강사','정보처리기사,정보처리기능사','2018-06-05,2019-06-04','백엔드 개발자가 되고 싶어요.','백엔드 개발자가 되고 싶어요','Y',to_date('19/10/15','RR/MM/DD'),'C,java,CSS,javascript,VBA,php,asp','4001',13,1,1);
+Insert into RESUME (RESUME_NO,PHOTO,PATH,NAME,BIRTH_DATE,PHONE,ADDRESS,EMAIL,SCHOOL,DEPARTMENT,SCHOOL_PERIOD,CAREER,WORK_PLACE,WORK_DATE,WORK,CERTIFICATE,CER_DATE,TITLE,COVER_LETTER,OPEN,UPDATE_DATE,P_LANGUAGE,HOPE_SALARY,M_NO,CAREER_YEAR,SCHOOL_FINAL) values (8,'2019101516422132159.png','C:\Users\user2\git\itjobs01_!\itjobs06\WebContent\resources/fileupload_resumeImg/','조규현',to_date('19/02/01','RR/MM/DD'),'010-5646-8976','07946+서울 양천구 공항대로 534+1','ss@naver.com','하버드','컴퓨터과','2019-01-01~2019-01-01','Y','뉴욕컴퍼니','2008-01-01~2018-01-01','개발','정보처리기사','2008-01-01','경력개발자 추천드립니다.','경력개발자로 저를 추천합니다.','Y',to_date('19/10/15','RR/MM/DD'),'C,java,CSS,javascript,C++,C#,VBA,python,php,asp','4001',17,10,1);
+Insert into RESUME (RESUME_NO,PHOTO,PATH,NAME,BIRTH_DATE,PHONE,ADDRESS,EMAIL,SCHOOL,DEPARTMENT,SCHOOL_PERIOD,CAREER,WORK_PLACE,WORK_DATE,WORK,CERTIFICATE,CER_DATE,TITLE,COVER_LETTER,OPEN,UPDATE_DATE,P_LANGUAGE,HOPE_SALARY,M_NO,CAREER_YEAR,SCHOOL_FINAL) values (9,'2019101516473078561.jpg','C:\Users\user2\git\itjobs01_!\itjobs06\WebContent\resources/fileupload_resumeImg/','김앞단',to_date('19/02/01','RR/MM/DD'),'010-0000-0000','13580+경기 성남시 분당구 문정로42번길 60+우리집','user1@co.kr','분당대학교','컴퓨터시스템학과','2011-06-16~2015-11-20','N',null,null,null,'컴퓨터활용능력 1급','2019-01-15','프론트개발자가 되고 싶어요','킹바스크립트를 마스터 했습니다.&nbsp;','Y',to_date('19/10/15','RR/MM/DD'),'C,javascript,VBA','3000',18,null,1);
+Insert into RESUME (RESUME_NO,PHOTO,PATH,NAME,BIRTH_DATE,PHONE,ADDRESS,EMAIL,SCHOOL,DEPARTMENT,SCHOOL_PERIOD,CAREER,WORK_PLACE,WORK_DATE,WORK,CERTIFICATE,CER_DATE,TITLE,COVER_LETTER,OPEN,UPDATE_DATE,P_LANGUAGE,HOPE_SALARY,M_NO,CAREER_YEAR,SCHOOL_FINAL) values (10,'2019101500345174814.png','C:\Users\user\git\itjobs01\itjobs06\WebContent\resources/fileupload_resumeImg/','김선영',to_date('91/05/26','RR/MM/DD'),'010-7568-4656','10083+경기 김포시 김포한강4로 131+506호','dd@naver.com','이화여자대학교','개발과','2013-03-01~2018-02-15','N',null,null,null,null,null,'자바 개발자 열심히 하겠습니다.','<span style="color: rgb(102, 102, 102); font-family: 1;맑은 고딕1;, 1;Malgun Gothic1;, 돋움, Dotum, sans-serif; font-size: 15px; letter-spacing: -0.5px; background-color: rgb(255, 255, 255);">"설문조사 결과를 바탕으로 한 동아리 홍보 방식의 변경"</span><br style="color: rgb(102, 102, 102); font-family: 1;맑은 고딕1;, 1;Malgun Gothic1;, 돋움, Dotum, sans-serif; font-size: 15px; letter-spacing: -0.5px; background-color: rgb(255, 255, 255);"><br style="color: rgb(102, 102, 102); font-family: 1;맑은 고딕1;, 1;Malgun Gothic1;, 돋움, Dotum, sans-serif; font-size: 15px; letter-spacing: -0.5px; background-color: rgb(255, 255, 255);"><b class="good" style="color: rgb(51, 51, 51); font-family: 1;맑은 고딕1;, 1;Malgun Gothic1;, 돋움, Dotum, sans-serif; font-size: 15px; letter-spacing: -0.5px; background-color: rgb(255, 255, 255);">동아리 연합회 일원으로서 신입생 홍보와 관련하여 의사결정을 내렸던 적이 있습니다. 주어진 예산으로 어떻게 홍보를 해야 효율적으로 신입생 홍보를 할 수 있는지를 회의하던 중, 다수는 지난해와 동일하게 진행하는 것이 어떻겠냐는 의견을 냈습니다. 여태까지 그렇게 해왔으니 올해에도 그렇게 하면 되지 않겠느냐는 것이었습니다.<br><br>그러나 저는 방식의 변화가 필요하다고 느꼈습니다. 이미 신입생 홍보부스를 세워봤던 입장에서, 논술 시험 기간과 수시 OT 기간에 했던 홍보는 많은 학생을 대상으로 하여 예산은 많이 들었으나 거의 아무런 효과가 없음을 이미 경험적으로 알고 있었기 때문입니다. 따라서 다른 연합회원들에게 동아리 원들에게 동아리 가입 경로를 설문조사로 받고, 그에 따라 홍보를 서너 차례만 진행하는 것이 좋겠다고 의견을 개진하였고, 이가 받아들여져 설문조사를 하게 되었습니다</b>','Y',to_date('19/10/15','RR/MM/DD'),'C,java,CSS,javascript,C++,C#,VBA,python','0',7,null,1);
+Insert into RESUME (RESUME_NO,PHOTO,PATH,NAME,BIRTH_DATE,PHONE,ADDRESS,EMAIL,SCHOOL,DEPARTMENT,SCHOOL_PERIOD,CAREER,WORK_PLACE,WORK_DATE,WORK,CERTIFICATE,CER_DATE,TITLE,COVER_LETTER,OPEN,UPDATE_DATE,P_LANGUAGE,HOPE_SALARY,M_NO,CAREER_YEAR,SCHOOL_FINAL) values (11,'2019101500484125567.png','C:\Users\user\git\itjobs01\itjobs06\WebContent\resources/fileupload_resumeImg/','정영훈',to_date('88/02/01','RR/MM/DD'),'010-0560-4626','07324+서울 영등포구 여의동로3길 10+101동 201호','aa@naver.com','연세대학교','컴퓨터공학과','2005-05-01~2010-02-01','Y','컴퓨터회사','2010-05-03~2018-05-04','개발','정보처리기사','2005-04-01','열정과 끈기로 열심히 하겠습니다','<span style="color: rgb(102, 102, 102); font-family: 1;맑은 고딕1;, 1;Malgun Gothic1;, 돋움, Dotum, sans-serif; font-size: 15px; letter-spacing: -0.5px; background-color: rgb(255, 255, 255);">"발전을 위한 의사소통 능력”</span><br style="color: rgb(102, 102, 102); font-family: 1;맑은 고딕1;, 1;Malgun Gothic1;, 돋움, Dotum, sans-serif; font-size: 15px; letter-spacing: -0.5px; background-color: rgb(255, 255, 255);"><br style="color: rgb(102, 102, 102); font-family: 1;맑은 고딕1;, 1;Malgun Gothic1;, 돋움, Dotum, sans-serif; font-size: 15px; letter-spacing: -0.5px; background-color: rgb(255, 255, 255);"><b class="bad" style="color: rgb(51, 51, 51); font-family: 1;맑은 고딕1;, 1;Malgun Gothic1;, 돋움, Dotum, sans-serif; font-size: 15px; letter-spacing: -0.5px; background-color: rgb(255, 255, 255);">항상 주변의 소리에 열린 자세를 가진 사람이 되기 위해 노력했습니다. 대학 시절 학생회 총무부장을 맡으며 학과의 소통창구를 만든 경험이 있습니다. 당시 학생회와 학우들이 서로 신뢰하며 학교생활을 하도록 방법을 고민했습니다. 학우들의 의견 파악을 위해 SNS 건의함을 개설했습니다. 많은 게시글을 통해, 학생회비 불투명성에 대한 불만을 확인했습니다. 학생회비 사용내역을 월별로 공개할 것을 새로운 학칙으로 제안 하였습니다. 이후 총무부의 의무로써 자리잡게 되었습니다. 학우들이 원하는 것을 파악하고 실행하<br>며, 신규시장 개척에 영업사원이 갖춰야할 의사소통 능력을 배웠습니다.</b>','Y',to_date('19/10/15','RR/MM/DD'),'C,java,CSS,javascript,C++,C#,VBA','4001',8,8,1);
+Insert into RESUME (RESUME_NO,PHOTO,PATH,NAME,BIRTH_DATE,PHONE,ADDRESS,EMAIL,SCHOOL,DEPARTMENT,SCHOOL_PERIOD,CAREER,WORK_PLACE,WORK_DATE,WORK,CERTIFICATE,CER_DATE,TITLE,COVER_LETTER,OPEN,UPDATE_DATE,P_LANGUAGE,HOPE_SALARY,M_NO,CAREER_YEAR,SCHOOL_FINAL) values (12,'2019101501102299495.png','C:\Users\user\git\itjobs01\itjobs06\WebContent\resources/fileupload_resumeImg/','김지석',to_date('86/04/05','RR/MM/DD'),'010-4538-6531','08101+서울 양천구 목동남로 64-3+402호','ff@naver.com','목동대학교','개발전문학과','2001-02-01~2010-05-06','N',null,null,null,null,null,'열정가득한 사원!','<b class="good" style="color: rgb(51, 51, 51); font-family: 1;맑은 고딕1;, 1;Malgun Gothic1;, 돋움, Dotum, sans-serif; font-size: 15px; letter-spacing: -0.5px; background-color: rgb(255, 255, 255);">첫째, 직무와 관련된 지식입니다. 15년 대기환경기사, 16년 수질환경기사와 폐기물처리기사를 취득하였습니다. 환경공학을 공부하면서 ‘대기, 수질, 폐기물, 토양, 소음 등이 모두 연계되어있다.’ 는 점을 느꼈기 때문에 전공 자격증 취득을 통해 환경을 아우르는 지식을 깊이 하고자 노력했습니다. 현재는 토양환경기사 필기 합격 후에 실기 시험을 준비하면서 그 노력을 이어가고 있습니다.</b>','Y',to_date('19/10/15','RR/MM/DD'),'C,javascript,VBA,python,php,asp','0',6,null,1);
+Insert into RESUME (RESUME_NO,PHOTO,PATH,NAME,BIRTH_DATE,PHONE,ADDRESS,EMAIL,SCHOOL,DEPARTMENT,SCHOOL_PERIOD,CAREER,WORK_PLACE,WORK_DATE,WORK,CERTIFICATE,CER_DATE,TITLE,COVER_LETTER,OPEN,UPDATE_DATE,P_LANGUAGE,HOPE_SALARY,M_NO,CAREER_YEAR,SCHOOL_FINAL) values (13,'2019101501232250315.png','C:\Users\user\git\itjobs01\itjobs06\WebContent\resources/fileupload_resumeImg/','권영현',to_date('95/06/08','RR/MM/DD'),'010-2645-9835','13007+경기 하남시 감이남로 72+1층','jj@naver.com','대학교','정말어려운과','2013-05-06~2016-05-04','N',null,null,null,null,null,'도전하는 사람 권영현','<span style="color: rgb(102, 102, 102); font-family: 1;맑은 고딕1;, 1;Malgun Gothic1;, 돋움, Dotum, sans-serif; font-size: 15px; letter-spacing: -0.5px; background-color: rgb(255, 255, 255);">"국익과 경제성장에 기여하는 산업은행"</span><br style="color: rgb(102, 102, 102); font-family: 1;맑은 고딕1;, 1;Malgun Gothic1;, 돋움, Dotum, sans-serif; font-size: 15px; letter-spacing: -0.5px; background-color: rgb(255, 255, 255);"><br style="color: rgb(102, 102, 102); font-family: 1;맑은 고딕1;, 1;Malgun Gothic1;, 돋움, Dotum, sans-serif; font-size: 15px; letter-spacing: -0.5px; background-color: rgb(255, 255, 255);"><b class="bad" style="color: rgb(51, 51, 51); font-family: 1;맑은 고딕1;, 1;Malgun Gothic1;, 돋움, Dotum, sans-serif; font-size: 15px; letter-spacing: -0.5px; background-color: rgb(255, 255, 255);">KDB산업은행은 사회적 문제 해결을 통해 ‘시장 안전판’ 역할은 물론, 4차 산업혁명의 신성장동력을 확보하며 경제재건을 주도하고 있습니다. 이러한 산업은행의 모습이 저와 교점이 있다고 판단해 지원했습니다. 저 또한 OOOOO 서포터즈 활동을 하며 국익에 기여하는 일을 하겠다는 결심을 했습니다. 당시 중소기업의 수출을 돕고 4차 산업혁명 육성을 지원하며 자부심과 사명감을 느꼈기 때문입니다. 이에 산업은행에서도 국가 경제 성장을 지원해주는 업무를 잘할 수 있다는 확신에 지원했습니다.</b>','Y',to_date('19/10/15','RR/MM/DD'),'C,java,CSS','3000',3,null,1);
+Insert into RESUME (RESUME_NO,PHOTO,PATH,NAME,BIRTH_DATE,PHONE,ADDRESS,EMAIL,SCHOOL,DEPARTMENT,SCHOOL_PERIOD,CAREER,WORK_PLACE,WORK_DATE,WORK,CERTIFICATE,CER_DATE,TITLE,COVER_LETTER,OPEN,UPDATE_DATE,P_LANGUAGE,HOPE_SALARY,M_NO,CAREER_YEAR,SCHOOL_FINAL) values (14,'2019101501274472008.png','C:\Users\user\git\itjobs01\itjobs06\WebContent\resources/fileupload_resumeImg/','권진아',to_date('93/05/01','RR/MM/DD'),'010-1245-5643','05503+서울 송파구 잠실로 15+101동 201호','ll@naver.com','잠실대학교','잠실학과','2012-01-01~2016-01-01','Y','복지좋은회사','2016-05-01~2019-01-01','웹디자인','정보처리기사','2016-03-02','열심히하겠습니다.','<b class="bad" style="color: rgb(51, 51, 51); font-family: " 맑은="" 고딕",="" "malgun="" gothic",="" 돋움,="" dotum,="" sans-serif;="" font-size:="" 15px;="" letter-spacing:="" -0.5px;="" background-color:="" rgb(255,="" 255,="" 255);"="">입행 후 첫째, 철저한 시장분석을 통해 KDB산업은행의 자금이 적재적소에 투자될 수 있도록 하겠습니다. OOOOO 서포터즈를 하며 습득한 시장 분석력을 발휘해 산업은행의 거시적 의사결정을 지원하겠습니다. 미래 육성 사업 및 투자에 대한 올바른 방향을 제시하여, 상사분들에게 신뢰받는 사원이 되겠습니다.</b>','Y',to_date('19/10/15','RR/MM/DD'),'C,java,CSS,javascript','4001',5,3,1);
+Insert into RESUME (RESUME_NO,PHOTO,PATH,NAME,BIRTH_DATE,PHONE,ADDRESS,EMAIL,SCHOOL,DEPARTMENT,SCHOOL_PERIOD,CAREER,WORK_PLACE,WORK_DATE,WORK,CERTIFICATE,CER_DATE,TITLE,COVER_LETTER,OPEN,UPDATE_DATE,P_LANGUAGE,HOPE_SALARY,M_NO,CAREER_YEAR,SCHOOL_FINAL) values (15,'2019101516351243959.png','C:\Users\user2\git\itjobs01_!\itjobs06\WebContent\resources/fileupload_resumeImg/','김개발자',to_date('99/09/09','RR/MM/DD'),'010-0000-0000','06120+서울 강남구 강남대로 476+우리집','gostbaducking1@nate.com','kh대학교','컴퓨터학과','2015-03-01~2018-08-26','N',null,null,null,null,null,'it개발자가 되고 싶어요','열심히 하겠뜹니다.','Y',to_date('19/10/15','RR/MM/DD'),'C,java,CSS,VBA,python,php','4000',13,null,1);
+Insert into RESUME (RESUME_NO,PHOTO,PATH,NAME,BIRTH_DATE,PHONE,ADDRESS,EMAIL,SCHOOL,DEPARTMENT,SCHOOL_PERIOD,CAREER,WORK_PLACE,WORK_DATE,WORK,CERTIFICATE,CER_DATE,TITLE,COVER_LETTER,OPEN,UPDATE_DATE,P_LANGUAGE,HOPE_SALARY,M_NO,CAREER_YEAR,SCHOOL_FINAL) values (16,null,'C:\Users\user2\git\itjobs01_!\itjobs06\WebContent\resources/fileupload_resumeImg/','김자바',to_date('84/02/03','RR/MM/DD'),'010-7535-1475','07506+서울 강서구 방화대로 2+롯데캐슬 203동 1105호','gostbaducking1@nate.com','최종대학교','it학부','2014-01-08~2016-12-07','Y','kh정보교육원','2016-12-31~2017-11-22','java강사','정보처리기사,정보처리기능사','2018-06-05,2019-06-04','백엔드 개발자가 되고 싶어요.','백엔드 개발자가 되고 싶어요','Y',to_date('19/10/15','RR/MM/DD'),'C,java,CSS,javascript,VBA,php,asp','4001',13,1,1);
+Insert into RESUME (RESUME_NO,PHOTO,PATH,NAME,BIRTH_DATE,PHONE,ADDRESS,EMAIL,SCHOOL,DEPARTMENT,SCHOOL_PERIOD,CAREER,WORK_PLACE,WORK_DATE,WORK,CERTIFICATE,CER_DATE,TITLE,COVER_LETTER,OPEN,UPDATE_DATE,P_LANGUAGE,HOPE_SALARY,M_NO,CAREER_YEAR,SCHOOL_FINAL) values (17,'2019101516422132159.png','C:\Users\user2\git\itjobs01_!\itjobs06\WebContent\resources/fileupload_resumeImg/','조규현',to_date('19/02/01','RR/MM/DD'),'010-5646-8976','07946+서울 양천구 공항대로 534+1','ss@naver.com','하버드','컴퓨터과','2019-01-01~2019-01-01','Y','뉴욕컴퍼니','2008-01-01~2018-01-01','개발','정보처리기사','2008-01-01','팀장자리는 제가 딱이죠','경력개발자로 저를 추천합니다.','Y',to_date('19/10/15','RR/MM/DD'),'C,java,CSS,javascript,C++,C#,VBA,python,php,asp','4001',17,10,1);
+Insert into RESUME (RESUME_NO,PHOTO,PATH,NAME,BIRTH_DATE,PHONE,ADDRESS,EMAIL,SCHOOL,DEPARTMENT,SCHOOL_PERIOD,CAREER,WORK_PLACE,WORK_DATE,WORK,CERTIFICATE,CER_DATE,TITLE,COVER_LETTER,OPEN,UPDATE_DATE,P_LANGUAGE,HOPE_SALARY,M_NO,CAREER_YEAR,SCHOOL_FINAL) values (18,'2019101516473078561.jpg','C:\Users\user2\git\itjobs01_!\itjobs06\WebContent\resources/fileupload_resumeImg/','김앞단',to_date('19/02/01','RR/MM/DD'),'010-0000-0000','13580+경기 성남시 분당구 문정로42번길 60+우리집','user1@co.kr','분당대학교','컴퓨터시스템학과','2011-06-16~2015-11-20','N',null,null,null,'컴퓨터활용능력 1급','2019-01-15','프론트개발자가 되고 싶어요','킹바스크립트를 마스터 했습니다.1;','Y',to_date('19/10/15','RR/MM/DD'),'C,javascript,VBA','3000',18,null,1);
+Insert into RESUME (RESUME_NO,PHOTO,PATH,NAME,BIRTH_DATE,PHONE,ADDRESS,EMAIL,SCHOOL,DEPARTMENT,SCHOOL_PERIOD,CAREER,WORK_PLACE,WORK_DATE,WORK,CERTIFICATE,CER_DATE,TITLE,COVER_LETTER,OPEN,UPDATE_DATE,P_LANGUAGE,HOPE_SALARY,M_NO,CAREER_YEAR,SCHOOL_FINAL) values (19,null,'C:\Users\user2\git\itjobs01_!\itjobs06\WebContent\resources/fileupload_resumeImg/','1',to_date('19/02/01','RR/MM/DD'),'010-0000-0000','++11','ss@naver.com','1','1','2019-01-01~2019-01-01','N',null,null,null,null,null,'1','1','Y',to_date('19/10/15','RR/MM/DD'),'C','0',17,null,1);
+Insert into RESUME (RESUME_NO,PHOTO,PATH,NAME,BIRTH_DATE,PHONE,ADDRESS,EMAIL,SCHOOL,DEPARTMENT,SCHOOL_PERIOD,CAREER,WORK_PLACE,WORK_DATE,WORK,CERTIFICATE,CER_DATE,TITLE,COVER_LETTER,OPEN,UPDATE_DATE,P_LANGUAGE,HOPE_SALARY,M_NO,CAREER_YEAR,SCHOOL_FINAL) values (20,'2019101519111171634.jpg','C:\Users\user2\git\itjobs01_!\itjobs06\WebContent\resources/fileupload_resumeImg/','1',to_date('19/02/01','RR/MM/DD'),'010-0000-0000','++55','aa@naver.com','1','1','2019-01-01~2019-01-01','N',null,null,null,null,null,'1','1','Y',to_date('19/10/15','RR/MM/DD'),'C','0',9,null,1);
+
+
+
+-- BOARD
+
+Insert into BOARD (B_NO,M_NO,HEAD,TITLE,CONTENTS,ENROLL_DATE,UPDATE_DATE,FILE_ORINAME,TIME,COUNT,STATUS,D_COUNT,EDITFILE,PATH,DOWN_COUNT,VIDEO) values (1,8,'자유','멜론 음원차트 공유해요','<p><span style="font-size: 11pt; color: rgb(0, 158, 37);"><b>음원 차트 공유해요1;</b></span></p><p><span style="font-size: 11pt; color: rgb(0, 158, 37);"><b>같이 들어요 :)</b></span></p>',to_date('19/10/15','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),null,null,0,'Y',0,null,'C:\Users\user\git\itjobs01\itjobs06\WebContent\resources/fileupload_board/',0,'https://www.youtube.com/watch?v=8-32N-jwMSQ');
+Insert into BOARD (B_NO,M_NO,HEAD,TITLE,CONTENTS,ENROLL_DATE,UPDATE_DATE,FILE_ORINAME,TIME,COUNT,STATUS,D_COUNT,EDITFILE,PATH,DOWN_COUNT,VIDEO) values (2,8,'스터디','강남역 자바 스터디 구해요','<p><span style="font-size: 18pt; color: rgb(58, 50, 195);">강남역</span><span style="font-size: 18pt; color: rgb(255, 0, 0);">에서 주말만 5명 정도 하려고 합니다.</span></p><p>관심 있으신 분들은 댓글 남겨주세요 !</p><p><br></p><p>시간은 다같이 정할 예정입니다.</p><p><br></p>',to_date('19/10/15','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),'study.png','2019-10-17~2019-10-24',0,'Y',0,'2019101500262611655.png','C:\Users\user\git\itjobs01\itjobs06\WebContent\resources/fileupload_board/',0,null);
+Insert into BOARD (B_NO,M_NO,HEAD,TITLE,CONTENTS,ENROLL_DATE,UPDATE_DATE,FILE_ORINAME,TIME,COUNT,STATUS,D_COUNT,EDITFILE,PATH,DOWN_COUNT,VIDEO) values (3,7,'자유','이번에 it 일자리 박람회에 가는데','<p style="box-sizing: border-box; margin-bottom: 10px; color: rgb(51, 51, 51); font-family: ;Helvetica Neue1;, Helvetica, Arial, 1;Apple SD Gothic Neo1;, 1;Malgun Gothic1;, Dotdum; font-size: 14px; background-color: rgb(255, 255, 255);">뭘 준비해야 할 지 몰라서요...</p><p style="box-sizing: border-box; margin-bottom: 10px; color: rgb(51, 51, 51); font-family: 1;Helvetica Neue1;, Helvetica, Arial, 1;Apple SD Gothic Neo1;, 1;Malgun Gothic1;, Dotdum; font-size: 14px; background-color: rgb(255, 255, 255);">혹시 가보셨거나 어떻게 준비해야 할 지 가르쳐 주실수 있는분 계신가요??</p><p style="box-sizing: border-box; margin-bottom: 10px; color: rgb(51, 51, 51); font-family: 1;Helvetica Neue1;, Helvetica, Arial, 1;Apple SD Gothic Neo1;, 1;Malgun Gothic1;, Dotdum; font-size: 14px; background-color: rgb(255, 255, 255);"><br></p><p style="box-sizing: border-box; margin-bottom: 10px; color: rgb(51, 51, 51); font-family: 1;Helvetica Neue1;, Helvetica, Arial, 1;Apple SD Gothic Neo1;, 1;Malgun Gothic1;, Dotdum; font-size: 14px; background-color: rgb(255, 255, 255);"><b><span style="color: rgb(233, 125, 129);">댓글 부탁드려요~!</span></b></p>',to_date('19/10/15','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),null,null,0,'Y',0,null,'C:\Users\user\git\itjobs01\itjobs06\WebContent\resources/fileupload_board/',0,null);
+Insert into BOARD (B_NO,M_NO,HEAD,TITLE,CONTENTS,ENROLL_DATE,UPDATE_DATE,FILE_ORINAME,TIME,COUNT,STATUS,D_COUNT,EDITFILE,PATH,DOWN_COUNT,VIDEO) values (4,1,'서식','한글이력서','<p><b>한글이력서</b></p>',to_date('19/10/15','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),'한글이력서.png',null,0,'Y',0,'2019101501300565426.png','C:\Users\user\git\itjobs01\itjobs06\WebContent\resources/fileupload_board/',0,null);
+Insert into BOARD (B_NO,M_NO,HEAD,TITLE,CONTENTS,ENROLL_DATE,UPDATE_DATE,FILE_ORINAME,TIME,COUNT,STATUS,D_COUNT,EDITFILE,PATH,DOWN_COUNT,VIDEO) values (5,1,'서식','영문이력서','<p><b>영문이력서</b></p>',to_date('19/10/15','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),'영문이력서.png',null,6,'Y',0,'2019101501303213830.png','C:\Users\user\git\itjobs01\itjobs06\WebContent\resources/fileupload_board/',4,null);
+Insert into BOARD (B_NO,M_NO,HEAD,TITLE,CONTENTS,ENROLL_DATE,UPDATE_DATE,FILE_ORINAME,TIME,COUNT,STATUS,D_COUNT,EDITFILE,PATH,DOWN_COUNT,VIDEO) values (6,1,'서식','자기소개서','<p><b>자기소개서</b></p>',to_date('19/10/15','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),'자기소개서.png',null,6,'Y',0,'2019101501305318765.png','C:\Users\user\git\itjobs01\itjobs06\WebContent\resources/fileupload_board/',5,null);
+Insert into BOARD (B_NO,M_NO,HEAD,TITLE,CONTENTS,ENROLL_DATE,UPDATE_DATE,FILE_ORINAME,TIME,COUNT,STATUS,D_COUNT,EDITFILE,PATH,DOWN_COUNT,VIDEO) values (7,1,'공지사항','자기소개서 작성 시 참고하세요','<p><span style="background-color: rgb(255, 255, 255); color: rgb(255, 0, 0);">자기소개서 작성 시 참고할만한 영상입니다.</span></p>',to_date('19/10/15','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),null,null,1,'Y',0,null,'C:\Users\user\git\itjobs01\itjobs06\WebContent\resources/fileupload_board/',0,'https://www.youtube.com/watch?v=-91jQIEYmQg');
+Insert into BOARD (B_NO,M_NO,HEAD,TITLE,CONTENTS,ENROLL_DATE,UPDATE_DATE,FILE_ORINAME,TIME,COUNT,STATUS,D_COUNT,EDITFILE,PATH,DOWN_COUNT,VIDEO) values (8,1,'공지사항','*****게시글 작성 전 꼭 읽어주세요*****','<p>게시글 작성시 꼭 지켜주세요</p><p>1. 욕설 금지</p><p>2. 개인정보 작성 금지</p><p>3. 광고 금지</p><p><br></p>',to_date('19/10/15','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),'123.png',null,3,'Y',0,'2019101501341711654.png','C:\Users\user\git\itjobs01\itjobs06\WebContent\resources/fileupload_board/',0,null);
+Insert into BOARD (B_NO,M_NO,HEAD,TITLE,CONTENTS,ENROLL_DATE,UPDATE_DATE,FILE_ORINAME,TIME,COUNT,STATUS,D_COUNT,EDITFILE,PATH,DOWN_COUNT,VIDEO) values (9,7,'자유','이번에 it 일자리 박람회에 가는데','<p style="box-sizing: border-box; margin-bottom: 10px; color: rgb(51, 51, 51); font-family: ;Helvetica Neue1;, Helvetica, Arial, 1;Apple SD Gothic Neo1;, 1;Malgun Gothic1;, Dotdum; font-size: 14px; background-color: rgb(255, 255, 255);">뭘 준비해야 할 지 몰라서요...</p><p style="box-sizing: border-box; margin-bottom: 10px; color: rgb(51, 51, 51); font-family: 1;Helvetica Neue1;, Helvetica, Arial, 1;Apple SD Gothic Neo1;, 1;Malgun Gothic1;, Dotdum; font-size: 14px; background-color: rgb(255, 255, 255);">혹시 가보셨거나 어떻게 준비해야 할 지 가르쳐 주실수 있는분 계신가요??</p>',to_date('19/10/15','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),null,null,0,'Y',0,null,'C:\Users\pc\git\itjobs01\itjobs06\WebContent\resources/fileupload_board/',0,null);
+Insert into BOARD (B_NO,M_NO,HEAD,TITLE,CONTENTS,ENROLL_DATE,UPDATE_DATE,FILE_ORINAME,TIME,COUNT,STATUS,D_COUNT,EDITFILE,PATH,DOWN_COUNT,VIDEO) values (10,8,'자유','다들 취업 어떻게 하셨나여?','<p><b>취준생 1년차입니다ㅠㅠ</b>1;</p><p>지원하는곳마다 광탈이라 너무 힘드네여</p><p>자기소개서 노하우 공유해주세요~</p>',to_date('19/10/15','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),null,null,0,'Y',0,null,'C:\Users\pc\git\itjobs01\itjobs06\WebContent\resources/fileupload_board/',0,null);
+Insert into BOARD (B_NO,M_NO,HEAD,TITLE,CONTENTS,ENROLL_DATE,UPDATE_DATE,FILE_ORINAME,TIME,COUNT,STATUS,D_COUNT,EDITFILE,PATH,DOWN_COUNT,VIDEO) values (11,8,'프로젝트','4인 프로젝트 입니다!','<p>9월부터 4인 프로젝트 중이었는데1;</p><p>급하게 1명을 더 구하게되었습니다 ㅠㅠㅠ1;</p><p>관심있으신 분들은</p><p><br></p><p><span style="background-color: rgb(255, 0, 0); color: rgb(255, 255, 255);">카카오톡 kkk로 연락주세요~</span></p>',to_date('19/10/15','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),'otl.png','2019-10-14~2019-10-17',0,'Y',0,'2019101520521557002.png','C:\Users\user2\git\itjobs01_!\itjobs06\WebContent\resources/fileupload_board/',0,null);
+Insert into BOARD (B_NO,M_NO,HEAD,TITLE,CONTENTS,ENROLL_DATE,UPDATE_DATE,FILE_ORINAME,TIME,COUNT,STATUS,D_COUNT,EDITFILE,PATH,DOWN_COUNT,VIDEO) values (12,8,'자유','기능재부합니다 ㅎㅎ','<p>저도 실력이 뛰어난것은 아니지만1;</p><p>이제 입문단계인분들을 위해 스터디 진행하려고합니다 ㅎㅎㅎ1;</p><p><br></p><p><b>댓글달아주시면 인원추려서 다시 올리도록 하겠습니다1;</b></p><p><b>많은 참여부탁드려요~</b></p>',to_date('19/10/15','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),null,null,1,'Y',0,null,'C:\Users\pc\git\itjobs01\itjobs06\WebContent\resources/fileupload_board/',0,'https://www.youtube.com/watch?v=wjLwmWyItWI');
+Insert into BOARD (B_NO,M_NO,HEAD,TITLE,CONTENTS,ENROLL_DATE,UPDATE_DATE,FILE_ORINAME,TIME,COUNT,STATUS,D_COUNT,EDITFILE,PATH,DOWN_COUNT,VIDEO) values (13,7,'스터디','함께 공부해요~~','<p>자바 배우고있습니다.</p><p><span style="color: rgb(255, 0, 0);">일주일에 2번 같이 모여서 스터디해요!1;</span></p><p>댓글 달아주시면 카톡아이디 말씀드리겠습니당 ㅎㅎㅎ</p>',to_date('19/10/15','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),null,'2019-10-15~2019-10-18',0,'Y',0,null,'C:\Users\pc\git\itjobs01\itjobs06\WebContent\resources/fileupload_board/',0,null);
+Insert into BOARD (B_NO,M_NO,HEAD,TITLE,CONTENTS,ENROLL_DATE,UPDATE_DATE,FILE_ORINAME,TIME,COUNT,STATUS,D_COUNT,EDITFILE,PATH,DOWN_COUNT,VIDEO) values (14,8,'스터디','재능기부합니다~~','<p>저도 실력이 뛰어난것은아니나</p><p>이제 막 입문하신 분들을 위하여</p><p>소소하게 스터디를 진행할까 합니다~</p><p>어떠신가요? ㅎㅎ</p>',to_date('19/10/15','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),null,'2019-10-14~2019-10-25',3,'Y',0,null,'C:\Users\pc\git\itjobs01\itjobs06\WebContent\resources/fileupload_board/',0,null);
+Insert into BOARD (B_NO,M_NO,HEAD,TITLE,CONTENTS,ENROLL_DATE,UPDATE_DATE,FILE_ORINAME,TIME,COUNT,STATUS,D_COUNT,EDITFILE,PATH,DOWN_COUNT,VIDEO) values (15,8,'프로젝트',' 포트폴리오용 프로젝트 함께 만드실 분 구합니다.','<p style="box-sizing: border-box; margin-bottom: 10px; color: rgb(51, 51, 51); font-family: 1;Helvetica Neue1;, Helvetica, Arial, 1;Apple SD Gothic Neo1;, 1;Malgun Gothic1;, Dotdum; font-size: 14px; background-color: rgb(255, 255, 255);">안녕하세요</p><p style="box-sizing: border-box; margin-bottom: 10px; color: rgb(51, 51, 51); font-family: 1;Helvetica Neue1;, Helvetica, Arial, 1;Apple SD Gothic Neo1;, 1;Malgun Gothic1;, Dotdum; font-size: 14px; background-color: rgb(255, 255, 255);">자바 백엔드로 취업 준비하고 있는 초보 개발자 입니다.</p><p style="box-sizing: border-box; margin-bottom: 10px; color: rgb(51, 51, 51); font-family: 1;Helvetica Neue1;, Helvetica, Arial, 1;Apple SD Gothic Neo1;, 1;Malgun Gothic1;, Dotdum; font-size: 14px; background-color: rgb(255, 255, 255);">취업 용으로 프로젝트를 몇개 했는데, 여러영역을 혼자서 하니 완성도가 떨어져서,</p><p style="box-sizing: border-box; margin-bottom: 10px; color: rgb(51, 51, 51); font-family: 1;Helvetica Neue1;, Helvetica, Arial, 1;Apple SD Gothic Neo1;, 1;Malgun Gothic1;, Dotdum; font-size: 14px; background-color: rgb(255, 255, 255);">프론트엔드로 취업희망 하시는 분과 같이 제대로 된 프로젝트를 해보고자 글을 쓰게 되었습니다.</p><p style="box-sizing: border-box; margin-bottom: 10px; color: rgb(51, 51, 51); font-family: 1;Helvetica Neue1;, Helvetica, Arial, 1;Apple SD Gothic Neo1;, 1;Malgun Gothic1;, Dotdum; font-size: 14px; background-color: rgb(255, 255, 255);"><span style="box-sizing: border-box; font-weight: bold;">먼저 제가 할 수 있는 것들입니다.</span></p><p style="box-sizing: border-box; margin-bottom: 10px; color: rgb(51, 51, 51); font-family: 1;Helvetica Neue1;, Helvetica, Arial, 1;Apple SD Gothic Neo1;, 1;Malgun Gothic1;, Dotdum; font-size: 14px; background-color: rgb(255, 255, 255);">저는 1;달력으로 일정 관리하기1;, 1;게시판1;, 1;모임 중개 사이트(제작중)1; 등을 만들어보았습니다.</p><p style="box-sizing: border-box; margin-bottom: 10px; color: rgb(51, 51, 51); font-family: 1;Helvetica Neue1;, Helvetica, Arial, 1;Apple SD Gothic Neo1;, 1;Malgun Gothic1;, Dotdum; font-size: 14px; background-color: rgb(255, 255, 255);">spring boot 로 rest api를 구성하고 vue로 화면을 모듈화해서 개발해 보았습니다.1;</p><p style="box-sizing: border-box; margin-bottom: 10px; color: rgb(51, 51, 51); font-family: 1;Helvetica Neue1;, Helvetica, Arial, 1;Apple SD Gothic Neo1;, 1;Malgun Gothic1;, Dotdum; font-size: 14px; background-color: rgb(255, 255, 255);">기본적인 crud, 기본적인 예외처리를 할 수 있고, 프론트단과 연계가 가능합니다.1;1;</p><p style="box-sizing: border-box; margin-bottom: 10px; color: rgb(51, 51, 51); font-family: 1;Helvetica Neue1;, Helvetica, Arial, 1;Apple SD Gothic Neo1;, 1;Malgun Gothic1;, Dotdum; font-size: 14px; background-color: rgb(255, 255, 255);">spring security와 jjwt 사용해서 사용자 로그인 처리를 할 수 있습니다.1;</p><p style="box-sizing: border-box; margin-bottom: 10px; color: rgb(51, 51, 51); font-family: 1;Helvetica Neue1;, Helvetica, Arial, 1;Apple SD Gothic Neo1;, 1;Malgun Gothic1;, Dotdum; font-size: 14px; background-color: rgb(255, 255, 255);"><span style="box-sizing: border-box; font-weight: 700;">제가 원하는 것 입니다.</span></p>',to_date('19/10/15','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),null,'2019-10-01~2019-10-24',1,'Y',0,null,'C:\Users\pc\git\itjobs01\itjobs06\WebContent\resources/fileupload_board/',0,null);
+Insert into BOARD (B_NO,M_NO,HEAD,TITLE,CONTENTS,ENROLL_DATE,UPDATE_DATE,FILE_ORINAME,TIME,COUNT,STATUS,D_COUNT,EDITFILE,PATH,DOWN_COUNT,VIDEO) values (16,4,'자유','진심으로 적성에 맞는지 잘모르겠네요...','<p>배우는 재미는 있는데</p><p>제가 정말 이 일을 직업으로 할 수 있을까싶고1;</p><p>더이상 발전할 수 있을까 걱정입니다... <i><u>조언부탁드려요ㅠㅠㅠ</u></i></p>',to_date('19/10/15','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),null,null,2,'Y',0,null,'C:\Users\pc\git\itjobs01\itjobs06\WebContent\resources/fileupload_board/',0,null);
+Insert into BOARD (B_NO,M_NO,HEAD,TITLE,CONTENTS,ENROLL_DATE,UPDATE_DATE,FILE_ORINAME,TIME,COUNT,STATUS,D_COUNT,EDITFILE,PATH,DOWN_COUNT,VIDEO) values (17,4,'스터디','혼자하려니 공부하기싫어요ㅠㅠ 같이하고싶습니다','<p>현재 자바위주로 공부중인데1;</p><p>같이 즐겁게 공부하실분 계시나여? ㅎㅎㅎ</p>',to_date('19/10/15','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),null,'2019-10-17~2019-10-24',1,'Y',0,null,'C:\Users\pc\git\itjobs01\itjobs06\WebContent\resources/fileupload_board/',0,null);
+Insert into BOARD (B_NO,M_NO,HEAD,TITLE,CONTENTS,ENROLL_DATE,UPDATE_DATE,FILE_ORINAME,TIME,COUNT,STATUS,D_COUNT,EDITFILE,PATH,DOWN_COUNT,VIDEO) values (18,4,'프로젝트','공모전 같이 준비해요','<p>12월에 개최되는 it공모전을 목표로 프로젝트하려고합니다</p><p>인원은 3명정도 생각중입니다1;</p><p><br></p>',to_date('19/10/15','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),null,'2019-10-15~2019-10-22',1,'Y',0,null,'C:\Users\pc\git\itjobs01\itjobs06\WebContent\resources/fileupload_board/',0,null);
+Insert into BOARD (B_NO,M_NO,HEAD,TITLE,CONTENTS,ENROLL_DATE,UPDATE_DATE,FILE_ORINAME,TIME,COUNT,STATUS,D_COUNT,EDITFILE,PATH,DOWN_COUNT,VIDEO) values (19,6,'자유','저는 네이버에 꼭 취업하고싶어요!','<p>네이버 취업을 목표로 열심히 공부중인데</p><p>의지를 다지고자 글을 남깁니다 ㅎㅎ1;</p><p><br></p><p>모두들 목표를 이루셨으면 좋겠습니다~ 힘내세요!</p>',to_date('19/10/15','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),'네이버.png',null,4,'Y',0,'2019101520541162008.png','C:\Users\user2\git\itjobs01_!\itjobs06\WebContent\resources/fileupload_board/',2,null);
+Insert into BOARD (B_NO,M_NO,HEAD,TITLE,CONTENTS,ENROLL_DATE,UPDATE_DATE,FILE_ORINAME,TIME,COUNT,STATUS,D_COUNT,EDITFILE,PATH,DOWN_COUNT,VIDEO) values (20,6,'스터디','온라인 알고리즘 스터디','<p style="box-sizing: border-box; margin-bottom: 10px; color: rgb(51, 51, 51); font-family: 1;Helvetica Neue;, Helvetica, Arial, 1;Apple SD Gothic Neo1;, 1;Malgun Gothic1;, Dotdum; font-size: 14px; background-color: rgb(255, 255, 255);">회사 다니면서 가볍게 일주일에 3~4 문제씩 약속하고 푸는 온라인 알고리즘 스터디원을 구하고 있습니다.</p><p style="box-sizing: border-box; margin-bottom: 10px; color: rgb(51, 51, 51); font-family: 1;Helvetica Neue1;, Helvetica, Arial, 1;Apple SD Gothic Neo1;, 1;Malgun Gothic1;, Dotdum; font-size: 14px; background-color: rgb(255, 255, 255);">저는 자바를 사용하고 있습니다.</p><p style="box-sizing: border-box; margin-bottom: 10px; color: rgb(51, 51, 51); font-family: 1;Helvetica Neue1;, Helvetica, Arial, 1;Apple SD Gothic Neo1;, 1;Malgun Gothic1;, Dotdum; font-size: 14px; background-color: rgb(255, 255, 255);"><br style="box-sizing: border-box;"></p><p style="box-sizing: border-box; margin-bottom: 10px; color: rgb(51, 51, 51); font-family: 1;Helvetica Neue1;, Helvetica, Arial, 1;Apple SD Gothic Neo1;, 1;Malgun Gothic1;, Dotdum; font-size: 14px; background-color: rgb(255, 255, 255);">풀이법을 공유하는 것도 좋지만, 약속을 하고 꾸준히 일주일에 몇문제씩 문제를 푸는 것을 목표로 하고 있습니다. 관심 있으신 분들은 댓글 남겨주시면 감사하겠습니다.1;</p><p style="box-sizing: border-box; margin-bottom: 10px; color: rgb(51, 51, 51); font-family: 1;Helvetica Neue1;, Helvetica, Arial, 1;Apple SD Gothic Neo1;, 1;Malgun Gothic1;, Dotdum; font-size: 14px; background-color: rgb(255, 255, 255);"><br style="box-sizing: border-box;"></p><p style="box-sizing: border-box; margin-bottom: 10px; color: rgb(51, 51, 51); font-family: 1;Helvetica Neue1;, Helvetica, Arial, 1;Apple SD Gothic Neo1;, 1;Malgun Gothic1;, Dotdum; font-size: 14px; background-color: rgb(255, 255, 255);">오픈채팅방 주소는1;</p><p style="box-sizing: border-box; margin-bottom: 10px; color: rgb(51, 51, 51); font-family: 1;Helvetica Neue;, Helvetica, Arial, 1;Apple SD Gothic Neo1;, 1;Malgun Gothic1;, Dotdum; font-size: 14px; background-color: rgb(255, 255, 255);"><a href="https://open.kakao.com/o/gMQE5ZGb" rel="nofollow" style="box-sizing: border-box; background-color: transparent; color: rgb(42, 100, 150); text-decoration-line: none;">https://open.kakao.com/o/gMQE5ZGb</a>142</p>',to_date('19/10/15','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),null,'2019-10-09~2019-10-18',0,'Y',0,null,'C:\Users\pc\git\itjobs01\itjobs06\WebContent\resources/fileupload_board/',0,null);
+Insert into BOARD (B_NO,M_NO,HEAD,TITLE,CONTENTS,ENROLL_DATE,UPDATE_DATE,FILE_ORINAME,TIME,COUNT,STATUS,D_COUNT,EDITFILE,PATH,DOWN_COUNT,VIDEO) values (21,6,'프로젝트','[서울숲] JJ(Java Journey) - Java 개발자 프로젝트/스터디/모각코 모임','<h1 style="box-sizing: border-box; margin: 20px 0px 10px; font-size: 36px; font-family: 1;helvetica neue1;, helvetica, arial, 1;apple sd gothic neo1;, 1;malgun gothic1;, dotdum; font-weight: 500; line-height: 1.1; color: rgb(51, 51, 51); background-color: rgb(255, 255, 255);"><span style="font-family: 1;Helvetica Neue1;, Helvetica, Arial, 1;Apple SD Gothic Neo1;, 1;Malgun Gothic1;, Dotdum; font-size: 14px;">1;시간: 매주 토요일 12:00 - 15:00</span>1;</h1><p style="box-sizing: border-box; margin-bottom: 10px; color: rgb(51, 51, 51); font-family: 1;Helvetica Neue1;, Helvetica, Arial, 1;Apple SD Gothic Neo1;, 1;Malgun Gothic1;, Dotdum; font-size: 14px; background-color: rgb(255, 255, 255);">- 장소: 서울숲 근처<br style="box-sizing: border-box;"></p><p style="box-sizing: border-box; margin-bottom: 10px; color: rgb(51, 51, 51); font-family: 1;Helvetica Neue1;, Helvetica, Arial, 1;Apple SD Gothic Neo1;, 1;Malgun Gothic1;, Dotdum; font-size: 14px; background-color: rgb(255, 255, 255);">- 자율 참여<br style="box-sizing: border-box;"></p><p style="box-sizing: border-box; margin-bottom: 10px; color: rgb(51, 51, 51); font-family: 1;Helvetica Neue1;, Helvetica, Arial, 1;Apple SD Gothic Neo1;, 1;Malgun Gothic1;, Dotdum; font-size: 14px; background-color: rgb(255, 255, 255);"><br style="box-sizing: border-box;"></p><p style="box-sizing: border-box; margin-bottom: 10px; color: rgb(51, 51, 51); font-family: 1;Helvetica Neue1;, Helvetica, Arial, 1;Apple SD Gothic Neo1;, 1;Malgun Gothic1;, Dotdum; font-size: 14px; background-color: rgb(255, 255, 255);"><span style="box-sizing: border-box; font-weight: bold;">2. 모각코 벙개 모임</span></p><p style="box-sizing: border-box; margin-bottom: 10px; color: rgb(51, 51, 51); font-family: 1;Helvetica Neue1;, Helvetica, Arial, 1;Apple SD Gothic Neo1;, 1;Malgun Gothic1;, Dotdum; font-size: 14px; background-color: rgb(255, 255, 255);">- 시간: 벙개 주선자가 정함</p><p style="box-sizing: border-box; margin-bottom: 10px; color: rgb(51, 51, 51); font-family: 1;Helvetica Neue1;, Helvetica, Arial, 1;Apple SD Gothic Neo1;, 1;Malgun Gothic1;, Dotdum; font-size: 14px; background-color: rgb(255, 255, 255);">- 장소: 벙개 주선자가 정함<br style="box-sizing: border-box;"></p><p style="box-sizing: border-box; margin-bottom: 10px; color: rgb(51, 51, 51); font-family: 1;Helvetica Neue1;, Helvetica, Arial, 1;Apple SD Gothic Neo1;, 1;Malgun Gothic1;, Dotdum; font-size: 14px; background-color: rgb(255, 255, 255);">- 자율 참여</p><p style="box-sizing: border-box; margin-bottom: 10px; color: rgb(51, 51, 51); font-family: ;Helvetica Neue1;, Helvetica, Arial, ;Apple SD Gothic Neo1;, 1;Malgun Gothic1;, Dotdum; font-size: 14px; background-color: rgb(255, 255, 255);"><br style="box-sizing: border-box;"></p><p style="box-sizing: border-box; margin-bottom: 10px; color: rgb(51, 51, 51); font-family: 1;Helvetica Neue1;, Helvetica, Arial, 1;Apple SD Gothic Neo1;, ;Malgun Gothic1;, Dotdum; font-size: 14px; background-color: rgb(255, 255, 255);"><br></p>',to_date('19/10/15','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),null,'2019-10-15~2019-10-30',1,'Y',0,null,'C:\Users\pc\git\itjobs01\itjobs06\WebContent\resources/fileupload_board/',0,null);
+Insert into BOARD (B_NO,M_NO,HEAD,TITLE,CONTENTS,ENROLL_DATE,UPDATE_DATE,FILE_ORINAME,TIME,COUNT,STATUS,D_COUNT,EDITFILE,PATH,DOWN_COUNT,VIDEO) values (22,5,'자유','요즘 드라마 진짜 재밌던데요 ㅋㅋ','<p>요즘에 새로 시작 드라마 어쩌다 발견한 하루인가</p><p>ㅋㅋㅋ</p><p>엄청 재밌더라구요1;</p><p>다들 힘들때 휴식 취할때 가볍게 시청해보세요! <span style="color: rgb(255, 0, 0);">추천입니당</span></p>',to_date('19/10/15','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),null,null,1,'Y',0,null,'C:\Users\pc\git\itjobs01\itjobs06\WebContent\resources/fileupload_board/',0,null);
+Insert into BOARD (B_NO,M_NO,HEAD,TITLE,CONTENTS,ENROLL_DATE,UPDATE_DATE,FILE_ORINAME,TIME,COUNT,STATUS,D_COUNT,EDITFILE,PATH,DOWN_COUNT,VIDEO) values (23,17,'자유','제가 좋아하는 연예인 보실래요?','<p><span style="font-size: 18pt; color: rgb(239, 0, 124);">﻿조규현짱</span>&nbsp;</p><p><span style="font-size: 18pt; color: rgb(239, 0, 124);">요즘대세는 조피자인거같아요</span></p>',to_date('19/10/15','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),null,null,6,'Y',0,null,'C:\Users\user2\git\itjobs01_!\itjobs06\WebContent\resources/fileupload_board/',0,'https://www.youtube.com/watch?v=0HR7SAo9edA');
+Insert into BOARD (B_NO,M_NO,HEAD,TITLE,CONTENTS,ENROLL_DATE,UPDATE_DATE,FILE_ORINAME,TIME,COUNT,STATUS,D_COUNT,EDITFILE,PATH,DOWN_COUNT,VIDEO) values (24,1,'공지사항','거래관련 공지사항입니다.','<p>커뮤니티내애서 회원들과의 사적인 거래로 인해 금전적인 피해를 보는 일들이 많아져서&nbsp;</p><p>커뮤니티내 계좌번호나 돈을 송금할수있는 정보가 포함된 게시글과 댓글들은 경고없이 삭제 될 수있으니 이용에 참고부탁드립니다.</p><p><br></p><p><br></p><p><b><br></b></p><p><b><span style="color: rgb(255, 0, 0);">* 또한 이와같은 게시글을 본다면 신고를 눌러주세요</span></b></p>',to_date('19/10/15','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),null,null,1,'Y',0,null,'C:\Users\user2\git\itjobs01_!\itjobs06\WebContent\resources/fileupload_board/',0,null);
+Insert into BOARD (B_NO,M_NO,HEAD,TITLE,CONTENTS,ENROLL_DATE,UPDATE_DATE,FILE_ORINAME,TIME,COUNT,STATUS,D_COUNT,EDITFILE,PATH,DOWN_COUNT,VIDEO) values (25,1,'공지사항','이력서 작성 시 참고하세요','<p>이력서 작성하실때 참고하라고 자료 올려놓습니다</p><p>다들 좋은 결과있기를 바랍니다</p>',to_date('19/10/15','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),null,null,2,'Y',0,null,'C:\Users\user2\git\itjobs01_!\itjobs06\WebContent\resources/fileupload_board/',0,'https://www.youtube.com/watch?v=0tngHp8vvBA');
+Insert into BOARD (B_NO,M_NO,HEAD,TITLE,CONTENTS,ENROLL_DATE,UPDATE_DATE,FILE_ORINAME,TIME,COUNT,STATUS,D_COUNT,EDITFILE,PATH,DOWN_COUNT,VIDEO) values (26,1,'프로젝트','딥러닝 프로젝트 하실분 구합니다.','<p style="box-sizing: border-box; margin-bottom: 10px; color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;Apple SD Gothic Neo&quot;, &quot;Malgun Gothic&quot;, Dotdum; font-size: 14px; background-color: rgb(255, 255, 255);">딥러닝 프로젝트 하실 분 구합니다.</p><p style="box-sizing: border-box; margin-bottom: 10px; color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;Apple SD Gothic Neo&quot;, &quot;Malgun Gothic&quot;, Dotdum; font-size: 14px; background-color: rgb(255, 255, 255);">아직 주제는 미정이라서 팀원분들 계시면 아이디어 회의 후에 진행해보고 싶습니다.</p><p style="box-sizing: border-box; margin-bottom: 10px; color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;Apple SD Gothic Neo&quot;, &quot;Malgun Gothic&quot;, Dotdum; font-size: 14px; background-color: rgb(255, 255, 255);">저는 SL, RL 공부하고 있습니다.</p><p style="box-sizing: border-box; margin-bottom: 10px; color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;Apple SD Gothic Neo&quot;, &quot;Malgun Gothic&quot;, Dotdum; font-size: 14px; background-color: rgb(255, 255, 255);">혹시 관심있으신 분들&nbsp;<a href="https://open.kakao.com/o/sAvOI2Hb" rel="nofollow" style="box-sizing: border-box; background-color: transparent; color: rgb(42, 100, 150); text-decoration-line: none;">https://open.kakao.com/o/sAvOI2Hb</a>&nbsp;<a href="https://open.kakao.com/o/sAvOI2Hb" target="_blank" title="새창으로 열기" style="box-sizing: border-box; background-color: transparent; color: rgb(42, 100, 150); text-decoration-line: none;"><span class="fa fa-external-link" style="box-sizing: border-box; display: inline-block; font-variant-numeric: normal; font-variant-east-asian: normal; font-stretch: normal; font-family: FontAwesome; font-size: inherit; text-rendering: auto; -webkit-font-smoothing: antialiased; transform: translate(0px, 0px);"></span></a>&nbsp;카톡주세요.</p><p style="box-sizing: border-box; margin-bottom: 10px; color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;Apple SD Gothic Neo&quot;, &quot;Malgun Gothic&quot;, Dotdum; font-size: 14px; background-color: rgb(255, 255, 255);">저도 초보라 수준은 상관없습니다.</p>',to_date('19/10/15','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),null,'2019-10-15~2019-10-25',1,'N',0,null,'C:\Users\user2\git\itjobs01_!\itjobs06\WebContent\resources/fileupload_board/',0,null);
+Insert into BOARD (B_NO,M_NO,HEAD,TITLE,CONTENTS,ENROLL_DATE,UPDATE_DATE,FILE_ORINAME,TIME,COUNT,STATUS,D_COUNT,EDITFILE,PATH,DOWN_COUNT,VIDEO) values (27,2,'프로젝트','딥러닝 프로젝트 하실분 구합니다.','<p style="box-sizing: border-box; margin-bottom: 10px; color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;Apple SD Gothic Neo&quot;, &quot;Malgun Gothic&quot;, Dotdum; font-size: 14px; background-color: rgb(255, 255, 255);">딥러닝 프로젝트 하실 분 구합니다.</p><p style="box-sizing: border-box; margin-bottom: 10px; color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;Apple SD Gothic Neo&quot;, &quot;Malgun Gothic&quot;, Dotdum; font-size: 14px; background-color: rgb(255, 255, 255);">아직 주제는 미정이라서 팀원분들 계시면 아이디어 회의 후에 진행해보고 싶습니다.</p><p style="box-sizing: border-box; margin-bottom: 10px; color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;Apple SD Gothic Neo&quot;, &quot;Malgun Gothic&quot;, Dotdum; font-size: 14px; background-color: rgb(255, 255, 255);">저는 SL, RL 공부하고 있습니다.</p><p style="box-sizing: border-box; margin-bottom: 10px; color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;Apple SD Gothic Neo&quot;, &quot;Malgun Gothic&quot;, Dotdum; font-size: 14px; background-color: rgb(255, 255, 255);">혹시 관심있으신 분들&nbsp;<a href="https://open.kakao.com/o/sAvOI2Hb" rel="nofollow" style="box-sizing: border-box; background-color: transparent; color: rgb(42, 100, 150); text-decoration-line: none;">https://open.kakao.com/o/sAvOI2Hb</a>&nbsp;<a href="https://open.kakao.com/o/sAvOI2Hb" target="_blank" title="새창으로 열기" style="box-sizing: border-box; background-color: transparent; color: rgb(42, 100, 150); text-decoration-line: none;"><span class="fa fa-external-link" style="box-sizing: border-box; display: inline-block; font-variant-numeric: normal; font-variant-east-asian: normal; font-stretch: normal; font-family: FontAwesome; font-size: inherit; text-rendering: auto; -webkit-font-smoothing: antialiased; transform: translate(0px, 0px);"></span></a>&nbsp;카톡주세요.</p><p style="box-sizing: border-box; margin-bottom: 10px; color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;Apple SD Gothic Neo&quot;, &quot;Malgun Gothic&quot;, Dotdum; font-size: 14px; background-color: rgb(255, 255, 255);">저도 초보라 수준은 상관없습니다.</p>',to_date('19/10/15','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),null,'2019-10-15~2019-10-26',2,'Y',0,null,'C:\Users\user2\git\itjobs01_!\itjobs06\WebContent\resources/fileupload_board/',0,null);
+Insert into BOARD (B_NO,M_NO,HEAD,TITLE,CONTENTS,ENROLL_DATE,UPDATE_DATE,FILE_ORINAME,TIME,COUNT,STATUS,D_COUNT,EDITFILE,PATH,DOWN_COUNT,VIDEO) values (28,2,'프로젝트','리액트, node 포트폴리오 인원 추가 모집(1~2명)','<p style="box-sizing: border-box; margin-bottom: 10px; color: rgb(51, 51, 51);">안녕하세요.</p><p style="box-sizing: border-box; margin-bottom: 10px; color: rgb(51, 51, 51);"><br style="box-sizing: border-box;"></p><p style="box-sizing: border-box; margin-bottom: 10px; color: rgb(51, 51, 51);">웹 개발자 포트폴리오 같이 만드실 분을 구합니다.&nbsp; 기획, DB설계, 리액트 구성까지 많이 해둔 상태라서 합류하셔서 적은 노력만 하셔도 포트폴리오로 활용하실 수 있습니다.</p><p style="box-sizing: border-box; margin-bottom: 10px; color: rgb(51, 51, 51);"><br style="box-sizing: border-box;"></p><p style="box-sizing: border-box; margin-bottom: 10px; color: rgb(51, 51, 51);">*** 주제) 헬스 트레이너들을 위한 회원관리(운동루틴, 스케줄 등) 시스템</p><p style="box-sizing: border-box; margin-bottom: 10px; color: rgb(51, 51, 51);"><br style="box-sizing: border-box;"></p><p style="box-sizing: border-box; margin-bottom: 10px; color: rgb(51, 51, 51);"><span style="color: rgb(255, 0, 0);"><b>*** 사용 기술)</b></span></p><p style="box-sizing: border-box; margin-bottom: 10px; color: rgb(51, 51, 51);">프론트엔드 : 리액트, context-api와 hooks중심</p><p style="box-sizing: border-box; margin-bottom: 10px; color: rgb(51, 51, 51);">백엔드 : node.js, express, mysql, 시퀄라이즈</p><p style="box-sizing: border-box; margin-bottom: 10px; color: rgb(51, 51, 51);"><br style="box-sizing: border-box;"></p><p style="box-sizing: border-box; margin-bottom: 10px; color: rgb(51, 51, 51);">*** 시간 ) 9/8(월) 19시 강남역 첫 미팅&nbsp; &nbsp;&nbsp;</p><p style="box-sizing: border-box; margin-bottom: 10px; color: rgb(51, 51, 51);">*** 장소 ) 온라인과 오프라인(장소미정)을 섞어가며 할 예정입니다.</p><p style="box-sizing: border-box; margin-bottom: 10px; color: rgb(51, 51, 51);"><br style="box-sizing: border-box; font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;Apple SD Gothic Neo&quot;, &quot;Malgun Gothic&quot;, Dotdum; font-size: 14px; background-color: rgb(255, 255, 255);"></p>',to_date('19/10/15','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),null,'2019-10-02~2019-10-18',0,'Y',0,null,'C:\Users\user2\git\itjobs01_!\itjobs06\WebContent\resources/fileupload_board/',0,null);
+Insert into BOARD (B_NO,M_NO,HEAD,TITLE,CONTENTS,ENROLL_DATE,UPDATE_DATE,FILE_ORINAME,TIME,COUNT,STATUS,D_COUNT,EDITFILE,PATH,DOWN_COUNT,VIDEO) values (29,2,'스터디','[홍대]자바 스터디','<p><span style="color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;Apple SD Gothic Neo&quot;, &quot;Malgun Gothic&quot;, Dotdum; font-size: 14px; background-color: rgb(255, 255, 255);">홍대에서 하는 자바 스터디원 2분 구합니다. 지금 천천히 function까지 했고 홍대에서 하는 자바 스터디원 2분 구합니다. 지금 천천히 function까지 했고 오신다면 다시 처음부터 설명하면서 시작할수 있습니다 혹시 관심있으신분들은 카톡: OTL321로 문자 주세요</span>&nbsp;</p>',to_date('19/10/15','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),null,'2019-10-02~2019-10-26',4,'Y',0,null,'C:\Users\user2\git\itjobs01_!\itjobs06\WebContent\resources/fileupload_board/',0,null);
+Insert into BOARD (B_NO,M_NO,HEAD,TITLE,CONTENTS,ENROLL_DATE,UPDATE_DATE,FILE_ORINAME,TIME,COUNT,STATUS,D_COUNT,EDITFILE,PATH,DOWN_COUNT,VIDEO) values (30,12,'자유','HI','<p>Bye</p>',to_date('19/10/15','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),'board.jpg',null,7,'Y',0,'2019101520384387798.jpg','C:\Users\user2\git\itjobs01_!\itjobs06\WebContent\resources/fileupload_board/',1,'https://www.youtube.com/watch?v=PVcpF7J2oXs');
+Insert into BOARD (B_NO,M_NO,HEAD,TITLE,CONTENTS,ENROLL_DATE,UPDATE_DATE,FILE_ORINAME,TIME,COUNT,STATUS,D_COUNT,EDITFILE,PATH,DOWN_COUNT,VIDEO) values (31,9,'자유','신입입니다 모르는게 있을 때는','<p style="box-sizing: border-box; margin-bottom: 10px; color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;Apple SD Gothic Neo&quot;, &quot;Malgun Gothic&quot;, Dotdum; font-size: 14px; background-color: rgb(255, 255, 255);">안녕하세요</p><p style="box-sizing: border-box; margin-bottom: 10px; color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;Apple SD Gothic Neo&quot;, &quot;Malgun Gothic&quot;, Dotdum; font-size: 14px; background-color: rgb(255, 255, 255);">첫 회사에 입사한지 3주된 신입입니다</p><p style="box-sizing: border-box; margin-bottom: 10px; color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;Apple SD Gothic Neo&quot;, &quot;Malgun Gothic&quot;, Dotdum; font-size: 14px; background-color: rgb(255, 255, 255);">아 이제 4주째네요</p><p style="box-sizing: border-box; margin-bottom: 10px; color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;Apple SD Gothic Neo&quot;, &quot;Malgun Gothic&quot;, Dotdum; font-size: 14px; background-color: rgb(255, 255, 255);">계속 소스만 공부하다가 드디어 업무를 받았습니다</p><p style="box-sizing: border-box; margin-bottom: 10px; color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;Apple SD Gothic Neo&quot;, &quot;Malgun Gothic&quot;, Dotdum; font-size: 14px; background-color: rgb(255, 255, 255);">그런데 시작부터 모르는게 너무 많습니다</p><p style="box-sizing: border-box; margin-bottom: 10px; color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;Apple SD Gothic Neo&quot;, &quot;Malgun Gothic&quot;, Dotdum; font-size: 14px; background-color: rgb(255, 255, 255);">사수가 너무 일이 많고 바빠서 말 걸기가 미안한데 그래도 모르는건 그때그때 바로 물어보는게 좋겠죠?</p><p style="box-sizing: border-box; margin-bottom: 10px; color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;Apple SD Gothic Neo&quot;, &quot;Malgun Gothic&quot;, Dotdum; font-size: 14px; background-color: rgb(255, 255, 255);">몇 달 먼저 입사한 사원이 저희 회사가 신입에게 불친절하다고 하더라구요</p><p style="box-sizing: border-box; margin-bottom: 10px; color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;Apple SD Gothic Neo&quot;, &quot;Malgun Gothic&quot;, Dotdum; font-size: 14px; background-color: rgb(255, 255, 255);">사수에게 사소한 것까지 물어봐도 되는지 궁금합니다</p><p style="box-sizing: border-box; margin-bottom: 10px; color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;Apple SD Gothic Neo&quot;, &quot;Malgun Gothic&quot;, Dotdum; font-size: 14px; background-color: rgb(255, 255, 255);">물론 감사의 의미로 커피나 간식 사드리려구요</p>',to_date('19/10/15','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),null,null,0,'Y',0,null,'C:\Users\user2\git\itjobs01_!\itjobs06\WebContent\resources/fileupload_board/',0,null);
+
+
+-- REPLY
+Insert into REPLY (RE_NO,M_NO,B_NO,ENROLL_DATE,UPDATE_DATE,CONTENTS,STATUS,D_COUNT) values (1,16,30,to_date('19/10/15','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),'오우 안녕하세요 :) 저도 백종원씨 참 좋아해요','N',0);
+Insert into REPLY (RE_NO,M_NO,B_NO,ENROLL_DATE,UPDATE_DATE,CONTENTS,STATUS,D_COUNT) values (2,9,30,to_date('19/10/15','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),'오우 안녕하세요 :) 저도 백종원씨 좋아해요','Y',0);
+Insert into REPLY (RE_NO,M_NO,B_NO,ENROLL_DATE,UPDATE_DATE,CONTENTS,STATUS,D_COUNT) values (3,9,23,to_date('19/10/15','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),'조피자님 저도 규현씨 참 좋아해요 노래도 잘부르구 ㅎㅎ','Y',0);
+Insert into REPLY (RE_NO,M_NO,B_NO,ENROLL_DATE,UPDATE_DATE,CONTENTS,STATUS,D_COUNT) values (4,9,29,to_date('19/10/15','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),'인원 남았나요?','Y',0);
+Insert into REPLY (RE_NO,M_NO,B_NO,ENROLL_DATE,UPDATE_DATE,CONTENTS,STATUS,D_COUNT) values (5,9,17,to_date('19/10/15','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),'지금 가입 가능한가요~?','Y',0);
+Insert into REPLY (RE_NO,M_NO,B_NO,ENROLL_DATE,UPDATE_DATE,CONTENTS,STATUS,D_COUNT) values (6,9,27,to_date('19/10/15','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),'카톡드렸어요 :)','Y',0);
+Insert into REPLY (RE_NO,M_NO,B_NO,ENROLL_DATE,UPDATE_DATE,CONTENTS,STATUS,D_COUNT) values (7,17,19,to_date('19/10/15','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),'ㅠㅠ저도 네이버 가고싶어요ㅠㅠㅠ 조만간 네이버에서 만나요:)','Y',0);
+Insert into REPLY (RE_NO,M_NO,B_NO,ENROLL_DATE,UPDATE_DATE,CONTENTS,STATUS,D_COUNT) values (8,17,15,to_date('19/10/15','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),'프로젝트 저도 하고싶어요 자세한거 따로 얘기 나누고싶은데 카톡이나 메일 주소 알려주세요 ^^','Y',0);
+Insert into REPLY (RE_NO,M_NO,B_NO,ENROLL_DATE,UPDATE_DATE,CONTENTS,STATUS,D_COUNT) values (9,17,6,to_date('19/10/15','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),'감사합니다 ^^
+','Y',0);
+Insert into REPLY (RE_NO,M_NO,B_NO,ENROLL_DATE,UPDATE_DATE,CONTENTS,STATUS,D_COUNT) values (10,17,24,to_date('19/10/15','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),'주의해야겠네요..','Y',0);
+Insert into REPLY (RE_NO,M_NO,B_NO,ENROLL_DATE,UPDATE_DATE,CONTENTS,STATUS,D_COUNT) values (11,17,22,to_date('19/10/15','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),'오오 감사합니다 한번 봐볼게요~!','Y',0);
+Insert into REPLY (RE_NO,M_NO,B_NO,ENROLL_DATE,UPDATE_DATE,CONTENTS,STATUS,D_COUNT) values (12,8,30,to_date('19/10/15','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),'반가워욯ㅎ','Y',0);
+Insert into REPLY (RE_NO,M_NO,B_NO,ENROLL_DATE,UPDATE_DATE,CONTENTS,STATUS,D_COUNT) values (13,8,29,to_date('19/10/15','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),'저도 하고싶어요~','Y',0);
+Insert into REPLY (RE_NO,M_NO,B_NO,ENROLL_DATE,UPDATE_DATE,CONTENTS,STATUS,D_COUNT) values (14,8,29,to_date('19/10/15','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),'카톡드릴게요','Y',0);
+Insert into REPLY (RE_NO,M_NO,B_NO,ENROLL_DATE,UPDATE_DATE,CONTENTS,STATUS,D_COUNT) values (15,8,25,to_date('19/10/15','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),'좋은 정보 감사합니다','Y',0);
+Insert into REPLY (RE_NO,M_NO,B_NO,ENROLL_DATE,UPDATE_DATE,CONTENTS,STATUS,D_COUNT) values (16,8,23,to_date('19/10/15','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),'조규현짱 bbbbbb','Y',0);
+Insert into REPLY (RE_NO,M_NO,B_NO,ENROLL_DATE,UPDATE_DATE,CONTENTS,STATUS,D_COUNT) values (17,8,21,to_date('19/10/15','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),'자율참여이면 가능한날만 참가 가능한건가요?','Y',0);
+Insert into REPLY (RE_NO,M_NO,B_NO,ENROLL_DATE,UPDATE_DATE,CONTENTS,STATUS,D_COUNT) values (18,8,19,to_date('19/10/15','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),'다들화이팅!','Y',0);
+Insert into REPLY (RE_NO,M_NO,B_NO,ENROLL_DATE,UPDATE_DATE,CONTENTS,STATUS,D_COUNT) values (19,8,18,to_date('19/10/15','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),'같이진행하고싶어요~','Y',0);
+Insert into REPLY (RE_NO,M_NO,B_NO,ENROLL_DATE,UPDATE_DATE,CONTENTS,STATUS,D_COUNT) values (20,8,15,to_date('19/10/15','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),'저도 연락드릴게요 카톡알려주세요','Y',0);
+Insert into REPLY (RE_NO,M_NO,B_NO,ENROLL_DATE,UPDATE_DATE,CONTENTS,STATUS,D_COUNT) values (21,12,30,to_date('19/10/15','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),'ㅎㅇㅎㅇ','Y',0);
+Insert into REPLY (RE_NO,M_NO,B_NO,ENROLL_DATE,UPDATE_DATE,CONTENTS,STATUS,D_COUNT) values (22,8,16,to_date('19/10/15','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),'어떤일이든 처음 시작 할 땐 다 그렇게 느끼지 않을까요?
+함께 열심히 해봐요!!','Y',0);
+Insert into REPLY (RE_NO,M_NO,B_NO,ENROLL_DATE,UPDATE_DATE,CONTENTS,STATUS,D_COUNT) values (23,6,19,to_date('19/10/15','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),'네네 ㅎㅎ 다들 힘내서 네이버에서 뵈요~!~~!','Y',0);
+Insert into REPLY (RE_NO,M_NO,B_NO,ENROLL_DATE,UPDATE_DATE,CONTENTS,STATUS,D_COUNT) values (24,6,23,to_date('19/10/15','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),'ㅋㅋㅋㅋㅋㅋ영상 진짜 웃기네여 규현 노래만알았는데 재밋는분이네여','Y',0);
+Insert into REPLY (RE_NO,M_NO,B_NO,ENROLL_DATE,UPDATE_DATE,CONTENTS,STATUS,D_COUNT) values (25,6,16,to_date('19/10/15','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),'할수있어요!!!! 스터디도 하면서 사람들과 함께 하면 더 재밋고 쉽게 할수있지 않을까요~? ','Y',0);
+Insert into REPLY (RE_NO,M_NO,B_NO,ENROLL_DATE,UPDATE_DATE,CONTENTS,STATUS,D_COUNT) values (26,6,14,to_date('19/10/15','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),'오호 저도 같이 해보고싶네요 자세한사항 알고싶어요~','Y',0);
+Insert into REPLY (RE_NO,M_NO,B_NO,ENROLL_DATE,UPDATE_DATE,CONTENTS,STATUS,D_COUNT) values (27,6,6,to_date('19/10/15','RR/MM/DD'),to_date('19/10/15','RR/MM/DD'),'감사합니다','Y',0);
 
 
 COMMIT;

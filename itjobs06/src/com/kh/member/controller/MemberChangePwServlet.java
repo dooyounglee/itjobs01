@@ -53,8 +53,11 @@ public class MemberChangePwServlet extends HttpServlet {
 		}
 		if(newm!=null) {
 			session.setAttribute("mem", newm);
+			session.setAttribute("pwChange", "정상적으로 수정 되었습니다");
 			response.sendRedirect(request.getContextPath()+"/myInfo.me");
+		
 		}else {
+			session.setAttribute("pwChange", "비밀번호를 다시 확인해 주세요");
 			//실패메시지 어떻게 보내지?
 			response.sendRedirect(request.getContextPath()+"/myInfo.me");
 		}

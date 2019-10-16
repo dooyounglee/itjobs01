@@ -35,14 +35,14 @@
                   
                   <div class="job-search-form">
                      <form action="notificationList.se" method="get" autocomplete=off>
-                        <div class="row">
-                           <div class="col-lg-5 col-md-6 col-xs-12">
+                        <div class="row justify-content-md-center">
+                           <div class="col-lg-5 col-md-5 col-xs-12">
                               <div class="form-group">
                                  <input class="form-control" type="text"
                                     placeholder="Job Title or Company Name" name="sText">
                               </div>
                            </div>
-                           <div class="col-lg-3 col-md-6 col-xs-12">
+                           <!-- <div class="col-lg-3 col-md-6 col-xs-12">
                               <div class="form-group">
                                  <div class="search-category-container">
                                     <label class="styled-select"> <select>
@@ -77,8 +77,8 @@
                                  </div>
                                  <i class="lni-layers"></i>
                               </div>
-                           </div>
-                           <div class="col-lg-1 col-md-6 col-xs-12">
+                           </div> -->
+                           <div class="col-lg-1 col-md-2 col-xs-12">
                               <button type="submit" class="button">
                                  <i class="lni-search"></i>
                               </button>

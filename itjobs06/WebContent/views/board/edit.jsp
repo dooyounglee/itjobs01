@@ -91,7 +91,7 @@
 		<option value="자유" <%= ca[0] %>>자유</option>
 		<option value="스터디" <%= ca[1] %>>스터디</option>
 		<option value="프로젝트" <%= ca[2] %>>프로젝트</option>
-		<%if(mem.getType() == "0"){ %>
+		<%if(mem.getType().equals("0")){ %>
 		<option value="공지사항" <%= ca[3] %>>공지</option>
 		<option value="서식" <%= ca[4] %>>서식</option>
 		<%} %>

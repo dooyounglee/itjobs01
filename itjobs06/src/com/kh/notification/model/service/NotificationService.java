@@ -85,6 +85,11 @@ public class NotificationService {
 	public int updateNotification(Notification n) {
 		Connection conn=getConnection();
 		int result=new NotificationDao().updateNotification(conn,n);
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
 		close(conn);
 		return result;
 	}
@@ -92,6 +97,11 @@ public class NotificationService {
 	public int openNotification(int noti_no) {
 		Connection conn=getConnection();
 		int result=new NotificationDao().openNotification(conn,noti_no);
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
 		close(conn);
 		return result;
 	}
@@ -99,6 +109,11 @@ public class NotificationService {
 	public int openCancleNotification(int noti_no) {
 		Connection conn=getConnection();
 		int result=new NotificationDao().openCancleNotification(conn,noti_no);
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
 		close(conn);
 		return result;
 	}

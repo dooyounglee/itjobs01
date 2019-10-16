@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.kh.like.model.service.LikeService;
 import com.kh.member.model.vo.Member;
 import com.kh.notification.model.service.NotificationService;
 import com.kh.notification.model.vo.Notification;
@@ -44,6 +45,14 @@ public class NotificationViewServlet extends HttpServlet {
 		
 		Notification noti=new NotificationService().getNotification(noti_no);
 		request.setAttribute("noti", noti);
+		
+		if(m != null) { // 좋아요 한 맴버의 게시글번호 불러오기 위해 
+			int memNo = ((Member)request.getSession().getAttribute("mem")).getM_no();
+			
+			String likeNoCheck = new LikeService().likeNoCheck(noti_no,memNo);
+			request.setAttribute("likeNoCheck", likeNoCheck);
+		}
+		
 		
 	
 		

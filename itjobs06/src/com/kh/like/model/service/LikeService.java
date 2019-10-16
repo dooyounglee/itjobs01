@@ -7,6 +7,7 @@ import com.kh.board.model.vo.PageInfo;
 import com.kh.like.model.dao.LikeDao;
 import com.kh.like.model.vo.Like;
 import com.kh.member.model.vo.Member;
+import com.kh.notification.model.dao.NotificationDao;
 import com.kh.notification.model.vo.Notification;
 import com.kh.resume.model.vo.Resume;
 
@@ -77,17 +78,65 @@ public class LikeService {
 	
 	}
 	
-	public ArrayList<String> LikeCoList(int memNo) {
+	public int LikeCoList1(int coNo, int memNo) {
 		
 		Connection conn = getConnection();
 		
-		ArrayList<String> likeCoList = new LikeDao().likeCoList(conn,memNo);
-		close(conn);
+		int result = new LikeDao().likeCoList1(conn,coNo,memNo);
 		
-		return likeCoList;
+
+		if(result>0) { // 중복으로 좋아요 한 기업이 있으면 
+		  int result1 = new LikeDao().deleteCoLike(conn,coNo,memNo);
+		  	if(result1>0) {
+		  		commit(conn);
+		  	}else {
+		  		rollback(conn);
+		  	}
+		  close(conn);
+		
+		}else { // 좋아요가 없으면
+		   int result2 = new LikeDao().insertCoLike(conn,coNo,memNo);
+		   	
+		   if(result2>0) {		
+		   		commit(conn);
+		   	}else {
+		   		rollback(conn);
+		   	}
+		   	close(conn);
+		   
+		}
+		
+		
+		
+		return result;
 	
 	}
 	
+	
+	public String likeCoCheck(int co_no, int memNo) {
+		
+		Connection conn = getConnection();
+		
+		String result = new LikeDao().likeCoCheck(conn,co_no,memNo);
+		
+		close(conn);
+		
+		return result;
+		
+	}
+	
+
+	public String likeNoCheck(int noNo, int memNo) {
+		
+		Connection conn = getConnection();
+		
+		String result = new LikeDao().likeNoCheck(conn,noNo,memNo);
+		
+		close(conn);
+		
+		return result;
+		
+	}
 
 	public int myCompanyListCount(int m_no) {
 		Connection conn=getConnection();

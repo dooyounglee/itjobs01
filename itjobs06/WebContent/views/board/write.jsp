@@ -12,6 +12,7 @@
 <!-- 에디터  -->
 <script type="text/javascript" src='<%=request.getContextPath()%>/resources/naver-smarteditor2-ca95d21/demo/js/service/HuskyEZCreator.js' charset="utf-8"></script>
 
+
 <!-- import jobx -->
 <%@ include file="/views/include/user/style.jsp" %>
 <!-- End of import from jobx -->

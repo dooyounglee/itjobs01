@@ -107,7 +107,7 @@
 			
 			var nickDiv = $(document.getElementById("nickCheck"));
 			
-			var regExp = /^[가-힣a-zA-Z][가-힣a-zA-Z0-9]{1,}$/;
+			var regExp = /^[가-힣a-zA-Z0-9]{0,}$/;
 			$.ajax({
 					url:"<%=request.getContextPath() %>/nickoverlap.me",
 					data:{nickNameCo:nickNameCo},
@@ -118,16 +118,18 @@
 						if(result1==1){	
 							 nickDiv.html('중복되는 닉네임이 있습니다').attr('style','color:red'); 
 							flag1=false;
-							
+							btnChange();
 						}else if(!regExp.test(nickNameCo)){	
 								nickDiv.html('닉네임 양식에 맞지 않습니다').attr('style','color:red');
 								flag1=false;
-							}else{
+								btnChange();
+								}else{
 								nickDiv.html('사용가능').attr('style','color:green');
 								flag1 = true;
+								btnChange();
 							}
 						
-						btnChange();
+						
 						
 						
 						
@@ -157,6 +159,8 @@
 			
 			 if(!regExp.test(email)){
 				 emailDiv.html('이메일 형식에 맞지 않습니다').attr('style','color:red');
+				 flag4=false;
+				btnChange();
 			 }else{
 					$.ajax({
 							url:"<%=request.getContextPath() %>/emoverlap.me",
@@ -167,6 +171,7 @@
 									emailDiv.html('사용가능').attr('style','color:green');
 									flag2 = true;
 									flag4=true;
+									btnChange();
 								}else{	
 									emailDiv.html('중복되는 이메일이 있습니다.').attr('style','color:red');
 									 flag2 = false;
@@ -197,14 +202,15 @@
 				
 					if(pw1.val() == pw2.val()){	
 						pwdDiv.html('비밀번호와 일치 합니다').attr('style','color:green');
-						
 						flag3 = true;
+						btnChange();
 					}else{	
 						pwdDiv.html('비밀번호와 일치하지 않습니다').attr('style','color:red');
 						flag3=false;
+						btnChange();
 					}
 					
-					btnChange();
+					
 				
 			}	
 			

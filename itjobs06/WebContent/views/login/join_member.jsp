@@ -110,19 +110,21 @@
 						
 						if(result1==1){	
 							 nickDiv.html('중복되는 닉네임이 있습니다').attr('style','color:red'); 
-							
-							flag1=false;
-							
+								
+								flag1=false;
+								btnChange();
 						}else if(!regExp.test(nickName)){	
 								nickDiv.html('닉네임 양식에 맞지 않습니다').attr('style','color:red');
 								
 								flag1=false;
-							}else{
+								btnChange();	
+						}else{
 								nickDiv.html('사용가능').attr('style','color:green');
 								flag1 = true;
-							}
+								btnChange();
+						}
 						
-						btnChange();
+						
 			
 					},error:function(){
 						console.log("ajax실패");
@@ -159,8 +161,7 @@
 							data:{email:email},
 							type:"get",
 							success:function(result){
-								// flag2 = false;
-								// flag4=false;			
+										
 								
 								
 								console.log(result);
@@ -205,14 +206,13 @@
 				
 					if(pw1.val() == pw2.val()){	
 						pwdDiv.html('비밀번호와 일치 합니다').attr('style','color:green');
-						
 						flag3 = true;
+						btnChange();
 					}else{	
 						pwdDiv.html('비밀번호와 일치하지 않습니다').attr('style','color:red');
-						
 						flag3=false;
+						btnChange();
 					}
-					btnChange();
 				
 			}	
 			

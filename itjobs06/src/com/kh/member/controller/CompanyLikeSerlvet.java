@@ -9,12 +9,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.member.model.service.MemberService;
+import com.kh.like.model.service.LikeService;
 
 /**
  * Servlet implementation class CompanyLikeSerlvet
  */
-@WebServlet("/like.co")
+@WebServlet("/like.com")
 public class CompanyLikeSerlvet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -31,14 +31,13 @@ public class CompanyLikeSerlvet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-		int likeCo = Integer.parseInt(request.getParameter("coNo"));
+		int coNo = Integer.parseInt(request.getParameter("coNo"));
 		
 		int memNo = Integer.parseInt(request.getParameter("memNo"));
 		
-//		System.out.println(likeCo);
-//		System.out.println(memNo);
 		
-		int result = new MemberService().CoLikeCheck(likeCo,memNo);
+		
+		int result = new LikeService().LikeCoList1(coNo,memNo);
 		
 //		System.out.println(result);
 		

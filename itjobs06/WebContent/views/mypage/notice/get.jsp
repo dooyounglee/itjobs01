@@ -3,11 +3,36 @@
 <%@page import="com.kh.notification.model.vo.Notification"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+String likeNoCheck = (String)request.getAttribute("likeNoCheck");
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here1</title>
+<style>
+
+	.like{
+	width:20px;
+	height:20px;
+	}
+
+	.likeimg1{
+	width:20px;
+	height:20px;
+	box-sizing:border-box;
+	text-align:center;
+	}
+	
+	.likeimg1:hover{
+	cursor:pointer;
+	}
+
+</style>
+
+
 
 <!-- import jobx -->
 <%@ include file="/views/include/user/style.jsp" %>
@@ -19,16 +44,20 @@
 	<header id="home" class="hero-area">
 	<%@ include file="/views/include/user/header_nav.jsp" %>
 	</header>
-
+	<%@ include file="/views/include/user/js.jsp" %>
 	<!-- page-header -->
 	<%@ include file="/views/include/user/page_header.jsp" %>
 	<script>
 		var page_header_title='공고 정보'
 	</script>
 	<!-- end of page-header -->
-
+	<% if(mem != null){ %>
+	<input type="hidden" value="<%=mem.getM_no() %>" id="memNo">
+	<input type="hidden" value="<%=mem.getType() %>" id="memType">
+	<%} %>
 
 	<%	Notification noti=(Notification)request.getAttribute("noti");%>
+	<input type ="hidden" value=<%=noti.getNoti_no()%> id="noNo">
 	<section class="job-detail section">
 		<div class="container">
 			<div class="row justify-content-between">
@@ -42,8 +71,18 @@
 							<h3><%=noti.getAddress().split("\\+")[1]+ " " +noti.getAddress().split("\\+")[2] %></h3>
 						</div>
 						<hr>
-						<div class="widghet">
-							
+						<div class="widghet" style="height:200px;">
+						
+							<% if(mem != null ){ %>
+								<% if(likeNoCheck.equals("1")){ %>  
+								<span class="heart-icon"> <img src="./resources/img/button-after.png" class="likeimg1" style="height:200px; width:320px;"> </span>
+								<% 	}else{ %>
+								<span class="heart-icon"> <img src="./resources/img/button-before.png" class="likeimg1" style="height:200px; width:320px;"> </span>									
+								<% 	} %>
+								<%}else{ %>
+								<span class="heart-icon"> <img src="./resources/img/button-before.png" class="likeimg1" style="height:200px; width:320px;"> </span>
+								<%} %>	
+						
 						</div>
 					</div>
 				</div>
@@ -107,7 +146,7 @@
 									<div class="col-md-6">
 										<label class="styled-select">내 이력서
 											<select name="resume_no" id="resume_no" onchange="test(this)">
-												<option value="0">지원할 이력서를 선택해주세요.</option>d
+												<option value="0">지원할 이력서를 선택해주세요.</option>
 												<% for(Resume r:rlist){%>
 												<option value="<%=r.getResume_no()%>"><%=r.getTitle() %></option>
 												<%	} %>
@@ -170,7 +209,7 @@
 				dataType:'json',
 				success:function(result){
 					//내점수//result=resume객체
-					console.log("내점수성공")
+					/* console.log("내점수성공"); */
 					str=score(result.p_language,noti_lan)
 				},
 			})
@@ -200,6 +239,9 @@
 				},
 			})
 		}
+		
+		
+		
 	</script>
 
 	<section id="featured" class="section bg-gray pb-45">
@@ -278,6 +320,53 @@
 	function apply(noti_no){
 		location.href="apply.vo?noti_no="+noti_no+"&resume_no="+$('#resume_no').val()
 	}
+
+	$(function(){
+		
+		var memNo = $("#memNo").val();
+		var noNo = $("#noNo").val();	
+		var memType = $("#memType").val();
+		
+		
+		$(".likeimg1").click(function(){
+			
+			if(memNo!=null && memType != 2){ // 회원이 존재하면
+			
+	 			 $.ajax({
+					url:"like.no",
+					data:{noNo:noNo, memNo:memNo},
+					type:"get",
+					success:function(result){
+					
+						
+						if(result==0){
+						$(".likeimg1").attr('src','./resources/img/button-after.png');							
+						}else{
+						$(".likeimg1").attr('src','./resources/img/button-before.png');		
+						}
+				
+					
+					
+					},error:function(){
+						
+						console.log("ajax실패");
+					}
+			
+					}); 
+				}else if(memType=="2"){ // 일반회원끼리 좋아요 방지
+				alert("기업회원끼리는 좋아요 불가능 합니다.");
+				}else{
+				alert("로그인을 진행해 주세요");
+				}	
+		})
+	})
+	
+	
+	
+	
+	
+	
+	
 </script>
 
 

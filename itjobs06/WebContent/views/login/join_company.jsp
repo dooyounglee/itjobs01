@@ -81,7 +81,7 @@
 		<div id="pwdCheck" class = "checkDiv2"></div>
 		</div>
 		</div>
-		<input type="submit" id="submit" class="btn btn-common log-btn mt-3" value="가입" disabled>
+		<input type="submit" id="submit" class="btn btn-common log-btn mt-3" value="가입" disabled style="background:gray;">
 		
 		
 		

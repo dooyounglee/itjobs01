@@ -314,10 +314,12 @@
 		return false;
 	}
 </script>
+							<div class="divider">
+								<h3>희망연봉</h3>
+							</div>
 							<div class="form-group">
 								<div class="row">
 									<div class="col-md-3">
-										<label class="control-label">희망연봉</label>
 										<label class="styled-select">
 											<select name="hope_salary">
 												<option value="0" selected>회사내규</option>
@@ -334,32 +336,38 @@
 								<input type="radio" name="open" value="Y" checked>공개
 								<input type="radio" name="open" value="N" >비공개
 							</div>
-							<div class="form-group">
-								<label class="control-label">프로그래밍 언어</label><br>
-								<input type="checkbox" class="form-check-input" name="p" value="C" checked>
-								<label class="form-check-label">C</label><br>
-								<input type="checkbox" class="form-check-input" name="p" value="java">
-								<label class="form-check-label">java</label><br>
-								<input type="checkbox" class="form-check-input" name="p" value="CSS">
-								<label class="form-check-label">CSS</label><br>
-								<input type="checkbox" class="form-check-input" name="p" value="javascript">
-								<label class="form-check-label">javascript</label><br>
-								<input type="checkbox" class="form-check-input" name="p" value="C++">
-								<label class="form-check-label">C++</label><br>
-								<input type="checkbox" class="form-check-input" name="p" value="C#">
-								<label class="form-check-label">C#</label><br>
-								<input type="checkbox" class="form-check-input" name="p" value="VBA">
-								<label class="form-check-label">VBA</label><br>
-								<input type="checkbox" class="form-check-input" name="p" value="python">
-								<label class="form-check-label">python</label><br>
-								<input type="checkbox" class="form-check-input" name="p" value="php">
-								<label class="form-check-label">php</label><br>
-								<input type="checkbox" class="form-check-input" name="p" value="asp">
-								<label class="form-check-label">asp</label><br>
+							<div class="divider">
+								<h3>프로그래밍 언어</h3>
 							</div>
 							<div class="form-group">
-								<label class="control-label">자소서</label>
-								<textarea class="form-control" id="comment" name="self" rows="5" id="자소서"></textarea>
+								<div style="padding-left:20px">
+									<input type="checkbox" class="form-check-input" name="p" value="C" checked>
+									<label class="form-check-label">C</label><br>
+									<input type="checkbox" class="form-check-input" name="p" value="java">
+									<label class="form-check-label">java</label><br>
+									<input type="checkbox" class="form-check-input" name="p" value="CSS">
+									<label class="form-check-label">CSS</label><br>
+									<input type="checkbox" class="form-check-input" name="p" value="javascript">
+									<label class="form-check-label">javascript</label><br>
+									<input type="checkbox" class="form-check-input" name="p" value="C++">
+									<label class="form-check-label">C++</label><br>
+									<input type="checkbox" class="form-check-input" name="p" value="C#">
+									<label class="form-check-label">C#</label><br>
+									<input type="checkbox" class="form-check-input" name="p" value="VBA">
+									<label class="form-check-label">VBA</label><br>
+									<input type="checkbox" class="form-check-input" name="p" value="python">
+									<label class="form-check-label">python</label><br>
+									<input type="checkbox" class="form-check-input" name="p" value="php">
+									<label class="form-check-label">php</label><br>
+									<input type="checkbox" class="form-check-input" name="p" value="asp">
+									<label class="form-check-label">asp</label><br>
+								</div>
+							</div>
+							<div class="divider">
+								<h3>자소서</h3>
+							</div>
+							<div class="form-group">
+								<textarea class="form-control" id="comment" name="self" rows="5" cols="1" style="width:400px" id="자소서"></textarea>
 							</div>
 <script>
 var oEditors = [];
@@ -573,6 +581,7 @@ nhn.husky.EZCreator.createInIFrame({
 
 <script>
 	$('.inner-header').children('h3').text(page_header_title)
+	$('div#smart_editor2_content').css('width':'670px')
 </script>
 </body>
 </html>

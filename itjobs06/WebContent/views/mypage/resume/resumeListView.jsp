@@ -6,7 +6,7 @@
 <% 
 	/*  Resume re = (Resume)request.getAttribute("re"); */
 	//String contextPath = request.getContextPath();
-	Member m = (Member)session.getAttribute("loginUser"); 
+	//Member m = (Member)session.getAttribute("loginUser"); 
 	/* PageInfo pi = (PageInfo)request.getAttribute("pi"); */
 	
 	ArrayList<Resume> list = (ArrayList<Resume>)request.getAttribute("list");
@@ -36,7 +36,7 @@
 
 <style>
 
-	table{
+/* 	table{
 		border:1px solid black;
 		text-align:center;
 	}
@@ -49,7 +49,7 @@
 	tabel td:hover{
 		background-color:lightgray;
 	}
-	
+	 */
 	#new{
 		margin-left:65%;
 	}
@@ -129,7 +129,6 @@
 <%} %>
 
 					<%	PageInfo pi=(PageInfo)request.getAttribute("pi");
-				
 						int currentPage=pi.getCurrentPage();%>
 						<ul class="pagination" style="display:block;">
 							<%	if(currentPage>1){ %>

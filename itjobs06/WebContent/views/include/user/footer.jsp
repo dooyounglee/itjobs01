@@ -20,16 +20,16 @@
 						
 						<h5 class="block-title">CHANG JJOCK</h5>
 						<ul class="menu">
-							<li><a href="#">About Us</a></li>
-							<li><a href="#">Support</a></li>
-							<li><a href="#">License</a></li>
-							<li><a href="#">Contact</a></li>
+							<li><a>About Us</a></li>
+							<li><a>Support</a></li>
+							<li><a>License</a></li>
+							<li><a>Contact</a></li>
 						</ul>
 						<ul class="menu">
-							<li><a href="#">Terms & Conditions</a></li>
-							<li><a href="#">Privacy</a></li>
-							<li><a href="#">Refferal Terms</a></li>
-							<li><a href="#">Product License</a></li>
+							<li><a>Terms & Conditions</a></li>
+							<li><a>Privacy</a></li>
+							<li><a>Refferal Terms</a></li>
+							<li><a>Product License</a></li>
 						</ul>
 					</div>
 				</div>
@@ -37,7 +37,7 @@
 					<div class="widget">
 						<h3 class="block-title">Subscribe Now</h3>
 						<p>Sed consequat sapien faus quam bibendum convallis.</p>
-						<form method="post" id="subscribe-form" name="subscribe-form"
+<!-- 						<form method="post" id="subscribe-form" name="subscribe-form"
 							class="validate">
 							<div class="form-group is-empty">
 								<input type="email" value="" name="Email" class="form-control"
@@ -48,15 +48,15 @@
 								</button>
 								<div class="clearfix"></div>
 							</div>
-						</form>
+						</form> -->
 						<ul class="mt-3 footer-social">
-							<li><a class="facebook" href="#"><i
+							<li><a class="facebook"><i
 									class="lni-facebook-filled"></i></a></li>
-							<li><a class="twitter" href="#"><i
+							<li><a class="twitter"><i
 									class="lni-twitter-filled"></i></a></li>
-							<li><a class="linkedin" href="#"><i
+							<li><a class="linkedin"><i
 									class="lni-linkedin-fill"></i></a></li>
-							<li><a class="google-plus" href="#"><i
+							<li><a class="google-plus"><i
 									class="lni-google-plus"></i></a></li>
 						</ul>
 					</div>

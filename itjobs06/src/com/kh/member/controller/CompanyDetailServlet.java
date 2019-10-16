@@ -49,7 +49,7 @@ public class CompanyDetailServlet extends HttpServlet {
 			
 			ArrayList<String> likeCo = new LikeService().LikeCoList(memNo);
 		
-		System.out.println(likeCo);
+		//System.out.println(likeCo);
 		
 		request.setAttribute("likeCo", likeCo);
 		}

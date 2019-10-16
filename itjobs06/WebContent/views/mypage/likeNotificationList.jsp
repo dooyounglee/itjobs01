@@ -64,7 +64,7 @@
 								</div>
 								<div class="col-lg-3 col-md-12 col-xs-12 text-right">
 									<div class="location">
-										<i class="lni-map-marker"></i> <%=n.getAddress() %>
+										<i class="lni-map-marker"></i> <%=n.getAddress().split("\\+")[1] %>
 									</div>
 								</div>
 								<div class="col-lg-2 col-md-12 col-xs-12 text-right">
@@ -107,62 +107,6 @@
 	</div>
 	<!-- End of content -->
 	
-	
-	
-<h1>공고 좋아요</h1>
-<table border=1>
-	<thead>
-		<tr>
-			<th><input type=checkbox></th>
-			<th>공고제목</th>
-			<th>기업명</th>
-			<th>등록일</th>
-			<th>마감일</th>
-			<th>상태</th>
-			<th>삭제</th>
-		</tr>
-	</thead>
-	<tbody>
-		<%	list=(ArrayList<Notification>)request.getAttribute("list");
-			for(Notification n:list){%>
-		<tr>
-			<td><input type=checkbox></td>
-			<td><%=n.getTitle() %></td>
-			<td><%=n.getNickname() %></td>
-			<td><%=n.getEnroll_date() %></td>
-			<td><%=n.getEnd_date() %></td>
-			<td><%=n.getStatus() %></td>
-			<td><button onclick="del(<%=n.getNoti_no()%>,<%=mem.getM_no()%>)">삭제</button></td>
-		</tr>
-		<%	} %>
-	</tbody>
-</table>
-<script>
-	function del(noti_no){
-		location.href="<%=request.getContextPath()%>/delNotification.like?noti_no="+noti_no;
-		return false;
-	}
-</script>
-
-<button>삭제</button>
-<table border=1>
-	<tr>
-		<th><input type=checkbox></th>
-		<th>공고제목</th>
-		<th>기업명</th>
-		<th>등록일</th>
-		<th>마감일</th>
-		<th>삭제</th>
-	</tr>
-	<tr>
-		<td><input type=checkbox></td>
-		<td><a href="get.jsp?bno=1">제목1</a></td>
-		<td>기업1</td>
-		<td>등록일1</td>
-		<td>수정일1</td>
-		<td><button>삭제</button></td>
-	</tr>
-</table>
 
 	<!-- footer -->
 		<%@ include file="/views/include/user/footer.jsp" %>

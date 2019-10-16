@@ -131,11 +131,6 @@ ArrayList<String> likeBoList = (ArrayList<String>)request.getAttribute("likeMem"
 	<!-- list section -->
 	<section id="job-listings" class="section">
 		<div class="container">
-			<div class="section-header">
-				<h2 class="section-title">Featured Jobs</h2>
-				<p>Hand-picked jobs featured depending on popularity and
-					benifits</p>
-			</div>
 			<div class="row">
 			<%	ArrayList<Notification> list=(ArrayList<Notification>)request.getAttribute("list");
 				for(Notification n:list){%>
@@ -186,7 +181,6 @@ ArrayList<String> likeBoList = (ArrayList<String>)request.getAttribute("likeMem"
 				</div>
 			<%	} %>
 			<%	PageInfo pi=(PageInfo)request.getAttribute("pi");
-				System.out.println(pi);
 				int currentPage=pi.getCurrentPage();
 				String sText=(String)request.getAttribute("sText");%>
 				<ul class="pagination" style="display:block;">
@@ -202,10 +196,6 @@ ArrayList<String> likeBoList = (ArrayList<String>)request.getAttribute("likeMem"
 							class="lni-angle-right"></i></a></li>
 					<%	} %>
 				</ul>
-				
-				<div class="col-12 text-center mt-4">
-					<a href="job-page.html" class="btn btn-common">Browse All Jobs</a>
-				</div>
 			</div>
 		</div>
 

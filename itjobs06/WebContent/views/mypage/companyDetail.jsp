@@ -117,11 +117,12 @@ ArrayList<String> likeCoList = (ArrayList<String>)request.getAttribute("likeCo")
 					<div class="content-area">
 						<h4>설명</h4>
 						<p><%= co_info.getDescript()%></p>
+						<hr>
 						<h4>연혁</h4>
 						<p><%=co_info.getHistory() %></p>
+						<hr>
 						<h4>복지</h4>
 						<p><%=co_info.getWelfare() %></p>
-						<a href="#" class="btn btn-common">Apply job</a>
 					</div>
 				</div>
 				<div class="col-lg-4 col-md-12 col-xs-12">
@@ -181,7 +182,6 @@ ${co_Info }<br>
 <button>삭제(해당기업)</button>
 <button>신고하기</button> --%>
 <!-- 지도api -->
-<div id="map" style="width:100%;height:350px;"></div>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3f8e5a5f11c657a1034900d7a303bc56&libraries=services"></script>
 <script>

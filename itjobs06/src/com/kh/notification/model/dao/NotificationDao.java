@@ -172,6 +172,8 @@ public class NotificationDao {
 						rs.getString(11),
 						rs.getInt(12));
 				n.setNickname(rs.getString("nickname"));
+				n.setOpen(rs.getString("open"));
+				n.setLogoFile(rs.getString("logo_file"));
 				list.add(n);
 			}
 		} catch (SQLException e) {
@@ -225,7 +227,6 @@ public class NotificationDao {
 		int result=0;
 		PreparedStatement ps=null;
 		
-		System.out.println(n);
 		String sql=prop.getProperty("insertNotification");
 		try {
 			ps=conn.prepareStatement(sql);

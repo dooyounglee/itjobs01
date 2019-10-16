@@ -21,6 +21,12 @@ public class NotificationService {
 		ArrayList<Notification> list=new NotificationDao().getAllNotificationList(conn, pi);
 		return list;
 	}
+	
+	public ArrayList<Notification> getAdminAllNotificationList(PageInfo pi) {
+		Connection conn=getConnection();
+		ArrayList<Notification> list=new NotificationDao().getAdminAllNotificationList(conn, pi);
+		return list;
+	}
 
 	public int delete(int noti_no) {
 		Connection conn=getConnection();
@@ -60,6 +66,11 @@ public class NotificationService {
 	public int insertNotification(Notification n) {
 		Connection conn=getConnection();
 		int result=new NotificationDao().insertNotification(conn,n);
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
 		close(conn);
 		return result;
 	}

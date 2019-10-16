@@ -104,7 +104,7 @@
 	<!-- End of Page Wrapper -->
 <%@ include file="/views/include/js.jsp" %>
 <script>
-	$('#accordionSidebar').children('li.nav-item').eq(6).addClass('active');
+	$('#accordionSidebar').children('li.nav-item').eq(4).addClass('active');
 </script>
 </body>
 </html>

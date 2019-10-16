@@ -89,7 +89,7 @@ ArrayList<String> likeResList = (ArrayList<String>)request.getAttribute("likeRes
 					<div class="inner-header">
 						<h3>Find Job</h3>
 					</div>
-					<div class="job-search-form">
+					<!-- <div class="job-search-form">
 						<form>
 							<div class="row">
 								<div class="col-lg-5 col-md-5 col-xs-12">
@@ -141,7 +141,7 @@ ArrayList<String> likeResList = (ArrayList<String>)request.getAttribute("likeRes
 								</div>
 							</div>
 						</form>
-					</div>
+					</div> -->
 				</div>
 			</div>
 		</div>

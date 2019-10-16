@@ -215,7 +215,7 @@
 				
 				setInterval(function(){
 					selectRlist();
-				}, 4000);
+				}, 1000);
 				
 				$("#addReply").click(function(){
 					var reply = $("#replyContent");

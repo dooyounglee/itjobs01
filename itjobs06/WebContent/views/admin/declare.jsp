@@ -248,7 +248,7 @@
 	<!-- End of Page Wrapper -->
 <%@ include file="/views/include/js.jsp" %>
 <script>
-	var dlendud=$('#accordionSidebar').children('li').eq(5).children();
+	var dlendud=$('#accordionSidebar').children('li').eq(3).children();
 	dlendud.eq(0).removeClass('collapsed').attr('aria-expanded','true')
 	dlendud.eq(1).addClass('show').children('div').children('a').eq(0).addClass('active')
 </script>

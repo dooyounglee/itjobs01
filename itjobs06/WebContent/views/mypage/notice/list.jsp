@@ -50,7 +50,7 @@
 	for(Notification n:list){%>
 						<a class="job-listings" href="<%=request.getContextPath()%>/get.no?noti_no=<%=n.getNoti_no()%>">
 							<div class="row">
-								<div class="col-lg-4 col-md-12 col-xs-12">
+								<div class="col-lg-6 col-md-12 col-xs-12">
 									<div class="job-company-logo">
 										<img src="<%=contextPath %>/resources/cofileupload/<%=n.getLogoFile() %>" style="width:70px;height:70px;" alt="">
 								&nbsp;&nbsp;&nbsp;
@@ -60,13 +60,13 @@
 										<span class="company-neme"> <%=n.getNickname() %> </span>
 									</div>
 								</div>
-								<div class="col-lg-3 col-md-12 col-xs-12 text-right">
+								<%-- <div class="col-lg-1 col-md-12 col-xs-12 text-right">
 									<div class="location">
 										<i class="lni-map-marker"></i> <%=n.getAddress() %>
 									</div>
-								</div>
-								<div class="col-lg-2 col-md-12 col-xs-12 text-right">
-									<span class="btn-full-time">Full Time</span>
+								</div> --%>
+								<div class="col-lg-3 col-md-12 col-xs-12 text-right">
+									<span class="btn-full-time"><%=n.getSalary() %>만원</span>
 								</div>
 								<div class="col-lg-3 col-md-12 col-xs-12 text-right">
 									<span class="btn-apply"><%=n.getOpen().equals("Y")?"공개":"비공개" %></span>

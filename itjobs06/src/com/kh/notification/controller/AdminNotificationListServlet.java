@@ -44,7 +44,7 @@ public class AdminNotificationListServlet extends HttpServlet {
 		
 		int listCount = new NotificationService().getListCount();
 		pi = new PageInfo(currentPage, listCount, 10, 10);
-		ArrayList<Notification> list=new NotificationService().getAllNotificationList(pi);
+		ArrayList<Notification> list=new NotificationService().getAdminAllNotificationList(pi);
 		request.setAttribute("list", list);
 		request.setAttribute("pi", pi);
 		request.getRequestDispatcher("views/admin/notification.jsp").forward(request, response);

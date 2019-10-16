@@ -1,6 +1,10 @@
 package com.kh.member.controller;
 
 import java.io.IOException;
+import java.nio.charset.Charset;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Base64;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,7 +19,7 @@ import com.kh.member.model.vo.Member;
 /**
  * Servlet implementation class findPwd
  */
-@WebServlet("/findpwd.me")
+@WebServlet(name="findPwdServlet", urlPatterns="/findpwd.me")
 
 public class findPwdServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -46,12 +50,30 @@ public class findPwdServlet extends HttpServlet {
 			
 			String userPwd = mem.getPw(); // 유저 비밀번호를 받고
 			
-			int pwRandom = (int)(Math.random()*1000+1); // 임시로 난수를 발생시킨 숫자를 변수에 담아
+			int pwRandom = (int)(Math.random()*100000+1); // 임시로 난수를 발생시킨 숫자를 변수에 담아
+			
 			
 			userPwd =  Integer.toString(pwRandom); // 유저의 비밀번호에 난수의 숫자를 담고
 			
+			String encPwd = "";
 			
-			int result = new MemberService().randomPwd(userPwd,email); // 보내준다
+			
+			MessageDigest md;
+			try {
+				md = MessageDigest.getInstance("SHA-512");
+
+				byte[] bytes=userPwd.getBytes(Charset.forName("UTF-8"));
+				md.update(bytes);
+				encPwd=Base64.getEncoder().encodeToString(md.digest());
+				
+				
+			} catch (NoSuchAlgorithmException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
+			int result = new MemberService().randomPwd(encPwd,email); // 보내준다
 			
 			if(result>0) {	// 정상적으로 비밀번호 변경 이메일에 임시 비밀번호 전송
 				

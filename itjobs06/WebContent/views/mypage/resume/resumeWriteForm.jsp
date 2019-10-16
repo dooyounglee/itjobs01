@@ -45,8 +45,10 @@
 				<div class="col-lg-8 col-md-12 col-xs-12">
 					<div class="add-resume box">
 						<form class="form-ad" action="<%=contextPath%>/addResum.re" method="post" enctype="multipart/form-data" autocomplete=off>
+							<div class="divider">
+								<h3>이력서 제목</h3>
+							</div>
 							<div class="form-group">
-								<label class="control-label">이력서 제목</label>
 								<input type="text" class="form-control" name="title" placeholder="제목" required>
 							</div>
 							<h3>기본정보</h3>

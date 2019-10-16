@@ -32,7 +32,7 @@
 
 	#filediv{
 	position: relative;
-    width: 380px;
+    width: 575px;
     height: 40px;
 	text-align:center;
 		margin-bottom: 0px;
@@ -86,10 +86,10 @@
 		
 		
 		<section id="content" class="section-padding">
-		<div class="container">
+		<div class="container" style="margin-right: 470px;">
 		<div class="row justify-content-center">
 		<div class="col-lg-5 col-md-6 col-xs-12">
-		<div class="page-login-form box">
+		<div class="page-login-form box" style="width: 633px;">
 		<h3>
 		기업 상세정보
 		</h3>
@@ -121,16 +121,16 @@
 		</div>  
 		
 		<!-- 우선 주석처리 -->
-		<img id ="titleImg2" width="380" height="100" >
+		<img id ="titleImg2" width="575" height="100" >
 		
 		<div class="btn btn-common log-btn mt-3" id="filediv" >
 		본사 주소지
 		<input type="text" id="address" onclick="sample3_execDaumPostcode()" value="우편번호 찾기" required >
 		</div>  
 		
-		<input type="text" id="sample3_postcode" name="sample3_postcode" class="adr" placeholder="우편번호*" required style="width:100px;">
-		<input type="text" id="sample3_address" name="sample3_address" class="adr" placeholder="주소*" required style="width:275px;">
-		<input type="text" id="sample3_detailAddress" name="sample3_detailAddress" class="adr" required placeholder="상세주소" style="width:379px;">
+		<input type="text" id="sample3_postcode" name="sample3_postcode" class="adr" placeholder="우편번호*" required style="width:170px;">
+		<input type="text" id="sample3_address" name="sample3_address" class="adr" placeholder="주소*" required style="width:399px;">
+		<input type="text" id="sample3_detailAddress" name="sample3_detailAddress" class="adr" required placeholder="상세주소" style="width:571px;">
 		<input type="hidden" id="sample3_extraAddress" placeholder="참고항목">
 	
 		<div id="wrap" style="display:none;border:1px solid;width:500px;height:300px;margin:5px 0;position:relative">
@@ -194,7 +194,7 @@
 		<section id="editor" style="margin-bottom:0px;">
 		<div class="form-group" style="margin-bottom:0px;">
 		<label class="control-label" style="margin-left: 45%;">연혁</label>
-		<textarea class="form-control" rows="5"  id="history" name="content" ></textarea>
+		<textarea class="form-control" rows="5"  id="history" name="content" style="width:50px;" ></textarea>
 		
 		</div>
 		</section>
@@ -202,7 +202,7 @@
 		<section id="editor" style="margin-bottom:0px;">
 		<div class="form-group" >
 		<label class="control-label" style="margin-left: 45%;">복지</label>
-		<textarea class="form-control" rows="5" id="welfair" name="content"></textarea>
+		<textarea class="form-control" rows="5" id="welfair" name="content" style="width:50px;"></textarea>
 		</div>
 		</section>
 		

@@ -52,7 +52,7 @@
 	<table class="table table-hover table-sm">
 		<thead>
 			<tr>
-				<th><input type=checkbox></th>
+				<th>m_no</th>
 				<th>type</th>
 				<th>email</th>
 				<th>nickname</th>
@@ -64,7 +64,7 @@
 			<%	ArrayList<Member> list=(ArrayList<Member>)request.getAttribute("list");
 				for(Member m:list){%>
 			<tr>
-				<td><input type=checkbox data-mno="<%=m.getM_no()%>"></td>
+				<td><%=m.getM_no()%></td>
 				<td><%=m.getType() %></td>
 				<td><%=m.getEmail() %></td>
 				<td><%=m.getNickname() %></td>

@@ -63,11 +63,8 @@
 				<tr>
 					<th><input type=checkbox></th>
 					<th>no</th>
-					<th>noti_no</th>
 					<th>b_no</th>
-					<th>r_no</th>
-					<th>m</th>
-					<th>content</th>
+					<th>m_no</th>
 					<th>등록일</th>
 					<th>처리일</th>
 					<th>상태</th>
@@ -82,11 +79,8 @@
 				<tr>
 					<td><input type=checkbox data-mno="<%=m.getM_no()%>"></td>
 					<td><%=m.getDe_no() %></td>
-					<td><%=m.getNoti_no() %></td>
 					<td><%=m.getB_no() %></td>
-					<td><%=m.getRe_no() %></td>
 					<td><%=m.getM_no() %></td>
-					<td><%=m.getContents() %></td>
 					<td><%=m.getEnroll_date() %></td>
 					<td><%=m.getComp_date() %></td>
 					<td><%=m.getStatus() %></td>
@@ -104,7 +98,6 @@
 					<td><%=m.getB_no() %></td>
 					<td><%=m.getRe_no() %></td>
 					<td><%=m.getM_no() %></td>
-					<td><%=m.getContents() %></td>
 					<td><%=m.getEnroll_date() %></td>
 					<td><%=m.getComp_date() %></td>
 					<td><%=m.getStatus() %></td>
@@ -122,7 +115,6 @@
 					<td><%=m.getB_no() %></td>
 					<td><%=m.getRe_no() %></td>
 					<td><%=m.getM_no() %></td>
-					<td><%=m.getContents() %></td>
 					<td><%=m.getEnroll_date() %></td>
 					<td><%=m.getComp_date() %></td>
 					<td><%=m.getStatus() %></td>
@@ -135,7 +127,7 @@
 		</table>
 	</div>
 	<div id="viewArea">
-		내용이 보여질꺼야
+		
 	</div>
 </div>
 

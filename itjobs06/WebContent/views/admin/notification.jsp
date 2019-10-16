@@ -39,12 +39,11 @@
 <div id=listBoardTableArea>   
 	<table id="listBoardTable" class="table table-hover table-sm">
 		<tr>
-			<th><input type=checkbox></th>
+			<th>noti_no</th>
 			<th>제목</th>
 			<th>마감일</th>
 			<th>등록일</th>
 			<th>상태</th>
-			<th>신고수</th>
 			<th>삭제</th>
 			<th>삭제취소</th>
 		</tr>
@@ -52,12 +51,11 @@
 		<%	ArrayList<Notification> list=(ArrayList<Notification>)request.getAttribute("list");
 			for(Notification n:list){%>
 		<tr>
-			<td><input type=checkbox></td>
+			<td><%=n.getNoti_no() %></td>
 			<td><%=n.getTitle() %></td>
 			<td><%=n.getEnd_date() %></td>
 			<td><%=n.getEnroll_date() %></td>
 			<td><%=n.getStatus() %></td>
-			<td><%=n.getD_count() %></td>
 			<td><button onclick="del(<%=n.getNoti_no()%>)">삭제</button></td>
 			<td><button onclick="delCancle(<%=n.getNoti_no()%>)">삭제취소</button></td>
 		</tr>

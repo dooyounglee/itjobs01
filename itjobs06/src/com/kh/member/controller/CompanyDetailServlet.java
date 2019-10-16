@@ -44,7 +44,7 @@ public class CompanyDetailServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		Member mem=(Member)session.getAttribute("mem");
 
-		if(mem != null) { // 좋아요 한 맴버의 게시글번호 불러오기 위해 
+/*		if(mem != null) { // 좋아요 한 맴버의 게시글번호 불러오기 위해 
 			int memNo = ((Member)request.getSession().getAttribute("mem")).getM_no();
 			
 			ArrayList<String> likeCo = new LikeService().LikeCoList(memNo);
@@ -52,7 +52,7 @@ public class CompanyDetailServlet extends HttpServlet {
 		
 		
 		request.setAttribute("likeCo", likeCo);
-		}
+		}*/
 		
 		
 		

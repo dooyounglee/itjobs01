@@ -133,7 +133,7 @@ String likeCoCheck = (String)request.getAttribute("likeCoCheck");
 							</div>
 							<h3><%=co_info.getAddress().split("\\+")[1]+ " " +co_info.getAddress().split("\\+")[2] %></h3>
 						</div>
-						<hr>
+<%-- 						<hr>
 						<div class="widghet" style="height:200px;">
 								
 							
@@ -148,7 +148,7 @@ String likeCoCheck = (String)request.getAttribute("likeCoCheck");
 												<span class="heart-icon"> <img src="./resources/img/button-before.png" class="likeimg" style="height:200px; width:320px;"> </span>
 											<%} %>										
 									
-						</div>
+						</div> --%>
 					</div>
 				</div>
 			</div>

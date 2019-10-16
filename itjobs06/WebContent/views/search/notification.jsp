@@ -131,11 +131,6 @@ ArrayList<String> likeBoList = (ArrayList<String>)request.getAttribute("likeMem"
 	<!-- list section -->
 	<section id="job-listings" class="section">
 		<div class="container">
-			<div class="section-header">
-				<h2 class="section-title">Featured Jobs</h2>
-				<p>Hand-picked jobs featured depending on popularity and
-					benifits</p>
-			</div>
 			<div class="row">
 			<%	ArrayList<Notification> list=(ArrayList<Notification>)request.getAttribute("list");
 				for(Notification n:list){%>
@@ -159,7 +154,7 @@ ArrayList<String> likeBoList = (ArrayList<String>)request.getAttribute("likeMem"
 							<div class="col-lg-6 col-md-6 col-xs-12 text-right">
 								<div class="tag-type">
 								<div class="tag-type">
-									<span class="heart-icon" style="background:white; color:blue; text-align:center; padding-right: 132px;">111
+									<span class="heart-icon" style="background:white; color:blue; text-align:center; padding-right: 132px;">
 									<input type="hidden" value="<%=n.getNoti_no()%>" id="noNo5" onchange="likeSum();">
 									
 									
@@ -195,7 +190,6 @@ ArrayList<String> likeBoList = (ArrayList<String>)request.getAttribute("likeMem"
 				</div>
 			<%	} %>
 			<%	PageInfo pi=(PageInfo)request.getAttribute("pi");
-				System.out.println(pi);
 				int currentPage=pi.getCurrentPage();
 				String sText=(String)request.getAttribute("sText");%>
 				<ul class="pagination" style="display:block;">
@@ -211,10 +205,6 @@ ArrayList<String> likeBoList = (ArrayList<String>)request.getAttribute("likeMem"
 							class="lni-angle-right"></i></a></li>
 					<%	} %>
 				</ul>
-				
-				<div class="col-12 text-center mt-4">
-					<a href="job-page.html" class="btn btn-common">Browse All Jobs</a>
-				</div>
 			</div>
 		</div>
 

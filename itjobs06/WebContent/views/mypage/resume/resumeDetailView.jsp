@@ -188,7 +188,7 @@
 							<h3>공개비공개</h3>
 							<p><%= re.getOpen()%></p>
 							<h3>희망연봉</h3>
-							<p><%= re.getHope_salary()%></p>
+							<p><%=re.getHope_salary().equals("4001")?"4000이상":re.getHope_salary().equals("0")?"회사내규에따름":re.getHope_salary() %></p>
 						</div>
 <%	}else{ %>
 						<div class="other item">

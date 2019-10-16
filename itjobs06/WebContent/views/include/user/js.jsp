@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <script src="resources/jobx/assets/js/jquery-min.js"></script>
 <script src="resources/jobx/assets/js/popper.min.js"></script>
-<script src="resources/jobx/assets/js/color-switcher.js"></script>
+<!-- <script src="resources/jobx/assets/js/color-switcher.js"></script> -->
 <script src="resources/jobx/assets/js/owl.carousel.min.js"></script>
 <script src="resources/jobx/assets/js/jquery.slicknav.js"></script>
 <script src="resources/jobx/assets/js/jquery.counterup.min.js"></script>

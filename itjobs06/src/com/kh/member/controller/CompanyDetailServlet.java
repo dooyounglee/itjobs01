@@ -44,15 +44,15 @@ public class CompanyDetailServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		Member mem=(Member)session.getAttribute("mem");
 
-		if(mem != null) { // 좋아요 한 맴버의 게시글번호 불러오기 위해 
+/*		if(mem != null) { // 좋아요 한 맴버의 게시글번호 불러오기 위해 
 			int memNo = ((Member)request.getSession().getAttribute("mem")).getM_no();
 			
-			String likeCoCheck = new LikeService().likeCoCheck(co_no,memNo);
+			ArrayList<String> likeCo = new LikeService().LikeCoList(memNo);
 		
 		
 		
-		request.setAttribute("likeCoCheck", likeCoCheck);
-		}
+		request.setAttribute("likeCo", likeCo);
+		}*/
 		
 		
 		

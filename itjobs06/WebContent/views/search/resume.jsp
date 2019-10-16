@@ -196,11 +196,11 @@ ArrayList<String> likeResList = (ArrayList<String>)request.getAttribute("likeRes
 										<%	}else{ %>
 												<%=arr_address_middle[0] %>
 										<%	} %> --%>
-										지역: <%=n.getAddress().substring(0,Math.min(7,n.getAddress().length()))+"..." %>
+										지역: <%=n.getAddress().split("\\+")[1].split(" ")[0] %>
 									</span> <span class="rate"><i
 										class="ti-time"></i>
 											<%	if(mem!=null && (mem.getType().equals("2") || mem.getM_no()==n.getM_no())){ %>
-												희망연봉: <%=n.getHope_salary() %>
+												희망연봉: <%=n.getHope_salary().equals("4001")?"4000이상":n.getHope_salary().equals("0")?"회사내규에따름":n.getHope_salary() %>
 										<%	}else{ %>
 											희망연봉: ******
 										<%	} %>

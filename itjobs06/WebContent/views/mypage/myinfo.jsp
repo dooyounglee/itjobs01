@@ -207,9 +207,9 @@ nhn.husky.EZCreator.createInIFrame({
   	 sSkinURI: "<%=contextPath%>/resources/naver-smarteditor2-ca95d21/demo/SmartEditor2Skin.html",  
      fCreator: "createSEditor2",
      htParams:{
-    	 bUseToolbar:false, // 툴바 사용여부
+    	 bUseToolbar:true, // 툴바 사용여부
     	 bUseVerticalResizer:false, // 크기조절바 사용여부
-    	 bUseModeChanger : false,	// 모드 탭(Editor | HTML | TEXT) 사용 여부
+    	 bUseModeChanger : true,	// 모드 탭(Editor | HTML | TEXT) 사용 여부
      }
 });
 </script>	
@@ -240,9 +240,9 @@ nhn.husky.EZCreator.createInIFrame({
   	 sSkinURI: "<%=contextPath%>/resources/naver-smarteditor2-ca95d21/demo/SmartEditor2Skin.html",  
      fCreator: "createSEditor2",
      htParams:{
-    	 bUseToolbar:false, // 툴바 사용여부
+    	 bUseToolbar:true, // 툴바 사용여부
     	 bUseVerticalResizer:false, // 크기조절바 사용여부
-    	 bUseModeChanger : false,	// 모드 탭(Editor | HTML | TEXT) 사용 여부
+    	 bUseModeChanger : true,	// 모드 탭(Editor | HTML | TEXT) 사용 여부
      }
 });
 </script>
@@ -258,9 +258,9 @@ nhn.husky.EZCreator.createInIFrame({
   	 sSkinURI: "<%=contextPath%>/resources/naver-smarteditor2-ca95d21/demo/SmartEditor2Skin.html",  
      fCreator: "createSEditor2",
      htParams:{
-    	 bUseToolbar:false, // 툴바 사용여부
+    	 bUseToolbar:true, // 툴바 사용여부
     	 bUseVerticalResizer:false, // 크기조절바 사용여부
-    	 bUseModeChanger : false,	// 모드 탭(Editor | HTML | TEXT) 사용 여부
+    	 bUseModeChanger : true,	// 모드 탭(Editor | HTML | TEXT) 사용 여부
      }
 });
 </script>

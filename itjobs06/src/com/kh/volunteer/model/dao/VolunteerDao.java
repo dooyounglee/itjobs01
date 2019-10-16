@@ -209,7 +209,6 @@ private Properties prop = new Properties();
 			ps=conn.prepareStatement(sql);
 			ps.setInt(1, v_no);
 			result=ps.executeUpdate();
-			System.out.println("dao"+result);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

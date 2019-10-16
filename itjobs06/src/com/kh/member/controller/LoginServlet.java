@@ -66,7 +66,6 @@ public class LoginServlet extends HttpServlet {
 		
 		Member mem=new MemberService().login(m);
 		Co_Info co=new MemberService().getCoInfo(mem);
-		System.out.println(mem);
 		
 		if(mem.getEmail()!=null && mem.getPw() != null && mem.getStatus().equals("Y")) {
 			HttpSession session = request.getSession();

@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.kh.notification.model.service.NotificationService;
 
@@ -32,10 +33,15 @@ public class NotificationDeleteServlet extends HttpServlet {
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		int noti_no=Integer.parseInt(request.getParameter("noti_no"));
 		
+		HttpSession session = request.getSession();
+		
 		int result=new NotificationService().delete(noti_no);
 		if(result>0) {
-			response.sendRedirect(request.getContextPath()+"/myNotification.me");
+			session.setAttribute("alert", "삭제완료");
+		}else {
+			session.setAttribute("alert", "삭제실패. 지원한 지원자가 있거나 누군가 좋아요 한듯");
 		}
+		response.sendRedirect(request.getContextPath()+"/myNotification.me");
 	}
 
 	/**

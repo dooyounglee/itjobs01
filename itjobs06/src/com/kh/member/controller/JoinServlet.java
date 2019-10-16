@@ -22,7 +22,13 @@ public class JoinServlet extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public JoinServlet() {
+   
+	
+	
+	
+	
+	
+	public JoinServlet() {
         super();
         // TODO Auto-generated constructor stub
     }

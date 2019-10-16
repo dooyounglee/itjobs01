@@ -16,6 +16,7 @@ import com.kh.member.model.vo.Member;
  * Servlet implementation class findPwd
  */
 @WebServlet("/findpwd.me")
+
 public class findPwdServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -35,6 +36,8 @@ public class findPwdServlet extends HttpServlet {
 		
 		request.setCharacterEncoding("UTF-8");
 		
+		
+		
 		String email = request.getParameter("email"); 
 		
 		Member mem = new MemberService().findPwd(email); //유저의 이메일을 조회해오고
@@ -43,7 +46,7 @@ public class findPwdServlet extends HttpServlet {
 			
 			String userPwd = mem.getPw(); // 유저 비밀번호를 받고
 			
-			int pwRandom = (int)(Math.random()*1000000000+1); // 임시로 난수를 발생시킨 숫자를 변수에 담아
+			int pwRandom = (int)(Math.random()*1000+1); // 임시로 난수를 발생시킨 숫자를 변수에 담아
 			
 			userPwd =  Integer.toString(pwRandom); // 유저의 비밀번호에 난수의 숫자를 담고
 			

@@ -154,7 +154,7 @@ ArrayList<String> likeBoList = (ArrayList<String>)request.getAttribute("likeMem"
 							<div class="col-lg-6 col-md-6 col-xs-12 text-right">
 								<div class="tag-type">
 								<div class="tag-type">
-									<span class="heart-icon" style="background:white; color:blue; text-align:center; padding-right: 132px;">111
+									<span class="heart-icon" style="background:white; color:blue; text-align:center; padding-right: 132px;">
 									<input type="hidden" value="<%=n.getNoti_no()%>" id="noNo5" onchange="likeSum();">
 									
 									

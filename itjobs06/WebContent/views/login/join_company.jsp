@@ -107,7 +107,7 @@
 			
 			var nickDiv = $(document.getElementById("nickCheck"));
 			
-			var regExp = /^[가-힣a-zA-Z0-9]{0,}$/;
+			var regExp = /^[가-힣a-zA-Z0-9]{1,}$/;
 			$.ajax({
 					url:"<%=request.getContextPath() %>/nickoverlap.me",
 					data:{nickNameCo:nickNameCo},

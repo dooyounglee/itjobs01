@@ -9,11 +9,12 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * Servlet Filter implementation class EncryptFilter
  */
-@WebFilter(filterName="encrypt", servletNames={"InsertMemberServlet"})
+@WebFilter(filterName="encrypt", servletNames={"JoinServlet","MemberChangePwServlet","LoginServlet","findPwdServlet"})
 public class EncryptFilter implements Filter {
 
     /**
@@ -36,10 +37,10 @@ public class EncryptFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		// TODO Auto-generated method stub
 		// place your code here
-		///////EncryptWrapper encRequest=new EncryptWrapper((HttpServletRequest)request);
+		EncryptWrapper encRequest = new EncryptWrapper((HttpServletRequest)request);
 		// pass the request along the filter chain
 		///////chain.doFilter(encRequest, response);
-		chain.doFilter(request, response);
+		chain.doFilter(encRequest, response);
 	}
 
 	/**

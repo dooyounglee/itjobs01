@@ -4,15 +4,27 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style>
+	
+	#checkDiv{
+	margin-bottom:0px;
+	}
+
+	.checkDiv2{
+	width:200px;height:20px
+	
+	}
+</style>
+
+
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src='<%=request.getContextPath()%>/resources/naver-smarteditor2-ca95d21/demo/js/service/HuskyEZCreator.js' charset="utf-8"></script>
 
 <!-- import jobx -->
 <%@ include file="/views/include/user/style.jsp" %>
 <%@ include file="/views/include/user/js.jsp" %>
 <!-- End of import from jobx -->
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
 
@@ -89,13 +101,30 @@
 								}else if(mem.getType().equals("1")){
 									System.out.println("dddd1");
 									nickname=mem.getNickname();
-								}
-								%>
+								}%>
+							
+							
+							
+							<% if(mem.getType().equals("1")){ %>
 							<div class="form-group is-empty">
-								<label class="control-label">닉네임 변경</label> <input
-									class="form-control" type="text" name="nickname" value="<%=nickname%>"> <span
-									class="material-input"></span>
+								<label class="control-label">닉네임 변경</label> 
+								<input class="form-control" type="text" name="nickname" value="<%=nickname%>" id="nickName" oninput="nickCheck1();">
+								<span class="material-input"></span>
+								<div id="nickCheck" class = "checkDiv2"></div>
 							</div>
+							<% }else { %>
+							<div class="form-group is-empty">
+								<label class="control-label">닉네임 변경</label> 
+								<input class="form-control" type="text" name="nickname" value="<%=nickname%>" id="nickNameCo" oninput="nickCheck2();">
+								<span class="material-input"></span>
+								<div id="nickCheck2" class = "checkDiv2"></div>
+							</div>
+							
+							
+							<%} %>
+							
+							
+							
 							<%	if(mem.getType().equals("2")){ %>
 							<div class="form-group is-empty">
 								<label class="control-label">사업자등록번호</label> <input
@@ -161,6 +190,8 @@
 								</div>
 							</div>
 <script>
+		
+
 	function loadImg(value,num){
 		if(value.files && value.files[0]){
 			var reader = new FileReader();
@@ -265,12 +296,127 @@ nhn.husky.EZCreator.createInIFrame({
 });
 </script>
 							<%	} %>
-							<button id="submit" class="btn btn-common" onclick="write_ok()">Save Change</button>
+							<button id="submit1" class="btn btn-common" onclick="write_ok()">Save Change</button>
 						</form>
 					</div>
 				</div>
+	
 				<!-- End of right -->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
+
+
+	
+
+	var flag1 = false;
+	
+
+/*  닉네임 중복체크 */
+function nickCheck1(){
+	
+	
+	var nickName = $("#nickName").val();
+	
+	var nickDiv = $(document.getElementById("nickCheck"));
+	
+	var regExp = /^[가-힣a-zA-Z0-9]{1,}$/;
+		console.log(nickName);
+		$.ajax({
+			url:"<%=request.getContextPath() %>/nickoverlap.me",
+			data:{nickName:nickName},
+			type:"get",
+			success:function(result1){
+			
+				
+				if(result1==1){	
+					 nickDiv.html('중복되는 닉네임이 있습니다').attr('style','color:red'); 
+						flag1 = false;
+						btnChange();
+				}else if(!regExp.test(nickName)){	
+						nickDiv.html('닉네임 양식에 맞지 않습니다').attr('style','color:red');
+						flag1 = false;
+						btnChange();	
+				}else{
+						nickDiv.html('사용가능').attr('style','color:green');
+						flag1 = true;
+						btnChange();
+				}
+				
+				
+	
+			},error:function(){
+				console.log("ajax실패");
+			
+			}
+	 });
+	
+}
+
+function nickCheck2(){
+	
+	
+	
+	var nickNameCo = $("#nickNameCo").val();
+	
+	var nickDiv = $(document.getElementById("nickCheck2"));
+	
+	var regExp = /^[가-힣a-zA-Z0-9]{1,}$/;
+	$.ajax({
+			url:"<%=request.getContextPath() %>/nickoverlap.me",
+			data:{nickNameCo:nickNameCo},
+			type:"get",
+			success:function(result1){
+			
+				
+				if(result1==1){	
+					 nickDiv.html('중복되는 닉네임이 있습니다').attr('style','color:red');
+					flag1=false;
+					btnChange();
+				}else if(!regExp.test(nickNameCo)){	
+						nickDiv.html('닉네임 양식에 맞지 않습니다').attr('style','color:red');
+						flag1=false;
+						btnChange();
+						}else{
+						nickDiv.html('사용가능').attr('style','color:green');
+						flag1 = true;
+						btnChange();
+					}
+				
+				
+			},error:function(){
+				console.log("ajax실패");
+			
+			}
+	 });
+	
+}
+
+
+
+
+
+
+function btnChange(){	// 전체적으로 체크 하기위해서 
+	
+	//console.log("ttt");
+	if(flag1){
+		$("#submit1").attr('disabled',false).attr('style','background:#00bcd4').attr('value','가입');
+	}else {
+		$("#submit1").attr('disabled',true).attr('style','background:gray').attr('value','양식을 확인해 주세요');
+	}
+}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	function write_ok(){
 		oEditors.getById["comment1"].exec("UPDATE_CONTENTS_FIELD", []);
 		oEditors.getById["comment2"].exec("UPDATE_CONTENTS_FIELD", []);

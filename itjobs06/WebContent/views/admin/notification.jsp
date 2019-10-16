@@ -110,7 +110,7 @@
 	}
 </script>
 <script>
-	$('#accordionSidebar').children('li.nav-item').eq(2).addClass('active');
+	$('#accordionSidebar').children('li.nav-item').eq(1).addClass('active');
 </script>
 </body>
 </html>

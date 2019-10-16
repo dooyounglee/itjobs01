@@ -14,14 +14,14 @@
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
         </div>
-          <img src="<%=request.getContextPath() %>/resources/images/logo1.png" width="100px" height="50px">
+        &nbsp;&nbsp; <img src="<%=request.getContextPath() %>/resources/images/logo12.png" height="50px">
         <div class="sidebar-brand-text mx-3"></div>
       </a>
 
       <!-- Divider -->
       <hr class="sidebar-divider my-0">
 
-      <!-- Nav Item - Dashboard -->
+     <%--  <!-- Nav Item - Dashboard -->
       <li class="nav-item">
         <a class="nav-link" href="<%=request.getContextPath()%>/main.ad">
           <i class="fas fa-fw fa-tachometer-alt"></i>
@@ -30,7 +30,7 @@
 
       <!-- Divider -->
       <hr class="sidebar-divider">
-
+ --%>
 	<!-- Heading -->
       <div class="sidebar-heading">
         	admin

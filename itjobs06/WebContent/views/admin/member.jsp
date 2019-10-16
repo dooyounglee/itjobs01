@@ -36,7 +36,7 @@
             <h1 class="h1 mb-0 text-gray-800">회원관리</h1>
             
              <!-- Search -->
-	          <form class="d-none d-sm-inline-block form-inline mr-0 ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+	        <!--   <form class="d-none d-sm-inline-block form-inline mr-0 ml-md-3 my-2 my-md-0 mw-100 navbar-search">
 	            <div class="input-group">
 	              <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
 	              <div class="input-group-append">
@@ -45,7 +45,7 @@
 	                </button>
 	              </div>
 	            </div>
-	          </form>
+	          </form> -->
           </div>
 	
 <div id=listMemberTableArea>
@@ -121,11 +121,11 @@
 <%@ include file="/views/include/js.jsp" %>
 <script>
 	$(".vanish").on("click",function(){
-		var mno=$(this).parent().parent().children().eq(0).children('input').eq(0).data('mno')
+		var mno=$(this).closest('tr').children('td').eq(0).text();
 		location.href="<%=request.getContextPath()%>/vanish.ad?mno="+mno
 	})
 	$(".vanishCancle").on("click",function(){
-		var mno=$(this).parent().parent().children().eq(0).children('input').eq(0).data('mno')
+		var mno=$(this).closest('tr').children('td').eq(0).text();
 		location.href="<%=request.getContextPath()%>/vanishCancle.ad?mno="+mno
 	})
 	$(".auth").on("click",function(){
@@ -135,7 +135,7 @@
 	})
 </script>
 <script>
-	$('#accordionSidebar').children('li.nav-item').eq(1).addClass('active');
+	$('#accordionSidebar').children('li.nav-item').eq(0).addClass('active');
 </script>
 </body>
 </html>

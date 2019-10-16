@@ -153,7 +153,7 @@
 						</ul>
 					</li>
 					<%}else if(mem !=null && mem.getType().equals("0")){ %>
-					<li class="button-group"><a href="<%=request.getContextPath()%>/main.ad"
+					<li class="button-group"><a href="<%=request.getContextPath()%>/memberList.ad"
 						class="button btn btn-common">관리자</a></li>
 					<%	}else{ %>
 					<li class="nav-item aaa"><div></div>

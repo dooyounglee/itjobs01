@@ -74,9 +74,6 @@ public class BoardInsertServlet extends HttpServlet {
 			String clickHead = multiRequest.getParameter("clickHead");	// 메뉴바에서 클릭한 헤드(인설트 후 리스트 재조회 시 필요)
 			String video = multiRequest.getParameter("video");
 			
-			System.out.println("인설트서블릿");
-			System.out.println(video);
-			
 			switch(clickHead) {
 			case "전체보기" : clickHead="main"; break;
 			case "자유" : clickHead="free"; break;

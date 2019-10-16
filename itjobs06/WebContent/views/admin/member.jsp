@@ -129,7 +129,8 @@
 		location.href="<%=request.getContextPath()%>/vanishCancle.ad?mno="+mno
 	})
 	$(".auth").on("click",function(){
-		var mno=$(this).parent().parent().children().eq(0).children('input').eq(0).data('mno')
+		//var mno=$(this).parent().parent().children().eq(0).children('input').eq(0).data('mno')
+		var mno=$(this).closest('tr').children('td').eq(0).text();
 		location.href="<%=request.getContextPath()%>/auth.co.ad?mno="+mno
 	})
 </script>

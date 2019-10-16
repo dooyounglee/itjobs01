@@ -52,7 +52,7 @@
 	<table class="table table-hover table-sm">
 		<thead>
 			<tr>
-				<th><input type=checkbox></th>
+				<th>m_no</th>
 				<th>type</th>
 				<th>email</th>
 				<th>nickname</th>
@@ -64,7 +64,7 @@
 			<%	ArrayList<Member> list=(ArrayList<Member>)request.getAttribute("list");
 				for(Member m:list){%>
 			<tr>
-				<td><input type=checkbox data-mno="<%=m.getM_no()%>"></td>
+				<td><%=m.getM_no()%></td>
 				<td><%=m.getType() %></td>
 				<td><%=m.getEmail() %></td>
 				<td><%=m.getNickname() %></td>
@@ -82,7 +82,9 @@
 	</table>
 	<div id=pageArea>
 		<%	PageInfo pi=(PageInfo)request.getAttribute("pi");%>
+		<%	if(pi.getCurrentPage()>1){ %>
 		<button onclick="send(<%=pi.getCurrentPage()-1%>)"><</button>
+		<%	} %>
 		<%	for(int i=pi.getStartPage();i<=pi.getEndPage();i++){
 				if(i==pi.getCurrentPage()){%>
 		<button onclick="send(<%=i%>)"><b><%=i %></b></button>
@@ -90,7 +92,9 @@
 		<button onclick="send(<%=i%>)"><%=i %></button>
 		<%		} %>
 		<%	} %>
+		<%	if(pi.getCurrentPage()<pi.getEndPage()){ %>
 		<button onclick="send(<%=pi.getCurrentPage()+1%>)">></button>
+		<%	} %>
 	</div>
 </div>
 <script>
@@ -125,7 +129,8 @@
 		location.href="<%=request.getContextPath()%>/vanishCancle.ad?mno="+mno
 	})
 	$(".auth").on("click",function(){
-		var mno=$(this).parent().parent().children().eq(0).children('input').eq(0).data('mno')
+		//var mno=$(this).parent().parent().children().eq(0).children('input').eq(0).data('mno')
+		var mno=$(this).closest('tr').children('td').eq(0).text();
 		location.href="<%=request.getContextPath()%>/auth.co.ad?mno="+mno
 	})
 </script>

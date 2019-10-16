@@ -45,8 +45,8 @@
 <button>검색</button> -->
 <table class="table table-hover table-sm" style="width:60%; float:right;">
 	<tr>
-		<th><input type=checkbox></th>
-		<th>내용</th>
+		<th>보기</th>
+		<th>제목</th>
 		<th>작성자</th>
 		<th>등록일</th>
 		<th>처리일</th>
@@ -55,8 +55,8 @@
 	<%	ArrayList<Question> list=(ArrayList<Question>)request.getAttribute("list");
 		for(Question q:list){%>
 	<tr>
-		<td><input type=checkbox></td>
-		<td><button onclick="return showQ(<%=q.getQ_no()%>)"><%=q.getContents() %></button></td>
+		<td><button onclick="return showQ(<%=q.getQ_no()%>)">보기</button></td>
+		<td><%=q.getTitle() %></td>
 		<td><%=q.getM_no() %></td>
 		<td><%=q.getEnroll_date() %></td>
 		<td><%=q.getEnd_date() %></td>

@@ -44,7 +44,7 @@
 <div id=listBoardTableArea>          
 	<table id="listBoardTable" class="table table-hover table-sm">
 		<tr>
-			<th><input type=checkbox></th>
+			<th>b_no</th>
 			<th>머리말</th>
 			<th>제목</th>
 			<th>작성자</th>
@@ -60,10 +60,10 @@
 
 
 		<tr>
-			<td><input type=checkbox></td>
+			<td><%=b.getB_no() %></td>
 			<td><%=b.getHead() %></td>
 			<td>
-				<a href="<%=request.getContextPath() %>/get.bo.ad?bno=<%=b.getB_no()%>"><%=b.getTitle() %></a>
+				<a href="<%=request.getContextPath() %>/detail.bo?head=전체보기&bId=<%=b.getB_no()%>"><%=b.getTitle() %></a>
 			</td>
 			<td><%=b.getM_no() %></td>
 			<td><%=b.getUpdate_date().split(" ")[0] %></td>
@@ -76,7 +76,9 @@
 	</table>
 	<div id=pageArea>
 		<%	PageInfo pi=(PageInfo)request.getAttribute("pi");%>
+		<%	if(pi.getCurrentPage()>1){ %>
 		<button onclick="send(<%=pi.getCurrentPage()-1%>)"><</button>
+		<%	} %>
 		<%	for(int i=pi.getStartPage();i<=pi.getEndPage();i++){
 				if(i==pi.getCurrentPage()){%>
 		<button onclick="send(<%=i%>)"><b><%=i %></b></button>
@@ -84,7 +86,9 @@
 		<button onclick="send(<%=i%>)"><%=i %></button>
 		<%		} %>
 		<%	} %>
+		<%	if(pi.getCurrentPage()<pi.getEndPage()){ %>
 		<button onclick="send(<%=pi.getCurrentPage()+1%>)">></button>
+		<%	} %>
 	</div>
 </div>
 <script>

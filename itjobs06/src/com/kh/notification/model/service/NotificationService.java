@@ -31,6 +31,11 @@ public class NotificationService {
 	public int delete(int noti_no) {
 		Connection conn=getConnection();
 		int result=new NotificationDao().delete(conn,noti_no);
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
 		close(conn);
 		return result;
 	}
@@ -38,6 +43,11 @@ public class NotificationService {
 	public int deleteCancle(int noti_no) {
 		Connection conn=getConnection();
 		int result=new NotificationDao().deleteCancle(conn,noti_no);
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
 		close(conn);
 		return result;
 	}

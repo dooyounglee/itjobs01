@@ -77,7 +77,7 @@ public class NotificationDao {
 		ArrayList<Notification> list=new ArrayList<>();
 		PreparedStatement ps=null;
 		ResultSet rs=null;
-		
+		System.out.println("디에이오      " + pi);
 		String sql=prop.getProperty("getAdminAllNotificationList");
 		try {
 			ps=conn.prepareStatement(sql);
@@ -101,6 +101,7 @@ public class NotificationDao {
 				n.setNickname(rs.getString("nickname"));
 				n.setAddress(rs.getString("address"));
 				n.setLogoFile(rs.getString("logo_file"));
+				System.out.println(n);
 				list.add(n);
 			}
 		} catch (SQLException e) {

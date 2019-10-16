@@ -46,18 +46,14 @@
 				<!-- right  -->
 				<div class="col-lg-8 col-md-12 col-xs-12">
 					<div class="add-resume box">
-						<div class="post-header">
-							<p>
-								Already have an account? <a href="register.html">Click here
-									to login</a>
-							</p>
-						</div>
 						<form class="form-ad" action="<%=request.getContextPath()%>/update.re" method="post" enctype="multipart/form-data" autocomplete=off>
 							<input type=hidden name="resume_no" value="<%=re.getResume_no()%>">
 							<input type=hidden name="path" value="<%=re.getPath()%>">
 							<input type=hidden name="photo" value="<%=re.getPhoto()%>">
+							<div class="divider">
+								<h3>이력서 제목</h3>
+							</div>
 							<div class="form-group">
-								<label class="control-label">이력서 제목</label>
 								<input type="text" class="form-control" name="title" placeholder="제목" value="<%=re.getTitle()%>" required>
 							</div>
 							<h3>기본정보</h3>
@@ -451,6 +447,9 @@
 								<input type="radio" name="open" value="Y" <%=checked_open[0] %>>공개
 								<input type="radio" name="open" value="N" <%=checked_open[1] %>>비공개
 							</div>
+							<div class="divider">
+								<h3>프로그래밍 언어</h3>
+							</div>
 							<%	String[] p_lans=re.getP_language().split(",");
 								String[] arr_p_lan=new String[10];
 								for(int i=0;i<p_lans.length;i++){
@@ -468,30 +467,33 @@
 									}
 								}%>
 							<div class="form-group">
-								<label class="control-label">프로그래밍 언어</label><br>
-								<input type="checkbox" class="form-check-input" name="p" value="C" <%=arr_p_lan[0] %>>
-								<label class="form-check-label">C</label><br>
-								<input type="checkbox" class="form-check-input" name="p" value="java" <%=arr_p_lan[1] %>>
-								<label class="form-check-label">java</label><br>
-								<input type="checkbox" class="form-check-input" name="p" value="CSS" <%=arr_p_lan[2] %>>
-								<label class="form-check-label">CSS</label><br>
-								<input type="checkbox" class="form-check-input" name="p" value="javascript" <%=arr_p_lan[3] %>>
-								<label class="form-check-label">javascript</label><br>
-								<input type="checkbox" class="form-check-input" name="p" value="C++" <%=arr_p_lan[4] %>>
-								<label class="form-check-label">C++</label><br>
-								<input type="checkbox" class="form-check-input" name="p" value="C#" <%=arr_p_lan[5] %>>
-								<label class="form-check-label">C#</label><br>
-								<input type="checkbox" class="form-check-input" name="p" value="VBA" <%=arr_p_lan[6] %>>
-								<label class="form-check-label">VBA</label><br>
-								<input type="checkbox" class="form-check-input" name="p" value="python" <%=arr_p_lan[7] %>>
-								<label class="form-check-label">python</label><br>
-								<input type="checkbox" class="form-check-input" name="p" value="php" <%=arr_p_lan[8] %>>
-								<label class="form-check-label">php</label><br>
-								<input type="checkbox" class="form-check-input" name="p" value="asp" <%=arr_p_lan[9] %>>
-								<label class="form-check-label">asp</label><br>
+								<div style="padding-left:20px">
+									<input type="checkbox" class="form-check-input" name="p" value="C" <%=arr_p_lan[0] %>>
+									<label class="form-check-label">C</label><br>
+									<input type="checkbox" class="form-check-input" name="p" value="java" <%=arr_p_lan[1] %>>
+									<label class="form-check-label">java</label><br>
+									<input type="checkbox" class="form-check-input" name="p" value="CSS" <%=arr_p_lan[2] %>>
+									<label class="form-check-label">CSS</label><br>
+									<input type="checkbox" class="form-check-input" name="p" value="javascript" <%=arr_p_lan[3] %>>
+									<label class="form-check-label">javascript</label><br>
+									<input type="checkbox" class="form-check-input" name="p" value="C++" <%=arr_p_lan[4] %>>
+									<label class="form-check-label">C++</label><br>
+									<input type="checkbox" class="form-check-input" name="p" value="C#" <%=arr_p_lan[5] %>>
+									<label class="form-check-label">C#</label><br>
+									<input type="checkbox" class="form-check-input" name="p" value="VBA" <%=arr_p_lan[6] %>>
+									<label class="form-check-label">VBA</label><br>
+									<input type="checkbox" class="form-check-input" name="p" value="python" <%=arr_p_lan[7] %>>
+									<label class="form-check-label">python</label><br>
+									<input type="checkbox" class="form-check-input" name="p" value="php" <%=arr_p_lan[8] %>>
+									<label class="form-check-label">php</label><br>
+									<input type="checkbox" class="form-check-input" name="p" value="asp" <%=arr_p_lan[9] %>>
+									<label class="form-check-label">asp</label><br>
+								</div>
+							</div>
+							<div class="divider">
+								<h3>자소서</h3>
 							</div>
 							<div class="form-group">
-								<label class="control-label">자소서</label>
 								<textarea class="form-control" id="comment" name="self" rows="5"><%=re.getCover_letter()%></textarea>
 							</div>
 <script>

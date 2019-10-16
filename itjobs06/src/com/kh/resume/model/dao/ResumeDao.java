@@ -23,7 +23,7 @@ public class ResumeDao {
 	public ResumeDao() {
 		
 		String fileName = ResumeDao.class.getResource("/com/kh/sql/resume-query.properties").getPath();
-		fileName=fileName.replace("WEB-INF/classes/", "");
+		//fileName=fileName.replace("WEB-INF/classes/", "");
 		try {
 			prop.load(new FileReader(fileName));
 		} catch (IOException e) {

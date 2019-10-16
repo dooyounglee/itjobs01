@@ -20,7 +20,7 @@ public class MainDao {
    public MainDao() {
       
       String fileName = MemberDao.class.getResource("/com/kh/sql/main-query.properties").getPath();
-      fileName=fileName.replace("WEB-INF/classes/", "");
+     // fileName=fileName.replace("WEB-INF/classes/", "");
       try {
          prop.load(new FileReader(fileName));
       } catch (IOException e) {

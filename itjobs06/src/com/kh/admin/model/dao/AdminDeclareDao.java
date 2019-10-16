@@ -19,7 +19,7 @@ public class AdminDeclareDao {
 	public AdminDeclareDao() {
 		
 		String fileName = QuestionDao.class.getResource("/com/kh/sql/declare-query.properties").getPath();
-		fileName=fileName.replace("WEB-INF/classes/", "");
+		//fileName=fileName.replace("WEB-INF/classes/", "");
 		try {
 			prop.load(new FileReader(fileName));
 		} catch (IOException e) {

@@ -22,7 +22,7 @@ public class JDBCTemplate {
 		// 실제로 구동되는 driver.properties는 WEB-INF\classes 안에 있는 파일이다.
 		// 그 경로를 잡아주는 과정
 		String fileName = JDBCTemplate.class.getResource("/com/kh/sql/driver.properties").getPath();
-		fileName=fileName.replace("WEB-INF/classes/", "");
+		//fileName=fileName.replace("WEB-INF/classes/", "");
 		
 		//System.out.println(fileName);
 		

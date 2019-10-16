@@ -25,7 +25,7 @@ public class BoardDao {
 	public BoardDao() {
 		
 		String fileName = BoardDao.class.getResource("/com/kh/sql/board-query.properties").getPath();
-		fileName=fileName.replace("WEB-INF/classes/", "");
+		//fileName=fileName.replace("WEB-INF/classes/", "");
 		try {
 			prop.load(new FileReader(fileName));
 		} catch (IOException e) {

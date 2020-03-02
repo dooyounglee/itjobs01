@@ -25,7 +25,7 @@ public class sendEmail  {
 				final String userPw = "비밀번호";
 
 				try {
-				String sender = "show10033@naver.com"; //보내는사람 메일주소. ex) mailSender@naver.com
+				String sender = "이메일ID(@뒤는 생략)"; //보내는사람 메일주소. ex) mailSender@naver.com
 				String subject = "ITJobs 유저님의 임시 비밀번호 입니다."; //메일 제목
 				String body = userPwd ; //메일 본문
 
@@ -74,8 +74,8 @@ public class sendEmail  {
 			props.put("defaultEncoding", "utf-8");
 			props.put("mail.smtp.auth", "true");
 
-			final String userId = "show10033";
-			final String userPw = "***********";
+			final String userId = "이메일ID(@뒤는 생략);
+			final String userPw = "이메일 비밀번호";
 
 			try {
 			String sender = "이메일ID"; //보내는사람 메일주소. ex) mailSender@naver.com
